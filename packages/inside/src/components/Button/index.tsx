@@ -1,7 +1,7 @@
 import React from "react";
 
-const Button = () => {
-  return <div>Button</div>;
+const Button = ({ color }: { color: string }) => {
+  return <div>button</div>;
 };
 
 export default Button;

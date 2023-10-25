@@ -1,6 +1,4 @@
-import React from "react";
-
-const Button = () => {
+const Button = ({ color }: { color: string }) => {
   return <div>Button</div>;
 };
 

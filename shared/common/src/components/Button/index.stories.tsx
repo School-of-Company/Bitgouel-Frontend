@@ -8,7 +8,7 @@ export default {
 
 type Story = StoryObj<typeof Button>;
 
-export const Primary: Story = {
+export const Primary: StoryObj = {
   args: {
     color: "blue",
   },
