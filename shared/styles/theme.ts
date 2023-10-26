@@ -13,37 +13,37 @@ const color = {
 
 const typo = {
   title_lg: {
-    fontSize: '48px',
+    fontSize: '3rem',
     lineHeight: '120%',
     fontWeight: '600',
   },
   title_md: {
-    fontSize: '36px',
+    fontSize: '2.25rem',
     lineHeight: '120%',
     fontWeight: '600',
   },
   title_sm: {
-    fontSize: '24px',
+    fontSize: '1.5rem',
     lineHeight: '130%',
     fontWeight: '600',
   },
   text_lg: {
-    fontSize: '18px',
+    fontSize: '1.125rem',
     lineHeight: '140%',
     fontWeight: '600',
   },
   text_md: {
-    fontSize: '16px',
+    fontSize: '1rem',
     lineHeight: '140%',
     fontWeight: '400',
   },
   text_sm: {
-    fontSize: '14px',
+    fontSize: '0.875rem',
     lineHeight: '140%',
     fontWeight: '400',
   },
   caption: {
-    fontSize: '12px',
+    fontSize: '0.75rem',
     lineHeight: '140%',
     fontWeight: '400',
   },
