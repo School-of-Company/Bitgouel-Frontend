@@ -2,13 +2,13 @@ import styled from '@emotion/styled'
 import { theme } from '../../../../styles/theme'
 
 export const ValueInput = styled.input`
-  width: 384px;
-  height: 54px;
+  width: 24rem;
+  height: 3.375rem;
 
-  border: 1px solid ${theme.color.gray['700']};
-  border-radius: 8px;
+  border: 0.0625rem solid ${theme.color.gray['700']};
+  border-radius: 0.5rem;
   outline: none;
-  text-indent: 20px;
+  text-indent: 1.25rem;
 
   ${theme.typo.text_sm};
 
