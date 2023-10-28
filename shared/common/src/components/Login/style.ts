@@ -2,25 +2,25 @@ import { theme } from '../../../../styles/theme'
 import styled from '@emotion/styled'
 
 export const LoginWrapper = styled.div`
-  width: 432px;
-  height: 531px;
-  border-radius: 8px;
-  border: 1px solid #b8b8b8;
+  width: 27rem;
+  height: 33.1875rem;
+  border-radius: 0.5rem;
+  border: 0.0625rem solid #b8b8b8;
 `
 
 export const TitleWrapper = styled.div`
   width: 100%;
-  height: 177px;
+  height: 11.0625rem;
 `
 export const TitleItemWrapper = styled.div`
-  padding: 24px 0 0 24px;
+  padding: 1.5rem 0 0 1.5rem;
   display: flex;
   flex-direction: column;
 `
 
 export const TitleContainer = styled.div`
-  width: 216px;
-  height: 177px;
+  width: 13.5rem;
+  height: 11.0625rem;
 `
 
 export const TitleItem = styled.span`
@@ -40,14 +40,14 @@ export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 1.5rem;
 `
 
 export const PasswordContainer = styled.div`
   width: 88%;
   display: flex;
-  gap: 210px;
-  margin-top: 4px;
+  gap: 13.125rem;
+  margin-top: 0.25rem;
 `
 
 export const MenuItem = styled.span`
@@ -64,7 +64,7 @@ export const PasswordSearch = styled.span`
 
 export const LoginButtonWrapper = styled.div`
   width: 100%;
-  height: 106px;
+  height: 6.625rem;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -74,16 +74,16 @@ export const LoginButton = styled.button`
   background-color: ${theme.color.main};
   color: ${theme.color.white};
   ${theme.typo.text_lg};
-  width: 384px;
-  height: 52px;
-  border-radius: 8px;
+  width: 24rem;
+  height: 3.25rem;
+  border-radius: 0.5rem;
   border: 0;
   cursor: pointer;
 `
 
 export const JoinWrapper = styled.div`
   width: 100%;
-  height: 95px;
+  height: 5.9375rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -93,7 +93,7 @@ export const JoinContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.5rem;
 `
 
 export const NoAccountItem = styled.span`
@@ -104,6 +104,6 @@ export const NoAccountItem = styled.span`
 export const UserJoinItem = styled.span`
   ${theme.typo.text_md};
   color: ${theme.color.main};
-  margin-left: 4px;
+  margin-left: 0.25rem;
   cursor: pointer;
 `
