@@ -29,7 +29,6 @@ const Login = () => {
             length={emailValue.length}
             onChange={(e) => {
               setEmailValue(e.target.value)
-              console.log(emailValue)
             }}
           />
           <ValueInput
@@ -40,7 +39,6 @@ const Login = () => {
             length={passwordValue.length}
             onChange={(e) => {
               setPasswordValue(e.target.value)
-              console.log(passwordValue)
             }}
           />
         </S.InputContainer>
