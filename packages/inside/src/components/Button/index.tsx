@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
 const Button = ({ color }: { color: string }) => {
-  return <div>button</div>;
-};
+  return <div>button</div>
+}
 
-export default Button;
+export default Button
