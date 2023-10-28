@@ -2,8 +2,12 @@
 
 import * as S from './style'
 import ValueInput from '../ValueInput'
+import { useState } from 'react'
 
 const Login = () => {
+  const [emailValue, setEmailValue] = useState<string>('')
+  const [passwordValue, setPasswordValue] = useState<string>('')
+
   return (
     <S.LoginWrapper>
       <S.TitleWrapper>
@@ -17,8 +21,28 @@ const Login = () => {
       </S.TitleWrapper>
       <S.InputWrapper>
         <S.InputContainer>
-          <ValueInput placeholder='이메일' />
-          <ValueInput placeholder='비밀번호' />
+          <ValueInput
+            placeholder='이메일'
+            onClear={() => setEmailValue('')}
+            type='text'
+            value={emailValue}
+            length={emailValue.length}
+            onChange={(e) => {
+              setEmailValue(e.target.value)
+              console.log(emailValue)
+            }}
+          />
+          <ValueInput
+            placeholder='비밀번호'
+            onClear={() => setPasswordValue('')}
+            type='password'
+            value={passwordValue}
+            length={passwordValue.length}
+            onChange={(e) => {
+              setPasswordValue(e.target.value)
+              console.log(passwordValue)
+            }}
+          />
         </S.InputContainer>
         <S.PasswordContainer>
           <S.MenuItem>비밀번호를 잊었나요?</S.MenuItem>
