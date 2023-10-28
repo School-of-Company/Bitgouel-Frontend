@@ -25,7 +25,7 @@ export const ValueInput = styled.input`
   ${theme.typo.text_sm};
 
   input:focus {
-    border: 1px solid ${theme.color.main};
+    border: 0.0625rem solid ${theme.color.main};
   }
 
   ::placeholder {
@@ -38,5 +38,5 @@ export const XIconWrapper = styled.div`
   display: flex;
   align-items: center;
   position: absolute;
-  margin-right: 20px;
+  margin-right: 1.25rem;
 `
