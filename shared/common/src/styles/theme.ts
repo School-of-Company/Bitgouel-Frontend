@@ -9,7 +9,7 @@ const color = {
   },
   white: '#FFFFFF',
   black: '#000000',
-} as const
+}
 
 const typo = {
   title_lg: {
@@ -47,7 +47,7 @@ const typo = {
     lineHeight: '140%',
     fontWeight: '400',
   },
-} as const
+}
 
 const breakPoint = {
   360: '(max-width: 360px)',
@@ -57,10 +57,10 @@ const breakPoint = {
   1440: '(max-width: 1440px)',
   1728: '(max-width: 1728px)',
   1920: '(max-width: 1920px)',
-} as const
+}
 
 export const theme = {
   color,
   typo,
   breakPoint,
-} as const
+}

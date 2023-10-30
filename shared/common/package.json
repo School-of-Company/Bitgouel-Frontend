@@ -7,6 +7,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "emotion-reset": "^3.0.1",
+    "react-router-dom": "^6.17.0",
     "typescript": "5.0.4"
   }
 }

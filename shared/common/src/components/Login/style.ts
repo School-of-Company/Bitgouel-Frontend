@@ -6,6 +6,10 @@ export const LoginWrapper = styled.div`
   height: 34.6875rem;
   border-radius: 0.5rem;
   border: 0.0625rem solid #b8b8b8;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `
 
 export const TitleWrapper = styled.div`
@@ -53,7 +57,6 @@ export const PasswordContainer = styled.div`
 export const MenuItem = styled.span`
   ${theme.typo.caption};
   color: ${theme.color.gray['400']};
-  cursor: pointer;
 `
 
 export const PasswordSearch = styled.span`
