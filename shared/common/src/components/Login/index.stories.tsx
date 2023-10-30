@@ -1,15 +1,13 @@
-'use client';
+'use client'
 
-import Login from '.';
-import type { Meta, StoryObj } from '@storybook/react';
+import Login from '.'
+import type { Meta, StoryObj } from '@storybook/react'
 
 export default {
   title: 'common/Login',
   component: Login,
-} as Meta<typeof Login>;
+} as Meta<typeof Login>
 
-type Story = StoryObj<typeof Login>;
+type Story = StoryObj<typeof Login>
 
-export const Primary: Story = {};
-
-
+export const Primary: Story = {}

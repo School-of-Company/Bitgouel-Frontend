@@ -3,7 +3,7 @@ import * as S from './style'
 import { XIcon } from '../../assets'
 
 interface ValueInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  onClear: () => void
+  onClear: (e?: any) => void
   length: number
 }
 

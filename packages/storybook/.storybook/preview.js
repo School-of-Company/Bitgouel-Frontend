@@ -1,3 +1,4 @@
+import { RecoilRoot } from 'recoil'
 import '../../../shared/styles/font.css'
 
 /** @type { import('@storybook/react').Preview } */
@@ -11,6 +12,13 @@ const preview = {
       },
     },
   },
+  decorators: [
+    (Story) => (
+      <RecoilRoot>
+        <Story />
+      </RecoilRoot>
+    ),
+  ],
 }
 
 export default preview

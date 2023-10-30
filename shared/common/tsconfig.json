@@ -1,29 +1,12 @@
 {
+  "extends": "tsconfig/react-components.json",
+  "include": ["**/*.ts", "**/*.tsx", "src"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "baseUrl": "./",
+    "rootDir": ".",
+    "baseUrl": "./src",
     "paths": {
-      "@/*": ["./src/*"],
       "common/*": ["./*"]
     }
-  },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  }
 }

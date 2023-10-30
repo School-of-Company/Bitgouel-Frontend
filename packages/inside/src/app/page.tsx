@@ -1,3 +1,5 @@
+import SignUpPage from '@/PageContainer/SignUpPage'
+
 export default function Home() {
-  return <div>Bitgouel inside</div>;
+  return <div>{/* <SignUpPage /> */}</div>
 }

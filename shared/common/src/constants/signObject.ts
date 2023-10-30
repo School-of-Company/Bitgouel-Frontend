@@ -17,7 +17,6 @@ export const school: string[] = [
 ]
 
 export const gwangjuGong: string[] = [
-  //광주공고
   'SMART JOB PROJECT',
   '나의 미래는 내가 주인공이다!',
   '설비의 달인',
@@ -107,7 +106,9 @@ export const GSM: string[] = [
 
 export const gwangjuGirlSang: string[] = [
   //광주여상
-  '금융실무, 소개팅, 취사모',
+  '금융실무',
+  '소개팅',
+  '취사모',
 ]
 
 export const gwangjuNatural: string[] = [
