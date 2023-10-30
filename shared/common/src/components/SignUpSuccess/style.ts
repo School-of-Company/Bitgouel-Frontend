@@ -41,7 +41,7 @@ export const SignUpContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 1.4063rem;
+  margin-bottom: 4.375rem;
 `
 
 export const MainTitle = styled.span`
