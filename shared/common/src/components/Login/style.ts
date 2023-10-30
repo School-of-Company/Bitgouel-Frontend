@@ -3,9 +3,15 @@ import styled from '@emotion/styled'
 
 export const LoginWrapper = styled.div`
   width: 27rem;
-  height: 33.1875rem;
+  height: 34.6875rem;
   border-radius: 0.5rem;
   border: 0.0625rem solid #b8b8b8;
+`
+
+export const LoginContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  padding-top: 0.75rem;
 `
 
 export const TitleWrapper = styled.div`
