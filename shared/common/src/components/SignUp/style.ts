@@ -4,6 +4,11 @@ import { theme } from '../../styles'
 
 export const SignUpWrapper = styled(LoginWrapper)``
 
+export const SignUpTitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
 export const TitleItemWrapper = styled.div`
   padding: 1.5rem 0 0 1.5rem;
   display: flex;

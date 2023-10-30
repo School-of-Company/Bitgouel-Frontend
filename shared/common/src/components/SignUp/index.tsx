@@ -10,13 +10,7 @@ const SignUp = () => {
 
   return (
     <S.SignUpWrapper>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
+      <S.SignUpTitleWrapper>
         <S.TitleItemWrapper>
           <S.TitleItem>
             {page !== 3 ? '만나서 반가워요!' : '얼마 안 남았어요!'}
@@ -49,7 +43,7 @@ const SignUp = () => {
             }}
           />
         </S.ShowPageCurrentBox>
-      </div>
+      </S.SignUpTitleWrapper>
       {page === 1 && <Page1 page={page} setPage={setPage} />}
       {page === 2 && <Page2 page={page} setPage={setPage} />}
       {page === 3 && <Page3 page={page} setPage={setPage} />}
