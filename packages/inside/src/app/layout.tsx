@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Providers from './providers'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -12,10 +11,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html>
-      <body>
-        <Providers>{children}</Providers>
-      </body>
+    <html lang='en'>
+      <body>{children}</body>
     </html>
   )
 }

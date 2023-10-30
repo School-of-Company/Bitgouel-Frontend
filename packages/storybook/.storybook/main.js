@@ -11,7 +11,7 @@ function getAbsolutePath(value) {
 /** @type { import('@storybook/nextjs').StorybookConfig } */
 const config = {
   stories: [
-    '../../inside/src/components/**!(node_modules)/*.stories.@(js|jsx|ts|tsx)',
+    // '../../inside/src/components/**!(node_modules)/*.stories.@(js|jsx|ts|tsx)',
     // '../../inside/src/PageContainer/**!(node_modules)/*.stories.@(js|jsx|ts|tsx)',
     // '../../outside/src/components/**!(node_modules)/*.stories.@(js|jsx|ts|tsx)',
     // '../../outside/src/PageContainer/**!(node_modules)/*.stories.@(js|jsx|ts|tsx)',

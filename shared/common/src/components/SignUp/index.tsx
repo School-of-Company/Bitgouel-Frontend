@@ -2,13 +2,13 @@
 
 import * as S from './style'
 import { useState } from 'react'
-import { theme } from '../../styles/theme'
+import { theme } from '../../styles'
 import Page1 from './Pagination/Page1'
 import Page2 from './Pagination/Page2'
 import Page3 from './Pagination/Page3'
 
 const SignUp = () => {
-  const [page, setPage] = useState<number>(3)
+  const [page, setPage] = useState<number>(1)
 
   return (
     <S.SignUpWrapper>

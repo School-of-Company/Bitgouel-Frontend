@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { theme } from '../../styles/theme'
+import { theme } from '../../styles'
 
 export const ValueWrapper = styled.div`
   width: 24rem;
@@ -28,11 +28,12 @@ export const ValueInput = styled.input`
     border: 0.0625rem solid ${theme.color.main};
   }
 
-  ::placeholder {
+  &::placeholder {
     color: ${theme.color.gray['400']};
     ${theme.typo.text_sm};
   }
 
+  &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;

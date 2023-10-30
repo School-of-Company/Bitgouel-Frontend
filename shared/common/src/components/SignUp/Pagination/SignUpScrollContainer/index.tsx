@@ -52,7 +52,17 @@ const SignUpScrollContainer = ({
   }
 
   return (
-    <S.SignUpScrollContainer idx={idx}>
+    <S.SignUpScrollContainer
+      idx={idx}
+      placeholder={placeholder}
+      style={{
+        display:
+          placeholder === '동아리 이름으로 검색' &&
+          page2Obj[0].value === '서진여자고'
+            ? 'none'
+            : 'flex',
+      }}
+    >
       {placeholder === '소속' &&
         belongs.map((item, idx) => (
           <span key={idx} onClick={() => onChange(item)}>
@@ -124,10 +134,6 @@ const SignUpScrollContainer = ({
             {item}
           </span>
         ))}
-      {placeholder === '동아리 이름으로 검색' &&
-        page2Obj[0].value === '서진여자고' && (
-          <span>동아리가 존재하지 않아요</span>
-        )}
       {placeholder === '동아리 이름으로 검색' &&
         page2Obj[0].value === '숭의과학기술고' &&
         sewu.map((item, idx) => (

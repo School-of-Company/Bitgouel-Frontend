@@ -1,9 +1,9 @@
-import SignUpPage from '@/PageContainer/SignUpPage'
+import { Login } from '../../../../shared/common/src/components'
 
 export default function Home() {
   return (
     <div>
-      <SignUpPage />
+      <Login />
     </div>
   )
 }

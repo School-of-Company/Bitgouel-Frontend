@@ -1,6 +1,5 @@
-// import { theme } from '@/styles/theme'
 import styled from '@emotion/styled'
-import { theme } from '../../styles/theme'
+import { theme } from '../../styles'
 
 export const LoginWrapper = styled.div`
   width: 27rem;

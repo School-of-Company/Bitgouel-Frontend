@@ -24,7 +24,7 @@ const Page2 = ({
       clearObj[idx] = { ...clearObj[idx], value: '' }
       clearObj[1] = { ...clearObj[1], value: '' }
     } else {
-      clearObj[1] = { ...clearObj[idx], value: '' }
+      clearObj[idx] = { ...clearObj[idx], value: '' }
     }
 
     setPage2Obj(clearObj)
@@ -58,7 +58,10 @@ const Page2 = ({
               placeholder={item.placeholder}
               length={item.value.length}
               onInput={(e: ChangeEvent<HTMLInputElement>) => {
-                if (e.target.type && e.target.value.length > e.target.maxLength)
+                if (
+                  e.target.type === 'number' &&
+                  e.target.value.length > e.target.maxLength
+                )
                   e.target.value = e.target.value.slice(0, e.target.maxLength)
               }}
               maxLength={item.maxLength}
@@ -88,16 +91,19 @@ const Page2 = ({
             />
           )}
 
-        {placeholder === '동아리 이름으로 검색' && isScrollContainer && (
-          <SignUpScrollContainer
-            value={value}
-            idx={idx}
-            placeholder={placeholder}
-            obj={page2Obj}
-            setObj={setPage2Obj}
-            setIsScrollContainer={setIsScrollContainer}
-          />
-        )}
+        {placeholder === '동아리 이름으로 검색' &&
+          page2Obj[0].value &&
+          !value.length &&
+          isScrollContainer && (
+            <SignUpScrollContainer
+              value={value}
+              idx={idx}
+              placeholder={placeholder}
+              obj={page2Obj}
+              setObj={setPage2Obj}
+              setIsScrollContainer={setIsScrollContainer}
+            />
+          )}
       </PaginationInputsContainer>
       <SignUpButtonContainer
         isNext={page2Obj.every((item) => item.value.length)}

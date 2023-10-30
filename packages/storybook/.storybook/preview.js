@@ -1,7 +1,7 @@
 'use client'
 
 import { RecoilRoot } from 'recoil'
-import '../../../shared/styles/font.css'
+import '../../../shared/common/src/styles/font.css'
 
 /** @type { import('@storybook/react').Preview } */
 const preview = {

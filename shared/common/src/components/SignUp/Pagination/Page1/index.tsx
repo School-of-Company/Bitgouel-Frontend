@@ -61,16 +61,30 @@ const Page1 = ({
           </div>
         ))}
 
-        {!value.length && isScrollContainer && (
-          <SignUpScrollContainer
-            value={value}
-            idx={idx}
-            placeholder={placeholder}
-            obj={page1Obj}
-            setObj={setPage1Obj}
-            setIsScrollContainer={setIsScrollContainer}
-          />
-        )}
+        {idx === 0
+          ? !value.length &&
+            isScrollContainer && (
+              <SignUpScrollContainer
+                value={value}
+                idx={idx}
+                placeholder={placeholder}
+                obj={page1Obj}
+                setObj={setPage1Obj}
+                setIsScrollContainer={setIsScrollContainer}
+              />
+            )
+          : page1Obj[0].value &&
+            !value.length &&
+            isScrollContainer && (
+              <SignUpScrollContainer
+                value={value}
+                idx={idx}
+                placeholder={placeholder}
+                obj={page1Obj}
+                setObj={setPage1Obj}
+                setIsScrollContainer={setIsScrollContainer}
+              />
+            )}
       </S.PaginationInputsContainer>
       <SignUpButtonContainer
         page={page}
