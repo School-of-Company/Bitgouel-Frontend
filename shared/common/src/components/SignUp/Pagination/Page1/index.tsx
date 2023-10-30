@@ -1,5 +1,3 @@
-'use client'
-
 import ValueInput from '../../../ValueInput'
 import React, { useState } from 'react'
 import SignUpScrollContainer from '../SignUpScrollContainer'

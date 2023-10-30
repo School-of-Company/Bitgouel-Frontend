@@ -1,5 +1,3 @@
-'use client'
-
 import React, { ChangeEvent } from 'react'
 import { PaginationInputsContainer } from '../Page1/style'
 import { useRecoilState } from 'recoil'

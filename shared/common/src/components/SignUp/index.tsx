@@ -1,5 +1,3 @@
-'use client'
-
 import * as S from './style'
 import { useState } from 'react'
 import { theme } from '../../styles'

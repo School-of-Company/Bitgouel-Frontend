@@ -1,5 +1,3 @@
-'use client'
-
 import Login from '.'
 import type { Meta, StoryObj } from '@storybook/react'
 

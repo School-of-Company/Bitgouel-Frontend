@@ -1,5 +1,3 @@
-'use client'
-
 import {
   donillFuture,
   GAT,
