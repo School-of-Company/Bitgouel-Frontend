@@ -11,25 +11,25 @@ export const SignUpButtonContainer = styled.div<{ page: number }>`
 `
 
 export const PreButton = styled.button`
-  width: 188px;
-  height: 52px;
+  width: 11.75rem;
+  height: 3.25rem;
   background-color: ${theme.color.white};
-  border: 1px solid ${theme.color.main};
-  border-radius: 8px;
+  border: 0.0625rem solid ${theme.color.main};
+  border-radius: 0.5rem;
   cursor: pointer;
   ${theme.typo.text_lg};
   color: ${theme.color.main};
 `
 
 export const NextButton = styled.button<{ isNext: boolean }>`
-  width: 188px;
-  height: 52px;
+  width: 11.75rem;
+  height: 3.25rem;
   background-color: ${({ isNext }) =>
     isNext ? theme.color.main : theme.color.gray[700]};
   color: ${({ isNext }) =>
     isNext ? theme.color.white : theme.color.gray[400]};
   border: none;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   cursor: pointer;
   ${theme.typo.text_lg}
 `

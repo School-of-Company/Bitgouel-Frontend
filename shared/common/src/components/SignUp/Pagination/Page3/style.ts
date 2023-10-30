@@ -2,8 +2,8 @@ import styled from '@emotion/styled'
 import { theme } from '../../../../styles'
 
 export const CertificationButton = styled.div`
-  width: 72px;
-  height: 54px;
+  width: 4.5rem;
+  height: 3.375rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,6 +12,6 @@ export const CertificationButton = styled.div`
   background-color: ${theme.color.main};
   color: ${theme.color.white};
   ${theme.typo.text_lg};
-  border-radius: 8px;
+  border-radius: 0.5rem;
   cursor: pointer;
 `

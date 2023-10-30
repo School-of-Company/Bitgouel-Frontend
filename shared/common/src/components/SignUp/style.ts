@@ -12,7 +12,7 @@ export const TitleItemWrapper = styled.div`
 
 export const TitleItem = styled.span`
   ${theme.typo.title_sm};
-  letter-spacing: -2px;
+  letter-spacing: -0.125rem;
 `
 
 export const SubTitleItem = styled.span`
