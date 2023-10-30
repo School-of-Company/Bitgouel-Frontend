@@ -4,7 +4,7 @@ import { theme } from '../../styles/theme'
 
 export const LoginWrapper = styled.div`
   width: 27rem;
-  height: 34.1875rem;
+  height: 34.6875rem;
   border-radius: 0.5rem;
   border: 0.0625rem solid #b8b8b8;
 `

@@ -1,3 +1,5 @@
+'use client'
+
 import { RecoilRoot } from 'recoil'
 import '../../../shared/styles/font.css'
 

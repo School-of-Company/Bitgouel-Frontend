@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "common": "workspace:^",
     "react": "^18",
     "react-dom": "^18",
     "next": "14.0.0",

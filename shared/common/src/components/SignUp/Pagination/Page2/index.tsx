@@ -5,7 +5,7 @@ import React, { ChangeEvent, useState } from 'react'
 import SignUpScrollContainer from '../SignUpScrollContainer'
 import SignUpButtonContainer from '../SignUpButtonContainer'
 import { useRecoilState } from 'recoil'
-import { Page1Obj, Page2Obj } from '../../../../atoms'
+import { Page2Obj } from '../../../../atoms'
 import { PaginationInputsContainer } from '../Page1/style'
 
 const Page2 = ({

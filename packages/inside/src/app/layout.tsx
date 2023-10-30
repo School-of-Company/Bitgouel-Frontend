@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { RecoilRoot } from 'recoil'
+import Providers from './providers'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -12,10 +12,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <RecoilRoot>
-      <html>
-        <body>{children}</body>
-      </html>
-    </RecoilRoot>
+    <html>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
+    </html>
   )
 }
