@@ -32,9 +32,12 @@ export const ShowPageCurrentBox = styled.div`
   align-items: center;
   gap: 0.4rem;
   margin-right: 1.8rem;
-  div {
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 50%;
-  }
+`
+
+export const PageCurrent = styled.div<{ current: number; page: number }>`
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: ${({ current, page, theme }) =>
+    current === page ? theme.color.main : theme.color.gray[700]};
 `
