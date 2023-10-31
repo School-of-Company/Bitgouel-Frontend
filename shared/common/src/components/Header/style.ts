@@ -4,7 +4,10 @@ export const HeaderWrapper = styled.div`
   width: 100%;
   height: 78px;
   display: flex;
+  position: fixed;
   justify-content: center;
+  z-index: 999;
+  top: 0;
 `
 
 export const HeaderContainer = styled.div`
