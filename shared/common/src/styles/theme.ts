@@ -6,6 +6,7 @@ const color = {
   gray: {
     '400': '#6B6B6B',
     '700': '#B8B8B8',
+    '900': '#EBEBEB',
   },
   white: '#FFFFFF',
   black: '#000000',

@@ -4,9 +4,7 @@ import { theme } from '../../../../styles'
 export const SignUpButtonContainer = styled.div<{ page: number }>`
   display: flex;
   align-items: center;
-  width: 100%;
   gap: 0.5rem;
-  margin-left: 3rem;
   margin-top: ${({ page }) => (page === 3 ? '0.7rem' : '2rem')};
 `
 
