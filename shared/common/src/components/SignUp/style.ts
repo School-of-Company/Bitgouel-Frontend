@@ -8,7 +8,9 @@ export const SignUpTitleWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 `
+
 export const TitleItemWrapper = styled.div`
   padding: 1.5rem 0 0 1.5rem;
   display: flex;

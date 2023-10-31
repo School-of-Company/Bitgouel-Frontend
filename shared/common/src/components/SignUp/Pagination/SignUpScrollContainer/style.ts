@@ -29,19 +29,26 @@ export const SignUpScrollContainer = styled.div<{
   padding: 1.1rem 0;
   gap: 1rem;
 
-  span {
-    cursor: pointer;
-    margin-left: 1.5rem;
-    ${theme.typo.text_sm};
-  }
-
   &::-webkit-scrollbar {
-    width: 0.7rem;
-    height: 0.3rem;
+    width: 0.25rem;
+    height: 2rem;
   }
 
   &::-webkit-scrollbar-thumb {
     border-radius: 0.625rem;
-    background-color: ${theme.color.gray[400]};
+    background-color: ${({ theme }) => theme.color.gray[400]};
+  }
+`
+
+export const ScrollItem = styled.span`
+  cursor: pointer;
+  height: 200rem;
+  margin-left: 1.5rem;
+  ${({ theme }) => theme.typo.text_sm};
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    font-weight: 600;
   }
 `

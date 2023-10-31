@@ -46,39 +46,39 @@ const SignUpScrollContainer = ({
     >
       {placeholder === '소속' &&
         belongs.map((item, idx) => (
-          <span key={idx} onClick={() => onChange(item)}>
+          <S.ScrollItem key={idx} onClick={() => onChange(item)}>
             {item}
-          </span>
+          </S.ScrollItem>
         ))}
 
       {placeholder === '직업' &&
         obj[0].value === '학교' &&
         insideJob.map((item, idx) => (
-          <span key={idx} onClick={() => onChange(item)}>
+          <S.ScrollItem key={idx} onClick={() => onChange(item)}>
             {item}
-          </span>
+          </S.ScrollItem>
         ))}
 
       {placeholder === '직업' &&
         obj[0].value === '외부' &&
         outsideJob.map((item, idx) => (
-          <span key={idx} onClick={() => onChange(item)}>
+          <S.ScrollItem key={idx} onClick={() => onChange(item)}>
             {item}
-          </span>
+          </S.ScrollItem>
         ))}
 
       {placeholder === '학교 이름으로 검색' &&
         school.map((item, idx) => (
-          <span key={idx} onClick={() => onChange(item)}>
+          <S.ScrollItem key={idx} onClick={() => onChange(item)}>
             {item}
-          </span>
+          </S.ScrollItem>
         ))}
 
       {placeholder === '동아리 이름으로 검색' &&
         club[obj[0].value].map((item, idx) => (
-          <span key={idx} onClick={() => onChange(item)}>
+          <S.ScrollItem key={idx} onClick={() => onChange(item)}>
             {item}
-          </span>
+          </S.ScrollItem>
         ))}
     </S.SignUpScrollContainer>
   )

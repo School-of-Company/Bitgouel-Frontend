@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import { theme } from '../../styles'
 
 export const LoginWrapper = styled.div`
   position: sticky;
@@ -11,6 +10,9 @@ export const LoginWrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 export const LoginContainer = styled.div`
@@ -35,8 +37,8 @@ export const TitleContainer = styled.div`
 `
 
 export const TitleItem = styled.span`
-  ${theme.typo.title_md};
-  color: ${theme.color.black};
+  color: ${({ theme }) => theme.color.black};
+  ${({ theme }) => theme.typo.title_md};
 `
 
 export const InputWrapper = styled.div`
@@ -63,13 +65,13 @@ export const PasswordContainer = styled.div`
 `
 
 export const MenuItem = styled.span`
-  ${theme.typo.caption};
-  color: ${theme.color.gray['400']};
+  ${({ theme }) => theme.typo.caption};
+  color: ${({ theme }) => theme.color.gray['400']};
 `
 
 export const PasswordSearch = styled.span`
-  ${theme.typo.caption};
-  color: ${theme.color.main};
+  ${({ theme }) => theme.typo.caption};
+  color: ${({ theme }) => theme.color.main};
   cursor: pointer;
 `
 
@@ -82,9 +84,9 @@ export const LoginButtonWrapper = styled.div`
 `
 
 export const LoginButton = styled.button`
-  background-color: ${theme.color.main};
-  color: ${theme.color.white};
-  ${theme.typo.text_lg};
+  background-color: ${({ theme }) => theme.color.main};
+  color: ${({ theme }) => theme.color.white};
+  ${({ theme }) => theme.typo.text_lg};
   width: 24rem;
   height: 3.25rem;
   border-radius: 0.5rem;
@@ -108,13 +110,13 @@ export const JoinContainer = styled.div`
 `
 
 export const NoAccountItem = styled.span`
-  ${theme.typo.text_md};
-  color: ${theme.color.black};
+  ${({ theme }) => theme.typo.text_md};
+  color: ${({ theme }) => theme.color.black};
 `
 
 export const UserJoinItem = styled.span`
-  ${theme.typo.text_md};
-  color: ${theme.color.main};
+  ${({ theme }) => theme.typo.text_md};
+  color: ${({ theme }) => theme.color.main};
   margin-left: 0.25rem;
   cursor: pointer;
 `

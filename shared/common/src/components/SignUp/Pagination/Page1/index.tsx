@@ -35,9 +35,7 @@ const Page1 = ({
   // placeholder={item.placeholder}
 
   return (
-    <div
-      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-    >
+    <>
       <S.PaginationInputsContainer>
         {page1Obj.map((item, idx) => (
           <div key={idx}>
@@ -87,7 +85,7 @@ const Page1 = ({
         isNext={page1Obj.every((item) => item.value.length)}
         setPage={setPage}
       />
-    </div>
+    </>
   )
 }
 
