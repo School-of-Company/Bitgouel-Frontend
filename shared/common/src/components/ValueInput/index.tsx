@@ -14,9 +14,11 @@ const ValueInput = (
   return (
     <S.ValueWrapper>
       <S.ValueInput ref={ref} {...rest} />
-      <S.XIconWrapper onClick={onClear}>
-        {length > 0 && <XIcon />}
-      </S.XIconWrapper>
+      {length > 0 && (
+        <S.XIconWrapper onClick={onClear}>
+          <XIcon />
+        </S.XIconWrapper>
+      )}
     </S.ValueWrapper>
   )
 }

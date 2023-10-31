@@ -24,7 +24,7 @@ export const ValueInput = styled.input`
 
   ${theme.typo.text_sm};
 
-  input:focus {
+  &:focus {
     border: 0.0625rem solid ${theme.color.main};
   }
 
