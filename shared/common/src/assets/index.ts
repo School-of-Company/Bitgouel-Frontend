@@ -13,3 +13,5 @@ export { default as SettingCircle } from './svg/SettingCircle'
 export { default as SettingOut } from './svg/SettingOut'
 export { default as Surprise } from './svg/Surprise'
 export { default as XIcon } from './svg/XIcon'
+
+export * from './svg'
