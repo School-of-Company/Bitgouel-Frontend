@@ -2,25 +2,25 @@ import styled from '@emotion/styled'
 
 export const HeaderWrapper = styled.div`
   min-width: 100vw;
-  height: 4.875rem;
+  height: 78px;
   display: flex;
   justify-content: center;
 `
 
 export const HeaderContainer = styled.div`
   display: flex;
-  width: 1200px;
+  width: 75rem;
   height: 100%;
   align-items: center;
   justify-content: space-between;
 `
 
 export const MenuWrapper = styled.div`
-  font-size: 20px;
+  font-size: 1.25rem;
   color: #b8b8b8;
   display: flex;
   justify-content: space-between;
-  width: 320px;
+  width: 20rem;
   span:hover {
     cursor: pointer;
     color: #6b6b6b;
@@ -29,16 +29,16 @@ export const MenuWrapper = styled.div`
 
 export const LoginBtn = styled.div`
   background-color: rgb(255, 255, 255, 0.2);
-  width: 66px;
-  height: 38px;
-  border-radius: 8px;
+  width: 4.125rem;
+  height: 2.375rem;
+  border-radius: 0.5rem;
   text-align: center;
   align-items: center;
   display: flex;
   justify-content: center;
   cursor: pointer;
   span {
-    font-size: 16px;
+    font-size: 1rem;
     color: #ffffff;
     margin: 0;
   }

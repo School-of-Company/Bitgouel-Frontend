@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import { theme } from '../../styles'
 
 export const LoginWrapper = styled.div`
+  position: sticky;
   width: 27rem;
   height: 34.6875rem;
   border-radius: 0.5rem;
