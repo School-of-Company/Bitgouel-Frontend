@@ -22,7 +22,6 @@ const Page3 = ({
   const onChange = (e: ChangeEvent<HTMLInputElement>, idx: number) => {
     const updatedObj = [...page3Obj]
     updatedObj[idx] = { ...updatedObj[idx], value: e.target.value }
-    console.log(updatedObj)
     setPage3Obj(updatedObj)
   }
 

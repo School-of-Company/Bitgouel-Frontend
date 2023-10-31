@@ -80,7 +80,6 @@ const Page2 = ({
           !value.length &&
           isScrollContainer && (
             <SignUpScrollContainer
-              value={value}
               idx={idx}
               placeholder={placeholder}
               obj={page2Obj}
@@ -94,7 +93,6 @@ const Page2 = ({
           !value.length &&
           isScrollContainer && (
             <SignUpScrollContainer
-              value={value}
               idx={idx}
               placeholder={placeholder}
               obj={page2Obj}

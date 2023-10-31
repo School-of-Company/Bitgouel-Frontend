@@ -17,8 +17,8 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@storybook/react": "7.5.1",
-    "@types/next": "^9.0.0",
     "@types/react": "^18",
-    "recoil": "^0.7.7"
+    "recoil": "^0.7.7",
+    "next": "14.0.0"
   }
 }
