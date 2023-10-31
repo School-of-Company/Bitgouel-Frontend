@@ -1,6 +1,5 @@
 import * as S from './style'
 import { useState } from 'react'
-import { theme } from '../../styles'
 import Page1 from './Pagination/Page1'
 import Page2 from './Pagination/Page2'
 import Page3 from './Pagination/Page3'
@@ -19,29 +18,12 @@ const SignUp = () => {
             {page !== 3 ? '어디서 오셨나요?' : '보안 요소를 입력해주세요.'}
           </S.SubTitleItem>
         </S.TitleItemWrapper>
-
         <S.ShowPageCurrentBox>
-          <div
-            style={{
-              backgroundColor: `${
-                page === 1 ? theme.color.main : theme.color.gray[700]
-              }`,
-            }}
-          />
-          <div
-            style={{
-              backgroundColor: `${
-                page === 2 ? theme.color.main : theme.color.gray[700]
-              }`,
-            }}
-          />
-          <div
-            style={{
-              backgroundColor: `${
-                page === 3 ? theme.color.main : theme.color.gray[700]
-              }`,
-            }}
-          />
+          {Array(3)
+            .fill(0)
+            .map((_, idx) => (
+              <S.PageCurrent key={idx} current={idx + 1} page={page} />
+            ))}
         </S.ShowPageCurrentBox>
       </S.SignUpTitleWrapper>
       {page === 1 && <Page1 page={page} setPage={setPage} />}
