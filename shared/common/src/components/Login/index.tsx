@@ -1,10 +1,12 @@
 import * as S from './style'
 import ValueInput from '../ValueInput'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
-const Login = ({ router }: { router: any }) => {
+const Login = () => {
   const [emailValue, setEmailValue] = useState<string>('')
   const [passwordValue, setPasswordValue] = useState<string>('')
+  const router = useRouter()
 
   return (
     <S.LoginWrapper>

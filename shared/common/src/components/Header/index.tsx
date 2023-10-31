@@ -1,9 +1,10 @@
-import * as S from './style'
 import Image from 'next/image'
 import Simbol from '../../assets/png/HeaderSimple.png'
-import React from 'react'
+import * as S from './style'
+import { useRouter } from 'next/navigation'
 
 const Header = () => {
+  const router = useRouter()
   return (
     <S.HeaderWrapper>
       <S.HeaderContainer>
@@ -14,7 +15,7 @@ const Header = () => {
           <span>동아리</span>
           <span>게시글</span>
         </S.MenuWrapper>
-        <S.LoginBtn>
+        <S.LoginBtn onClick={() => router.push('/auth/login')}>
           <span>로그인</span>
         </S.LoginBtn>
       </S.HeaderContainer>
