@@ -1,4 +1,4 @@
-import { RecoilRoot } from 'recoil'
+import { GlobalLayout } from '../../../shared/common/src/layouts'
 import '../../../shared/common/src/styles/font.css'
 
 /** @type { import('@storybook/react').Preview } */
@@ -14,9 +14,9 @@ const preview = {
   },
   decorators: [
     (Story) => (
-      <RecoilRoot>
+      <GlobalLayout>
         <Story />
-      </RecoilRoot>
+      </GlobalLayout>
     ),
   ],
 }
