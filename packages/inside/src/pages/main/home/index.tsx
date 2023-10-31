@@ -1,13 +1,11 @@
 import React from 'react'
-import * as S from './style'
-import { Header } from '@common/components'
+import { Home } from '@common/pages'
 
 const HomePage = () => {
   return (
-    <S.mainWrraper>
-      <Header />
-      <S.SlideBg></S.SlideBg>
-    </S.mainWrraper>
+    <div>
+      <Home />
+    </div>
   )
 }
 
