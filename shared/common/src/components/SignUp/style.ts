@@ -1,6 +1,5 @@
 import styled from '@emotion/styled'
 import { LoginWrapper } from '../Login/style'
-import { theme } from '../../styles'
 
 export const SignUpWrapper = styled(LoginWrapper)``
 
@@ -18,13 +17,13 @@ export const TitleItemWrapper = styled.div`
 `
 
 export const TitleItem = styled.span`
-  ${theme.typo.title_sm};
+  ${({ theme }) => theme.typo.title_sm};
   letter-spacing: -0.125rem;
 `
 
 export const SubTitleItem = styled.span`
-  ${theme.typo.text_sm};
-  color: ${theme.color.gray[400]};
+  ${({ theme }) => theme.typo.title_sm};
+  color: ${({ theme }) => theme.color.gray['400']};
   margin-top: 0.3rem;
   margin-bottom: 1rem;
 `

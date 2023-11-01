@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, InputHTMLAttributes, useState } from 'react'
+import React, { useState, forwardRef, InputHTMLAttributes } from 'react'
 import * as S from './style'
 import { XIcon } from '../../assets'
 

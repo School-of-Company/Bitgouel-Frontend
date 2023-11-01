@@ -37,8 +37,7 @@ export const TitleContainer = styled.div`
 
 export const TitleItem = styled.span`
   ${({ theme }) => theme.typo.title_md};
-  color : ${({ theme })} => theme.color.black};
-
+  color: ${({ theme }) => theme.color.black};
 `
 
 export const InputWrapper = styled.div`

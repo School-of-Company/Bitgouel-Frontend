@@ -1,4 +1,3 @@
-import { theme } from '../../../../styles/theme'
 import styled from '@emotion/styled'
 
 export const LoginWrapper = styled.div`
@@ -24,7 +23,7 @@ export const TitleContainer = styled.div`
 `
 
 export const TitleItem = styled.span`
-  ${theme.typo.title_md};
+  ${({ theme }) => theme.typo.title_md};
 `
 
 export const SignUpWrapper = styled.div`
@@ -45,13 +44,13 @@ export const SignUpContainer = styled.div`
 `
 
 export const MainTitle = styled.span`
-  ${theme.typo.title_sm};
-  color: ${theme.color.black};
+  ${({ theme }) => theme.typo.title_sm};
+  color: ${({ theme }) => theme.color.black};
 `
 
 export const ViceTitle = styled.div`
-  ${theme.typo.text_sm}
-  color: ${theme.color.gray['400']};
+  ${({ theme }) => theme.typo.text_sm};
+  color: ${({ theme }) => theme.color.gray['400']};
 `
 
 export const BackButtonContainer = styled.div`
@@ -62,9 +61,9 @@ export const BackButtonContainer = styled.div`
 `
 
 export const BackButton = styled.button`
-  background-color: ${theme.color.main};
-  color: ${theme.color.white};
-  ${theme.typo.text_lg};
+  background-color: ${({ theme }) => theme.color.main};
+  color: ${({ theme }) => theme.color.white};
+  ${({ theme }) => theme.typo.text_lg};
   width: 24rem;
   height: 3.25rem;
   border-radius: 0.5rem;

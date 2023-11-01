@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import { theme } from '../../styles'
 
 export const ValueWrapper = styled.div`
   width: 24rem;
@@ -17,20 +16,20 @@ export const ValueInput = styled.input`
   width: 24rem;
   height: 3.2rem;
 
-  border: 0.0625rem solid ${theme.color.gray['700']};
+  border: 0.0625rem solid ${({ theme }) => theme.color.gray['700']};
   border-radius: 0.5rem;
   outline: none;
   text-indent: 1.25rem;
 
-  ${theme.typo.text_sm};
+  ${({ theme }) => theme.typo.text_sm};
 
   &:focus {
-    border: 0.0625rem solid ${theme.color.main};
+    border: 0.0625rem solid ${({ theme }) => theme.color.main};
   }
 
   &::placeholder {
-    color: ${theme.color.gray['400']};
-    ${theme.typo.text_sm};
+    color: ${({ theme }) => theme.color.gray['400']};
+    ${({ theme }) => theme.typo.text_sm};
   }
 
   &::-webkit-outer-spin-button,
