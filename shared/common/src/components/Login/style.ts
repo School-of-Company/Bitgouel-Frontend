@@ -60,7 +60,6 @@ export const PasswordContainer = styled.div`
 export const MenuItem = styled.span`
   ${theme.typo.caption};
   color: ${theme.color.gray['400']};
-  cursor: pointer;
 `
 
 export const PasswordSearch = styled.span`
