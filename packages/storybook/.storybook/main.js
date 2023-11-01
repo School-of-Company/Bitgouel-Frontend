@@ -23,6 +23,7 @@ const config = {
     getAbsolutePath('@storybook/addon-essentials'),
     getAbsolutePath('@storybook/addon-onboarding'),
     getAbsolutePath('@storybook/addon-interactions'),
+    "storybook-addon-next-router"
   ],
   framework: {
     name: getAbsolutePath('@storybook/nextjs'),

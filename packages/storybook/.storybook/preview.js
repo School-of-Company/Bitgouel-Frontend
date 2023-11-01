@@ -1,3 +1,4 @@
+import { AppRouterContext } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 import { GlobalLayout } from '../../../shared/common/src/layouts'
 import '../../../shared/common/src/styles/font.css'
 
@@ -11,6 +12,9 @@ const preview = {
         date: /Date$/i,
       },
     },
+    nextRouter: {
+      Provider: AppRouterContext.Provider
+    }
   },
   decorators: [
     (Story) => (

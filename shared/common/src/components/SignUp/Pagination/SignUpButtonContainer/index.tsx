@@ -16,6 +16,7 @@ const SignUpButtonContainer = ({
   const router = useRouter()
   const page1Obj = useRecoilValue(Page1Obj)
   const setPage2Obj = useSetRecoilState(Page2Obj)
+
   const onNext = () => {
     if (isNext) {
       if (page === 1) {
