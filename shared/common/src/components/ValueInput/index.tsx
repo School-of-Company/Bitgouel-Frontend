@@ -1,9 +1,9 @@
-import React, { forwardRef, InputHTMLAttributes } from 'react'
+import React, { useState, forwardRef, InputHTMLAttributes } from 'react'
 import * as S from './style'
 import { XIcon } from '../../assets'
 
 interface ValueInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  onClear: () => void
+  onClear: (e?: any) => void
   length: number
 }
 
@@ -14,9 +14,11 @@ const ValueInput = (
   return (
     <S.ValueWrapper>
       <S.ValueInput ref={ref} {...rest} />
-      <S.XIconWrapper onClick={onClear}>
-        {length > 0 && <XIcon />}
-      </S.XIconWrapper>
+      {length > 0 && (
+        <S.XIconWrapper onClick={onClear}>
+          <XIcon />
+        </S.XIconWrapper>
+      )}
     </S.ValueWrapper>
   )
 }

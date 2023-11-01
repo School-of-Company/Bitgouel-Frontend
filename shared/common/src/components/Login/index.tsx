@@ -1,12 +1,12 @@
-'use client'
-
 import * as S from './style'
 import ValueInput from '../ValueInput'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 const Login = () => {
   const [emailValue, setEmailValue] = useState<string>('')
   const [passwordValue, setPasswordValue] = useState<string>('')
+  const router = useRouter()
 
   return (
     <S.LoginWrapper>
@@ -55,7 +55,9 @@ const Login = () => {
           <S.MenuItem>또는</S.MenuItem>
           <div>
             <S.NoAccountItem>계정이 없으신가요?</S.NoAccountItem>
-            <S.UserJoinItem>회원가입</S.UserJoinItem>
+            <S.UserJoinItem onClick={() => router.push('/auth/signUp')}>
+              회원가입
+            </S.UserJoinItem>
           </div>
         </S.JoinContainer>
       </S.JoinWrapper>
