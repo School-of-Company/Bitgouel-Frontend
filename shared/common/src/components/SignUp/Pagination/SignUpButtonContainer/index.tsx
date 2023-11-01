@@ -29,7 +29,13 @@ const SignUpButtonContainer = ({
               type: 'number',
               maxLength: 4,
             },
-            { value: '', placeholder: '반 입력', type: 'number', maxLength: 4 },
+            {
+              value: '',
+              placeholder: '학년 입력',
+              type: 'number',
+              maxLength: 1,
+            },
+            { value: '', placeholder: '반 입력', type: 'number', maxLength: 2 },
             {
               value: '',
               placeholder: '번호 입력',
