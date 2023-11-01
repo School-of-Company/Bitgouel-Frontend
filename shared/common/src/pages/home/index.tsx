@@ -1,28 +1,42 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import * as S from './style'
 import { Header } from '../../components'
-import Image from 'next/image'
-import Bg1 from '../../../../public/images/slide1.png'
-import Bg2 from '../../../../public/images/slide2.png'
-import Bg3 from '../../../../public/images/slide3.png'
-import Bg4 from '../../../../public/images/slide4.png'
+import Bg1 from '../../assets/png/slide1.png'
+import Bg2 from '../../assets/png/slide2.png'
+import Bg3 from '../../assets/png/slide3.png'
+import Bg4 from '../../assets/png/slide4.png'
+import { Arrow } from '../../assets/index'
 
 const HomePage = () => {
-  const [bgNum, setBgNum] = useState(0)
+  const [bgNum, setBgNum] = useState(2)
   const imageArr = [Bg1, Bg2, Bg3, Bg4]
+
   useEffect(() => {
     const background = setInterval(() => {
       const random = Math.ceil(Math.random() * 4) - 1
       setBgNum(random)
-    }, 1000)
+    }, 10000)
     return () => clearInterval(background)
   }, [])
+
   return (
     <S.mainWrraper>
       <Header />
-      <S.SlideBg>
-        <Image src={imageArr[bgNum]} alt='background' />
-      </S.SlideBg>
+      <S.slideBg url={imageArr[bgNum]}>
+        <S.bgContainer>
+          <div>
+            <span>
+              빛고을 직업교육 혁신지구
+              <br />
+              사업 소개
+            </span>
+            <S.view>
+                보러가기 &nbsp; <Arrow /> 
+            </S.view>
+          </div>
+          <div></div>
+        </S.bgContainer>
+      </S.slideBg>
     </S.mainWrraper>
   )
 }
