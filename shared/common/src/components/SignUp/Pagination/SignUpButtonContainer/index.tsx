@@ -2,6 +2,7 @@ import * as S from './style'
 import React from 'react'
 import { useSetRecoilState, useRecoilValue } from 'recoil'
 import { Page1Obj, Page2Obj } from '../../../../atoms'
+import { useRouter } from 'next/navigation'
 
 const SignUpButtonContainer = ({
   page,
@@ -14,6 +15,8 @@ const SignUpButtonContainer = ({
 }) => {
   const page1Obj = useRecoilValue(Page1Obj)
   const setPage2Obj = useSetRecoilState(Page2Obj)
+  const router = useRouter()
+
   const onNext = () => {
     if (isNext) {
       if (page === 1) {
@@ -69,7 +72,11 @@ const SignUpButtonContainer = ({
 
   return (
     <S.SignUpButtonContainer page={page}>
-      <S.PreButton onClick={() => page !== 1 && setPage((prev) => prev - 1)}>
+      <S.PreButton
+        onClick={() =>
+          page !== 1 ? setPage((prev) => prev - 1) : router.push('/auth/login')
+        }
+      >
         이전으로
       </S.PreButton>
       <S.NextButton isNext={isNext} onClick={onNext}>
