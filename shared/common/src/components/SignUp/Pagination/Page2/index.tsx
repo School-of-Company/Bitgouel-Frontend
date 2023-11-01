@@ -30,8 +30,15 @@ const Page2 = ({
 
   const onChange = (e: ChangeEvent<HTMLInputElement>, idx: number) => {
     const updatedObj = [...page2Obj]
+    console.log(e.target.maxLength)
     if (idx > 1) {
-      updatedObj[idx] = { ...updatedObj[idx], value: e.target.value }
+      updatedObj[idx] = {
+        ...updatedObj[idx],
+        value:
+          e.target.maxLength !== -1
+            ? e.target.value.slice(0, e.target.maxLength)
+            : e.target.value,
+      }
       setPage2Obj(updatedObj)
     }
   }
@@ -55,13 +62,6 @@ const Page2 = ({
               value={item.value}
               placeholder={item.placeholder}
               length={item.value.length}
-              onInput={(e: ChangeEvent<HTMLInputElement>) => {
-                if (
-                  e.target.type === 'number' &&
-                  e.target.value.length > e.target.maxLength
-                )
-                  e.target.value = e.target.value.slice(0, e.target.maxLength)
-              }}
               maxLength={item.maxLength}
               onClear={() => onClear(idx)}
               onClick={() => {
