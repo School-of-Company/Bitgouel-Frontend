@@ -14,6 +14,12 @@ export const LoginWrapper = styled.div`
   align-items: center;
 `
 
+export const LoginContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  padding-top: 0.75rem;
+`
+
 export const TitleWrapper = styled.div`
   width: 100%;
   height: 11.0625rem;
@@ -31,6 +37,8 @@ export const TitleContainer = styled.div`
 
 export const TitleItem = styled.span`
   ${({ theme }) => theme.typo.title_md};
+  color : ${({ theme })} => theme.color.black};
+
 `
 
 export const InputWrapper = styled.div`

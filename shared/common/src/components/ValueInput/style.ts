@@ -41,8 +41,8 @@ export const ValueInput = styled.input`
 `
 
 export const XIconWrapper = styled.div`
+  position: absolute;
   display: flex;
   align-items: center;
-  position: absolute;
   margin-right: 1.25rem;
 `
