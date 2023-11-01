@@ -1,10 +1,9 @@
-import React, { forwardRef, InputHTMLAttributes, useEffect } from 'react'
+import React, { useState, forwardRef, InputHTMLAttributes, useState } from 'react'
 import * as S from './style'
 import { XIcon } from '../../assets'
-import { useState } from 'react'
 
 interface ValueInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  onClear: () => void
+  onClear: (e?: any) => void
   length: number
 }
 

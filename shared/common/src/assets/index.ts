@@ -1,1 +1,1 @@
-export { default as XIcon } from './Login/XIcon'
+export * from './svg'
