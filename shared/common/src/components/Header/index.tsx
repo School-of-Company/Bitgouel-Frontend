@@ -5,19 +5,19 @@ import { useRouter } from 'next/navigation'
 
 const Header = () => {
   const router = useRouter()
+  const menuList = ['사업소개', '강의', '동아리', '게시글']
   return (
     <S.HeaderWrapper>
       <S.HeaderContainer>
         <Image width={38} height={38} src={Simbol} alt='header simbol'></Image>
         <S.MenuWrapper>
-          <span>사업소개</span>
-          <span>강의</span>
-          <span>동아리</span>
-          <span>게시글</span>
+          {menuList.map((menu, idx) => (
+            <span key={idx}>{menu}</span>
+          ))}
         </S.MenuWrapper>
-        <S.LoginButton onClick={() => router.push('/auth/login')}>
+        <S.LoginButtonn onClick={() => router.push('/auth/login')}>
           <span>로그인</span>
-        </S.LoginButton>
+        </S.LoginButtonn>
       </S.HeaderContainer>
     </S.HeaderWrapper>
   )
