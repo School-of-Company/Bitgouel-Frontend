@@ -17,6 +17,7 @@ export const TextContainer = styled.div`
   flex-direction: row-reverse;
   color: #fff;
   opacity: 0.7;
+  cursor: pointer;
   svg {
     margin-left: 1rem;
   }

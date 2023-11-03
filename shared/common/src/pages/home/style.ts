@@ -38,6 +38,7 @@ export const view = styled.div`
   align-items: center;
   color: #fff;
   justify-content: center;
+  cursor: pointer;
   &:hover {
     background-color: #288be1;
     border: 0.125rem #288be1 solid;
