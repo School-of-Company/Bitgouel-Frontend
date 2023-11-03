@@ -18,8 +18,10 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@storybook/react": "7.5.1",
+    "@tanstack/react-query": "^4.29.7",
+    "@tanstack/react-query-devtools": "^4.29.7",
     "@types/react": "^18",
-    "recoil": "^0.7.7",
-    "next": "14.0.0"
+    "next": "14.0.0",
+    "recoil": "^0.7.7"
   }
 }
