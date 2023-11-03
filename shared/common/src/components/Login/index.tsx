@@ -10,7 +10,6 @@ const Login = () => {
 
   return (
     <S.LoginWrapper>
-<<<<<<< HEAD
       <S.TitleWrapper>
         <S.TitleContainer>
           <S.TitleItemWrapper>
@@ -62,7 +61,6 @@ const Login = () => {
           </div>
         </S.JoinContainer>
       </S.JoinWrapper>
-=======
       <S.LoginContainer>
         <S.TitleWrapper>
           <S.TitleContainer>
@@ -114,7 +112,6 @@ const Login = () => {
           </S.JoinContainer>
         </S.JoinWrapper>
       </S.LoginContainer>
->>>>>>> bdd51ca (Update loginContainer style)
     </S.LoginWrapper>
   )
 }

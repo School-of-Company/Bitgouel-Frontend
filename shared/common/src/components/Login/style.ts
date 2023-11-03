@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
 
 export const LoginWrapper = styled.div`
-  position: sticky;
   width: 27rem;
   height: 34.6875rem;
   border-radius: 0.5rem;
@@ -39,6 +38,8 @@ export const TitleContainer = styled.div`
 export const TitleItem = styled.span`
   color: ${({ theme }) => theme.color.black};
   ${({ theme }) => theme.typo.title_md};
+  ${({ theme }) => theme.typo.title_md};
+  color: ${({ theme }) => theme.color.black};
 `
 
 export const InputWrapper = styled.div`

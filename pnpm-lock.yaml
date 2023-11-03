@@ -4390,20 +4390,6 @@ packages:
   /@types/mime@3.0.3:
     resolution: {integrity: sha512-i8MBln35l856k5iOhKk2XJ4SeAWg75mLIpZB4v6imOagKL6twsukBZGDMNhdOVk7yRFTMPpfILocMos59Q1otQ==}
 
-  /@types/next@9.0.0(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-gnBXM8rP1mnCgT1uE2z8SnpFTKRWReJlhbZLZkOLq/CH1ifvTNwjIVtXvsywTy1dwVklf+y/MB0Eh6FOa94yrg==}
-    deprecated: This is a stub types definition. next provides its own type definitions, so you do not need this installed.
-    dependencies:
-      next: 14.0.0(react-dom@18.2.0)(react@18.2.0)
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@opentelemetry/api'
-      - babel-plugin-macros
-      - react
-      - react-dom
-      - sass
-    dev: false
-
   /@types/node-fetch@2.6.7:
     resolution: {integrity: sha512-lX17GZVpJ/fuCjguZ5b3TjEbSENxmEk1B2z02yoXSK9WMEWRivhdSY73wWMn6bpcCDAOh6qAdktpKHIlkDk2lg==}
     dependencies:
