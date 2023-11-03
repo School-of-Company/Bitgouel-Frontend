@@ -11,8 +11,8 @@ export const Page1Obj = atom({
 export const Page2Obj = atom({
   key: 'Page2Obj',
   default: [
-    { value: '', placeholder: '학교 이름으로 검색', type: 'text' },
-    { value: '', placeholder: '동아리 이름으로 검색', type: 'text' },
+    { value: '', placeholder: '학교 이름 선택', type: 'text' },
+    { value: '', placeholder: '동아리 이름 선택', type: 'text' },
     { value: '', placeholder: '이름 입력', type: 'text', maxLength: 3 },
   ],
 })

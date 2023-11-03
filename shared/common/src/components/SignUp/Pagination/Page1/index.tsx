@@ -49,7 +49,7 @@ const Page1 = ({
                 setValue(item.value)
                 setIdx(idx)
                 setPlaceholder(item.placeholder)
-                setIsScrollContainer((prev) => !prev)
+                setIsScrollContainer(true)
               }}
               onChange={() => {}}
               style={{ cursor: 'pointer' }}

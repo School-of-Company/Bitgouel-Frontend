@@ -38,8 +38,9 @@ const SignUpScrollContainer = ({
       placeholder={placeholder}
       style={{
         display:
-          placeholder === '동아리 이름으로 검색' &&
-          obj[0].value === '서진여자고'
+          (placeholder === '동아리 이름 선택' &&
+            obj[0].value === '서진여자고') ||
+          obj[0].value === '전남여자상업고'
             ? 'none'
             : 'flex',
       }}
@@ -67,14 +68,14 @@ const SignUpScrollContainer = ({
           </S.ScrollItem>
         ))}
 
-      {placeholder === '학교 이름으로 검색' &&
+      {placeholder === '학교 이름 선택' &&
         school.map((item, idx) => (
           <S.ScrollItem key={idx} onClick={() => onChange(item)}>
             {item}
           </S.ScrollItem>
         ))}
 
-      {placeholder === '동아리 이름으로 검색' &&
+      {placeholder === '동아리 이름 선택' &&
         club[obj[0].value].map((item, idx) => (
           <S.ScrollItem key={idx} onClick={() => onChange(item)}>
             {item}

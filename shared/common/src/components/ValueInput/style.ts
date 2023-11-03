@@ -6,14 +6,10 @@ export const ValueWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-
-  svg {
-    cursor: pointer;
-  }
 `
 
 export const ValueInput = styled.input`
-  width: 24rem;
+  width: 100%;
   height: 3.2rem;
 
   border: 0.0625rem solid ${({ theme }) => theme.color.gray['700']};
@@ -41,7 +37,12 @@ export const ValueInput = styled.input`
 
 export const XIconWrapper = styled.div`
   position: absolute;
-  display: flex;
-  align-items: center;
   margin-right: 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    cursor: pointer;
+  }
 `

@@ -22,7 +22,7 @@ export const TitleItem = styled.span`
 `
 
 export const SubTitleItem = styled.span`
-  ${({ theme }) => theme.typo.title_sm};
+  ${({ theme }) => theme.typo.text_sm};
   color: ${({ theme }) => theme.color.gray['400']};
   margin-top: 0.3rem;
   margin-bottom: 1rem;
@@ -41,4 +41,12 @@ export const PageCurrent = styled.div<{ current: number; page: number }>`
   border-radius: 50%;
   background-color: ${({ current, page, theme }) =>
     current === page ? theme.color.main : theme.color.gray[700]};
+`
+
+export const PaginationContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
 `
