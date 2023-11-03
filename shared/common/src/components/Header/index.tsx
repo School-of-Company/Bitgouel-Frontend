@@ -15,9 +15,9 @@ const Header = () => {
           <span>동아리</span>
           <span>게시글</span>
         </S.MenuWrapper>
-        <S.LoginBtn onClick={() => router.push('/auth/login')}>
+        <S.LoginButton onClick={() => router.push('/auth/login')}>
           <span>로그인</span>
-        </S.LoginBtn>
+        </S.LoginButton>
       </S.HeaderContainer>
     </S.HeaderWrapper>
   )
