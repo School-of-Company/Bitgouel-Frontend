@@ -15,9 +15,9 @@ const Header = () => {
             <span key={idx}>{menu}</span>
           ))}
         </S.MenuWrapper>
-        <S.LoginButtonn onClick={() => router.push('/auth/login')}>
+        <S.LoginButton onClick={() => router.push('/auth/login')}>
           <span>로그인</span>
-        </S.LoginButtonn>
+        </S.LoginButton>
       </S.HeaderContainer>
     </S.HeaderWrapper>
   )
