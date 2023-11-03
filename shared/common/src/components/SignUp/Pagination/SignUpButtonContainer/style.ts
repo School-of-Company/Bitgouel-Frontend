@@ -5,18 +5,18 @@ export const SignUpButtonContainer = styled.div<{ page: number }>`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-top: ${({ page }) => (page === 3 ? '0.7rem' : '2rem')};
+  margin-bottom: 1.3rem;
 `
 
 export const PreButton = styled.button`
   width: 11.75rem;
   height: 3.25rem;
-  background-color: ${theme.color.white};
-  border: 0.0625rem solid ${theme.color.main};
+  background-color: ${({ theme }) => theme.color.white};
+  border: 0.0625rem solid ${({ theme }) => theme.color.main};
   border-radius: 0.5rem;
   cursor: pointer;
-  ${theme.typo.text_lg};
-  color: ${theme.color.main};
+  ${({ theme }) => theme.typo.text_lg};
+  color: ${({ theme }) => theme.color.main};
 `
 
 export const NextButton = styled.button<{ isNext: boolean }>`
@@ -29,5 +29,5 @@ export const NextButton = styled.button<{ isNext: boolean }>`
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
-  ${theme.typo.text_lg}
+  ${({ theme }) => theme.typo.text_lg}
 `
