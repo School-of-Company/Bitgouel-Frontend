@@ -6,6 +6,7 @@ import Bg2 from '../../assets/png/slide2.png'
 import Bg3 from '../../assets/png/slide3.png'
 import Bg4 from '../../assets/png/slide4.png'
 import { Arrow } from '../../assets/index'
+import { Sequence } from '../../components/index'
 
 const HomePage = () => {
   const [bgNum, setBgNum] = useState(2)
@@ -15,7 +16,7 @@ const HomePage = () => {
     const background = setInterval(() => {
       const random = Math.ceil(Math.random() * 4) - 1
       setBgNum(random)
-    }, 10000)
+    }, 5000)
     return () => clearInterval(background)
   }, [])
 
@@ -31,10 +32,10 @@ const HomePage = () => {
               사업 소개
             </span>
             <S.view>
-                보러가기 &nbsp; <Arrow /> 
+              보러가기 &nbsp; <Arrow />
             </S.view>
           </div>
-          <div></div>
+          <Sequence />
         </S.bgContainer>
       </S.slideBg>
     </S.mainWrraper>

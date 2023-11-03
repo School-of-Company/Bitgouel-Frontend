@@ -13,12 +13,14 @@ export const slideBg = styled.div<{ url: any }>`
   background-size: cover;
   background-repeat: no-repeat;
   transition: all 0.5s;
+  align-items: center;
 `
 
 export const bgContainer = styled.div`
-  position: absolute;
   width: 75rem;
   font-weight: 600;
+  display: flex;
+  justify-content: space-between;
   span {
     color: #fff;
     font-size: 3rem;
@@ -39,6 +41,6 @@ export const view = styled.div`
   &:hover {
     background-color: #288be1;
     border: 0.125rem #288be1 solid;
-    transition: 0.3s;
+    transition: 0.5s;
   }
 `
