@@ -13,6 +13,12 @@ export const LoginWrapper = styled.div`
   transform: translate(-50%, -50%);
 `
 
+export const LoginContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  padding-top: 0.75rem;
+`
+
 export const TitleWrapper = styled.div`
   width: 100%;
   height: 11.0625rem;
