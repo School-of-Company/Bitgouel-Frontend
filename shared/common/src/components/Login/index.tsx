@@ -61,7 +61,6 @@ const Login = () => {
           </div>
         </S.JoinContainer>
       </S.JoinWrapper>
-
     </S.LoginWrapper>
   )
 }

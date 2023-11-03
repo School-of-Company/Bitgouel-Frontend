@@ -30,7 +30,6 @@ const Page2 = ({
 
   const onChange = (e: ChangeEvent<HTMLInputElement>, idx: number) => {
     const updatedObj = [...page2Obj]
-    console.log(e.target.maxLength)
     if (idx > 1) {
       updatedObj[idx] = {
         ...updatedObj[idx],
@@ -40,7 +39,7 @@ const Page2 = ({
             : e.target.value,
       }
       setPage2Obj(updatedObj)
-    }
+    } else return
   }
 
   const [value, setValue] = useState<string>('')
@@ -51,9 +50,7 @@ const Page2 = ({
   // placeholder={item.placeholder}
 
   return (
-    <div
-      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-    >
+    <>
       <PaginationInputsContainer>
         {page2Obj.map((item, idx) => (
           <div key={idx}>
@@ -68,7 +65,7 @@ const Page2 = ({
                 setValue(item.value)
                 setIdx(idx)
                 setPlaceholder(item.placeholder)
-                setIsScrollContainer((prev) => !prev)
+                setIsScrollContainer(true)
               }}
               onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e, idx)}
               style={{ cursor: 'pointer' }}
@@ -76,7 +73,7 @@ const Page2 = ({
           </div>
         ))}
 
-        {placeholder === '학교 이름으로 검색' &&
+        {placeholder === '학교 이름 선택' &&
           !value.length &&
           isScrollContainer && (
             <SignUpScrollContainer
@@ -88,7 +85,7 @@ const Page2 = ({
             />
           )}
 
-        {placeholder === '동아리 이름으로 검색' &&
+        {placeholder === '동아리 이름 선택' &&
           page2Obj[0].value &&
           !value.length &&
           isScrollContainer && (
@@ -106,7 +103,7 @@ const Page2 = ({
         setPage={setPage}
         page={page}
       />
-    </div>
+    </>
   )
 }
 

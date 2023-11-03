@@ -17,11 +17,9 @@ const ValueInput = (
     <S.ValueWrapper
       onMouseOver={() => {
         setFocus(true)
-        console.log(focus)
       }}
       onMouseOut={() => {
         setFocus(false)
-        console.log(focus)
       }}
     >
       <S.ValueInput ref={ref} {...rest} />

@@ -12,10 +12,18 @@ const SignUp = () => {
       <S.SignUpTitleWrapper>
         <S.TitleItemWrapper>
           <S.TitleItem>
-            {page !== 3 ? '만나서 반가워요!' : '얼마 안 남았어요!'}
+            {page === 1
+              ? '만나서 반가워요!'
+              : page === 2
+              ? '회원가입을 진행합니다'
+              : '얼마 안 남았어요!'}
           </S.TitleItem>
           <S.SubTitleItem>
-            {page !== 3 ? '어디서 오셨나요?' : '보안 요소를 입력해주세요.'}
+            {page === 1
+              ? '어디서 오셨나요?'
+              : page === 2
+              ? '본인의 인적 사항을 입력해 주세요!'
+              : '보안 요소를 입력해주세요.'}
           </S.SubTitleItem>
         </S.TitleItemWrapper>
         <S.ShowPageCurrentBox>
@@ -26,9 +34,11 @@ const SignUp = () => {
             ))}
         </S.ShowPageCurrentBox>
       </S.SignUpTitleWrapper>
-      {page === 1 && <Page1 page={page} setPage={setPage} />}
-      {page === 2 && <Page2 page={page} setPage={setPage} />}
-      {page === 3 && <Page3 page={page} setPage={setPage} />}
+      <S.PaginationContainer>
+        {page === 1 && <Page1 page={page} setPage={setPage} />}
+        {page === 2 && <Page2 page={page} setPage={setPage} />}
+        {page === 3 && <Page3 page={page} setPage={setPage} />}
+      </S.PaginationContainer>
     </S.SignUpWrapper>
   )
 }
