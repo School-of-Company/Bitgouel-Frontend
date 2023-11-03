@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Simbol from '../../assets/png/HeaderSimple.png'
+import Simbol from '../../assets/png/simbol.png'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
 
