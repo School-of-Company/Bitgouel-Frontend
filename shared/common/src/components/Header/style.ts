@@ -6,7 +6,6 @@ export const HeaderWrapper = styled.div`
   display: flex;
   position: fixed;
   justify-content: center;
-  z-index: 999;
   top: 0;
 `
 
