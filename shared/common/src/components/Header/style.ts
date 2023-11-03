@@ -29,7 +29,7 @@ export const MenuWrapper = styled.div`
   }
 `
 
-export const LoginBtn = styled.div`
+export const LoginButton = styled.div`
   background-color: rgb(255, 255, 255, 0.2);
   width: 4.125rem;
   height: 2.375rem;
