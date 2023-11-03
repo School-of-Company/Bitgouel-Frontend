@@ -2,7 +2,7 @@ import * as S from './style'
 import { Circle } from '../../assets/index'
 
 const Sequence = () => {
-  const list = [
+  const sequenceList = [
     '사업소개',
     '관련 학교 소개',
     '연계 대학 소개',
@@ -13,10 +13,10 @@ const Sequence = () => {
   ]
   return (
     <S.SequenceWrapper>
-      {list.map((item, idx) => (
+      {sequenceList.map((sequence, idx) => (
         <S.TextContainer key={idx}>
           <Circle />
-          {item}
+          {sequence}
           <div />
         </S.TextContainer>
       ))}
