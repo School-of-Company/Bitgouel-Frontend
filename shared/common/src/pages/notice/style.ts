@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-export const LectureWrraper = styled.div``
+export const NoticeWrraper = styled.div``
 
 export const SlideBg = styled.div<{ url: any }>`
   height: 15rem;
@@ -20,7 +20,7 @@ export const BgContainer = styled.div`
   margin-bottom: 1rem;
 `
 
-export const LectureTitle = styled.span`
+export const NoticeTitle = styled.span`
   color: ${({ theme }) => theme.color.white};
   ${({ theme }) => theme.typo.title_lg};
 `
