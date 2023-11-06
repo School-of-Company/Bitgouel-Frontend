@@ -18,12 +18,11 @@ export const slideBg = styled.div<{ url: any }>`
 
 export const bgContainer = styled.div`
   width: 75rem;
-  font-weight: 600;
   display: flex;
   justify-content: space-between;
   span {
-    color: #fff;
-    font-size: 3rem;
+    color: ${({ theme }) => theme.color.white};
+    ${({ theme }) => theme.typo.title_lg};
   }
 `
 
@@ -31,12 +30,12 @@ export const view = styled.div`
   margin-top: 2.5rem;
   width: 7.5rem;
   height: 2.3125rem;
-  border: 0.125rem #fff solid;
+  border: 0.125rem ${({ theme }) => theme.color.white} solid;
   border-radius: 0.5rem;
   font-size: 1.125rem;
   display: flex;
   align-items: center;
-  color: #fff;
+  color: ${({ theme }) => theme.color.white};
   justify-content: center;
   cursor: pointer;
   &:hover {

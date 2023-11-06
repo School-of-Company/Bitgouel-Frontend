@@ -15,13 +15,12 @@ export const slideBg = styled.div<{ url: any }>`
 
 export const bgContainer = styled.div`
   width: 75rem;
-  font-weight: 600;
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
   span {
-    color: ${({theme})=>theme.color.white};
-    font-size: 3rem;
+    color: ${({ theme }) => theme.color.white};
+    ${({ theme }) => theme.typo.title_lg};
   }
 `
 
@@ -41,9 +40,8 @@ export const lectureButton = styled.div`
   border-radius: 0.5rem;
   backdrop-filter: blur(0.25rem);
   span {
-    color: ${({theme})=>theme.color.white};
-    font-weight: 400;
-    font-size: 1rem;
+    color: ${({ theme }) => theme.color.white};
+    ${({ theme }) => theme.typo.text_md};
     margin-left: 0.25rem;
   }
   &:hover {
