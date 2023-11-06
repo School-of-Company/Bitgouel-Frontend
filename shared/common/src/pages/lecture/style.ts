@@ -20,7 +20,7 @@ export const bgContainer = styled.div`
   justify-content: space-between;
   margin-bottom: 1rem;
   span {
-    color: #fff;
+    color: ${({theme})=>theme.color.white};
     font-size: 3rem;
   }
 `
@@ -41,7 +41,7 @@ export const lectureButton = styled.div`
   border-radius: 0.5rem;
   backdrop-filter: blur(0.25rem);
   span {
-    color: #fff;
+    color: ${({theme})=>theme.color.white};
     font-weight: 400;
     font-size: 1rem;
     margin-left: 0.25rem;
