@@ -7,19 +7,20 @@ export const SlideBg = styled.div<{ url: any }>`
   width: 100%;
   overflow: hidden;
   display: flex;
-  justify-content: center;
   background-image: url(${({ url }) => url.src});
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   transition: all 0.5s;
   align-items: center;
+  flex-direction: column-reverse;
 `
 
 export const BgContainer = styled.div`
   width: 75rem;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 6.25rem;
 `
 
 export const HomeTitle = styled.span`
@@ -28,20 +29,14 @@ export const HomeTitle = styled.span`
 `
 
 export const View = styled.div`
-  margin-top: 2.5rem;
-  width: 7.5rem;
-  height: 2.3125rem;
-  border: 0.125rem ${({ theme }) => theme.color.white} solid;
-  border-radius: 0.5rem;
-  font-size: 1.125rem;
-  display: flex;
-  align-items: center;
   color: ${({ theme }) => theme.color.white};
-  justify-content: center;
-  cursor: pointer;
-  &:hover {
-    background-color: #288be1;
-    border: 0.125rem #288be1 solid;
-    transition: 0.5s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+  svg {
+    transform: rotate(90deg);
+    margin-bottom: 0.5rem;
+    ${({ theme }) => theme.typo.text_sm};
   }
 `
