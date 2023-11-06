@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import * as S from './style'
 import { Header } from '../../components'
 import Bg1 from '../../assets/png/mainBg1.png'
-import { Filter, Plus } from '../../assets/index'
+import { Filter, Plus } from '../../assets/'
 
 const LecturePage = () => {
   return (
