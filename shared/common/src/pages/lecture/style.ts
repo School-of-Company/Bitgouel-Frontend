@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 
-export const lectureWrraper = styled.div``
+export const LectureWrraper = styled.div``
 
-export const slideBg = styled.div<{ url: any }>`
+export const SlideBg = styled.div<{ url: any }>`
   height: 15rem;
   width: 100%;
   display: flex;
@@ -13,7 +13,7 @@ export const slideBg = styled.div<{ url: any }>`
   align-items: center;
 `
 
-export const bgContainer = styled.div`
+export const BgContainer = styled.div`
   width: 75rem;
   display: flex;
   justify-content: space-between;
@@ -24,12 +24,12 @@ export const bgContainer = styled.div`
   }
 `
 
-export const buttonContainer = styled.div`
+export const ButtonContainer = styled.div`
   display: flex;
   align-items: flex-end;
 `
 
-export const lectureButton = styled.div`
+export const LectureButton = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
