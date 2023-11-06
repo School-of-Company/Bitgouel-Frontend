@@ -8,7 +8,7 @@ const ClubPage = () => {
       <Header />
       <S.SlideBg url={Bg2}>
         <S.BgContainer>
-          <span>취업 동아리 목록</span>
+          <S.ClubTitle>취업 동아리 목록</S.ClubTitle>
         </S.BgContainer>
       </S.SlideBg>
     </S.ClubWrraper>
