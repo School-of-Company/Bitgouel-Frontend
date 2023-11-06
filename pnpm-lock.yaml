@@ -127,6 +127,9 @@ importers:
 
   shared/common:
     dependencies:
+      '@types/react-dom':
+        specifier: ^18
+        version: 18.2.14
       typescript:
         specifier: 5.0.4
         version: 5.0.4
