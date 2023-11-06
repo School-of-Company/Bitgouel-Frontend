@@ -10,7 +10,7 @@ const NoticePage = () => {
       <Header />
       <S.SlideBg url={Bg1}>
         <S.BgContainer>
-          <span>게시글</span>
+          <S.NoticeTitle>게시글</S.NoticeTitle>
           <S.ButtonContainer>
             <S.LectureButton>
               <MegaPhone />

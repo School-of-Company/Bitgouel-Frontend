@@ -6,11 +6,11 @@ export const SlideBg = styled.div<{ url: any }>`
   height: 15rem;
   width: 100%;
   display: flex;
-  flex-direction: column-reverse;
+  justify-content: center;
   background-image: url(${({ url }) => url.src});
   background-position: center;
   background-size: cover;
-  align-items: center;
+  align-items: flex-end;
 `
 
 export const BgContainer = styled.div`
@@ -18,8 +18,9 @@ export const BgContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
-  span {
-    color: ${({ theme }) => theme.color.white};
-    ${({ theme }) => theme.typo.title_lg};
-  }
+`
+
+export const ClubTitle = styled.div`
+  color: ${({ theme }) => theme.color.white};
+  ${({ theme }) => theme.typo.title_lg};
 `

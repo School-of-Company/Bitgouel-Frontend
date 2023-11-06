@@ -26,11 +26,11 @@ const HomePage = () => {
       <S.SlideBg url={imageArr[bgNum]}>
         <S.BgContainer>
           <div>
-            <span>
+            <S.HomeTitle>
               빛고을 직업교육 혁신지구
               <br />
               사업 소개
-            </span>
+            </S.HomeTitle>
             <S.View>
               보러가기 &nbsp; <Arrow />
             </S.View>

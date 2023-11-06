@@ -20,10 +20,11 @@ export const BgContainer = styled.div`
   width: 75rem;
   display: flex;
   justify-content: space-between;
-  span {
-    color: ${({ theme }) => theme.color.white};
-    ${({ theme }) => theme.typo.title_lg};
-  }
+`
+
+export const HomeTitle = styled.span`
+  color: ${({ theme }) => theme.color.white};
+  ${({ theme }) => theme.typo.title_lg};
 `
 
 export const View = styled.div`
