@@ -5,8 +5,8 @@ import Bg1 from '../../assets/png/slide1.png'
 import Bg2 from '../../assets/png/slide2.png'
 import Bg3 from '../../assets/png/slide3.png'
 import Bg4 from '../../assets/png/slide4.png'
-import { Arrow } from '../../assets/index'
 import { Sequence } from '../../components/index'
+import { Arrow } from '../../assets'
 
 const HomePage = () => {
   const [bgNum, setBgNum] = useState(2)
@@ -24,19 +24,22 @@ const HomePage = () => {
     <S.HomeWrraper>
       <Header />
       <S.SlideBg url={imageArr[bgNum]}>
-        <S.BgContainer>
-          <div>
-            <S.HomeTitle>
-              빛고을 직업교육 혁신지구
-              <br />
-              사업 소개
-            </S.HomeTitle>
-            <S.View>
-              보러가기 &nbsp; <Arrow />
-            </S.View>
-          </div>
-          <Sequence />
-        </S.BgContainer>
+        <div>
+          <S.BgContainer>
+            <div>
+              <S.HomeTitle>
+                빛고을 직업교육 혁신지구
+                <br />
+                사업 소개
+              </S.HomeTitle>
+            </div>
+            <Sequence />
+          </S.BgContainer>
+          <S.View>
+            <Arrow />
+            둘러보기
+          </S.View>
+        </div>
       </S.SlideBg>
     </S.HomeWrraper>
   )
