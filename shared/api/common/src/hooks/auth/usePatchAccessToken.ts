@@ -1,10 +1,14 @@
-import { TokenResponseType } from './../../../../../types/src/tokenResponseType'
-
 import { useMutation } from '@tanstack/react-query'
 
 import { authQueryKeys } from './../../libs/queryKeys'
 import { authUrl } from '../../libs/urlController'
 import { patch } from '../../libs'
+import TokenManager from '@/common/src/libs/api/TokenManager'
+import { useRouter } from 'next/navigation'
+import { TokenResponseType } from '@/../types/src/tokenResponseType'
+
+const tokenManager = new TokenManager()
+const router = useRouter()
 
 export const usePatchAccessToken = () =>
   useMutation<TokenResponseType>(
@@ -15,15 +19,19 @@ export const usePatchAccessToken = () =>
         {},
         {
           headers: {
-            RefreshToken: `Bearer ${localStorage.getItem('refresh_token')}`,
+            RefreshToken:
+              tokenManager.refreshToken &&
+              `Bearer ${tokenManager.refreshToken}`,
           },
         }
       ),
     {
       onSuccess: (data) => {
-        //Token Local 저장
-        localStorage.setItem('refresh_token', data.refreshToken)
-        localStorage.setItem('access_token', data.accessToken)
+        tokenManager.setTokens(data)
+      },
+      onError: (error) => {
+        tokenManager.removeTokens()
+        return router.push('/auth/login')
       },
     }
   )

@@ -3,19 +3,28 @@ import { useMutation } from '@tanstack/react-query'
 import { post } from '../../libs'
 import { authQueryKeys } from '../../libs/queryKeys'
 import { authUrl } from '../../libs/urlController'
+import { TokenResponseType } from '@/../types/src/tokenResponseType'
+import TokenManager from '@/common/src/libs/api/TokenManager'
+import { useRouter } from 'next/navigation'
 
-import { TokenResponseType } from './../../../../../types/src/tokenResponseType'
+const tokenManager = new TokenManager()
+const router = useRouter()
 
-export const usePostLoginCode = () =>
-  useMutation<TokenResponseType, Error, { email: string; password: string }>(
-    authQueryKeys.postLoginCode(),
-    (loginCode) => post(authUrl.auth(), loginCode),
+export const usePostLogin = () =>
+  useMutation<
+    TokenResponseType,
+    Error,
+    { loginValues: { email: string; password: string } }
+  >(
+    authQueryKeys.postLogin(),
+    (loginValues) => post(authUrl.auth(), loginValues),
     {
       onSuccess: (data) => {
-        if (data.refreshToken)
-          localStorage.setItem('refresh_token', data.refreshToken)
-        if (data.accessToken)
-          localStorage.setItem('access_token', data.accessToken)
+        tokenManager.setTokens(data)
+        return router.push('/main/home')
+      },
+      onError: (error) => {
+        return console.log(error)
       },
     }
   )

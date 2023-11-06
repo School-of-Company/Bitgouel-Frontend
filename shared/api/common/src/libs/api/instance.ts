@@ -1,23 +1,58 @@
-// import { TokenResponseType } from 'types';
-// import { patch } from './method'
-// import { authUrl } from '../urlController'
+import axios, { InternalAxiosRequestConfig, AxiosError } from 'axios'
+import { usePatchAccessToken } from '../../hooks/auth'
+import TokenManager from './TokenManager'
 
-import axios from 'axios'
-
-export const apiInstance = axios.create({
+export const instance = axios.create({
   baseURL: '/api',
   withCredentials: true,
 })
 
-apiInstance.interceptors.request.use(
-  (request) => {
-    if (request.url !== '/auth')
-      request.headers['Authorization'] = `Bearer ${window.localStorage.getItem(
-        'access_token'
-      )}`
-    return request
+instance.interceptors.request.use(
+  async (config: InternalAxiosRequestConfig) => {
+    const tokenManager = new TokenManager()
+    if (
+      !tokenManager.validateToken(
+        tokenManager.accessExpired,
+        tokenManager.accessToken
+      ) &&
+      tokenManager.validateToken(
+        tokenManager.refreshExpired,
+        tokenManager.refreshToken
+      ) &&
+      !tokenManager.skipUrl()
+    ) {
+      await usePatchAccessToken()
+      tokenManager.initToken()
+    } else if (
+      !tokenManager.validateToken(
+        tokenManager.accessExpired,
+        tokenManager.accessToken
+      ) &&
+      !tokenManager.validateToken(
+        tokenManager.refreshExpired,
+        tokenManager.refreshToken
+      ) &&
+      !tokenManager.skipUrl()
+    )
+      tokenManager.removeTokens()
+
+    config.headers.Authorization = tokenManager.accessToken
+      ? `Bearer ${tokenManager.accessToken}`
+      : undefined
+
+    return config
   },
-  (error) => {
+
+  async (error: AxiosError) => {
+    const tokenManager = new TokenManager()
+
+    if (
+      error.response &&
+      error.response.status === 401 &&
+      !tokenManager.skipUrl()
+    ) {
+      return usePatchAccessToken()
+    }
     return Promise.reject(error)
   }
 )
