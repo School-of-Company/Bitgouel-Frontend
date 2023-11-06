@@ -4,7 +4,7 @@ export const LoginWrapper = styled.div`
   width: 27rem;
   height: 34.6875rem;
   border-radius: 0.5rem;
-  border: 0.0625rem solid #b8b8b8;
+  border: 0.0625rem solid ${({ theme }) => theme.color.gray[700]};
   position: absolute;
   top: 50%;
   left: 50%;
@@ -38,8 +38,6 @@ export const TitleContainer = styled.div`
 export const TitleItem = styled.span`
   color: ${({ theme }) => theme.color.black};
   ${({ theme }) => theme.typo.title_md};
-  ${({ theme }) => theme.typo.title_md};
-  color: ${({ theme }) => theme.color.black};
 `
 
 export const InputWrapper = styled.div`

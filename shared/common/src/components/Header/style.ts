@@ -18,14 +18,15 @@ export const HeaderContainer = styled.div`
 `
 
 export const MenuWrapper = styled.div`
-  font-size: 1.25rem;
-  color: #b8b8b8;
+  ${({ theme }) => theme.typo.text_lg};
+  font-weight: 400;
+  color: ${({ theme }) => theme.color.gray[700]};
   display: flex;
   justify-content: space-between;
   width: 20rem;
   span:hover {
     cursor: pointer;
-    color: #6b6b6b;
+    color: ${({ theme }) => theme.color.gray[400]};
   }
 `
 
@@ -39,9 +40,10 @@ export const LoginButton = styled.div`
   display: flex;
   justify-content: center;
   cursor: pointer;
+  backdrop-filter: blur(0.25rem);
   span {
     font-size: 1rem;
-    color: #ffffff;
+    color: ${({ theme }) => theme.color.white};
     margin: 0;
   }
   &:hover {
