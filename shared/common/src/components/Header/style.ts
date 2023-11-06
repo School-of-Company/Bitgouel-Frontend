@@ -42,7 +42,7 @@ export const LoginButton = styled.div`
   backdrop-filter: blur(0.25rem);
   span {
     font-size: 1rem;
-    color: #ffffff;
+    color: ${({theme})=>theme.color.white};
     margin: 0;
   }
   &:hover {
