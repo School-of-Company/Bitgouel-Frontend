@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 
-export const mainWrraper = styled.div``
+export const HomeWrraper = styled.div``
 
-export const slideBg = styled.div<{ url: any }>`
+export const SlideBg = styled.div<{ url: any }>`
   height: 50rem;
   width: 100%;
   overflow: hidden;
@@ -16,7 +16,7 @@ export const slideBg = styled.div<{ url: any }>`
   align-items: center;
 `
 
-export const bgContainer = styled.div`
+export const BgContainer = styled.div`
   width: 75rem;
   display: flex;
   justify-content: space-between;
@@ -26,7 +26,7 @@ export const bgContainer = styled.div`
   }
 `
 
-export const view = styled.div`
+export const View = styled.div`
   margin-top: 2.5rem;
   width: 7.5rem;
   height: 2.3125rem;

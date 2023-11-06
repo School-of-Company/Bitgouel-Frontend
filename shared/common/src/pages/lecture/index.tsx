@@ -6,18 +6,24 @@ import { Filter, Plus } from '../../assets/'
 
 const LecturePage = () => {
   return (
-    <S.lectureWrraper>
+    <S.LectureWrraper>
       <Header />
-      <S.slideBg url={Bg1}>
-        <S.bgContainer>
+      <S.SlideBg url={Bg1}>
+        <S.BgContainer>
           <span>강의 소개</span>
-          <S.buttonContainer>
-            <S.lectureButton><Plus /><span>개설 신청하기</span></S.lectureButton>
-            <S.lectureButton><Filter/><span>필터</span></S.lectureButton>
-          </S.buttonContainer>
-        </S.bgContainer>
-      </S.slideBg>
-    </S.lectureWrraper>
+          <S.ButtonContainer>
+            <S.LectureButton>
+              <Plus />
+              <span>개설 신청하기</span>
+            </S.LectureButton>
+            <S.LectureButton>
+              <Filter />
+              <span>필터</span>
+            </S.LectureButton>
+          </S.ButtonContainer>
+        </S.BgContainer>
+      </S.SlideBg>
+    </S.LectureWrraper>
   )
 }
 
