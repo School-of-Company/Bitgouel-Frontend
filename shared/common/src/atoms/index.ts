@@ -1,6 +1,14 @@
+import { ReactNode } from 'react'
 import { atom } from 'recoil'
 
-export const Page1Obj = atom({
+export const IsModal = atom<ReactNode>({
+  key: 'IsModal',
+  default: null,
+})
+
+export const Page1Obj = atom<
+  { value: string; placeholder: string; type: string }[]
+>({
   key: 'Page1Obj',
   default: [
     { value: '', placeholder: '소속', type: 'text' },
