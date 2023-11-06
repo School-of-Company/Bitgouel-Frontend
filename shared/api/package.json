@@ -11,6 +11,11 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.6.0",
-    "common": "workspace:^"
+    "common": "workspace:^",
+    "types": "workspace:^",
+    "eslint-config-custom": "workspace:^"
+  },
+  "devDependencies": {
+    "tsconfig": "workspace:^"
   }
 }
