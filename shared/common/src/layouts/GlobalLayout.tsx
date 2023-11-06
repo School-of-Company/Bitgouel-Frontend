@@ -1,13 +1,17 @@
 import React, { ReactNode } from 'react'
 import { ThemeProvider } from '@emotion/react'
 import { theme } from '../styles/theme'
-import { RecoilRoot } from 'recoil'
+import { useRecoilValue } from 'recoil'
+import { IsModal } from '../atoms'
 
 const GlobalLayout = ({ children }: { children: ReactNode }) => {
+  const isModal = useRecoilValue(IsModal)
+
   return (
-    <RecoilRoot>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
-    </RecoilRoot>
+    <ThemeProvider theme={theme}>
+      {children}
+      {isModal && <>{isModal}</>}
+    </ThemeProvider>
   )
 }
 
