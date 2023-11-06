@@ -17,7 +17,7 @@ const Circle = () => {
           strokeWidth='2'
         />
       </g>
-      <circle cx='8' cy='8' r='6' fill='white' fill-opacity='0.25' />
+      <circle cx='8' cy='8' r='6' fill='white' fillOpacity='0.25' />
       <defs>
         <filter
           id='filter0_b_1380_69641'
@@ -26,9 +26,9 @@ const Circle = () => {
           width='32'
           height='32'
           filterUnits='userSpaceOnUse'
-          colorInterpolation-filters='sRGB'
+          colorInterpolationFilters='sRGB'
         >
-          <feFlood flood-opacity='0' result='BackgroundImageFix' />
+          <feFlood floodOpacity='0' result='BackgroundImageFix' />
           <feGaussianBlur in='BackgroundImageFix' stdDeviation='4' />
           <feComposite
             in2='SourceAlpha'

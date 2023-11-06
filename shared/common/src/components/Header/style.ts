@@ -39,6 +39,7 @@ export const LoginButton = styled.div`
   display: flex;
   justify-content: center;
   cursor: pointer;
+  backdrop-filter: blur(0.25rem);
   span {
     font-size: 1rem;
     color: #ffffff;
