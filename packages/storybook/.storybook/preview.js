@@ -1,6 +1,6 @@
 import { AppRouterContext } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 import { GlobalLayout } from '../../../shared/common/src/layouts'
-import '../../../shared/common/src/styles/font.css'
+import '../../inside/src/styles/font.css'
 
 /** @type { import('@storybook/react').Preview } */
 const preview = {
@@ -13,8 +13,8 @@ const preview = {
       },
     },
     nextRouter: {
-      Provider: AppRouterContext.Provider
-    }
+      Provider: AppRouterContext.Provider,
+    },
   },
   decorators: [
     (Story) => (

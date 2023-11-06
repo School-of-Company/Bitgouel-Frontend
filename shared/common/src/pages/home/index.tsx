@@ -21,24 +21,24 @@ const HomePage = () => {
   }, [])
 
   return (
-    <S.mainWrraper>
+    <S.HomeWrraper>
       <Header />
-      <S.slideBg url={imageArr[bgNum]}>
-        <S.bgContainer>
+      <S.SlideBg url={imageArr[bgNum]}>
+        <S.BgContainer>
           <div>
             <span>
               빛고을 직업교육 혁신지구
               <br />
               사업 소개
             </span>
-            <S.view>
+            <S.View>
               보러가기 &nbsp; <Arrow />
-            </S.view>
+            </S.View>
           </div>
           <Sequence />
-        </S.bgContainer>
-      </S.slideBg>
-    </S.mainWrraper>
+        </S.BgContainer>
+      </S.SlideBg>
+    </S.HomeWrraper>
   )
 }
 
