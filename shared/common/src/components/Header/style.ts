@@ -7,6 +7,7 @@ export const HeaderWrapper = styled.div`
   position: fixed;
   justify-content: center;
   top: 0;
+  transition: all 0.5s;
 `
 
 export const HeaderContainer = styled.div`

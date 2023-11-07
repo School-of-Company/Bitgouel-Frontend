@@ -41,6 +41,59 @@ const HomePage = () => {
           </S.View>
         </div>
       </S.SlideBg>
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
+      <br />d
     </S.HomeWrraper>
   )
 }
