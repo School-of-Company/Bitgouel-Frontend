@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import { PaginationInputsContainer } from '../Page1/style'
 import { useRecoilState } from 'recoil'
 import { Page3Obj } from '../../../../atoms'
@@ -14,6 +14,10 @@ const Page3 = ({
   setPage: React.Dispatch<React.SetStateAction<number>>
 }) => {
   const [page3Obj, setPage3Obj] = useRecoilState(Page3Obj)
+  const [phoneCertificate, setPhoneCertificate] = useState(false)
+  const [phoneCertificateText, setPhoneCertificateText] = useState('인증')
+  const [emailCertificateText, setEmailCertificateText] = useState('인증')
+  const [emailCertificate, setEmailCertificate] = useState(false)
 
   const onClear = (idx: number) => {
     const clearObj = [...page3Obj]
@@ -33,6 +37,13 @@ const Page3 = ({
     setPage3Obj(updatedObj)
   }
 
+  const onCertificate = (idx: number) => {
+    if (idx === 0) {
+      setPhoneCertificate(true)
+      setPhoneCertificateText('완료')
+    }
+  }
+
   return (
     <>
       <PaginationInputsContainer>
@@ -48,7 +59,12 @@ const Page3 = ({
               onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e, idx)}
             />
             {idx === 0 || idx === 2 ? (
-              <S.CertificationButton>인증</S.CertificationButton>
+              <S.CertificationButton
+                isValue={item.value.length}
+                onClick={() => onCertificate(idx)}
+              >
+                {idx === 0 ? phoneCertificateText : emailCertificateText}
+              </S.CertificationButton>
             ) : null}
           </S.CertificationInputBox>
         ))}

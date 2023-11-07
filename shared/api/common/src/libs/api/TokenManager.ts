@@ -1,24 +1,23 @@
 import {
   accessToken,
   refreshToken,
-  accessExpired,
-  refreshExpired,
-} from '@/common/src/libs/token'
+  accessExpiredAt,
+  refreshExpiredAt,
+} from '../token'
 import Router from 'next/router'
-import { patch } from './method'
 
 interface TokensType {
   accessToken: string
   refreshToken: string
-  accessExpired: string
-  refreshExpired: string
+  accessExpiredAt: string
+  refreshExpiredAt: string
 }
 
 class TokenManager {
   private _accessToken: string | null = null
   private _refreshToken: string | null = null
-  private _accessExpired: string | null = null
-  private _refreshExpired: string | null = null
+  private _accessExpiredAt: string | null = null
+  private _refreshExpiredAt: string | null = null
 
   constructor() {
     this.initToken()
@@ -47,33 +46,33 @@ class TokenManager {
     if (typeof window === 'undefined') return
     this._accessToken = localStorage.getItem(accessToken)
     this._refreshToken = localStorage.getItem(refreshToken)
-    this._accessExpired = localStorage.getItem(accessExpired)
-    this._refreshExpired = localStorage.getItem(refreshExpired)
+    this._accessExpiredAt = localStorage.getItem(accessExpiredAt)
+    this._refreshExpiredAt = localStorage.getItem(refreshExpiredAt)
   }
 
   setTokens(tokens: TokensType) {
     this._accessToken = tokens.accessToken
     this._refreshToken = tokens.refreshToken
-    this._accessExpired = tokens.accessExpired
-    this._refreshExpired = tokens.refreshExpired
+    this._accessExpiredAt = tokens.accessExpiredAt
+    this._refreshExpiredAt = tokens.refreshExpiredAt
 
     localStorage.setItem(accessToken, tokens.accessToken)
     localStorage.setItem(refreshToken, tokens.refreshToken)
-    localStorage.setItem(accessExpired, tokens.accessExpired)
-    localStorage.setItem(refreshExpired, tokens.refreshExpired)
+    localStorage.setItem(accessExpiredAt, tokens.accessExpiredAt)
+    localStorage.setItem(refreshExpiredAt, tokens.refreshExpiredAt)
   }
 
   removeTokens() {
     if (typeof window === 'undefined') return
     this._accessToken = null
     this._refreshToken = null
-    this._accessExpired = null
-    this._refreshExpired = null
+    this._accessExpiredAt = null
+    this._refreshExpiredAt = null
 
     localStorage.removeItem(accessToken)
     localStorage.removeItem(refreshToken)
-    localStorage.removeItem(accessExpired)
-    localStorage.removeItem(refreshExpired)
+    localStorage.removeItem(accessExpiredAt)
+    localStorage.removeItem(refreshExpiredAt)
   }
 
   get accessToken() {
@@ -85,11 +84,11 @@ class TokenManager {
   }
 
   get accessExpired() {
-    return this._accessExpired
+    return this._accessExpiredAt
   }
 
   get refreshExpired() {
-    return this._refreshExpired
+    return this._refreshExpiredAt
   }
 }
 
