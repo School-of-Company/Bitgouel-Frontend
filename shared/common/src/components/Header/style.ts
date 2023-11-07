@@ -9,7 +9,7 @@ export const HeaderWrapper = styled.div<{ bgColor: any; borderColor: any }>`
   top: 0;
   transition: all 0.5s;
   background-color: ${({ bgColor }) => bgColor};
-  border-bottom:  ${({ borderColor }) => borderColor};
+  border-bottom: ${({ borderColor }) => borderColor};
 `
 
 export const HeaderContainer = styled.div`
@@ -45,7 +45,6 @@ export const MenuWrapper = styled.div`
 
 export const LoginButton = styled.div<{ color: any }>`
   background-color: ${({ color }) => color};
-  transition: all 0.3s;
   width: 4.125rem;
   height: 2.375rem;
   border-radius: 0.5rem;
