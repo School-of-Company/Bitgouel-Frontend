@@ -34,7 +34,7 @@ const ValueInput = (
       }}
     >
       <S.ValueInput ref={ref} {...rest} />
-      {length > 0 && focus === true && (
+      {length > 0 && focus === true && onClear && (
         <S.XIconWrapper onClick={onClear}>
           <XIcon />
         </S.XIconWrapper>

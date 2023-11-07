@@ -8,7 +8,7 @@ const Login = () => {
   const [emailValue, setEmailValue] = useState<string>('')
   const [passwordValue, setPasswordValue] = useState<string>('')
   const router = useRouter()
-  const { mutate, isSuccess } = usePostLogin()
+  const { mutate } = usePostLogin()
 
   return (
     <S.LoginWrapper>

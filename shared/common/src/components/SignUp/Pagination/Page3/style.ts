@@ -1,16 +1,34 @@
 import styled from '@emotion/styled'
 
-export const CertificationInputBox = styled.div<{ idx: number }>`
-  display: ${({ idx }) => (idx === 0 || idx === 2 ? 'flex' : 'block')};
-  align-items: center;
+export const CertificationInputBox = styled.div<{ placeholderText: string }>`
+  display: ${({ placeholderText }) =>
+    placeholderText === '전화번호 (- 제외)' ||
+    placeholderText === '이메일' ||
+    placeholderText.includes('비밀번호')
+      ? 'flex'
+      : 'block'};
+  align-items: ${({ placeholderText }) =>
+    placeholderText.includes('비밀번호') ? 'flex-start' : 'center'};
   justify-content: space-around;
-  width: ${({ idx }) => (idx === 0 || idx === 2) && '100%'};
+  flex-direction: ${({ placeholderText }) =>
+    placeholderText.includes('비밀번호') ? 'column' : 'row'};
+  width: ${({ placeholderText }) =>
+    (placeholderText === '전화번호 (- 제외)' ||
+      placeholderText === '이메일' ||
+      placeholderText.includes('비밀번호')) &&
+    '100%'};
 
   div {
-    width: ${({ idx }) => (idx === 0 || idx === 2 ? '19rem' : '24rem')};
+    width: ${({ placeholderText }) =>
+      placeholderText === '전화번호 (- 제외)' || placeholderText === '이메일'
+        ? '19.7rem'
+        : '24rem'};
 
     input {
-      width: ${({ idx }) => (idx === 0 || idx === 2 ? '100%' : '24rem')};
+      width: ${({ placeholderText }) =>
+        placeholderText === '전화번호 (- 제외)' || placeholderText === '이메일'
+          ? '100%'
+          : '24rem'};
     }
 
     div {
@@ -26,9 +44,14 @@ export const CertificationButton = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.color.main};
-  color: ${({ theme }) => theme.color.white};
+  margin-left: 0.3rem;
   ${({ theme }) => theme.typo.text_lg};
   border-radius: 0.5rem;
   cursor: pointer;
+`
+
+export const PasswordErrorText = styled.span`
+  color: ${({ theme }) => theme.color.error};
+  ${({ theme }) => theme.typo.caption}
+  float: left;
 `

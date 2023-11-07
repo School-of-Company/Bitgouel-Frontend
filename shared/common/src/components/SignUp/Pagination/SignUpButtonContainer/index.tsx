@@ -73,7 +73,7 @@ const SignUpButtonContainer = ({
         이전으로
       </S.PreButton>
       <S.NextButton isNext={isNext} onClick={onNext}>
-        다음으로
+        {page !== 3 ? '다음으로' : '가입하기'}
       </S.NextButton>
     </S.SignUpButtonContainer>
   )
