@@ -1,4 +1,9 @@
-import React, { useState, forwardRef, InputHTMLAttributes } from 'react'
+import React, {
+  useState,
+  forwardRef,
+  InputHTMLAttributes,
+  useEffect,
+} from 'react'
 import * as S from './style'
 import { XIcon } from '../../assets'
 
@@ -12,6 +17,12 @@ const ValueInput = (
   ref?: any
 ) => {
   const [focus, setFocus] = useState<boolean>(true)
+
+  useEffect(() => {
+    return () => {
+      setFocus(false)
+    }
+  }, [])
 
   return (
     <S.ValueWrapper

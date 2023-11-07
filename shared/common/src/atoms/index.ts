@@ -21,7 +21,7 @@ export const Page2Obj = atom({
   default: [
     { value: '', placeholder: '학교 이름 선택', type: 'text' },
     { value: '', placeholder: '동아리 이름 선택', type: 'text' },
-    { value: '', placeholder: '이름 입력', type: 'text', maxLength: 3 },
+    { value: '', placeholder: '이름 입력', type: 'text', maxLength: 4 },
   ],
 })
 
