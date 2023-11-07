@@ -24,6 +24,7 @@ const Header = () => {
   const [bgColor, setBgColor] = useState('')
   const [simbolNum, setSimbolNum] = useState('')
   const [btnColor, setBtnColor] = useState('')
+  const [borderColor, setborderColor] = useState('')
 
   const onScroll = useCallback(() => {
     const { scrollY } = window
@@ -31,23 +32,20 @@ const Header = () => {
     if (scrollY >= 800) {
       setBgColor('white')
       setSimbolNum(Simbol2)
-      setBtnColor('##D1D1D1')
+      setBtnColor('rgb(209, 209, 209, 1)')
+      setborderColor('1px solid #ebebeb')
     } else {
       setBgColor('')
       setSimbolNum(Simbol1)
-      setBtnColor('#fff')
+      setBtnColor('rgb(255, 255, 255, 0.2)')
+      setborderColor('')
     }
   }, [])
 
   return (
-    <S.HeaderWrapper style={{ backgroundColor: bgColor }}>
+    <S.HeaderWrapper bgColor={bgColor} borderColor={setborderColor}>
       <S.HeaderContainer>
-        <Image
-          width={38}
-          height={38}
-          src={simbolNum}
-          alt='header simbol'
-        ></Image>
+        <S.SimbolContainer url={simbolNum}></S.SimbolContainer>
         <S.MenuWrapper>
           {menuList.map((menu, idx) => (
             <span key={idx} onClick={() => router.push(menu.link)}>
@@ -57,7 +55,7 @@ const Header = () => {
         </S.MenuWrapper>
         <S.LoginButton
           onClick={() => router.push('/auth/login')}
-          style={{ backgroundColor: btnColor }}
+          color={btnColor}
         >
           <span>로그인</span>
         </S.LoginButton>

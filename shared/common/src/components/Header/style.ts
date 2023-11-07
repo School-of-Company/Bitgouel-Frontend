@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-export const HeaderWrapper = styled.div`
+export const HeaderWrapper = styled.div<{ bgColor: any; borderColor: any }>`
   width: 100%;
   height: 4.875rem;
   display: flex;
@@ -8,6 +8,8 @@ export const HeaderWrapper = styled.div`
   justify-content: center;
   top: 0;
   transition: all 0.5s;
+  background-color: ${({ bgColor }) => bgColor};
+  border-bottom:  ${({ borderColor }) => borderColor};
 `
 
 export const HeaderContainer = styled.div`
@@ -16,6 +18,16 @@ export const HeaderContainer = styled.div`
   height: 100%;
   align-items: center;
   justify-content: space-between;
+`
+
+export const SimbolContainer = styled.div<{ url: any }>`
+  width: 2.375rem;
+  height: 2.375rem;
+  background-image: url(${({ url }) => url.src});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: all 0.5s;
 `
 
 export const MenuWrapper = styled.div`
@@ -31,8 +43,9 @@ export const MenuWrapper = styled.div`
   }
 `
 
-export const LoginButton = styled.div`
-  background-color: rgb(255, 255, 255, 0.2);
+export const LoginButton = styled.div<{ color: any }>`
+  background-color: ${({ color }) => color};
+  transition: all 0.3s;
   width: 4.125rem;
   height: 2.375rem;
   border-radius: 0.5rem;
@@ -48,6 +61,6 @@ export const LoginButton = styled.div`
     margin: 0;
   }
   &:hover {
-    background-color: rgb(255, 255, 255, 0.3);
+    background-color: rgb(209, 209, 209, 0.5);
   }
 `
