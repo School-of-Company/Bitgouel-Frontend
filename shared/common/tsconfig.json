@@ -2,11 +2,12 @@
   "extends": "../../tsconfig.json",
   "include": ["**/*.ts", "**/*.tsx", "src", "src/custom.d.ts"],
   "exclude": ["node_modules"],
+  "main": "./index.ts",
   "compilerOptions": {
-    "rootDir": ".",
     "baseUrl": "./src",
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+    "plugins": []
   }
 }

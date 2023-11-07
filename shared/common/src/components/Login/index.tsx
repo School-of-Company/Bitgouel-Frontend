@@ -2,11 +2,13 @@ import * as S from './style'
 import ValueInput from '../ValueInput'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { usePostLogin } from '../../../../api/common/src/hooks'
 
 const Login = () => {
   const [emailValue, setEmailValue] = useState<string>('')
   const [passwordValue, setPasswordValue] = useState<string>('')
   const router = useRouter()
+  const { mutate, isSuccess } = usePostLogin()
 
   return (
     <S.LoginWrapper>
@@ -48,7 +50,11 @@ const Login = () => {
         </S.PasswordContainer>
       </S.InputWrapper>
       <S.LoginButtonWrapper>
-        <S.LoginButton>로그인</S.LoginButton>
+        <S.LoginButton
+          onClick={() => mutate({ email: emailValue, password: passwordValue })}
+        >
+          로그인
+        </S.LoginButton>
       </S.LoginButtonWrapper>
       <S.JoinWrapper>
         <S.JoinContainer>
