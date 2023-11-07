@@ -1,17 +1,15 @@
 import { useMutation } from '@tanstack/react-query'
-
 import { authQueryKeys } from './../../libs/queryKeys'
 import { authUrl } from '../../libs/urlController'
 import { patch } from '../../libs'
-import TokenManager from '@/common/src/libs/api/TokenManager'
-import { useRouter } from 'next/navigation'
-import { TokenResponseType } from '@/../types/src/tokenResponseType'
+import TokenManager from '../../libs/api/TokenManager'
+import { AxiosResponse } from 'axios'
+import Route from 'next/router'
 
 const tokenManager = new TokenManager()
-const router = useRouter()
 
 export const usePatchAccessToken = () =>
-  useMutation<TokenResponseType>(
+  useMutation<AxiosResponse>(
     authQueryKeys.patchAccessToken(),
     () =>
       patch(
@@ -26,12 +24,12 @@ export const usePatchAccessToken = () =>
         }
       ),
     {
-      onSuccess: (data) => {
+      onSuccess: ({ data }) => {
         tokenManager.setTokens(data)
       },
       onError: (error) => {
         tokenManager.removeTokens()
-        return router.push('/auth/login')
+        return Route.push('/auth/login')
       },
     }
   )
