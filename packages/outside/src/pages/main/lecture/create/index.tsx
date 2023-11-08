@@ -1,10 +1,10 @@
 import React from 'react'
 import * as S from './style'
-import { Header } from '../../../components'
-import Bg3 from '../../../assets/png/mainBg3.png'
-import { Chevron, People } from '../../../assets'
+import { Header } from '@common/components'
+import Bg3 from '@common/assets/png/mainBg3.png'
+import { Chevron, People } from '@common/assets'
 
-const CreatePage = () => {
+const Create = () => {
   const menuList = [
     { kor: '강의 유형 선택', svg: <Chevron /> },
     { kor: '신청 기간 선택', svg: <Chevron /> },
@@ -22,10 +22,10 @@ const CreatePage = () => {
       </S.SlideBg>
       <S.DocumentInputWrraper>
         <S.DocumentInput>
-          <S.InputTitle placeholder={'강의 제목'} />
+          <S.InputTitle placeholder='강의 제목' />
           <S.InputMainText
             maxLength={1000}
-            placeholder={'강의 설명 작성 (1000자 이내)'}
+            placeholder='강의 설명 작성 (1000자 이내)'
           />
           <S.LectureSetting>
             <S.SettingTitle>강의 세부 설정</S.SettingTitle>
@@ -47,4 +47,4 @@ const CreatePage = () => {
   )
 }
 
-export default CreatePage
+export default Create

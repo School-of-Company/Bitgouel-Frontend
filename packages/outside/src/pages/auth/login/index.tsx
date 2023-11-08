@@ -1,12 +1,12 @@
 import React from 'react'
-import { Login } from '@common/components'
+import { LoginPage } from '@common/pages'
 
-const LoginPage = () => {
+const Login = () => {
   return (
     <div>
-      <Login />
+      <LoginPage />
     </div>
   )
 }
 
-export default LoginPage
+export default Login
