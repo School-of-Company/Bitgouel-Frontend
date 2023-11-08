@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Simbol1 from '../../assets/png/simbol1.png'
 import Simbol2 from '../../assets/png/simbol2.png'
 import * as S from './style'
@@ -7,6 +6,7 @@ import { useEffect, useState } from 'react'
 import Route from 'next/router'
 import { useRecoilValue } from 'recoil'
 import { HadAccessToken } from '../../atoms'
+import { Plus, Filter, MegaPhone, Message, Question } from '../../assets'
 
 const Header = () => {
   const router = useRouter()
@@ -19,23 +19,23 @@ const Header = () => {
   useEffect(() => {
     if (Route.route === '/main/home') {
       setMainColor(spanColor)
-      setLectureColor('#B8B8B8')
-      setClubColor('#B8B8B8')
-      setNoticeColor('#B8B8B8')
+      setLectureColor('')
+      setClubColor('')
+      setNoticeColor('')
     } else if (Route.route === '/main/lecture') {
-      setMainColor('#B8B8B8')
+      setMainColor('')
       setLectureColor(spanColor)
-      setClubColor('#B8B8B8')
-      setNoticeColor('#B8B8B8')
+      setClubColor('')
+      setNoticeColor('')
     } else if (Route.route === '/main/club') {
-      setMainColor('#B8B8B8')
-      setLectureColor('#B8B8B8')
+      setMainColor('')
+      setLectureColor('')
       setClubColor(spanColor)
-      setNoticeColor('#B8B8B8')
+      setNoticeColor('')
     } else if (Route.route === '/main/notice') {
-      setMainColor('#B8B8B8')
-      setLectureColor('#B8B8B8')
-      setClubColor('#B8B8B8')
+      setMainColor('')
+      setLectureColor('')
+      setClubColor('')
       setNoticeColor(spanColor)
     }
   })
@@ -52,8 +52,16 @@ const Header = () => {
   const [btnColor, setBtnColor] = useState('rgb(255, 255, 255, 0.2)')
   const [borderColor, setborderColor] = useState('')
   const [spanColor, setSpanColor] = useState('#fff')
+  const [svgView, setSvgView] = useState('none')
+  const [myStatus, setMyStatus] = useState('로그인')
+  const [route, setRoute] = useState('')
 
   useEffect(() => {
+    setMyStatus(
+      localStorage.getItem('Bitgouel-accessToken') ? '내 정보' : '로그인'
+      )
+
+    setRoute(Route.route)
     const onScroll = () => {
       const { scrollY } = window
       if (Route.route === '/main/home') {
@@ -77,12 +85,14 @@ const Header = () => {
           setBtnColor('rgb(209, 209, 209, 1)')
           setborderColor('1px solid #ebebeb')
           setSpanColor('#288BE1')
+          setSvgView('block')
         } else {
           setBgColor('')
           setSimbolNum(Simbol1)
           setBtnColor('rgb(255, 255, 255, 0.2)')
           setborderColor('')
           setSpanColor('#fff')
+          setSvgView('none')
         }
       }
     }
@@ -92,30 +102,43 @@ const Header = () => {
     }
   }, [])
 
-  const hadAccessToken = useRecoilValue(HadAccessToken)
-
   return (
     <S.HeaderWrapper bgColor={bgColor} borderColor={borderColor}>
       <S.HeaderContainer>
-        <S.SimbolContainer url={simbolNum}></S.SimbolContainer>
+        <S.SimbolContainer url={simbolNum} />
         <S.MenuWrapper>
           {menuList.map((menu, idx) => (
             <span
               key={idx}
               onClick={() => router.push(menu.link)}
-              style={{color: (menu.color)}}
+              style={{ color: menu.color }}
             >
               {menu.kor}
             </span>
           ))}
         </S.MenuWrapper>
+        <S.ButtonWrapper view={svgView}>
+          {route === '/main/lecture' ? (
+            <Plus />
+          ) : route === '/main/notice' ? (
+            <MegaPhone />
+          ) : null}
+          {route === '/main/lecture' ? (
+            <Filter />
+          ) : route === '/main/notice' ? (
+            <Message />
+          ) : null}
+          {route === '/main/notice' ? <Question /> : null}
+        </S.ButtonWrapper>
         <S.LoginButton
           onClick={() =>
-            router.push(hadAccessToken ? '/main/lecture' : '/auth/login')
+            router.push(
+              myStatus === '내 정보' ? '/main/lecture' : '/auth/login'
+            )
           }
           color={btnColor}
         >
-          <span>{hadAccessToken ? '내 정보' : '로그인'}</span>
+          <span>{myStatus}</span>
         </S.LoginButton>
       </S.HeaderContainer>
     </S.HeaderWrapper>

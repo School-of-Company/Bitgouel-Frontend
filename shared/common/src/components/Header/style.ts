@@ -43,6 +43,20 @@ export const MenuWrapper = styled.div`
   }
 `
 
+export const ButtonWrapper = styled.div<{ view: any }>`
+  position: absolute;
+  right: 23%;
+  display: ${({ view }) => view};
+  svg {
+    cursor: pointer;
+    margin-left: 1rem;
+    fill: ${({ theme }) => theme.color.gray[800]};
+    &:hover {
+      fill: ${({ theme }) => theme.color.main};
+    }
+  }
+`
+
 export const LoginButton = styled.div<{ color: any }>`
   background-color: ${({ color }) => color};
   width: 4.125rem;
