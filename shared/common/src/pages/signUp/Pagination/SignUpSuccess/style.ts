@@ -1,4 +1,4 @@
-import { LoginWrapper } from '../../../../components/Login/style'
+import { LoginWrapper } from '../../../login/style'
 import styled from '@emotion/styled'
 
 export const SignUpSuccessWrapper = styled(LoginWrapper)``

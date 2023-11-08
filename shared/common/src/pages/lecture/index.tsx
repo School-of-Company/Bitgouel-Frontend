@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React from 'react'
 import * as S from './style'
 import { Header } from '../../components'
 import Bg3 from '../../assets/png/mainBg3.png'

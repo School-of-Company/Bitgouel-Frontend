@@ -1,8 +1,8 @@
 import React from 'react'
-import { Lecture } from '@common/pages'
+import { LecturePage } from '@common/pages'
 
-const LecturePage = () => {
-  return <Lecture />
+const Lecture = () => {
+  return <LecturePage />
 }
 
-export default LecturePage
+export default Lecture

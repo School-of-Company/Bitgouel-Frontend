@@ -1,8 +1,8 @@
 import React from 'react'
-import { Club } from '@common/pages'
+import { ClubPage } from '@common/pages'
 
-const ClubPage = () => {
-  return <Club />
+const Club = () => {
+  return <ClubPage />
 }
 
-export default ClubPage
+export default Club

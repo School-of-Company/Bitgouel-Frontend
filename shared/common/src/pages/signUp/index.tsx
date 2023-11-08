@@ -6,7 +6,7 @@ import SignUpSuccess from './Pagination/SignUpSuccess'
 import { useRecoilState } from 'recoil'
 import { Page } from '../../atoms'
 
-const SignUp = () => {
+const SignUpPage = () => {
   const [page, setPage] = useRecoilState(Page)
 
   return (
@@ -51,4 +51,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default SignUpPage

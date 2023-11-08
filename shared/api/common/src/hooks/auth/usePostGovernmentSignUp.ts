@@ -3,10 +3,9 @@ import { useMutation } from '@tanstack/react-query'
 import { post } from '../../libs/api/method'
 import { authQueryKeys } from '../../libs/queryKeys'
 import { authUrl } from '../../libs/urlController'
-import Route from 'next/router'
 import { AxiosResponse } from 'axios'
 import { useSetRecoilState } from 'recoil'
-import { Page } from '../../../../../common'
+import { Page } from '../../../../../common/src/atoms'
 
 export const usePostSignUpGovernment = () => {
   const setPage = useSetRecoilState(Page)

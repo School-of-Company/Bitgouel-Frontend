@@ -1,5 +1,5 @@
 import * as S from './style'
-import ValueInput from '../ValueInput'
+import { ValueInput } from '../../components'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { usePostLogin } from '../../../../api/common/src/hooks'
@@ -15,9 +15,9 @@ import {
   EmailCertificateText,
   IsPasswordRgx,
   IsValidate,
-} from './../../atoms'
+} from '../../atoms'
 
-const Login = () => {
+const LoginPage = () => {
   const [emailValue, setEmailValue] = useState<string>('')
   const [passwordValue, setPasswordValue] = useState<string>('')
   const resetPage = useResetRecoilState(Page)
@@ -109,4 +109,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default LoginPage
