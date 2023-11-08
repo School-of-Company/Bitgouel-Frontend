@@ -10,7 +10,7 @@ const LecturePage = () => {
       <Header />
       <S.SlideBg url={Bg3}>
         <S.BgContainer>
-          <S.LectureTitle>강의 소개</S.LectureTitle>
+          <S.LectureTitle>강의 목록</S.LectureTitle>
           <S.ButtonContainer>
             <S.LectureButton>
               <Plus />
