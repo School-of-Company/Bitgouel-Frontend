@@ -1,6 +1,9 @@
 import styled from '@emotion/styled'
 
-export const HeaderWrapper = styled.div<{ bgColor: any; borderColor: any }>`
+export const HeaderWrapper = styled.div<{
+  bgColor: string
+  borderColor: string
+}>`
   width: 100%;
   height: 4.875rem;
   display: flex;
@@ -32,18 +35,22 @@ export const SimbolContainer = styled.div<{ url: any }>`
 
 export const MenuWrapper = styled.div`
   ${({ theme }) => theme.typo.text_lg};
-  font-weight: 400;
-  color: ${({ theme }) => theme.color.gray[700]};
   display: flex;
   justify-content: space-between;
   width: 20rem;
-  span:hover {
-    cursor: pointer;
+`
+
+export const MenuItem = styled.span<{ isSameRoute: boolean; color: string }>`
+  cursor: pointer;
+  font-weight: 400;
+  color: ${({ isSameRoute, color, theme }) =>
+    isSameRoute ? color : theme.color.gray[700]};
+  &:hover {
     color: ${({ theme }) => theme.color.gray[400]};
   }
 `
 
-export const ButtonWrapper = styled.div<{ view: any }>`
+export const ButtonWrapper = styled.div<{ view: string }>`
   position: absolute;
   right: 23%;
   display: ${({ view }) => view};
@@ -57,7 +64,7 @@ export const ButtonWrapper = styled.div<{ view: any }>`
   }
 `
 
-export const LoginButton = styled.div<{ color: any }>`
+export const LoginButton = styled.div<{ color: string }>`
   background-color: ${({ color }) => color};
   width: 4.125rem;
   height: 2.375rem;

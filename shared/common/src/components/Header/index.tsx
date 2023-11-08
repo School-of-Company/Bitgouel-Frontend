@@ -1,50 +1,17 @@
 import Simbol1 from '../../assets/png/simbol1.png'
 import Simbol2 from '../../assets/png/simbol2.png'
 import * as S from './style'
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import Route from 'next/router'
-import { useRecoilValue } from 'recoil'
-import { HadAccessToken } from '../../atoms'
 import { Plus, Filter, MegaPhone, Message, Question } from '../../assets'
 
 const Header = () => {
   const router = useRouter()
-
-  const [mainColor, setMainColor] = useState('')
-  const [lectureColor, setLectureColor] = useState('')
-  const [clubColor, setClubColor] = useState('')
-  const [noticeColor, setNoticeColor] = useState('')
-
-  useEffect(() => {
-    if (Route.route === '/main/home') {
-      setMainColor(spanColor)
-      setLectureColor('')
-      setClubColor('')
-      setNoticeColor('')
-    } else if (Route.route === '/main/lecture') {
-      setMainColor('')
-      setLectureColor(spanColor)
-      setClubColor('')
-      setNoticeColor('')
-    } else if (Route.route === '/main/club') {
-      setMainColor('')
-      setLectureColor('')
-      setClubColor(spanColor)
-      setNoticeColor('')
-    } else if (Route.route === '/main/notice') {
-      setMainColor('')
-      setLectureColor('')
-      setClubColor('')
-      setNoticeColor(spanColor)
-    }
-  })
-
   const menuList = [
-    { kor: '사업소개', link: '/main/home', color: mainColor },
-    { kor: '강의', link: '/main/lecture', color: lectureColor },
-    { kor: '동아리', link: '/main/club', color: clubColor },
-    { kor: '게시글', link: '/main/notice', color: noticeColor },
+    { kor: '사업소개', link: '/main/home' },
+    { kor: '강의', link: '/main/lecture' },
+    { kor: '동아리', link: '/main/club' },
+    { kor: '게시글', link: '/main/notice' },
   ]
 
   const [bgColor, setBgColor] = useState('')
@@ -54,17 +21,15 @@ const Header = () => {
   const [spanColor, setSpanColor] = useState('#fff')
   const [svgView, setSvgView] = useState('none')
   const [myStatus, setMyStatus] = useState('로그인')
-  const [route, setRoute] = useState('')
 
   useEffect(() => {
     setMyStatus(
       localStorage.getItem('Bitgouel-accessToken') ? '내 정보' : '로그인'
-      )
+    )
 
-    setRoute(Route.route)
     const onScroll = () => {
       const { scrollY } = window
-      if (Route.route === '/main/home') {
+      if (router.pathname === '/main/home') {
         if (scrollY >= 800) {
           setBgColor('#fff')
           setSimbolNum(Simbol2)
@@ -108,27 +73,28 @@ const Header = () => {
         <S.SimbolContainer url={simbolNum} />
         <S.MenuWrapper>
           {menuList.map((menu, idx) => (
-            <span
+            <S.MenuItem
               key={idx}
-              onClick={() => router.push(menu.link)}
-              style={{ color: menu.color }}
+              onClick={() => myStatus === '내 정보' && router.push(menu.link)}
+              isSameRoute={router.pathname === menu.link}
+              color={spanColor}
             >
               {menu.kor}
-            </span>
+            </S.MenuItem>
           ))}
         </S.MenuWrapper>
         <S.ButtonWrapper view={svgView}>
-          {route === '/main/lecture' ? (
+          {router.pathname === '/main/lecture' ? (
             <Plus />
-          ) : route === '/main/notice' ? (
+          ) : router.pathname === '/main/notice' ? (
             <MegaPhone />
           ) : null}
-          {route === '/main/lecture' ? (
+          {router.pathname === '/main/lecture' ? (
             <Filter />
-          ) : route === '/main/notice' ? (
+          ) : router.pathname === '/main/notice' ? (
             <Message />
           ) : null}
-          {route === '/main/notice' ? <Question /> : null}
+          {router.pathname === '/main/notice' ? <Question /> : null}
         </S.ButtonWrapper>
         <S.LoginButton
           onClick={() =>
