@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 export const LectureListWrapper = styled.div`
   padding: 0.5rem 0;
   border-bottom: 0.0625rem solid ${({ theme }) => theme.color.gray[900]};
+  cursor: pointer;
 `
 
 export const SubTitle = styled.div`

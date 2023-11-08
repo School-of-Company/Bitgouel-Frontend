@@ -1,8 +1,11 @@
 import * as S from './style'
+import { useRouter } from 'next/router'
 
 const LectureList = () => {
+  const router = useRouter()
+
   return (
-    <S.LectureListWrapper>
+    <S.LectureListWrapper onClick={() => router.push('/main/lecture/detail')}>
       <S.SubTitle>
         <S.Professor>모시깽이 교수</S.Professor>
         <S.Date>2023.10.28</S.Date>

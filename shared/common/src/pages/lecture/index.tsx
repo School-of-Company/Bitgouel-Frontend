@@ -1,6 +1,6 @@
 import React from 'react'
 import * as S from './style'
-import { Header } from '../../components'
+import { Header, LectureList } from '../../components'
 import Bg3 from '../../assets/png/mainBg3.png'
 import { Filter, Plus } from '../../assets/'
 
@@ -23,6 +23,11 @@ const LecturePage = () => {
           </S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
+      <S.ListWrraper>
+        <S.ListContainer>
+          <LectureList />
+        </S.ListContainer>
+      </S.ListWrraper>
     </S.LectureWrraper>
   )
 }
