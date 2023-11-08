@@ -14,13 +14,13 @@ const Header = () => {
     { kor: '게시글', link: '/main/notice' },
   ]
 
-  const [bgColor, setBgColor] = useState('')
-  const [simbolNum, setSimbolNum] = useState(Simbol1)
-  const [btnColor, setBtnColor] = useState('rgb(255, 255, 255, 0.2)')
-  const [borderColor, setborderColor] = useState('')
-  const [spanColor, setSpanColor] = useState('#fff')
-  const [svgView, setSvgView] = useState('none')
-  const [myStatus, setMyStatus] = useState('로그인')
+  const [bgColor, setBgColor] = useState<string>('')
+  const [simbolNum, setSimbolNum] = useState<string>(Simbol1)
+  const [btnColor, setBtnColor] = useState<string>('rgb(255, 255, 255, 0.2)')
+  const [borderColor, setborderColor] = useState<string>('')
+  const [spanColor, setSpanColor] = useState<string>('#fff')
+  const [svgView, setSvgView] = useState<string>('none')
+  const [myStatus, setMyStatus] = useState<string>('로그인')
 
   useEffect(() => {
     setMyStatus(
