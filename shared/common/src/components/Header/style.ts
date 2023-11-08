@@ -1,6 +1,9 @@
 import styled from '@emotion/styled'
 
-export const HeaderWrapper = styled.div<{ bgColor: any; borderColor: any }>`
+export const HeaderWrapper = styled.div<{
+  bgColor: string
+  borderColor: string
+}>`
   width: 100%;
   height: 4.875rem;
   display: flex;
@@ -9,7 +12,7 @@ export const HeaderWrapper = styled.div<{ bgColor: any; borderColor: any }>`
   top: 0;
   transition: all 0.5s;
   background-color: ${({ bgColor }) => bgColor};
-  border-bottom:  ${({ borderColor }) => borderColor};
+  border-bottom: ${({ borderColor }) => borderColor};
 `
 
 export const HeaderContainer = styled.div`
@@ -31,21 +34,38 @@ export const SimbolContainer = styled.div<{ url: any }>`
 `
 
 export const MenuWrapper = styled.div`
-  ${({ theme }) => theme.typo.text_lg};
-  font-weight: 400;
-  color: ${({ theme }) => theme.color.gray[700]};
   display: flex;
   justify-content: space-between;
   width: 20rem;
-  span:hover {
-    cursor: pointer;
+`
+
+export const MenuItem = styled.span<{ isSameRoute: boolean; color: string }>`
+  cursor: pointer;
+  ${({ theme }) => theme.typo.text_lg};
+  font-weight: 400;
+  color: ${({ isSameRoute, color, theme }) =>
+    isSameRoute ? color : theme.color.gray[700]};
+  &:hover {
     color: ${({ theme }) => theme.color.gray[400]};
   }
 `
 
-export const LoginButton = styled.div<{ color: any }>`
+export const ButtonWrapper = styled.div<{ view: string }>`
+  position: absolute;
+  right: 23%;
+  display: ${({ view }) => view};
+  svg {
+    cursor: pointer;
+    margin-left: 1rem;
+    fill: ${({ theme }) => theme.color.gray[800]};
+    &:hover {
+      fill: ${({ theme }) => theme.color.main};
+    }
+  }
+`
+
+export const LoginButton = styled.div<{ color: string }>`
   background-color: ${({ color }) => color};
-  transition: all 0.3s;
   width: 4.125rem;
   height: 2.375rem;
   border-radius: 0.5rem;

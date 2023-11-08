@@ -40,6 +40,9 @@ export const LectureButton = styled.div`
   padding: 0 0.75rem;
   border-radius: 0.5rem;
   backdrop-filter: blur(0.25rem);
+  svg {
+    fill: ${({ theme }) => theme.color.white};
+  }
   span {
     color: ${({ theme }) => theme.color.white};
     ${({ theme }) => theme.typo.text_md};
