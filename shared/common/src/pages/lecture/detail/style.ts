@@ -87,3 +87,19 @@ export const MainText = styled.div`
   line-height: 1.5rem;
   margin-top: 2.25rem;
 `
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+export const EnrolmentButton = styled.div`
+  background-color: ${({ theme }) => theme.color.main};
+  color: ${({ theme }) => theme.color.white};
+  ${({ theme }) => theme.typo.text_lg};
+  cursor: pointer;
+  bottom: 2.5rem;
+  position: fixed;
+  padding: 0.8438rem 2.5625rem;
+  border-radius: 0.5rem;
+`
