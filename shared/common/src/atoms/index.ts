@@ -1,4 +1,3 @@
-import { getStorage } from '../utils'
 import { ReactNode } from 'react'
 import { atom } from 'recoil'
 
@@ -63,9 +62,4 @@ export const EmailCertificate = atom<boolean>({
 export const EmailCertificateText = atom<string>({
   key: 'EmailCertificateText',
   default: '인증',
-})
-
-export const HadAccessToken = atom<boolean>({
-  key: 'HadAccessToken',
-  default: getStorage('Bitgouel-accessToken') ? true : false,
 })
