@@ -21,7 +21,7 @@ instance.interceptors.request.use(
       ) &&
       !tokenManager.skipUrl()
     ) {
-      await usePatchAccessToken()
+      // await usePatchAccessToken()
       tokenManager.initToken()
     } else if (
       !tokenManager.validateToken(
@@ -51,7 +51,7 @@ instance.interceptors.request.use(
       error.response.status === 401 &&
       !tokenManager.skipUrl()
     ) {
-      return usePatchAccessToken()
+      // return usePatchAccessToken()
     }
     return Promise.reject(error)
   }

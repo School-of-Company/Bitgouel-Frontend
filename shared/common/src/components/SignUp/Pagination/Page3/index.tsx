@@ -4,6 +4,8 @@ import { useRecoilState } from 'recoil'
 import {
   EmailCertificate,
   EmailCertificateText,
+  IsPasswordRgx,
+  IsValidate,
   Page3Obj,
   PhoneCertificate,
   PhoneCertificateText,
@@ -11,7 +13,6 @@ import {
 import ValueInput from '../../../ValueInput'
 import SignUpButtonContainer from '../SignUpButtonContainer'
 import * as S from './style'
-import { MenuItem } from '@/components/Login/style'
 
 const Page3 = ({
   page,
@@ -32,8 +33,8 @@ const Page3 = ({
     useRecoilState<boolean>(EmailCertificate)
   const [emailCertificateText, setEmailCertificateText] =
     useRecoilState<string>(EmailCertificateText)
-  const [isPasswordRgx, setIsPasswordRgx] = useState(false)
-  const [isValidate, setIsValidate] = useState(true)
+  const [isPasswordRgx, setIsPasswordRgx] = useRecoilState(IsPasswordRgx)
+  const [isValidate, setIsValidate] = useRecoilState(IsValidate)
 
   const onClear = (idx: number, placeholder: string) => {
     if (placeholder === '전화번호 (- 제외)' && phoneCertificate) {
@@ -53,7 +54,7 @@ const Page3 = ({
       e.target.placeholder ===
       '비밀번호 (8~24자 이내의 영문 / 숫자, 특수문자 1개 이상)'
     ) {
-      setIsPasswordRgx(!regex.test(e.target.value))
+      setIsPasswordRgx(regex.test(e.target.value))
     } else if (e.target.placeholder === '비밀번호 확인') {
       setIsValidate(
         e.target.value === page3Obj.filter((_, i) => i === idx - 1)[0].value
@@ -173,15 +174,15 @@ const Page3 = ({
                 {emailCertificateText}
               </S.CertificationButton>
             )}
-            <S.PasswordErrorText>
+            <S.ErrorText>
               {item.placeholder ===
                 '비밀번호 (8~24자 이내의 영문 / 숫자, 특수문자 1개 이상)' &&
-                isPasswordRgx &&
+                !isPasswordRgx &&
                 '비밀번호는 (정규식)으로 해주세요'}
               {item.placeholder === '비밀번호 확인' &&
                 !isValidate &&
                 '비밀번호가 일치하지 않습니다'}
-            </S.PasswordErrorText>
+            </S.ErrorText>
           </S.CertificationInputBox>
         ))}
       </PaginationInputsContainer>

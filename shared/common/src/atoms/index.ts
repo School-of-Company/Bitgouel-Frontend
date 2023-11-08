@@ -1,6 +1,11 @@
 import { ReactNode } from 'react'
 import { atom } from 'recoil'
 
+export const Page = atom<number>({
+  key: 'Page',
+  default: 1,
+})
+
 export const IsModal = atom<ReactNode>({
   key: 'IsModal',
   default: null,
@@ -62,4 +67,14 @@ export const EmailCertificate = atom<boolean>({
 export const EmailCertificateText = atom<string>({
   key: 'EmailCertificateText',
   default: '인증',
+})
+
+export const IsPasswordRgx = atom<boolean>({
+  key: 'IsPasswordRgx',
+  default: true,
+})
+
+export const IsValidate = atom<boolean>({
+  key: 'IsValidate',
+  default: true,
 })

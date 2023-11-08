@@ -1,1 +1,1 @@
-export * from './tokenResponseType'
+export * from './TokensType'

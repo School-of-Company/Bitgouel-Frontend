@@ -1,10 +1,11 @@
-'use client'
-
+import { useRouter } from 'next/navigation'
 import * as S from './style'
 
 const SignUpSuccess = () => {
+  const router = useRouter()
+
   return (
-    <S.LoginWrapper>
+    <S.SignUpSuccessWrapper>
       <S.TitleWrapper>
         <S.TitleContainer>
           <S.TitleItemWrapper>
@@ -21,9 +22,11 @@ const SignUpSuccess = () => {
         </S.SignUpContainer>
       </S.SignUpWrapper>
       <S.BackButtonContainer>
-        <S.BackButton>돌아가기</S.BackButton>
+        <S.BackButton onClick={() => router.push('/auth/login')}>
+          돌아가기
+        </S.BackButton>
       </S.BackButtonContainer>
-    </S.LoginWrapper>
+    </S.SignUpSuccessWrapper>
   )
 }
 

@@ -1,14 +1,16 @@
 import { useMutation } from '@tanstack/react-query'
-
 import { post } from '../../libs/api/method'
 import { authQueryKeys } from '../../libs/queryKeys'
 import { authUrl } from '../../libs/urlController'
-import { TokenResponseType } from '../../../../../types/src/tokenResponseType'
-import Route from 'next/router'
+import { useSetRecoilState } from 'recoil'
+import { Page } from '../../../../../common'
+import { AxiosResponse } from 'axios'
 
-export const usePostSignUpStudent = () =>
-  useMutation<
-    TokenResponseType,
+export const usePostSignUpStudent = () => {
+  const setPage = useSetRecoilState(Page)
+
+  return useMutation<
+    AxiosResponse,
     Error,
     {
       email: string
@@ -16,7 +18,7 @@ export const usePostSignUpStudent = () =>
       phoneNumber: string
       password: string
       highSchool: string
-      clubName: string
+      clubName: String
       grade: number
       classRoom: number
       number: number
@@ -27,10 +29,11 @@ export const usePostSignUpStudent = () =>
     (signUpValues) => post(authUrl.signUpStudent(), signUpValues),
     {
       onSuccess: (data) => {
-        return Route.push('/auth/signUpSuccess')
+        return setPage(4)
       },
       onError: (error) => {
         return console.log(error)
       },
     }
   )
+}

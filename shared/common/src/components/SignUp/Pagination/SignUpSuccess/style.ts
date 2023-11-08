@@ -1,11 +1,7 @@
+import { LoginWrapper } from '../../../../components/Login/style'
 import styled from '@emotion/styled'
 
-export const LoginWrapper = styled.div`
-  width: 27rem;
-  height: 34.6875rem;
-  border-radius: 0.5rem;
-  border: 0.0625rem solid #b8b8b8;
-`
+export const SignUpSuccessWrapper = styled(LoginWrapper)``
 
 export const TitleWrapper = styled.div`
   width: 100%;

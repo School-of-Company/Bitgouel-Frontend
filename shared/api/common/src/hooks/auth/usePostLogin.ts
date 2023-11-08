@@ -1,5 +1,4 @@
 import { useMutation } from '@tanstack/react-query'
-
 import { post } from '../../libs/api/method'
 import { authQueryKeys } from '../../libs/queryKeys'
 import { authUrl } from '../../libs/urlController'

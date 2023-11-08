@@ -50,7 +50,7 @@ export const CertificationButton = styled.span`
   cursor: pointer;
 `
 
-export const PasswordErrorText = styled.span`
+export const ErrorText = styled.span`
   color: ${({ theme }) => theme.color.error};
   ${({ theme }) => theme.typo.caption}
   float: left;
