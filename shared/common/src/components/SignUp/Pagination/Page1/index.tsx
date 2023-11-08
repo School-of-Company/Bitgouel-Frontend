@@ -15,6 +15,9 @@ const Page1 = ({
 }) => {
   const [isScrollContainer, setIsScrollContainer] = useState(false)
   const [page1Obj, setPage1Obj] = useRecoilState(Page1Obj)
+  const [value, setValue] = useState<string>('')
+  const [idx, setIdx] = useState<number>(0)
+  const [placeholder, setPlaceholder] = useState<string>('')
 
   const onClear = (idx: number) => {
     const clearObj = [...page1Obj]
@@ -26,13 +29,6 @@ const Page1 = ({
     }
     setPage1Obj(clearObj)
   }
-
-  const [value, setValue] = useState<string>('')
-  // value={item.value}
-  const [idx, setIdx] = useState<number>(0)
-  // idx={idx}
-  const [placeholder, setPlaceholder] = useState<string>('')
-  // placeholder={item.placeholder}
 
   return (
     <>

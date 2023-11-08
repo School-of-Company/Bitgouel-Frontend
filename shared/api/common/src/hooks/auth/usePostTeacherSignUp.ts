@@ -1,14 +1,16 @@
 import { useMutation } from '@tanstack/react-query'
-
 import { post } from '../../libs/api/method'
 import { authQueryKeys } from '../../libs/queryKeys'
 import { authUrl } from '../../libs/urlController'
-import { TokenResponseType } from '../../../../../types/src/tokenResponseType'
-import Route from 'next/router'
+import { useSetRecoilState } from 'recoil'
+import { Page } from '../../../../../common'
+import { AxiosResponse } from 'axios'
 
-export const usePostSignUpTeacher = () =>
-  useMutation<
-    TokenResponseType,
+export const usePostSignUpTeacher = () => {
+  const setPage = useSetRecoilState(Page)
+
+  return useMutation<
+    AxiosResponse,
     Error,
     {
       email: string
@@ -23,10 +25,11 @@ export const usePostSignUpTeacher = () =>
     (signUpValues) => post(authUrl.signUpTeacher(), signUpValues),
     {
       onSuccess: (data) => {
-        return Route.push('/auth/signUpSuccess')
+        return setPage(4)
       },
       onError: (error) => {
         return console.log(error)
       },
     }
   )
+}

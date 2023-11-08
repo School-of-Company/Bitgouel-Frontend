@@ -3,10 +3,34 @@ import ValueInput from '../ValueInput'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { usePostLogin } from '../../../../api/common/src/hooks'
+import { useResetRecoilState } from 'recoil'
+import {
+  Page,
+  Page1Obj,
+  Page2Obj,
+  Page3Obj,
+  PhoneCertificate,
+  PhoneCertificateText,
+  EmailCertificate,
+  EmailCertificateText,
+  IsPasswordRgx,
+  IsValidate,
+} from './../../atoms'
 
 const Login = () => {
   const [emailValue, setEmailValue] = useState<string>('')
   const [passwordValue, setPasswordValue] = useState<string>('')
+  const resetPage = useResetRecoilState(Page)
+  const resetPage1Obj = useResetRecoilState(Page1Obj)
+  const resetPage2Obj = useResetRecoilState(Page2Obj)
+  const resetPage3Obj = useResetRecoilState(Page3Obj)
+  const resetPhoneCertificate = useResetRecoilState(PhoneCertificate)
+  const resetPhoneCertificateText = useResetRecoilState(PhoneCertificateText)
+  const resetEmailCertificate = useResetRecoilState(EmailCertificate)
+  const resetEmailCertificateText = useResetRecoilState(EmailCertificateText)
+  const resetIsPasswordRgx = useResetRecoilState(IsPasswordRgx)
+  const resetIsValidate = useResetRecoilState(IsValidate)
+
   const router = useRouter()
   const { mutate } = usePostLogin()
 
@@ -61,7 +85,21 @@ const Login = () => {
           <S.MenuItem>또는</S.MenuItem>
           <div>
             <S.NoAccountItem>계정이 없으신가요?</S.NoAccountItem>
-            <S.UserJoinItem onClick={() => router.push('/auth/signUp')}>
+            <S.UserJoinItem
+              onClick={() => {
+                resetPage()
+                resetPage1Obj()
+                resetPage2Obj()
+                resetPage3Obj()
+                resetPhoneCertificate()
+                resetPhoneCertificateText()
+                resetEmailCertificate()
+                resetEmailCertificateText()
+                resetIsPasswordRgx()
+                resetIsValidate()
+                router.push('/auth/signUp')
+              }}
+            >
               회원가입
             </S.UserJoinItem>
           </div>

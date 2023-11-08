@@ -3,12 +3,15 @@ import { useMutation } from '@tanstack/react-query'
 import { post } from '../../libs/api/method'
 import { authQueryKeys } from '../../libs/queryKeys'
 import { authUrl } from '../../libs/urlController'
-import { TokenResponseType } from '../../../../../types/src/tokenResponseType'
-import Route from 'next/router'
+import { AxiosResponse } from 'axios'
+import { useSetRecoilState } from 'recoil'
+import { Page } from '../../../../../common'
 
-export const usePostSignUpBbozzak = () =>
-  useMutation<
-    TokenResponseType,
+export const usePostSignUpBbozzak = () => {
+  const setPage = useSetRecoilState(Page)
+
+  return useMutation<
+    AxiosResponse,
     Error,
     {
       email: string
@@ -23,10 +26,11 @@ export const usePostSignUpBbozzak = () =>
     (signUpValues) => post(authUrl.signUpBbozzak(), signUpValues),
     {
       onSuccess: (data) => {
-        return Route.push('/auth/signUpSuccess')
+        return setPage(4)
       },
       onError: (error) => {
         return console.log(error)
       },
     }
   )
+}

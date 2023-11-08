@@ -3,12 +3,16 @@ import { useMutation } from '@tanstack/react-query'
 import { post } from '../../libs/api/method'
 import { authQueryKeys } from '../../libs/queryKeys'
 import { authUrl } from '../../libs/urlController'
-import { TokenResponseType } from '../../../../../types/src/tokenResponseType'
 import Route from 'next/router'
+import { AxiosResponse } from 'axios'
+import { useSetRecoilState } from 'recoil'
+import { Page } from '../../../../../common'
 
-export const usePostSignUpGovernment = () =>
-  useMutation<
-    TokenResponseType,
+export const usePostSignUpGovernment = () => {
+  const setPage = useSetRecoilState(Page)
+
+  return useMutation<
+    AxiosResponse,
     Error,
     {
       email: string
@@ -24,10 +28,11 @@ export const usePostSignUpGovernment = () =>
     (signUpValues) => post(authUrl.signUpGovernment(), signUpValues),
     {
       onSuccess: (data) => {
-        return Route.push('/auth/signUpSuccess')
+        return setPage(4)
       },
       onError: (error) => {
         return console.log(error)
       },
     }
   )
+}
