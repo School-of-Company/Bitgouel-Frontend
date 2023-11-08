@@ -1,8 +1,8 @@
 import React from 'react'
 import { CreatePage } from '@common/pages'
 
-const Lecture = () => {
+const Create = () => {
   return <CreatePage />
 }
 
-export default Lecture
+export default Create
