@@ -15,7 +15,7 @@ export const usePostLogin = () =>
     {
       onSuccess: ({ data }) => {
         tokenManager.setTokens(data)
-        return Route.push('/main/home')
+        return Route.push('/')
       },
       onError: (error) => {
         return console.log(error)
