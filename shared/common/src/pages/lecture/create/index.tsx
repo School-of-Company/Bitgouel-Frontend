@@ -39,7 +39,7 @@ const CreatePage = () => {
             </S.SettingSelectionContainer>
           </S.LectureSetting>
           <S.ButtonContainer>
-            <S.CreateButton>수강 신청하기</S.CreateButton>
+            <S.CreateButton>개설 신청하기</S.CreateButton>
           </S.ButtonContainer>
         </S.DocumentInput>
       </S.DocumentInputWrraper>

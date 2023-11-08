@@ -3,8 +3,11 @@ import * as S from './style'
 import { Header, LectureList } from '../../components'
 import Bg3 from '../../assets/png/mainBg3.png'
 import { Filter, Plus } from '../../assets/'
+import { useRouter } from 'next/router'
 
 const LecturePage = () => {
+  const router = useRouter()
+
   return (
     <S.LectureWrraper>
       <Header />
@@ -12,7 +15,9 @@ const LecturePage = () => {
         <S.BgContainer>
           <S.LectureTitle>강의 목록</S.LectureTitle>
           <S.ButtonContainer>
-            <S.LectureButton>
+            <S.LectureButton
+              onClick={() => router.push('/main/lecture/create')}
+            >
               <Plus />
               <span>개설 신청하기</span>
             </S.LectureButton>
