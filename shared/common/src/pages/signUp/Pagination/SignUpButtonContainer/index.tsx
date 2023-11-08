@@ -10,8 +10,8 @@ import {
   usePostSignUpProfessor,
   usePostSignUpStudent,
   usePostSignUpTeacher,
-} from '../../../../../../api/common/src/hooks'
-import { schoolToConstants } from '../../../../constants/schoolObject'
+} from '../../../../../../api'
+import { schoolToConstants } from '../../../../constants'
 
 const SignUpButtonContainer = ({
   page,

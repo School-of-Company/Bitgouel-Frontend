@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { LoginWrapper } from '../Login/style'
+import { LoginWrapper } from '../login/style'
 
 export const SignUpWrapper = styled(LoginWrapper)``
 

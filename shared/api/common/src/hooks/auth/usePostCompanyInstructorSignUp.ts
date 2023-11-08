@@ -4,7 +4,7 @@ import { authQueryKeys } from '../../libs/queryKeys'
 import { authUrl } from '../../libs/urlController'
 import { AxiosResponse } from 'axios'
 import { useSetRecoilState } from 'recoil'
-import { Page } from '../../../../../common'
+import { Page } from '../../../../../common/src/atoms'
 
 export const usePostSignUpCompanyInstructor = () => {
   const setPage = useSetRecoilState(Page)

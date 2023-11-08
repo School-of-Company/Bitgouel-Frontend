@@ -2,7 +2,7 @@
   "name": "common",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./index.ts",
   "keywords": [],
   "author": "",
   "license": "ISC",

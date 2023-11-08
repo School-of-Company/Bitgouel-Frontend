@@ -1,4 +1,4 @@
-import ValueInput from '../../../ValueInput'
+import { ValueInput } from '../../../../components'
 import React, { useState } from 'react'
 import SignUpScrollContainer from '../SignUpScrollContainer'
 import SignUpButtonContainer from '../SignUpButtonContainer'

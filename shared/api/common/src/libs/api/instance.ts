@@ -1,5 +1,5 @@
 import axios, { InternalAxiosRequestConfig, AxiosError } from 'axios'
-import { usePatchAccessToken } from '../../hooks/auth'
+// import { usePatchAccessToken } from '../../hooks/auth'
 import TokenManager from './TokenManager'
 
 export const instance = axios.create({

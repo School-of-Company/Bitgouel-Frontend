@@ -11,6 +11,7 @@ const Sequence = () => {
     '참여 기업 소개',
     '자주 묻는 질문',
   ]
+
   return (
     <S.SequenceWrapper>
       {sequenceList.map((sequence, idx) => (

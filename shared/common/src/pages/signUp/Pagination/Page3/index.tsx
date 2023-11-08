@@ -10,7 +10,7 @@ import {
   PhoneCertificate,
   PhoneCertificateText,
 } from '../../../../atoms'
-import ValueInput from '../../../ValueInput'
+import { ValueInput } from '../../../../components'
 import SignUpButtonContainer from '../SignUpButtonContainer'
 import * as S from './style'
 

@@ -3,7 +3,7 @@ import { post } from '../../libs/api/method'
 import { authQueryKeys } from '../../libs/queryKeys'
 import { authUrl } from '../../libs/urlController'
 import { useSetRecoilState } from 'recoil'
-import { Page } from '../../../../../common'
+import { Page } from '../../../../../common/src/atoms'
 import { AxiosResponse } from 'axios'
 
 export const usePostSignUpStudent = () => {
