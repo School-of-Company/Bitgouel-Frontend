@@ -34,7 +34,6 @@ export const SimbolContainer = styled.div<{ url: any }>`
 `
 
 export const MenuWrapper = styled.div`
-  ${({ theme }) => theme.typo.text_lg};
   display: flex;
   justify-content: space-between;
   width: 20rem;
@@ -42,6 +41,7 @@ export const MenuWrapper = styled.div`
 
 export const MenuItem = styled.span<{ isSameRoute: boolean; color: string }>`
   cursor: pointer;
+  ${({ theme }) => theme.typo.text_lg};
   font-weight: 400;
   color: ${({ isSameRoute, color, theme }) =>
     isSameRoute ? color : theme.color.gray[700]};
