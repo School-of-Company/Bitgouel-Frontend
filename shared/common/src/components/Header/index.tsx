@@ -34,7 +34,7 @@ const Header = () => {
           setBgColor('#fff')
           setSimbolNum(Simbol2)
           setBtnColor('rgb(209, 209, 209, 1)')
-          setborderColor('1px solid #ebebeb')
+          setborderColor('0.0625rem solid #ebebeb')
           setSpanColor('#288BE1')
         } else {
           setBgColor('')
@@ -48,7 +48,7 @@ const Header = () => {
           setBgColor('#fff')
           setSimbolNum(Simbol2)
           setBtnColor('rgb(209, 209, 209, 1)')
-          setborderColor('1px solid #ebebeb')
+          setborderColor('0.0625rem solid #ebebeb')
           setSpanColor('#288BE1')
           setSvgView('block')
         } else {
