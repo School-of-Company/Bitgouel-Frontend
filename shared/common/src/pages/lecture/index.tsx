@@ -1,6 +1,6 @@
 import React from 'react'
 import * as S from './style'
-import { Header, LectureList } from '../../components'
+import { Header, LectureItem } from '../../components'
 import Bg3 from '../../assets/png/mainBg3.png'
 import { Filter, Plus } from '../../assets/'
 import { useRouter } from 'next/router'
@@ -47,7 +47,7 @@ const LecturePage = () => {
       <S.ListWrraper>
         <S.ListContainer>
           {object.map((item) => (
-            <LectureList item={item} />
+            <LectureItem item={item} />
           ))}
         </S.ListContainer>
       </S.ListWrraper>
