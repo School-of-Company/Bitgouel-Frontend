@@ -5,7 +5,7 @@
     "**/*.tsx",
     "src",
     "src/custom.d.ts",
-    "../../packages/outside/src/pages/main/lecture/create"
+    "packages/outside/src/pages/main/lecture/create"
   ],
   "exclude": ["node_modules"],
   "main": "./index.ts",

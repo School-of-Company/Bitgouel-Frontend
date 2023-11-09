@@ -1,5 +1,5 @@
 import React from 'react'
-import * as S from './style'
+import * as S from '../../../../styles/create/style'
 import { Header } from '@common/components'
 import Bg3 from '@common/assets/png/mainBg3.png'
 import { Chevron, People } from '@common/assets'
@@ -15,14 +15,14 @@ const Create = () => {
   const MAXLENGTH: number = 1000
 
   return (
-    <S.LectureWrraper>
+    <div>
       <Header />
       <S.SlideBg url={Bg3}>
         <S.BgContainer>
-          <S.LectureTitle>강의 개설</S.LectureTitle>
+          <S.CreateTitle>강의 개설</S.CreateTitle>
         </S.BgContainer>
       </S.SlideBg>
-      <S.DocumentInputWrraper>
+      <S.DocumentInputContainer>
         <S.DocumentInput>
           <S.InputTitle placeholder='강의 제목' />
           <S.InputMainText
@@ -35,7 +35,7 @@ const Create = () => {
               {menuList.map((menu, idx) => (
                 <S.SettingSelection key={idx}>
                   {menu.svg}
-                  <span>{menu.kor}</span>
+                  <S.SettingButton>{menu.kor}</S.SettingButton>
                 </S.SettingSelection>
               ))}
             </S.SettingSelectionContainer>
@@ -44,8 +44,8 @@ const Create = () => {
             <S.CreateButton>개설 신청하기</S.CreateButton>
           </S.ButtonContainer>
         </S.DocumentInput>
-      </S.DocumentInputWrraper>
-    </S.LectureWrraper>
+      </S.DocumentInputContainer>
+    </div>
   )
 }
 
