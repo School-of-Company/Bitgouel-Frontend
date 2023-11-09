@@ -15,7 +15,7 @@ const Header = () => {
   ]
 
   const [bgColor, setBgColor] = useState<string>('')
-  const [simbolNum, setSimbolNum] = useState<string>(Simbol1)
+  const [simbolNum, setSimbolNum] = useState<any>(Simbol1)
   const [btnColor, setBtnColor] = useState<string>('rgb(255, 255, 255, 0.2)')
   const [borderColor, setborderColor] = useState<string>('')
   const [spanColor, setSpanColor] = useState<string>('#fff')
