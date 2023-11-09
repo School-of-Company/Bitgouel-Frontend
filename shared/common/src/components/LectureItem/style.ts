@@ -7,8 +7,10 @@ export const LectureItemWrapper = styled.div`
 `
 
 export const SubTitle = styled.div`
-  ${({ theme }) => theme.typo.text_sm};
   padding: 0.5rem 0;
+  span {
+    ${({ theme }) => theme.typo.text_sm};
+  }
 `
 
 export const Professor = styled.span`
