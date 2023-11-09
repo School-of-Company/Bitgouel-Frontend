@@ -19,7 +19,7 @@ const Create = () => {
       <Header />
       <S.SlideBg url={Bg3}>
         <S.BgContainer>
-          <S.default>강의 개설</S.default>
+          <S.CreateTitle>강의 개설</S.CreateTitle>
         </S.BgContainer>
       </S.SlideBg>
       <S.DocumentInputContainer>
