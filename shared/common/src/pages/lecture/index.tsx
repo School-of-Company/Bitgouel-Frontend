@@ -4,7 +4,6 @@ import { Header, LectureList } from '../../components'
 import Bg3 from '../../assets/png/mainBg3.png'
 import { Filter, Plus } from '../../assets/'
 import { useRouter } from 'next/router'
-import { lectureType } from '../../constants'
 
 const LecturePage = () => {
   const object = [
@@ -26,7 +25,7 @@ const LecturePage = () => {
   const router = useRouter()
 
   return (
-    <S.LectureWrraper>
+    <div>
       <Header />
       <S.SlideBg url={Bg3}>
         <S.BgContainer>
@@ -52,7 +51,7 @@ const LecturePage = () => {
           ))}
         </S.ListContainer>
       </S.ListWrraper>
-    </S.LectureWrraper>
+    </div>
   )
 }
 
