@@ -24,6 +24,7 @@ export const Date = styled.span`
 
 export const Title = styled.span`
   margin-top: 0.5rem;
+  color: ${({ theme }) => theme.color.black};
   ${({ theme }) => theme.typo.text_lg};
 `
 
