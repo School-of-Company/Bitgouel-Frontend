@@ -1,7 +1,5 @@
 import styled from '@emotion/styled'
 
-export const LectureWrraper = styled.div``
-
 export const SlideBg = styled.div<{ url: any }>`
   height: 15rem;
   width: 100%;
@@ -51,4 +49,14 @@ export const LectureButton = styled.div`
   &:hover {
     background-color: rgb(255, 255, 255, 0.4);
   }
+`
+
+export const ListWrraper = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+export const ListContainer = styled.div`
+  width: 75rem;
+  margin-top: 1.5rem;
 `

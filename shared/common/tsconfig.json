@@ -1,6 +1,12 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["**/*.ts", "**/*.tsx", "src", "src/custom.d.ts"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "src",
+    "src/custom.d.ts",
+    "../../packages/outside/src/pages/main/lecture/create"
+  ],
   "exclude": ["node_modules"],
   "main": "./index.ts",
   "compilerOptions": {

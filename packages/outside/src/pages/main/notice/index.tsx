@@ -1,8 +1,8 @@
 import React from 'react'
-import { Notice } from '@common/pages'
+import { NoticePage } from '@common/pages'
 
-const NoticePage = () => {
-  return <Notice />
+const Notice = () => {
+  return <NoticePage />
 }
 
-export default NoticePage
+export default Notice
