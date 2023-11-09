@@ -15,14 +15,14 @@ const Create = () => {
   const MAXLENGTH: number = 1000
 
   return (
-    <S.LectureWrraper>
+    <div>
       <Header />
       <S.SlideBg url={Bg3}>
         <S.BgContainer>
-          <S.LectureTitle>강의 개설</S.LectureTitle>
+          <S.default>강의 개설</S.default>
         </S.BgContainer>
       </S.SlideBg>
-      <S.DocumentInputWrraper>
+      <S.DocumentInputContainer>
         <S.DocumentInput>
           <S.InputTitle placeholder='강의 제목' />
           <S.InputMainText
@@ -44,8 +44,8 @@ const Create = () => {
             <S.CreateButton>개설 신청하기</S.CreateButton>
           </S.ButtonContainer>
         </S.DocumentInput>
-      </S.DocumentInputWrraper>
-    </S.LectureWrraper>
+      </S.DocumentInputContainer>
+    </div>
   )
 }
 
