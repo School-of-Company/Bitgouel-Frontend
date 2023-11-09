@@ -1,5 +1,5 @@
 import React from 'react'
-import * as S from './style'
+import * as S from '../../../../styles/create/style'
 import { Header } from '@common/components'
 import Bg3 from '@common/assets/png/mainBg3.png'
 import { Chevron, People } from '@common/assets'
@@ -35,7 +35,7 @@ const Create = () => {
               {menuList.map((menu, idx) => (
                 <S.SettingSelection key={idx}>
                   {menu.svg}
-                  <span>{menu.kor}</span>
+                  <S.SettingButton>{menu.kor}</S.SettingButton>
                 </S.SettingSelection>
               ))}
             </S.SettingSelectionContainer>

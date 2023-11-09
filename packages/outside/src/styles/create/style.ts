@@ -37,7 +37,6 @@ export const DocumentInput = styled.div`
 export const InputTitle = styled.input`
   ${({ theme }) => theme.typo.title_md};
   color: ${({ theme }) => theme.color.black};
-  height: 2.6875rem;
   outline: none;
   border: none;
   width: 100%;
@@ -78,11 +77,12 @@ export const SettingSelection = styled.div`
   display: flex;
   margin-right: 2.5rem;
   cursor: pointer;
-  span {
-    ${({ theme }) => theme.typo.text_md};
-    color: ${({ theme }) => theme.color.gray[700]};
-    margin-left: 0.5rem;
-  }
+`
+
+export const SettingButton = styled.span`
+  ${({ theme }) => theme.typo.text_md};
+  color: ${({ theme }) => theme.color.gray[700]};
+  margin-left: 0.5rem;
 `
 
 export const ButtonContainer = styled.div`
@@ -95,8 +95,8 @@ export const CreateButton = styled.div`
   color: ${({ theme }) => theme.color.gray[400]};
   ${({ theme }) => theme.typo.text_lg};
   cursor: pointer;
-  bottom: 1.5625rem;
+  bottom: 1.75rem;
   position: fixed;
-  padding: 0.8438rem 2.5625rem;
+  padding: 0.85rem 2.725rem;
   border-radius: 0.5rem;
 `
