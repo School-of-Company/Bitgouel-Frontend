@@ -57,10 +57,10 @@ export const From = styled.div`
 export const MenuNum = styled.div`
   display: flex;
   margin-left: 1rem;
-  ${({ theme }) => theme.typo.caption};
-  color: ${({ theme }) => theme.color.gray[700]};
   align-items: center;
   span {
+    ${({ theme }) => theme.typo.caption};
+    color: ${({ theme }) => theme.color.gray[700]};
     margin-right: 0.5rem;
   }
 `
