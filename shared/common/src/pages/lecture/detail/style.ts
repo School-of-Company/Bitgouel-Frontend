@@ -40,8 +40,10 @@ export const TitleContainer = styled.div`
 `
 
 export const SubTitle = styled.div`
-  ${({ theme }) => theme.typo.text_md};
   padding: 0.5rem 0;
+  span {
+    ${({ theme }) => theme.typo.text_md};
+  }
 `
 
 export const Professor = styled.span`
@@ -55,6 +57,7 @@ export const Date = styled.span`
 
 export const Title = styled.span`
   ${({ theme }) => theme.typo.title_sm};
+  color: ${({ theme }) => theme.color.black};
 `
 
 export const SubMenuContainer = styled.div`
