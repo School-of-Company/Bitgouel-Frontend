@@ -12,6 +12,8 @@ const Create = () => {
     { kor: '최대 수강 인원 입력', svg: <People /> },
   ]
 
+  const MAXLENGTH: number = 1000
+
   return (
     <S.LectureWrraper>
       <Header />
@@ -24,7 +26,7 @@ const Create = () => {
         <S.DocumentInput>
           <S.InputTitle placeholder='강의 제목' />
           <S.InputMainText
-            maxLength={1000}
+            maxLength={MAXLENGTH}
             placeholder='강의 설명 작성 (1000자 이내)'
           />
           <S.LectureSetting>
