@@ -1,5 +1,5 @@
-import Simbol1 from '../../assets/png/simbol1.png'
-import Simbol2 from '../../assets/png/simbol2.png'
+import Symbol1 from '../../assets/png/symbol1.png'
+import Symbol2 from '../../assets/png/symbol2.png'
 import * as S from './style'
 import { match } from 'ts-pattern'
 import { usePathname, useRouter } from 'next/navigation'
@@ -17,9 +17,9 @@ const Header = () => {
   ]
 
   const [bgColor, setBgColor] = useState<string>('')
-  const [simbolNum, setSimbolNum] = useState<any>(Simbol1)
+  const [symbolNum, setSymbolNum] = useState<any>(Symbol1)
   const [btnColor, setBtnColor] = useState<string>('rgb(255, 255, 255, 0.2)')
-  const [borderColor, setborderColor] = useState<string>('')
+  const [borderColor, setBorderColor] = useState<string>('')
   const [spanColor, setSpanColor] = useState<string>('#fff')
   const [svgView, setSvgView] = useState<string>('none')
   const [myStatus, setMyStatus] = useState<string>('로그인')
@@ -34,30 +34,30 @@ const Header = () => {
       if (pathname === '/main/home') {
         if (scrollY >= 800) {
           setBgColor('#fff')
-          setSimbolNum(Simbol2)
+          setSymbolNum(Symbol2)
           setBtnColor('rgb(209, 209, 209, 1)')
-          setborderColor('0.0625rem solid #ebebeb')
+          setBorderColor('0.0625rem solid #ebebeb')
           setSpanColor('#288BE1')
         } else {
           setBgColor('')
-          setSimbolNum(Simbol1)
+          setSymbolNum(Symbol1)
           setBtnColor('rgb(255, 255, 255, 0.2)')
-          setborderColor('')
+          setBorderColor('')
           setSpanColor('#fff')
         }
       } else {
         if (scrollY >= 240) {
           setBgColor('#fff')
-          setSimbolNum(Simbol2)
+          setSymbolNum(Symbol2)
           setBtnColor('rgb(209, 209, 209, 1)')
-          setborderColor('0.0625rem solid #ebebeb')
+          setBorderColor('0.0625rem solid #ebebeb')
           setSpanColor('#288BE1')
           setSvgView('block')
         } else {
           setBgColor('')
-          setSimbolNum(Simbol1)
+          setSymbolNum(Symbol1)
           setBtnColor('rgb(255, 255, 255, 0.2)')
-          setborderColor('')
+          setBorderColor('')
           setSpanColor('#fff')
           setSvgView('none')
         }
@@ -72,7 +72,7 @@ const Header = () => {
   return (
     <S.HeaderWrapper bgColor={bgColor} borderColor={borderColor}>
       <S.HeaderContainer>
-        <S.SimbolContainer url={simbolNum} />
+        <S.SymbolContainer url={symbolNum} />
         <S.MenuWrapper>
           {menuList.map((menu, idx) => (
             <S.MenuItem
