@@ -51,7 +51,7 @@ export const LectureButton = styled.div`
   }
 `
 
-export const ListWrraper = styled.div`
+export const ListWrapper = styled.div`
   display: flex;
   justify-content: center;
 `

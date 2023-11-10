@@ -1,7 +1,5 @@
 import styled from '@emotion/styled'
 
-export const ClubWrraper = styled.div``
-
 export const SlideBg = styled.div<{ url: any }>`
   height: 15rem;
   width: 100%;

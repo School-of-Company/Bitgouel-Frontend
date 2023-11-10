@@ -23,7 +23,7 @@ export const HeaderContainer = styled.div`
   justify-content: space-between;
 `
 
-export const SimbolContainer = styled.div<{ url: any }>`
+export const SymbolContainer = styled.div<{ url: any }>`
   width: 2.375rem;
   height: 2.375rem;
   background-image: url(${({ url }) => url.src});

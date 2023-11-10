@@ -21,7 +21,7 @@ const HomePage = () => {
   }, [])
 
   return (
-    <S.HomeWrraper>
+    <div>
       <Header />
       <S.SlideBg url={imageArr[bgNum]}>
         <div>
@@ -41,7 +41,7 @@ const HomePage = () => {
           </S.View>
         </div>
       </S.SlideBg>
-    </S.HomeWrraper>
+    </div>
   )
 }
 

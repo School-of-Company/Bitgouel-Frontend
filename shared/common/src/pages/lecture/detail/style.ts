@@ -1,7 +1,5 @@
 import styled from '@emotion/styled'
 
-export const LectureWrraper = styled.div``
-
 export const SlideBg = styled.div<{ url: any }>`
   height: 15rem;
   width: 100%;
@@ -25,7 +23,7 @@ export const LectureTitle = styled.span`
   ${({ theme }) => theme.typo.title_lg};
 `
 
-export const DocumentWrraper = styled.div`
+export const DocumentWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;

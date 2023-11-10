@@ -4,6 +4,7 @@ import Page2 from './Pagination/Page2'
 import Page3 from './Pagination/Page3'
 import SignUpSuccess from './Pagination/SignUpSuccess'
 import { useRecoilState } from 'recoil'
+import { match } from 'ts-pattern'
 import { Page } from '../../atoms'
 
 const SignUpPage = () => {
@@ -18,18 +19,16 @@ const SignUpPage = () => {
           <S.SignUpTitleWrapper>
             <S.TitleItemWrapper>
               <S.TitleItem>
-                {page === 1
-                  ? '만나서 반가워요!'
-                  : page === 2
-                  ? '회원가입을 진행합니다'
-                  : '얼마 안 남았어요!'}
+                {match(page)
+                  .with(1, () => '만나서 반가워요!')
+                  .with(2, () => '회원가입을 진행합니다')
+                  .otherwise(() => '얼마 안 남았어요!')}
               </S.TitleItem>
               <S.SubTitleItem>
-                {page === 1
-                  ? '어디서 오셨나요?'
-                  : page === 2
-                  ? '본인의 인적 사항을 입력해 주세요!'
-                  : '보안 요소를 입력해주세요.'}
+                {match(page)
+                  .with(1, () => '어디서 오셨나요?')
+                  .with(2, () => '보인의 인적 사항을 입력해 주세요!')
+                  .otherwise(() => '보안 요소 입력해주세요.')}
               </S.SubTitleItem>
             </S.TitleItemWrapper>
             <S.ShowPageCurrentBox>
