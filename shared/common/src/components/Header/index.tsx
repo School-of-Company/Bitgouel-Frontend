@@ -1,13 +1,14 @@
 import Simbol1 from '../../assets/png/simbol1.png'
 import Simbol2 from '../../assets/png/simbol2.png'
 import * as S from './style'
-import { match, P } from 'ts-pattern'
-import { useRouter } from 'next/router'
+import { match } from 'ts-pattern'
+import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Plus, Filter, MegaPhone, Message, Question } from '../../assets'
 
 const Header = () => {
   const router = useRouter()
+  const pathname = usePathname()
   const menuList = [
     { kor: '사업소개', link: '/' },
     { kor: '강의', link: '/main/lecture' },
@@ -30,7 +31,7 @@ const Header = () => {
 
     const onScroll = () => {
       const { scrollY } = window
-      if (router.pathname === '/main/home') {
+      if (pathname === '/main/home') {
         if (scrollY >= 800) {
           setBgColor('#fff')
           setSimbolNum(Simbol2)
@@ -77,7 +78,7 @@ const Header = () => {
             <S.MenuItem
               key={idx}
               onClick={() => myStatus === '내 정보' && router.push(menu.link)}
-              isSameRoute={router.pathname === menu.link}
+              isSameRoute={pathname === menu.link}
               color={spanColor}
             >
               {menu.kor}
@@ -85,18 +86,17 @@ const Header = () => {
           ))}
         </S.MenuWrapper>
         <S.ButtonWrapper view={svgView}>
-          {match(router)
-            .with({ pathname: '/main/lecture' }, () => <Plus />)
-            .with({ pathname: '/main/notice' }, () => <MegaPhone />)
+          {match(pathname)
+            .with('/main/lecture', () => <Plus />)
+            .with('/main/notice', () => <MegaPhone />)
             .otherwise(() => null)}
-          {match(router)
-            .with({ pathname: '/main/lecture' }, () => <Filter />)
-            .with({ pathname: '/main/notice' }, () => <Message />)
+          {match(pathname)
+            .with('/main/lecture', () => <Filter />)
+            .with('/main/notice', () => <Message />)
             .otherwise(() => null)}
-          {match(router)
-            .with({ pathname: '/main/notice' }, () => <Question />)
+          {match(pathname)
+            .with('/main/notice', () => <Question />)
             .otherwise(() => null)}
-          {router.pathname === '/main/notice' ? <Question /> : null}
         </S.ButtonWrapper>
         <S.LoginButton
           onClick={() =>
