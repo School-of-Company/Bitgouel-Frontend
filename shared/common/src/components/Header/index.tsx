@@ -1,6 +1,7 @@
 import Simbol1 from '../../assets/png/simbol1.png'
 import Simbol2 from '../../assets/png/simbol2.png'
 import * as S from './style'
+import { match, P } from 'ts-pattern'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { Plus, Filter, MegaPhone, Message, Question } from '../../assets'
@@ -84,22 +85,25 @@ const Header = () => {
           ))}
         </S.MenuWrapper>
         <S.ButtonWrapper view={svgView}>
-          {router.pathname === '/main/lecture' ? (
-            <Plus />
-          ) : router.pathname === '/main/notice' ? (
-            <MegaPhone />
-          ) : null}
-          {router.pathname === '/main/lecture' ? (
-            <Filter />
-          ) : router.pathname === '/main/notice' ? (
-            <Message />
-          ) : null}
+          {match(router)
+            .with({ pathname: '/main/lecture' }, () => <Plus />)
+            .with({ pathname: '/main/notice' }, () => <MegaPhone />)
+            .otherwise(() => null)}
+          {match(router)
+            .with({ pathname: '/main/lecture' }, () => <Filter />)
+            .with({ pathname: '/main/notice' }, () => <Message />)
+            .otherwise(() => null)}
+          {match(router)
+            .with({ pathname: '/main/notice' }, () => <Question />)
+            .otherwise(() => null)}
           {router.pathname === '/main/notice' ? <Question /> : null}
         </S.ButtonWrapper>
         <S.LoginButton
           onClick={() =>
             router.push(
-              myStatus === '내 정보' ? '/main/lecture' : '/auth/login'
+              match(myStatus)
+                .with('내 정보', () => '/main/lecture')
+                .otherwise(() => '/auth/login')
             )
           }
           color={btnColor}
