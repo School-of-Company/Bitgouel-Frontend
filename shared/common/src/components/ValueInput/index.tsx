@@ -8,12 +8,13 @@ import * as S from './style'
 import { XIcon } from '../../assets'
 
 interface ValueInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  onClear: (e?: any) => void
   length: number
+  onClear: (e?: any) => void
+  errorText?: string
 }
 
 const ValueInput = (
-  { length, onClear, ...rest }: ValueInputProps,
+  { length, onClear, errorText, ...rest }: ValueInputProps,
   ref?: any
 ) => {
   const [focus, setFocus] = useState<boolean>(true)
@@ -25,21 +26,24 @@ const ValueInput = (
   }, [])
 
   return (
-    <S.ValueWrapper
-      onMouseOver={() => {
-        setFocus(true)
-      }}
-      onMouseOut={() => {
-        setFocus(false)
-      }}
-    >
-      <S.ValueInput ref={ref} {...rest} />
-      {length > 0 && focus === true && onClear && (
-        <S.XIconWrapper onClick={onClear}>
-          <XIcon />
-        </S.XIconWrapper>
-      )}
-    </S.ValueWrapper>
+    <>
+      <S.ValueWrapper
+        onMouseOver={() => {
+          setFocus(true)
+        }}
+        onMouseOut={() => {
+          setFocus(false)
+        }}
+      >
+        <S.ValueInput ref={ref} {...rest} isError={errorText ? true : false} />
+        {length > 0 && focus === true && onClear && (
+          <S.XIconWrapper onClick={onClear}>
+            <XIcon />
+          </S.XIconWrapper>
+        )}
+      </S.ValueWrapper>
+      {errorText && <S.ErrorText>{errorText}</S.ErrorText>}
+    </>
   )
 }
 

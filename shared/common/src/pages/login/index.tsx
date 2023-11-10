@@ -16,6 +16,7 @@ import {
   IsPasswordRgx,
   IsValidate,
 } from '../../atoms'
+import { ErrorText } from '../../components/ValueInput/style'
 
 const LoginPage = () => {
   const [emailValue, setEmailValue] = useState<string>('')
@@ -32,7 +33,7 @@ const LoginPage = () => {
   const resetIsValidate = useResetRecoilState(IsValidate)
 
   const router = useRouter()
-  const { mutate } = usePostLogin()
+  const { mutate, error } = usePostLogin()
 
   return (
     <S.LoginWrapper>
@@ -59,17 +60,37 @@ const LoginPage = () => {
           />
           <ValueInput
             placeholder='비밀번호'
-            onClear={() => setPasswordValue('')}
             type='password'
             value={passwordValue}
             length={passwordValue.length}
+            onClear={() => setPasswordValue('')}
             onChange={(e) => {
               setPasswordValue(e.target.value)
+            }}
+            style={{
+              border:
+                error?.response?.status === 401 ||
+                error?.response?.status === 400
+                  ? '1px solid #DF454A'
+                  : '1px solid #B8B8B8',
+              color:
+                error?.response?.status === 401 ||
+                error?.response?.status === 400
+                  ? '#DF454A'
+                  : '#000000',
             }}
           />
         </S.InputContainer>
         <S.PasswordContainer>
-          <S.MenuItem>비밀번호를 잊었나요?</S.MenuItem>
+          <S.MenuItem
+            isError={
+              error?.response?.status === 401 || error?.response?.status === 400
+            }
+          >
+            {error?.response?.status === 401 || error?.response?.status === 400
+              ? '잘못된 비밀번호입니다'
+              : ''}
+          </S.MenuItem>
           <S.PasswordSearch>비밀번호 찾기</S.PasswordSearch>
         </S.PasswordContainer>
       </S.InputWrapper>
