@@ -44,13 +44,13 @@ const LecturePage = () => {
           </S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
-      <S.ListWrraper>
+      <S.ListWrapper>
         <S.ListContainer>
           {object.map((item) => (
             <LectureItem item={item} />
           ))}
         </S.ListContainer>
-      </S.ListWrraper>
+      </S.ListWrapper>
     </div>
   )
 }

@@ -5,14 +5,14 @@ import Bg3 from '../../../assets/png/mainBg3.png'
 
 const DeatilPage = () => {
   return (
-    <S.LectureWrraper>
+    <div>
       <Header />
       <S.SlideBg url={Bg3}>
         <S.BgContainer>
           <S.LectureTitle>강의 상세</S.LectureTitle>
         </S.BgContainer>
       </S.SlideBg>
-      <S.DocumentWrraper>
+      <S.DocumentWrapper>
         <S.Document>
           <S.TitleContainer>
             <S.SubTitle>
@@ -98,8 +98,8 @@ const DeatilPage = () => {
             <S.EnrolmentButton>수강 신청하기</S.EnrolmentButton>
           </S.ButtonContainer>
         </S.Document>
-      </S.DocumentWrraper>
-    </S.LectureWrraper>
+      </S.DocumentWrapper>
+    </div>
   )
 }
 

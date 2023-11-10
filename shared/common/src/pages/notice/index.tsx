@@ -6,7 +6,7 @@ import { MegaPhone, Message, Question } from '../../assets/'
 
 const NoticePage = () => {
   return (
-    <S.NoticeWrraper>
+    <div>
       <Header />
       <S.SlideBg url={Bg1}>
         <S.BgContainer>
@@ -27,7 +27,7 @@ const NoticePage = () => {
           </S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
-    </S.NoticeWrraper>
+    </div>
   )
 }
 
