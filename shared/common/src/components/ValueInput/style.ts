@@ -8,23 +8,44 @@ export const ValueWrapper = styled.div`
   justify-content: flex-end;
 `
 
-export const ValueInput = styled.input`
+export const ValueInputBox = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`
+
+export const ErrorText = styled.span`
+  color: ${({ theme }) => theme.color.error};
+  ${({ theme }) => theme.typo.caption}
+  margin-left: 0.2rem;
+  margin-top: 0.4rem;
+`
+
+export const ValueInput = styled.input<{ isError?: boolean }>`
   width: 100%;
   height: 3.2rem;
+  display: block;
 
-  border: 0.0625rem solid ${({ theme }) => theme.color.gray['700']};
+  border: 0.0625rem solid
+    ${({ theme, isError }) =>
+      isError ? theme.color.error : theme.color.gray['700']};
   border-radius: 0.5rem;
   outline: none;
   text-indent: 1.25rem;
+  color: ${({ theme, isError }) => isError && theme.color.error};
 
   ${({ theme }) => theme.typo.text_sm};
 
   &:focus {
-    border: 0.0625rem solid ${({ theme }) => theme.color.main};
+    border: 0.0625rem solid
+      ${({ theme, isError }) =>
+        isError ? theme.color.error : theme.color.main};
   }
 
   &::placeholder {
-    color: ${({ theme }) => theme.color.gray['400']};
+    color: ${({ theme, isError }) =>
+      isError ? theme.color.error : theme.color.gray['400']};
     ${({ theme }) => theme.typo.text_sm};
   }
 

@@ -43,7 +43,6 @@ export const TitleItem = styled.span`
 export const InputWrapper = styled.div`
   width: 100%;
   display: flex;
-
   align-items: center;
   flex-direction: column;
 `
@@ -54,18 +53,26 @@ export const InputContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
+
+  span {
+    width: 100%;
+    margin-left: 3.2rem;
+    margin-top: -1rem;
+  }
 `
 
 export const PasswordContainer = styled.div`
   width: 88%;
   display: flex;
-  gap: 13.125rem;
-  margin-top: 0.25rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
 `
 
-export const MenuItem = styled.span`
+export const MenuItem = styled.span<{ isError?: boolean }>`
   ${({ theme }) => theme.typo.caption};
-  color: ${({ theme }) => theme.color.gray['400']};
+  color: ${({ theme, isError }) =>
+    isError ? theme.color.error : theme.color.gray['400']};
 `
 
 export const PasswordSearch = styled.span`
