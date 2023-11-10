@@ -3,6 +3,7 @@ import React from 'react'
 import { useRecoilValue, useRecoilState } from 'recoil'
 import { Page1Obj, Page2Obj, Page3Obj } from '../../../../atoms'
 import { useRouter } from 'next/navigation'
+import { match } from 'ts-pattern'
 import {
   usePostSignUpBbozzak,
   usePostSignUpCompanyInstructor,
@@ -148,7 +149,9 @@ const SignUpButtonContainer = ({
     <S.SignUpButtonContainer page={page}>
       <S.PreButton
         onClick={() =>
-          page === 1 ? router.push('/auth/login') : setPage((prev) => prev - 1)
+          match(page)
+            .with(1, () => router.push('/auth/login'))
+            .otherwise(() => setPage((prev) => prev - 1))
         }
       >
         이전으로
