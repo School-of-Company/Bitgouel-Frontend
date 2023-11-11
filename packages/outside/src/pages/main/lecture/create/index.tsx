@@ -6,13 +6,6 @@ import { Chevron, People } from '@common/assets'
 import { title } from 'process'
 
 const Create = () => {
-  const menuList = [
-    { kor: '강의 유형 선택', svg: <Chevron /> },
-    { kor: '신청 기간 선택', svg: <Chevron /> },
-    { kor: '학점 선택', svg: <Chevron /> },
-    { kor: '최대 수강 인원 입력', svg: <People /> },
-  ]
-
   const MAXLENGTH: number = 1000 as const
 
   const [lectureTitle, setLectuerTitle] = useState<string>('')
