@@ -9,7 +9,7 @@ import { XIcon } from '../../assets'
 
 interface ValueInputProps extends InputHTMLAttributes<HTMLInputElement> {
   length: number
-  onClear: (e?: any) => void
+  onClear: (() => void) | null
   errorText?: string
 }
 
