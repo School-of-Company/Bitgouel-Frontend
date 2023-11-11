@@ -18,11 +18,13 @@ const Create = () => {
   const [lectureTitle, setLectuerTitle] = useState('')
   const [lectureMainText, setLectuerMainText] = useState('')
 
-  const saveLectureTitle = (event: any) => {
+  const saveLectureTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLectuerTitle(event.target.value)
   }
 
-  const saveLectureMainText = (event: any) => {
+  const saveLectureMainText = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setLectuerMainText(event.target.value)
   }
 
