@@ -15,8 +15,8 @@ const Create = () => {
 
   const MAXLENGTH: number = 1000 as const
 
-  const [lectureTitle, setLectuerTitle] = useState('')
-  const [lectureMainText, setLectuerMainText] = useState('')
+  const [lectureTitle, setLectuerTitle] = useState<string>('')
+  const [lectureMainText, setLectuerMainText] = useState<string>('')
 
   const saveLectureTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLectuerTitle(event.target.value)
