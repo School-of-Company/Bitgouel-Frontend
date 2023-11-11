@@ -12,5 +12,10 @@ export const authQueryKeys = {
 }
 
 export const lectureQueryKeys = {
+  postLetureCreate: () => ['lecture', 'postLectureCreat'],
   getLectureList: () => ['lecture', 'getLectureList'],
+  getLectureDetail: (id: string) => ['lecture', 'getLectureDetail', id],
+  postLectureApplication: (id:string) => ['lecture', 'postLectureApplication', id],
+  patchLectureApprove: (id: string) => ['lecture', 'patchLectureApprove', id],
+  deleteLectureReject: (id:string) => ['lecture', 'deleteLectureReject', id],
 }
