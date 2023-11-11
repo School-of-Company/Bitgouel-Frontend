@@ -13,7 +13,7 @@ const Create = () => {
     { kor: '최대 수강 인원 입력', svg: <People /> },
   ]
 
-  const MAXLENGTH: number = 1000
+  const MAXLENGTH: number = 1000 as const
 
   const [lectureTitle, setLectuerTitle] = useState('')
   const [lectureMainText, setLectuerMainText] = useState('')
