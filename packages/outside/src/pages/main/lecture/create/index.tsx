@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as S from '../../../../styles/create/style'
 import { Header } from '@common/components'
 import Bg3 from '@common/assets/png/mainBg3.png'
 import { Chevron, People } from '@common/assets'
+import { title } from 'process'
 
 const Create = () => {
   const menuList = [
@@ -14,6 +15,17 @@ const Create = () => {
 
   const MAXLENGTH: number = 1000
 
+  const [lectureTitle, setLectuerTitle] = useState('')
+  const [lectureMainText, setLectuerMainText] = useState('')
+
+  const saveLectureTitle = (event: any) => {
+    setLectuerTitle(event.target.value)
+  }
+
+  const saveLectureMainText = (event: any) => {
+    setLectuerMainText(event.target.value)
+  }
+
   return (
     <div>
       <Header />
@@ -24,10 +36,11 @@ const Create = () => {
       </S.SlideBg>
       <S.DocumentInputContainer>
         <S.DocumentInput>
-          <S.InputTitle placeholder='강의 제목' />
+          <S.InputTitle placeholder='강의 제목' onChange={saveLectureTitle} />
           <S.InputMainText
             maxLength={MAXLENGTH}
             placeholder='강의 설명 작성 (1000자 이내)'
+            onChange={saveLectureMainText}
           />
           <S.LectureSetting>
             <S.SettingTitle>강의 세부 설정</S.SettingTitle>
