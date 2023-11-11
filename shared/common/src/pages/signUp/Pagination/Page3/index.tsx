@@ -21,8 +21,9 @@ const Page3 = ({
   page: number
   setPage: React.Dispatch<React.SetStateAction<number>>
 }) => {
-  const regex =
+  const regex = new RegExp(
     /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,24}$/
+  )
 
   const [page3Obj, setPage3Obj] = useRecoilState(Page3Obj)
   const [phoneCertificate, setPhoneCertificate] =
@@ -36,16 +37,10 @@ const Page3 = ({
   const [isPasswordRgx, setIsPasswordRgx] = useRecoilState(IsPasswordRgx)
   const [isValidate, setIsValidate] = useRecoilState(IsValidate)
 
-  const onClear = (idx: number, placeholder: string) => {
-    if (placeholder === '전화번호 (- 제외)' && phoneCertificate) {
-      return
-    } else if (placeholder === '이메일' && emailCertificate) {
-      return
-    } else {
-      const clearObj = [...page3Obj]
-      clearObj[idx] = { ...clearObj[idx], value: '' }
-      setPage3Obj(clearObj)
-    }
+  const onClear = (idx: number) => {
+    const clearObj = [...page3Obj]
+    clearObj[idx] = { ...clearObj[idx], value: '' }
+    setPage3Obj(clearObj)
   }
 
   const onChange = (e: ChangeEvent<HTMLInputElement>, idx: number) => {
@@ -72,7 +67,11 @@ const Page3 = ({
   }
 
   const onCertificate = (placeholder: string, idx: number) => {
-    if (placeholder === '전화번호 (- 제외)' && !phoneCertificate) {
+    if (
+      placeholder === '전화번호 (- 제외)' &&
+      !phoneCertificate &&
+      phoneCertificateText === '인증'
+    ) {
       setPhoneCertificate(true)
       setPhoneCertificateText('완료')
       const updatedObj = [
@@ -81,7 +80,11 @@ const Page3 = ({
         ...page3Obj.slice(idx),
       ]
       setPage3Obj(updatedObj)
-    } else if (placeholder === '이메일' && !emailCertificate) {
+    } else if (
+      placeholder === '이메일' &&
+      !emailCertificate &&
+      emailCertificateText === '인증'
+    ) {
       setEmailCertificate(true)
       setEmailCertificateText('완료')
       const updatedObj = [
@@ -118,11 +121,21 @@ const Page3 = ({
               placeholder={item.placeholder}
               length={item.value.length}
               maxLength={item.maxLength}
-              onClear={() => onClear(idx, item.placeholder)}
-              disabled={
+              onClear={
                 (item.placeholder === '전화번호 (- 제외)' &&
                   phoneCertificate) ||
-                (item.placeholder === '이메일' && emailCertificate && true)
+                phoneCertificateText === '완료' ||
+                (item.placeholder === '이메일' && emailCertificate) ||
+                emailCertificateText === '완료'
+                  ? null
+                  : () => onClear(idx)
+              }
+              disabled={
+                (item.placeholder === '전화번호 (- 제외)' &&
+                  phoneCertificateText === '완료') ||
+                (item.placeholder === '이메일' &&
+                  emailCertificateText === '완료' &&
+                  true)
               }
               onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e, idx)}
             />
