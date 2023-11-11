@@ -10,3 +10,7 @@ export const authQueryKeys = {
   postSignUpGoverment: () => ['auth', 'postSignUpGoverment'],
   postSignUpCompanyInstructor: () => ['auth', 'postSignUpCompanyInstructor'],
 }
+
+export const lectureQueryKeys = {
+  getLectureList: () => ['lecture', 'getLectureList'],
+}

@@ -9,3 +9,7 @@ export const authUrl = {
   signUpGovernment: () => `/auth/government`,
   signUpCompanyInstructor: () => `/auth/company-instructor`,
 } as const
+
+export const lectureUrl = {
+  lecture: () => `/lecture`,
+}
