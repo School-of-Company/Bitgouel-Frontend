@@ -76,13 +76,19 @@ export const SettingSelectionContainer = styled.div`
 export const SettingSelection = styled.div`
   display: flex;
   margin-right: 2.5rem;
-  cursor: pointer;
+  span {
+    ${({ theme }) => theme.typo.text_md};
+    color: ${({ theme }) => theme.color.gray[700]};
+  }
 `
 
 export const SettingButton = styled.span`
-  ${({ theme }) => theme.typo.text_md};
-  color: ${({ theme }) => theme.color.gray[700]};
+  cursor: pointer;
   margin-left: 0.5rem;
+`
+
+export const DateRange = styled.span`
+  margin: 0rem 0.5rem;
 `
 
 export const ButtonContainer = styled.div`

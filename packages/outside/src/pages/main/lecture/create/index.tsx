@@ -47,12 +47,29 @@ const Create = () => {
           <S.LectureSetting>
             <S.SettingTitle>강의 세부 설정</S.SettingTitle>
             <S.SettingSelectionContainer>
-              {menuList.map((menu, idx) => (
-                <S.SettingSelection key={idx}>
-                  {menu.svg}
-                  <S.SettingButton>{menu.kor}</S.SettingButton>
-                </S.SettingSelection>
-              ))}
+              <S.SettingSelection>
+                <Chevron />
+                <S.SettingButton>강의 유형 선택</S.SettingButton>
+              </S.SettingSelection>
+              <S.SettingSelection>
+                <Chevron />
+                <S.SettingButton>신청 시작일</S.SettingButton>
+                <S.DateRange> ~ </S.DateRange>
+                <Chevron />
+                <S.SettingButton>신청 마감일</S.SettingButton>
+              </S.SettingSelection>
+              <S.SettingSelection>
+                <Chevron />
+                <S.SettingButton>강의 시작일 선택</S.SettingButton>
+              </S.SettingSelection>
+              <S.SettingSelection>
+                <Chevron />
+                <S.SettingButton>학점 선택</S.SettingButton>
+              </S.SettingSelection>
+              <S.SettingSelection>
+                <People />
+                <S.SettingButton>최대 수강인원 입력</S.SettingButton>
+              </S.SettingSelection>
             </S.SettingSelectionContainer>
           </S.LectureSetting>
           <S.ButtonContainer>
