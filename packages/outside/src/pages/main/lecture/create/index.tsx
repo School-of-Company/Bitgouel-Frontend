@@ -1,18 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as S from '../../../../styles/create/style'
 import { Header } from '@common/components'
 import Bg3 from '@common/assets/png/mainBg3.png'
 import { Chevron, People } from '@common/assets'
 
 const Create = () => {
-  const menuList = [
-    { kor: '강의 유형 선택', svg: <Chevron /> },
-    { kor: '신청 기간 선택', svg: <Chevron /> },
-    { kor: '학점 선택', svg: <Chevron /> },
-    { kor: '최대 수강 인원 입력', svg: <People /> },
-  ]
+  const MAXLENGTH: number = 1000 as const
 
-  const MAXLENGTH: number = 1000
+  const [lectureTitle, setLectuerTitle] = useState<string>('')
+  const [lectureMainText, setLectuerMainText] = useState<string>('')
+
+  const saveLectureTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLectuerTitle(event.target.value)
+  }
+
+  const saveLectureMainText = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    setLectuerMainText(event.target.value)
+  }
 
   return (
     <div>
@@ -24,20 +30,38 @@ const Create = () => {
       </S.SlideBg>
       <S.DocumentInputContainer>
         <S.DocumentInput>
-          <S.InputTitle placeholder='강의 제목' />
+          <S.InputTitle placeholder='강의 제목' onChange={saveLectureTitle} />
           <S.InputMainText
             maxLength={MAXLENGTH}
             placeholder='강의 설명 작성 (1000자 이내)'
+            onChange={saveLectureMainText}
           />
           <S.LectureSetting>
             <S.SettingTitle>강의 세부 설정</S.SettingTitle>
             <S.SettingSelectionContainer>
-              {menuList.map((menu, idx) => (
-                <S.SettingSelection key={idx}>
-                  {menu.svg}
-                  <S.SettingButton>{menu.kor}</S.SettingButton>
-                </S.SettingSelection>
-              ))}
+              <S.SettingSelection>
+                <Chevron />
+                <S.SettingButton>강의 유형 선택</S.SettingButton>
+              </S.SettingSelection>
+              <S.SettingSelection>
+                <Chevron />
+                <S.SettingButton>신청 시작일</S.SettingButton>
+                <S.DateRange> ~ </S.DateRange>
+                <Chevron />
+                <S.SettingButton>신청 마감일</S.SettingButton>
+              </S.SettingSelection>
+              <S.SettingSelection>
+                <Chevron />
+                <S.SettingButton>강의 시작일 선택</S.SettingButton>
+              </S.SettingSelection>
+              <S.SettingSelection>
+                <Chevron />
+                <S.SettingButton>학점 선택</S.SettingButton>
+              </S.SettingSelection>
+              <S.SettingSelection>
+                <People />
+                <S.SettingButton>최대 수강인원 입력</S.SettingButton>
+              </S.SettingSelection>
             </S.SettingSelectionContainer>
           </S.LectureSetting>
           <S.ButtonContainer>
