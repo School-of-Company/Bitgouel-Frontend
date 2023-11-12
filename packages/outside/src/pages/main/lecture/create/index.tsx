@@ -3,7 +3,6 @@ import * as S from '../../../../styles/create/style'
 import { Header } from '@common/components'
 import Bg3 from '@common/assets/png/mainBg3.png'
 import { Chevron, People } from '@common/assets'
-import { title } from 'process'
 
 const Create = () => {
   const MAXLENGTH: number = 1000 as const
