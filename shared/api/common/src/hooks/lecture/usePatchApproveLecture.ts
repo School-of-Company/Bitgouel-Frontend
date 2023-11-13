@@ -21,9 +21,6 @@ export const usePatchApproveLecture = (id: string) =>
               tokenManager.accessToken &&
               `Bearer ${tokenManager.accessToken}`,
           },
-          params: {
-            id: id
-          }
         }
       ),
     {

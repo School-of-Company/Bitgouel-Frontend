@@ -20,9 +20,6 @@ export const useDeleteRejectLecture = (id: string) =>
               tokenManager.accessToken &&
               `Bearer ${tokenManager.accessToken}`,
           },
-          params: {
-            id: id,
-          },
         }
       ),
     {

@@ -5,10 +5,10 @@ import { patch } from '../../libs'
 import TokenManager from '../../libs/api/TokenManager'
 import { AxiosResponse } from 'axios'
 
-const tokenManager = new TokenManager();
+const tokenManager = new TokenManager()
 
-export const usePostApplicationLecture = (id: string) => 
-useMutation<AxiosResponse>(
+export const usePostApplicationLecture = (id: string) =>
+  useMutation<AxiosResponse>(
     lectureQueryKeys.postLectureApplication(id),
     () =>
       patch(
@@ -17,20 +17,16 @@ useMutation<AxiosResponse>(
         {
           headers: {
             Authorization:
-              tokenManager.accessToken &&
-              `Bearer ${tokenManager.accessToken}`,
+              tokenManager.accessToken && `Bearer ${tokenManager.accessToken}`,
           },
-          params: {
-            id: id
-          }
         }
       ),
     {
       onSuccess: (response) => {
-       console.log(response);
+        console.log(response)
       },
       onError: (error) => {
-        console.log(error);
+        console.log(error)
       },
     }
   )
