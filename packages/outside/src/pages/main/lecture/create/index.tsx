@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { ChangeEvent, FormEvent, useState } from 'react'
 import * as S from '../../../../styles/create/style'
 import { Header } from '@common/components'
 import Bg3 from '@common/assets/png/mainBg3.png'
@@ -31,6 +31,9 @@ const Create = () => {
 
   const [isScore, setIsScore] = useState<boolean>(false)
   const [scoreText, setScoreText] = useState<string>('학점 선택')
+
+  const [people, setPeople] = useState<number | undefined>()
+  const [isInput, setIsInput] = useState<boolean>(true)
 
   const saveLectureTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLectuerTitle(event.target.value)
@@ -74,6 +77,11 @@ const Create = () => {
       setIsComplete(false)
       setIsScore(false)
     }
+  }
+
+  const onPeopleSubmit = (e: FormEvent) => {
+    e.preventDefault()
+    setIsInput(false)
   }
 
   return (
@@ -176,10 +184,27 @@ const Create = () => {
                   </S.SelectModalContainer>
                 </S.SettingSelection>
               )}
-              <S.SettingSelection>
+              <S.SettingForm
+                onSubmit={onPeopleSubmit}
+                onBlur={() => setIsInput(false)}
+              >
                 <People />
-                <S.SettingButton>최대 수강인원 입력</S.SettingButton>
-              </S.SettingSelection>
+                {isInput ? (
+                  <S.SettingInput
+                    value={people}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                      setPeople(+e.target.value)
+                    }
+                    type='number'
+                    placeholder='최대 수강 인원 입력'
+                    maxLength={3}
+                  />
+                ) : (
+                  <S.ShowPeople onClick={() => setIsInput(true)}>
+                    {people}명
+                  </S.ShowPeople>
+                )}
+              </S.SettingForm>
             </S.SettingSelectionContainer>
           </S.LectureSetting>
           <S.ButtonContainer>

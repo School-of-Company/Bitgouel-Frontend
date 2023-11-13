@@ -90,6 +90,13 @@ export const SettingSelection = styled.div`
   }
 `
 
+export const SettingForm = styled.form`
+  display: flex;
+  align-items: center;
+  margin-right: 2.5rem;
+  color: ${({ theme }) => theme.color.gray['700']};
+`
+
 export const SettingDateBox = styled.div`
   display: flex;
   align-items: center;
@@ -100,6 +107,29 @@ export const SettingScoreBox = styled.div`
   align-items: center;
 `
 
+export const SettingInput = styled.input`
+  border: none;
+  outline: none;
+  color: ${({ theme }) => theme.color.gray['700']};
+  ${({ theme }) => theme.typo.text_md}
+
+  &::placeholder {
+    ${({ theme }) => theme.typo.text_sm}
+    color: ${({ theme }) => theme.color.gray['700']};
+  }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+`
+
+export const ShowPeople = styled.span`
+  margin-left: 0.3rem;
+  ${({ theme }) => theme.typo.text_md}
+`
+
 export const SettingButton = styled.span`
   cursor: pointer;
   margin-left: 0.5rem;
@@ -108,6 +138,7 @@ export const SettingButton = styled.span`
 
 export const DateRange = styled.span`
   margin: 0rem 0.5rem;
+  color: ${({ theme }) => theme.color.gray['700']};
 `
 
 export const ButtonContainer = styled.div`
