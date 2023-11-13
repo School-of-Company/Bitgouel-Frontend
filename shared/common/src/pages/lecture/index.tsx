@@ -5,6 +5,8 @@ import Bg3 from '../../assets/png/mainBg3.png'
 import { Filter, Plus } from '../../assets/'
 import { useRouter } from 'next/navigation'
 import { LectureTypeModal } from '../../modals'
+import { useRecoilState } from 'recoil'
+import { LectureTypeText } from '../../atoms'
 
 const LecturePage = () => {
   const object = [
@@ -96,7 +98,7 @@ const LecturePage = () => {
   const router = useRouter()
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
   const [lectureTypeText, setLectureTypeText] =
-    useState<string>('상호학점인정교육과정')
+    useRecoilState<string>(LectureTypeText)
 
   return (
     <div>

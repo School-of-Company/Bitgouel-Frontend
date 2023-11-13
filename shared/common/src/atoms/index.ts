@@ -78,3 +78,8 @@ export const IsValidate = atom<boolean>({
   key: 'IsValidate',
   default: true,
 })
+
+export const LectureTypeText = atom<string>({
+  key: 'LectureTypeText',
+  default: '상호학점인정교육과정',
+})

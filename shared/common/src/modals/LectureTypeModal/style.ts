@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 export const SelectFilterBox = styled.div<{ location: string }>`
   position: absolute;
   top: ${({ location }) =>
-    location === '필터' ? '15.7rem' : location === '개설' ? '34rem' : '5rem'};
+    location === '필터' ? '15.7rem' : location === '개설' ? '34rem' : '4rem'};
   width: 11.75rem;
   height: 8.125rem;
   background-color: #818181;

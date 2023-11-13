@@ -7,6 +7,8 @@ import { useEffect, useState } from 'react'
 import { Plus, Filter, MegaPhone, Message, Question } from '../../assets'
 import { SelectFilterContainer } from '../../pages/lecture/style'
 import { LectureTypeModal } from '../../modals'
+import { useRecoilState } from 'recoil'
+import { LectureTypeText } from '../../atoms'
 
 const Header = () => {
   const router = useRouter()
@@ -26,7 +28,8 @@ const Header = () => {
   const [svgView, setSvgView] = useState<string>('none')
   const [myStatus, setMyStatus] = useState<string>('로그인')
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
-  const [lectureTypeText, setLectureTypeText] = useState('상호학점인정교육과정')
+  const [lectureTypeText, setLectureTypeText] =
+    useRecoilState<string>(LectureTypeText)
 
   useEffect(() => {
     setMyStatus(
