@@ -13,6 +13,7 @@ export const HeaderWrapper = styled.div<{
   transition: all 0.5s;
   background-color: ${({ bgColor }) => bgColor};
   border-bottom: ${({ borderColor }) => borderColor};
+  z-index: 999;
 `
 
 export const HeaderContainer = styled.div`

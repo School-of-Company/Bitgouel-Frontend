@@ -58,6 +58,12 @@ export const InputMainText = styled.textarea`
   }
 `
 
+export const SelectModalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
 export const LectureSetting = styled.div`
   margin-top: 1.25rem;
   width: 100%;
@@ -75,11 +81,18 @@ export const SettingSelectionContainer = styled.div`
 
 export const SettingSelection = styled.div`
   display: flex;
+  align-items: center;
   margin-right: 2.5rem;
+
   span {
     ${({ theme }) => theme.typo.text_md};
     color: ${({ theme }) => theme.color.gray[700]};
   }
+`
+
+export const SettingDateBox = styled.div`
+  display: flex;
+  align-items: center;
 `
 
 export const SettingButton = styled.span`

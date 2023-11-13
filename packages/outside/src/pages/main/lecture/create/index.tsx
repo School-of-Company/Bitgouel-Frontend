@@ -3,12 +3,27 @@ import * as S from '../../../../styles/create/style'
 import { Header } from '@common/components'
 import Bg3 from '@common/assets/png/mainBg3.png'
 import { Chevron, People } from '@common/assets'
+import { LectureTypeModal } from '@common/modals'
+import { SelectCalendarModal } from '@/modals'
 
 const Create = () => {
   const MAXLENGTH: number = 1000 as const
 
   const [lectureTitle, setLectuerTitle] = useState<string>('')
   const [lectureMainText, setLectuerMainText] = useState<string>('')
+  const [lectureTypeText, setLectureTypeText] =
+    useState<string>('강의 유형 선택')
+  const [isLectureType, setIsLectureType] = useState<boolean>(false)
+  const [isStart, setIsStart] = useState<boolean>(false)
+  const [startDate, setStartDate] = useState<Date>(new Date())
+  const [startDateText, setStartDateText] = useState<string>('신청 시작일 선택')
+  const [isEnd, setIsEnd] = useState<boolean>(false)
+  const [endDate, setEndDate] = useState<Date>(new Date())
+  const [endDateText, setEndDateText] = useState<string>('신청 마감일 선택')
+  const [isComplete, setIsComplete] = useState<boolean>(false)
+  const [completeDate, setCompleteDate] = useState<Date>(new Date())
+  const [completeDateText, setCompleteDateText] =
+    useState<string>('강의 시작일 선택')
 
   const saveLectureTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLectuerTitle(event.target.value)
@@ -18,6 +33,30 @@ const Create = () => {
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     setLectuerMainText(event.target.value)
+  }
+
+  const openSelectModal = (type: string) => {
+    if (type === '신청 시작') {
+      setIsStart((prev) => !prev)
+      setIsEnd(false)
+      setIsComplete(false)
+      setIsLectureType(false)
+    } else if (type === '신청 마감') {
+      setIsStart(false)
+      setIsEnd((prev) => !prev)
+      setIsComplete(false)
+      setIsLectureType(false)
+    } else if (type === '강의 시작') {
+      setIsStart(false)
+      setIsEnd(false)
+      setIsComplete((prev) => !prev)
+      setIsLectureType(false)
+    } else {
+      setIsLectureType((prev) => !prev)
+      setIsStart(false)
+      setIsEnd(false)
+      setIsComplete(false)
+    }
   }
 
   return (
@@ -39,20 +78,69 @@ const Create = () => {
           <S.LectureSetting>
             <S.SettingTitle>강의 세부 설정</S.SettingTitle>
             <S.SettingSelectionContainer>
+              <S.SelectModalContainer>
+                {isLectureType && (
+                  <LectureTypeModal
+                    location='개설'
+                    text={lectureTypeText}
+                    setText={setLectureTypeText}
+                    setIsLectureType={setIsLectureType}
+                  />
+                )}
+                <S.SettingSelection onClick={() => openSelectModal('')}>
+                  <Chevron />
+                  <S.SettingButton>{lectureTypeText}</S.SettingButton>
+                </S.SettingSelection>
+              </S.SelectModalContainer>
               <S.SettingSelection>
-                <Chevron />
-                <S.SettingButton>강의 유형 선택</S.SettingButton>
-              </S.SettingSelection>
-              <S.SettingSelection>
-                <Chevron />
-                <S.SettingButton>신청 시작일</S.SettingButton>
+                <S.SelectModalContainer>
+                  {isStart && (
+                    <SelectCalendarModal
+                      date={startDate}
+                      setDate={setStartDate}
+                      setText={setStartDateText}
+                    />
+                  )}
+                  <S.SettingDateBox
+                    onClick={() => openSelectModal('신청 시작')}
+                  >
+                    <Chevron />
+                    <S.SettingButton>{startDateText}</S.SettingButton>
+                  </S.SettingDateBox>
+                </S.SelectModalContainer>
                 <S.DateRange> ~ </S.DateRange>
-                <Chevron />
-                <S.SettingButton>신청 마감일</S.SettingButton>
+                <S.SelectModalContainer>
+                  {isEnd && (
+                    <SelectCalendarModal
+                      date={endDate}
+                      setDate={setEndDate}
+                      setText={setEndDateText}
+                    />
+                  )}
+                  <S.SettingDateBox
+                    onClick={() => openSelectModal('신청 마감')}
+                  >
+                    <Chevron />
+                    <S.SettingButton>{endDateText}</S.SettingButton>
+                  </S.SettingDateBox>
+                </S.SelectModalContainer>
               </S.SettingSelection>
               <S.SettingSelection>
-                <Chevron />
-                <S.SettingButton>강의 시작일 선택</S.SettingButton>
+                <S.SelectModalContainer>
+                  {isComplete && (
+                    <SelectCalendarModal
+                      date={completeDate}
+                      setDate={setCompleteDate}
+                      setText={setCompleteDateText}
+                    />
+                  )}
+                  <S.SettingDateBox
+                    onClick={() => openSelectModal('강의 시작')}
+                  >
+                    <Chevron />
+                    <S.SettingButton>{completeDateText}</S.SettingButton>
+                  </S.SettingDateBox>
+                </S.SelectModalContainer>
               </S.SettingSelection>
               <S.SettingSelection>
                 <Chevron />

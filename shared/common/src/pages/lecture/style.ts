@@ -51,11 +51,16 @@ export const LectureButton = styled.div`
   }
 `
 
-export const ListWrapper = styled.div`
+export const SelectFilterContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+export const ListWrraper = styled.div`
   display: flex;
   justify-content: center;
 `
-
 export const ListContainer = styled.div`
   width: 75rem;
   margin-top: 1.5rem;

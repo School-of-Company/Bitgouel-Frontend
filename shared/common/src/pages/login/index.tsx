@@ -71,8 +71,8 @@ const LoginPage = () => {
               border:
                 error?.response?.status === 401 ||
                 error?.response?.status === 400
-                  ? '1px solid #DF454A'
-                  : '1px solid #B8B8B8',
+                  ? '0.0625rem solid #DF454A'
+                  : '0.0625rem solid #B8B8B8',
               color:
                 error?.response?.status === 401 ||
                 error?.response?.status === 400

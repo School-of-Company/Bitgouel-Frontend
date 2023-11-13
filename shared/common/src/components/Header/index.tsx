@@ -5,6 +5,8 @@ import { match } from 'ts-pattern'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Plus, Filter, MegaPhone, Message, Question } from '../../assets'
+import { SelectFilterContainer } from '../../pages/lecture/style'
+import { LectureTypeModal } from '../../modals'
 
 const Header = () => {
   const router = useRouter()
@@ -23,6 +25,8 @@ const Header = () => {
   const [spanColor, setSpanColor] = useState<string>('#fff')
   const [svgView, setSvgView] = useState<string>('none')
   const [myStatus, setMyStatus] = useState<string>('로그인')
+  const [isLectureType, setIsLectureType] = useState<boolean>(false)
+  const [lectureTypeText, setLectureTypeText] = useState('상호학점인정교육과정')
 
   useEffect(() => {
     setMyStatus(
@@ -52,7 +56,7 @@ const Header = () => {
           setBtnColor('rgb(209, 209, 209, 1)')
           setBorderColor('0.0625rem solid #ebebeb')
           setSpanColor('#288BE1')
-          setSvgView('block')
+          setSvgView('flex')
         } else {
           setBgColor('')
           setSymbolNum(Symbol1)
@@ -91,7 +95,21 @@ const Header = () => {
             .with('/main/notice', () => <MegaPhone />)
             .otherwise(() => null)}
           {match(pathname)
-            .with('/main/lecture', () => <Filter />)
+            .with('/main/lecture', () => (
+              <SelectFilterContainer>
+                <div onClick={() => setIsLectureType((prev) => !prev)}>
+                  <Filter />
+                </div>
+                {isLectureType && (
+                  <LectureTypeModal
+                    location='헤더'
+                    text={lectureTypeText}
+                    setText={setLectureTypeText}
+                    setIsLectureType={setIsLectureType}
+                  />
+                )}
+              </SelectFilterContainer>
+            ))
             .with('/main/notice', () => <Message />)
             .otherwise(() => null)}
           {match(pathname)
