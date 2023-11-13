@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  swcMinify: true,
   transpilePackages: ["common", "api"],
+
   async rewrites() {
     return [
       {

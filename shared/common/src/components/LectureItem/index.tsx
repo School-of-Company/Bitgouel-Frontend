@@ -1,4 +1,4 @@
-import { lectureType } from '../../constants'
+import { lectureToKor } from '../../constants'
 import * as S from './style'
 import { useRouter } from 'next/router'
 
@@ -32,7 +32,7 @@ const LectureItem = ({ item }: LectureItemProps) => {
         <S.MainText>{item.contents}</S.MainText>
       </S.MainTextContainer>
       <S.SubMenuContainer>
-        <S.From>{lectureType[item.lectureType]}</S.From>
+        <S.From>{lectureToKor[item.lectureType]}</S.From>
         <S.MenuNum>
           <span>
             {item.startDate} ~ {item.endDate}

@@ -53,9 +53,16 @@ export const InputMainText = styled.textarea`
   outline: none;
   border: none;
   width: 100%;
+  resize: none;
   &::placeholder {
     color: ${({ theme }) => theme.color.gray[700]};
   }
+`
+
+export const SelectModalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 export const LectureSetting = styled.div`
@@ -75,20 +82,63 @@ export const SettingSelectionContainer = styled.div`
 
 export const SettingSelection = styled.div`
   display: flex;
+  align-items: center;
   margin-right: 2.5rem;
+
   span {
     ${({ theme }) => theme.typo.text_md};
-    color: ${({ theme }) => theme.color.gray[700]};
   }
+`
+
+export const SettingForm = styled.form`
+  display: flex;
+  align-items: center;
+  margin-right: 2.5rem;
+  color: ${({ theme }) => theme.color.gray['700']};
+`
+
+export const SettingDateBox = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+export const SettingScoreBox = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+export const SettingInput = styled.input`
+  border: none;
+  outline: none;
+  color: ${({ theme }) => theme.color.gray['700']};
+  ${({ theme }) => theme.typo.text_md}
+
+  &::placeholder {
+    ${({ theme }) => theme.typo.text_sm}
+    color: ${({ theme }) => theme.color.gray['700']};
+  }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+`
+
+export const ShowPeople = styled.span`
+  margin-left: 0.3rem;
+  ${({ theme }) => theme.typo.text_md}
 `
 
 export const SettingButton = styled.span`
   cursor: pointer;
   margin-left: 0.5rem;
+  color: ${({ theme }) => theme.color.gray['700']};
 `
 
 export const DateRange = styled.span`
   margin: 0rem 0.5rem;
+  color: ${({ theme }) => theme.color.gray['700']};
 `
 
 export const ButtonContainer = styled.div`
