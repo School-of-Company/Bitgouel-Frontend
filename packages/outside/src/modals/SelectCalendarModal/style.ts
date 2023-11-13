@@ -6,7 +6,7 @@ export const SelectCalendarModalContainer = styled.div`
   width: 20.75rem;
   height: 19.25rem;
   border-radius: 0.5rem;
-  background-color: #818181;
+  background-color: ${({ theme }) => theme.color.gray[500]};
 
   &::after {
     content: '';
@@ -15,7 +15,7 @@ export const SelectCalendarModalContainer = styled.div`
     right: 9rem;
     border-left: 1.25rem solid transparent;
     border-right: 1.25rem solid transparent;
-    border-top: 1.25rem solid #818181;
+    border-top: 1.25rem solid ${({ theme }) => theme.color.gray[500]};
   }
 
   .react-calendar {
