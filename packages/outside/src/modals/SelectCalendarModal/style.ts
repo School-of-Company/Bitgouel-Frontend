@@ -38,7 +38,6 @@ export const SelectCalendarModalContainer = styled.div`
       font-size: 1.8rem;
       border: none;
       cursor: pointer;
-      color: ${({ theme }) => theme.color.white};
     }
   }
 
