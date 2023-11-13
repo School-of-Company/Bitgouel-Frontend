@@ -83,8 +83,6 @@ export const SettingTitle = styled.div`
 
 export const SettingSelectionContainer = styled.div`
   display: flex;
-  width: 60%;
-  justify-content: space-between;
   margin-top: 0.5rem;
 `
 
@@ -92,6 +90,7 @@ export const SettingSelection = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  margin-right: 2.5rem;
   span {
     ${({ theme }) => theme.typo.text_md};
   }
