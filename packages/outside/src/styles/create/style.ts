@@ -53,6 +53,7 @@ export const InputMainText = styled.textarea`
   outline: none;
   border: none;
   width: 100%;
+  resize: none;
   &::placeholder {
     color: ${({ theme }) => theme.color.gray[700]};
   }
@@ -86,7 +87,6 @@ export const SettingSelection = styled.div`
 
   span {
     ${({ theme }) => theme.typo.text_md};
-    color: ${({ theme }) => theme.color.gray[700]};
   }
 `
 
@@ -95,9 +95,15 @@ export const SettingDateBox = styled.div`
   align-items: center;
 `
 
+export const SettingScoreBox = styled.div`
+  display: flex;
+  align-items: center;
+`
+
 export const SettingButton = styled.span`
   cursor: pointer;
   margin-left: 0.5rem;
+  color: ${({ theme }) => theme.color.gray['700']};
 `
 
 export const DateRange = styled.span`
