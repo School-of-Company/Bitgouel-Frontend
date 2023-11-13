@@ -10,17 +10,7 @@ const tokenManager = new TokenManager()
 export const usePostApplicationLecture = (id: string) =>
   useMutation<AxiosResponse>(
     lectureQueryKeys.postLectureApplication(id),
-    () =>
-      patch(
-        lectureUrl.lectureApplication(id),
-        // {},
-        {
-          headers: {
-            Authorization:
-              tokenManager.accessToken && `Bearer ${tokenManager.accessToken}`,
-          },
-        }
-      ),
+    () => patch(lectureUrl.lectureApplication(id), {}),
     {
       onSuccess: (response) => {
         console.log(response)
