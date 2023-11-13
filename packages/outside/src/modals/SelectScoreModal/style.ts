@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 
 export const SelectScoreBox = styled.div`
   position: absolute;
-  bottom: 4rem;
+  bottom: 3rem;
   width: 11.75rem;
   height: 8.125rem;
   background-color: ${({ theme }) => theme.color.gray[500]};

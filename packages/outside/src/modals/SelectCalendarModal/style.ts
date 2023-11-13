@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 
 export const SelectCalendarModalContainer = styled.div`
+  bottom: 9rem;
   position: fixed;
   width: 20.75rem;
   height: 19.25rem;

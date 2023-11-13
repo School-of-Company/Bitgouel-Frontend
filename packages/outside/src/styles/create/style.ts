@@ -83,7 +83,7 @@ export const SettingTitle = styled.div`
 
 export const SettingSelectionContainer = styled.div`
   display: flex;
-  width: 68.75rem;
+  width: 60%;
   justify-content: space-between;
   margin-top: 0.5rem;
 `
