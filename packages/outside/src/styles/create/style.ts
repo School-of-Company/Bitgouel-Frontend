@@ -24,14 +24,19 @@ export const CreateTitle = styled.span`
 `
 
 export const DocumentInputContainer = styled.div`
+  position: absolute;
+  height: calc(100% - 15rem);
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `
 
 export const DocumentInput = styled.div`
   margin-top: 2.5rem;
   width: 75rem;
+  display: flex;
+  flex-direction: column;
 `
 
 export const InputTitle = styled.input`
@@ -66,7 +71,8 @@ export const SelectModalContainer = styled.div`
 `
 
 export const LectureSetting = styled.div`
-  margin-top: 1.25rem;
+  position: absolute;
+  bottom: 6.25rem;
   width: 100%;
 `
 
@@ -77,14 +83,15 @@ export const SettingTitle = styled.div`
 
 export const SettingSelectionContainer = styled.div`
   display: flex;
+  width: 68.75rem;
+  justify-content: space-between;
   margin-top: 0.5rem;
 `
 
 export const SettingSelection = styled.div`
   display: flex;
   align-items: center;
-  margin-right: 2.5rem;
-
+  position: relative;
   span {
     ${({ theme }) => theme.typo.text_md};
   }
