@@ -4,7 +4,7 @@ import { lectureUrl } from "../../libs/urlController";
 import { get } from "../../libs";
 import { AxiosResponse } from "axios";
 
-interface LectureListItemType {
+interface LectureDetailItemType {
   id: string;
   name: string;
   content: string;
@@ -19,10 +19,11 @@ interface LectureListItemType {
 }
 
 export const useGetLectureList = (
-  options?: UseQueryOptions<AxiosResponse<LectureListItemType[]>>
+  id: string,
+  options?: UseQueryOptions<AxiosResponse<LectureDetailItemType[]>>
 ) =>
-  useQuery<AxiosResponse<LectureListItemType[]>>(
-    lectureQueryKeys.getLectureList(),
-    () => get(lectureUrl.lecture()),
+  useQuery<AxiosResponse<LectureDetailItemType[]>>(
+    lectureQueryKeys.getLectureDetail(id),
+    () => get(lectureUrl.lectureDetail(id)),
     options
   );
