@@ -69,9 +69,6 @@ importers:
       '@types/react-dom':
         specifier: ^18
         version: 18.2.14
-      common:
-        specifier: workspace:^
-        version: link:../../shared/common
       next:
         specifier: 14.0.0
         version: 14.0.0(react-dom@18.2.0)(react@18.2.0)

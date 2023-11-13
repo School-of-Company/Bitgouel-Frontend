@@ -3,9 +3,9 @@ import styled from '@emotion/styled'
 export const SelectCalendarModalContainer = styled.div`
   position: fixed;
   top: 23rem;
-  width: 332px;
-  height: 308px;
-  border-radius: 8px;
+  width: 20.75rem;
+  height: 19.25rem;
+  border-radius: 0.5rem;
   background-color: #818181;
 
   &::after {
@@ -83,7 +83,7 @@ export const SelectCalendarModalContainer = styled.div`
     border-radius: 0.5em;
     font-weight: bold;
     color: ${({ theme }) => theme.color.white};
-    font-size: 12px;
+    font-size: 0.75rem;
     border-radius: 50%;
 
     :enabled:hover,
