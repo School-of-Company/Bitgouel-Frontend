@@ -5,8 +5,6 @@ import { del } from '../../libs'
 import TokenManager from '../../libs/api/TokenManager'
 import { AxiosResponse } from 'axios'
 
-const tokenManager = new TokenManager()
-
 export const useDeleteRejectLecture = (id: string) =>
   useMutation<AxiosResponse>(
     lectureQueryKeys.deleteLectureReject(id),
