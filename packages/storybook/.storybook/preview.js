@@ -2,6 +2,7 @@ import { AppRouterContext } from 'next/dist/shared/lib/app-router-context.shared
 import { GlobalLayout } from '../../../shared/common/src/layouts'
 import '../../inside/src/styles/font.css'
 import { RecoilRoot } from 'recoil'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 /** @type { import('@storybook/react').Preview } */
 const preview = {
@@ -21,6 +22,7 @@ const preview = {
     (Story) => (
       <RecoilRoot>
         <GlobalLayout>
+          <ReactQueryDevtools />
           <Story />
         </GlobalLayout>
       </RecoilRoot>

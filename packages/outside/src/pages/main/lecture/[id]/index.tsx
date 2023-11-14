@@ -1,10 +1,15 @@
 import Bg3 from '@common/assets/png/mainBg3.png'
+import { useParams } from 'next/navigation'
 import * as S from '../../../../styles/lecture/detail/style'
+import { LectureItemType, useGetDetailLecture } from '@api/common'
+import { useState } from 'react'
 
 const DeatilPage = () => {
+  const { id } = useParams()
+  const { data } = useGetDetailLecture(id.toString())
+  
   return (
     <div>
-
       <S.SlideBg url={Bg3}>
         <S.BgContainer>
           <S.LectureTitle>강의 상세</S.LectureTitle>
@@ -14,7 +19,7 @@ const DeatilPage = () => {
         <S.Document>
           <S.TitleContainer>
             <S.SubTitle>
-              <S.Professor>모시깽이 교수</S.Professor>
+              {/* <S.Professor>{data?.data}</S.Professor> */}
               <S.Date>2023.10.28</S.Date>
             </S.SubTitle>
             <S.Title>

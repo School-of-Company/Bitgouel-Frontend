@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { lectureQueryKeys } from '../../libs/queryKeys'
+import { lectureQueryKeys } from '../../'
 import { lectureUrl } from '../../libs/urlController'
 import { del } from '../../libs'
 import { AxiosResponse } from 'axios'

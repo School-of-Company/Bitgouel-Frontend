@@ -7,7 +7,7 @@ export const HeaderWrapper = styled.div<{
 }>`
   width: 100%;
   height: 4.875rem;
-  display: ${({isAuth}) => isAuth ? 'none' : 'flex'};
+  display: ${({ isAuth }) => (isAuth ? 'none' : 'flex')};
   position: fixed;
   justify-content: center;
   top: 0;
@@ -53,7 +53,7 @@ export const MenuItem = styled.span<{ isSameRoute: boolean; color: string }>`
 `
 
 export const CreateIcon = styled.div<{ view: string }>`
-  display: ${({view})=> view === 'none' ? 'none' : 'flex'};
+  display: ${({ view }) => (view === 'none' ? 'none' : 'flex')};
 `
 
 export const ButtonWrapper = styled.div<{ view: string }>`

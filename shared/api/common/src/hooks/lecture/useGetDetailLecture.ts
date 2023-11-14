@@ -3,27 +3,20 @@ import { lectureQueryKeys } from '../../libs/queryKeys'
 import { lectureUrl } from '../../libs/urlController'
 import { get } from '../../libs'
 import { AxiosResponse } from 'axios'
-
-interface LectureDetailItemType {
-  id: string
-  name: string
-  content: string
-  startDate: string
-  endDate: string
-  completeDate: string
-  lectureType: string
-  lectureStatus: string
-  headCount: number
-  maxRegisteredUser: number
-  lecturer: string
-}
+import { LectureItemType } from '../../types'
+import { useSetRecoilState } from 'recoil'
+import { LectureDetails } from '../../../../../common'
 
 export const useGetDetailLecture = (
   id: string,
-  options?: UseQueryOptions<AxiosResponse<LectureDetailItemType[]>>
-) =>
-  useQuery<AxiosResponse<LectureDetailItemType[]>>(
+  options?: UseQueryOptions<AxiosResponse<LectureItemType[]>>
+) => {
+  const setLectureDetails = useSetRecoilState(LectureDetails)
+  return useQuery<AxiosResponse<LectureItemType[]>>(
     lectureQueryKeys.getLectureDetail(id),
     () => get(lectureUrl.lectureDetail(id)),
-    options
+    {
+      onSuccess: ({ data }) => {},
+    }
   )
+}

@@ -3,7 +3,7 @@ import {
   refreshToken,
   accessExpiredAt,
   refreshExpiredAt,
-} from '../token'
+} from '../'
 import Router from 'next/router'
 
 interface TokensType {

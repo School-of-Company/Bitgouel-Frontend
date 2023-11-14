@@ -1,7 +1,7 @@
-import { UseQueryOptions, useMutation } from '@tanstack/react-query'
-import { lectureQueryKeys } from '../../libs/queryKeys'
-import { lectureUrl } from '../../libs/urlController'
-import { post } from '../../libs'
+import { useMutation } from '@tanstack/react-query'
+import { lectureQueryKeys } from '../../../../common'
+import { lectureUrl } from '../../../../common'
+import { post } from '../../../../common'
 import { AxiosResponse } from 'axios'
 
 interface LectureCreateItemType {
@@ -15,9 +15,7 @@ interface LectureCreateItemType {
   maxRegisteredUser: number
 }
 
-export const usePostCreateLecture = (
-  options?: UseQueryOptions<AxiosResponse<LectureCreateItemType[]>>
-) => {
+export const usePostCreateLecture = () =>
   useMutation<AxiosResponse<LectureCreateItemType[]>>(
     lectureQueryKeys.postLetureCreate(),
     (newCreate) => post(lectureUrl.lecture(), newCreate),
@@ -30,4 +28,3 @@ export const usePostCreateLecture = (
       },
     }
   )
-}

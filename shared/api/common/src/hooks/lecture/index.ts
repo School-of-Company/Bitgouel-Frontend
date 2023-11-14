@@ -1,6 +1,5 @@
 export * from './useGetLectureList'
 export * from './useDeleteRejectLecture'
 export * from './useGetDetailLecture'
-export * from './usePostCreateLecture'
 export * from './usePatchApproveLecture'
 export * from './usePostApplicationLecture'

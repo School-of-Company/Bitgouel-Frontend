@@ -85,7 +85,6 @@ const Create = () => {
 
   return (
     <div>
-
       <S.SlideBg url={Bg3}>
         <S.BgContainer>
           <S.CreateTitle>강의 개설</S.CreateTitle>

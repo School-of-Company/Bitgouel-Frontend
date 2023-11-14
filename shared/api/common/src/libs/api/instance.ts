@@ -21,7 +21,7 @@ instance.interceptors.request.use(
       ) &&
       !tokenManager.skipUrl()
     ) {
-      await useReissue()
+      // await useReissue()
       tokenManager.initToken()
     } else if (
       !tokenManager.validateToken(

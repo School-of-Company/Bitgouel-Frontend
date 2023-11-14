@@ -1,38 +1,26 @@
-import { useState } from 'react'
 import { lectureToKor, lectureStatusToKor } from '../../constants'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
-import { match } from 'ts-pattern'
+import { LectureItemType } from '@/types'
 
 interface LectureItemProps {
-  item: {
-    id: string
-    name: string
-    lecturer: string
-    startDate: string
-    endDate: string
-    completeDate: string
-    lectureType: string
-    contents: string
-    LectureStatus: string
-    approveStatus: string
-    headCount: number
-    maxRegisteredUser: number
-  }
+  item: LectureItemType
 }
 
 const LectureItem = ({ item }: LectureItemProps) => {
   const router = useRouter()
 
   return (
-    <S.LectureItemWrapper onClick={() => router.push('/main/lecture/detail')}>
+    <S.LectureItemWrapper
+      onClick={() => router.push(`/main/lecture/${item.id}`)}
+    >
       <S.SubTitle>
         <S.Professor>{item.lecturer}</S.Professor>
         <S.Date>{item.startDate}</S.Date>
       </S.SubTitle>
       <S.Title>{item.name}</S.Title>
       <S.MainTextContainer>
-        <S.MainText>{item.contents}</S.MainText>
+        <S.MainText>{item.content}</S.MainText>
       </S.MainTextContainer>
       <S.SubMenuContainer>
         <S.From>{lectureToKor[item.lectureType]}</S.From>
