@@ -141,7 +141,7 @@ const Header = ({ inside }: { inside: boolean }) => {
           onClick={() =>
             router.push(
               match(myStatus)
-                .with('내 정보', () => '/main/lecture')
+                .with('내 정보', () => '/main/myPage')
                 .otherwise(() => '/auth/login')
             )
           }
