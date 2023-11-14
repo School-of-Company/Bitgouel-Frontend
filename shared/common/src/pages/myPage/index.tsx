@@ -1,4 +1,6 @@
 import Bg4 from '../../assets/png/mainBg4.png'
+import Image from 'next/image'
+import ClipBox from '../../assets/png/clipBox.png'
 import * as S from './style'
 
 const MyPage = () => {
@@ -6,8 +8,11 @@ const MyPage = () => {
     <S.MyPageWrapper url={Bg4}>
       <S.BlackBox>
         <S.WhiteBox>
+          <S.ClipContainer>
+            <Image src={ClipBox} alt='클립' />
+          </S.ClipContainer>
           <S.MyIdentify>
-            <S.ProfileContainer>
+            <div>
               <div>
                 <S.Name>홍길동</S.Name>
                 <S.Role>학생</S.Role>
@@ -16,7 +21,7 @@ const MyPage = () => {
                 <S.SchoolName>광주 소프트웨어 마이스터 고등학교</S.SchoolName>
                 <S.SubEnter>소속</S.SubEnter>
               </div>
-            </S.ProfileContainer>
+            </div>
             <S.AccountWrapper>
               <S.MyTitle>계정 정보</S.MyTitle>
               <S.AccountContainer>

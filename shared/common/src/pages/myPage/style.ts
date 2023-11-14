@@ -30,11 +30,18 @@ export const WhiteBox = styled.div`
   background-color: ${({ theme }) => theme.color.white};
 `
 
+export const ClipContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  img {
+    position: absolute;
+    top: 7.875rem;
+  }
+`
+
 export const MyIdentify = styled.div`
   margin: 2.5rem 1.5rem;
 `
-
-export const ProfileContainer = styled.div``
 
 export const Name = styled.span`
   color: ${({ theme }) => theme.color.black};
