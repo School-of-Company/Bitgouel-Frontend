@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { lectureToKor, lectureStatusToKor } from '../../constants'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
@@ -35,7 +36,9 @@ const LectureItem = ({ item }: LectureItemProps) => {
       </S.MainTextContainer>
       <S.SubMenuContainer>
         <S.From>{lectureToKor[item.lectureType]}</S.From>
-        <S.StatusFrom>{lectureStatusToKor[item.approveStatus]}</S.StatusFrom>
+        <S.StatusFrom status={item.approveStatus}>
+          {lectureStatusToKor[item.approveStatus]}
+        </S.StatusFrom>
         <S.MenuNum>
           <span>
             {item.startDate} ~ {item.endDate}
