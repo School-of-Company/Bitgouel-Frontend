@@ -87,6 +87,7 @@ export const MainText = styled.div`
   ${({ theme }) => theme.typo.text_sm};
   line-height: 1.5rem;
   margin-top: 2.25rem;
+  padding-bottom: 6.25rem;
 `
 
 export const ButtonContainer = styled.div`

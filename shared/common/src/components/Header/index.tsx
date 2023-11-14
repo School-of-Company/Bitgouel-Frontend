@@ -94,7 +94,15 @@ const Header = () => {
         </S.MenuWrapper>
         <S.ButtonWrapper view={svgView}>
           {match(pathname)
-            .with('/main/lecture', () => <Plus />)
+            .with('/main/lecture', () => (
+              <div
+                onClick={() => {
+                  router.push('/main/lecture/create')
+                }}
+              >
+                <Plus />
+              </div>
+            ))
             .with('/main/notice', () => <MegaPhone />)
             .otherwise(() => null)}
           {match(pathname)
