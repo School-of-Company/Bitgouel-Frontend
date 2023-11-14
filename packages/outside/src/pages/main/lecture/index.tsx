@@ -57,7 +57,7 @@ const LecturePage = () => {
       <S.ListWrraper>
         <S.ListContainer>
           {data?.data.lectures.content.map((item: LectureItemType) => (
-            <LectureItem item={item} key={item.id} />
+            <LectureItem inside={false} item={item} key={item.id} />
           ))}
         </S.ListContainer>
       </S.ListWrraper>

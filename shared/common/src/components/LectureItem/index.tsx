@@ -1,13 +1,14 @@
 import { lectureToKor, lectureStatusToKor } from '../../constants'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
-import { LectureItemType } from '@/types'
+import { LectureItemType } from '../../types'
 
 interface LectureItemProps {
   item: LectureItemType
+  inside: boolean
 }
 
-const LectureItem = ({ item }: LectureItemProps) => {
+const LectureItem = ({ item, inside }: LectureItemProps) => {
   const router = useRouter()
 
   return (
@@ -24,7 +25,7 @@ const LectureItem = ({ item }: LectureItemProps) => {
       </S.MainTextContainer>
       <S.SubMenuContainer>
         <S.From>{lectureToKor[item.lectureType]}</S.From>
-        <S.StatusFrom status={item.approveStatus}>
+        <S.StatusFrom status={item.approveStatus} display={inside}>
           {lectureStatusToKor[item.approveStatus]}
         </S.StatusFrom>
         <S.MenuNum>
