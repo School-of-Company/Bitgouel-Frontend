@@ -80,7 +80,10 @@ const Header = ({ inside }: { inside: boolean }) => {
     <S.HeaderWrapper
       bgColor={bgColor}
       borderColor={borderColor}
-      isAuth={pathname.includes('/auth')}
+      isAuth={match(pathname)
+        .with('/auth/login', () => true)
+        .with('/auth/signUp', () => true)
+        .otherwise(() => false)}
     >
       <S.HeaderContainer>
         <S.SymbolContainer url={symbolNum} />
