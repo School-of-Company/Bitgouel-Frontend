@@ -1,7 +1,6 @@
 export { default as LoginPage } from './login'
 export { default as SignUpPage } from './signUp'
 export { default as HomePage } from './home'
-export { default as LecturePage } from './lecture'
 export { default as DetailPage } from './lecture/detail'
 export { default as ClubPage } from './club'
 export { default as NoticePage } from './notice'
