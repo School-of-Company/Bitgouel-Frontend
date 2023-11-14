@@ -1,6 +1,6 @@
 export const authQueryKeys = {
-  patchAccessToken: () => ['auth', 'accessToken'],
-  postLogin: () => ['auth', 'login'],
+  patchReissue: () => ['auth', 'patchReissue'],
+  postLogin: () => ['auth', 'postLogin'],
   deleteLogout: () => ['auth', 'deleteLogout'],
   deleteWithDraw: () => ['auth', 'deleteWithDraw'],
   postSignUpStudent: () => ['auth', 'postSignUpStudent'],
