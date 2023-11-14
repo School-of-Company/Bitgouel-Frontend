@@ -1,8 +1,6 @@
-import { useState } from 'react'
-import { lectureToKor, lectureStatusToKor } from '../../constants'
-import * as S from './style'
 import { useRouter } from 'next/navigation'
-import { match } from 'ts-pattern'
+import { lectureStatusToKor, lectureToKor } from '../../constants'
+import * as S from './style'
 
 interface LectureItemProps {
   item: {
@@ -19,9 +17,10 @@ interface LectureItemProps {
     headCount: number
     maxRegisteredUser: number
   }
+  inside: boolean
 }
 
-const LectureItem = ({ item }: LectureItemProps) => {
+const LectureItem = ({ item, inside }: LectureItemProps) => {
   const router = useRouter()
 
   return (
@@ -36,7 +35,7 @@ const LectureItem = ({ item }: LectureItemProps) => {
       </S.MainTextContainer>
       <S.SubMenuContainer>
         <S.From>{lectureToKor[item.lectureType]}</S.From>
-        <S.StatusFrom status={item.approveStatus}>
+        <S.StatusFrom status={item.approveStatus} display={inside}>
           {lectureStatusToKor[item.approveStatus]}
         </S.StatusFrom>
         <S.MenuNum>
