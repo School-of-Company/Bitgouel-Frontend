@@ -8,3 +8,9 @@ export const MyPageWrapper = styled.div<{ url: any }>`
   background-position: center;
   background-size: cover;
 `
+
+export const BlackBox = styled.div`
+    width: 636px;
+    height: 920px;
+    background-color: ba;
+`
