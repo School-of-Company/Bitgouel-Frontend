@@ -59,9 +59,8 @@ export const StatusFrom = styled.div<{ status: string }>`
   ${({ theme }) => theme.typo.caption};
   color: ${({ status, theme }) =>
     status === 'PENDING' ? theme.color.error : theme.color.main};
-  background-color: ${({ status, theme }) => 
-    status === 'PENDING' ? theme.color.
-  };
+  background-color: ${({ status, theme }) =>
+    status === 'PENDING' ? theme.color.red[800] : theme.color.blue[800]};
   padding: 0.25rem 0.5rem;
   border-radius: 1.125rem;
 `
