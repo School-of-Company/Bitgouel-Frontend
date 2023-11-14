@@ -1,10 +1,9 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react'
-import * as S from '../../../../styles/create/style'
-import { Header } from '@common/components'
-import Bg3 from '@common/assets/png/mainBg3.png'
-import { Chevron, People } from '@common/assets'
-import { LectureTypeModal } from '@common/modals'
 import { SelectCalendarModal, SelectScoreModal } from '@/modals'
+import { Chevron, People } from '@common/assets'
+import Bg3 from '@common/assets/png/mainBg3.png'
+import { LectureTypeModal } from '@common/modals'
+import React, { ChangeEvent, FormEvent, useState } from 'react'
+import * as S from '../../../../styles/lecture/create/style'
 
 const Create = () => {
   const MAXLENGTH: number = 1000 as const
@@ -86,7 +85,7 @@ const Create = () => {
 
   return (
     <div>
-      <Header />
+
       <S.SlideBg url={Bg3}>
         <S.BgContainer>
           <S.CreateTitle>강의 개설</S.CreateTitle>

@@ -10,6 +10,12 @@ const color = {
     '800': '#D1D1D1',
     '900': '#EBEBEB',
   },
+  blue: {
+    '800': '#AED3F4',
+  },
+  red: {
+    '800': '#F5C6C8',
+  },
   white: '#FFFFFF',
   black: '#000000',
 }

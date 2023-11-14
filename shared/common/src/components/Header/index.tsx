@@ -5,12 +5,12 @@ import { match } from 'ts-pattern'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Plus, Filter, MegaPhone, Message, Question } from '../../assets'
-import { SelectFilterContainer } from '../../pages/lecture/style'
+import { SelectFilterContainer } from '../../../../../packages/inside/src/styles/lecture/style'
 import { LectureTypeModal } from '../../modals'
 import { useRecoilState } from 'recoil'
 import { LectureTypeText } from '../../atoms'
 
-const Header = () => {
+const Header = ({ inside }: { inside: boolean }) => {
   const router = useRouter()
   const pathname = usePathname()
   const menuList = [
@@ -77,7 +77,11 @@ const Header = () => {
   }, [])
 
   return (
-    <S.HeaderWrapper bgColor={bgColor} borderColor={borderColor}>
+    <S.HeaderWrapper
+      bgColor={bgColor}
+      borderColor={borderColor}
+      isAuth={pathname.includes('/auth')}
+    >
       <S.HeaderContainer>
         <S.SymbolContainer url={symbolNum} />
         <S.MenuWrapper>
@@ -95,13 +99,16 @@ const Header = () => {
         <S.ButtonWrapper view={svgView}>
           {match(pathname)
             .with('/main/lecture', () => (
-              <div
+              <S.CreateIcon
                 onClick={() => {
                   router.push('/main/lecture/create')
                 }}
+                view={match(inside)
+                  .with(true, () => 'none')
+                  .otherwise(() => '')}
               >
                 <Plus />
-              </div>
+              </S.CreateIcon>
             ))
             .with('/main/notice', () => <MegaPhone />)
             .otherwise(() => null)}

@@ -90,18 +90,29 @@ export const MainText = styled.div`
   padding-bottom: 6.25rem;
 `
 
-export const ButtonContainer = styled.div`
+export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
 `
 
-export const EnrolmentButton = styled.div`
-  background-color: ${({ theme }) => theme.color.main};
-  color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.text_lg};
-  cursor: pointer;
-  bottom: 1.5625rem;
+export const ButtonContainer = styled.div`
+  display: flex;
+  bottom: 1.6rem;
   position: fixed;
-  padding: 0.8438rem 2.5625rem;
-  border-radius: 0.5rem;
+  div {
+    color: ${({ theme }) => theme.color.white};
+    ${({ theme }) => theme.typo.text_lg};
+    padding: 0.85rem 2.6rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+`
+
+export const CreateNotApproveButton = styled.div`
+  background-color: ${({ theme }) => theme.color.error};
+  margin-right: 1rem;
+`
+
+export const CreateApproveButton = styled.div`
+  background-color: ${({ theme }) => theme.color.main};
 `

@@ -52,6 +52,17 @@ export const From = styled.div`
   background-color: ${({ theme }) => theme.color.gray[900]};
   padding: 0.25rem 0.5rem;
   border-radius: 1.125rem;
+  margin-right: 1rem;
+`
+
+export const StatusFrom = styled.div<{ status: string }>`
+  ${({ theme }) => theme.typo.caption};
+  color: ${({ status, theme }) =>
+    status === 'PENDING' ? theme.color.error : theme.color.main};
+  background-color: ${({ status, theme }) =>
+    status === 'PENDING' ? theme.color.red[800] : theme.color.blue[800]};
+  padding: 0.25rem 0.5rem;
+  border-radius: 1.125rem;
 `
 
 export const MenuNum = styled.div`
