@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import * as S from '../../../styles/lecture/style'
-import { Header, LectureItem } from '@common/components'
+import { Filter } from '@common/assets'
 import Bg3 from '@common/assets/png/mainBg3.png'
-import { Filter, Plus } from '@common/assets'
-import { useRouter } from 'next/navigation'
-import { LectureTypeModal } from '@common/modals'
-import { useRecoilState } from 'recoil'
 import { LectureTypeText } from '@common/atoms'
+import { LectureItem } from '@common/components'
+import { LectureTypeModal } from '@common/modals'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+import { useRecoilState } from 'recoil'
+import * as S from '../../../styles/lecture/style'
 
 const LecturePage = () => {
   const object = [
@@ -108,7 +108,7 @@ const LecturePage = () => {
 
   return (
     <div>
-      <Header />
+
       <S.SlideBg url={Bg3}>
         <S.BgContainer>
           <S.LectureTitle>강의 목록</S.LectureTitle>

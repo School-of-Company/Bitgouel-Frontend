@@ -1,12 +1,10 @@
-import React from 'react'
-import * as S from '../../../../styles/lecture/detail/style'
-import { Header } from '@common/components'
 import Bg3 from '@common/assets/png/mainBg3.png'
+import * as S from '../../../../styles/lecture/detail/style'
 
 const DeatilPage = () => {
   return (
     <div>
-      <Header />
+
       <S.SlideBg url={Bg3}>
         <S.BgContainer>
           <S.LectureTitle>강의 상세</S.LectureTitle>

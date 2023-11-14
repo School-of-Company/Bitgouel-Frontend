@@ -1,5 +1,5 @@
 import axios, { InternalAxiosRequestConfig, AxiosError } from 'axios'
-// import { usePatchAccessToken } from '../../hooks/auth'
+import { useReissue } from '../../hooks'
 import TokenManager from './TokenManager'
 
 export const instance = axios.create({
@@ -21,7 +21,7 @@ instance.interceptors.request.use(
       ) &&
       !tokenManager.skipUrl()
     ) {
-      // await usePatchAccessToken()
+      await useReissue()
       tokenManager.initToken()
     } else if (
       !tokenManager.validateToken(
