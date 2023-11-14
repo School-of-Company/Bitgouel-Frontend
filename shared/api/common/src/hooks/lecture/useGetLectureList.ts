@@ -3,8 +3,7 @@ import { lectureQueryKeys } from '../../libs/queryKeys'
 import { lectureUrl } from '../../libs/urlController'
 import { get } from '../../libs'
 import { AxiosResponse } from 'axios'
-import { LectureItemType } from '../../'
-import { LectureListOptionsTypes } from '../../'
+import { LectureListOptionsTypes } from '../../types'
 
 export const useGetLectureList = (
   queryString: LectureListOptionsTypes,
@@ -14,9 +13,4 @@ export const useGetLectureList = (
     lectureQueryKeys.getLectureList(),
     () => get(lectureUrl.lectureList(queryString)),
     options
-    // {
-    //   onSuccess: ({ data }) => {
-    //     console.log(data.lectures.content, '헤응')
-    //   },
-    // }
   )

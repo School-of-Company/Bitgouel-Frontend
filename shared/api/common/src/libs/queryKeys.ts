@@ -14,12 +14,24 @@ export const authQueryKeys = {
 export const lectureQueryKeys = {
   postLetureCreate: () => ['lecture', 'postLectureCreat'],
   getLectureList: () => ['lecture', 'getLectureList'],
-  getLectureDetail: (id: string) => ['lecture', 'getLectureDetail', id],
-  postLectureApplication: (id: string) => [
+  getLectureDetail: (id: string | undefined) => [
+    'lecture',
+    'getLectureDetail',
+    id,
+  ],
+  postLectureApplication: (id: string | undefined) => [
     'lecture',
     'postLectureApplication',
     id,
   ],
-  patchLectureApprove: (id: string) => ['lecture', 'patchLectureApprove', id],
-  deleteLectureReject: (id: string) => ['lecture', 'deleteLectureReject', id],
+  patchLectureApprove: (id: string | undefined) => [
+    'lecture',
+    'patchLectureApprove',
+    id,
+  ],
+  deleteLectureReject: (id: string | undefined) => [
+    'lecture',
+    'deleteLectureReject',
+    id,
+  ],
 }

@@ -1,11 +1,11 @@
-import LectureList from '.'
+import LectureItem from '.'
 import type { Meta, StoryObj } from '@storybook/react'
 
 export default {
-  title: 'common/LectureList',
-  component: LectureList,
-} as Meta<typeof LectureList>
+  title: 'common/LectureItem',
+  component: LectureItem,
+} as Meta<typeof LectureItem>
 
-type Story = StoryObj<typeof LectureList>
+type Story = StoryObj<typeof LectureItem>
 
 export const Primary: Story = {}

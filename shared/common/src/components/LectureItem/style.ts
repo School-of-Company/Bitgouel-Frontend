@@ -55,13 +55,13 @@ export const From = styled.div`
   margin-right: 1rem;
 `
 
-export const StatusFrom = styled.div<{ status: string, display: boolean }>`
+export const StatusFrom = styled.div<{ status: string; display: string }>`
   ${({ theme }) => theme.typo.caption};
   color: ${({ status, theme }) =>
     status === 'PENDING' ? theme.color.error : theme.color.main};
   background-color: ${({ status, theme }) =>
     status === 'PENDING' ? theme.color.red[800] : theme.color.blue[800]};
-  display: ${({display}) => display ? 'none' : 'flex'};
+  display: ${({ display }) => (display === 'none' ? 'none' : 'flex')};
   padding: 0.25rem 0.5rem;
   border-radius: 1.125rem;
   margin-right: 1rem;

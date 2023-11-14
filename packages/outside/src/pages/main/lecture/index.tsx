@@ -5,14 +5,9 @@ import { LectureItem } from '@common/components'
 import { LectureTypeModal } from '@common/modals'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 import * as S from '../../../styles/lecture/style'
-import {
-  LectureDetail,
-  LectureItemType,
-  LectureList,
-  useGetLectureList,
-} from '@api/common'
+import { LectureItemType, useGetLectureList } from '@api/common'
 import { lectureToEnum } from '@common/constants'
 
 const LecturePage = () => {
@@ -21,16 +16,13 @@ const LecturePage = () => {
   const [lectureTypeText, setLectureTypeText] =
     useRecoilState<string>(LectureTypeText)
 
-  useGetLectureList({
+  const { data } = useGetLectureList({
     page: 0,
     size: 4,
     status: 'PENDING',
     type: lectureToEnum[lectureTypeText],
   })
 
-  const lectureList = useRecoilValue(LectureList)
-
-  console.log(lectureList)
   return (
     <div>
       <S.SlideBg url={Bg3}>
@@ -64,7 +56,7 @@ const LecturePage = () => {
       </S.SlideBg>
       <S.ListWrraper>
         <S.ListContainer>
-          {lectureList.map((item: LectureItemType) => (
+          {data?.data.lectures.content.map((item: LectureItemType) => (
             <LectureItem inside={false} item={item} key={item.id} />
           ))}
         </S.ListContainer>

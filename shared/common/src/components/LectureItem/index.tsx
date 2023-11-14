@@ -25,7 +25,10 @@ const LectureItem = ({ item, inside }: LectureItemProps) => {
       </S.MainTextContainer>
       <S.SubMenuContainer>
         <S.From>{lectureToKor[item.lectureType]}</S.From>
-        <S.StatusFrom status={item.approveStatus} display={inside}>
+        <S.StatusFrom
+          status={item.approveStatus}
+          display={inside ? 'none' : ''}
+        >
           {lectureStatusToKor[item.approveStatus]}
         </S.StatusFrom>
         <S.MenuNum>

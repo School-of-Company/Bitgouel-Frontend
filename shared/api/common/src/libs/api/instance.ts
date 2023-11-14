@@ -1,5 +1,5 @@
 import axios, { InternalAxiosRequestConfig, AxiosError } from 'axios'
-import { useReissue } from '../../hooks'
+import { usePatchReissue } from '../../hooks'
 import TokenManager from './TokenManager'
 
 export const instance = axios.create({

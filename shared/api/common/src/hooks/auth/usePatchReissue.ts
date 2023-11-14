@@ -6,7 +6,7 @@ import TokenManager from '../../libs/api/TokenManager'
 import { AxiosError, AxiosResponse } from 'axios'
 import Route from 'next/router'
 
-export const useReissue = () => {
+export const usePatchReissue = () => {
   const tokenManager = new TokenManager()
 
   return useMutation<AxiosResponse, AxiosError>(
