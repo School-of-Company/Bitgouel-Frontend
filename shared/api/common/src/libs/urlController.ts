@@ -9,3 +9,13 @@ export const authUrl = {
   signUpGovernment: () => `/auth/government`,
   signUpCompanyInstructor: () => `/auth/company-instructor`,
 } as const
+
+export const lectureUrl = {
+  lecture: () => `/lecture`,
+  lectureDetail: (id: string) => `/lecture/${id}`,
+  lectureApplication: (id: string) => `/lecture/${id}`,
+  lectureApprove: (id: string) => `lecture/${id}/approve`,
+  lectureReject: (id: string) => `lectre/${id}/reject`,
+
+
+}
