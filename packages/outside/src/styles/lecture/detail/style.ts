@@ -109,10 +109,10 @@ export const ButtonContainer = styled.div`
 `
 
 export const CreateNotApproveButton = styled.div`
-  background-color: ${({ theme }) => theme.color.main};
+  background-color: ${({ theme }) => theme.color.error};
   margin-right: 1rem;
 `
 
 export const CreateApproveButton = styled.div`
-  background-color: ${({ theme }) => theme.color.error};
+  background-color: ${({ theme }) => theme.color.main};
 `
