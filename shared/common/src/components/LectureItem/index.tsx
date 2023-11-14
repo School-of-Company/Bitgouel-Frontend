@@ -19,9 +19,10 @@ interface LectureItemProps {
     headCount: number
     maxRegisteredUser: number
   }
+  inside: boolean
 }
 
-const LectureItem = ({ item }: LectureItemProps) => {
+const LectureItem = ({ item, inside }: LectureItemProps) => {
   const router = useRouter()
 
   return (
@@ -36,7 +37,7 @@ const LectureItem = ({ item }: LectureItemProps) => {
       </S.MainTextContainer>
       <S.SubMenuContainer>
         <S.From>{lectureToKor[item.lectureType]}</S.From>
-        <S.StatusFrom status={item.approveStatus}>
+        <S.StatusFrom status={item.approveStatus} display={inside}>
           {lectureStatusToKor[item.approveStatus]}
         </S.StatusFrom>
         <S.MenuNum>

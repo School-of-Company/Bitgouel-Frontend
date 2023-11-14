@@ -135,7 +135,7 @@ const LecturePage = () => {
       <S.ListWrraper>
         <S.ListContainer>
           {object.map((item) => (
-            <LectureItem item={item} key={item.id} />
+            <LectureItem item={item} key={item.id} inside={true} />
           ))}
         </S.ListContainer>
       </S.ListWrraper>
