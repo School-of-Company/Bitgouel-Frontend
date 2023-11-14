@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import * as S from './style'
-import { Header } from '../../components'
+import { useEffect, useState } from 'react'
+import { Arrow } from '../../assets'
 import Bg1 from '../../assets/png/slide1.png'
 import Bg2 from '../../assets/png/slide2.png'
 import Bg3 from '../../assets/png/slide3.png'
 import Bg4 from '../../assets/png/slide4.png'
 import { Sequence } from '../../components/index'
-import { Arrow } from '../../assets'
+import * as S from './style'
 
 const HomePage = () => {
   const [bgNum, setBgNum] = useState(2)
@@ -22,7 +21,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <Header />
+
       <S.SlideBg url={imageArr[bgNum]}>
         <div>
           <S.BgContainer>

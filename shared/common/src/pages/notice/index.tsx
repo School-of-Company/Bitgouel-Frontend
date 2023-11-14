@@ -1,13 +1,10 @@
-import React from 'react'
-import * as S from './style'
-import { Header } from '../../components'
-import Bg1 from '../../assets/png/mainBg1.png'
 import { MegaPhone, Message, Question } from '../../assets/'
+import Bg1 from '../../assets/png/mainBg1.png'
+import * as S from './style'
 
 const NoticePage = () => {
   return (
     <div>
-      <Header />
       <S.SlideBg url={Bg1}>
         <S.BgContainer>
           <S.NoticeTitle>게시글</S.NoticeTitle>
