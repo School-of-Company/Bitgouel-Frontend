@@ -100,8 +100,8 @@ export const EnrolmentButton = styled.div`
   color: ${({ theme }) => theme.color.white};
   ${({ theme }) => theme.typo.text_lg};
   cursor: pointer;
-  bottom: 1.5625rem;
+  bottom: 1.6rem;
   position: fixed;
-  padding: 0.8438rem 2.5625rem;
+  padding: 0.85rem 2.6rem;
   border-radius: 0.5rem;
 `

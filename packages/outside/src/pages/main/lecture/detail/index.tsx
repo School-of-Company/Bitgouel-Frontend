@@ -94,9 +94,12 @@ const DeatilPage = () => {
             시대의 가치를 충분히 발휘하기 위하여, 이 황금 시대를 영원히 붙잡아
             두기 위하여, 힘차게 노래하며 힘차게 약동하자!
           </S.MainText>
-          <S.ButtonContainer>
-            <S.EnrolmentButton>수강 신청하기</S.EnrolmentButton>
-          </S.ButtonContainer>
+          <S.ButtonWrapper>
+            <S.ButtonContainer>
+              <S.CreateNotApproveButton>신청 거부하기</S.CreateNotApproveButton>
+              <S.CreateApproveButton>신청 승인하기</S.CreateApproveButton>
+            </S.ButtonContainer>
+          </S.ButtonWrapper>
         </S.Document>
       </S.DocumentWrapper>
     </div>
