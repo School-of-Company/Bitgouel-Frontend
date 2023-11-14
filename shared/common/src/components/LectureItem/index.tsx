@@ -1,8 +1,6 @@
-import { useState } from 'react'
-import { lectureToKor, lectureStatusToKor } from '../../constants'
-import * as S from './style'
 import { useRouter } from 'next/navigation'
-import { match } from 'ts-pattern'
+import { lectureStatusToKor, lectureToKor } from '../../constants'
+import * as S from './style'
 
 interface LectureItemProps {
   item: {

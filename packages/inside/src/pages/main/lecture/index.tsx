@@ -108,7 +108,6 @@ const LecturePage = () => {
 
   return (
     <div>
-
       <S.SlideBg url={Bg3}>
         <S.BgContainer>
           <S.LectureTitle>강의 목록</S.LectureTitle>
@@ -135,7 +134,7 @@ const LecturePage = () => {
       <S.ListWrraper>
         <S.ListContainer>
           {object.map((item) => (
-            <LectureItem item={item} key={item.id} inside={true} />
+            <LectureItem inside={true} item={item} key={item.id} />
           ))}
         </S.ListContainer>
       </S.ListWrraper>
