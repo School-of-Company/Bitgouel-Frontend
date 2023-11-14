@@ -1,6 +1,7 @@
-import { lectureToKor } from '../../constants'
+import { lectureToKor, lectureStatusToKor } from '../../constants'
 import * as S from './style'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
+import { match } from 'ts-pattern'
 
 interface LectureItemProps {
   item: {
@@ -13,6 +14,7 @@ interface LectureItemProps {
     lectureType: string
     contents: string
     LectureStatus: string
+    approveStatus: string
     headCount: number
     maxRegisteredUser: number
   }
@@ -33,6 +35,7 @@ const LectureItem = ({ item }: LectureItemProps) => {
       </S.MainTextContainer>
       <S.SubMenuContainer>
         <S.From>{lectureToKor[item.lectureType]}</S.From>
+        <S.StatusFrom>{lectureStatusToKor[item.approveStatus]}</S.StatusFrom>
         <S.MenuNum>
           <span>
             {item.startDate} ~ {item.endDate}

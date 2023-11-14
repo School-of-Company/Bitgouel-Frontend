@@ -1,6 +1,5 @@
 import { ValueInput } from '../../../../components'
 import React, { useState } from 'react'
-import { match } from 'ts-pattern'
 import SignUpScrollContainer from '../SignUpScrollContainer'
 import SignUpButtonContainer from '../SignUpButtonContainer'
 import * as S from './style'

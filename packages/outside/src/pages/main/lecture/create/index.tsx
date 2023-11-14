@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react'
-import * as S from '../../../../styles/create/style'
+import * as S from '../../../../styles/lecture/create/style'
 import { Header } from '@common/components'
 import Bg3 from '@common/assets/png/mainBg3.png'
 import { Chevron, People } from '@common/assets'

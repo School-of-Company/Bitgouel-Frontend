@@ -52,6 +52,15 @@ export const From = styled.div`
   background-color: ${({ theme }) => theme.color.gray[900]};
   padding: 0.25rem 0.5rem;
   border-radius: 1.125rem;
+  margin-right: 1rem;
+`
+
+export const StatusFrom = styled.div`
+  ${({ theme }) => theme.typo.caption};
+  color: ${({ theme }) => theme.color.gray[400]};
+  background-color: ${({ theme }) => theme.color.gray[900]};
+  padding: 0.25rem 0.5rem;
+  border-radius: 1.125rem;
 `
 
 export const MenuNum = styled.div`
