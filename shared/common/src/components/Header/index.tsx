@@ -32,9 +32,15 @@ const Header = ({ inside }: { inside: boolean }) => {
     useRecoilState<string>(LectureTypeText)
 
   useEffect(() => {
-    setMyStatus(
-      localStorage.getItem('Bitgouel-accessToken') ? '내 정보' : '로그인'
-    )
+    if (localStorage.getItem('Bitgouel-accessToken')) {
+      if (pathname === '/main/myPage') {
+        setMyStatus('로그아웃')
+      } else {
+        setMyStatus('내 정보')
+      }
+    } else {
+      setMyStatus('로그인')
+    }
 
     const onScroll = () => {
       const { scrollY } = window
@@ -91,7 +97,9 @@ const Header = ({ inside }: { inside: boolean }) => {
           {menuList.map((menu, idx) => (
             <S.MenuItem
               key={idx}
-              onClick={() => myStatus === '내 정보' && router.push(menu.link)}
+              onClick={() =>
+                myStatus === '내 정보' || ('로그아웃' && router.push(menu.link))
+              }
               isSameRoute={pathname === menu.link}
               color={spanColor}
             >
@@ -139,11 +147,12 @@ const Header = ({ inside }: { inside: boolean }) => {
         </S.ButtonWrapper>
         <S.LoginButton
           onClick={() =>
-            router.push(
-              match(myStatus)
-                .with('내 정보', () => '/main/lecture')
-                .otherwise(() => '/auth/login')
-            )
+            match(myStatus)
+              .with('내 정보', () => router.push('/main/myPage'))
+              .with('로그아웃', () => {
+                router.push('/auth/login'), localStorage.clear()
+              })
+              .otherwise(() => router.push('/auth/login'))
           }
           color={btnColor}
         >
