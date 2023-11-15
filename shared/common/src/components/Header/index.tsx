@@ -144,18 +144,18 @@ const Header = ({ inside }: { inside: boolean }) => {
         <S.LoginButton
           onClick={() =>
             localStorage.getItem('Bitgouel-accessToken')
-              ? pathname === '/main/myPage'
-                ? logOut()
-                : router.push('/main/myPage')
+              ? match(pathname)
+                  .with('/main/myPage', () => logOut())
+                  .otherwise(() => router.push('/main/myPage'))
               : router.push('/auth/login')
           }
           color={btnColor}
         >
           <span>
             {localStorage.getItem('Bitgouel-accessToken')
-              ? pathname === '/main/myPage'
-                ? '로그아웃'
-                : '내 정보'
+              ? match(pathname)
+                  .with('/main/myPage', () => '로그아웃')
+                  .otherwise(() => '내 정보')
               : '로그인'}
           </span>
         </S.LoginButton>
