@@ -1,12 +1,15 @@
 import styled from '@emotion/styled'
 
-export const SelectCalendarModalContainer = styled.div`
+export const SelectCalendarModalWrapper = styled.div`
   bottom: 9rem;
   position: fixed;
-  width: 20.75rem;
+  width: 33.25rem;
   height: 19.25rem;
   border-radius: 0.5rem;
   background-color: ${({ theme }) => theme.color.gray[500]};
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   &::after {
     content: '';
@@ -17,13 +20,80 @@ export const SelectCalendarModalContainer = styled.div`
     border-right: 1.25rem solid transparent;
     border-top: 1.25rem solid ${({ theme }) => theme.color.gray[500]};
   }
+`
 
+export const TimeContainer = styled.div`
+  width: 12rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-left: 1rem;
+  border-right: 1px solid ${({ theme }) => theme.color.gray['700']};
+`
+
+export const ShowDateBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`
+
+export const ShowDateText = styled.h2`
+  color: ${({ theme }) => theme.color.white};
+  ${({ theme }) => theme.typo.title_sm};
+  margin: 0;
+`
+
+export const TimeBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  span {
+    color: ${({ theme }) => theme.color.white};
+  }
+`
+
+export const InputTimeBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+
+  svg {
+    cursor: pointer;
+  }
+`
+
+export const TimeInput = styled.input`
+  width: 3.5rem;
+  height: 2.625rem;
+  background-color: rgba(255, 255, 255, 0.35);
+  border-radius: 8px;
+  border: 1px solid ${({ theme }) => theme.color.gray['400']};
+  color: ${({ theme }) => theme.color.white};
+  outline: none;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  padding-left: 1.1rem;
+  ${({ theme }) => theme.typo.text_lg}
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+`
+
+export const CalendarContainer = styled.div`
   .react-calendar {
     background: none;
     color: ${({ theme }) => theme.color.white};
     border-radius: 1em;
     padding: 1rem;
     border: none;
+    width: 18.75rem;
   }
 
   .react-calendar__navigation {
