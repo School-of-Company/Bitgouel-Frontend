@@ -99,7 +99,8 @@ const Header = ({ inside }: { inside: boolean }) => {
             <S.MenuItem
               key={idx}
               onClick={() =>
-                myStatus === '내 정보' || ('로그아웃' && router.push(menu.link))
+                (myStatus === '내 정보' || myStatus === '로그아웃') &&
+                router.push(menu.link)
               }
               isSameRoute={pathname === menu.link}
               color={spanColor}
