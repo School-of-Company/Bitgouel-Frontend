@@ -4,7 +4,7 @@ import * as S from './style'
 import { ValueInput } from '../../components'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { usePostLogin } from '../../../../api/common/src/hooks'
+import { usePostLogin } from '@bitgouel/api'
 import { useResetRecoilState } from 'recoil'
 import {
   Page,

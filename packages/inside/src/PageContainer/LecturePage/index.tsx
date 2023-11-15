@@ -5,10 +5,10 @@ import Bg3 from '@common/assets/png/mainBg3.png'
 import { LectureTypeText } from '@common/atoms'
 import { LectureItem } from '@common/components'
 import { LectureTypeModal } from '@common/modals'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useRecoilState } from 'recoil'
 import * as S from './style'
-import { LectureItemType, useGetLectureList } from '@api/common'
+import { LectureItemType, useGetLectureList } from '@bitgouel/api'
 import { lectureToEnum } from '@common/constants'
 
 const LecturePage = () => {

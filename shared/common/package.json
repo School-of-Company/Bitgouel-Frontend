@@ -1,12 +1,10 @@
 {
-  "name": "common",
+  "name": "@bitgouel/common",
   "version": "1.0.0",
-  "description": "",
   "main": "./index.ts",
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "dependencies": {
+    "@bitgouel/api": "workspace:^",
     "@types/react-dom": "^18",
     "ts-pattern": "^5.0.5",
     "typescript": "5.0.4"

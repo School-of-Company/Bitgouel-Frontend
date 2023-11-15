@@ -9,8 +9,8 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useRecoilState } from 'recoil'
 import * as S from './style'
-import { LectureItemType, useGetLectureList } from '@api/common'
 import { lectureToEnum } from '@common/constants'
+import { LectureItemType, useGetLectureList } from '@bitgouel/api'
 
 const LecturePage = () => {
   const router = useRouter()

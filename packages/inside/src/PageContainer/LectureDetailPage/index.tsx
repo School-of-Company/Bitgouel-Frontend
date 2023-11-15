@@ -2,7 +2,7 @@
 
 import Bg3 from '@common/assets/png/mainBg3.png'
 import * as S from './style'
-import { useGetDetailLecture } from '@api/common'
+import { useGetDetailLecture } from '@bitgouel/api'
 import { lectureToKor } from '@common/constants'
 
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {

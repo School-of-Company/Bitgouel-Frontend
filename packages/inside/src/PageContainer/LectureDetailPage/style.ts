@@ -19,7 +19,7 @@ export const BgContainer = styled.div`
 `
 
 export const LectureTitle = styled.span`
-  color: ${({ theme }) => theme.color.white};
+  color: ${({ theme }) => theme.color.black};
   ${({ theme }) => theme.typo.title_lg};
 `
 
@@ -105,5 +105,3 @@ export const EnrolmentButton = styled.div`
   padding: 0.85rem 2.6rem;
   border-radius: 0.5rem;
 `
-
-

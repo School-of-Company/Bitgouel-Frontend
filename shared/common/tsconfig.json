@@ -1,19 +1,12 @@
 {
   "extends": "../../tsconfig.json",
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "src",
-    "src/custom.d.ts",
-    "packages/outside/src/pages/main/lecture/create"
-  ],
+  "include": ["**/*.ts", "**/*.tsx", "src", "src/custom.d.ts"],
   "exclude": ["node_modules"],
   "main": "./index.ts",
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"],
-      "@api/*": ["../api/*"]
+      "@/*": ["./src/*"]
     },
     "plugins": []
   }

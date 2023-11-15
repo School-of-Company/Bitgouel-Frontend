@@ -6,7 +6,9 @@ import * as S from './style'
 import Bg3 from '@common/assets/png/mainBg3.png'
 import { Chevron, People } from '@common/assets'
 import SelectCalendarModal from '@/modals/SelectCalendarModal'
+import { useModal } from '@common/hooks'
 import SelectScoreModal from '@/modals/SelectScoreModal'
+import LectureCreateModal from '@/modals/LectureCreateModal'
 
 const LectureCreatePage = () => {
   const MAXLENGTH: number = 1000 as const
@@ -85,6 +87,8 @@ const LectureCreatePage = () => {
     e.preventDefault()
     setIsInput(false)
   }
+
+  const { openModal } = useModal()
 
   return (
     <div>
@@ -209,7 +213,9 @@ const LectureCreatePage = () => {
             </S.SettingSelectionContainer>
           </S.LectureSetting>
           <S.ButtonContainer>
-            <S.CreateButton>개설 신청하기</S.CreateButton>
+            <S.CreateButton onClick={() => openModal(<LectureCreateModal />)}>
+              개설 신청하기
+            </S.CreateButton>
           </S.ButtonContainer>
         </S.DocumentInput>
       </S.DocumentInputContainer>

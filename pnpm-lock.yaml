@@ -35,9 +35,15 @@ importers:
 
   packages/inside:
     dependencies:
+      '@bitgouel/api':
+        specifier: workspace:^
+        version: link:../../shared/api
+      '@bitgouel/common':
+        specifier: workspace:^
+        version: link:../../shared/common
       next:
-        specifier: 14.0.0
-        version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.0.2
+        version: 14.0.2(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18
         version: 18.2.0
@@ -85,6 +91,19 @@ importers:
 
   packages/outside:
     dependencies:
+      '@bitgouel/api':
+        specifier: workspace:^
+        version: link:../../shared/api
+      next:
+        specifier: 14.0.2
+        version: 14.0.2(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: ^18
+        version: 18.2.0
+      react-dom:
+        specifier: ^18
+        version: 18.2.0(react@18.2.0)
+    devDependencies:
       '@types/node':
         specifier: ^20
         version: 20.8.8
@@ -94,18 +113,9 @@ importers:
       '@types/react-dom':
         specifier: ^18
         version: 18.2.14
-      next:
-        specifier: 14.0.0
-        version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18
-        version: 18.2.0
       react-calendar:
         specifier: ^4.6.1
         version: 4.6.1(@types/react@18.2.31)(react-dom@18.2.0)(react@18.2.0)
-      react-dom:
-        specifier: ^18
-        version: 18.2.0(react@18.2.0)
       typescript:
         specifier: ^5
         version: 5.0.4
@@ -186,6 +196,9 @@ importers:
 
   shared/common:
     dependencies:
+      '@bitgouel/api':
+        specifier: workspace:^
+        version: link:../api
       '@types/react-dom':
         specifier: ^18
         version: 18.2.14
@@ -4526,9 +4539,11 @@ packages:
     resolution: {integrity: sha512-glY1nQuoqX4Ft8Uk+KfJudOD7DQbbEDF6k9XpGncaohW3RW4eSWBlx6AA0fZCrh40tZcQNH4jS/Oc59J6Eq+aw==}
     dependencies:
       '@types/lodash': 4.14.200
+    dev: true
 
   /@types/lodash@4.14.200:
     resolution: {integrity: sha512-YI/M/4HRImtNf3pJgbF+W6FrXovqj+T+/HpENLTooK9PnkacBsDpeP3IpHab40CClUfhNmdM2WTNP2sa2dni5Q==}
+    dev: true
 
   /@types/mdx@2.0.9:
     resolution: {integrity: sha512-OKMdj17y8Cs+k1r0XFyp59ChSOwf8ODGtMQ4mnpfz5eFDk1aO41yN3pSKGuvVzmWAkFp37seubY1tzOVpwfWwg==}
@@ -4741,6 +4756,7 @@ packages:
 
   /@wojtekmaj/date-utils@1.5.1:
     resolution: {integrity: sha512-+i7+JmNiE/3c9FKxzWFi2IjRJ+KzZl1QPu6QNrsgaa2MuBgXvUy4gA1TVzf/JMdIIloB76xSKikTWuyYAIVLww==}
+    dev: true
 
   /@xtuc/ieee754@1.2.0:
     resolution: {integrity: sha512-DX8nKgqcGwsc0eJSqYt5lwP4DH5FlHnmuWWBRy7X0NcaGR0ZtuyeESgMwTYVEtxmsNGY+qit4QYT/MIYTOTPeA==}
@@ -5542,6 +5558,7 @@ packages:
   /clsx@2.0.0:
     resolution: {integrity: sha512-rQ1+kcj+ttHG0MKVGBUXwayCCF1oh39BF5COIpRzuCEv8Mwjv0XucrI2ExNTOn9IlLifGClWQcU9BrZORvtw6Q==}
     engines: {node: '>=6'}
+    dev: true
 
   /color-convert@1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
@@ -6706,6 +6723,7 @@ packages:
     dependencies:
       '@types/lodash.memoize': 4.1.9
       lodash.memoize: 4.1.2
+    dev: true
 
   /giget@1.1.3:
     resolution: {integrity: sha512-zHuCeqtfgqgDwvXlR84UNgnJDuUHQcNI5OqWqFxxuk2BshuKbYhJWdxBsEo4PvKqoGh23lUAIvBNpChMLv7/9Q==}
@@ -7623,6 +7641,7 @@ packages:
 
   /lodash.memoize@4.1.2:
     resolution: {integrity: sha512-t7j+NzmgnQzTAYXcsHYLgimltOV1MXHtlOWf6GjL9Kj8GK5FInw5JotxvbOs+IvV1/Dzo04/fCGfLVs7aXb4Ag==}
+    dev: true
 
   /lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
@@ -8737,6 +8756,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       tiny-warning: 1.0.3
+    dev: true
 
   /react-colorful@5.6.1(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-1exovf0uGTGyq5mXQT0zgQ80uvj2PCwvF8zY1RN9/vbJVSjSo3fsB/4L3ObbF7u70NduSiK4xu4Y6q1MHoUGEw==}
@@ -9781,6 +9801,7 @@ packages:
 
   /tiny-warning@1.0.3:
     resolution: {integrity: sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==}
+    dev: true
 
   /tmpl@1.0.5:
     resolution: {integrity: sha512-3f0uOEAQwIqGuWW2MVzYg8fV/QNnc/IpuJNG837rLuczAaLVHslWHZQj4IGiEl5Hs3kkbhwL9Ab7Hrsmuj+Smw==}

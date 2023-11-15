@@ -5,7 +5,7 @@ import { lectureQueryKeys } from '../../libs/queryKeys'
 import { lectureUrl } from '../../libs/urlController'
 
 export const useGetDetailLecture = (
-  id: string | undefined,
+  id: string,
   options?: UseQueryOptions<AxiosResponse>
 ) =>
   useQuery<AxiosResponse>(
