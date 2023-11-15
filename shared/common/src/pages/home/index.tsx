@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { Arrow } from '../../assets'
 import Bg1 from '../../assets/png/slide1.png'
@@ -21,7 +23,6 @@ const HomePage = () => {
 
   return (
     <div>
-
       <S.SlideBg url={imageArr[bgNum]}>
         <div>
           <S.BgContainer>

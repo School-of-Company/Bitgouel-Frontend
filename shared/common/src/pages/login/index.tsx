@@ -1,3 +1,5 @@
+'use client'
+
 import * as S from './style'
 import { ValueInput } from '../../components'
 import { useState } from 'react'
@@ -16,7 +18,6 @@ import {
   IsPasswordRgx,
   IsValidate,
 } from '../../atoms'
-import { ErrorText } from '../../components/ValueInput/style'
 
 const LoginPage = () => {
   const [emailValue, setEmailValue] = useState<string>('')

@@ -9,13 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "react": "^18",
+    "react-dom": "^18",
+    "next": "14.0.2"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "react-calendar": "^4.6.1",
     "@types/node": "^20",
     "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "next": "14.0.0",
-    "react": "^18",
-    "react-calendar": "^4.6.1",
-    "react-dom": "^18",
-    "typescript": "^5"
+    "@types/react-dom": "^18"
   }
 }

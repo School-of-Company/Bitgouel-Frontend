@@ -1,3 +1,5 @@
+'use client'
+
 import * as S from './style'
 import Page1 from './Pagination/Page1'
 import Page2 from './Pagination/Page2'

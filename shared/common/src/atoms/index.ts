@@ -1,3 +1,4 @@
+import { LectureItemType } from '../types'
 import { ReactNode } from 'react'
 import { atom } from 'recoil'
 
@@ -82,4 +83,9 @@ export const IsValidate = atom<boolean>({
 export const LectureTypeText = atom<string>({
   key: 'LectureTypeText',
   default: '상호학점인정교육과정',
+})
+
+export const LectureDetails = atom<LectureItemType>({
+  key: 'LectureDetails',
+  default: undefined,
 })

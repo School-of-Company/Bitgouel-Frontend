@@ -1,3 +1,5 @@
+import { LectureListOptionsTypes } from '../types'
+
 export const authUrl = {
   auth: () => `/auth`,
   login: () => `/auth/login`,
@@ -12,10 +14,10 @@ export const authUrl = {
 
 export const lectureUrl = {
   lecture: () => `/lecture`,
+  lectureList: (options: LectureListOptionsTypes) =>
+    `/lecture?page=${options.page}&size=${options.size}&status=${options.status}&type=${options.type}`,
   lectureDetail: (id: string) => `/lecture/${id}`,
   lectureApplication: (id: string) => `/lecture/${id}`,
   lectureApprove: (id: string) => `lecture/${id}/approve`,
   lectureReject: (id: string) => `lectre/${id}/reject`,
-
-
-}
+} as const

@@ -1,5 +1,5 @@
 import axios, { InternalAxiosRequestConfig, AxiosError } from 'axios'
-import { useReissue } from '../../hooks'
+import { usePatchReissue } from '../../hooks'
 import TokenManager from './TokenManager'
 
 export const instance = axios.create({
@@ -18,10 +18,9 @@ instance.interceptors.request.use(
       tokenManager.validateToken(
         tokenManager.refreshExpired,
         tokenManager.refreshToken
-      ) &&
-      !tokenManager.skipUrl()
+      )
     ) {
-      await useReissue()
+      // await useReissue()
       tokenManager.initToken()
     } else if (
       !tokenManager.validateToken(
@@ -31,8 +30,8 @@ instance.interceptors.request.use(
       !tokenManager.validateToken(
         tokenManager.refreshExpired,
         tokenManager.refreshToken
-      ) &&
-      !tokenManager.skipUrl()
+      )
+      // !tokenManager.skipUrl()
     )
       tokenManager.removeTokens()
 
@@ -48,8 +47,8 @@ instance.interceptors.request.use(
 
     if (
       error.response &&
-      error.response.status === 401 &&
-      !tokenManager.skipUrl()
+      error.response.status === 401
+      // !tokenManager.skipUrl()
     ) {
       // return usePatchAccessToken()
     }

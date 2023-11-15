@@ -1,10 +1,10 @@
+import { usePathname } from 'next/navigation'
 import {
   accessToken,
   refreshToken,
   accessExpiredAt,
   refreshExpiredAt,
-} from '../token'
-import Router from 'next/router'
+} from '../'
 
 interface TokensType {
   accessToken: string
@@ -36,11 +36,12 @@ class TokenManager {
     return expiredAt
   }
 
-  skipUrl() {
-    const skipUrlArr = ['/login', '/signUp']
+  // skipUrl() {
+  //   const pathname = usePathname()
+  //   const skipUrlArr = ['/login', '/signUp']
 
-    return skipUrlArr.includes(Router.route)
-  }
+  //   return skipUrlArr.includes(pathname)
+  // }
 
   initToken() {
     if (typeof window === 'undefined') return

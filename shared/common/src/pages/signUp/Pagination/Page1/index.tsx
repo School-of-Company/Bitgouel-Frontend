@@ -1,10 +1,12 @@
-import { ValueInput } from '../../../../components'
+'use client'
+
 import React, { useState } from 'react'
-import SignUpScrollContainer from '../SignUpScrollContainer'
-import SignUpButtonContainer from '../SignUpButtonContainer'
-import * as S from './style'
 import { useRecoilState } from 'recoil'
 import { Page1Obj } from '../../../../atoms'
+import { ValueInput } from '../../../../components'
+import SignUpButtonContainer from '../SignUpButtonContainer'
+import SignUpScrollContainer from '../SignUpScrollContainer'
+import * as S from './style'
 
 const Page1 = ({
   page,
