@@ -90,3 +90,9 @@ export const LoginButton = styled.div<{ color: string }>`
     background-color: rgb(209, 209, 209, 0.5);
   }
 `
+
+export const SelectFilterContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`

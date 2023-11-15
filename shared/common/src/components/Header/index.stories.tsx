@@ -1,3 +1,5 @@
+'use client'
+
 import Header from '.'
 import type { Meta, StoryObj } from '@storybook/react'
 

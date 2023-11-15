@@ -7,10 +7,10 @@ import { AxiosResponse } from 'axios'
 export const useDeleteRejectLecture = (id: string) =>
   useMutation<AxiosResponse>(
     lectureQueryKeys.deleteLectureReject(id),
-    () => del(lectureUrl.lectureReject(id), {}),
+    () => del(lectureUrl.lectureReject(id)),
     {
-      onSuccess: (response) => {
-        console.log(response.data)
+      onSuccess: ({ data }) => {
+        console.log(data)
       },
       onError: (error) => {
         console.log(error)

@@ -1,11 +1,13 @@
+'use client'
+
 import type { Meta, StoryObj } from '@storybook/react'
-import SignUp from '.'
+import SignUpPage from '.'
 
 export default {
-  title: 'common/SignUp',
-  component: SignUp,
-} as Meta<typeof SignUp>
+  title: 'common/SignUpPage',
+  component: SignUpPage,
+} as Meta<typeof SignUpPage>
 
-type Story = StoryObj<typeof SignUp>
+type Story = StoryObj<typeof SignUpPage>
 
 export const Primary: Story = {}

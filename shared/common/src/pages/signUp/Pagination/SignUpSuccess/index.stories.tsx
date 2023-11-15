@@ -1,3 +1,5 @@
+'use client'
+
 import SignUpSuccess from '.'
 import type { Meta, StoryObj } from '@storybook/react'
 

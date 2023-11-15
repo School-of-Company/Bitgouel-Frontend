@@ -18,8 +18,7 @@ instance.interceptors.request.use(
       tokenManager.validateToken(
         tokenManager.refreshExpired,
         tokenManager.refreshToken
-      ) &&
-      !tokenManager.skipUrl()
+      )
     ) {
       // await useReissue()
       tokenManager.initToken()
@@ -31,8 +30,8 @@ instance.interceptors.request.use(
       !tokenManager.validateToken(
         tokenManager.refreshExpired,
         tokenManager.refreshToken
-      ) &&
-      !tokenManager.skipUrl()
+      )
+      // !tokenManager.skipUrl()
     )
       tokenManager.removeTokens()
 
@@ -48,8 +47,8 @@ instance.interceptors.request.use(
 
     if (
       error.response &&
-      error.response.status === 401 &&
-      !tokenManager.skipUrl()
+      error.response.status === 401
+      // !tokenManager.skipUrl()
     ) {
       // return usePatchAccessToken()
     }
