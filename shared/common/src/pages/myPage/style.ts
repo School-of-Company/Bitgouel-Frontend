@@ -9,7 +9,6 @@ export const MyPageWrapper = styled.div<{ url: any }>`
   width: 100%;
   background-position: center;
   background-size: cover;
-  overflow: hidden;
 `
 
 export const BlackBox = styled.div`
