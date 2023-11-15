@@ -1,3 +1,5 @@
+'use client'
+
 import Sequence from '.'
 import type { Meta, StoryObj } from '@storybook/react'
 

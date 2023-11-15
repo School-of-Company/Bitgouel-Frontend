@@ -1,3 +1,5 @@
+'use client'
+
 import LectureItem from '.'
 import type { Meta, StoryObj } from '@storybook/react'
 

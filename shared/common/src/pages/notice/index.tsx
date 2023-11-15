@@ -1,3 +1,5 @@
+'use client'
+
 import { MegaPhone, Message, Question } from '../../assets/'
 import Bg1 from '../../assets/png/mainBg1.png'
 import * as S from './style'

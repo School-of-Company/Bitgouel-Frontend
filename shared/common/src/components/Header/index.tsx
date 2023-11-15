@@ -1,3 +1,5 @@
+'use client'
+
 import Symbol1 from '../../assets/png/symbol1.png'
 import Symbol2 from '../../assets/png/symbol2.png'
 import * as S from './style'
@@ -5,7 +7,6 @@ import { match } from 'ts-pattern'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Plus, Filter, MegaPhone, Message, Question } from '../../assets'
-import { SelectFilterContainer } from '../../../../../packages/inside/src/styles/lecture/style'
 import { LectureTypeModal } from '../../modals'
 import { useRecoilState } from 'recoil'
 import { LectureTypeText } from '../../atoms'
@@ -125,7 +126,7 @@ const Header = ({ inside }: { inside: boolean }) => {
             .otherwise(() => null)}
           {match(pathname)
             .with('/main/lecture', () => (
-              <SelectFilterContainer>
+              <S.SelectFilterContainer>
                 <div onClick={() => setIsLectureType((prev) => !prev)}>
                   <Filter />
                 </div>
@@ -137,7 +138,7 @@ const Header = ({ inside }: { inside: boolean }) => {
                     setIsLectureType={setIsLectureType}
                   />
                 )}
-              </SelectFilterContainer>
+              </S.SelectFilterContainer>
             ))
             .with('/main/notice', () => <Message />)
             .otherwise(() => null)}

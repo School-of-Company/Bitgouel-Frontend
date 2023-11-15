@@ -1,3 +1,4 @@
+'use client'
 import * as S from './style'
 import { Circle } from '../../assets/index'
 

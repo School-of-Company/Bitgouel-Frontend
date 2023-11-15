@@ -1,13 +1,16 @@
+'use client'
+
 import { useMutation } from '@tanstack/react-query'
 import { authQueryKeys } from '../../libs/queryKeys'
 import { authUrl } from '../../libs/urlController'
 import { patch } from '../../libs'
 import TokenManager from '../../libs/api/TokenManager'
 import { AxiosError, AxiosResponse } from 'axios'
-import Route from 'next/router'
+import { useRouter } from 'next/navigation'
 
 export const usePatchReissue = () => {
   const tokenManager = new TokenManager()
+  const router = useRouter()
 
   return useMutation<AxiosResponse, AxiosError>(
     authQueryKeys.patchReissue(),
@@ -29,7 +32,7 @@ export const usePatchReissue = () => {
       },
       onError: (error) => {
         tokenManager.removeTokens()
-        return Route.push('/auth/login')
+        return router.push('/auth/login')
       },
     }
   )

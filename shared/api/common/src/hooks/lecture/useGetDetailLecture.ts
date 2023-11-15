@@ -1,10 +1,8 @@
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
+import { AxiosResponse } from 'axios'
+import { get } from '../../libs'
 import { lectureQueryKeys } from '../../libs/queryKeys'
 import { lectureUrl } from '../../libs/urlController'
-import { get } from '../../libs'
-import { AxiosResponse } from 'axios'
-import { LectureItemType } from '../../types'
-import { useSetRecoilState } from 'recoil'
 
 export const useGetDetailLecture = (
   id: string | undefined,

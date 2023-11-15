@@ -1,3 +1,5 @@
+'use client'
+
 import * as S from './style'
 import React from 'react'
 import { useRecoilValue, useRecoilState } from 'recoil'

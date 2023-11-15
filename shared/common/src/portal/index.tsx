@@ -1,3 +1,5 @@
+'use client'
+
 import ReactDOM from 'react-dom'
 import {
   cloneElement,

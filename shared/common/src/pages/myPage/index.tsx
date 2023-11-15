@@ -1,3 +1,5 @@
+'use client'
+
 import Bg4 from '../../assets/png/mainBg4.png'
 import Image from 'next/image'
 import ClipBox from '../../assets/png/clipBox.png'
