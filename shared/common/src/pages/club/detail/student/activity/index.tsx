@@ -4,6 +4,7 @@ import * as S from './style'
 import Bg2 from '../../../../../assets/png/mainBg2.png'
 import { Plus } from '../../../../../assets'
 import { useRouter } from 'next/navigation'
+import { ActivityItem } from '../../../../../components'
 
 const ActivityPage = () => {
   const router = useRouter()
@@ -21,6 +22,11 @@ const ActivityPage = () => {
           </S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
+      <S.ActivityWrapper>
+        <S.ActivityContainer>
+          <ActivityItem />
+        </S.ActivityContainer>
+      </S.ActivityWrapper>
     </div>
   )
 }

@@ -5,8 +5,8 @@ export const ActivityItemWrapper = styled.div`
   flex-wrap: wrap;
   align-content: space-between;
   cursor: pointer;
-  width: 17.625rem;
-  height: 10.5rem;
+  width: 15.5rem;
+  height: 10rem;
   background-color: ${({ theme }) => theme.color.white};
   border: 0.0625rem solid ${({ theme }) => theme.color.gray[900]};
   border-radius: 0.5rem;

@@ -50,3 +50,18 @@ export const ClubButton = styled.div`
     background-color: rgb(255, 255, 255, 0.4);
   }
 `
+
+export const ActivityWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+`
+
+export const ActivityContainer = styled.div`
+  display: flex;
+  margin-top: 1.5rem;
+  width: 76.5rem;
+  height: 100%;
+  flex-wrap: wrap;
+`
