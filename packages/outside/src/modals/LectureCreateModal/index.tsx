@@ -30,11 +30,7 @@ const LectureCreateModal = ({ createValues }: LectureCreateItemType) => {
           <S.LectureCreateQuestion>
             강의를 개설하시겠습니까?
           </S.LectureCreateQuestion>
-          <S.LectureCreateTitle>
-            국가는 국민 모두의 생산 및 생활의 기반이 되는 국토의 효율적이고
-            균형있는 이용·개발과 보전을 위하여 법률이 정하는 바에 의하여 그에
-            관한 필요한 제한과 의무를 과할 수 있다.
-          </S.LectureCreateTitle>
+          <S.LectureCreateTitle>{createValues.name}</S.LectureCreateTitle>
         </S.LectureLetterContainer>
         <S.LectureCreateButtonWrapper>
           <S.CancleButton onClick={closeModal}>취소</S.CancleButton>

@@ -35,6 +35,9 @@ export const LectureCreateTitle = styled.p`
   ${({ theme }) => theme.typo.text_sm};
   color: ${({ theme }) => theme.color.gray['400']};
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 export const LectureCreateButtonWrapper = styled.div`
