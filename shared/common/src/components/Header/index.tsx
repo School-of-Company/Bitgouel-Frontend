@@ -27,22 +27,11 @@ const Header = ({ inside }: { inside: boolean }) => {
   const [borderColor, setBorderColor] = useState<string>('')
   const [spanColor, setSpanColor] = useState<string>('#fff')
   const [svgView, setSvgView] = useState<string>('none')
-  const [myStatus, setMyStatus] = useState<string>('로그인')
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
   const [lectureTypeText, setLectureTypeText] =
     useRecoilState<string>(LectureTypeText)
 
   useEffect(() => {
-    if (localStorage.getItem('Bitgouel-accessToken')) {
-      if (pathname === '/main/myPage') {
-        setMyStatus('로그아웃')
-      } else {
-        setMyStatus('내 정보')
-      }
-    } else {
-      setMyStatus('로그인')
-    }
-
     const onScroll = () => {
       const { scrollY } = window
       if (pathname === '/main/home') {
@@ -83,6 +72,11 @@ const Header = ({ inside }: { inside: boolean }) => {
     }
   }, [])
 
+  const logOut = () => {
+    router.push('/auth/login')
+    localStorage.clear()
+  }
+
   return (
     <S.HeaderWrapper
       bgColor={bgColor}
@@ -99,7 +93,8 @@ const Header = ({ inside }: { inside: boolean }) => {
             <S.MenuItem
               key={idx}
               onClick={() =>
-                myStatus === '내 정보' || ('로그아웃' && router.push(menu.link))
+                localStorage.getItem('Bitgouel-accessToken') &&
+                router.push(menu.link)
               }
               isSameRoute={pathname === menu.link}
               color={spanColor}
@@ -148,16 +143,21 @@ const Header = ({ inside }: { inside: boolean }) => {
         </S.ButtonWrapper>
         <S.LoginButton
           onClick={() =>
-            match(myStatus)
-              .with('내 정보', () => router.push('/main/myPage'))
-              .with('로그아웃', () => {
-                router.push('/auth/login'), localStorage.clear()
-              })
-              .otherwise(() => router.push('/auth/login'))
+            localStorage.getItem('Bitgouel-accessToken')
+              ? match(pathname)
+                  .with('/main/myPage', () => logOut())
+                  .otherwise(() => router.push('/main/myPage'))
+              : router.push('/auth/login')
           }
           color={btnColor}
         >
-          <span>{myStatus}</span>
+          <span>
+            {localStorage.getItem('Bitgouel-accessToken')
+              ? match(pathname)
+                  .with('/main/myPage', () => '로그아웃')
+                  .otherwise(() => '내 정보')
+              : '로그인'}
+          </span>
         </S.LoginButton>
       </S.HeaderContainer>
     </S.HeaderWrapper>
