@@ -72,8 +72,7 @@ export const ButtonWrapper = styled.div<{ view: string }>`
 
 export const LoginButton = styled.div<{ color: string }>`
   background-color: ${({ color }) => color};
-  width: 4.125rem;
-  height: 2.375rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
   text-align: center;
   align-items: center;
