@@ -18,7 +18,35 @@ export const BgContainer = styled.div`
   margin-bottom: 1rem;
 `
 
-export const ClubTitle = styled.div`
+export const NoticeTitle = styled.span`
   color: ${({ theme }) => theme.color.white};
   ${({ theme }) => theme.typo.title_lg};
+`
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  align-items: flex-end;
+`
+
+export const ClubButton = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: rgb(255, 255, 255, 0.2);
+  height: 2.5rem;
+  margin-left: 1rem;
+  padding: 0 0.75rem;
+  border-radius: 0.5rem;
+  backdrop-filter: blur(0.25rem);
+  svg {
+    fill: ${({ theme }) => theme.color.white};
+  }
+  span {
+    color: ${({ theme }) => theme.color.white};
+    ${({ theme }) => theme.typo.text_md};
+    margin-left: 0.25rem;
+  }
+  &:hover {
+    background-color: rgb(255, 255, 255, 0.4);
+  }
 `
