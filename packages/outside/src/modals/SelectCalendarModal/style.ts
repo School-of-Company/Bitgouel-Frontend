@@ -15,7 +15,7 @@ export const SelectCalendarModalWrapper = styled.div`
     content: '';
     position: absolute;
     top: 19rem;
-    right: 9rem;
+    right: 15rem;
     border-left: 1.25rem solid transparent;
     border-right: 1.25rem solid transparent;
     border-top: 1.25rem solid ${({ theme }) => theme.color.gray[500]};
@@ -29,7 +29,7 @@ export const TimeContainer = styled.div`
   align-items: flex-start;
   gap: 1.5rem;
   margin-left: 1rem;
-  border-right: 1px solid ${({ theme }) => theme.color.gray['700']};
+  border-right: 0.0625rem solid ${({ theme }) => theme.color.gray['700']};
 `
 
 export const ShowDateBox = styled.div`
@@ -69,8 +69,8 @@ export const TimeInput = styled.input`
   width: 3.5rem;
   height: 2.625rem;
   background-color: rgba(255, 255, 255, 0.35);
-  border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.color.gray['400']};
+  border-radius: 0.5rem;
+  border: 0.0625rem solid ${({ theme }) => theme.color.gray['400']};
   color: ${({ theme }) => theme.color.white};
   outline: none;
   box-sizing: border-box;
@@ -90,7 +90,7 @@ export const CalendarContainer = styled.div`
   .react-calendar {
     background: none;
     color: ${({ theme }) => theme.color.white};
-    border-radius: 1em;
+    border-radius: 0.5rem;
     padding: 1rem;
     border: none;
     width: 18.75rem;

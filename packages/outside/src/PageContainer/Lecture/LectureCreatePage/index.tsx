@@ -14,7 +14,7 @@ const LectureCreatePage = () => {
   const MAXLENGTH: number = 1000 as const
 
   const [lectureTitle, setLectuerTitle] = useState<string>('')
-  const [lectureMainText, setLectuerMainText] = useState<string>('')
+  const [lectureContent, setLectureContent] = useState<string>('')
 
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
   const [lectureTypeText, setLectureTypeText] =
@@ -46,7 +46,7 @@ const LectureCreatePage = () => {
   const saveLectureMainText = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
-    setLectuerMainText(event.target.value)
+    setLectureContent(event.target.value)
   }
 
   const openSelectModal = (type: string) => {
@@ -117,7 +117,10 @@ const LectureCreatePage = () => {
                     setIsLectureType={setIsLectureType}
                   />
                 )}
-                <S.SettingSelection onClick={() => openSelectModal('')}>
+                <S.SettingSelection
+                  onClick={() => openSelectModal('')}
+                  isOpen={isLectureType}
+                >
                   <Chevron />
                   <S.SettingButton>{lectureTypeText}</S.SettingButton>
                 </S.SettingSelection>
@@ -133,6 +136,7 @@ const LectureCreatePage = () => {
                   )}
                   <S.SettingDateBox
                     onClick={() => openSelectModal('신청 시작')}
+                    isOpen={isStart}
                   >
                     <Chevron />
                     <S.SettingButton>{startDateText}</S.SettingButton>
@@ -149,6 +153,7 @@ const LectureCreatePage = () => {
                   )}
                   <S.SettingDateBox
                     onClick={() => openSelectModal('신청 마감')}
+                    isOpen={isEnd}
                   >
                     <Chevron />
                     <S.SettingButton>{endDateText}</S.SettingButton>
@@ -166,6 +171,7 @@ const LectureCreatePage = () => {
                   )}
                   <S.SettingDateBox
                     onClick={() => openSelectModal('강의 시작')}
+                    isOpen={isComplete}
                   >
                     <Chevron />
                     <S.SettingButton>{completeDateText}</S.SettingButton>
@@ -173,7 +179,7 @@ const LectureCreatePage = () => {
                 </S.SelectModalContainer>
               </S.SettingSelection>
               {lectureTypeText !== '대학탐방프로그램' && (
-                <S.SettingSelection>
+                <S.SettingSelection isOpen={isScore}>
                   <S.SelectModalContainer>
                     {isScore && (
                       <SelectScoreModal
@@ -184,7 +190,7 @@ const LectureCreatePage = () => {
                     )}
                     <S.SettingScoreBox onClick={() => openSelectModal('학점')}>
                       <Chevron />
-                      <S.SettingButton>학점 선택</S.SettingButton>
+                      <S.SettingButton>{scoreText}</S.SettingButton>
                     </S.SettingScoreBox>
                   </S.SelectModalContainer>
                 </S.SettingSelection>
@@ -202,7 +208,7 @@ const LectureCreatePage = () => {
                     }
                     type='number'
                     placeholder='최대 수강 인원 입력'
-                    maxLength={3}
+                    pattern={'^[0-9]{3}$'}
                   />
                 ) : (
                   <S.ShowPeople onClick={() => setIsInput(true)}>
