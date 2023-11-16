@@ -4,9 +4,12 @@ import Bg3 from '@common/assets/png/mainBg3.png'
 import * as S from './style'
 import { useGetDetailLecture } from '@bitgouel/api'
 import { lectureToKor } from '@common/constants'
+import LectureApplyModal from '@/modals/LectureApplyModal'
+import { useModal } from '@common/hooks'
 
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
+  const { openModal } = useModal()
 
   return (
     <div>
@@ -51,7 +54,18 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
           </S.TitleContainer>
           <S.MainText>{data?.data.content}</S.MainText>
           <S.ButtonContainer>
-            {/* <S.CreateApproveButton>신청 승인하기</S.CreateApproveButton> */}
+            <S.LectureApplyButton
+              onClick={() =>
+                openModal(
+                  <LectureApplyModal
+                    title={data?.data.name}
+                    lectureId={lectureId}
+                  />
+                )
+              }
+            >
+              수강 신청하기
+            </S.LectureApplyButton>
           </S.ButtonContainer>
         </S.Document>
       </S.DocumentWrapper>

@@ -26,8 +26,8 @@ export const usePostCreateLecture = () => {
     (createValues) => post(lectureUrl.lecture(), createValues),
     {
       onSuccess: (data) => {
-        router.push('/main/lecture')
         closeModal()
+        router.push('/main/lecture')
       },
       onError: (error) => {
         console.log(error)
