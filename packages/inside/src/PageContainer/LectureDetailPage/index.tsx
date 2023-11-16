@@ -6,7 +6,6 @@ import { useGetDetailLecture } from '@bitgouel/api'
 import { lectureToKor } from '@common/constants'
 import LectureApplyModal from '@/modals/LectureApplyModal'
 import { useModal } from '@common/hooks'
-import { cutedStr } from '@common/utils'
 
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
@@ -24,15 +23,16 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
           <S.TitleContainer>
             <S.SubTitle>
               <S.Professor>{data?.data.lecturer} 교수</S.Professor>
-              <S.Date>{`${cutedStr(data?.data.createAt, 0, 4)}년 ${cutedStr(
-                data?.data.createAt,
+              <S.Date>{`${data?.data.createAt.slice(
+                0,
+                4
+              )}년 ${data?.data.createAt.slice(
                 5,
                 7
-              )}월 ${cutedStr(data?.data.createAt, 8, 10)}일 ${cutedStr(
-                data?.data.createAt,
-                11,
-                16
-              )}`}</S.Date>
+              )}월 ${data?.data.createAt.slice(
+                8,
+                10
+              )}일 ${data?.data.createAt.slice(11, 16)}`}</S.Date>
             </S.SubTitle>
             <S.Title>{data?.data.name}</S.Title>
             <S.SubMenuContainer>
@@ -41,25 +41,27 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
                 <div>
                   <span>신청기간: </span>
                   <span>
-                    {`${cutedStr(data?.data.startDate, 0, 4)}년 ${cutedStr(
-                      data?.data.startDate,
+                    {`${data?.data.startDate.slice(
+                      0,
+                      4
+                    )}년 ${data?.data.startDate.slice(
                       5,
                       7
-                    )}월 ${cutedStr(data?.data.startDate, 8, 10)}일 ${cutedStr(
-                      data?.data.startDate,
-                      11,
-                      16
-                    )}`}
-                    ~
-                    {`${cutedStr(data?.data.endDate, 0, 4)}년 ${cutedStr(
-                      data?.data.endDate,
+                    )}월 ${data?.data.startDate.slice(
+                      8,
+                      10
+                    )}일 ${data?.data.startDate.slice(11, 16)}`}{' '}
+                    ~{' '}
+                    {`${data?.data.endDate.slice(
+                      0,
+                      4
+                    )}년 ${data?.data.endDate.slice(
                       5,
                       7
-                    )}월 ${cutedStr(data?.data.endDate, 8, 10)}일 ${cutedStr(
-                      data?.data.endDate,
-                      11,
-                      16
-                    )}`}
+                    )}월 ${data?.data.endDate.slice(
+                      8,
+                      10
+                    )}일 ${data?.data.endDate.slice(11, 16)}`}
                   </span>
                 </div>
                 <div>
@@ -70,15 +72,18 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
                 </div>
                 <div>
                   <span>강의 시작: </span>
-                  <span>{`${cutedStr(
-                    data?.data.completeDate,
-                    0,
-                    4
-                  )}년 ${cutedStr(data?.data.completeDate, 5, 7)}월 ${cutedStr(
-                    data?.data.completeDate,
-                    8,
-                    10
-                  )}일 ${cutedStr(data?.data.completeDate, 11, 16)}`}</span>
+                  <span>
+                    {`${data?.data.completeDate.slice(
+                      0,
+                      4
+                    )}년 ${data?.data.completeDate.slice(
+                      5,
+                      7
+                    )}월 ${data?.data.completeDate.slice(
+                      8,
+                      10
+                    )}일 ${data?.data.completeDate.slice(11, 16)}`}
+                  </span>
                 </div>
                 <div>
                   <span>학점: </span>
