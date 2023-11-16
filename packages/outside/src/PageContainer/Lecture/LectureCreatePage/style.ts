@@ -167,6 +167,7 @@ export const CreateButton = styled.div<{ isAble: boolean }>`
   color: ${({ theme, isAble }) =>
     isAble ? theme.color.white : theme.color.gray[400]};
   ${({ theme }) => theme.typo.text_lg};
+  font-weight: 400;
   cursor: pointer;
   bottom: 1.75rem;
   position: fixed;
