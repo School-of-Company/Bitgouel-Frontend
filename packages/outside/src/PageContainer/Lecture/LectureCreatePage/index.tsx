@@ -114,9 +114,9 @@ const LectureCreatePage = () => {
               .toString()
               .padStart(2, '0')}T${startDateText
               .replace(/\s/g, '')
-              .slice(10, 12)}:${startDateText
+              .slice(11, 13)}:${startDateText
               .replace(/\s/g, '')
-              .slice(13, 15)}:00`,
+              .slice(14, 16)}:00`,
             endDate: `${endDate.getFullYear()}-${(endDate.getMonth() + 1)
               .toString()
               .padStart(2, '0')}-${endDate
@@ -124,9 +124,9 @@ const LectureCreatePage = () => {
               .toString()
               .padStart(2, '0')}T${endDateText
               .replace(/\s/g, '')
-              .slice(10, 12)}:${endDateText
+              .slice(11, 13)}:${endDateText
               .replace(/\s/g, '')
-              .slice(13, 15)}:00`,
+              .slice(14, 16)}:00`,
             completeDate: `${completeDate.getFullYear()}-${(
               completeDate.getMonth() + 1
             )
@@ -136,9 +136,9 @@ const LectureCreatePage = () => {
               .toString()
               .padStart(2, '0')}T${completeDateText
               .replace(/\s/g, '')
-              .slice(10, 12)}:${completeDateText
+              .slice(11, 13)}:${completeDateText
               .replace(/\s/g, '')
-              .slice(13, 15)}:00`,
+              .slice(14, 16)}:00`,
             lectureType: lectureToEnum[lectureTypeText],
             credit:
               lectureTypeText === '대학탐방프로그램'

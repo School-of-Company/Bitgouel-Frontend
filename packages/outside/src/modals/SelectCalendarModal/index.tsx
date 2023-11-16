@@ -30,9 +30,9 @@ const SelectCalendarModal = ({
     if (increase) {
       setHour((prev) => prev + 1)
       setText(
-        `${date.getFullYear()}.${(date.getMonth() + 1)
+        `${date.getFullYear()}년 ${(date.getMonth() + 1)
           .toString()
-          .padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')} 
+          .padStart(2, '0')}월 ${date.getDate().toString().padStart(2, '0')}일 
           ${(hour + 1).toString().padStart(2, '0')}:${minutes
           .toString()
           .padStart(2, '0')}
@@ -41,10 +41,10 @@ const SelectCalendarModal = ({
     } else {
       setHour((prev) => prev - 1)
       setText(
-        `${date.getFullYear()}.${(date.getMonth() + 1)
+        `${date.getFullYear()}년 ${(date.getMonth() + 1)
           .toString()
-          .padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')} 
-          ${(hour + 1).toString().padStart(2, '0')}:${minutes
+          .padStart(2, '0')}월 ${date.getDate().toString().padStart(2, '0')}일 
+          ${(hour - 1).toString().padStart(2, '0')}:${minutes
           .toString()
           .padStart(2, '0')}
         `
@@ -56,9 +56,9 @@ const SelectCalendarModal = ({
     if (increase) {
       setMinutes((prev) => prev + 5)
       setText(
-        `${date.getFullYear()}.${(date.getMonth() + 1)
+        `${date.getFullYear()}년 ${(date.getMonth() + 1)
           .toString()
-          .padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')} 
+          .padStart(2, '0')}월 ${date.getDate().toString().padStart(2, '0')}일 
           ${hour.toString().padStart(2, '0')}:${(minutes + 5)
           .toString()
           .padStart(2, '0')}
@@ -67,9 +67,9 @@ const SelectCalendarModal = ({
     } else {
       setMinutes((prev) => prev - 5)
       setText(
-        `${date.getFullYear()}.${(date.getMonth() + 1)
+        `${date.getFullYear()}년 ${(date.getMonth() + 1)
           .toString()
-          .padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')} 
+          .padStart(2, '0')}월 ${date.getDate().toString().padStart(2, '0')}일 
           ${hour.toString().padStart(2, '0')}:${(minutes - 5)
           .toString()
           .padStart(2, '0')}
@@ -103,7 +103,7 @@ const SelectCalendarModal = ({
               maxLength={2}
               disabled={true}
             />
-            <div onClick={() => hour !== 1 && handleHourUpDown(false)}>
+            <div onClick={() => hour !== 0 && handleHourUpDown(false)}>
               <Chevron color={'#ffffff'} />
             </div>
           </S.InputTimeBox>
@@ -134,12 +134,12 @@ const SelectCalendarModal = ({
             if (!(value instanceof Date)) return
             setDate(value)
             setText(
-              `${value.getFullYear()}.${(value.getMonth() + 1)
+              `${value.getFullYear()}년 ${(value.getMonth() + 1)
                 .toString()
-                .padStart(2, '0')}.${value
+                .padStart(2, '0')}월 ${value
                 .getDate()
                 .toString()
-                .padStart(2, '0')} 
+                .padStart(2, '0')}일 
                 ${hour.toString().padStart(2, '0')}:${minutes
                 .toString()
                 .padStart(2, '0')}
