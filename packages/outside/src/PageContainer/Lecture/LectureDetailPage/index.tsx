@@ -5,6 +5,7 @@ import * as S from './style'
 import { useDeleteRejectLecture, useGetDetailLecture } from '@bitgouel/api'
 import { lectureToKor } from '@common/constants'
 import { usePatchApproveLecture } from '@bitgouel/api'
+import { cutedStr } from '@common/utils'
 
 const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
@@ -23,7 +24,15 @@ const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
           <S.TitleContainer>
             <S.SubTitle>
               <S.Professor>{data?.data.lecturer} 교수</S.Professor>
-              <S.Date>{data?.data.createAt}</S.Date>
+              <S.Date>{`${cutedStr(data?.data.createAt, 0, 4)}년 ${cutedStr(
+                data?.data.createAt,
+                5,
+                7
+              )}월 ${cutedStr(data?.data.createAt, 8, 10)}일 ${cutedStr(
+                data?.data.createAt,
+                11,
+                16
+              )}`}</S.Date>
             </S.SubTitle>
             <S.Title>{data?.data.name}</S.Title>
             <S.SubMenuContainer>
@@ -32,7 +41,25 @@ const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
                 <div>
                   <span>신청기간: </span>
                   <span>
-                    {data?.data.startDate} ~ {data?.data.endDate}
+                    {`${cutedStr(data?.data.startDate, 0, 4)}년 ${cutedStr(
+                      data?.data.startDate,
+                      5,
+                      7
+                    )}월 ${cutedStr(data?.data.startDate, 8, 10)}일 ${cutedStr(
+                      data?.data.startDate,
+                      11,
+                      16
+                    )}`}{' '}
+                    ~{' '}
+                    {`${cutedStr(data?.data.endDate, 0, 4)}년 ${cutedStr(
+                      data?.data.endDate,
+                      5,
+                      7
+                    )}월 ${cutedStr(data?.data.endDate, 8, 10)}일 ${cutedStr(
+                      data?.data.endDate,
+                      11,
+                      16
+                    )}`}
                   </span>
                 </div>
                 <div>
@@ -43,7 +70,15 @@ const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
                 </div>
                 <div>
                   <span>강의 시작: </span>
-                  <span>{data?.data.completeDate}</span>
+                  <span>{`${cutedStr(
+                    data?.data.completeDate,
+                    0,
+                    4
+                  )}년 ${cutedStr(data?.data.completeDate, 5, 7)}월 ${cutedStr(
+                    data?.data.completeDate,
+                    8,
+                    10
+                  )}일 ${cutedStr(data?.data.completeDate, 11, 16)}`}</span>
                 </div>
                 <div>
                   <span>학점: </span>

@@ -1,4 +1,4 @@
-import { LectureItemType } from '../types'
+import { LectureItemType } from '@bitgouel/api'
 import { ReactNode } from 'react'
 import { atom } from 'recoil'
 

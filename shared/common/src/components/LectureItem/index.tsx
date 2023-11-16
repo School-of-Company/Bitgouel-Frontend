@@ -3,7 +3,8 @@
 import { lectureToKor, lectureStatusToKor } from '../../constants'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
-import { LectureItemType } from '../../types'
+import { LectureItemType } from '@bitgouel/api'
+import { cutedStr } from '../../utils'
 
 interface LectureItemProps {
   item: LectureItemType
@@ -19,7 +20,15 @@ const LectureItem = ({ item, inside }: LectureItemProps) => {
     >
       <S.SubTitle>
         <S.Professor>{item.lecturer}</S.Professor>
-        <S.Date>{item.startDate}</S.Date>
+        <S.Date>{`${cutedStr(item.completeDate, 0, 4)}년 ${cutedStr(
+          item.completeDate,
+          8,
+          10
+        )}월 ${cutedStr(item.completeDate, 8, 10)}일 ${cutedStr(
+          item.completeDate,
+          11,
+          16
+        )}`}</S.Date>
       </S.SubTitle>
       <S.Title>{item.name}</S.Title>
       <S.MainTextContainer>
@@ -35,7 +44,25 @@ const LectureItem = ({ item, inside }: LectureItemProps) => {
         </S.StatusFrom>
         <S.MenuNum>
           <span>
-            {item.startDate} ~ {item.endDate}
+            {`${cutedStr(item.startDate, 0, 4)}년 ${cutedStr(
+              item.startDate,
+              8,
+              10
+            )}월 ${cutedStr(item.startDate, 8, 10)}일 ${cutedStr(
+              item.startDate,
+              11,
+              16
+            )}`}{' '}
+            ~{' '}
+            {`${cutedStr(item.endDate, 0, 4)}년 ${cutedStr(
+              item.endDate,
+              8,
+              10
+            )}월 ${cutedStr(item.endDate, 8, 10)}일 ${cutedStr(
+              item.endDate,
+              11,
+              16
+            )}`}
           </span>
           <span>•</span>
           <span>
