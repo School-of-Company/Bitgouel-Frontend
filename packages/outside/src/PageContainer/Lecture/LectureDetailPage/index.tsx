@@ -2,11 +2,14 @@
 
 import Bg3 from '@common/assets/png/mainBg3.png'
 import * as S from './style'
-import { useGetDetailLecture } from '@bitgouel/api'
+import { useDeleteRejectLecture, useGetDetailLecture } from '@bitgouel/api'
 import { lectureToKor } from '@common/constants'
+import { usePatchApproveLecture } from '@bitgouel/api'
 
 const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
+  const { mutate: approve } = usePatchApproveLecture(lectureId)
+  const { mutate: reject } = useDeleteRejectLecture(lectureId)
 
   return (
     <div>
@@ -52,8 +55,12 @@ const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
           <S.MainText>{data?.data.content}</S.MainText>
           <S.ButtonWrapper>
             <S.ButtonContainer>
-              <S.CreateNotApproveButton>신청 거부하기</S.CreateNotApproveButton>
-              <S.CreateApproveButton>신청 승인하기</S.CreateApproveButton>
+              <S.CreateNotApproveButton onClick={() => reject()}>
+                신청 거부하기
+              </S.CreateNotApproveButton>
+              <S.CreateApproveButton onClick={() => approve()}>
+                신청 승인하기
+              </S.CreateApproveButton>
             </S.ButtonContainer>
           </S.ButtonWrapper>
         </S.Document>
