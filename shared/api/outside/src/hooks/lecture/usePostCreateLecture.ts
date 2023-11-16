@@ -2,7 +2,9 @@ import { useMutation } from '@tanstack/react-query'
 import { lectureQueryKeys } from '../../../../common'
 import { lectureUrl } from '../../../../common'
 import { post } from '../../../../common'
-import { AxiosResponse } from 'axios'
+import { AxiosError, AxiosResponse } from 'axios'
+import { useRouter } from 'next/navigation'
+import { useModal } from '../../../../../common/src/hooks'
 
 interface LectureCreateItemType {
   name: string
@@ -15,16 +17,21 @@ interface LectureCreateItemType {
   maxRegisteredUser: number
 }
 
-export const usePostCreateLecture = () =>
-  useMutation<AxiosResponse<LectureCreateItemType[]>>(
+export const usePostCreateLecture = () => {
+  const router = useRouter()
+  const { closeModal } = useModal()
+
+  return useMutation<AxiosResponse, AxiosError, LectureCreateItemType>(
     lectureQueryKeys.postLetureCreate(),
-    (newCreate) => post(lectureUrl.lecture(), newCreate),
+    (createValues) => post(lectureUrl.lecture(), createValues),
     {
       onSuccess: (data) => {
-        console.log(data)
+        router.push('/main/lecture')
+        closeModal()
       },
       onError: (error) => {
         console.log(error)
       },
     }
   )
+}

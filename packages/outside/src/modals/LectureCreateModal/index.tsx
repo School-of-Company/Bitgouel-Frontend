@@ -6,9 +6,22 @@ import Portal from '@common/portal'
 import React from 'react'
 import * as S from './style'
 
-const LectureCreateModal = () => {
+interface LectureCreateItemType {
+  createValues: {
+    name: string
+    content: string
+    startDate: string
+    endDate: string
+    completeDate: string
+    lectureType: string
+    credit: number
+    maxRegisteredUser: number
+  }
+}
+
+const LectureCreateModal = ({ createValues }: LectureCreateItemType) => {
   const { closeModal } = useModal()
-  const { data } = usePostCreateLecture()
+  const { mutate } = usePostCreateLecture()
 
   return (
     <Portal onClose={closeModal}>
@@ -24,8 +37,10 @@ const LectureCreateModal = () => {
           </S.LectureCreateTitle>
         </S.LectureLetterContainer>
         <S.LectureCreateButtonWrapper>
-          <S.CancleButton>취소</S.CancleButton>
-          <S.CreateButton>개설하기</S.CreateButton>
+          <S.CancleButton onClick={closeModal}>취소</S.CancleButton>
+          <S.CreateButton onClick={() => mutate(createValues)}>
+            개설하기
+          </S.CreateButton>
         </S.LectureCreateButtonWrapper>
       </S.LectureCreateModalWrapper>
     </Portal>
