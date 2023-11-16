@@ -84,7 +84,7 @@ const Header = ({ inside }: { inside: boolean }) => {
 
   const logOut = () => {
     router.push('/auth/login')
-    localStorage.clear()
+    tokenManager.removeTokens()
   }
 
   return (
@@ -102,10 +102,7 @@ const Header = ({ inside }: { inside: boolean }) => {
           {menuList.map((menu, idx) => (
             <S.MenuItem
               key={idx}
-              onClick={() =>
-                localStorage.getItem('Bitgouel-accessToken') &&
-                router.push(menu.link)
-              }
+              onClick={() => tokenManager.accessToken && router.push(menu.link)}
               isSameRoute={pathname === menu.link}
               color={spanColor}
             >
