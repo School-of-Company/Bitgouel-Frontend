@@ -13,7 +13,7 @@ const ActivityPage = () => {
     <div>
       <S.SlideBg url={Bg2}>
         <S.BgContainer>
-          <S.ClubTitle>학생 정보</S.ClubTitle>
+          <S.ClubTitle>학생 활동</S.ClubTitle>
           <S.ButtonContainer>
             <S.ClubButton>
               <Plus />
