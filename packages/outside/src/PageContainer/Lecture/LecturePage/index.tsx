@@ -20,7 +20,7 @@ const LecturePage = () => {
 
   const { data } = useGetLectureList({
     page: 0,
-    size: 4,
+    size: 1,
     status: 'PENDING',
     type: lectureToEnum[lectureTypeText],
   })
