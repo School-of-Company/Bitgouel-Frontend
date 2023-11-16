@@ -52,18 +52,19 @@ export const LectureCreateButtonWrapper = styled.div`
     align-items: center;
     justify-content: center;
     ${({ theme }) => theme.typo.text_lg}
-    border: 0.0625rem solid ${({ theme }) => theme.color.main};
     border-radius: 8px;
     cursor: pointer;
   }
 `
 
-export const CancleButton = styled.div`
+export const CancelButton = styled.div`
   color: ${({ theme }) => theme.color.main};
+  border: 0.0625rem solid ${({ theme }) => theme.color.main};
   background: none;
 `
 
 export const CreateButton = styled.div`
   color: ${({ theme }) => theme.color.white};
   background: ${({ theme }) => theme.color.main};
+  border: 0.0625rem solid ${({ theme }) => theme.color.main};
 `

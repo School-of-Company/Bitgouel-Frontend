@@ -3,7 +3,6 @@ import { lectureQueryKeys } from '../../../../common'
 import { lectureUrl } from '../../../../common'
 import { post } from '../../../../common'
 import { AxiosError, AxiosResponse } from 'axios'
-import { useRouter } from 'next/navigation'
 import { useModal } from '../../../../../common/src/hooks'
 
 interface LectureCreateItemType {
@@ -18,16 +17,12 @@ interface LectureCreateItemType {
 }
 
 export const usePostCreateLecture = () => {
-  const router = useRouter()
-  const { closeModal } = useModal()
-
-  return useMutation<AxiosResponse, AxiosError, LectureCreateItemType>(
+  useMutation<AxiosResponse, AxiosError, LectureCreateItemType>(
     lectureQueryKeys.postLetureCreate(),
     (createValues) => post(lectureUrl.lecture(), createValues),
     {
       onSuccess: (data) => {
-        closeModal()
-        router.push('/main/lecture')
+        console.log(data)
       },
       onError: (error) => {
         console.log(error)

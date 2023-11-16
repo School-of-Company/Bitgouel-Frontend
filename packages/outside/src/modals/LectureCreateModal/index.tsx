@@ -4,6 +4,7 @@ import { usePostCreateLecture } from '@bitgouel/api'
 import { useModal } from '@common/hooks'
 import Portal from '@common/portal'
 import React from 'react'
+import LectureCreateNoticeModal from '../LectureCreateNoticeModal'
 import * as S from './style'
 
 interface LectureCreateItemType {
@@ -20,8 +21,17 @@ interface LectureCreateItemType {
 }
 
 const LectureCreateModal = ({ createValues }: LectureCreateItemType) => {
-  const { closeModal } = useModal()
-  const { mutate } = usePostCreateLecture()
+  const { openModal, closeModal } = useModal()
+  const { mutate, data } = usePostCreateLecture()
+
+  const onCreate = () => {
+    mutate(createValues)
+
+    if (data?.status === 201) {
+      closeModal()
+      openModal(<LectureCreateNoticeModal />)
+    }
+  }
 
   return (
     <Portal onClose={closeModal}>
@@ -33,10 +43,8 @@ const LectureCreateModal = ({ createValues }: LectureCreateItemType) => {
           <S.LectureCreateTitle>{createValues.name}</S.LectureCreateTitle>
         </S.LectureLetterContainer>
         <S.LectureCreateButtonWrapper>
-          <S.CancleButton onClick={closeModal}>취소</S.CancleButton>
-          <S.CreateButton onClick={() => mutate(createValues)}>
-            개설하기
-          </S.CreateButton>
+          <S.CancelButton onClick={closeModal}>취소</S.CancelButton>
+          <S.CreateButton onClick={onCreate}>개설하기</S.CreateButton>
         </S.LectureCreateButtonWrapper>
       </S.LectureCreateModalWrapper>
     </Portal>

@@ -19,5 +19,5 @@ export const lectureUrl = {
   lectureDetail: (id: string) => `/lecture/${id}`,
   lectureApplication: (id: string) => `/lecture/${id}`,
   lectureApprove: (id: string) => `lecture/${id}/approve`,
-  lectureReject: (id: string) => `lectre/${id}/reject`,
+  lectureReject: (id: string) => `lecture/${id}/reject`,
 } as const

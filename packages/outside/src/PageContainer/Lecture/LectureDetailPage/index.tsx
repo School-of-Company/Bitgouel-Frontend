@@ -2,15 +2,15 @@
 
 import Bg3 from '@common/assets/png/mainBg3.png'
 import * as S from './style'
-import { useDeleteRejectLecture, useGetDetailLecture } from '@bitgouel/api'
+import { useGetDetailLecture } from '@bitgouel/api'
 import { lectureToKor } from '@common/constants'
-import { usePatchApproveLecture } from '@bitgouel/api'
-import { cutedStr } from '@common/utils'
+import { useModal } from '@common/hooks'
+import LectureApproveModal from '@/modals/LectureApproveModal'
+import LectureRejectModal from '@/modals/LectureRejectModal'
 
 const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
-  const { mutate: approve } = usePatchApproveLecture(lectureId)
-  const { mutate: reject } = useDeleteRejectLecture(lectureId)
+  const { openModal } = useModal()
 
   return (
     <div>
@@ -24,15 +24,16 @@ const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
           <S.TitleContainer>
             <S.SubTitle>
               <S.Professor>{data?.data.lecturer} 교수</S.Professor>
-              <S.Date>{`${cutedStr(data?.data.createAt, 0, 4)}년 ${cutedStr(
-                data?.data.createAt,
+              <S.Date>{`${data?.data.createAt.slice(
+                0,
+                4
+              )}년 ${data?.data.createAt.slice(
                 5,
                 7
-              )}월 ${cutedStr(data?.data.createAt, 8, 10)}일 ${cutedStr(
-                data?.data.createAt,
-                11,
-                16
-              )}`}</S.Date>
+              )}월 ${data?.data.createAt.slice(
+                8,
+                10
+              )}일 ${data?.data.createAt.slice(11, 16)}`}</S.Date>
             </S.SubTitle>
             <S.Title>{data?.data.name}</S.Title>
             <S.SubMenuContainer>
@@ -41,25 +42,16 @@ const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
                 <div>
                   <span>신청기간: </span>
                   <span>
-                    {`${cutedStr(data?.data.startDate, 0, 4)}년 ${cutedStr(
-                      data?.data.startDate,
+                    {`${data?.data.startDate.slice(
+                      0,
+                      4
+                    )}년 ${data?.data.startDate.slice(
                       5,
                       7
-                    )}월 ${cutedStr(data?.data.startDate, 8, 10)}일 ${cutedStr(
-                      data?.data.startDate,
-                      11,
-                      16
-                    )}`}{' '}
-                    ~{' '}
-                    {`${cutedStr(data?.data.endDate, 0, 4)}년 ${cutedStr(
-                      data?.data.endDate,
-                      5,
-                      7
-                    )}월 ${cutedStr(data?.data.endDate, 8, 10)}일 ${cutedStr(
-                      data?.data.endDate,
-                      11,
-                      16
-                    )}`}
+                    )}월 ${data?.data.startDate.slice(
+                      8,
+                      10
+                    )}일 ${data?.data.startDate.slice(11, 16)}`}
                   </span>
                 </div>
                 <div>
@@ -70,15 +62,16 @@ const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
                 </div>
                 <div>
                   <span>강의 시작: </span>
-                  <span>{`${cutedStr(
-                    data?.data.completeDate,
+                  <span>{`${data?.data.endDate.slice(
                     0,
                     4
-                  )}년 ${cutedStr(data?.data.completeDate, 5, 7)}월 ${cutedStr(
-                    data?.data.completeDate,
+                  )}년 ${data?.data.endDate.slice(
+                    5,
+                    7
+                  )}월 ${data?.data.endDate.slice(
                     8,
                     10
-                  )}일 ${cutedStr(data?.data.completeDate, 11, 16)}`}</span>
+                  )}일 ${data?.data.endDate.slice(11, 16)}`}</span>
                 </div>
                 <div>
                   <span>학점: </span>
@@ -90,10 +83,28 @@ const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
           <S.MainText>{data?.data.content}</S.MainText>
           <S.ButtonWrapper>
             <S.ButtonContainer>
-              <S.CreateNotApproveButton onClick={() => reject()}>
+              <S.CreateNotApproveButton
+                onClick={() =>
+                  openModal(
+                    <LectureRejectModal
+                      title={data?.data.name}
+                      lectureId={lectureId}
+                    />
+                  )
+                }
+              >
                 신청 거부하기
               </S.CreateNotApproveButton>
-              <S.CreateApproveButton onClick={() => approve()}>
+              <S.CreateApproveButton
+                onClick={() =>
+                  openModal(
+                    <LectureApproveModal
+                      title={data?.data.name}
+                      lectureId={lectureId}
+                    />
+                  )
+                }
+              >
                 신청 승인하기
               </S.CreateApproveButton>
             </S.ButtonContainer>
