@@ -10,8 +10,10 @@ import { Plus, Filter, MegaPhone, Message, Question } from '../../assets'
 import { LectureTypeModal } from '../../modals'
 import { useRecoilState } from 'recoil'
 import { LectureTypeText } from '../../atoms'
+import { TokenManager } from '@api/common'
 
 const Header = ({ inside }: { inside: boolean }) => {
+  const tokenManager = new TokenManager()
   const router = useRouter()
   const pathname = usePathname()
   const menuList = [
@@ -30,6 +32,7 @@ const Header = ({ inside }: { inside: boolean }) => {
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
   const [lectureTypeText, setLectureTypeText] =
     useRecoilState<string>(LectureTypeText)
+  const [text, setText] = useState<string>('로그인')
 
   useEffect(() => {
     const onScroll = () => {
@@ -71,6 +74,13 @@ const Header = ({ inside }: { inside: boolean }) => {
       window.removeEventListener('scroll', onScroll)
     }
   }, [])
+
+  useEffect(() => {
+    if (tokenManager.accessToken) {
+      if (pathname === '/main/myPage') setText('로그아웃')
+      else if (pathname !== '/main/myPage') setText('내 정보')
+    }
+  }, [pathname])
 
   const logOut = () => {
     router.push('/auth/login')
@@ -143,7 +153,7 @@ const Header = ({ inside }: { inside: boolean }) => {
         </S.ButtonWrapper>
         <S.LoginButton
           onClick={() =>
-            localStorage.getItem('Bitgouel-accessToken')
+            tokenManager.accessToken
               ? match(pathname)
                   .with('/main/myPage', () => logOut())
                   .otherwise(() => router.push('/main/myPage'))
@@ -151,13 +161,7 @@ const Header = ({ inside }: { inside: boolean }) => {
           }
           color={btnColor}
         >
-          <span>
-            {localStorage.getItem('Bitgouel-accessToken')
-              ? match(pathname)
-                  .with('/main/myPage', () => '로그아웃')
-                  .otherwise(() => '내 정보')
-              : '로그인'}
-          </span>
+          <span>{text}</span>
         </S.LoginButton>
       </S.HeaderContainer>
     </S.HeaderWrapper>
