@@ -5,16 +5,45 @@ import Bg2 from '../../../../assets/png/mainBg2.png'
 import { Plus } from '../../../../assets'
 import { useRouter } from 'next/navigation'
 import { ActivityItem } from '../../../../components'
+import { ApproveStatusEnum } from '@api/common'
+
+interface ActivityItemType {
+  activityId: string
+  title: string
+  userId: string
+  userName: string
+  approveStatus: ApproveStatusEnum
+}
 
 const ActivityPage = () => {
   const router = useRouter()
 
-  // const activityList = [
-  //   {
-  //     activityId: '1',
-  //     title: ''
-  //   }
-  // ]
+  const activityList: ActivityItemType[] = [
+    {
+      activityId: '1',
+      title:
+        '국가는 국민 모두의 생산 및 생활의 기반이 되는 국토의 효율적이고 균형있는 이용·개발과 보전을 위하여 법률이 정하는 바에 의하여 그에 관한 필요한 제한과 의무를 과할 수 있다.',
+      userId: 'sdfsf',
+      userName: '박주홍',
+      approveStatus: 'APPROVED',
+    },
+    {
+      activityId: '2',
+      title:
+        '국가는 국민 모두의 생산 및 생활의 기반이 되는 국토의 효율적이고 균형있는 이용·개발과 보전을 위하여 법률이 정하는 바에 의하여 그에 관한 필요한 제한과 의무를 과할 수 있다.',
+      userId: 'sdfsf',
+      userName: '박주홍',
+      approveStatus: 'APPROVED',
+    },
+    {
+      activityId: '3',
+      title:
+        '국가는 국민 모두의 생산 및 생활의 기반이 되는 국토의 효율적이고 균형있는 이용·개발과 보전을 위하여 법률이 정하는 바에 의하여 그에 관한 필요한 제한과 의무를 과할 수 있다.',
+      userId: 'sdfsf',
+      userName: '박주홍',
+      approveStatus: 'APPROVED',
+    },
+  ]
 
   return (
     <div>
@@ -34,7 +63,9 @@ const ActivityPage = () => {
 
       <S.ActivityWrapper>
         <S.ActivityContainer>
-          <ActivityItem />
+          {activityList.map((activity) => (
+            <ActivityItem item={activity} key={activity.activityId} />
+          ))}
         </S.ActivityContainer>
       </S.ActivityWrapper>
     </div>
