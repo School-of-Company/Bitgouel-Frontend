@@ -70,13 +70,15 @@ export const SubTitle = styled.div`
   display: flex;
   span {
     ${({ theme }) => theme.typo.text_md};
-    color: ${({ theme }) => theme.color.gray[400]};
+    color: ${({ theme }) => theme.color.gray['400']};
   }
 `
 
-export const ApproveStatus = styled.div`
-  background-color: ${({ theme }) => theme.color.red[800]};
-  color: ${({ theme }) => theme.color.error};
+export const ApproveStatus = styled.div<{ approveColor: boolean }>`
+  background-color: ${({ theme, approveColor }) =>
+    approveColor ? theme.color.blue['800'] : theme.color.red['800']};
+  color: ${({ theme, approveColor }) =>
+    approveColor ? theme.color.main : theme.color.error};
   ${({ theme }) => theme.typo.text_md};
   text-align: center;
   padding: 0.5rem 1rem;
@@ -92,7 +94,7 @@ export const NumberBox = styled.div`
 
 export const SubTitleBox = styled.div`
   color: ${({ theme }) => theme.color.white};
-  background-color: ${({ theme }) => theme.color.gray[700]};
+  background-color: ${({ theme }) => theme.color.gray['700']};
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   margin-right: 0.5rem;
@@ -104,7 +106,7 @@ export const Title = styled.span`
 `
 
 export const MainText = styled.div`
-  color: ${({ theme }) => theme.color.gray[400]};
+  color: ${({ theme }) => theme.color.gray['400']};
   ${({ theme }) => theme.typo.text_sm};
   line-height: 1.5rem;
   margin-top: 2.25rem;

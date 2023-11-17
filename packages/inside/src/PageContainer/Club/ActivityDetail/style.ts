@@ -69,7 +69,7 @@ export const SubTitle = styled.div`
   padding: 0.5rem 0;
   span {
     ${({ theme }) => theme.typo.text_md};
-    color: ${({ theme }) => theme.color.gray[400]};
+    color: ${({ theme }) => theme.color.gray['400']};
   }
 `
 
@@ -79,7 +79,7 @@ export const Title = styled.span`
 `
 
 export const MainText = styled.div`
-  color: ${({ theme }) => theme.color.gray[400]};
+  color: ${({ theme }) => theme.color.gray['400']};
   ${({ theme }) => theme.typo.text_sm};
   line-height: 1.5rem;
   margin-top: 2.25rem;

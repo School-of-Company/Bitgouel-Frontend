@@ -5,7 +5,7 @@ export const SelectScoreBox = styled.div`
   bottom: 3rem;
   width: 11.75rem;
   height: 8.125rem;
-  background-color: ${({ theme }) => theme.color.gray[500]};
+  background-color: ${({ theme }) => theme.color.gray['500']};
   color: ${({ theme }) => theme.color.white};
   border-radius: 0.5rem;
 
@@ -16,7 +16,7 @@ export const SelectScoreBox = styled.div`
     right: 4.375rem;
     border-left: 1.25rem solid transparent;
     border-right: 1.25rem solid transparent;
-    border-top: 1.875rem solid ${({ theme }) => theme.color.gray[500]};
+    border-top: 1.875rem solid ${({ theme }) => theme.color.gray['500']};
   }
 `
 

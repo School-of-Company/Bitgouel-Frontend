@@ -6,7 +6,7 @@ export const SelectFilterBox = styled.div<{ location: string }>`
     location === '필터' ? '15.7rem' : location === '개설' ? '-7.5rem' : '4rem'};
   width: 11.75rem;
   height: 8.125rem;
-  background-color: ${({ theme }) => theme.color.gray[500]};
+  background-color: ${({ theme }) => theme.color.gray['500']};
   color: ${({ theme }) => theme.color.white};
   border-radius: 0.5rem;
 

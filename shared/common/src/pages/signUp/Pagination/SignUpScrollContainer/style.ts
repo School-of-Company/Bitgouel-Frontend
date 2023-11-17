@@ -20,7 +20,7 @@ export const SignUpScrollContainer = styled.div<{
     placeholder === '소속' || placeholder === '직업' ? '3.5rem' : '8rem'};
   overflow-y: scroll;
   background-color: #ffffff;
-  border: 0.0625rem solid ${({ theme }) => theme.color.gray[700]};
+  border: 0.0625rem solid ${({ theme }) => theme.color.gray['700']};
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -35,7 +35,7 @@ export const SignUpScrollContainer = styled.div<{
 
   &::-webkit-scrollbar-thumb {
     border-radius: 0.625rem;
-    background-color: ${({ theme }) => theme.color.gray[400]};
+    background-color: ${({ theme }) => theme.color.gray['400']};
   }
 `
 

@@ -40,7 +40,7 @@ export const PageCurrent = styled.div<{ current: number; page: number }>`
   height: 0.5rem;
   border-radius: 50%;
   background-color: ${({ current, page, theme }) =>
-    current === page ? theme.color.main : theme.color.gray[700]};
+    current === page ? theme.color.main : theme.color.gray['700']};
 `
 
 export const PaginationContainer = styled.div`

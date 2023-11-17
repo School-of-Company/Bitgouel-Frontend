@@ -5,6 +5,7 @@ import { Pen, TrashCan } from '@common/assets'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
 import { ApproveStatusEnum } from '@api/common'
+import { lectureStatusToKor } from '@common/constants'
 import { match } from 'ts-pattern'
 
 interface ActivityItemType {
@@ -51,7 +52,7 @@ const ActivityDetailPage = () => {
               <span>활동 수정</span>
             </S.LectureButton>
             <S.LectureButton>
-              <TrashCan />
+              <TrashCan />''
               <span>활동 삭제</span>
             </S.LectureButton>
           </S.TitleButtonContainer>
@@ -62,7 +63,13 @@ const ActivityDetailPage = () => {
           <S.TitleContainer>
             <S.Title>{object.title}</S.Title>
             <S.SubTitle>
-              <S.ApproveStatus></S.ApproveStatus>
+              <S.ApproveStatus
+                approveColor={match(object.approveStatus)
+                  .with('APPROVED', () => true)
+                  .otherwise(() => false)}
+              >
+                {lectureStatusToKor[object.approveStatus]}
+              </S.ApproveStatus>
               <S.NumberBox>
                 <S.SubTitleBox>학점</S.SubTitleBox>
                 <span>{object.credit}점 수여</span>

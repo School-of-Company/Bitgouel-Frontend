@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 
 export const LectureItemWrapper = styled.div`
   padding: 0.5rem 0;
-  border-bottom: 0.0625rem solid ${({ theme }) => theme.color.gray[900]};
+  border-bottom: 0.0625rem solid ${({ theme }) => theme.color.gray['900']};
   cursor: pointer;
 `
 
@@ -19,7 +19,7 @@ export const Professor = styled.span`
 `
 
 export const Date = styled.span`
-  color: ${({ theme }) => theme.color.gray[700]};
+  color: ${({ theme }) => theme.color.gray['700']};
 `
 
 export const Title = styled.span`
@@ -37,7 +37,7 @@ export const MainTextContainer = styled.section`
 
 export const MainText = styled.span`
   ${({ theme }) => theme.typo.text_sm};
-  color: ${({ theme }) => theme.color.gray[400]};
+  color: ${({ theme }) => theme.color.gray['400']};
 `
 
 export const SubMenuContainer = styled.div`
@@ -48,8 +48,8 @@ export const SubMenuContainer = styled.div`
 
 export const From = styled.div`
   ${({ theme }) => theme.typo.caption};
-  color: ${({ theme }) => theme.color.gray[400]};
-  background-color: ${({ theme }) => theme.color.gray[900]};
+  color: ${({ theme }) => theme.color.gray['400']};
+  background-color: ${({ theme }) => theme.color.gray['900']};
   padding: 0.25rem 0.5rem;
   border-radius: 1.125rem;
   margin-right: 1rem;
@@ -60,7 +60,7 @@ export const StatusFrom = styled.div<{ status: string; display: string }>`
   color: ${({ status, theme }) =>
     status === 'PENDING' ? theme.color.error : theme.color.main};
   background-color: ${({ status, theme }) =>
-    status === 'PENDING' ? theme.color.red[800] : theme.color.blue[800]};
+    status === 'PENDING' ? theme.color.red['800'] : theme.color.blue['800']};
   display: ${({ display }) => (display === 'none' ? 'none' : 'flex')};
   padding: 0.25rem 0.5rem;
   border-radius: 1.125rem;
@@ -72,7 +72,7 @@ export const MenuNum = styled.div`
   align-items: center;
   span {
     ${({ theme }) => theme.typo.caption};
-    color: ${({ theme }) => theme.color.gray[700]};
+    color: ${({ theme }) => theme.color.gray['700']};
     margin-right: 0.5rem;
   }
 `

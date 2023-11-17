@@ -48,7 +48,7 @@ export const InputTitle = styled.input`
   border: none;
   width: 100%;
   &::placeholder {
-    color: ${({ theme }) => theme.color.gray[700]};
+    color: ${({ theme }) => theme.color.gray['700']};
   }
 `
 
@@ -62,7 +62,7 @@ export const InputMainText = styled.textarea`
   width: 100%;
   resize: none;
   &::placeholder {
-    color: ${({ theme }) => theme.color.gray[700]};
+    color: ${({ theme }) => theme.color.gray['700']};
   }
 `
 
@@ -80,7 +80,7 @@ export const ActivitySetting = styled.div`
 
 export const SettingTitle = styled.div`
   ${({ theme }) => theme.typo.text_lg};
-  color: ${({ theme }) => theme.color.gray[400]};
+  color: ${({ theme }) => theme.color.gray['400']};
 `
 
 export const SettingSelectionContainer = styled.div`
@@ -155,8 +155,8 @@ export const ButtonContainer = styled.div`
 `
 
 export const CreateButton = styled.div`
-  background-color: ${({ theme }) => theme.color.gray[700]};
-  color: ${({ theme }) => theme.color.gray[400]};
+  background-color: ${({ theme }) => theme.color.gray['700']};
+  color: ${({ theme }) => theme.color.gray['400']};
   ${({ theme }) => theme.typo.text_lg};
   cursor: pointer;
   bottom: 1.75rem;
