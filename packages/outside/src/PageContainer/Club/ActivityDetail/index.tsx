@@ -4,6 +4,8 @@ import Bg2 from '@common/assets/png/mainBg2.png'
 import { Pen, TrashCan } from '@common/assets'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
+import { ApproveStatusEnum } from '@api/common'
+import { match } from 'ts-pattern'
 
 interface ActivityItemType {
   id: string
@@ -12,9 +14,10 @@ interface ActivityItemType {
   credit: number
   activityDate: string
   modifiedAt: string
+  approveStatus: ApproveStatusEnum
 }
 
-const object = {
+const object: ActivityItemType = {
   id: '',
   title:
     '국가는 국민 모두의 생산 및 생활의 기반이 되는 국토의 효율적이고 균형있는 이용·개발과 보전을 위하여 법률이 정하는 바에 의하여 그에 관한 필요한 제한과 의무를 과할 수 있다.',
@@ -23,6 +26,7 @@ const object = {
   credit: 1,
   activityDate: '2023-11-04',
   modifiedAt: "2023-11-08'T'12:03:00",
+  approveStatus: 'APPROVED',
 }
 
 interface ActivityDetailProps {
@@ -58,6 +62,7 @@ const ActivityDetailPage = () => {
           <S.TitleContainer>
             <S.Title>{object.title}</S.Title>
             <S.SubTitle>
+              <S.ApproveStatus></S.ApproveStatus>
               <S.NumberBox>
                 <S.SubTitleBox>학점</S.SubTitleBox>
                 <span>{object.credit}점 수여</span>

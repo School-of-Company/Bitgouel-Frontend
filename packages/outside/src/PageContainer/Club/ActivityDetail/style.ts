@@ -74,6 +74,16 @@ export const SubTitle = styled.div`
   }
 `
 
+export const ApproveStatus = styled.div`
+  background-color: ${({ theme }) => theme.color.red[800]};
+  color: ${({ theme }) => theme.color.error};
+  ${({ theme }) => theme.typo.text_md};
+  text-align: center;
+  padding: 0.5rem 1rem;
+  border-radius: 1.125rem;
+  margin-right: 2.5rem;
+`
+
 export const NumberBox = styled.div`
   display: flex;
   align-items: center;
