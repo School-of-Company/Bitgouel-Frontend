@@ -28,7 +28,7 @@ interface ActivityDetailProps {
   item: ActivityItemType
 }
 
-const ActivityDetailPage = ({ item }: ActivityDetailProps) => {
+const ActivityDetailPage = () => {
   return (
     <div>
       <S.SlideBg url={Bg2}>
