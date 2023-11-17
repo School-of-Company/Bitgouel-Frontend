@@ -1,10 +1,15 @@
 'use client'
 
 import * as S from './style'
+import { useRouter } from 'next/navigation'
 
 const ActivityItem = () => {
+  const router = useRouter()
+
   return (
-    <S.ActivityItemWrapper>
+    <S.ActivityItemWrapper
+      onClick={() => router.push('/main/club/detail/student/activity/detail')}
+    >
       <S.TextContainer>
         <div>
           <S.AcitivTitle>* 오늘의 일기 *</S.AcitivTitle>
