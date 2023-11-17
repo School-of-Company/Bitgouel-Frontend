@@ -1,0 +1,86 @@
+import styled from '@emotion/styled'
+
+export const SlideBg = styled.div<{ url: any }>`
+  height: 15rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-image: url(${({ url }) => url.src});
+  background-position: center;
+  background-size: cover;
+  align-items: flex-end;
+`
+
+export const BgContainer = styled.div`
+  width: 75rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+`
+
+export const ActivityTitle = styled.span`
+  color: ${({ theme }) => theme.color.white};
+  ${({ theme }) => theme.typo.title_lg};
+`
+
+export const DocumentWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`
+
+export const Document = styled.div`
+  width: 75rem;
+`
+
+export const TitleContainer = styled.div`
+  margin-top: 2rem;
+`
+
+export const SubTitle = styled.div`
+  padding: 0.5rem 0;
+  span {
+    ${({ theme }) => theme.typo.text_md};
+    color: ${({ theme }) => theme.color.gray[400]};
+  }
+`
+
+export const Title = styled.span`
+  ${({ theme }) => theme.typo.title_sm};
+  color: ${({ theme }) => theme.color.black};
+`
+
+export const MainText = styled.div`
+  color: ${({ theme }) => theme.color.gray[400]};
+  ${({ theme }) => theme.typo.text_sm};
+  line-height: 1.5rem;
+  margin-top: 2.25rem;
+  padding-bottom: 6.25rem;
+`
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  bottom: 1.6rem;
+  position: fixed;
+  div {
+    color: ${({ theme }) => theme.color.white};
+    ${({ theme }) => theme.typo.text_lg};
+    padding: 0.85rem 2.6rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+`
+
+export const CreateNotApproveButton = styled.div`
+  background-color: ${({ theme }) => theme.color.error};
+  margin-right: 1rem;
+`
+
+export const CreateApproveButton = styled.div`
+  background-color: ${({ theme }) => theme.color.main};
+`
