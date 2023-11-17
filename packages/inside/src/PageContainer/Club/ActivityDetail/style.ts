@@ -67,25 +67,10 @@ export const TitleContainer = styled.div`
 
 export const SubTitle = styled.div`
   padding: 0.5rem 0;
-  display: flex;
   span {
     ${({ theme }) => theme.typo.text_md};
     color: ${({ theme }) => theme.color.gray[400]};
   }
-`
-
-export const NumberBox = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: 2.5rem;
-`
-
-export const SubTitleBox = styled.div`
-  color: ${({ theme }) => theme.color.white};
-  background-color: ${({ theme }) => theme.color.gray[700]};
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  margin-right: 0.5rem;
 `
 
 export const Title = styled.span`
@@ -99,4 +84,31 @@ export const MainText = styled.div`
   line-height: 1.5rem;
   margin-top: 2.25rem;
   padding-bottom: 6.25rem;
+`
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  bottom: 1.6rem;
+  position: fixed;
+  div {
+    color: ${({ theme }) => theme.color.white};
+    ${({ theme }) => theme.typo.text_lg};
+    padding: 0.85rem 2.6rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+`
+
+export const CreateNotApproveButton = styled.div`
+  background-color: ${({ theme }) => theme.color.error};
+  margin-right: 1rem;
+`
+
+export const CreateApproveButton = styled.div`
+  background-color: ${({ theme }) => theme.color.main};
 `
