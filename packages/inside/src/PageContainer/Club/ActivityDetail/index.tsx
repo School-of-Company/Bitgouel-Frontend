@@ -3,6 +3,7 @@
 import Bg2 from '@common/assets/png/mainBg2.png'
 import { Pen, TrashCan } from '@common/assets'
 import * as S from './style'
+import { useRouter } from 'next/navigation'
 
 interface ActivityItemType {
   id: string
@@ -29,13 +30,19 @@ interface ActivityDetailProps {
 }
 
 const ActivityDetailPage = () => {
+  const router = useRouter()
+
   return (
     <div>
       <S.SlideBg url={Bg2}>
         <S.BgContainer>
           <S.ActivityTitle>게시글</S.ActivityTitle>
           <S.TitleButtonContainer>
-            <S.LectureButton>
+            <S.LectureButton
+              onClick={() =>
+                router.push('/main/club/detail/student/activity/detail/modify')
+              }
+            >
               <Pen />
               <span>활동 수정</span>
             </S.LectureButton>

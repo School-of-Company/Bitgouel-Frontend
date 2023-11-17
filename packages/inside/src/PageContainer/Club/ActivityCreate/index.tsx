@@ -4,8 +4,7 @@ import * as S from './style'
 import Bg2 from '@common/assets/png/mainBg2.png'
 import { Chevron } from '@common/assets'
 import { useState } from 'react'
-import SelectCalendarModal from '@/modals/SelectCalendarModal'
-import SelectScoreModal from '@/modals/SelectScoreModal'
+import { SelectCalendarModal, SelectScoreModal } from '@common/modals'
 
 const ActivityCreatePage = () => {
   const MAXLENGTH: number = 1000 as const
@@ -33,8 +32,7 @@ const ActivityCreatePage = () => {
       <S.SlideBg url={Bg2}>
         <S.BgContainer>
           <S.CreateTitle>활동 추가</S.CreateTitle>
-          <S.ButtonContainer>
-          </S.ButtonContainer>
+          <S.ButtonContainer></S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
       <S.DocumentInputContainer>
