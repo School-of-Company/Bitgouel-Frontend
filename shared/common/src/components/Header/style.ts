@@ -46,9 +46,9 @@ export const MenuItem = styled.span<{ isSameRoute: boolean; color: string }>`
   ${({ theme }) => theme.typo.text_lg};
   font-weight: 400;
   color: ${({ isSameRoute, color, theme }) =>
-    isSameRoute ? color : theme.color.gray[700]};
+    isSameRoute ? color : theme.color.gray['700']};
   &:hover {
-    color: ${({ theme }) => theme.color.gray[400]};
+    color: ${({ theme }) => theme.color.gray['400']};
   }
 `
 
@@ -63,7 +63,7 @@ export const ButtonWrapper = styled.div<{ view: string }>`
   svg {
     cursor: pointer;
     margin-left: 1rem;
-    fill: ${({ theme }) => theme.color.gray[800]};
+    fill: ${({ theme }) => theme.color.gray['800']};
     &:hover {
       fill: ${({ theme }) => theme.color.main};
     }

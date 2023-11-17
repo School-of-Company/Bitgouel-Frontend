@@ -29,15 +29,21 @@ importers:
       next:
         specifier: 14.0.0
         version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
+      react-calendar:
+        specifier: ^4.6.1
+        version: 4.6.1(@types/react@18.2.31)(react-dom@18.2.0)(react@18.2.0)
       recoil:
         specifier: ^0.7.7
         version: 0.7.7(react-dom@18.2.0)(react@18.2.0)
+      ts-pattern:
+        specifier: ^5.0.5
+        version: 5.0.5
 
   packages/inside:
     dependencies:
       next:
-        specifier: 14.0.0
-        version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
+        specifier: 14.0.2
+        version: 14.0.2(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18
         version: 18.2.0
@@ -85,6 +91,16 @@ importers:
 
   packages/outside:
     dependencies:
+      next:
+        specifier: 14.0.2
+        version: 14.0.2(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: ^18
+        version: 18.2.0
+      react-dom:
+        specifier: ^18
+        version: 18.2.0(react@18.2.0)
+    devDependencies:
       '@types/node':
         specifier: ^20
         version: 20.8.8
@@ -94,18 +110,6 @@ importers:
       '@types/react-dom':
         specifier: ^18
         version: 18.2.14
-      next:
-        specifier: 14.0.0
-        version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18
-        version: 18.2.0
-      react-calendar:
-        specifier: ^4.6.1
-        version: 4.6.1(@types/react@18.2.31)(react-dom@18.2.0)(react@18.2.0)
-      react-dom:
-        specifier: ^18
-        version: 18.2.0(react@18.2.0)
       typescript:
         specifier: ^5
         version: 5.0.4
@@ -189,9 +193,6 @@ importers:
       '@types/react-dom':
         specifier: ^18
         version: 18.2.14
-      ts-pattern:
-        specifier: ^5.0.5
-        version: 5.0.5
       typescript:
         specifier: 5.0.4
         version: 5.0.4

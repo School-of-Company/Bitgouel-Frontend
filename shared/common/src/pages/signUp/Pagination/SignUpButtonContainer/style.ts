@@ -23,9 +23,9 @@ export const NextButton = styled.button<{ isNext: boolean }>`
   width: 11.75rem;
   height: 3.25rem;
   background-color: ${({ isNext }) =>
-    isNext ? theme.color.main : theme.color.gray[700]};
+    isNext ? theme.color.main : theme.color.gray['700']};
   color: ${({ isNext }) =>
-    isNext ? theme.color.white : theme.color.gray[400]};
+    isNext ? theme.color.white : theme.color.gray['400']};
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;

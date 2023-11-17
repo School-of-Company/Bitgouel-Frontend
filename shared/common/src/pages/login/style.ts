@@ -4,7 +4,7 @@ export const LoginWrapper = styled.div`
   width: 27rem;
   height: 34.6875rem;
   border-radius: 0.5rem;
-  border: 0.0625rem solid ${({ theme }) => theme.color.gray[700]};
+  border: 0.0625rem solid ${({ theme }) => theme.color.gray['700']};
   position: absolute;
   top: 50%;
   left: 50%;

@@ -1,4 +1,4 @@
-import LectureDetailPage from '@/PageContainer/LectureDetailPage'
+import LectureDetailPage from '@/PageContainer/Lecture/LectureDetailPage'
 import React from 'react'
 
 const LectureDetail = ({ params }: { params: { lectureId: string } }) => {

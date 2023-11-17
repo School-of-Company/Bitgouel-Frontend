@@ -18,7 +18,7 @@ export const BlackBox = styled.div`
   margin-top: 7.375rem;
   width: 39.75rem;
   height: 57.5rem;
-  background-color: ${({ theme }) => theme.color.gray[200]};
+  background-color: ${({ theme }) => theme.color.gray['200']};
   border-radius: 0.5rem;
 `
 
@@ -49,19 +49,19 @@ export const Name = styled.span`
 `
 
 export const Role = styled.span`
-  color: ${({ theme }) => theme.color.gray[700]};
+  color: ${({ theme }) => theme.color.gray['700']};
   ${({ theme }) => theme.typo.title_sm}
 `
 
 export const SchoolName = styled.span`
-  color: ${({ theme }) => theme.color.gray[400]};
+  color: ${({ theme }) => theme.color.gray['400']};
   ${({ theme }) => theme.typo.text_lg}
   margin-top: 0.25rem;
   margin-right: 0.8rem;
 `
 
 export const SubEnter = styled.span`
-  color: ${({ theme }) => theme.color.gray[700]};
+  color: ${({ theme }) => theme.color.gray['700']};
   ${({ theme }) => theme.typo.text_lg};
 `
 
@@ -83,19 +83,19 @@ export const AccountContainer = styled.div`
 `
 
 export const LeftText = styled.span`
-  color: ${({ theme }) => theme.color.gray[400]};
+  color: ${({ theme }) => theme.color.gray['400']};
   ${({ theme }) => theme.typo.text_md};
 `
 
 export const RightText = styled.span`
-  color: ${({ theme }) => theme.color.gray[700]};
+  color: ${({ theme }) => theme.color.gray['700']};
   ${({ theme }) => theme.typo.text_md};
 `
 
 export const SharedLine = styled.div`
   width: 100%;
   height: 0.0625rem;
-  background-color: ${({ theme }) => theme.color.gray[900]};
+  background-color: ${({ theme }) => theme.color.gray['900']};
 `
 
 export const AccountSettingWrapper = styled.div`

@@ -21,6 +21,8 @@
     "@tanstack/react-query-devtools": "^4.29.7",
     "@types/react": "^18",
     "next": "14.0.0",
-    "recoil": "^0.7.7"
+    "react-calendar": "^4.6.1",
+    "recoil": "^0.7.7",
+    "ts-pattern": "^5.0.5"
   }
 }

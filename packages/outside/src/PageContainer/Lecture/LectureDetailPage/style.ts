@@ -50,7 +50,7 @@ export const Professor = styled.span`
 `
 
 export const Date = styled.span`
-  color: ${({ theme }) => theme.color.gray[700]};
+  color: ${({ theme }) => theme.color.gray['700']};
 `
 
 export const Title = styled.span`
@@ -65,8 +65,8 @@ export const SubMenuContainer = styled.div`
 
 export const From = styled.div`
   ${({ theme }) => theme.typo.text_sm};
-  color: ${({ theme }) => theme.color.gray[400]};
-  background-color: ${({ theme }) => theme.color.gray[900]};
+  color: ${({ theme }) => theme.color.gray['400']};
+  background-color: ${({ theme }) => theme.color.gray['900']};
   padding: 0.25rem 0.5rem;
   border-radius: 1.125rem;
 `
@@ -75,7 +75,7 @@ export const MenuNum = styled.div`
   display: flex;
   margin-left: 1rem;
   ${({ theme }) => theme.typo.text_sm};
-  color: ${({ theme }) => theme.color.gray[700]};
+  color: ${({ theme }) => theme.color.gray['700']};
   align-items: center;
   div {
     margin-right: 1rem;
@@ -83,7 +83,7 @@ export const MenuNum = styled.div`
 `
 
 export const MainText = styled.div`
-  color: ${({ theme }) => theme.color.gray[400]};
+  color: ${({ theme }) => theme.color.gray['400']};
   ${({ theme }) => theme.typo.text_sm};
   line-height: 1.5rem;
   margin-top: 2.25rem;
