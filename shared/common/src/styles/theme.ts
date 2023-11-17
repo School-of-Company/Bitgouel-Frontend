@@ -41,7 +41,7 @@ const typo = {
   text_lg: {
     fontSize: '1.125rem',
     lineHeight: '140%',
-    fontWeight: '600',
+    fontWeight: '400',
   },
   text_md: {
     fontSize: '1rem',

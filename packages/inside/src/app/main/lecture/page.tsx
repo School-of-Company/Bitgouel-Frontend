@@ -1,4 +1,4 @@
-import LecturePage from '@/PageContainer/LecturePage'
+import LecturePage from '@/PageContainer/Lecture/LecturePage'
 
 const Lecture = () => {
   return <LecturePage />

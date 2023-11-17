@@ -6,10 +6,10 @@ export const SelectCalendarModalWrapper = styled.div`
   width: 33.25rem;
   height: 19.25rem;
   border-radius: 0.5rem;
-  background-color: ${({ theme }) => theme.color.gray[500]};
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: ${({ theme }) => theme.color.gray['500']};
 
   &::after {
     content: '';
@@ -18,7 +18,7 @@ export const SelectCalendarModalWrapper = styled.div`
     right: 15rem;
     border-left: 1.25rem solid transparent;
     border-right: 1.25rem solid transparent;
-    border-top: 1.25rem solid ${({ theme }) => theme.color.gray[500]};
+    border-top: 1.25rem solid ${({ theme }) => theme.color.gray['500']};
   }
 `
 

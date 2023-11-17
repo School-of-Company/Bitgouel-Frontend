@@ -5,11 +5,10 @@ import React, { ChangeEvent, FormEvent, useState } from 'react'
 import * as S from './style'
 import Bg3 from '@common/assets/png/mainBg3.png'
 import { Chevron, People } from '@common/assets'
-import SelectCalendarModal from '@/modals/SelectCalendarModal'
 import { useModal } from '@common/hooks'
-import SelectScoreModal from '@/modals/SelectScoreModal'
 import LectureCreateModal from '@/modals/LectureCreateModal'
 import { lectureToEnum } from '@common/constants'
+import { SelectCalendarModal, SelectScoreModal } from '@common/modals'
 
 const LectureCreatePage = () => {
   const MAXLENGTH: number = 1000 as const
