@@ -1,13 +1,24 @@
 'use client'
 
 import Bg2 from '@common/assets/png/mainBg2.png'
+import { Pen, TrashCan } from '@common/assets'
 import * as S from './style'
 const ActivityDetailPage = () => {
   return (
     <div>
       <S.SlideBg url={Bg2}>
         <S.BgContainer>
-          <S.ActivityTitle>활동 상세</S.ActivityTitle>
+          <S.ActivityTitle>게시글</S.ActivityTitle>
+          <S.TitleButtonContainer>
+            <S.LectureButton>
+              <Pen />
+              <span>활동 수정</span>
+            </S.LectureButton>
+            <S.LectureButton>
+              <TrashCan />
+              <span>활동 삭제</span>
+            </S.LectureButton>
+          </S.TitleButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
       <S.DocumentWrapper>

@@ -18,6 +18,8 @@ export const BgContainer = styled.div`
   margin-bottom: 1rem;
 `
 
+
+
 export const CreateTitle = styled.span`
   color: ${({ theme }) => theme.color.white};
   ${({ theme }) => theme.typo.title_lg};
