@@ -15,7 +15,11 @@ const ActivityPage = () => {
         <S.BgContainer>
           <S.ClubTitle>학생 활동</S.ClubTitle>
           <S.ButtonContainer>
-            <S.ClubButton>
+            <S.ClubButton
+              onClick={() =>
+                router.push('/main/club/detail/student/activity/create')
+              }
+            >
               <Plus />
               <span>활동 추가</span>
             </S.ClubButton>
