@@ -5,8 +5,7 @@ import React, { ChangeEvent, FormEvent, useState } from 'react'
 import * as S from './style'
 import Bg3 from '@common/assets/png/mainBg3.png'
 import { Chevron, People } from '@common/assets'
-import SelectCalendarModal from '@/modals/SelectCalendarModal'
-import SelectScoreModal from '@/modals/SelectScoreModal'
+import { SelectCalendarModal, SelectScoreModal } from '@common/modals'
 
 const LectureCreatePage = () => {
   const MAXLENGTH: number = 1000 as const
