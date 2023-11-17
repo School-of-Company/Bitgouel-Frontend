@@ -4,7 +4,7 @@ import SelectCalendarModal from '.'
 import type { Meta, StoryObj } from '@storybook/react'
 
 export default {
-  title: 'outside/SelectCalendarModal',
+  title: 'common/SelectCalendarModal',
   component: SelectCalendarModal,
 } as Meta<typeof SelectCalendarModal>
 
