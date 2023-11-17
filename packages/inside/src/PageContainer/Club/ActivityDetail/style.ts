@@ -67,10 +67,25 @@ export const TitleContainer = styled.div`
 
 export const SubTitle = styled.div`
   padding: 0.5rem 0;
+  display: flex;
   span {
     ${({ theme }) => theme.typo.text_md};
     color: ${({ theme }) => theme.color.gray[400]};
   }
+`
+
+export const NumberBox = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 2.5rem;
+`
+
+export const SubTitleBox = styled.div`
+  color: ${({ theme }) => theme.color.white};
+  background-color: ${({ theme }) => theme.color.gray[700]};
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  margin-right: 0.5rem;
 `
 
 export const Title = styled.span`

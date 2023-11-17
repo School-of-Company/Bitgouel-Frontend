@@ -5,6 +5,7 @@ import Bg2 from '@common/assets/png/mainBg2.png'
 import { Chevron } from '@common/assets'
 import { useState } from 'react'
 import { SelectCalendarModal, SelectScoreModal } from '@common/modals'
+import { useSearchParams } from 'next/navigation'
 
 const ActivityModifyPage = () => {
   const MAXLENGTH: number = 1000 as const
@@ -27,11 +28,14 @@ const ActivityModifyPage = () => {
     }
   }
 
+  const params = useSearchParams()
+  console.log(params.get('title'))
+
   return (
     <div>
       <S.SlideBg url={Bg2}>
         <S.BgContainer>
-          <S.CreateTitle>활동 추가</S.CreateTitle>
+          <S.ModifyTitle>활동 수정</S.ModifyTitle>
           <S.ButtonContainer></S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>

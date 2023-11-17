@@ -1,8 +1,8 @@
 'use client'
 
 import * as S from './style'
-import Bg2 from '../../../../assets/png/mainBg2.png'
-import { Card, PersonOut } from '../../../../assets'
+import Bg2 from '../../../assets/png/mainBg2.png'
+import { Card, PersonOut } from '../../../assets'
 import { useRouter } from 'next/navigation'
 
 const StudentPage = () => {
@@ -15,7 +15,7 @@ const StudentPage = () => {
           <S.ClubTitle>학생 정보</S.ClubTitle>
           <S.ButtonContainer>
             <S.ClubButton>
-              <span onClick={() => router.push('/main/club/detail/student/activity')}>
+              <span onClick={() => router.push('/main/club/student/activity')}>
                 임시 학생 활동 이동버튼
               </span>
             </S.ClubButton>

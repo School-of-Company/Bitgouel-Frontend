@@ -8,7 +8,7 @@ const ActivityItem = () => {
 
   return (
     <S.ActivityItemWrapper
-      onClick={() => router.push('/main/club/detail/student/activity/detail')}
+      onClick={() => router.push('/main/club/student/activity/detail')}
     >
       <S.TextContainer>
         <div>
