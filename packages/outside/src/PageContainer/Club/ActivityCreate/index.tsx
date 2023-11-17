@@ -33,8 +33,6 @@ const ActivityCreatePage = () => {
       <S.SlideBg url={Bg2}>
         <S.BgContainer>
           <S.CreateTitle>활동 추가</S.CreateTitle>
-          <S.ButtonContainer>
-          </S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
       <S.DocumentInputContainer>
