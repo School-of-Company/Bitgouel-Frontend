@@ -7,7 +7,7 @@ import { AxiosResponse } from 'axios'
 export const useDeleteRejectLecture = (id: string) =>
   useMutation<AxiosResponse>(
     lectureQueryKeys.deleteLectureReject(id),
-    () => del(lectureUrl.lectureReject(id)),
+    () => del(lectureUrl.lectureReject(id), {}),
     {
       onSuccess: ({ data }) => {
         console.log(data)

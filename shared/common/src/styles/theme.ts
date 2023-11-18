@@ -1,3 +1,4 @@
+import '@emotion/react'
 const color = {
   main: '#288BE1',
   sub: '#45DFDA',
@@ -19,7 +20,7 @@ const color = {
   },
   white: '#FFFFFF',
   black: '#000000',
-}
+} as const
 
 const typo = {
   title_lg: {
@@ -57,7 +58,7 @@ const typo = {
     lineHeight: '140%',
     fontWeight: '400',
   },
-}
+} as const
 
 const breakPoint = {
   360: '(max-width: 360px)',
@@ -67,10 +68,17 @@ const breakPoint = {
   1440: '(max-width: 1440px)',
   1728: '(max-width: 1728px)',
   1920: '(max-width: 1920px)',
-}
+} as const
 
 export const theme = {
   color,
   typo,
   breakPoint,
+}
+
+type ExtendedTheme = typeof theme
+
+declare module '@emotion/react' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface Theme extends ExtendedTheme {}
 }

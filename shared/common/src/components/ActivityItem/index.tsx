@@ -2,7 +2,7 @@
 
 import * as S from './style'
 import { useRouter } from 'next/navigation'
-import { ApproveStatusEnum } from '@api/common'
+import { ApproveStatusEnum } from '@bitgouel/api'
 import { lectureStatusToKor } from '../../constants'
 import { match } from 'ts-pattern'
 

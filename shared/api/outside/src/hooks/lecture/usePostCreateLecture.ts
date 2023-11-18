@@ -1,8 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
-import { lectureQueryKeys } from '../../../../common'
-import { lectureUrl } from '../../../../common'
-import { post } from '../../../../common'
-import { AxiosResponse } from 'axios'
+import { AxiosError, AxiosResponse } from 'axios'
+import { lectureQueryKeys, lectureUrl, post } from '../../../../common'
 
 interface LectureCreateItemType {
   name: string
@@ -16,9 +14,9 @@ interface LectureCreateItemType {
 }
 
 export const usePostCreateLecture = () =>
-  useMutation<AxiosResponse<LectureCreateItemType[]>>(
+  useMutation<AxiosResponse, AxiosError, LectureCreateItemType>(
     lectureQueryKeys.postLetureCreate(),
-    (newCreate) => post(lectureUrl.lecture(), newCreate),
+    (createValues) => post(lectureUrl.lecture(), createValues),
     {
       onSuccess: (data) => {
         console.log(data)

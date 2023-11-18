@@ -5,7 +5,7 @@ import Bg2 from '../../../../assets/png/mainBg2.png'
 import { Plus } from '../../../../assets'
 import { useRouter } from 'next/navigation'
 import { ActivityItem } from '../../../../components'
-import { ApproveStatusEnum } from '@api/common'
+import { ApproveStatusEnum } from '@bitgouel/api'
 
 interface ActivityItemType {
   activityId: string

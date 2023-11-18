@@ -1,4 +1,3 @@
-import React from 'react'
 import { NoticePage } from '@common/pages'
 
 const Notice = () => {

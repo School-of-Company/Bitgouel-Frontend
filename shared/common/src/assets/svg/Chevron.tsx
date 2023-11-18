@@ -1,4 +1,4 @@
-const Chevron = () => {
+const Chevron = ({ color }: { color?: string }) => {
   return (
     <svg
       width='24'
@@ -9,7 +9,7 @@ const Chevron = () => {
     >
       <path
         d='M21 7.99999L13 16L12 17L11 16L3 7.99999'
-        stroke='#B8B8B8'
+        stroke={color ? color : '#B8B8B8'}
         strokeWidth='2'
         strokeLinecap='round'
         strokeLinejoin='round'

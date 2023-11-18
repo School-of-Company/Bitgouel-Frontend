@@ -29,9 +29,6 @@ importers:
       next:
         specifier: 14.0.0
         version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
-      react-calendar:
-        specifier: ^4.6.1
-        version: 4.6.1(@types/react@18.2.31)(react-dom@18.2.0)(react@18.2.0)
       recoil:
         specifier: ^0.7.7
         version: 0.7.7(react-dom@18.2.0)(react@18.2.0)
@@ -41,6 +38,12 @@ importers:
 
   packages/inside:
     dependencies:
+      '@bitgouel/api':
+        specifier: workspace:^
+        version: link:../../shared/api
+      '@bitgouel/common':
+        specifier: workspace:^
+        version: link:../../shared/common
       next:
         specifier: 14.0.2
         version: 14.0.2(react-dom@18.2.0)(react@18.2.0)
@@ -91,6 +94,9 @@ importers:
 
   packages/outside:
     dependencies:
+      '@bitgouel/api':
+        specifier: workspace:^
+        version: link:../../shared/api
       next:
         specifier: 14.0.2
         version: 14.0.2(react-dom@18.2.0)(react@18.2.0)
@@ -190,9 +196,15 @@ importers:
 
   shared/common:
     dependencies:
+      '@bitgouel/api':
+        specifier: workspace:^
+        version: link:../api
       '@types/react-dom':
         specifier: ^18
         version: 18.2.14
+      react-calendar:
+        specifier: ^4.6.1
+        version: 4.6.1(@types/react@18.2.31)(react-dom@18.2.0)(react@18.2.0)
       typescript:
         specifier: 5.0.4
         version: 5.0.4

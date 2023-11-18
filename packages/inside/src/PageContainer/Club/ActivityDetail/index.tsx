@@ -4,9 +4,11 @@ import Bg2 from '@common/assets/png/mainBg2.png'
 import { Pen, TrashCan } from '@common/assets'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
-import { ApproveStatusEnum } from '@api/common'
+import { ApproveStatusEnum } from '@bitgouel/api'
 import { lectureStatusToKor } from '@common/constants'
 import { match } from 'ts-pattern'
+import { useModal } from '@common/hooks'
+import { ApproveModal, RejectModal } from '@common/modals'
 
 interface ActivityItemType {
   id: string
@@ -30,12 +32,9 @@ const object: ActivityItemType = {
   approveStatus: 'APPROVED',
 }
 
-interface ActivityDetailProps {
-  item: ActivityItemType
-}
-
 const ActivityDetailPage = () => {
   const router = useRouter()
+  const { openModal } = useModal()
 
   return (
     <div>
@@ -52,7 +51,7 @@ const ActivityDetailPage = () => {
               <span>활동 수정</span>
             </S.LectureButton>
             <S.LectureButton>
-              <TrashCan />''
+              <TrashCan />
               <span>활동 삭제</span>
             </S.LectureButton>
           </S.TitleButtonContainer>
@@ -108,8 +107,32 @@ const ActivityDetailPage = () => {
           <S.MainText>{object.content}</S.MainText>
           <S.ButtonWrapper>
             <S.ButtonContainer>
-              <S.CreateNotApproveButton>신청 거부하기</S.CreateNotApproveButton>
-              <S.CreateApproveButton>신청 승인하기</S.CreateApproveButton>
+              <S.CreateNotApproveButton
+                onClick={() =>
+                  openModal(
+                    <RejectModal
+                      type='활동 추가'
+                      title={object.title}
+                      id={object.id}
+                    />
+                  )
+                }
+              >
+                활동 거부하기
+              </S.CreateNotApproveButton>
+              <S.CreateApproveButton
+                onClick={() =>
+                  openModal(
+                    <ApproveModal
+                      type='활동 추가'
+                      title={object.title}
+                      id={object.id}
+                    />
+                  )
+                }
+              >
+                활동 승인하기
+              </S.CreateApproveButton>
             </S.ButtonContainer>
           </S.ButtonWrapper>
         </S.Document>

@@ -8,7 +8,7 @@ import { LectureTypeModal } from '@common/modals'
 import { useState } from 'react'
 import { useRecoilState } from 'recoil'
 import * as S from './style'
-import { LectureItemType, useGetLectureList } from '@api/common'
+import { LectureItemType, useGetLectureList } from '@bitgouel/api'
 import { lectureToEnum } from '@common/constants'
 
 const LecturePage = () => {

@@ -95,15 +95,16 @@ export const ButtonContainer = styled.div`
   justify-content: center;
 `
 
-export const EnrolmentButton = styled.div`
+export const LectureApplyButton = styled.div`
   background-color: ${({ theme }) => theme.color.main};
   color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.text_lg};
-  cursor: pointer;
-  bottom: 1.6rem;
-  position: fixed;
-  padding: 0.85rem 2.6rem;
+  width: 10.25rem;
+  height: 3.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  ${({ theme }) => theme.typo.text_lg}
+  border: 0.0625rem solid ${({ theme }) => theme.color.main};
   border-radius: 0.5rem;
+  cursor: pointer;
 `
-
-
