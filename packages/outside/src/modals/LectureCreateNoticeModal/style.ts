@@ -1,13 +1,13 @@
 import styled from '@emotion/styled'
 
 export const LectureCreateNoticeModal = styled.div`
-  width: 384px;
-  height: 214px;
+  width: 24rem;
+  height: 13.375rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   gap: 1rem;
   background-color: ${({ theme }) => theme.color.white};
 `
@@ -33,13 +33,13 @@ export const NoticeSubLetter = styled.span`
 `
 
 export const ReturnLectureListButton = styled.div`
-  width: 352px;
-  height: 52px;
+  width: 22rem;
+  height: 3.25rem;
   ${({ theme }) => theme.typo.text_lg};
   background-color: ${({ theme }) => theme.color.main};
   color: ${({ theme }) => theme.color.white};
-  border: 1px solid ${({ theme }) => theme.color.main};
-  border-radius: 8px;
+  border: 0.0625rem solid ${({ theme }) => theme.color.main};
+  border-radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;

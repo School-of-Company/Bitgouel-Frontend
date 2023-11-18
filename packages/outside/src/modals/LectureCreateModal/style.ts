@@ -52,7 +52,7 @@ export const LectureCreateButtonWrapper = styled.div`
     align-items: center;
     justify-content: center;
     ${({ theme }) => theme.typo.text_lg}
-    border-radius: 8px;
+    border-radius: 0.5rem;
     cursor: pointer;
   }
 `

@@ -50,7 +50,7 @@ export const LectureApplyButtonWrapper = styled.div`
     justify-content: center;
     ${({ theme }) => theme.typo.text_lg}
     border: 0.0625rem solid ${({ theme }) => theme.color.main};
-    border-radius: 8px;
+    border-radius: 0.5rem;
     cursor: pointer;
   }
 `
