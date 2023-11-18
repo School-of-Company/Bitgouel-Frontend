@@ -24,12 +24,15 @@ export const lectureUrl = {
 
 export const activityUrl = {
   activityInformation: () => `/activity`,
-  activityInformationCorrection: (id: string) => `/activity/${id}`,
-  activityApprove: (id: string) => `/activity/${id}/approve`,
-  activityReject: (id: string) => `/activity/${id}/reject`,
-  activityInformationRemove: (id: string) => `/activity/${id}`,
+  activityInformationCorrection: (activity_id: string) =>
+    `/activity/${activity_id}`,
+  activityApprove: (activity_id: string) => `/activity/${activity_id}/approve`,
+  activityReject: (activity_id: string) => `/activity/${activity_id}/reject`,
+  activityInformationRemove: (activity_id: string) =>
+    `/activity/${activity_id}`,
   activityMyselfList: () => `/activity/my`,
   activityList: (student_id: string) => `/activity/${student_id}`,
   activityInformationList: () => `/activity`,
-  activityInformationDetail: (id: string) => `/activity/${id}`,
+  activityInformationDetail: (activity_id: string) =>
+    `/activity/${activity_id}`,
 }
