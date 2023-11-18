@@ -26,25 +26,25 @@ export const lectureQueryKeys = {
 
 export const activityQueryKeys = {
   postActivityInformation: () => ['activity', 'postActivityInformation'],
-  patchActivityInformationCorrection: (id: string) => [
+  patchActivityInformationCorrection: (activity_id: string) => [
     'activity',
     'patchActivityInformationCorrection',
-    id,
+    activity_id,
   ],
-  patchActivityApprove: (id: string) => [
+  patchActivityApprove: (activity_id: string) => [
     'activity',
     'patchActivityApprove',
-    id,
+    activity_id,
   ],
-  deleteActivityReject: (id: string) => [
+  deleteActivityReject: (activity_id: string) => [
     'activity',
     'deleteActivityReject',
-    id,
+    activity_id,
   ],
-  deleteActivityInformationRemove: (id: string) => [
+  deleteActivityInformationRemove: (activity_id: string) => [
     'activity',
     'deleteActivityInformationRemove',
-    id,
+    activity_id,
   ],
   getActivityMyselfList: () => ['activity', 'getActivityMyselfList'],
   getActivityList: (student_id: string) => [
@@ -53,6 +53,6 @@ export const activityQueryKeys = {
     student_id,
   ],
   getActivityInformationList: () => ['activity', 'getActivityInformationList'],
-  getActivityInformationDetail: () => (id: string) =>
-    ['activity', 'getActivityInformationDetail', id],
+  getActivityInformationDetail: () => (activity_id: string) =>
+    ['activity', 'getActivityInformationDetail', activity_id],
 }
