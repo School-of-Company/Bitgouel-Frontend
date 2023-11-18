@@ -23,3 +23,36 @@ export const lectureQueryKeys = {
   patchLectureApprove: (id: string) => ['lecture', 'patchLectureApprove', id],
   deleteLectureReject: (id: string) => ['lecture', 'deleteLectureReject', id],
 } as const
+
+export const activityQueryKeys = {
+  postActivityInformation: () => ['activity', 'postActivityInformation'],
+  patchActivityInformationCorrection: (id: string) => [
+    'activity',
+    'patchActivityInformationCorrection',
+    id,
+  ],
+  patchActivityApprove: (id: string) => [
+    'activity',
+    'patchActivityApprove',
+    id,
+  ],
+  deleteActivityReject: (id: string) => [
+    'activity',
+    'deleteActivityReject',
+    id,
+  ],
+  deleteActivityInformationRemove: (id: string) => [
+    'activity',
+    'deleteActivityInformationRemove',
+    id,
+  ],
+  getActivityMyselfList: () => ['activity', 'getActivityMyselfList'],
+  getActivityList: (student_id: string) => [
+    'activity',
+    'getActivityList',
+    student_id,
+  ],
+  getActivityInformationList: () => ['activity', 'getActivityInformationList'],
+  getActivityInformationDetail: () => (id: string) =>
+    ['activity', 'getActivityInformationDetail', id],
+}
