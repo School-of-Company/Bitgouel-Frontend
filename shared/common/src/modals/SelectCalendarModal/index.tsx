@@ -3,7 +3,7 @@
 import React, { ChangeEvent, useState } from 'react'
 import * as S from './style'
 import Calendar from 'react-calendar'
-import { Chevron } from '@common/assets'
+import { Chevron } from '../../assets'
 
 const SelectCalendarModal = ({
   date,

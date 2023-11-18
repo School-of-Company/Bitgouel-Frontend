@@ -1,9 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
-import { lectureQueryKeys } from '../../../../common'
-import { lectureUrl } from '../../../../common'
-import { post } from '../../../../common'
 import { AxiosError, AxiosResponse } from 'axios'
-import { useModal } from '../../../../../common/src/hooks'
+import { lectureQueryKeys, lectureUrl, post } from '../../../../common'
 
 interface LectureCreateItemType {
   name: string
@@ -16,7 +13,7 @@ interface LectureCreateItemType {
   maxRegisteredUser: number
 }
 
-export const usePostCreateLecture = () => {
+export const usePostCreateLecture = () =>
   useMutation<AxiosResponse, AxiosError, LectureCreateItemType>(
     lectureQueryKeys.postLetureCreate(),
     (createValues) => post(lectureUrl.lecture(), createValues),
@@ -29,4 +26,3 @@ export const usePostCreateLecture = () => {
       },
     }
   )
-}

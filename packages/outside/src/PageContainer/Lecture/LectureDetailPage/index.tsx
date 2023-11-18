@@ -5,8 +5,7 @@ import * as S from './style'
 import { useGetDetailLecture } from '@bitgouel/api'
 import { lectureToKor } from '@common/constants'
 import { useModal } from '@common/hooks'
-import LectureApproveModal from '@/modals/LectureApproveModal'
-import LectureRejectModal from '@/modals/LectureRejectModal'
+import { ApproveModal, RejectModal } from '@common/modals'
 
 const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
@@ -53,6 +52,19 @@ const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
                       10
                     )}일 ${data?.data.startDate.slice(11, 16)}`}
                   </span>
+                  <span>~</span>
+                  <span>
+                    {`${data?.data.endDate.slice(
+                      0,
+                      4
+                    )}년 ${data?.data.endDate.slice(
+                      5,
+                      7
+                    )}월 ${data?.data.endDate.slice(
+                      8,
+                      10
+                    )}일 ${data?.data.endDate.slice(11, 16)}`}
+                  </span>
                 </div>
                 <div>
                   <span>수강정원: </span>
@@ -62,16 +74,16 @@ const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
                 </div>
                 <div>
                   <span>강의 시작: </span>
-                  <span>{`${data?.data.endDate.slice(
+                  <span>{`${data?.data.completeDate.slice(
                     0,
                     4
-                  )}년 ${data?.data.endDate.slice(
+                  )}년 ${data?.data.completeDate.slice(
                     5,
                     7
-                  )}월 ${data?.data.endDate.slice(
+                  )}월 ${data?.data.completeDate.slice(
                     8,
                     10
-                  )}일 ${data?.data.endDate.slice(11, 16)}`}</span>
+                  )}일 ${data?.data.completeDate.slice(11, 16)}`}</span>
                 </div>
                 <div>
                   <span>학점: </span>
@@ -81,34 +93,34 @@ const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
             </S.SubMenuContainer>
           </S.TitleContainer>
           <S.MainText>{data?.data.content}</S.MainText>
-          <S.ButtonWrapper>
-            <S.ButtonContainer>
-              <S.CreateNotApproveButton
-                onClick={() =>
-                  openModal(
-                    <LectureRejectModal
-                      title={data?.data.name}
-                      lectureId={lectureId}
-                    />
-                  )
-                }
-              >
-                신청 거부하기
-              </S.CreateNotApproveButton>
-              <S.CreateApproveButton
-                onClick={() =>
-                  openModal(
-                    <LectureApproveModal
-                      title={data?.data.name}
-                      lectureId={lectureId}
-                    />
-                  )
-                }
-              >
-                신청 승인하기
-              </S.CreateApproveButton>
-            </S.ButtonContainer>
-          </S.ButtonWrapper>
+          <S.ButtonContainer isApprove={data?.data.approveStatus}>
+            <S.CreateNotApproveButton
+              onClick={() =>
+                openModal(
+                  <RejectModal
+                    type='강의 개설'
+                    title={data?.data.name}
+                    id={lectureId}
+                  />
+                )
+              }
+            >
+              신청 거부하기
+            </S.CreateNotApproveButton>
+            <S.CreateApproveButton
+              onClick={() =>
+                openModal(
+                  <ApproveModal
+                    type='강의 개설'
+                    title={data?.data.name}
+                    id={lectureId}
+                  />
+                )
+              }
+            >
+              신청 승인하기
+            </S.CreateApproveButton>
+          </S.ButtonContainer>
         </S.Document>
       </S.DocumentWrapper>
     </div>

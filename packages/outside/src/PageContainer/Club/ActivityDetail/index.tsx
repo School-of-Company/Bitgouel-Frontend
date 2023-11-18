@@ -4,7 +4,7 @@ import Bg2 from '@common/assets/png/mainBg2.png'
 import { Pen, TrashCan } from '@common/assets'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
-import { ApproveStatusEnum } from '@api/common'
+import { ApproveStatusEnum } from '@bitgouel/api'
 import { lectureStatusToKor } from '@common/constants'
 import { match } from 'ts-pattern'
 
@@ -30,10 +30,6 @@ const object: ActivityItemType = {
   approveStatus: 'APPROVED',
 }
 
-interface ActivityDetailProps {
-  item: ActivityItemType
-}
-
 const ActivityDetailPage = () => {
   const router = useRouter()
 
@@ -52,7 +48,7 @@ const ActivityDetailPage = () => {
               <span>활동 수정</span>
             </S.LectureButton>
             <S.LectureButton>
-              <TrashCan />''
+              <TrashCan />
               <span>활동 삭제</span>
             </S.LectureButton>
           </S.TitleButtonContainer>
