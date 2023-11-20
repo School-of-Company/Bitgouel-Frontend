@@ -1,4 +1,4 @@
-import { HomePage } from '@common/pages'
+import { HomePage } from '@bitgouel/common/src/PageContainer'
 
 export default function Home() {
   return <HomePage />
