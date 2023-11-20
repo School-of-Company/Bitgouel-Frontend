@@ -1,4 +1,4 @@
-import { LectureListOptionsTypes } from '../types'
+import { LectureListOptionsTypes, ActivityOptionsTypes } from '../types'
 
 export const authUrl = {
   auth: () => `/auth`,
@@ -29,7 +29,8 @@ export const activityUrl = {
   activityReject: (activity_id: string) => `/activity/${activity_id}/reject`,
   activityInformationRemove: (activity_id: string) =>
     `/activity/${activity_id}`,
-  activityMyselfList: () => `/activity/my`,
+  activityMyselfList: (options: ActivityOptionsTypes) =>
+    `/activity?page=${options.page}&size=${options.size}&sort=${options.sort}/my`,
   activityList: (student_id: string) => `/activity/${student_id}`,
   activityInformationList: () => `/activity`,
   activityInformationDetail: (activity_id: string) =>
