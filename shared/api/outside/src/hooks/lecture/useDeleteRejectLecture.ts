@@ -2,14 +2,14 @@ import { useMutation } from '@tanstack/react-query'
 import { lectureQueryKeys } from '../../../../common'
 import { lectureUrl } from '../../../../common'
 import { del } from '../../../../common'
-import { AxiosResponse } from 'axios'
+import { AxiosResponse, AxiosError } from 'axios'
 
 export const useDeleteRejectLecture = (id: string) =>
-  useMutation<AxiosResponse>(
+  useMutation<AxiosResponse, AxiosError>(
     lectureQueryKeys.deleteLectureReject(id),
     () => del(lectureUrl.lectureReject(id), {}),
     {
-      onSuccess: ({ data }) => {
+      onSuccess: (data) => {
         console.log(data)
       },
       onError: (error) => {
