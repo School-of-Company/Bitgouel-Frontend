@@ -4,12 +4,11 @@ export const SelectFilterBox = styled.div<{ location: string }>`
   position: absolute;
   top: ${({ location }) =>
     location === '필터' ? '15.7rem' : location === '개설' ? '-7.5rem' : '4rem'};
-  width: 11.75rem;
-  height: 8.125rem;
   background-color: ${({ theme }) => theme.color.gray['500']};
   color: ${({ theme }) => theme.color.white};
   border-radius: 0.5rem;
-
+  padding: 1rem 1rem;
+  
   &::after {
     content: '';
     position: absolute;
@@ -28,16 +27,13 @@ export const SelectFilterBox = styled.div<{ location: string }>`
 export const SelectFilterTitle = styled.h3`
   ${({ theme }) => theme.typo.text_lg}
   margin: 0;
-  margin-top: 1rem;
-  margin-left: 1rem;
 `
 
 export const SelectFilterItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 1rem;
-  margin-left: 1rem;
+  margin-top: 0.75rem;
   gap: 0.5rem;
 `
 
