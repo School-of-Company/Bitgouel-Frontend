@@ -1,8 +1,8 @@
 'use client'
 
-import { useModal } from '@common/hooks'
+import { useModal } from '@bitgouel/common/src/hooks'
 import React from 'react'
-import Portal from '@common/portal'
+import Portal from '@bitgouel/common/src/portal'
 import * as S from './style'
 import { usePostApplicationLecture } from '@bitgouel/api'
 

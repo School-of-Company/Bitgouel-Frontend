@@ -1,5 +1,5 @@
 import React from 'react'
-import { ClubPage } from '@common/pages'
+import { ClubPage } from '@bitgouel/common/src/PageContainer'
 
 const Club = () => {
   return <ClubPage />

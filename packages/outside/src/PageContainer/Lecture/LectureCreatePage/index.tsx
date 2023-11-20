@@ -1,14 +1,17 @@
 'use client'
 
-import { LectureTypeModal } from '@common/modals'
+import { LectureTypeModal } from '@bitgouel/common/src/modals'
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 import * as S from './style'
-import Bg3 from '@common/assets/png/mainBg3.png'
-import { Chevron, People } from '@common/assets'
-import { useModal } from '@common/hooks'
+import Bg3 from '@bitgouel/common/src/assets/png/mainBg3.png'
+import { Chevron, People } from '@bitgouel/common/src/assets'
+import { useModal } from '@bitgouel/common/src/hooks'
 import LectureCreateModal from '@/modals/LectureCreateModal'
-import { lectureToEnum } from '@common/constants'
-import { SelectCalendarModal, SelectScoreModal } from '@common/modals'
+import { lectureToEnum } from '@bitgouel/common/src/constants'
+import {
+  SelectCalendarModal,
+  SelectScoreModal,
+} from '@bitgouel/common/src/modals'
 
 const LectureCreatePage = () => {
   const MAXLENGTH: number = 1000 as const
