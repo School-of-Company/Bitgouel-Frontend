@@ -7,7 +7,7 @@ export const SelectFilterBox = styled.div<{ location: string }>`
   background-color: ${({ theme }) => theme.color.gray['500']};
   color: ${({ theme }) => theme.color.white};
   border-radius: 0.5rem;
-  padding: 1rem 1rem;
+  padding: 1rem;
   
   &::after {
     content: '';
