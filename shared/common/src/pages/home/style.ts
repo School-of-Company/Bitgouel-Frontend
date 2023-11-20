@@ -17,7 +17,6 @@ export const SlideBg = styled.div<{ url: any }>`
 
 export const BgContainer = styled.div`
   width: 75rem;
-  background-color: red;
 `
 
 export const HomeTitle = styled.span`
@@ -26,7 +25,6 @@ export const HomeTitle = styled.span`
 `
 
 export const ViewContainer = styled.div`
-  /* background-color: blue; */
   width: 100%;
   position: absolute;
   bottom: 10rem;
