@@ -24,8 +24,7 @@ export const lectureUrl = {
 
 export const activityUrl = {
   activityInformation: () => `/activity`,
-  activityInformationCorrection: (activity_id: string) =>
-    `/activity/${activity_id}`,
+  activityCorrection: (activity_id: string) => `/activity/${activity_id}`,
   activityApprove: (activity_id: string) => `/activity/${activity_id}/approve`,
   activityReject: (activity_id: string) => `/activity/${activity_id}/reject`,
   activityInformationRemove: (activity_id: string) =>
