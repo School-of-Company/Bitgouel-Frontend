@@ -18,8 +18,8 @@ export const usePostInformation = (activity_id: string) =>
     activityQueryKeys.patchActivityCorrection(activity_id),
     () => patch(activityUrl.activityCorrection(activity_id), {}),
     {
-      onSuccess: (response) => {
-        console.log(response)
+      onSuccess: ({ data }) => {
+        console.log(data)
       },
       onError: (error) => {
         console.log(error)

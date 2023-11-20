@@ -18,8 +18,8 @@ export const usePostInformation = () =>
     activityQueryKeys.postActivityInformation(),
     () => post(activityUrl.activityInformation(), {}),
     {
-      onSuccess: (response) => {
-        console.log(response)
+      onSuccess: ({ data }) => {
+        console.log(data)
       },
       onError: (error) => {
         console.log(error)
