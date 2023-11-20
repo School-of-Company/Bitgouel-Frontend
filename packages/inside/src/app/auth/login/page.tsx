@@ -1,5 +1,4 @@
 import { LoginPage } from '@bitgouel/common/src/PageContainer'
-// import { LoginPage } from '@bitgouel/common/src/PageContainer'
 
 const Login = () => {
   return <LoginPage />
