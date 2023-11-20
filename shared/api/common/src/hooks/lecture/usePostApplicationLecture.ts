@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query'
 import { lectureQueryKeys } from '../../libs/queryKeys'
 import { lectureUrl } from '../../libs/urlController'
 import { post } from '../../libs'
-import { AxiosResponse } from 'axios'
+import { AxiosError, AxiosResponse } from 'axios'
 import { useRouter } from 'next/navigation'
 import { useModal } from '../../../../../common/src/hooks'
 
@@ -10,9 +10,9 @@ export const usePostApplicationLecture = (id: string) => {
   const router = useRouter()
   const { closeModal } = useModal()
 
-  return useMutation<AxiosResponse>(
+  return useMutation<AxiosResponse, AxiosError>(
     lectureQueryKeys.postLectureApplication(id),
-    () => post(lectureUrl.lectureApplication(id)),
+    () => post(lectureUrl.lectureApplication(id), {}),
     {
       onSuccess: (data) => {
         closeModal()
