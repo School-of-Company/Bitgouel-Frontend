@@ -53,7 +53,7 @@ const ActivityListPage = () => {
     <div>
       <S.SlideBg url={Bg2}>
         <S.BgContainer>
-          <S.ClubTitle>학생 활동</S.ClubTitle>
+          <S.ClubTitle>(학생이름)의 학생 활동</S.ClubTitle>
           <S.ButtonContainer>
             <S.ClubButton
               onClick={() => router.push('/main/club/student/activity/create')}

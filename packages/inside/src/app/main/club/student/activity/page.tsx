@@ -1,8 +1,8 @@
 import React from 'react'
-import ActivityDetailPage from '@/PageContainer/Club/ActivityDetail'
+import ActivityListPage from '@/PageContainer/Club/ActivityList'
 
 const ActivityDetail = () => {
-  return <ActivityDetailPage />
+  return <ActivityListPage />
 }
 
 export default ActivityDetail
