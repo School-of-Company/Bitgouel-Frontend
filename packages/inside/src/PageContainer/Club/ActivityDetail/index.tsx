@@ -1,14 +1,14 @@
 'use client'
 
-import Bg2 from '@bitgouel/common/src/assets/png/mainBg2.png'
-import { Pen, TrashCan } from '@bitgouel/common/src/assets'
+import Bg2 from '@common/assets/png/mainBg2.png'
+import { Pen, TrashCan } from '@common/assets'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
 import { ApproveStatusEnum } from '@bitgouel/api'
-import { lectureStatusToKor } from '@bitgouel/common/src/constants'
+import { lectureStatusToKor } from '@common/constants'
 import { match } from 'ts-pattern'
-import { useModal } from '@bitgouel/common/src/hooks'
-import { ApproveModal, RejectModal } from '@bitgouel/common/src/modals'
+import { useModal } from '@common/hooks'
+import { ApproveModal, RejectModal } from '@common/modals'
 
 interface ActivityItemType {
   id: string

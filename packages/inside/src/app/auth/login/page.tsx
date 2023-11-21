@@ -1,4 +1,4 @@
-import { LoginPage } from '@bitgouel/common/src/PageContainer'
+import { LoginPage } from '@common/pages'
 
 const Login = () => {
   return <LoginPage />

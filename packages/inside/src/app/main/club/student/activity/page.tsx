@@ -1,5 +1,5 @@
 import React from 'react'
-import { ActivityPage } from '@bitgouel/common/src/PageContainer'
+import { ActivityPage } from '@common/pages'
 
 const Activity = () => {
   return <ActivityPage />

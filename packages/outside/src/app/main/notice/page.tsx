@@ -1,5 +1,5 @@
 import React from 'react'
-import { NoticePage } from '@bitgouel/common/src/PageContainer'
+import { NoticePage } from '@common/pages'
 
 const Notice = () => {
   return <NoticePage />

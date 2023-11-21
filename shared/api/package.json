@@ -4,8 +4,6 @@
   "main": "./index.ts",
   "license": "ISC",
   "dependencies": {
-    "@bitgouel/common": "workspace:^",
-    "@bitgouel/tsconfig": "workspace:^",
     "axios": "^1.6.0"
   }
 }

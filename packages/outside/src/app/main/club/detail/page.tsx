@@ -1,5 +1,5 @@
 import React from 'react'
-import { DeatilPage } from '@bitgouel/common/src/PageContainer'
+import { DeatilPage } from '@common/pages'
 
 const Detail = () => {
   return <DeatilPage />

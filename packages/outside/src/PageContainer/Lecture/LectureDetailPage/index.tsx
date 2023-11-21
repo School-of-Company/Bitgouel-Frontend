@@ -1,11 +1,11 @@
 'use client'
 
-import Bg3 from '@bitgouel/common/src/assets/png/mainBg3.png'
+import Bg3 from '@common/assets/png/mainBg3.png'
 import * as S from './style'
 import { useGetDetailLecture } from '@bitgouel/api'
-import { lectureToKor } from '@bitgouel/common/src/constants'
-import { useModal } from '@bitgouel/common/src/hooks'
-import { ApproveModal, RejectModal } from '@bitgouel/common/src/modals'
+import { lectureToKor } from '@common/constants'
+import { useModal } from '@common/hooks'
+import { ApproveModal, RejectModal } from '@common/modals'
 
 const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
