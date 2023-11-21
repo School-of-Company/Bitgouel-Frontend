@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError, AxiosResponse } from 'axios'
-import { lectureQueryKeys, lectureUrl, post } from '../../../../common'
+import { lectureUrl, lectureQueryKeys, post } from '../../../../common'
 
 interface LectureCreateItemType {
   name: string
