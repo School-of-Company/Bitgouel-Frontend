@@ -1,13 +1,10 @@
 'use client'
 
 import * as S from './style'
-import Bg2 from '@bitgouel/common/src/assets/png/mainBg2.png'
-import { Chevron } from '@bitgouel/common/src/assets'
+import Bg2 from '@common/assets/png/mainBg2.png'
+import { Chevron } from '@common/assets'
 import { useState } from 'react'
-import {
-  SelectCalendarModal,
-  SelectScoreModal,
-} from '@bitgouel/common/src/modals'
+import { SelectCalendarModal, SelectScoreModal } from '@common/modals'
 
 const ActivityCreatePage = () => {
   const MAXLENGTH: number = 1000 as const

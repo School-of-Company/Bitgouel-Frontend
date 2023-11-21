@@ -1,12 +1,10 @@
-'use client'
-
 import { useMutation } from '@tanstack/react-query'
-import { lectureQueryKeys } from '../../../../common'
-import { lectureUrl } from '../../../../common'
-import { post } from '../../../../common'
+import { lectureQueryKeys } from '../../libs/queryKeys'
+import { lectureUrl } from '../../libs/urlController'
+import { post } from '../../libs'
 import { AxiosError, AxiosResponse } from 'axios'
 import { useRouter } from 'next/navigation'
-import { useModal } from '@bitgouel/common'
+import { useModal } from '../../../../../common/src/hooks'
 
 export const usePostApplicationLecture = (id: string) => {
   const router = useRouter()
