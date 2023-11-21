@@ -1,6 +1,6 @@
 'use client'
 
-import { IsModal } from '@/atoms'
+import { IsModal } from '../atoms'
 import { ReactNode } from 'react'
 import { useSetRecoilState } from 'recoil'
 

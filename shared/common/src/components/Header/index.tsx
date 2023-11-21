@@ -10,7 +10,7 @@ import { Plus, Filter, MegaPhone, Message, Question } from '../../assets'
 import { LectureTypeModal } from '../../modals'
 import { useRecoilState } from 'recoil'
 import { LectureTypeText } from '../../atoms'
-import { TokenManager } from '../../../../api/common'
+import { TokenManager } from '@bitgouel/api'
 
 const Header = ({ inside }: { inside: boolean }) => {
   const tokenManager = new TokenManager()
@@ -37,7 +37,7 @@ const Header = ({ inside }: { inside: boolean }) => {
   useEffect(() => {
     const onScroll = () => {
       const { scrollY } = window
-      if (pathname === '/main/home') {
+      if (pathname === '/') {
         if (scrollY >= 800) {
           setBgColor('#fff')
           setSymbolNum(Symbol2)

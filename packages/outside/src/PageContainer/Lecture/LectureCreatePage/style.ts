@@ -86,13 +86,18 @@ export const SettingSelectionContainer = styled.div`
   margin-top: 0.5rem;
 `
 
-export const SettingSelection = styled.div`
+export const SettingSelection = styled.div<{ isOpen?: boolean }>`
   display: flex;
   align-items: center;
-  position: relative;
   margin-right: 2.5rem;
+
   span {
     ${({ theme }) => theme.typo.text_md};
+    white-space: nowrap;
+  }
+
+  svg {
+    rotate: ${({ isOpen }) => isOpen && '180deg'};
   }
 `
 
@@ -103,9 +108,13 @@ export const SettingForm = styled.form`
   color: ${({ theme }) => theme.color.gray['700']};
 `
 
-export const SettingDateBox = styled.div`
+export const SettingDateBox = styled.div<{ isOpen: boolean }>`
   display: flex;
   align-items: center;
+
+  svg {
+    rotate: ${({ isOpen }) => isOpen && '180deg'};
+  }
 `
 
 export const SettingScoreBox = styled.div`
@@ -152,10 +161,13 @@ export const ButtonContainer = styled.div`
   justify-content: center;
 `
 
-export const CreateButton = styled.div`
-  background-color: ${({ theme }) => theme.color.gray['700']};
-  color: ${({ theme }) => theme.color.gray['400']};
+export const CreateButton = styled.div<{ isAble: boolean }>`
+  background-color: ${({ theme, isAble }) =>
+    isAble ? theme.color.main : theme.color.gray['700']};
+  color: ${({ theme, isAble }) =>
+    isAble ? theme.color.white : theme.color.gray['400']};
   ${({ theme }) => theme.typo.text_lg};
+  font-weight: 400;
   cursor: pointer;
   bottom: 1.75rem;
   position: fixed;

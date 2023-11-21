@@ -24,6 +24,7 @@ export default function RootLayout({
             {children}
           </GlobalLayout>
         </RecoilRootProvider>
+        <div id='modal' />
       </body>
     </html>
   )

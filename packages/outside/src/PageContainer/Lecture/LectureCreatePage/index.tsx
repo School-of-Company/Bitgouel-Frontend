@@ -5,13 +5,16 @@ import React, { ChangeEvent, FormEvent, useState } from 'react'
 import * as S from './style'
 import Bg3 from '@common/assets/png/mainBg3.png'
 import { Chevron, People } from '@common/assets'
+import { useModal } from '@common/hooks'
+import LectureCreateModal from '@/modals/LectureCreateModal'
+import { lectureToEnum } from '@common/constants'
 import { SelectCalendarModal, SelectScoreModal } from '@common/modals'
 
 const LectureCreatePage = () => {
   const MAXLENGTH: number = 1000 as const
 
   const [lectureTitle, setLectuerTitle] = useState<string>('')
-  const [lectureMainText, setLectuerMainText] = useState<string>('')
+  const [lectureContent, setLectureContent] = useState<string>('')
 
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
   const [lectureTypeText, setLectureTypeText] =
@@ -33,8 +36,8 @@ const LectureCreatePage = () => {
   const [isScore, setIsScore] = useState<boolean>(false)
   const [scoreText, setScoreText] = useState<string>('학점 선택')
 
-  const [people, setPeople] = useState<number | undefined>()
   const [isInput, setIsInput] = useState<boolean>(true)
+  const [people, setPeople] = useState<number>(0)
 
   const saveLectureTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLectuerTitle(event.target.value)
@@ -43,7 +46,7 @@ const LectureCreatePage = () => {
   const saveLectureMainText = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
-    setLectuerMainText(event.target.value)
+    setLectureContent(event.target.value)
   }
 
   const openSelectModal = (type: string) => {
@@ -85,6 +88,67 @@ const LectureCreatePage = () => {
     setIsInput(false)
   }
 
+  const { openModal } = useModal()
+
+  const onCreateModal = () => {
+    if (
+      lectureTitle !== '' &&
+      lectureContent !== '' &&
+      lectureTypeText !== '강의 유형 선택' &&
+      startDateText !== '신청 시작일 선택' &&
+      endDateText !== '신청 마감일 선택' &&
+      completeDateText !== '강의 시작일 선택' &&
+      scoreText !== '학점 선택' &&
+      people !== 0
+    )
+      openModal(
+        <LectureCreateModal
+          createValues={{
+            name: lectureTitle,
+            content: lectureContent,
+            startDate: `${startDate.getFullYear()}-${(startDate.getMonth() + 1)
+              .toString()
+              .padStart(2, '0')}-${startDate
+              .getDate()
+              .toString()
+              .padStart(2, '0')}T${startDateText
+              .replace(/\s/g, '')
+              .slice(11, 13)}:${startDateText
+              .replace(/\s/g, '')
+              .slice(14, 16)}:00`,
+            endDate: `${endDate.getFullYear()}-${(endDate.getMonth() + 1)
+              .toString()
+              .padStart(2, '0')}-${endDate
+              .getDate()
+              .toString()
+              .padStart(2, '0')}T${endDateText
+              .replace(/\s/g, '')
+              .slice(11, 13)}:${endDateText
+              .replace(/\s/g, '')
+              .slice(14, 16)}:00`,
+            completeDate: `${completeDate.getFullYear()}-${(
+              completeDate.getMonth() + 1
+            )
+              .toString()
+              .padStart(2, '0')}-${completeDate
+              .getDate()
+              .toString()
+              .padStart(2, '0')}T${completeDateText
+              .replace(/\s/g, '')
+              .slice(11, 13)}:${completeDateText
+              .replace(/\s/g, '')
+              .slice(14, 16)}:00`,
+            lectureType: lectureToEnum[lectureTypeText],
+            credit:
+              lectureTypeText === '대학탐방프로그램'
+                ? 0
+                : +scoreText.slice(0, 1),
+            maxRegisteredUser: people,
+          }}
+        />
+      )
+  }
+
   return (
     <div>
       <S.SlideBg url={Bg3}>
@@ -112,7 +176,10 @@ const LectureCreatePage = () => {
                     setIsLectureType={setIsLectureType}
                   />
                 )}
-                <S.SettingSelection onClick={() => openSelectModal('')}>
+                <S.SettingSelection
+                  onClick={() => openSelectModal('')}
+                  isOpen={isLectureType}
+                >
                   <Chevron />
                   <S.SettingButton>{lectureTypeText}</S.SettingButton>
                 </S.SettingSelection>
@@ -128,6 +195,7 @@ const LectureCreatePage = () => {
                   )}
                   <S.SettingDateBox
                     onClick={() => openSelectModal('신청 시작')}
+                    isOpen={isStart}
                   >
                     <Chevron />
                     <S.SettingButton>{startDateText}</S.SettingButton>
@@ -144,6 +212,7 @@ const LectureCreatePage = () => {
                   )}
                   <S.SettingDateBox
                     onClick={() => openSelectModal('신청 마감')}
+                    isOpen={isEnd}
                   >
                     <Chevron />
                     <S.SettingButton>{endDateText}</S.SettingButton>
@@ -161,6 +230,7 @@ const LectureCreatePage = () => {
                   )}
                   <S.SettingDateBox
                     onClick={() => openSelectModal('강의 시작')}
+                    isOpen={isComplete}
                   >
                     <Chevron />
                     <S.SettingButton>{completeDateText}</S.SettingButton>
@@ -168,7 +238,7 @@ const LectureCreatePage = () => {
                 </S.SelectModalContainer>
               </S.SettingSelection>
               {lectureTypeText !== '대학탐방프로그램' && (
-                <S.SettingSelection>
+                <S.SettingSelection isOpen={isScore}>
                   <S.SelectModalContainer>
                     {isScore && (
                       <SelectScoreModal
@@ -179,7 +249,7 @@ const LectureCreatePage = () => {
                     )}
                     <S.SettingScoreBox onClick={() => openSelectModal('학점')}>
                       <Chevron />
-                      <S.SettingButton>학점 선택</S.SettingButton>
+                      <S.SettingButton>{scoreText}</S.SettingButton>
                     </S.SettingScoreBox>
                   </S.SelectModalContainer>
                 </S.SettingSelection>
@@ -191,13 +261,12 @@ const LectureCreatePage = () => {
                 <People />
                 {isInput ? (
                   <S.SettingInput
-                    value={people}
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
                       setPeople(+e.target.value)
                     }
                     type='number'
                     placeholder='최대 수강 인원 입력'
-                    maxLength={3}
+                    pattern={'^[0-9]{3}$'}
                   />
                 ) : (
                   <S.ShowPeople onClick={() => setIsInput(true)}>
@@ -208,7 +277,21 @@ const LectureCreatePage = () => {
             </S.SettingSelectionContainer>
           </S.LectureSetting>
           <S.ButtonContainer>
-            <S.CreateButton>개설 신청하기</S.CreateButton>
+            <S.CreateButton
+              onClick={onCreateModal}
+              isAble={
+                lectureTitle !== '' &&
+                lectureContent !== '' &&
+                lectureTypeText !== '강의 유형 선택' &&
+                startDateText !== '신청 시작일 선택' &&
+                endDateText !== '신청 마감일 선택' &&
+                completeDateText !== '강의 시작일 선택' &&
+                scoreText !== '학점 선택' &&
+                people !== 0
+              }
+            >
+              개설 신청하기
+            </S.CreateButton>
           </S.ButtonContainer>
         </S.DocumentInput>
       </S.DocumentInputContainer>

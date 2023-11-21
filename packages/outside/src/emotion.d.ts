@@ -1,6 +1,6 @@
 import '@emotion/react'
 
-import type { theme } from '@common/styles/theme'
+import type { theme } from '@bitgouel/common'
 
 type ExtendedTheme = typeof theme
 

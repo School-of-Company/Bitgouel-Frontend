@@ -22,6 +22,10 @@ export const Uploader = styled.span`
   color: ${({ theme }) => theme.color.gray['400']};
 `
 
+export const Date = styled.span`
+  color: ${({ theme }) => theme.color.gray['400']};
+`
+
 export const StatusContainer = styled.div`
   width: 100%;
   display: flex;

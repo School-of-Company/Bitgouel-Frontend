@@ -2,11 +2,14 @@
 
 import Bg3 from '@common/assets/png/mainBg3.png'
 import * as S from './style'
-import { useGetDetailLecture } from '@api/common'
+import { useGetDetailLecture } from '@bitgouel/api'
 import { lectureToKor } from '@common/constants'
+import { useModal } from '@common/hooks'
+import { ApproveModal, RejectModal } from '@common/modals'
 
 const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
+  const { openModal } = useModal()
 
   return (
     <div>
@@ -20,7 +23,16 @@ const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
           <S.TitleContainer>
             <S.SubTitle>
               <S.Professor>{data?.data.lecturer} 교수</S.Professor>
-              <S.Date>{data?.data.createAt}</S.Date>
+              <S.Date>{`${data?.data.createAt.slice(
+                0,
+                4
+              )}년 ${data?.data.createAt.slice(
+                5,
+                7
+              )}월 ${data?.data.createAt.slice(
+                8,
+                10
+              )}일 ${data?.data.createAt.slice(11, 16)}`}</S.Date>
             </S.SubTitle>
             <S.Title>{data?.data.name}</S.Title>
             <S.SubMenuContainer>
@@ -29,7 +41,29 @@ const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
                 <div>
                   <span>신청기간: </span>
                   <span>
-                    {data?.data.startDate} ~ {data?.data.endDate}
+                    {`${data?.data.startDate.slice(
+                      0,
+                      4
+                    )}년 ${data?.data.startDate.slice(
+                      5,
+                      7
+                    )}월 ${data?.data.startDate.slice(
+                      8,
+                      10
+                    )}일 ${data?.data.startDate.slice(11, 16)}`}
+                  </span>
+                  <span>~</span>
+                  <span>
+                    {`${data?.data.endDate.slice(
+                      0,
+                      4
+                    )}년 ${data?.data.endDate.slice(
+                      5,
+                      7
+                    )}월 ${data?.data.endDate.slice(
+                      8,
+                      10
+                    )}일 ${data?.data.endDate.slice(11, 16)}`}
                   </span>
                 </div>
                 <div>
@@ -40,7 +74,16 @@ const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
                 </div>
                 <div>
                   <span>강의 시작: </span>
-                  <span>{data?.data.completeDate}</span>
+                  <span>{`${data?.data.completeDate.slice(
+                    0,
+                    4
+                  )}년 ${data?.data.completeDate.slice(
+                    5,
+                    7
+                  )}월 ${data?.data.completeDate.slice(
+                    8,
+                    10
+                  )}일 ${data?.data.completeDate.slice(11, 16)}`}</span>
                 </div>
                 <div>
                   <span>학점: </span>
@@ -51,9 +94,33 @@ const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
           </S.TitleContainer>
           <S.MainText>{data?.data.content}</S.MainText>
           <S.ButtonWrapper>
-            <S.ButtonContainer>
-              <S.CreateNotApproveButton>신청 거부하기</S.CreateNotApproveButton>
-              <S.CreateApproveButton>신청 승인하기</S.CreateApproveButton>
+            <S.ButtonContainer isApprove={data?.data.approveStatus}>
+              <S.CreateNotApproveButton
+                onClick={() =>
+                  openModal(
+                    <RejectModal
+                      type='강의 개설'
+                      title={data?.data.name}
+                      id={lectureId}
+                    />
+                  )
+                }
+              >
+                신청 거부하기
+              </S.CreateNotApproveButton>
+              <S.CreateApproveButton
+                onClick={() =>
+                  openModal(
+                    <ApproveModal
+                      type='강의 개설'
+                      title={data?.data.name}
+                      id={lectureId}
+                    />
+                  )
+                }
+              >
+                신청 승인하기
+              </S.CreateApproveButton>
             </S.ButtonContainer>
           </S.ButtonWrapper>
         </S.Document>

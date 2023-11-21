@@ -1,13 +1,12 @@
 {
-  "name": "common",
+  "name": "@bitgouel/common",
   "version": "1.0.0",
-  "description": "",
   "main": "./index.ts",
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "dependencies": {
+    "@bitgouel/api": "workspace:^",
     "@types/react-dom": "^18",
+    "react-calendar": "^4.6.1",
     "typescript": "5.0.4"
   }
 }

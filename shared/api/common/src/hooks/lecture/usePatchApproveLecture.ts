@@ -7,8 +7,8 @@ export const usePatchApproveLecture = (id: string) =>
     lectureQueryKeys.patchLectureApprove(id),
     () => patch(lectureUrl.lectureApprove(id), {}),
     {
-      onSuccess: (response) => {
-        console.log(response.data)
+      onSuccess: (data) => {
+        console.log(data)
       },
       onError: (error) => {
         console.log(error)
