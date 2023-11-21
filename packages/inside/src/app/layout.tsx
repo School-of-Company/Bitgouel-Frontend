@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import { GlobalLayout } from '@common/layouts'
-import '@common/styles/globals.css'
+import { GlobalLayout } from '@bitgouel/common/src/layouts'
+import '@bitgouel/common/src/styles/globals.css'
 import '@/styles/font.css'
-import { Header } from '@common/components'
+import { Header } from '@bitgouel/common/src/components'
 import RecoilRootProvider from './recoilRootProvider'
 
 export const metadata: Metadata = {
@@ -22,9 +22,9 @@ export default function RootLayout({
           <GlobalLayout>
             <Header inside={true} />
             {children}
+            <div id='modal' />
           </GlobalLayout>
         </RecoilRootProvider>
-        <div id='modal' />
       </body>
     </html>
   )

@@ -1,5 +1,4 @@
-import React from 'react'
-import LecturePage from '@/PageContainer/Lecture/LecturePage'
+import { LecturePage } from '@/PageContainer'
 
 const Lecture = () => {
   return <LecturePage />

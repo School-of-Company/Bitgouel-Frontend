@@ -1,15 +1,15 @@
 'use client'
 
-import { Filter, Plus } from '@common/assets'
-import Bg3 from '@common/assets/png/mainBg3.png'
-import { LectureTypeText } from '@common/atoms'
-import { LectureItem } from '@common/components'
-import { LectureTypeModal } from '@common/modals'
+import { Filter, Plus } from '@bitgouel/common/src/assets'
+import Bg3 from '@bitgouel/common/src/assets/png/mainBg3.png'
+import { LectureTypeText } from '@bitgouel/common/src/atoms'
+import { LectureItem } from '@bitgouel/common/src/components'
+import { LectureTypeModal } from '@bitgouel/common/src/modals'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useRecoilState } from 'recoil'
 import * as S from './style'
-import { lectureToEnum } from '@common/constants'
+import { lectureToEnum } from '@bitgouel/common/src/constants'
 import { LectureItemType, useGetLectureList } from '@bitgouel/api'
 
 const LecturePage = () => {

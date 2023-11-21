@@ -1,16 +1,14 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "@bitgouel/tsconfig/next.json",
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
       "@/*": [
         "./*"
-      ],
-      "@common/*": [
-        "../../../shared/common/src/*"
       ]
     },
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "strict": false
   },
   "include": [
     "next-env.d.ts",

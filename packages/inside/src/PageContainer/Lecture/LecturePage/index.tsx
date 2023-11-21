@@ -1,15 +1,15 @@
 'use client'
 
-import { Filter } from '@common/assets'
-import Bg3 from '@common/assets/png/mainBg3.png'
-import { LectureTypeText } from '@common/atoms'
-import { LectureItem } from '@common/components'
-import { LectureTypeModal } from '@common/modals'
+import { Filter } from '@bitgouel/common/src/assets'
+import Bg3 from '@bitgouel/common/src/assets/png/mainBg3.png'
+import { LectureTypeText } from '@bitgouel/common/src/atoms'
+import { LectureItem } from '@bitgouel/common/src/components'
+import { LectureTypeModal } from '@bitgouel/common/src/modals'
 import { useState } from 'react'
 import { useRecoilState } from 'recoil'
 import * as S from './style'
 import { LectureItemType, useGetLectureList } from '@bitgouel/api'
-import { lectureToEnum } from '@common/constants'
+import { lectureToEnum } from '@bitgouel/common/src/constants'
 
 const LecturePage = () => {
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
