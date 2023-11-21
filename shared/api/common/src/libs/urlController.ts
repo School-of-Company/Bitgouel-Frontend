@@ -31,8 +31,10 @@ export const activityUrl = {
     `/activity/${activity_id}`,
   activityMyselfList: (options: ActivityOptionsTypes) =>
     `/activity?page=${options.page}&size=${options.size}&sort=${options.sort}/my`,
-  activityList: (student_id: string) => `/activity/${student_id}`,
-  activityInformationList: () => `/activity`,
+  activityList: (student_id: string, options: ActivityOptionsTypes) =>
+    `/activity?page=${options.page}&size=${options.size}&sort=${options.sort}/${student_id}`,
+  activityInformationList: (options: ActivityOptionsTypes) =>
+    `/activity?page=${options.page}&size=${options.size}&sort=${options.sort}`,
   activityInformationDetail: (activity_id: string) =>
     `/activity/${activity_id}`,
 }
