@@ -1,6 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { activityUrl } from '../../libs/urlController'
-import { activityQueryKeys, patch } from '../../libs'
+import { activityQueryKeys, patch, activityUrl } from '../../libs'
 import { AxiosResponse } from 'axios'
 
 export const usePatchActivityApprove = (activity_id: string) =>

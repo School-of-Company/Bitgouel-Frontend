@@ -1,7 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { activityQueryKeys } from '../../libs/queryKeys'
-import { activityUrl } from '../../libs/urlController'
-import { post } from '../../libs'
+import { activityQueryKeys, post, activityUrl } from '../../libs'
 import { AxiosResponse } from 'axios'
 
 export const usePostInformation = () =>
