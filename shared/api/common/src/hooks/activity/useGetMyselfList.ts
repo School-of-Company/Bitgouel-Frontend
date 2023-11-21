@@ -1,4 +1,4 @@
-import { ActivityOptionsTypes } from './../../types/libs/ActivityOptionsTypes'
+import { ActivityOptionsTypes } from './../../types'
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
 import { activityQueryKeys, get, activityUrl } from '../../libs'
 import { AxiosResponse } from 'axios'
