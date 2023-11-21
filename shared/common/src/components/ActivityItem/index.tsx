@@ -30,7 +30,7 @@ const ActivityItem = ({ item }: ActivityItemProps) => {
         <div>
           <S.AcitivTitle>
             {item.title.length > 10
-              ? `${item.title.slice(0, 13)}...`
+              ? `${item.title.slice(0, 12)}...`
               : item.title}
           </S.AcitivTitle>
         </div>
