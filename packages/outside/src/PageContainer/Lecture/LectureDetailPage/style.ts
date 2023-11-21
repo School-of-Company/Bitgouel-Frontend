@@ -94,6 +94,7 @@ export const MainText = styled.div`
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
 `
 
 export const ButtonContainer = styled.div<{isApprove: ApproveStatusEnum}>`
