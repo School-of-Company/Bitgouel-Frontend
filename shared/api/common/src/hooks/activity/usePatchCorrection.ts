@@ -4,7 +4,7 @@ import { activityUrl } from '../../libs/urlController'
 import { patch } from '../../libs'
 import { AxiosResponse } from 'axios'
 
-export const usePostInformation = (activity_id: string) =>
+export const usePatchInformation = (activity_id: string) =>
   useMutation<
     AxiosResponse,
     Error,
