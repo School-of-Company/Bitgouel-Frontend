@@ -93,34 +93,36 @@ const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
             </S.SubMenuContainer>
           </S.TitleContainer>
           <S.MainText>{data?.data.content}</S.MainText>
-          <S.ButtonContainer isApprove={data?.data.approveStatus}>
-            <S.CreateNotApproveButton
-              onClick={() =>
-                openModal(
-                  <RejectModal
-                    type='강의 개설'
-                    title={data?.data.name}
-                    id={lectureId}
-                  />
-                )
-              }
-            >
-              신청 거부하기
-            </S.CreateNotApproveButton>
-            <S.CreateApproveButton
-              onClick={() =>
-                openModal(
-                  <ApproveModal
-                    type='강의 개설'
-                    title={data?.data.name}
-                    id={lectureId}
-                  />
-                )
-              }
-            >
-              신청 승인하기
-            </S.CreateApproveButton>
-          </S.ButtonContainer>
+          <S.ButtonWrapper>
+            <S.ButtonContainer isApprove={data?.data.approveStatus}>
+              <S.CreateNotApproveButton
+                onClick={() =>
+                  openModal(
+                    <RejectModal
+                      type='강의 개설'
+                      title={data?.data.name}
+                      id={lectureId}
+                    />
+                  )
+                }
+              >
+                신청 거부하기
+              </S.CreateNotApproveButton>
+              <S.CreateApproveButton
+                onClick={() =>
+                  openModal(
+                    <ApproveModal
+                      type='강의 개설'
+                      title={data?.data.name}
+                      id={lectureId}
+                    />
+                  )
+                }
+              >
+                신청 승인하기
+              </S.CreateApproveButton>
+            </S.ButtonContainer>
+          </S.ButtonWrapper>
         </S.Document>
       </S.DocumentWrapper>
     </div>

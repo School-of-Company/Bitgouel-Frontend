@@ -37,7 +37,7 @@ const Header = ({ inside }: { inside: boolean }) => {
   useEffect(() => {
     const onScroll = () => {
       const { scrollY } = window
-      if (pathname === '/main/home') {
+      if (pathname === '/') {
         if (scrollY >= 800) {
           setBgColor('#fff')
           setSymbolNum(Symbol2)
