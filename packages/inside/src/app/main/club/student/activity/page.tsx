@@ -1,5 +1,5 @@
 import React from 'react'
-import ActivityListPage from '@/PageContainer/Club/ActivityList'
+import ActivityListPage from '@/PageContainer/Club/ActivityListPage'
 
 const ActivityDetail = () => {
   return <ActivityListPage />
