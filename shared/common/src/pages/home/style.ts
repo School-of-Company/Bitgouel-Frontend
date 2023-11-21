@@ -27,7 +27,7 @@ export const HomeTitle = styled.span`
 export const ViewContainer = styled.div`
   width: 100%;
   position: absolute;
-  bottom: 10rem;
+  top: calc(50rem - 4rem);
 `
 
 export const View = styled.div`
