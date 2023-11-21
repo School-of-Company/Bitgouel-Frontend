@@ -1,7 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { lectureQueryKeys } from '../../libs/queryKeys'
-import { lectureUrl } from '../../libs/urlController'
-import { post } from '../../libs'
+import { lectureQueryKeys, post, lectureUrl } from '../../libs'
 import { AxiosResponse } from 'axios'
 
 export const usePostApplicationLecture = (id: string) =>

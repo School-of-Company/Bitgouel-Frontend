@@ -1,8 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
-import { lectureQueryKeys } from '../../'
-import { lectureUrl } from '../../'
-import { patch } from '../../'
 import { AxiosResponse } from 'axios'
+import { lectureQueryKeys, patch, lectureUrl } from '../../libs'
 
 export const usePatchApproveLecture = (id: string) =>
   useMutation<AxiosResponse>(
