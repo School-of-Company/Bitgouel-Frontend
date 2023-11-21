@@ -1,8 +1,8 @@
 import React from 'react'
-import { ActivityPage } from '@bitgouel/common/src/PageContainer'
+import ActivityListPage from '@/PageContainer/Club/ActivityListPage'
 
-const Activity = () => {
-  return <ActivityPage />
+const ActivityList = () => {
+  return <ActivityListPage />
 }
 
-export default Activity
+export default ActivityList

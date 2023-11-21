@@ -1,21 +1,12 @@
 {
-  "extends": "@bitgouel/tsconfig/next-app.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "@/*": [
-        "./*"
-      ]
-    },
-    "strict": false
+      "@/*": ["./*"],
+      "@common/*": ["../../../shared/common/src/*"]
+    }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }

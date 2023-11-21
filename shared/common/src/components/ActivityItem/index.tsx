@@ -10,6 +10,7 @@ interface ActivityItemType {
   activityId: string
   title: string
   userId: string
+  activityDate: string
   userName: string
   approveStatus: ApproveStatusEnum
 }
@@ -33,7 +34,18 @@ const ActivityItem = ({ item }: ActivityItemProps) => {
               : item.title}
           </S.AcitivTitle>
         </div>
-        <S.Uploader>{item.userName}</S.Uploader>
+        <div>
+          <S.Date>{`${item.activityDate.slice(
+            0,
+            4
+          )}년 ${item.activityDate.slice(5, 7)}월 ${item.activityDate.slice(
+            8,
+            10
+          )}일 ${item.activityDate.slice(11, 16)}`}</S.Date>
+        </div>
+        <div>
+          <S.Uploader>{item.userName}</S.Uploader>
+        </div>
       </div>
       <S.StatusContainer>
         <S.ApproveStatus

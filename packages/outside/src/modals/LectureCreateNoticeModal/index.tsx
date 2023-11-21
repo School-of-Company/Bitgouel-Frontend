@@ -1,8 +1,8 @@
 'use client'
 
-import Portal from '@bitgouel/common/src/portal'
+import Portal from '@common/portal'
 import * as S from './style'
-import { useModal } from '@bitgouel/common/src/hooks'
+import { useModal } from '@common/hooks'
 import { useRouter } from 'next/navigation'
 
 const LectureCreateNoticeModal = () => {

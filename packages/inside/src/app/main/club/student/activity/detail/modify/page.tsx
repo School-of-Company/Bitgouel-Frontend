@@ -1,5 +1,5 @@
 import React from 'react'
-import ActivityModifyPage from '@/PageContainer/Club/ActivityModify'
+import ActivityModifyPage from '@/PageContainer/Club/ActivityModifyPage'
 
 const ActivityModify = () => {
   return <ActivityModifyPage />
