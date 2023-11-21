@@ -1,10 +1,10 @@
 'use client'
 
 import * as S from './style'
-import Bg2 from '../../../../assets/png/mainBg2.png'
-import { Plus } from '../../../../assets'
+import Bg2 from '@common/assets/png/mainBg2.png'
+import { Plus } from '@common/assets'
 import { useRouter } from 'next/navigation'
-import { ActivityItem } from '../../../../components'
+import { ActivityItem } from '@common/components'
 import { ApproveStatusEnum } from '@bitgouel/api'
 
 interface ActivityItemType {
@@ -16,7 +16,7 @@ interface ActivityItemType {
   approveStatus: ApproveStatusEnum
 }
 
-const ActivityPage = () => {
+const ActivityListPage = () => {
   const router = useRouter()
 
   const activityList: ActivityItemType[] = [
@@ -76,4 +76,4 @@ const ActivityPage = () => {
   )
 }
 
-export default ActivityPage
+export default ActivityListPage

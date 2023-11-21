@@ -1,8 +1,8 @@
 import React from 'react'
-import { ActivityPage } from '@common/pages'
+import ActivityDetailPage from '@/PageContainer/Club/ActivityDetail'
 
-const Activity = () => {
-  return <ActivityPage />
+const ActivityDetail = () => {
+  return <ActivityDetailPage />
 }
 
-export default Activity
+export default ActivityDetail
