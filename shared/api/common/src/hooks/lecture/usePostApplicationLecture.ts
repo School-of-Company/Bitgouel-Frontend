@@ -3,7 +3,6 @@ import { lectureQueryKeys } from '../../libs/queryKeys'
 import { lectureUrl } from '../../libs/urlController'
 import { post } from '../../libs'
 import { AxiosError, AxiosResponse } from 'axios'
-
 import { useRouter } from 'next/navigation'
 import { useModal } from '../../../../../common/src/hooks'
 
