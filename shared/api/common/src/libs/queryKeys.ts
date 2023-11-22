@@ -47,4 +47,4 @@ export const activityQueryKeys = {
   getActivityInformationList: () => ['activity', 'informationList'],
   getActivityInformationDetail: () => (activity_id: string) =>
     ['activity', 'detail', activity_id],
-}
+} as const
