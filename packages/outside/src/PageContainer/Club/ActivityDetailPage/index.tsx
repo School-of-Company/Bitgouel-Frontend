@@ -1,7 +1,7 @@
 'use client'
 
 import Bg2 from '@bitgouel/common/src/assets/png/mainBg2.png'
-import { Pen, TrashCan } from '@bitgouel/common/src/assets'
+import { Pen, TrashCan } from '@bitgouel/common'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
 import { ApproveStatusEnum } from '@bitgouel/api'

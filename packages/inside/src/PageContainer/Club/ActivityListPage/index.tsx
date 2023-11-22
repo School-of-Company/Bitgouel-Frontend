@@ -2,7 +2,7 @@
 
 import * as S from './style'
 import Bg2 from '@bitgouel/common/src/assets/png/mainBg2.png'
-import { Plus } from '@bitgouel/common/src/assets'
+import { Plus } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { ActivityItem } from '@bitgouel/common/src/components'
 import { ApproveStatusEnum } from '@bitgouel/api'

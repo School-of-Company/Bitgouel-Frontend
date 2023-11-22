@@ -5,7 +5,7 @@ import * as S from './style'
 import { useGetDetailLecture } from '@bitgouel/api'
 import { lectureToKor } from '@bitgouel/common/src/constants'
 import { useModal } from '@bitgouel/common/src/hooks'
-import { ApproveModal, RejectModal } from '@bitgouel/common/src/modals'
+import { ApproveModal, RejectModal } from '@bitgouel/common'
 
 const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)

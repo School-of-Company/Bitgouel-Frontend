@@ -1,10 +1,10 @@
 'use client'
 
-import { Filter, Plus } from '@bitgouel/common/src/assets'
+import { Filter, Plus } from '@bitgouel/common'
 import Bg3 from '@bitgouel/common/src/assets/png/mainBg3.png'
 import { LectureTypeText } from '@bitgouel/common/src/atoms'
 import { LectureItem } from '@bitgouel/common/src/components'
-import { LectureTypeModal } from '@bitgouel/common/src/modals'
+import { LectureTypeModal } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useRecoilState } from 'recoil'

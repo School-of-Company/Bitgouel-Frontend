@@ -2,12 +2,9 @@
 
 import * as S from './style'
 import Bg2 from '@bitgouel/common/src/assets/png/mainBg2.png'
-import { Chevron } from '@bitgouel/common/src/assets'
+import { Chevron } from '@bitgouel/common'
 import { useState } from 'react'
-import {
-  SelectCalendarModal,
-  SelectScoreModal,
-} from '@bitgouel/common/src/modals'
+import { SelectCalendarModal, SelectScoreModal } from '@bitgouel/common'
 import { useSearchParams } from 'next/navigation'
 
 const ActivityModifyPage = () => {
