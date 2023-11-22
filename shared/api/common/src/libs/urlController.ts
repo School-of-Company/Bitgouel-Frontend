@@ -30,9 +30,9 @@ export const activityUrl = {
   activityInformationRemove: (activity_id: string) =>
     `/activity/${activity_id}`,
   activityMyselfList: (options: ActivityOptionsTypes) =>
-    `/activity?page=${options.page}&size=${options.size}&sort=${options.sort}/my`,
+    `/activity/my?page=${options.page}&size=${options.size}&sort=${options.sort}`,
   activityList: (student_id: string, options: ActivityOptionsTypes) =>
-    `/activity?page=${options.page}&size=${options.size}&sort=${options.sort}/${student_id}`,
+    `/activity/${student_id}?page=${options.page}&size=${options.size}&sort=${options.sort}`,
   activityInformationList: (options: ActivityOptionsTypes) =>
     `/activity?page=${options.page}&size=${options.size}&sort=${options.sort}`,
   activityInformationDetail: (activity_id: string) =>
