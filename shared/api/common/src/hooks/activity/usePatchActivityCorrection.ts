@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query'
-import { activityQueryKeys, post, activityUrl } from '../../libs'
+import { activityQueryKeys, patch, activityUrl } from '../../libs'
 import { AxiosResponse } from 'axios'
 
-export const usePostInformation = () =>
+export const usePatchActivityCorrection = (activity_id: string) =>
   useMutation<
     AxiosResponse,
     Error,
@@ -13,8 +13,8 @@ export const usePostInformation = () =>
       activityDate: string
     }
   >(
-    activityQueryKeys.postActivityInformation(),
-    () => post(activityUrl.activityInformation(), {}),
+    activityQueryKeys.patchActivityCorrection(activity_id),
+    () => patch(activityUrl.activityCorrection(activity_id), {}),
     {
       onSuccess: ({ data }) => {
         console.log(data)

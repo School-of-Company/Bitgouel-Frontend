@@ -1,13 +1,14 @@
+import { ActivityOptionsTypes } from './../../types'
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
 import { activityQueryKeys, get, activityUrl } from '../../libs'
 import { AxiosResponse } from 'axios'
 
-export const useGetDetail = (
-  activity_id: string,
+export const useGetActivityMyselfList = (
+  queryString: ActivityOptionsTypes,
   options?: UseQueryOptions<AxiosResponse>
 ) =>
   useQuery<AxiosResponse>(
-    activityQueryKeys.getActivityInformationDetail()(activity_id),
-    () => get(activityUrl.activityInformationDetail(activity_id)),
+    activityQueryKeys.getActivityMyselfList(),
+    () => get(activityUrl.activityMyselfList(queryString)),
     options
   )

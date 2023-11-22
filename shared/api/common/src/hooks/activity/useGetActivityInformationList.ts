@@ -3,7 +3,7 @@ import { useQuery, UseQueryOptions } from '@tanstack/react-query'
 import { activityQueryKeys, get, activityUrl } from '../../libs'
 import { AxiosResponse } from 'axios'
 
-export const useGetInformationList = (
+export const useGetActivityInformationList = (
   queryString: ActivityOptionsTypes,
   options?: UseQueryOptions<AxiosResponse>
 ) =>
