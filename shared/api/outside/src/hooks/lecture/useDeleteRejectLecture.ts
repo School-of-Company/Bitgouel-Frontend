@@ -1,7 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { lectureQueryKeys } from '../../'
-import { lectureUrl } from '../../libs/urlController'
-import { del } from '../../libs'
+import { lectureQueryKeys, lectureUrl, del } from '../../../../common'
 import { AxiosError, AxiosResponse } from 'axios'
 
 export const useDeleteRejectLecture = (id: string) =>

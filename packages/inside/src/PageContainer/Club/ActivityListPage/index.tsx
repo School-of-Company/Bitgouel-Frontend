@@ -1,10 +1,10 @@
 'use client'
 
 import * as S from './style'
-import Bg2 from '@common/assets/png/mainBg2.png'
-import { Plus } from '@common/assets'
+import Bg2 from '@bitgouel/common/src/assets/png/mainBg2.png'
+import { Plus } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
-import { ActivityItem } from '@common/components'
+import { ActivityItem } from '@bitgouel/common/src/components'
 import { ApproveStatusEnum } from '@bitgouel/api'
 
 interface ActivityItemType {
