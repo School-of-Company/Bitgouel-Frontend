@@ -1,11 +1,11 @@
 import { useMutation } from '@tanstack/react-query'
-import { activityQueryKeys, del, activityUrl } from '../../libs'
+import { activityQueryKeys, patch, activityUrl } from '../../../../common'
 import { AxiosResponse } from 'axios'
 
-export const useDeleteInformationRemove = (activity_id: string) =>
+export const usePatchActivityApprove = (activity_id: string) =>
   useMutation<AxiosResponse, Error>(
-    activityQueryKeys.deleteActivityInformationRemove(activity_id),
-    () => del(activityUrl.activityInformationRemove(activity_id)),
+    activityQueryKeys.patchActivityApprove(activity_id),
+    () => patch(activityUrl.activityApprove(activity_id), {}),
     {
       onSuccess: ({ data }) => {
         console.log(data)
