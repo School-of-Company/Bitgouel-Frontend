@@ -2,7 +2,7 @@ import { useQuery, UseQueryOptions } from '@tanstack/react-query'
 import { activityQueryKeys, get, activityUrl } from '../../libs'
 import { AxiosResponse } from 'axios'
 
-export const useGetLectureList = (
+export const useGetDetail = (
   activity_id: string,
   options?: UseQueryOptions<AxiosResponse>
 ) =>
