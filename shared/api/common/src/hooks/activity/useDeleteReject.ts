@@ -3,7 +3,7 @@ import { activityQueryKeys, del, activityUrl } from '../../libs'
 import { AxiosResponse } from 'axios'
 
 export const useDeleteRejectLecture = (activity_id: string) =>
-  useMutation<AxiosResponse>(
+  useMutation<AxiosResponse, Error>(
     activityQueryKeys.deleteActivityReject(activity_id),
     () => del(activityUrl.activityReject(activity_id)),
     {

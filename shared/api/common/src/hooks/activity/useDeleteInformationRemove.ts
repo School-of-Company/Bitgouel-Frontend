@@ -3,7 +3,7 @@ import { activityQueryKeys, del, activityUrl } from '../../libs'
 import { AxiosResponse } from 'axios'
 
 export const useDeleteInformationRemove = (activity_id: string) =>
-  useMutation<AxiosResponse>(
+  useMutation<AxiosResponse, Error>(
     activityQueryKeys.deleteActivityInformationRemove(activity_id),
     () => del(activityUrl.activityInformationRemove(activity_id)),
     {
