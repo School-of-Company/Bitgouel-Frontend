@@ -1,4 +1,4 @@
-export interface MyselfListTypes {
+export interface ListTypes {
   activityId: string //UUID
   title: string
   userId: string //UUID
