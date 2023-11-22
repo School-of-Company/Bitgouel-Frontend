@@ -1,25 +1,50 @@
 export const authQueryKeys = {
-  patchReissue: () => ['auth', 'patchReissue'],
-  postLogin: () => ['auth', 'postLogin'],
-  deleteLogout: () => ['auth', 'deleteLogout'],
-  deleteWithDraw: () => ['auth', 'deleteWithDraw'],
-  postSignUpStudent: () => ['auth', 'postSignUpStudent'],
-  postSignUpTeacher: () => ['auth', 'postSignUpTeacher'],
-  postSignUpBbozzak: () => ['auth', 'postSignUpBbozzak'],
-  postSignUpProfessor: () => ['auth', 'postSignUpProfessor'],
-  postSignUpGoverment: () => ['auth', 'postSignUpGoverment'],
-  postSignUpCompanyInstructor: () => ['auth', 'postSignUpCompanyInstructor'],
+  patchReissue: () => ['auth', 'reissue'],
+  postLogin: () => ['auth', 'login'],
+  deleteLogout: () => ['auth', 'logout'],
+  deleteWithDraw: () => ['auth', 'withDraw'],
+  postSignUpStudent: () => ['auth', 'signUp'],
+  postSignUpTeacher: () => ['auth', 'signUp'],
+  postSignUpBbozzak: () => ['auth', 'signUp'],
+  postSignUpProfessor: () => ['auth', 'signUp'],
+  postSignUpGoverment: () => ['auth', 'signUp'],
+  postSignUpCompanyInstructor: () => ['auth', 'signUp'],
 } as const
 
 export const lectureQueryKeys = {
-  postLetureCreate: () => ['lecture', 'postLectureCreat'],
-  getLectureList: () => ['lecture', 'getLectureList'],
-  getLectureDetail: (id: string) => ['lecture', 'getLectureDetail', id],
-  postLectureApplication: (id: string) => [
-    'lecture',
-    'postLectureApplication',
-    id,
+  postLetureCreate: () => ['lecture', 'create'],
+  getLectureList: () => ['lecture', 'list'],
+  getLectureDetail: (id: string) => ['lecture', 'detail', id],
+  postLectureApplication: (id: string) => ['lecture', 'application', id],
+  patchLectureApprove: (id: string) => ['lecture', 'approve', id],
+  deleteLectureReject: (id: string) => ['lecture', 'reject', id],
+} as const
+
+export const activityQueryKeys = {
+  postActivityInformation: () => ['activity', 'information'],
+  patchActivityCorrection: (activity_id: string) => [
+    'activity',
+    'correction',
+    activity_id,
   ],
-  patchLectureApprove: (id: string) => ['lecture', 'patchLectureApprove', id],
-  deleteLectureReject: (id: string) => ['lecture', 'deleteLectureReject', id],
+  patchActivityApprove: (activity_id: string) => [
+    'activity',
+    'approve',
+    activity_id,
+  ],
+  deleteActivityReject: (activity_id: string) => [
+    'activity',
+    'reject',
+    activity_id,
+  ],
+  deleteActivityInformationRemove: (activity_id: string) => [
+    'activity',
+    'remove',
+    activity_id,
+  ],
+  getActivityMyselfList: () => ['activity', 'myselfList'],
+  getActivityList: (student_id: string) => ['activity', 'list', student_id],
+  getActivityInformationList: () => ['activity', 'informationList'],
+  getActivityInformationDetail: () => (activity_id: string) =>
+    ['activity', 'detail', activity_id],
 } as const
