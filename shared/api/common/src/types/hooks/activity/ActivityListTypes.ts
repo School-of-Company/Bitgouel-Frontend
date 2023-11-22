@@ -3,5 +3,5 @@ export interface ActivityListTypes {
   title: string
   userId: string //UUID
   username: string
-  approveStatus: 'ApproveStatus APPROVED' | 'PENDING'
+  approveStatus: 'APPROVED' | 'PENDING'
 }
