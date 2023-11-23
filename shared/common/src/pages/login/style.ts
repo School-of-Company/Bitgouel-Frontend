@@ -89,11 +89,9 @@ export const LoginButtonWrapper = styled.div`
   align-items: flex-end;
 `
 
-export const LoginButton = styled.button<{ isAble: boolean }>`
-  background-color: ${({ theme, isAble }) =>
-    isAble ? theme.color.main : theme.color.gray['700']};
-  color: ${({ theme, isAble }) =>
-    isAble ? theme.color.white : theme.color.gray['400']};
+export const LoginButton = styled.button`
+  background-color: ${({ theme }) => theme.color.main};
+  color: ${({ theme }) => theme.color.white};
   ${({ theme }) => theme.typo.text_lg};
   width: 24rem;
   height: 3.25rem;
