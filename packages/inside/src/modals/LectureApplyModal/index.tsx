@@ -5,11 +5,9 @@ import React from 'react'
 import Portal from '@bitgouel/common/src/portal'
 import * as S from './style'
 import { usePostApplicationLecture } from '@bitgouel/api'
+import { LectureApplyModalProps } from '@bitgouel/types'
 
-const LectureApplyModal = ({
-  title,
-  lectureId,
-}: LectureApplyModalProps) => {
+const LectureApplyModal = ({ title, lectureId }: LectureApplyModalProps) => {
   const { closeModal } = useModal()
   const { mutate } = usePostApplicationLecture(lectureId)
 

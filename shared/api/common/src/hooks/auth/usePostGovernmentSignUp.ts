@@ -7,23 +7,12 @@ import { authUrl } from '../../libs/urlController'
 import { AxiosError } from 'axios'
 import { useSetRecoilState } from 'recoil'
 import { Page } from '../../../../../common/src/atoms'
+import { GovernmentPayloadTypes } from '@bitgouel/types'
 
 export const usePostSignUpGovernment = () => {
   const setPage = useSetRecoilState(Page)
 
-  return useMutation<
-    void,
-    AxiosError,
-    {
-      email: string
-      name: string
-      phoneNumber: string
-      password: string
-      highSchool: string
-      clubName: string
-      governmentName: string
-    }
-  >(
+  return useMutation<void, AxiosError, GovernmentPayloadTypes>(
     authQueryKeys.postSignUpGoverment(),
     (signUpValues) => post(authUrl.signUpGovernment(), signUpValues),
     {

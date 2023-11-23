@@ -8,7 +8,7 @@ import { LectureTypeModal } from '@bitgouel/common'
 import { useState } from 'react'
 import { useRecoilState } from 'recoil'
 import * as S from './style'
-import { LectureItemType, useGetLectureList } from '@bitgouel/api'
+import { useGetLectureList } from '@bitgouel/api'
 import { lectureToEnum } from '@bitgouel/common/src/constants'
 
 const LecturePage = () => {
@@ -50,7 +50,7 @@ const LecturePage = () => {
       </S.SlideBg>
       <S.ListWrraper>
         <S.ListContainer>
-          {data?.data.lectures.content.map((item: LectureItemType) => (
+          {data?.data.lectures.map((item) => (
             <LectureItem inside={true} item={item} key={item.id} />
           ))}
         </S.ListContainer>

@@ -7,23 +7,12 @@ import { authUrl } from '../../libs/urlController'
 import { AxiosError } from 'axios'
 import { useSetRecoilState } from 'recoil'
 import { Page } from '../../../../../common/src/atoms'
+import { CompanyPayloadTypes } from '@bitgouel/types'
 
 export const usePostSignUpCompanyInstructor = () => {
   const setPage = useSetRecoilState(Page)
 
-  return useMutation<
-    void,
-    AxiosError,
-    {
-      email: string
-      name: string
-      phoneNumber: string
-      password: string
-      highSchool: string
-      clubName: string
-      company: string
-    }
-  >(
+  return useMutation<void, AxiosError, CompanyPayloadTypes>(
     authQueryKeys.postSignUpCompanyInstructor(),
     (signUpValues) => post(authUrl.signUpCompanyInstructor(), signUpValues),
     {

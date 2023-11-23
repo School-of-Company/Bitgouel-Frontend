@@ -1,4 +1,4 @@
 export interface LectureApplyModalProps {
-  title: string
+  title: string | undefined
   lectureId: string
 }

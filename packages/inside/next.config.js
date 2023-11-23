@@ -2,7 +2,7 @@
 const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
-    transpilePackages: ["common", "api"],
+    transpilePackages: ["common", "api", "tsconfig", "types"],
 
     async rewrites() {
         return [

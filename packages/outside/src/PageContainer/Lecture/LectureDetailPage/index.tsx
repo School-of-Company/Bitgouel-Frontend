@@ -7,7 +7,7 @@ import { lectureToKor } from '@bitgouel/common/src/constants'
 import { useModal } from '@bitgouel/common/src/hooks'
 import { ApproveModal, RejectModal } from '@bitgouel/common'
 
-const LectureDeatailPage = ({ lectureId }: { lectureId: string }) => {
+const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
   const { openModal } = useModal()
 
@@ -36,7 +36,7 @@ const LectureDeatailPage = ({ lectureId }: { lectureId: string }) => {
             </S.SubTitle>
             <S.Title>{data?.data.name}</S.Title>
             <S.SubMenuContainer>
-              <S.From>{lectureToKor[data?.data.lectureType]}</S.From>
+              <S.From>{lectureToKor[data.data.lectureType]}</S.From>
               <S.MenuNum>
                 <div>
                   <span>신청기간: </span>
@@ -129,4 +129,4 @@ const LectureDeatailPage = ({ lectureId }: { lectureId: string }) => {
   )
 }
 
-export default LectureDeatailPage
+export default LectureDetailPage
