@@ -3,12 +3,7 @@
 import { lectureToKor, lectureStatusToKor } from '../../constants'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
-import { LectureItemType } from '@bitgouel/api'
-
-interface LectureItemProps {
-  item: LectureItemType
-  inside: boolean
-}
+import { LectureItemProps } from '@bitgouel/types'
 
 const LectureItem = ({ item, inside }: LectureItemProps) => {
   const router = useRouter()

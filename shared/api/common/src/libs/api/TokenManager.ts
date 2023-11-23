@@ -5,13 +5,7 @@ import {
   accessExpiredAt,
   refreshExpiredAt,
 } from '../'
-
-interface TokensType {
-  accessToken: string
-  refreshToken: string
-  accessExpiredAt: string
-  refreshExpiredAt: string
-}
+import { TokensTypes } from '@bitgouel/types'
 
 class TokenManager {
   private _accessToken: string | null = null
@@ -51,7 +45,7 @@ class TokenManager {
     this._refreshExpiredAt = localStorage.getItem(refreshExpiredAt)
   }
 
-  setTokens(tokens: TokensType) {
+  setTokens(tokens: TokensTypes) {
     this._accessToken = tokens.accessToken
     this._refreshToken = tokens.refreshToken
     this._accessExpiredAt = tokens.accessExpiredAt

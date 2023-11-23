@@ -1,5 +1,6 @@
 'use client'
 
+import { LectureCreateModalProps } from '@bitgouel/types'
 import { usePostCreateLecture } from '@bitgouel/api'
 import { useModal } from '@bitgouel/common/src/hooks'
 import Portal from '@bitgouel/common/src/portal'
@@ -7,27 +8,14 @@ import React from 'react'
 import LectureCreateNoticeModal from '../LectureCreateNoticeModal'
 import * as S from './style'
 
-interface LectureCreateItemType {
-  createValues: {
-    name: string
-    content: string
-    startDate: string
-    endDate: string
-    completeDate: string
-    lectureType: string
-    credit: number
-    maxRegisteredUser: number
-  }
-}
-
-const LectureCreateModal = ({ createValues }: LectureCreateItemType) => {
+const LectureCreateModal = ({ createValues }: LectureCreateModalProps) => {
   const { openModal, closeModal } = useModal()
-  const { mutate, data } = usePostCreateLecture()
+  const { mutate, isSuccess } = usePostCreateLecture()
 
   const onCreate = () => {
     mutate(createValues)
 
-    if (data?.status === 201) {
+    if (isSuccess) {
       closeModal()
       openModal(<LectureCreateNoticeModal />)
     }

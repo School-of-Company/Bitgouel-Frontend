@@ -5,8 +5,10 @@ import Bg2 from '@bitgouel/common/src/assets/png/mainBg2.png'
 import { Plus } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { ActivityItem } from '@bitgouel/common/src/components'
-import { ApproveStatusEnum } from '@bitgouel/api'
+import { ApproveStatusEnum } from '@bitgouel/types'
 
+// 아래 예시인 activityList의 타입인데 어차피 통신으로 값을
+// 갖고 올거니 지워주세요 작업할 때
 interface ActivityItemType {
   activityId: string
   title: string

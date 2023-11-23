@@ -1,8 +1,8 @@
 import React from 'react'
-import { DeatilPage } from '@bitgouel/common/src/pages'
+import { DetailPage } from '@bitgouel/common/src/pages'
 
 const Detail = () => {
-  return <DeatilPage />
+  return <DetailPage />
 }
 
 export default Detail

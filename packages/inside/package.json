@@ -12,6 +12,7 @@
     "@bitgouel/api": "workspace:^",
     "@bitgouel/common": "workspace:^",
     "@bitgouel/tsconfig": "workspace:^",
+    "@bitgouel/types": "workspace:^",
     "next": "14.0.2",
     "react": "^18",
     "react-dom": "^18"

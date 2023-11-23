@@ -1,23 +1,10 @@
 'use client'
 
-import * as S from './style'
+import { ActivityItemProps } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
-import { ApproveStatusEnum } from '@bitgouel/api'
-import { lectureStatusToKor } from '../../constants'
 import { match } from 'ts-pattern'
-
-interface ActivityItemType {
-  activityId: string
-  title: string
-  userId: string
-  activityDate: string
-  userName: string
-  approveStatus: ApproveStatusEnum
-}
-
-interface ActivityItemProps {
-  item: ActivityItemType
-}
+import { lectureStatusToKor } from '../../constants'
+import * as S from './style'
 
 const ActivityItem = ({ item }: ActivityItemProps) => {
   const router = useRouter()

@@ -1,4 +1,4 @@
-export type ApproveStatusEnum = 'APPROVED' | 'PENDING'
+import { ApproveStatusEnum } from './ApproveStatusEnum'
 
 export type LectureTypeEnum =
   | 'MUTUAL_CREDIT_RECOGNITION_PROGRAM'
@@ -13,7 +13,6 @@ export interface LectureItemType {
   startDate: string
   endDate: string
   completeDate: string
-  createAt: string
   lectureType: LectureTypeEnum
   lectureStatus: LectureStatusEnum
   approveStatus: ApproveStatusEnum

@@ -10,7 +10,7 @@ import { useState } from 'react'
 import { useRecoilState } from 'recoil'
 import * as S from './style'
 import { lectureToEnum } from '@bitgouel/common/src/constants'
-import { LectureItemType, useGetLectureList } from '@bitgouel/api'
+import { useGetLectureList } from '@bitgouel/api'
 
 const LecturePage = () => {
   const router = useRouter()
@@ -58,7 +58,7 @@ const LecturePage = () => {
       </S.SlideBg>
       <S.ListWrraper>
         <S.ListContainer>
-          {data?.data.lectures.content.map((item: LectureItemType) => (
+          {data?.data.lectures.map((item) => (
             <LectureItem inside={false} item={item} key={item.id} />
           ))}
         </S.ListContainer>

@@ -1,4 +1,4 @@
-export const accessToken = 'Bitgouel-accessToken'
-export const refreshToken = 'Bitgouel-refreshToken'
-export const accessExpiredAt = 'Bitgouel-accessExp'
-export const refreshExpiredAt = 'Bitgouel-refreshExp'
+export const accessToken: string = 'Bitgouel-accessToken'
+export const refreshToken: string = 'Bitgouel-refreshToken'
+export const accessExpiredAt: string = 'Bitgouel-accessExp'
+export const refreshExpiredAt: string = 'Bitgouel-refreshExp'

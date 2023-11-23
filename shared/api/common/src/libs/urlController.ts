@@ -1,4 +1,4 @@
-import { LectureListOptionsTypes, ActivityOptionsTypes } from '../types'
+import { LectureListOptionsTypes, ActivityOptionsTypes } from '@bitgouel/types'
 
 export const authUrl = {
   auth: () => `/auth`,

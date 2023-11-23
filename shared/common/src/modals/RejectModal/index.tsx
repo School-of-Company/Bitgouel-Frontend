@@ -1,22 +1,17 @@
 'use client'
 
 import { useDeleteRejectLecture } from '@bitgouel/api'
+
 import { useDeleteRejectActivity } from '@bitgouel/api'
+
+import { AppropriationModalProps } from '@bitgouel/types'
+
 import { useModal } from '../../hooks'
 import Portal from '../../portal'
-import React from 'react'
 import { CancelButton } from '../ApproveModal/style'
 import * as S from './style'
 
-const LectureRejectModal = ({
-  type,
-  title,
-  id,
-}: {
-  type: string
-  title: string
-  id: string
-}) => {
+const RejectModal = ({ type, title, id }: AppropriationModalProps) => {
   const { closeModal } = useModal()
   const { mutate: lectureReject } = useDeleteRejectLecture(id)
   const { mutate: activityReject } = useDeleteRejectActivity(id)
@@ -42,4 +37,4 @@ const LectureRejectModal = ({
   )
 }
 
-export default LectureRejectModal
+export default RejectModal

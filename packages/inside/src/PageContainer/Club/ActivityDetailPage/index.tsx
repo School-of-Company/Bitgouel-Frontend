@@ -4,11 +4,11 @@ import Bg2 from '@bitgouel/common/src/assets/png/mainBg2.png'
 import { Pen, TrashCan } from '@bitgouel/common'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
-import { ApproveStatusEnum } from '@bitgouel/api'
 import { lectureStatusToKor } from '@bitgouel/common/src/constants'
 import { match } from 'ts-pattern'
 import { useModal } from '@bitgouel/common/src/hooks'
 import { ApproveModal, RejectModal } from '@bitgouel/common'
+import { ApproveStatusEnum } from '@bitgouel/types'
 
 interface ActivityItemType {
   id: string

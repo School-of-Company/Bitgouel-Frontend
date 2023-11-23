@@ -1,5 +1,6 @@
 'use client'
 
+import { LectureTypeModalProps } from '@bitgouel/types'
 import React from 'react'
 import * as S from './style'
 
@@ -8,12 +9,7 @@ const LectureTypeModal = ({
   text,
   setText,
   setIsLectureType,
-}: {
-  location: string
-  text: string
-  setText: React.Dispatch<React.SetStateAction<string>>
-  setIsLectureType: React.Dispatch<React.SetStateAction<boolean>>
-}) => {
+}: LectureTypeModalProps) => {
   return (
     <>
       <S.SelectFilterBox location={location}>

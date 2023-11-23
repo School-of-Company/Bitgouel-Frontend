@@ -1,21 +1,16 @@
 'use client'
 
 import { usePatchApproveLecture } from '@bitgouel/api'
+
 import { usePatchActivityApprove } from '@bitgouel/api'
+
+import { AppropriationModalProps } from '@bitgouel/types'
+
 import { useModal } from '../../hooks'
 import Portal from '../../portal'
-import React from 'react'
 import * as S from './style'
 
-const ApproveModal = ({
-  type,
-  title,
-  id,
-}: {
-  type: string
-  title: string
-  id: string
-}) => {
+const ApproveModal = ({ type, title, id }: AppropriationModalProps) => {
   const { closeModal } = useModal()
   const { mutate: lectureApprove } = usePatchApproveLecture(id)
   const { mutate: activityApprove } = usePatchActivityApprove(id)

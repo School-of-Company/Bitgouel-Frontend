@@ -1,27 +1,14 @@
 'use client'
 
 import { useMutation } from '@tanstack/react-query'
-import { post } from '../../libs/api/method'
-import { authQueryKeys } from '../../libs/queryKeys'
-import { authUrl } from '../../libs/urlController'
+import { authQueryKeys, authUrl, post, TokenManager } from '../../libs'
 import { AxiosError, AxiosResponse } from 'axios'
-import TokenManager from '../../libs/api/TokenManager'
 import { useRouter } from 'next/navigation'
-
-interface LoginResponseTypes {
-  accessToken: string
-  refreshToken: string
-  accessExpiredAt: string
-  refreshExpiredAt: string
-}
-
-interface ErrorTyeps {
-  fieldError: {
-    email?: string
-    password?: string
-  }
-  status: number
-}
+import {
+  LoginErrorTypes,
+  LoginResponseTypes,
+  LoginPayloadTypes,
+} from '@bitgouel/types'
 
 export const usePostLogin = () => {
   const tokenManager = new TokenManager()
@@ -29,8 +16,8 @@ export const usePostLogin = () => {
 
   return useMutation<
     AxiosResponse<LoginResponseTypes>,
-    AxiosError<ErrorTyeps>,
-    { email: string; password: string }
+    AxiosError<LoginErrorTypes>,
+    LoginPayloadTypes
   >(
     authQueryKeys.postLogin(),
     (loginValues) => post(authUrl.login(), loginValues),

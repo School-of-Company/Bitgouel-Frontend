@@ -1,5 +1,6 @@
 'use client'
 
+import { SelectScoreModalProps } from '@bitgouel/types'
 import React from 'react'
 import * as S from './style'
 
@@ -7,11 +8,7 @@ const SelectScoreModal = ({
   score,
   setScore,
   setIsScore,
-}: {
-  score: string
-  setScore: React.Dispatch<React.SetStateAction<string>>
-  setIsScore: React.Dispatch<React.SetStateAction<boolean>>
-}) => {
+}: SelectScoreModalProps) => {
   return (
     <S.SelectScoreBox>
       <S.SelectScoreTitle>학점 선택</S.SelectScoreTitle>
