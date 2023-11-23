@@ -21,10 +21,7 @@ export const usePostLogin = () => {
 
   return useMutation<
     AxiosResponse<Example>,
-    AxiosError<{
-      fieldError: { password: string; email: string }
-      status: number
-    }>,
+    AxiosError,
     { email: string; password: string }
   >(
     authQueryKeys.postLogin(),
