@@ -1,6 +1,7 @@
 'use client'
 
 import { useDeleteRejectLecture } from '@bitgouel/api'
+import { useDeleteRejectActivity } from '@bitgouel/api'
 import { useModal } from '../../hooks'
 import Portal from '../../portal'
 import React from 'react'
@@ -18,11 +19,11 @@ const LectureRejectModal = ({
 }) => {
   const { closeModal } = useModal()
   const { mutate: lectureReject } = useDeleteRejectLecture(id)
-  //   const {mutate: activityReject} = useDeleteRejectActivity(id)
+  const { mutate: activityReject } = useDeleteRejectActivity(id)
 
   const handleReject = () => {
     if (type === '강의 개설') lectureReject()
-    // else if (type === '활동 추가') activityReject()
+    else if (type === '활동 추가') activityReject()
   }
 
   return (

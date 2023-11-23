@@ -1,6 +1,7 @@
 'use client'
 
 import { usePatchApproveLecture } from '@bitgouel/api'
+import { usePatchActivityApprove } from '@bitgouel/api'
 import { useModal } from '../../hooks'
 import Portal from '../../portal'
 import React from 'react'
@@ -17,11 +18,11 @@ const ApproveModal = ({
 }) => {
   const { closeModal } = useModal()
   const { mutate: lectureApprove } = usePatchApproveLecture(id)
-  //   const { mutate: activityApprove } = usePatchApproveActivity(id)
+  const { mutate: activityApprove } = usePatchActivityApprove(id)
 
   const handleApprove = () => {
     if (type === '강의 개설') lectureApprove()
-    // else if (type === '활동 추가') activityApprove()
+    else if (type === '활동 추가') activityApprove()
   }
 
   return (
