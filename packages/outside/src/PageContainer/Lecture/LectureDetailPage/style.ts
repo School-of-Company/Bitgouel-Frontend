@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { ApproveStatusEnum } from '@bitgouel/api'
+import { ApproveStatusEnum } from '@bitgouel/types'
 
 export const SlideBg = styled.div<{ url: any }>`
   height: 15rem;
@@ -97,14 +97,16 @@ export const ButtonWrapper = styled.div`
   align-items: center;
 `
 
-export const ButtonContainer = styled.div<{isApprove: ApproveStatusEnum}>`
+export const ButtonContainer = styled.div<{ isApprove: ApproveStatusEnum }>`
   display: flex;
   bottom: 1.6rem;
   position: fixed;
-  
+
   div {
-    color: ${({ theme, isApprove }) => isApprove === 'APPROVED'? theme.color.gray['400'] : theme.color.white};
-    background-color: ${({theme, isApprove}) => isApprove && theme.color.gray['700']};
+    color: ${({ theme, isApprove }) =>
+      isApprove === 'APPROVED' ? theme.color.gray['400'] : theme.color.white};
+    background-color: ${({ theme, isApprove }) =>
+      isApprove && theme.color.gray['700']};
     ${({ theme }) => theme.typo.text_lg};
     padding: 0.85rem 2.6rem;
     border-radius: 0.5rem;

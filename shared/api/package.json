@@ -6,6 +6,7 @@
   "dependencies": {
     "@bitgouel/common": "workspace:^",
     "@bitgouel/tsconfig": "workspace:^",
+    "@bitgouel/types": "workspace:^",
     "axios": "^1.6.0"
   }
 }

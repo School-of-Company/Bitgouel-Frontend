@@ -1,15 +1,7 @@
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
 import { activityQueryKeys, get, activityUrl } from '../../../../common'
 import { AxiosResponse } from 'axios'
-
-interface ActivityDetailTypes {
-  id: string
-  title: string
-  content: string
-  credit: number
-  activityDate: string
-  modifiedAt: string
-}
+import { ActivityDetailTypes } from '@bitgouel/types'
 
 export const useGetActivityDetail = (
   activity_id: string,

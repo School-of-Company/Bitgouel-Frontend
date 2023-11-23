@@ -6,6 +6,7 @@
   "dependencies": {
     "@bitgouel/api": "workspace:^",
     "@bitgouel/tsconfig": "workspace:^",
+    "@bitgouel/types": "workspace:^",
     "@types/react-dom": "^18",
     "react-calendar": "^4.6.1",
     "typescript": "5.0.4"

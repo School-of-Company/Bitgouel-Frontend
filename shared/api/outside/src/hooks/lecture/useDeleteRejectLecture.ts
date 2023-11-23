@@ -3,7 +3,7 @@ import { lectureQueryKeys, lectureUrl, del } from '../../../../common'
 import { AxiosError, AxiosResponse } from 'axios'
 
 export const useDeleteRejectLecture = (id: string) =>
-  useMutation<AxiosResponse, AxiosError>(
+  useMutation<void, AxiosError>(
     lectureQueryKeys.deleteLectureReject(id),
     () => del(lectureUrl.lectureReject(id), {}),
     {

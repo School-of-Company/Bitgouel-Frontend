@@ -8,12 +8,7 @@ import React, {
 } from 'react'
 import * as S from './style'
 import { XIcon } from '../../assets'
-
-interface ValueInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  length: number
-  onClear: (() => void) | null
-  errorText?: string
-}
+import { ValueInputProps } from '@bitgouel/types'
 
 const ValueInput = (
   { length, onClear, errorText, ...rest }: ValueInputProps,

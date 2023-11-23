@@ -4,17 +4,14 @@ import React, { ChangeEvent, useState } from 'react'
 import * as S from './style'
 import Calendar from 'react-calendar'
 import { Chevron } from '../../assets'
+import { SelectCalendarModalProps } from '@bitgouel/types'
 
 const SelectCalendarModal = ({
   date,
   setDate,
   setText,
-}: {
-  date: Date
-  setDate: React.Dispatch<React.SetStateAction<Date>>
-  setText: React.Dispatch<React.SetStateAction<string>>
-}) => {
-  const weeks = [
+}: SelectCalendarModalProps) => {
+  const weeks: string[] = [
     '월요일',
     '화요일',
     '수요일',

@@ -3,7 +3,7 @@ import { lectureQueryKeys, lectureUrl, patch } from '../../../../common'
 import { AxiosResponse } from 'axios'
 
 export const usePatchApproveLecture = (id: string) =>
-  useMutation<AxiosResponse>(
+  useMutation<void>(
     lectureQueryKeys.patchLectureApprove(id),
     () => patch(lectureUrl.lectureApprove(id), {}),
     {

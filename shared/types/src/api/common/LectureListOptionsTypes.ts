@@ -1,4 +1,5 @@
-import { ApproveStatusEnum, LectureTypeEnum } from '../hooks'
+import { ApproveStatusEnum } from './ApproveStatusEnum'
+import { LectureTypeEnum } from './LectureItemType'
 
 export interface LectureListOptionsTypes {
   page: number
