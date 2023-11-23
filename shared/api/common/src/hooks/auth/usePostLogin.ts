@@ -8,11 +8,19 @@ import { AxiosError, AxiosResponse } from 'axios'
 import TokenManager from '../../libs/api/TokenManager'
 import { useRouter } from 'next/navigation'
 
-interface Example {
+interface LoginResponseTypes {
   accessToken: string
   refreshToken: string
   accessExpiredAt: string
   refreshExpiredAt: string
+}
+
+interface ErrorTyeps {
+  fieldError: {
+    email?: string
+    password?: string
+  }
+  status: number
 }
 
 export const usePostLogin = () => {
@@ -20,8 +28,8 @@ export const usePostLogin = () => {
   const router = useRouter()
 
   return useMutation<
-    AxiosResponse<Example>,
-    AxiosError,
+    AxiosResponse<LoginResponseTypes>,
+    AxiosError<ErrorTyeps>,
     { email: string; password: string }
   >(
     authQueryKeys.postLogin(),
