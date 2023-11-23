@@ -1,5 +1,5 @@
 import React from 'react'
-import { StudentPage } from '@common/pages'
+import { StudentPage } from '@bitgouel/common/src/pages'
 
 const Student = () => {
   return <StudentPage />

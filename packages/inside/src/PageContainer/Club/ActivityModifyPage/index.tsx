@@ -1,12 +1,13 @@
 'use client'
 
 import * as S from './style'
-import Bg2 from '@common/assets/png/mainBg2.png'
-import { Chevron } from '@common/assets'
+import Bg2 from '@bitgouel/common/src/assets/png/mainBg2.png'
+import { Chevron } from '@bitgouel/common'
 import { useState } from 'react'
-import { SelectCalendarModal, SelectScoreModal } from '@common/modals'
+import { SelectCalendarModal, SelectScoreModal } from '@bitgouel/common'
+import { useSearchParams } from 'next/navigation'
 
-const ActivityCreatePage = () => {
+const ActivityModifyPage = () => {
   const MAXLENGTH: number = 1000 as const
 
   const [isActivityDate, setIsActivityDate] = useState<boolean>(false)
@@ -27,11 +28,14 @@ const ActivityCreatePage = () => {
     }
   }
 
+  const params = useSearchParams()
+  console.log(params.get('title'))
+
   return (
     <div>
       <S.SlideBg url={Bg2}>
         <S.BgContainer>
-          <S.CreateTitle>활동 추가</S.CreateTitle>
+          <S.ModifyTitle>활동 수정</S.ModifyTitle>
           <S.ButtonContainer></S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
@@ -80,7 +84,7 @@ const ActivityCreatePage = () => {
             </S.SettingSelectionContainer>
           </S.ActivitySetting>
           <S.ButtonContainer>
-            <S.CreateButton>개설 신청하기</S.CreateButton>
+            <S.CreateButton>활동 수정하기</S.CreateButton>
           </S.ButtonContainer>
         </S.DocumentInput>
       </S.DocumentInputContainer>
@@ -88,4 +92,4 @@ const ActivityCreatePage = () => {
   )
 }
 
-export default ActivityCreatePage
+export default ActivityModifyPage

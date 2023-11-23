@@ -1,10 +1,8 @@
 import { useMutation } from '@tanstack/react-query'
-import { lectureQueryKeys } from '../../libs/queryKeys'
-import { lectureUrl } from '../../libs/urlController'
-import { post } from '../../libs'
+import { lectureQueryKeys, lectureUrl, post } from '../../../../common'
 import { AxiosError, AxiosResponse } from 'axios'
 import { useRouter } from 'next/navigation'
-import { useModal } from '../../../../../common/src/hooks'
+import { useModal } from '@bitgouel/common/src/hooks'
 
 export const usePostApplicationLecture = (id: string) => {
   const router = useRouter()

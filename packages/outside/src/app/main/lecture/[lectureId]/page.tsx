@@ -1,5 +1,5 @@
 import React from 'react'
-import LectureDetailPage from '@/PageContainer/Lecture/LectureDetailPage'
+import { LectureDetailPage } from '@/PageContainer'
 
 const LectureDetail = ({ params }: { params: { lectureId: string } }) => {
   return <LectureDetailPage lectureId={params.lectureId} />

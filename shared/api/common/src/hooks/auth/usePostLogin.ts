@@ -8,12 +8,19 @@ import { AxiosError, AxiosResponse } from 'axios'
 import TokenManager from '../../libs/api/TokenManager'
 import { useRouter } from 'next/navigation'
 
+interface Example {
+  accessToken: string
+  refreshToken: string
+  accessExpiredAt: string
+  refreshExpiredAt: string
+}
+
 export const usePostLogin = () => {
   const tokenManager = new TokenManager()
   const router = useRouter()
 
   return useMutation<
-    AxiosResponse,
+    AxiosResponse<Example>,
     AxiosError<{
       fieldError: { password: string; email: string }
       status: number

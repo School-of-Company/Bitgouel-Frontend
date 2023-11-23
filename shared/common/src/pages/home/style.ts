@@ -5,25 +5,29 @@ export const SlideBg = styled.div<{ url: any }>`
   width: 100%;
   overflow: hidden;
   display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
   background-image: url(${({ url }) => url.src});
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   transition: all 0.5s;
-  align-items: center;
-  flex-direction: column-reverse;
 `
 
 export const BgContainer = styled.div`
   width: 75rem;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 6.25rem;
 `
 
 export const HomeTitle = styled.span`
   color: ${({ theme }) => theme.color.white};
   ${({ theme }) => theme.typo.title_lg};
+`
+
+export const ViewContainer = styled.div`
+  width: 100%;
+  position: absolute;
+  top: calc(50rem - 4rem);
 `
 
 export const View = styled.div`

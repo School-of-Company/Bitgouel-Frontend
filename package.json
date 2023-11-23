@@ -1,8 +1,9 @@
 {
-  "name": "Bitgouel-Frontend",
+  "name": "@bitgouel",
   "version": "1.0.0",
-  "description": "",
+  "private": true,
   "workspaces": [
+    "packages/*",
     "shared/*"
   ],
   "scripts": {

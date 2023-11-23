@@ -1,4 +1,4 @@
-import LectureCreatePage from '@/PageContainer/Lecture/LectureCreatePage'
+import { LectureCreatePage } from '@/PageContainer'
 
 const LectureCreate = () => {
   return <LectureCreatePage />

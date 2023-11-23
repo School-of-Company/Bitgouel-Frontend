@@ -1,11 +1,11 @@
 'use client'
 
-import Bg3 from '@common/assets/png/mainBg3.png'
+import Bg3 from '@bitgouel/common/src/assets/png/mainBg3.png'
 import * as S from './style'
 import { useGetDetailLecture } from '@bitgouel/api'
-import { lectureToKor } from '@common/constants'
-import { useModal } from '@common/hooks'
-import { ApproveModal, RejectModal } from '@common/modals'
+import { lectureToKor } from '@bitgouel/common/src/constants'
+import { useModal } from '@bitgouel/common/src/hooks'
+import { ApproveModal, RejectModal } from '@bitgouel/common'
 
 const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
@@ -93,34 +93,36 @@ const LectureDeatilPage = ({ lectureId }: { lectureId: string }) => {
             </S.SubMenuContainer>
           </S.TitleContainer>
           <S.MainText>{data?.data.content}</S.MainText>
-          <S.ButtonContainer isApprove={data?.data.approveStatus}>
-            <S.CreateNotApproveButton
-              onClick={() =>
-                openModal(
-                  <RejectModal
-                    type='강의 개설'
-                    title={data?.data.name}
-                    id={lectureId}
-                  />
-                )
-              }
-            >
-              신청 거부하기
-            </S.CreateNotApproveButton>
-            <S.CreateApproveButton
-              onClick={() =>
-                openModal(
-                  <ApproveModal
-                    type='강의 개설'
-                    title={data?.data.name}
-                    id={lectureId}
-                  />
-                )
-              }
-            >
-              신청 승인하기
-            </S.CreateApproveButton>
-          </S.ButtonContainer>
+          <S.ButtonWrapper>
+            <S.ButtonContainer isApprove={data?.data.approveStatus}>
+              <S.CreateNotApproveButton
+                onClick={() =>
+                  openModal(
+                    <RejectModal
+                      type='강의 개설'
+                      title={data?.data.name}
+                      id={lectureId}
+                    />
+                  )
+                }
+              >
+                신청 거부하기
+              </S.CreateNotApproveButton>
+              <S.CreateApproveButton
+                onClick={() =>
+                  openModal(
+                    <ApproveModal
+                      type='강의 개설'
+                      title={data?.data.name}
+                      id={lectureId}
+                    />
+                  )
+                }
+              >
+                신청 승인하기
+              </S.CreateApproveButton>
+            </S.ButtonContainer>
+          </S.ButtonWrapper>
         </S.Document>
       </S.DocumentWrapper>
     </div>

@@ -1,8 +1,8 @@
 'use client'
 
 import { usePostCreateLecture } from '@bitgouel/api'
-import { useModal } from '@common/hooks'
-import Portal from '@common/portal'
+import { useModal } from '@bitgouel/common/src/hooks'
+import Portal from '@bitgouel/common/src/portal'
 import React from 'react'
 import LectureCreateNoticeModal from '../LectureCreateNoticeModal'
 import * as S from './style'
