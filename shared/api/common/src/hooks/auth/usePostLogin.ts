@@ -1,11 +1,8 @@
 'use client'
 
 import { useMutation } from '@tanstack/react-query'
-import { post } from '../../libs/api/method'
-import { authQueryKeys } from '../../libs/queryKeys'
-import { authUrl } from '../../libs/urlController'
+import { authQueryKeys, authUrl, post, TokenManager } from '../../libs'
 import { AxiosError, AxiosResponse } from 'axios'
-import TokenManager from '../../libs/api/TokenManager'
 import { useRouter } from 'next/navigation'
 import {
   LoginErrorTypes,
