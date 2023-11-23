@@ -1,20 +1,10 @@
+import { LectureCreatePayloadTypes } from '@bitgouel/types'
 import { useMutation } from '@tanstack/react-query'
-import { AxiosError, AxiosResponse } from 'axios'
+import { AxiosError } from 'axios'
 import { lectureUrl, lectureQueryKeys, post } from '../../../../common'
 
-interface LectureCreateItemType {
-  name: string
-  content: string
-  startDate: string
-  endDate: string
-  completeDate: string
-  lectureType: string
-  credit: number
-  maxRegisteredUser: number
-}
-
 export const usePostCreateLecture = () =>
-  useMutation<AxiosResponse, AxiosError, LectureCreateItemType>(
+  useMutation<void, AxiosError, LectureCreatePayloadTypes>(
     lectureQueryKeys.postLetureCreate(),
     (createValues) => post(lectureUrl.lecture(), createValues),
     {

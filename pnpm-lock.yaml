@@ -47,6 +47,9 @@ importers:
       '@bitgouel/tsconfig':
         specifier: workspace:^
         version: link:../../shared/tsconfig
+      '@bitgouel/types':
+        specifier: workspace:^
+        version: link:../../shared/types
       next:
         specifier: 14.0.2
         version: 14.0.2(react-dom@18.2.0)(react@18.2.0)
@@ -81,6 +84,9 @@ importers:
       '@bitgouel/tsconfig':
         specifier: workspace:^
         version: link:../../shared/tsconfig
+      '@bitgouel/types':
+        specifier: workspace:^
+        version: link:../../shared/types
       next:
         specifier: 14.0.2
         version: 14.0.2(react-dom@18.2.0)(react@18.2.0)
@@ -152,6 +158,9 @@ importers:
       '@bitgouel/tsconfig':
         specifier: workspace:^
         version: link:../tsconfig
+      '@bitgouel/types':
+        specifier: workspace:^
+        version: link:../types
       axios:
         specifier: ^1.6.0
         version: 1.6.0
@@ -164,6 +173,9 @@ importers:
       '@bitgouel/tsconfig':
         specifier: workspace:^
         version: link:../tsconfig
+      '@bitgouel/types':
+        specifier: workspace:^
+        version: link:../types
       '@types/react-dom':
         specifier: ^18
         version: 18.2.14
@@ -175,6 +187,12 @@ importers:
         version: 5.0.4
 
   shared/tsconfig: {}
+
+  shared/types:
+    dependencies:
+      '@bitgouel/tsconfig':
+        specifier: workspace:^
+        version: link:../tsconfig
 
 packages:
 

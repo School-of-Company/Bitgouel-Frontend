@@ -1,26 +1,7 @@
-import { ApproveStatusEnum } from '../../../../common'
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
-import {
-  activityQueryKeys,
-  get,
-  activityUrl,
-  ActivityOptionsTypes,
-} from '../../../../common'
+import { activityQueryKeys, get, activityUrl } from '../../../../common'
 import { AxiosResponse } from 'axios'
-
-interface ActivityMyselfItem {
-  activityId: string
-  title: string
-  userId: string
-  username: string
-  approveStatus: ApproveStatusEnum
-}
-
-interface ActivityMyselfTypes {
-  activities: {
-    content: ActivityMyselfItem[]
-  }
-}
+import { ActivityOptionsTypes, ActivityMyselfTypes } from '@bitgouel/types'
 
 export const useGetActivityMyselfList = (
   queryString: ActivityOptionsTypes,

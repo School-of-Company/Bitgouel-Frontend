@@ -7,22 +7,20 @@ import { authUrl } from '../../libs/urlController'
 import { AxiosError, AxiosResponse } from 'axios'
 import TokenManager from '../../libs/api/TokenManager'
 import { useRouter } from 'next/navigation'
-
-interface Example {
-  accessToken: string
-  refreshToken: string
-  accessExpiredAt: string
-  refreshExpiredAt: string
-}
+import {
+  LoginErrorTypes,
+  LoginResponseTypes,
+  LoginPayloadTypes,
+} from '@bitgouel/types'
 
 export const usePostLogin = () => {
   const tokenManager = new TokenManager()
   const router = useRouter()
 
   return useMutation<
-    AxiosResponse<Example>,
-    AxiosError,
-    { email: string; password: string }
+    AxiosResponse<LoginResponseTypes>,
+    AxiosError<LoginErrorTypes>,
+    LoginPayloadTypes
   >(
     authQueryKeys.postLogin(),
     (loginValues) => post(authUrl.login(), loginValues),

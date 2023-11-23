@@ -6,14 +6,14 @@ import { authQueryKeys } from '../../libs/queryKeys'
 import { authUrl } from '../../libs/urlController'
 import { useSetRecoilState } from 'recoil'
 import { Page } from '../../../../../common/src/atoms'
-import { AxiosResponse } from 'axios'
+import { AxiosError } from 'axios'
 
 export const usePostSignUpProfessor = () => {
   const setPage = useSetRecoilState(Page)
 
   return useMutation<
-    AxiosResponse,
-    Error,
+    void,
+    AxiosError,
     {
       email: string
       name: string
@@ -27,7 +27,7 @@ export const usePostSignUpProfessor = () => {
     authQueryKeys.postSignUpProfessor(),
     (signUpValues) => post(authUrl.signUpPropessor(), signUpValues),
     {
-      onSuccess: (data) => {
+      onSuccess: () => {
         setPage(4)
       },
       onError: (error) => {

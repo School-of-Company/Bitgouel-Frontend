@@ -1,4 +1,4 @@
-import { LectureTypeEnum } from '@bitgouel/api'
+import { LectureTypeEnum } from '@bitgouel/types'
 
 export const lectureToKor: Record<string, string> = {
   MUTUAL_CREDIT_RECOGNITION_PROGRAM: '상호학점인정교육과정',

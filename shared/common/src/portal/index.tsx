@@ -9,14 +9,9 @@ import {
   useState,
 } from 'react'
 import styled from '@emotion/styled'
+import { PortalProps } from '@bitgouel/types'
 
-const Portal = ({
-  children,
-  onClose,
-}: {
-  children: ReactElement
-  onClose: () => void
-}) => {
+const Portal = ({ children, onClose }: PortalProps) => {
   const [isCSR, setIsCSR] = useState(false)
 
   useEffect(() => {

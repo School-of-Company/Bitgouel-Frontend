@@ -6,27 +6,12 @@ import { authQueryKeys } from '../../libs/queryKeys'
 import { authUrl } from '../../libs/urlController'
 import { useSetRecoilState } from 'recoil'
 import { Page } from '../../../../../common/src/atoms'
-import { AxiosResponse } from 'axios'
+import { AxiosError } from 'axios'
 
 export const usePostSignUpStudent = () => {
   const setPage = useSetRecoilState(Page)
 
-  return useMutation<
-    AxiosResponse,
-    Error,
-    {
-      email: string
-      name: string
-      phoneNumber: string
-      password: string
-      highSchool: string
-      clubName: String
-      grade: number
-      classRoom: number
-      number: number
-      admissionNumber: number
-    }
-  >(
+  return useMutation<void, AxiosError>(
     authQueryKeys.postSignUpStudent(),
     (signUpValues) => post(authUrl.signUpStudent(), signUpValues),
     {

@@ -9,10 +9,7 @@ import { usePostApplicationLecture } from '@bitgouel/api'
 const LectureApplyModal = ({
   title,
   lectureId,
-}: {
-  title: string
-  lectureId: string
-}) => {
+}: LectureApplyModalProps) => {
   const { closeModal } = useModal()
   const { mutate } = usePostApplicationLecture(lectureId)
 

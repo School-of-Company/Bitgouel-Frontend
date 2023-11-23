@@ -4,7 +4,7 @@ import { useMutation } from '@tanstack/react-query'
 import { post } from '../../libs/api/method'
 import { authQueryKeys } from '../../libs/queryKeys'
 import { authUrl } from '../../libs/urlController'
-import { AxiosResponse } from 'axios'
+import { AxiosError } from 'axios'
 import { useSetRecoilState } from 'recoil'
 import { Page } from '../../../../../common/src/atoms'
 
@@ -12,8 +12,8 @@ export const usePostSignUpBbozzak = () => {
   const setPage = useSetRecoilState(Page)
 
   return useMutation<
-    AxiosResponse,
-    Error,
+    void,
+    AxiosError,
     {
       email: string
       name: string
@@ -26,7 +26,7 @@ export const usePostSignUpBbozzak = () => {
     authQueryKeys.postSignUpBbozzak(),
     (signUpValues) => post(authUrl.signUpBbozzak(), signUpValues),
     {
-      onSuccess: (data) => {
+      onSuccess: () => {
         return setPage(4)
       },
       onError: (error) => {
