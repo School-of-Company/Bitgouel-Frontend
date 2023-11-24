@@ -13,7 +13,7 @@ import { SelectCalendarModal, SelectScoreModal } from '@bitgouel/common'
 const LectureCreatePage = () => {
   const MAXLENGTH: number = 1000 as const
 
-  const [lectureTitle, setLectuerTitle] = useState<string>('')
+  const [lectureTitle, setLectureTitle] = useState<string>('')
   const [lectureContent, setLectureContent] = useState<string>('')
 
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
@@ -40,7 +40,7 @@ const LectureCreatePage = () => {
   const [people, setPeople] = useState<number>(0)
 
   const saveLectureTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLectuerTitle(event.target.value)
+    setLectureTitle(event.target.value)
   }
 
   const saveLectureMainText = (
@@ -98,7 +98,6 @@ const LectureCreatePage = () => {
       startDateText !== '신청 시작일 선택' &&
       endDateText !== '신청 마감일 선택' &&
       completeDateText !== '강의 시작일 선택' &&
-      scoreText !== '학점 선택' &&
       people !== 0
     )
       openModal(
@@ -237,7 +236,7 @@ const LectureCreatePage = () => {
                   </S.SettingDateBox>
                 </S.SelectModalContainer>
               </S.SettingSelection>
-              {lectureTypeText !== '대학탐방프로그램' && (
+              {lectureTypeText === '상호학점인정교육과정' && (
                 <S.SettingSelection isOpen={isScore}>
                   <S.SelectModalContainer>
                     {isScore && (
@@ -286,7 +285,6 @@ const LectureCreatePage = () => {
                 startDateText !== '신청 시작일 선택' &&
                 endDateText !== '신청 마감일 선택' &&
                 completeDateText !== '강의 시작일 선택' &&
-                scoreText !== '학점 선택' &&
                 people !== 0
               }
             >
