@@ -36,7 +36,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
             </S.SubTitle>
             <S.Title>{data?.data.name}</S.Title>
             <S.SubMenuContainer>
-              <S.From>{lectureToKor[data.data.lectureType]}</S.From>
+              <S.From>{lectureToKor[data?.data.lectureType]}</S.From>
               <S.MenuNum>
                 <div>
                   <span>신청기간: </span>
@@ -97,6 +97,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
             <S.ButtonContainer isApprove={data?.data.approveStatus}>
               <S.CreateNotApproveButton
                 onClick={() =>
+                  data?.data.approveStatus === 'PENDING' &&
                   openModal(
                     <RejectModal
                       type='강의 개설'
@@ -110,6 +111,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
               </S.CreateNotApproveButton>
               <S.CreateApproveButton
                 onClick={() =>
+                  data?.data.approveStatus === 'PENDING' &&
                   openModal(
                     <ApproveModal
                       type='강의 개설'

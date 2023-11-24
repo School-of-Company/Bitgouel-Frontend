@@ -48,13 +48,13 @@ const LecturePage = () => {
           </S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
-      <S.ListWrraper>
+      <S.ListWrapper>
         <S.ListContainer>
-          {data?.data.lectures.map((item) => (
+          {data?.data.lectures.content.map((item) => (
             <LectureItem inside={true} item={item} key={item.id} />
           ))}
         </S.ListContainer>
-      </S.ListWrraper>
+      </S.ListWrapper>
     </div>
   )
 }
