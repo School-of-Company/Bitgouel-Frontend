@@ -39,6 +39,6 @@ export const activityUrl = {
     `/activity/${activity_id}`,
 }
 
-export const myUrl = {
-  my: () => `/user`,
+export const userUrl = {
+  user: () => `/user`
 }
