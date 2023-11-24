@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-export const LectureCreateModalWrapper = styled.div`
+export const CreateModalWrapper = styled.div`
   width: 24rem;
   height: 13.375rem;
   border-radius: 0.5rem;
@@ -11,7 +11,7 @@ export const LectureCreateModalWrapper = styled.div`
   gap: 1.8rem;
 `
 
-export const LectureLetterContainer = styled.div`
+export const LetterContainer = styled.div`
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
@@ -24,12 +24,12 @@ export const LectureLetterContainer = styled.div`
   }
 `
 
-export const LectureCreateQuestion = styled.h2`
+export const CreateQuestion = styled.h2`
   ${({ theme }) => theme.typo.text_lg};
   color: ${({ theme }) => theme.color.black};
 `
 
-export const LectureCreateTitle = styled.p`
+export const CreateTitle = styled.p`
   width: 22rem;
   height: 3.75rem;
   ${({ theme }) => theme.typo.text_sm};
@@ -40,7 +40,7 @@ export const LectureCreateTitle = styled.p`
   justify-content: center;
 `
 
-export const LectureCreateButtonWrapper = styled.div`
+export const CreateButtonWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;

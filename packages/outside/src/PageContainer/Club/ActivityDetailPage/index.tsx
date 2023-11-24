@@ -30,7 +30,7 @@ const object: ActivityItemType = {
   approveStatus: 'APPROVED',
 }
 
-const ActivityDetailPage = () => {
+const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
   const router = useRouter()
 
   return (
