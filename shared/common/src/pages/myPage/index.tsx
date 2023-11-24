@@ -12,7 +12,7 @@ const MyPage = () => {
             <S.Clip />
           </S.ClipContainer>
           <S.MyIdentify>
-            <div>
+            <S.MyIdentifyWrapper>
               <div>
                 <S.Name>홍길동</S.Name>
                 <S.Role>학생</S.Role>
@@ -22,9 +22,12 @@ const MyPage = () => {
                 <S.SubEnter>소속</S.SubEnter>
               </div>
               <div>
-                <S.ClubName>dev.GSM</S.ClubName>
+                <S.SubId>dev.GSM</S.SubId>
               </div>
-            </div>
+              <div>
+                <S.SubId>1학년 1반 1번</S.SubId>
+              </div>
+            </S.MyIdentifyWrapper>
             <S.AccountWrapper>
               <S.MyTitle>계정 정보</S.MyTitle>
               <S.AccountContainer>

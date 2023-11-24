@@ -51,6 +51,12 @@ export const MyIdentify = styled.div`
   margin: 2.5rem 1.5rem;
 `
 
+export const MyIdentifyWrapper = styled.div`
+  div {
+    margin-top: 2px;
+  }
+`
+
 export const Name = styled.span`
   color: ${({ theme }) => theme.color.black};
   ${({ theme }) => theme.typo.title_lg};
@@ -74,13 +80,13 @@ export const SubEnter = styled.span`
   ${({ theme }) => theme.typo.text_lg};
 `
 
-export const ClubName = styled.span`
+export const SubId = styled.span`
   color: ${({ theme }) => theme.color.gray['400']};
   ${({ theme }) => theme.typo.text_md};
 `
 
 export const AccountWrapper = styled.div`
-  margin: 2.5rem 0;
+  margin: 4rem 0;
 `
 
 export const MyTitle = styled.span`
