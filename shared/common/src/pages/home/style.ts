@@ -5,13 +5,13 @@ export const SlideBg = styled.div<{ url: any }>`
   width: 100%;
   overflow: hidden;
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
   align-items: center;
   background-image: url(${({ url }) => url.src});
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  justify-content: center;
   transition: all 0.5s;
 `
 
