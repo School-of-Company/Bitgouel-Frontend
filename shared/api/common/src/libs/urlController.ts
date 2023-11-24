@@ -38,3 +38,7 @@ export const activityUrl = {
   activityInformationDetail: (activity_id: string) =>
     `/activity/${activity_id}`,
 }
+
+export const myUrl = {
+  my: () => `/user`,
+}

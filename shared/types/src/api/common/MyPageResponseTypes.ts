@@ -8,7 +8,7 @@ type AuthorityTypes =
   | 'ROLE_COMPANY_INSTRUCTOR'
   | 'ROLE_GOVERNMENT'
 
-export interface LoginResponseTypes {
+export interface MyPageResponseTypes {
   name: string
   email: string
   phoneNumber: string

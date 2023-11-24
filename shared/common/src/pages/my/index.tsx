@@ -2,8 +2,12 @@
 
 import Bg4 from '../../assets/png/mainBg4.png'
 import * as S from './style'
+import { useGetMy } from '@bitgouel/api'
 
 const MyPage = () => {
+  const { data } = useGetMy()
+  console.log(data)
+
   return (
     <S.MyPageWrapper url={Bg4}>
       <S.BlackBox>
@@ -14,29 +18,29 @@ const MyPage = () => {
           <S.MyIdentify>
             <S.MyIdentifyWrapper>
               <div>
-                <S.Name>홍길동</S.Name>
-                <S.Role>학생</S.Role>
+                <S.Name>{data?.data.name}</S.Name>
+                <S.Role>{data?.data.authority}</S.Role>
               </div>
               <div>
-                <S.SchoolName>광주 소프트웨어 마이스터 고등학교</S.SchoolName>
+                <S.SchoolName>{data?.data.organization.split('/')[0]}</S.SchoolName>
                 <S.SubEnter>소속</S.SubEnter>
               </div>
               <div>
-                <S.SubId>dev.GSM</S.SubId>
+                <S.SubId>{data?.data.organization.split('/')[1]}</S.SubId>
               </div>
               <div>
-                <S.SubId>1학년 1반 1번</S.SubId>
+                <S.SubId>{data?.data.organization.split('/')[3]}</S.SubId>
               </div>
             </S.MyIdentifyWrapper>
             <S.AccountWrapper>
               <S.MyTitle>계정 정보</S.MyTitle>
               <S.AccountContainer>
                 <div>
-                  <S.LeftText>bitgoeul@gmail.com</S.LeftText>
+                  <S.LeftText>{data?.data.email}</S.LeftText>
                   <S.RightText>이메일</S.RightText>
                 </div>
                 <div>
-                  <S.LeftText>010-0000-0000</S.LeftText>
+                  <S.LeftText>{data?.data.phoneNumber}</S.LeftText>
                   <S.RightText>전화번호</S.RightText>
                 </div>
               </S.AccountContainer>

@@ -11,6 +11,7 @@ export const SlideBg = styled.div<{ url: any }>`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  justify-content: center;
   transition: all 0.5s;
 `
 

@@ -77,8 +77,8 @@ const Header = ({ inside }: { inside: boolean }) => {
 
   useEffect(() => {
     if (tokenManager.accessToken) {
-      if (pathname === '/main/myPage') setText('로그아웃')
-      else if (pathname !== '/main/myPage') setText('내 정보')
+      if (pathname === '/main/my') setText('로그아웃')
+      else if (pathname !== '/main/my') setText('내 정보')
     }
   }, [pathname])
 
@@ -152,8 +152,8 @@ const Header = ({ inside }: { inside: boolean }) => {
           onClick={() =>
             tokenManager.accessToken
               ? match(pathname)
-                  .with('/main/myPage', () => logOut())
-                  .otherwise(() => router.push('/main/myPage'))
+                  .with('/main/my', () => logOut())
+                  .otherwise(() => router.push('/main/my'))
               : router.push('/auth/login')
           }
           color={btnColor}
