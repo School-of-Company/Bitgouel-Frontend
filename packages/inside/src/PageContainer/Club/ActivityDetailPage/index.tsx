@@ -9,6 +9,7 @@ import { match } from 'ts-pattern'
 import { useModal } from '@bitgouel/common/src/hooks'
 import { ApproveModal, RejectModal } from '@bitgouel/common'
 import { ApproveStatusEnum } from '@bitgouel/types'
+import { useGetActivityDetail, usePatchActivityApprove } from '@bitgouel/api'
 
 interface ActivityItemType {
   id: string
@@ -32,9 +33,12 @@ const object: ActivityItemType = {
   approveStatus: 'APPROVED',
 }
 
-const ActivityDetailPage = () => {
+const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
   const router = useRouter()
   const { openModal } = useModal()
+
+  const { mutate: approve } = usePatchActivityApprove(activityId)
+  const { mutate: reject } = usePatchActivityApprove(activityId)
 
   return (
     <div>
@@ -113,7 +117,7 @@ const ActivityDetailPage = () => {
                     <RejectModal
                       type='활동 추가'
                       title={object.title}
-                      id={object.id}
+                      onAppropriation={reject}
                     />
                   )
                 }
@@ -126,7 +130,7 @@ const ActivityDetailPage = () => {
                     <ApproveModal
                       type='활동 추가'
                       title={object.title}
-                      id={object.id}
+                      onAppropriation={approve}
                     />
                   )
                 }

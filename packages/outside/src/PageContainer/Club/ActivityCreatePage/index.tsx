@@ -79,7 +79,7 @@ const ActivityCreatePage = () => {
             </S.SettingSelectionContainer>
           </S.ActivitySetting>
           <S.ButtonContainer>
-            <S.CreateButton>개설 신청하기</S.CreateButton>
+            <S.CreateButton>활동 추가하기</S.CreateButton>
           </S.ButtonContainer>
         </S.DocumentInput>
       </S.DocumentInputContainer>
