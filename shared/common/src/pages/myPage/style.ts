@@ -9,6 +9,7 @@ export const MyPageWrapper = styled.div<{ url: any }>`
   width: 100%;
   background-position: center;
   background-size: cover;
+  overflow-y: hidden;
 `
 
 export const BlackBox = styled.div`
@@ -32,10 +33,20 @@ export const WhiteBox = styled.div`
 export const ClipContainer = styled.div`
   display: flex;
   justify-content: center;
-  img {
-    position: absolute;
-    top: 7.875rem;
-  }
+`
+
+export const Clip = styled.div`
+  background: radial-gradient(
+    at -5rem -1rem,
+    ${({ theme }) => theme.color.white} 5rem,
+    ${({ theme }) => theme.color.gray['800']} 20rem
+  );
+  box-shadow: inset 0 -0.025rem 0.1rem 0 ${({ theme }) => theme.color.black};
+  width: 11.75rem;
+  height: 3.2rem;
+  border-radius: 0.5rem;
+  position: absolute;
+  top: 8rem;
 `
 
 export const MyIdentify = styled.div`

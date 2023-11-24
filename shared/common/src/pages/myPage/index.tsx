@@ -1,8 +1,6 @@
 'use client'
 
 import Bg4 from '../../assets/png/mainBg4.png'
-import Image from 'next/image'
-import ClipBox from '../../assets/png/clipBox.png'
 import * as S from './style'
 
 const MyPage = () => {
@@ -11,7 +9,7 @@ const MyPage = () => {
       <S.BlackBox>
         <S.WhiteBox>
           <S.ClipContainer>
-            <Image src={ClipBox} alt='클립' />
+            <S.Clip />
           </S.ClipContainer>
           <S.MyIdentify>
             <div>
@@ -34,10 +32,6 @@ const MyPage = () => {
                 <div>
                   <S.LeftText>010-0000-0000</S.LeftText>
                   <S.RightText>전화번호</S.RightText>
-                </div>
-                <div>
-                  <S.LeftText>N점</S.LeftText>
-                  <S.RightText>학점</S.RightText>
                 </div>
               </S.AccountContainer>
             </S.AccountWrapper>
