@@ -21,6 +21,9 @@ const MyPage = () => {
                 <S.SchoolName>광주 소프트웨어 마이스터 고등학교</S.SchoolName>
                 <S.SubEnter>소속</S.SubEnter>
               </div>
+              <div>
+                <S.ClubName>dev.GSM</S.ClubName>
+              </div>
             </div>
             <S.AccountWrapper>
               <S.MyTitle>계정 정보</S.MyTitle>

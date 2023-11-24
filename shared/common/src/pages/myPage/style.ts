@@ -9,7 +9,6 @@ export const MyPageWrapper = styled.div<{ url: any }>`
   width: 100%;
   background-position: center;
   background-size: cover;
-  overflow-y: hidden;
 `
 
 export const BlackBox = styled.div`
@@ -18,15 +17,14 @@ export const BlackBox = styled.div`
   padding-top: 1.5rem;
   margin-top: 7.375rem;
   width: 39.75rem;
-  height: 57.5rem;
   background-color: ${({ theme }) => theme.color.gray['200']};
-  border-radius: 0.5rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  padding: 1.5rem 1.5rem 0 1.5rem;
 `
 
 export const WhiteBox = styled.div`
-  width: 36.75rem;
-  height: 52.5rem;
-  border-radius: 0.5rem;
+  width: 100%;
+  border-radius: 0.5rem 0.5rem 0 0;
   background-color: ${({ theme }) => theme.color.white};
 `
 
@@ -41,7 +39,7 @@ export const Clip = styled.div`
     ${({ theme }) => theme.color.white} 5rem,
     ${({ theme }) => theme.color.gray['800']} 20rem
   );
-  box-shadow: inset 0 -0.025rem 0.1rem 0 ${({ theme }) => theme.color.black};
+  box-shadow: inset 0 -0.032rem 0.032rem 0 rgba(0, 0, 0, 0.25);
   width: 11.75rem;
   height: 3.2rem;
   border-radius: 0.5rem;
@@ -76,6 +74,11 @@ export const SubEnter = styled.span`
   ${({ theme }) => theme.typo.text_lg};
 `
 
+export const ClubName = styled.span`
+  color: ${({ theme }) => theme.color.gray['400']};
+  ${({ theme }) => theme.typo.text_md};
+`
+
 export const AccountWrapper = styled.div`
   margin: 2.5rem 0;
 `
@@ -90,6 +93,7 @@ export const AccountContainer = styled.div`
     display: flex;
     justify-content: space-between;
     margin-bottom: 0.5rem;
+    align-items: center;
   }
 `
 
@@ -118,6 +122,7 @@ export const AccountSettingContainer = styled.div`
   div {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 1.5rem 0rem;
   }
 `

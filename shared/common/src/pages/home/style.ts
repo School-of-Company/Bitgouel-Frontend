@@ -5,7 +5,6 @@ export const SlideBg = styled.div<{ url: any }>`
   width: 100%;
   overflow: hidden;
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
   align-items: center;
   background-image: url(${({ url }) => url.src});
