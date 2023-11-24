@@ -6,7 +6,6 @@ import { useGetMy } from '@bitgouel/api'
 
 const MyPage = () => {
   const { data } = useGetMy()
-  console.log(data)
 
   return (
     <S.MyPageWrapper url={Bg4}>
