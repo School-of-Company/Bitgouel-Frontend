@@ -57,7 +57,7 @@ export const SelectFilterContainer = styled.div`
   align-items: center;
 `
 
-export const ListWrraper = styled.div`
+export const ListWrapper = styled.div`
   display: flex;
   justify-content: center;
 `

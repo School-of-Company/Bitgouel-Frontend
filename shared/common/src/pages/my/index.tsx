@@ -29,7 +29,7 @@ const MyPage = () => {
                 <S.SubId>{data?.data.organization.split('/')[1]}</S.SubId>
               </div>
               <div>
-                <S.SubId>{data?.data.organization.split('/')[3]}</S.SubId>
+                <S.SubId>{data?.data.organization.split('/')[2]}</S.SubId>
               </div>
             </S.MyIdentifyWrapper>
             <S.AccountWrapper>
