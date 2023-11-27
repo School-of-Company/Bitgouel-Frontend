@@ -2,10 +2,19 @@
 
 import Bg4 from '../../assets/png/mainBg4.png'
 import * as S from './style'
-import { useGetMy } from '@bitgouel/api'
+import { useGetMy, useDeleteWithDraw } from '@bitgouel/api'
+import { roleToKor } from '../../constants'
 
 const MyPage = () => {
   const { data } = useGetMy()
+  const { mutate } = useDeleteWithDraw()
+
+  const sliceNumber = (): string => {
+    return `${data?.data.phoneNumber.slice(
+      0,
+      3
+    )}-${data?.data.phoneNumber.slice(3, 7)}-${data?.data.phoneNumber.slice(7)}`
+  }
 
   return (
     <S.MyPageWrapper url={Bg4}>
@@ -18,10 +27,14 @@ const MyPage = () => {
             <S.MyIdentifyWrapper>
               <div>
                 <S.Name>{data?.data.name}</S.Name>
-                <S.Role>{data?.data.authority}</S.Role>
+                <S.Role>
+                  {roleToKor[data?.data.authority || 'ROLE_ADMIN']}
+                </S.Role>
               </div>
               <div>
-                <S.SchoolName>{data?.data.organization.split('/')[0]}</S.SchoolName>
+                <S.OrganizationName>
+                  {data?.data.organization.split('/')[0]}
+                </S.OrganizationName>
                 <S.SubEnter>소속</S.SubEnter>
               </div>
               <div>
@@ -39,7 +52,7 @@ const MyPage = () => {
                   <S.RightText>이메일</S.RightText>
                 </div>
                 <div>
-                  <S.LeftText>{data?.data.phoneNumber}</S.LeftText>
+                  <S.LeftText>{sliceNumber()}</S.LeftText>
                   <S.RightText>전화번호</S.RightText>
                 </div>
               </S.AccountContainer>
@@ -55,7 +68,9 @@ const MyPage = () => {
                 <S.SharedLine />
                 <div>
                   <S.LeftText>회원 탈퇴</S.LeftText>
-                  <S.WithDrow>회원 탈퇴</S.WithDrow>
+                  <S.WithDrawText onClick={() => mutate()}>
+                    회원 탈퇴
+                  </S.WithDrawText>
                 </div>
               </S.AccountSettingContainer>
             </S.AccountSettingWrapper>
