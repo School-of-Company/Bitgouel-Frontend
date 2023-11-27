@@ -7,11 +7,7 @@ export const MyPageWrapper = styled.div<{ url: any }>`
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
-<<<<<<< HEAD
   height: 100%;
-=======
-  height: 100vh;
->>>>>>> 7af3dd0 (Add main)
   background-position: center;
   background-size: cover;
 `
@@ -21,11 +17,7 @@ export const BlackBox = styled.div`
   justify-content: center;
   padding-top: 1.5rem;
   width: 39.75rem;
-<<<<<<< HEAD
   margin-top: 6rem;
-=======
-  margin-top: 7.375rem;
->>>>>>> 7af3dd0 (Add main)
   background-color: ${({ theme }) => theme.color.gray['200']};
   border-radius: 0.5rem 0.5rem 0 0;
   padding: 1.5rem 1.5rem 0 1.5rem;
