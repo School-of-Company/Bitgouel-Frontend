@@ -1,6 +1,11 @@
-import { LectureItemType } from '@bitgouel/types'
+import { LectureItemType, RoleEnumTypes } from '@bitgouel/types'
 import { ReactNode } from 'react'
 import { atom } from 'recoil'
+
+export const Role = atom<RoleEnumTypes>({
+  key: 'Role',
+  default: 'ROLE_STUDENT',
+})
 
 export const Page = atom<number>({
   key: 'Page',
