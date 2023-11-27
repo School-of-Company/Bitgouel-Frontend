@@ -6,7 +6,10 @@ import Bg1 from '../../assets/png/slide1.png'
 import Bg2 from '../../assets/png/slide2.png'
 import Bg3 from '../../assets/png/slide3.png'
 import Bg4 from '../../assets/png/slide4.png'
+import OfficeLogo from '../../assets/png/officeEducation.png'
+import GwangjuLogo from '../../assets/png/gwangjuLogo.png'
 import { Sequence } from '../../components/index'
+import Image from 'next/image'
 import * as S from './style'
 
 const HomePage = () => {
@@ -39,6 +42,22 @@ const HomePage = () => {
           </S.View>
         </S.ViewContainer>
       </S.SlideBg>
+      <S.SubTitleContainer>
+        <S.SubTitleWrapper>
+          <S.SubTitleSub>지역산업 발전을 위해 당신이 필요해요.</S.SubTitleSub>
+          <S.SubTitleMain>빛고을 직업교육 혁신지구</S.SubTitleMain>
+          <S.FromLogoContainer>
+            <S.GwangjuBox>
+              <Image src={GwangjuLogo} alt='광주광역시심볼' />
+              <S.BoxText>광주광역시</S.BoxText>
+            </S.GwangjuBox>
+            <S.OfficeBox>
+              <Image src={OfficeLogo} alt='광주광역시교육청심볼' />
+              <S.BoxText>광주광역시교육청</S.BoxText>
+            </S.OfficeBox>
+          </S.FromLogoContainer>
+        </S.SubTitleWrapper>
+      </S.SubTitleContainer>
     </div>
   )
 }
