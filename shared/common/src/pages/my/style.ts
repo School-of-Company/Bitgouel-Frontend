@@ -4,9 +4,10 @@ export const MyPageWrapper = styled.div<{ url: any }>`
   background-image: url(${({ url }) => url.src});
   position: absolute;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  height: 100%;
   width: 100%;
+  height: 100%;
   background-position: center;
   background-size: cover;
 `
@@ -15,8 +16,8 @@ export const BlackBox = styled.div`
   display: flex;
   justify-content: center;
   padding-top: 1.5rem;
-  margin-top: 7.375rem;
   width: 39.75rem;
+  margin-top: 6rem;
   background-color: ${({ theme }) => theme.color.gray['200']};
   border-radius: 0.5rem 0.5rem 0 0;
   padding: 1.5rem 1.5rem 0 1.5rem;
@@ -44,7 +45,7 @@ export const Clip = styled.div`
   height: 3.2rem;
   border-radius: 0.5rem;
   position: absolute;
-  top: 8rem;
+  top: 6.75rem;
 `
 
 export const MyIdentify = styled.div`
@@ -68,7 +69,7 @@ export const Role = styled.span`
   ${({ theme }) => theme.typo.title_sm}
 `
 
-export const SchoolName = styled.span`
+export const OrganizationName = styled.span`
   color: ${({ theme }) => theme.color.gray['400']};
   ${({ theme }) => theme.typo.text_lg}
   margin-top: 0.25rem;
@@ -120,11 +121,11 @@ export const SharedLine = styled.div`
 `
 
 export const AccountSettingWrapper = styled.div`
-  margin-top: 5rem;
+  margin-top: 4rem;
 `
 
 export const AccountSettingContainer = styled.div`
-  margin-top: 2.5rem;
+  margin-top: 2rem;
   div {
     display: flex;
     justify-content: space-between;
@@ -139,7 +140,7 @@ export const ModifyText = styled.span`
   cursor: pointer;
 `
 
-export const WithDrow = styled.span`
+export const WithDrawText = styled.span`
   color: ${({ theme }) => theme.color.error};
   text-decoration: underline;
   cursor: pointer;
