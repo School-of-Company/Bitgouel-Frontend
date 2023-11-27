@@ -10,7 +10,7 @@ import { Plus, Filter, MegaPhone, Message, Question } from '../../assets'
 import { LectureTypeModal } from '../../modals'
 import { useRecoilState } from 'recoil'
 import { LectureTypeText } from '../../atoms'
-import { TokenManager } from '@bitgouel/api'
+import { TokenManager, useDeleteLogout } from '@bitgouel/api'
 
 const Header = ({ inside }: { inside: boolean }) => {
   const tokenManager = new TokenManager()
@@ -33,6 +33,8 @@ const Header = ({ inside }: { inside: boolean }) => {
   const [lectureTypeText, setLectureTypeText] =
     useRecoilState<string>(LectureTypeText)
   const [text, setText] = useState<string>('로그인')
+
+  const { mutate } = useDeleteLogout()
 
   useEffect(() => {
     const onScroll = () => {
@@ -81,11 +83,6 @@ const Header = ({ inside }: { inside: boolean }) => {
       else if (pathname !== '/main/my') setText('내 정보')
     }
   }, [pathname])
-
-  const logOut = () => {
-    router.push('/auth/login')
-    tokenManager.removeTokens()
-  }
 
   return (
     <S.HeaderWrapper
@@ -152,7 +149,7 @@ const Header = ({ inside }: { inside: boolean }) => {
           onClick={() =>
             tokenManager.accessToken
               ? match(pathname)
-                  .with('/main/my', () => logOut())
+                  .with('/main/my', () => mutate())
                   .otherwise(() => router.push('/main/my'))
               : router.push('/auth/login')
           }
