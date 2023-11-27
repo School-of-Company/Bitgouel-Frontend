@@ -42,7 +42,14 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
             </S.SubTitle>
             <S.Title>{data?.data.name}</S.Title>
             <S.SubMenuContainer>
-              <S.From>{lectureToKor[data?.data.lectureType]}</S.From>
+              <S.From>
+                {
+                  lectureToKor[
+                    data?.data.lectureType ||
+                      'MUTUAL_CREDIT_RECOGNITION_PROGRAM'
+                  ]
+                }
+              </S.From>
               <S.MenuNum>
                 <div>
                   <span>신청기간: </span>

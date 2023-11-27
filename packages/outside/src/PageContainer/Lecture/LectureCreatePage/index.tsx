@@ -92,7 +92,31 @@ const LectureCreatePage = () => {
   const { openModal } = useModal()
   const { mutate } = usePostCreateLecture()
 
-  const onCreate = () => {
+  const handleLocalDateTime = (date: Date, dateText: string): string => {
+    return `${date.getFullYear()}-${(date.getMonth() + 1)
+      .toString()
+      .padStart(2, '0')}-${date
+      .getDate()
+      .toString()
+      .padStart(2, '0')}T${dateText.replace(/\s/g, '').slice(11, 13)}:${dateText
+      .replace(/\s/g, '')
+      .slice(14, 16)}:00`
+  }
+
+  const onCreate = () =>
+    mutate({
+      name: lectureTitle,
+      content: lectureContent,
+      startDate: handleLocalDateTime(startDate, startDateText),
+      endDate: handleLocalDateTime(endDate, endDateText),
+      completeDate: handleLocalDateTime(completeDate, completeDateText),
+      lectureType: lectureToEnum[lectureTypeText],
+      credit:
+        lectureTypeText === '대학탐방프로그램' ? 0 : +scoreText.slice(0, 1),
+      maxRegisteredUser: people,
+    })
+
+  const onCreateModal = () => {
     if (
       lectureTitle !== '' &&
       lectureContent !== '' &&
@@ -100,44 +124,18 @@ const LectureCreatePage = () => {
       startDateText !== '신청 시작일 선택' &&
       endDateText !== '신청 마감일 선택' &&
       completeDateText !== '강의 시작일 선택' &&
-      people !== 0
+      lectureTypeText !== '대학탐방프로그램'
+        ? scoreText !== '학점 선택'
+        : true && people !== 0
     )
-      mutate({
-        name: lectureTitle,
-        content: lectureContent,
-        startDate: `${startDate.getFullYear()}-${(startDate.getMonth() + 1)
-          .toString()
-          .padStart(2, '0')}-${startDate
-          .getDate()
-          .toString()
-          .padStart(2, '0')}T${startDateText
-          .replace(/\s/g, '')
-          .slice(11, 13)}:${startDateText.replace(/\s/g, '').slice(14, 16)}:00`,
-        endDate: `${endDate.getFullYear()}-${(endDate.getMonth() + 1)
-          .toString()
-          .padStart(2, '0')}-${endDate
-          .getDate()
-          .toString()
-          .padStart(2, '0')}T${endDateText
-          .replace(/\s/g, '')
-          .slice(11, 13)}:${endDateText.replace(/\s/g, '').slice(14, 16)}:00`,
-        completeDate: `${completeDate.getFullYear()}-${(
-          completeDate.getMonth() + 1
-        )
-          .toString()
-          .padStart(2, '0')}-${completeDate
-          .getDate()
-          .toString()
-          .padStart(2, '0')}T${completeDateText
-          .replace(/\s/g, '')
-          .slice(11, 13)}:${completeDateText
-          .replace(/\s/g, '')
-          .slice(14, 16)}:00`,
-        lectureType: lectureToEnum[lectureTypeText],
-        credit:
-          lectureTypeText === '대학탐방프로그램' ? 0 : +scoreText.slice(0, 1),
-        maxRegisteredUser: people,
-      })
+      openModal(
+        <CreateModal
+          question='강의를 개설하시겠습니까?'
+          title={lectureTitle}
+          onCreate={onCreate}
+          createText='개설하기'
+        />
+      )
   }
 
   return (
@@ -269,16 +267,7 @@ const LectureCreatePage = () => {
           </S.LectureSetting>
           <S.ButtonContainer>
             <S.CreateButton
-              onClick={() => 
-                openModal(
-                  <CreateModal
-                    question='강의를 개설하시겠습니까?'
-                    title={lectureTitle}
-                    onCreate={onCreate}
-                    createText='개설하기'
-                  />
-                )
-              }
+              onClick={onCreateModal}
               isAble={
                 lectureTitle !== '' &&
                 lectureContent !== '' &&
@@ -286,7 +275,9 @@ const LectureCreatePage = () => {
                 startDateText !== '신청 시작일 선택' &&
                 endDateText !== '신청 마감일 선택' &&
                 completeDateText !== '강의 시작일 선택' &&
-                people !== 0
+                lectureTypeText !== '대학탐방프로그램'
+                  ? scoreText !== '학점 선택'
+                  : true && people !== 0
               }
             >
               개설 신청하기
