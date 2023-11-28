@@ -1,5 +1,9 @@
 import styled from '@emotion/styled'
 
+export const HomeWrapper = styled.div`
+  background-color: #f6f6f6;
+`
+
 export const SlideBg = styled.div<{ url: any }>`
   height: 50rem;
   width: 100%;
@@ -77,7 +81,13 @@ export const FromLogoContainer = styled.div`
     align-items: center;
     border-radius: 3.125rem;
   }
-  `
+`
+
+export const BoxText = styled.span`
+  color: ${({ theme }) => theme.color.white};
+  ${({ theme }) => theme.typo.title_sm}
+  margin-left: 12px;
+`
 
 export const GwangjuBox = styled.div`
   background-color: #e8340c;
@@ -89,12 +99,6 @@ export const GwangjuBox = styled.div`
   }
 `
 
-export const BoxText = styled.span`
-  color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.title_sm}
-  margin-left: 12px;
-`
-
 export const OfficeBox = styled.div`
   background-color: #2270c1;
   padding: 0.75rem 1.25rem;
@@ -102,4 +106,72 @@ export const OfficeBox = styled.div`
     width: 2.5rem;
     height: auto;
   }
+`
+
+export const UnionListContainer = styled.div`
+  margin-top: 4rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`
+
+export const UnionListWrapper = styled.div`
+  display: flex;
+  width: 75rem;
+  justify-content: space-between;
+`
+
+export const UnionItem = styled.div`
+  width: 17.625rem;
+  height: 12.5rem;
+  background-color: ${({ theme }) => theme.color.white};
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  li {
+    ${({ theme }) => theme.typo.text_lg}
+    color: ${({ theme }) => theme.color.gray[400]};
+  }
+  div {
+    margin-top: 2rem;
+    margin-left: 1rem;
+  }
+`
+
+export const UnionTitle = styled.span`
+  ${({ theme }) => theme.typo.title_sm}
+  color: ${({ theme }) => theme.color.black};
+  margin-left: 1rem;
+`
+
+export const BannerTitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 17.5rem;
+  margin-top: 7.5rem;
+  background: linear-gradient(to right, #288be1, #45dfda);
+  div {
+    ${({ theme }) => theme.typo.title_md}
+    color: ${({ theme }) => theme.color.white};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+`
+
+export const SchoolListContainer = styled.div`
+  margin-top: 7.5rem;
+  display: flex;
+  justify-content: center;
+`
+
+export const SemiTitleBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 `
