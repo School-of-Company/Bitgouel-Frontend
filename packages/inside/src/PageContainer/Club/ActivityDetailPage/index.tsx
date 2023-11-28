@@ -1,15 +1,14 @@
 'use client'
 
+import { usePatchActivityApprove } from '@bitgouel/api'
+import { ApproveModal, Pen, RejectModal, TrashCan } from '@bitgouel/common'
 import Bg2 from '@bitgouel/common/src/assets/png/mainBg2.png'
-import { Pen, TrashCan } from '@bitgouel/common'
-import * as S from './style'
-import { useRouter } from 'next/navigation'
 import { lectureStatusToKor } from '@bitgouel/common/src/constants'
-import { match } from 'ts-pattern'
 import { useModal } from '@bitgouel/common/src/hooks'
-import { ApproveModal, RejectModal } from '@bitgouel/common'
 import { ApproveStatusEnum } from '@bitgouel/types'
-import { useGetActivityDetail, usePatchActivityApprove } from '@bitgouel/api'
+import { useRouter } from 'next/navigation'
+import { match } from 'ts-pattern'
+import * as S from './style'
 
 interface ActivityItemType {
   id: string

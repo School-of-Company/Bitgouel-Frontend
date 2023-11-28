@@ -4,7 +4,7 @@ import ValueInput from '.'
 import type { Meta, StoryObj } from '@storybook/react'
 
 export default {
-  title: 'common/ValueInput',
+  title: 'common/components/ValueInput',
   component: ValueInput,
 } as Meta<typeof ValueInput>
 

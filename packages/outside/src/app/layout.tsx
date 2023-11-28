@@ -20,7 +20,7 @@ export default function RootLayout({
       <body>
         <RecoilRootProvider>
           <GlobalLayout>
-            <Header inside={false} />
+            <Header />
             {children}
             <div id='modal' />
           </GlobalLayout>
