@@ -5,7 +5,7 @@ import * as S from './style'
 import Calendar from 'react-calendar'
 import { Chevron } from '../../assets'
 import { SelectCalendarModalProps } from '@bitgouel/types'
-import { theme } from '@/styles'
+import { theme } from '../../styles'
 
 const SelectCalendarModal = ({
   date,

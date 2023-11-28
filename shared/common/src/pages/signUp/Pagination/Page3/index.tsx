@@ -15,7 +15,7 @@ import {
 import { ValueInput } from '../../../../components'
 import SignUpButtonContainer from '../SignUpButtonContainer'
 import * as S from './style'
-import { theme } from '@/styles'
+import { theme } from '../../styles'
 
 const Page3 = ({
   page,
