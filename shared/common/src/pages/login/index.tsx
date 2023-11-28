@@ -145,8 +145,8 @@ const LoginPage = () => {
       </S.InputWrapper>
       <S.LoginButtonWrapper>
         <S.LoginButton
-          disabled={emailValue === '' || passwordValue === ''}
-          isAble={emailValue !== '' && passwordValue !== ''}
+          disabled={isLoading || emailValue === '' || passwordValue === ''}
+          isAble={!isLoading && emailValue !== '' && passwordValue !== ''}
           onClick={onLogin}
         >
           로그인
