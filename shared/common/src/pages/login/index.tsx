@@ -133,10 +133,10 @@ const LoginPage = () => {
                 ? `0.0625rem solid ${theme.color.error}`
                 : `0.0625rem solid ${theme.color.gray['700']}`,
               color: passwordErrorText
-                ? '#DF454A'
+                ? `${theme.color.error}`
                 : isLoading
                 ? `${theme.color.gray['700']}`
-                : '#000000',
+                : `${theme.color.black}`,
             }}
             isLoading={isLoading}
           />
