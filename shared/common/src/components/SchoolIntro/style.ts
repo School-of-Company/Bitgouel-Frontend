@@ -8,6 +8,7 @@ export const SchoolIntroWrapper = styled.div`
   transform-style: preserve-3d;
   &:hover {
     transform: perspective(50rem) rotateY(180deg);
+    margin-right: 0;
   }
   & > * {
     grid-area: 1 / 1 / 1 / 1;
@@ -15,6 +16,7 @@ export const SchoolIntroWrapper = styled.div`
     height: 15rem;
     border-radius: 0.5rem;
     backface-visibility: hidden;
+    margin: 0 1rem;
   }
 `
 

@@ -8,6 +8,7 @@ import Bg3 from '../../assets/png/slide3.png'
 import Bg4 from '../../assets/png/slide4.png'
 import OfficeLogo from '../../assets/png/officeEducation.png'
 import GwangjuLogo from '../../assets/png/gwangjuLogo.png'
+import Banner1 from '../../assets/png/clubListBanner1.png'
 import { Sequence, SchoolIntro } from '../../components/index'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
@@ -17,6 +18,7 @@ const HomePage = () => {
   const router = useRouter()
   const [bgNum, setBgNum] = useState(2)
   const imageArr = [Bg1, Bg2, Bg3, Bg4]
+  const BannerArr = [Banner1]
 
   useEffect(() => {
     const background = setInterval(() => {
@@ -216,6 +218,50 @@ const HomePage = () => {
             </S.ClubIntro>
           </S.ClubIntroListWrapper>
         </S.ClubIntroList>
+        <S.ClubListWrapper>
+          <S.ClubListTitle>핵심 분야 및 취업동아리 목록</S.ClubListTitle>
+        </S.ClubListWrapper>
+        <S.ClubListBanner url={BannerArr[0]}>
+          <S.ClubListContents>
+            <S.ClubValueTitle>미래형 운송기기</S.ClubValueTitle>
+            <S.ClubMainTextArea>
+              <S.ClubLeftTextArea>
+                <S.ClubLeftText>광주공업고등학교</S.ClubLeftText>
+                <S.ClubLeftText>광주전자공업고등학교</S.ClubLeftText>
+                <S.ClubLeftText>금파공업고등학교</S.ClubLeftText>
+                <S.ClubLeftText>동일미래과학고등학교</S.ClubLeftText>
+                <S.ClubLeftText>숭의과학기술고등학교</S.ClubLeftText>
+                <S.ClubLeftText>전남공업고등학교</S.ClubLeftText>
+              </S.ClubLeftTextArea>
+              <S.ClubRightTextArea>
+                <S.ClubRightTextLine>
+                  <S.ClubRightText>SMART JOB PROJECT</S.ClubRightText>
+                  <S.ClubRightText>나의 미래는 내가 주인공이다!</S.ClubRightText>
+                  <S.ClubRightText>설비의 달인</S.ClubRightText>
+                  <S.ClubRightText>특수용접 화이팅</S.ClubRightText>
+                </S.ClubRightTextLine>
+                <S.ClubRightTextLine>
+                  <S.ClubRightText>감성기계</S.ClubRightText>
+                  <S.ClubRightText>열정 그 자체</S.ClubRightText>
+                </S.ClubRightTextLine>
+                <S.ClubRightTextLine>
+                  <S.ClubRightText>레프리</S.ClubRightText>
+                </S.ClubRightTextLine>
+                <S.ClubRightTextLine>
+                  <S.ClubRightText>놀GO잡GO</S.ClubRightText>
+                </S.ClubRightTextLine>
+                <S.ClubRightTextLine>
+                  <S.ClubRightText>서전트스나이퍼</S.ClubRightText>
+                  <S.ClubRightText>카-페인팅</S.ClubRightText>
+                </S.ClubRightTextLine>
+                <S.ClubRightTextLine>
+                  <S.ClubRightText>진짜기계</S.ClubRightText>
+                  <S.ClubRightText>핫앤쿨</S.ClubRightText>
+                </S.ClubRightTextLine>
+              </S.ClubRightTextArea>
+            </S.ClubMainTextArea>
+          </S.ClubListContents>
+        </S.ClubListBanner>
       </S.ClubListContainer>
     </S.HomeWrapper>
   )

@@ -12,9 +12,7 @@ export const SlideBg = styled.div<{ url: any }>`
   flex-wrap: wrap;
   align-items: center;
   background-image: url(${({ url }) => url.src});
-  background-position: center;
   background-size: cover;
-  background-repeat: no-repeat;
   justify-content: center;
   transition: all 0.5s;
 `
@@ -180,9 +178,6 @@ export const SchoolItemContainer = styled.div`
   justify-content: center;
   margin-top: 2.5rem;
   width: 100%;
-  div {
-    margin-right: 1.5rem;
-  }
 `
 
 export const ClubListContainer = styled.div`
@@ -226,9 +221,88 @@ export const ClubIntroSubTitle = styled.span`
 `
 
 export const ClubIntroText = styled.div`
-  margin: 16px 24px 0px;
+  margin: 1rem 1.5rem 0rem;
   li {
     color: ${({ theme }) => theme.color.gray[700]};
     ${({ theme }) => theme.typo.text_sm};
   }
+`
+
+export const ClubListWrapper = styled.div`
+  margin-top: 10rem;
+`
+
+export const ClubListTitle = styled.span`
+  color: ${({ theme }) => theme.color.black};
+  ${({ theme }) => theme.typo.title_md};
+`
+
+export const ClubListBanner = styled.span<{ url: any }>`
+  margin-top: 2.5rem;
+  width: 100%;
+  height: 37rem;
+  background-image: url(${({ url }) => url.src});
+  background-position: center;
+  display: flex;
+  justify-content: center;
+`
+
+export const ClubListContents = styled.div`
+  margin-top: 2.5rem;
+  width: 75rem;
+`
+
+export const ClubValueTitle = styled.span`
+  color: ${({ theme }) => theme.color.white};
+  ${({ theme }) => theme.typo.title_md};
+`
+
+export const ClubMainTextArea = styled.div`
+  margin: 2.5rem;
+  display: flex;
+  height: 26.25rem;
+`
+
+export const ClubLeftTextArea = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 15.125rem;
+`
+
+export const ClubLeftText = styled.span`
+  color: ${({ theme }) => theme.color.white};
+  ${({ theme }) => theme.typo.text_lg};
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
+`
+
+export const ClubRightTextArea = styled.div`
+  width: 100%;
+`
+
+export const ClubRightTextLine = styled.div`
+  margin-bottom: 2.5rem;
+  display: flex;
+  &:last-child {
+    margin-bottom: 0;
+  }
+`
+
+export const ClubRightText = styled.div`
+  color: ${({ theme }) => theme.color.white};
+  ${({ theme }) => theme.typo.text_sm};
+  height: 2.125rem;
+  display: flex;
+  align-items: center;
+  border: 0.0625rem solid ${({ theme }) => theme.color.white};
+  border-radius: 2rem;
+  padding: 0 1rem;
+  width: fit-content;
+  margin-right: 1rem;
 `
