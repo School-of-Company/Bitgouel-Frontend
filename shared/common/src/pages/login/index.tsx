@@ -2,7 +2,7 @@
 
 import * as S from './style'
 import { ValueInput } from '../../components'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { usePostLogin } from '@bitgouel/api'
 import { useResetRecoilState } from 'recoil'
@@ -19,6 +19,7 @@ import {
   IsPasswordRgx,
   IsValidate,
 } from '../../atoms'
+import { theme } from '../../styles'
 
 const LoginPage = () => {
   const [emailValue, setEmailValue] = useState<string>('')
@@ -41,9 +42,7 @@ const LoginPage = () => {
   const router = useRouter()
   const { mutate, error, isLoading } = usePostLogin()
 
-  const onLogin = () => {
-    mutate({ email: emailValue, password: passwordValue })
-
+  useEffect(() => {
     if (error?.response?.status === 404) {
       setEmailErrorText('등록되지 않은 계정입니다')
     } else if (error?.response?.status === 403) {
@@ -71,7 +70,7 @@ const LoginPage = () => {
         setEmailErrorText('')
       }
     }
-  }
+  }, [error])
 
   const onEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
@@ -120,6 +119,7 @@ const LoginPage = () => {
             length={emailValue.length}
             onChange={onEmailChange}
             errorText={emailErrorText}
+            isLoading={isLoading}
           />
           <ValueInput
             placeholder='비밀번호'
@@ -130,10 +130,15 @@ const LoginPage = () => {
             onChange={onPasswordChange}
             style={{
               border: passwordErrorText
-                ? '0.0625rem solid #DF454A'
-                : '0.0625rem solid #B8B8B8',
-              color: passwordErrorText ? '#DF454A' : '#000000',
+                ? `0.0625rem solid ${theme.color.error}`
+                : `0.0625rem solid ${theme.color.gray['700']}`,
+              color: passwordErrorText
+                ? '#DF454A'
+                : isLoading
+                ? `${theme.color.gray['700']}`
+                : '#000000',
             }}
+            isLoading={isLoading}
           />
         </S.InputContainer>
         <S.PasswordContainer>
@@ -147,7 +152,7 @@ const LoginPage = () => {
         <S.LoginButton
           disabled={isLoading || emailValue === '' || passwordValue === ''}
           isAble={!isLoading && emailValue !== '' && passwordValue !== ''}
-          onClick={onLogin}
+          onClick={() => mutate({ email: emailValue, password: passwordValue })}
         >
           로그인
         </S.LoginButton>
