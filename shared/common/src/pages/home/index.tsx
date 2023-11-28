@@ -130,6 +130,12 @@ const HomePage = () => {
           <SchoolIntro />
         </S.SchoolItemContainer>
       </S.SchoolListContainer>
+      <S.ClubListContainer>
+        <S.SemiTitleBox>
+          <S.SubTitleSub>직업계고 계열별 학교현황 및 진로</S.SubTitleSub>
+          <S.SubTitleMain>취업동아리 소개</S.SubTitleMain>
+        </S.SemiTitleBox>
+      </S.ClubListContainer>
     </S.HomeWrapper>
   )
 }

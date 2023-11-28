@@ -184,3 +184,7 @@ export const SchoolItemContainer = styled.div`
     margin-right: 1.5rem;
   }
 `
+
+export const ClubListContainer = styled.div`
+  margin-top: 10rem;
+`
