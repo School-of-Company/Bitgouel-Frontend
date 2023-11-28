@@ -30,7 +30,6 @@ export const Title = styled.span`
 
 export const MainTextContainer = styled.section`
   margin: 0.75rem 0;
-  height: 2.5rem;
   text-overflow: ellipsis;
   overflow: hidden;
 `

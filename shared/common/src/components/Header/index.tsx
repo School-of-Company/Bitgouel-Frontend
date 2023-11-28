@@ -1,18 +1,18 @@
 'use client'
 
-import Symbol1 from '../../assets/png/symbol1.png'
-import Symbol2 from '../../assets/png/symbol2.png'
-import * as S from './style'
-import { match } from 'ts-pattern'
+import { TokenManager, useDeleteLogout } from '@bitgouel/api'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { Plus, Filter, MegaPhone, Message, Question } from '../../assets'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { match } from 'ts-pattern'
+import { Filter, MegaPhone, Message, Plus, Question } from '../../assets'
+import Symbol1 from '../../assets/png/symbol1.png'
+import Symbol2 from '../../assets/png/symbol2.png'
+import { LectureTypeText, Role } from '../../atoms'
 import { LectureTypeModal } from '../../modals'
-import { useRecoilState } from 'recoil'
-import { LectureTypeText } from '../../atoms'
-import { TokenManager, useDeleteLogout } from '@bitgouel/api'
+import * as S from './style'
 
-const Header = ({ inside }: { inside: boolean }) => {
+const Header = () => {
   const tokenManager = new TokenManager()
   const router = useRouter()
   const pathname = usePathname()
@@ -33,6 +33,7 @@ const Header = ({ inside }: { inside: boolean }) => {
   const [lectureTypeText, setLectureTypeText] =
     useRecoilState<string>(LectureTypeText)
   const [text, setText] = useState<string>('로그인')
+  const role = useRecoilValue(Role)
 
   const { mutate } = useDeleteLogout()
 
@@ -114,9 +115,14 @@ const Header = ({ inside }: { inside: boolean }) => {
                 onClick={() => {
                   router.push('/main/lecture/create')
                 }}
-                view={match(inside)
-                  .with(true, () => 'none')
-                  .otherwise(() => '')}
+                view={match(role)
+                  .with(
+                    'ROLE_PROFESSOR' ||
+                      'ROLE_GOVERNMENT' ||
+                      'ROLE_COMPANY_INSTRUCTOR',
+                    () => ''
+                  )
+                  .otherwise(() => 'none')}
               >
                 <Plus />
               </S.CreateIcon>

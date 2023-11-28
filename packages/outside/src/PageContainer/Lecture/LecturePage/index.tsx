@@ -2,12 +2,12 @@
 
 import { Filter, Plus } from '@bitgouel/common'
 import Bg3 from '@bitgouel/common/src/assets/png/mainBg3.png'
-import { LectureTypeText } from '@bitgouel/common/src/atoms'
+import { LectureTypeText, Role } from '@bitgouel/common/src/atoms'
 import { LectureItem } from '@bitgouel/common/src/components'
 import { LectureTypeModal } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import * as S from './style'
 import { lectureToEnum } from '@bitgouel/common/src/constants'
 import { useGetLectureList } from '@bitgouel/api'
@@ -17,6 +17,7 @@ const LecturePage = () => {
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
   const [lectureTypeText, setLectureTypeText] =
     useRecoilState<string>(LectureTypeText)
+  const role = useRecoilValue(Role)
 
   const { data } = useGetLectureList({
     page: 0,
@@ -59,7 +60,7 @@ const LecturePage = () => {
       <S.ListWrapper>
         <S.ListContainer>
           {data?.data.lectures.content.map((item) => (
-            <LectureItem inside={false} item={item} key={item.id} />
+            <LectureItem role={role} item={item} key={item.id} />
           ))}
         </S.ListContainer>
       </S.ListWrapper>

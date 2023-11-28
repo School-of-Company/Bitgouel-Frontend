@@ -5,7 +5,7 @@ import * as S from './style'
 import { useRouter } from 'next/navigation'
 import { LectureItemProps } from '@bitgouel/types'
 
-const LectureItem = ({ item, inside }: LectureItemProps) => {
+const LectureItem = ({ item, role }: LectureItemProps) => {
   const router = useRouter()
 
   return (
@@ -26,13 +26,17 @@ const LectureItem = ({ item, inside }: LectureItemProps) => {
       </S.SubTitle>
       <S.Title>{item.name}</S.Title>
       <S.MainTextContainer>
-        <S.MainText>{item.content}</S.MainText>
+        <S.MainText>
+          {item.content.length > 230
+            ? `${item.content.slice(0, 230)}...`
+            : item.content}
+        </S.MainText>
       </S.MainTextContainer>
       <S.SubMenuContainer>
         <S.From>{lectureToKor[item.lectureType]}</S.From>
         <S.StatusFrom
           status={item.approveStatus}
-          display={inside ? 'none' : ''}
+          display={role !== 'ROLE_ADMIN' ? 'none' : ''}
         >
           {lectureStatusToKor[item.approveStatus]}
         </S.StatusFrom>

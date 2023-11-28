@@ -22,6 +22,7 @@ const preview = {
       <RecoilRoot>
         <GlobalLayout>
           <Story />
+          <div id='modal' />
         </GlobalLayout>
       </RecoilRoot>
     ),

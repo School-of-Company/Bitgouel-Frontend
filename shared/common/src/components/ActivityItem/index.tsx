@@ -15,11 +15,11 @@ const ActivityItem = ({ item }: ActivityItemProps) => {
     >
       <div>
         <div>
-          <S.AcitivTitle>
+          <S.ActivityTitle>
             {item.title.length > 10
               ? `${item.title.slice(0, 12)}...`
               : item.title}
-          </S.AcitivTitle>
+          </S.ActivityTitle>
         </div>
         <div>
           <S.Date>{`${item.activityDate.slice(

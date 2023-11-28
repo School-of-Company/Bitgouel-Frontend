@@ -1,7 +1,5 @@
 'use client'
 
-import { usePatchApproveLecture } from '@bitgouel/api'
-import { usePatchActivityApprove } from '@bitgouel/api'
 import { AppropriationModalProps } from '@bitgouel/types'
 import { useModal } from '../../hooks'
 import Portal from '../../portal'
