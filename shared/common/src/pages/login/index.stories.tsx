@@ -4,7 +4,7 @@ import LoginPage from '.'
 import type { Meta, StoryObj } from '@storybook/react'
 
 export default {
-  title: 'common/LoginPage',
+  title: 'common/pages/LoginPage',
   component: LoginPage,
 } as Meta<typeof LoginPage>
 

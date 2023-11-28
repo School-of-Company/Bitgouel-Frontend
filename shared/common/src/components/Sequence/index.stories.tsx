@@ -4,7 +4,7 @@ import Sequence from '.'
 import type { Meta, StoryObj } from '@storybook/react'
 
 export default {
-  title: 'common/Sequence',
+  title: 'common/components/Sequence',
   component: Sequence,
 } as Meta<typeof Sequence>
 

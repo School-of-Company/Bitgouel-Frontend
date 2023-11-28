@@ -1,6 +1,6 @@
-import { LectureItemType } from "../api"
+import { LectureItemType, RoleEnumTypes } from '../api'
 
 export interface LectureItemProps {
   item: LectureItemType
-  inside: boolean
+  role: RoleEnumTypes
 }

@@ -14,7 +14,7 @@ export const ActivityItemWrapper = styled.div`
   margin: 0.75rem 0.75rem;
 `
 
-export const AcitivTitle = styled.span`
+export const ActivityTitle = styled.span`
   ${({ theme }) => theme.typo.title_sm}
 `
 
