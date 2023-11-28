@@ -22,10 +22,15 @@ export const ErrorText = styled.span`
   margin-top: 0.4rem;
 `
 
-export const ValueInput = styled.input<{ isError?: boolean }>`
+export const ValueInput = styled.input<{
+  isError: boolean
+  isLoading: boolean | undefined
+}>`
   width: 100%;
   height: 3.2rem;
   display: block;
+  background: ${({ theme, isLoading }) =>
+    isLoading ? theme.color.gray['900'] : 'none'};
 
   border: 0.0625rem solid
     ${({ theme, isError }) =>
@@ -33,7 +38,12 @@ export const ValueInput = styled.input<{ isError?: boolean }>`
   border-radius: 0.5rem;
   outline: none;
   text-indent: 1.25rem;
-  color: ${({ theme, isError }) => isError && theme.color.error};
+  color: ${({ theme, isError, isLoading }) =>
+    isError
+      ? theme.color.error
+      : isLoading
+      ? theme.color.gray['700']
+      : theme.color.black};
 
   ${({ theme }) => theme.typo.text_sm};
 

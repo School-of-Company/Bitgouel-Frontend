@@ -5,14 +5,15 @@ import React, {
   forwardRef,
   InputHTMLAttributes,
   useEffect,
+  Ref,
 } from 'react'
 import * as S from './style'
 import { XIcon } from '../../assets'
 import { ValueInputProps } from '@bitgouel/types'
 
 const ValueInput = (
-  { length, onClear, errorText, ...rest }: ValueInputProps,
-  ref?: any
+  { length, onClear, errorText, isLoading, ...rest }: ValueInputProps,
+  ref?: Ref<HTMLInputElement>
 ) => {
   const [focus, setFocus] = useState<boolean>(true)
 
@@ -32,7 +33,12 @@ const ValueInput = (
           setFocus(false)
         }}
       >
-        <S.ValueInput ref={ref} {...rest} isError={errorText ? true : false} />
+        <S.ValueInput
+          ref={ref}
+          {...rest}
+          isError={errorText ? true : false}
+          isLoading={isLoading}
+        />
         {length > 0 && focus === true && onClear && (
           <S.XIconWrapper onClick={onClear}>
             <XIcon />

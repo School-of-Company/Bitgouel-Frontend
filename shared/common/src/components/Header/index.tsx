@@ -1,5 +1,6 @@
 'use client'
 
+import { theme } from '../../styles'
 import { TokenManager, useDeleteLogout } from '@bitgouel/api'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -27,7 +28,7 @@ const Header = () => {
   const [symbolNum, setSymbolNum] = useState<any>(Symbol1)
   const [btnColor, setBtnColor] = useState<string>('rgb(255, 255, 255, 0.2)')
   const [borderColor, setBorderColor] = useState<string>('')
-  const [spanColor, setSpanColor] = useState<string>('#fff')
+  const [spanColor, setSpanColor] = useState<string>(`${theme.color.white}`)
   const [svgView, setSvgView] = useState<string>('none')
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
   const [lectureTypeText, setLectureTypeText] =
@@ -42,32 +43,32 @@ const Header = () => {
       const { scrollY } = window
       if (pathname === '/') {
         if (scrollY >= 800) {
-          setBgColor('#fff')
+          setBgColor(`${theme.color.white}`)
           setSymbolNum(Symbol2)
           setBtnColor('rgb(209, 209, 209, 1)')
-          setBorderColor('0.0625rem solid #ebebeb')
-          setSpanColor('#288BE1')
+          setBorderColor(`0.0625rem solid ${theme.color.gray['900']}`)
+          setSpanColor(`${theme.color.main}`)
         } else {
           setBgColor('')
           setSymbolNum(Symbol1)
           setBtnColor('rgb(255, 255, 255, 0.2)')
           setBorderColor('')
-          setSpanColor('#fff')
+          setSpanColor(`${theme.color.white}`)
         }
       } else {
         if (scrollY >= 240) {
-          setBgColor('#fff')
+          setBgColor(`${theme.color.white}`)
           setSymbolNum(Symbol2)
           setBtnColor('rgb(209, 209, 209, 1)')
-          setBorderColor('0.0625rem solid #ebebeb')
-          setSpanColor('#288BE1')
+          setBorderColor(`0.0625rem solid ${theme.color.gray['900']}`)
+          setSpanColor(`${theme.color.main}`)
           setSvgView('flex')
         } else {
           setBgColor('')
           setSymbolNum(Symbol1)
           setBtnColor('rgb(255, 255, 255, 0.2)')
           setBorderColor('')
-          setSpanColor('#fff')
+          setSpanColor(`${theme.color.white}`)
           setSvgView('none')
         }
       }

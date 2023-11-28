@@ -5,6 +5,7 @@ import * as S from './style'
 import Calendar from 'react-calendar'
 import { Chevron } from '../../assets'
 import { SelectCalendarModalProps } from '@bitgouel/types'
+import { theme } from '../../styles'
 
 const SelectCalendarModal = ({
   date,
@@ -92,7 +93,7 @@ const SelectCalendarModal = ({
               onClick={() => hour !== 24 && handleHourUpDown(true)}
               style={{ rotate: '180deg' }}
             >
-              <Chevron color={'#ffffff'} />
+              <Chevron color={`${theme.color.white}`} />
             </div>
             <S.TimeInput
               value={hour.toString().padStart(2, '0')}
@@ -101,7 +102,7 @@ const SelectCalendarModal = ({
               disabled={true}
             />
             <div onClick={() => hour !== 0 && handleHourUpDown(false)}>
-              <Chevron color={'#ffffff'} />
+              <Chevron color={`${theme.color.white}`} />
             </div>
           </S.InputTimeBox>
           <span>:</span>
@@ -110,7 +111,7 @@ const SelectCalendarModal = ({
               onClick={() => minutes !== 55 && handleMinutesUpDown(true)}
               style={{ rotate: '180deg' }}
             >
-              <Chevron color={'#ffffff'} />
+              <Chevron color={`${theme.color.white}`} />
             </div>
             <S.TimeInput
               value={minutes.toString().padStart(2, '0')}
@@ -119,7 +120,7 @@ const SelectCalendarModal = ({
               disabled={true}
             />
             <div onClick={() => minutes !== 0 && handleMinutesUpDown(false)}>
-              <Chevron color={'#ffffff'} />
+              <Chevron color={`${theme.color.white}`} />
             </div>
           </S.InputTimeBox>
         </S.TimeBox>
