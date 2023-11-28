@@ -9,6 +9,10 @@ import Bg4 from '../../assets/png/slide4.png'
 import OfficeLogo from '../../assets/png/officeEducation.png'
 import GwangjuLogo from '../../assets/png/gwangjuLogo.png'
 import Banner1 from '../../assets/png/clubListBanner1.png'
+import Agency1 from '../../assets/png/agencySymbols/agency1.png'
+import Agency2 from '../../assets/png/agencySymbols/agency2.png'
+import Agency3 from '../../assets/png/agencySymbols/agency3.png'
+import Agency4 from '../../assets/png/agencySymbols/agency4.png'
 import { Sequence, SchoolIntro } from '../../components/index'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
@@ -18,7 +22,8 @@ const HomePage = () => {
   const router = useRouter()
   const [bgNum, setBgNum] = useState(2)
   const imageArr = [Bg1, Bg2, Bg3, Bg4]
-  const BannerArr = [Banner1]
+  const bannerArr = [Banner1]
+  const blueArr = ['500', '400', '300', '200', '100']
 
   useEffect(() => {
     const background = setInterval(() => {
@@ -221,7 +226,7 @@ const HomePage = () => {
         <S.ClubListWrapper>
           <S.ClubListTitle>핵심 분야 및 취업동아리 목록</S.ClubListTitle>
         </S.ClubListWrapper>
-        <S.ClubListBanner url={BannerArr[0]}>
+        <S.ClubListBanner url={bannerArr[0]}>
           <S.ClubListContents>
             <S.ClubValueTitle>미래형 운송기기</S.ClubValueTitle>
             <S.ClubMainTextArea>
@@ -322,6 +327,83 @@ const HomePage = () => {
           </S.UniversityRightArea>
         </S.UnionUniversityList>
       </S.UnionUniversityContainer>
+      <S.CompanyIntroContainer>
+        <S.SemiTitleBox>
+          <S.SubTitleSub>직업계고 계열별 학교현황 및 진로</S.SubTitleSub>
+          <S.SubTitleMain>참여 기업 소개</S.SubTitleMain>
+        </S.SemiTitleBox>
+      </S.CompanyIntroContainer>
+      <S.AgencyIntroContainer>
+        <S.SemiTitleBox>
+          <S.SubTitleSub>혁신지구와 함께하는</S.SubTitleSub>
+          <S.SubTitleMain>유관 기관 소개</S.SubTitleMain>
+        </S.SemiTitleBox>
+        <S.AgencyIntroList>
+          <S.AgencyIntroItem>
+            <S.AgencyValueName color={blueArr[0]}>
+              미래형
+              <br />
+              운송기기
+            </S.AgencyValueName>
+            <S.AgencyNameBox>
+              <Image src={Agency1} alt='Agency1' />
+              <S.AgencyName>(재)광주그린카진흥원</S.AgencyName>
+            </S.AgencyNameBox>
+          </S.AgencyIntroItem>
+          <S.AgencyIntroItem>
+            <S.AgencyValueName color={blueArr[1]}>
+              에너지
+              <br />
+              산업
+            </S.AgencyValueName>
+            <S.AgencyNameBox>
+              <Image src={Agency2} alt='Agency2' />
+              <S.AgencyName>에너지밸리기업개발원</S.AgencyName>
+            </S.AgencyNameBox>
+          </S.AgencyIntroItem>
+        </S.AgencyIntroList>
+        <S.AgencyIntroList>
+          <S.AgencyIntroItem>
+            <S.AgencyValueName color={blueArr[2]}>
+              의료
+              <br />
+              헬스케어
+            </S.AgencyValueName>
+            <S.AgencyNameBox>
+              <Image src={Agency3} alt='Agency3' />
+              <S.AgencyName>(사)한국평생교육연합회</S.AgencyName>
+            </S.AgencyNameBox>
+          </S.AgencyIntroItem>
+          <S.AgencyIntroItem>
+            <S.AgencyValueName color={blueArr[3]}>
+              AI
+              <br />
+              융복합
+            </S.AgencyValueName>
+            <S.AgencyNameBox>
+              <Image src={Agency4} alt='Agency4' />
+              <S.AgencyName>(사)스마트인재개발원</S.AgencyName>
+            </S.AgencyNameBox>
+          </S.AgencyIntroItem>
+          <S.AgencyIntroItem>
+            <S.AgencyValueName color={blueArr[4]}>
+              문화
+              <br />
+              산업
+            </S.AgencyValueName>
+            <S.AgencyNameBox>
+              <S.AgencyName>
+                에너지밸리기업개발원
+                <br />
+                (재)광주정보문화산업진흥원
+                <br />
+                광주광역시청소년삶디자인센터
+                <br />
+              </S.AgencyName>
+            </S.AgencyNameBox>
+          </S.AgencyIntroItem>
+        </S.AgencyIntroList>
+      </S.AgencyIntroContainer>
     </S.HomeWrapper>
   )
 }
