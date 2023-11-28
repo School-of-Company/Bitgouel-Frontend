@@ -62,51 +62,6 @@ const LecturePage = () => {
           {data?.data.lectures.content.map((item) => (
             <LectureItem role={role} item={item} key={item.id} />
           ))}
-          <div>d</div>
-
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
-          <div>d</div>
         </S.ListContainer>
       </S.ListWrapper>
     </div>
