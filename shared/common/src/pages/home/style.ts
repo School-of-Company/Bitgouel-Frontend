@@ -150,11 +150,11 @@ export const BannerTitleWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 17.5rem;
+  height: 12rem;
   margin-top: 7.5rem;
   background: linear-gradient(to right, #288be1, #45dfda);
   div {
-    ${({ theme }) => theme.typo.title_md}
+    ${({ theme }) => theme.typo.title_sm}
     color: ${({ theme }) => theme.color.white};
     display: flex;
     align-items: center;
