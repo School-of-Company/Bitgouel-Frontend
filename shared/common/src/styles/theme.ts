@@ -13,6 +13,7 @@ const color = {
     '900': '#EBEBEB',
   },
   blue: {
+    '300': '#14568F',
     '800': '#AED3F4',
   },
   red: {
