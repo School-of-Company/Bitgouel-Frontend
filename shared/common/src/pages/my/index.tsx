@@ -36,7 +36,7 @@ const MyPage = () => {
                   {data?.data.organization.split('/')[0]}
                 </S.OrganizationName>
                 <S.SubEnter>소속</S.SubEnter>
-              </div>
+              </div> 
               <div>
                 <S.SubId>{data?.data.organization.split('/')[1]}</S.SubId>
               </div>
