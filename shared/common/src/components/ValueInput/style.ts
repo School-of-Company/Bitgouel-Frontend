@@ -24,7 +24,7 @@ export const ErrorText = styled.span`
 
 export const ValueInput = styled.input<{
   isError: boolean
-  isLoading: boolean
+  isLoading: boolean | undefined
 }>`
   width: 100%;
   height: 3.2rem;
@@ -44,7 +44,7 @@ export const ValueInput = styled.input<{
       : isLoading
       ? theme.color.gray['700']
       : theme.color.black};
-      
+
   ${({ theme }) => theme.typo.text_sm};
 
   &:focus {
