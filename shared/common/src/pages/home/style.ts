@@ -166,12 +166,21 @@ export const BannerTitleWrapper = styled.div`
 
 export const SchoolListContainer = styled.div`
   margin-top: 7.5rem;
-  display: flex;
-  justify-content: center;
 `
 
 export const SemiTitleBox = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
+  margin-bottom: 2.5rem;
+`
+
+export const SchoolItemContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+  width: 100%;
+  div {
+    margin-right: 1.5rem;
+  }
 `

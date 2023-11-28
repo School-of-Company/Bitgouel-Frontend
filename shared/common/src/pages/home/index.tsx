@@ -8,7 +8,7 @@ import Bg3 from '../../assets/png/slide3.png'
 import Bg4 from '../../assets/png/slide4.png'
 import OfficeLogo from '../../assets/png/officeEducation.png'
 import GwangjuLogo from '../../assets/png/gwangjuLogo.png'
-import { Sequence } from '../../components/index'
+import { Sequence, SchoolIntro } from '../../components/index'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import * as S from './style'
@@ -112,6 +112,23 @@ const HomePage = () => {
           <S.SubTitleSub>직업계고 계열별 학교현황 및 진로</S.SubTitleSub>
           <S.SubTitleMain>직업계고 소개</S.SubTitleMain>
         </S.SemiTitleBox>
+        <S.SchoolItemContainer>
+          <SchoolIntro />
+          <SchoolIntro />
+          <SchoolIntro />
+          <SchoolIntro />
+          <SchoolIntro />
+          <SchoolIntro />
+          <SchoolIntro />
+        </S.SchoolItemContainer>
+        <S.SchoolItemContainer>
+          <SchoolIntro />
+          <SchoolIntro />
+          <SchoolIntro />
+          <SchoolIntro />
+          <SchoolIntro />
+          <SchoolIntro />
+        </S.SchoolItemContainer>
       </S.SchoolListContainer>
     </S.HomeWrapper>
   )
