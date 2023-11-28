@@ -11,7 +11,7 @@ export const ActivityItemWrapper = styled.div`
   border: 0.0625rem solid ${({ theme }) => theme.color.gray['900']};
   border-radius: 0.5rem;
   padding: 1rem 1rem;
-  margin: 0.75rem 0.75rem;
+  margin: 0.75rem;
 `
 
 export const AcitivTitle = styled.span`
