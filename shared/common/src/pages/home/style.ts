@@ -129,7 +129,7 @@ export const UnionItem = styled.div`
   flex-direction: column;
   li {
     ${({ theme }) => theme.typo.text_lg}
-    color: ${({ theme }) => theme.color.gray[400]};
+    color: ${({ theme }) => theme.color.gray['400']};
   }
   div {
     margin-top: 2rem;
@@ -223,7 +223,7 @@ export const ClubIntroSubTitle = styled.span`
 export const ClubIntroText = styled.div`
   margin: 1rem 1.5rem 0rem;
   li {
-    color: ${({ theme }) => theme.color.gray[700]};
+    color: ${({ theme }) => theme.color.gray['700']};
     ${({ theme }) => theme.typo.text_sm};
   }
 `
@@ -305,4 +305,52 @@ export const ClubRightText = styled.div`
   padding: 0 1rem;
   width: fit-content;
   margin-right: 1rem;
+`
+
+export const UnionUniversityContainer = styled.div`
+  margin-top: 10rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`
+
+export const UnionUniversityList = styled.div`
+  width: 66.625rem;
+  height: 32.5rem;
+  display: flex;
+  margin-top: 5rem;
+  justify-content: space-between;
+`
+
+export const UniversityLeftArea = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  text-align: end;
+  div {
+    margin-top: 6.25rem;
+  }
+`
+
+export const UniversityRightArea = styled.div`
+  div {
+    margin-bottom: 6.25rem;
+  }
+`
+
+export const UniversityIntro = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+`
+
+export const UniversityName = styled.span`
+  color: ${({ theme }) => theme.color.blue['300']};
+  ${({ theme }) => theme.typo.title_sm};
+`
+
+export const UniversityText = styled.span`
+  color: ${({ theme }) => theme.color.black};
+  ${({ theme }) => theme.typo.text_lg};
+  margin-top: 0.75rem;
 `
