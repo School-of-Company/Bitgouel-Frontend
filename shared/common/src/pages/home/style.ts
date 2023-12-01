@@ -23,7 +23,7 @@ export const BgContainer = styled.div`
 
 export const HomeTitle = styled.span`
   color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.title_lg};
+  ${({ theme }) => theme.typo.title_lg.semibold};
 `
 
 export const ViewContainer = styled.div`
@@ -38,10 +38,10 @@ export const View = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 1rem;
+  ${({ theme }) => theme.typo.caption.regular}
   svg {
     transform: rotate(90deg);
     margin-bottom: 0.5rem;
-    ${({ theme }) => theme.typo.text_sm};
   }
 `
 
@@ -61,13 +61,13 @@ export const SubTitleWrapper = styled.div`
 
 export const SubTitleSub = styled.span`
   color: ${({ theme }) => theme.color.gray[400]};
-  ${({ theme }) => theme.typo.text_lg}
+  ${({ theme }) => theme.typo.text_lg.medium};
 `
 
 export const SubTitleMain = styled.span`
   margin-top: 0.25rem;
   color: ${({ theme }) => theme.color.black};
-  ${({ theme }) => theme.typo.title_lg}
+  ${({ theme }) => theme.typo.title_lg.semibold}
 `
 
 export const FromLogoContainer = styled.div`
@@ -79,12 +79,6 @@ export const FromLogoContainer = styled.div`
     align-items: center;
     border-radius: 3.125rem;
   }
-`
-
-export const BoxText = styled.span`
-  color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.title_sm}
-  margin-left: 12px;
 `
 
 export const GwangjuBox = styled.div`
@@ -104,6 +98,12 @@ export const OfficeBox = styled.div`
     width: 2.5rem;
     height: auto;
   }
+`
+
+export const BoxText = styled.span`
+  color: ${({ theme }) => theme.color.white};
+  ${({ theme }) => theme.typo.title_sm.semibold}
+  margin-left: 12px;
 `
 
 export const UnionListContainer = styled.div`
@@ -127,8 +127,9 @@ export const UnionItem = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+
   li {
-    ${({ theme }) => theme.typo.text_lg}
+    ${({ theme }) => theme.typo.text_lg.medium}
     color: ${({ theme }) => theme.color.gray['400']};
   }
   div {
@@ -138,7 +139,7 @@ export const UnionItem = styled.div`
 `
 
 export const UnionTitle = styled.span`
-  ${({ theme }) => theme.typo.title_sm}
+  ${({ theme }) => theme.typo.title_sm.semibold}
   color: ${({ theme }) => theme.color.black};
   margin-left: 1rem;
 `
@@ -151,14 +152,16 @@ export const BannerTitleWrapper = styled.div`
   height: 12rem;
   margin-top: 7.5rem;
   background: linear-gradient(to right, #288be1, #45dfda);
+
   div {
-    ${({ theme }) => theme.typo.title_sm}
+    ${({ theme }) => theme.typo.title_sm.semibold}
     color: ${({ theme }) => theme.color.white};
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     text-align: center;
+    line-height: 2rem;
   }
 `
 
@@ -212,19 +215,20 @@ export const ClubIntroSubTitleWrapper = styled.div`
 
 export const ClubIntroTitle = styled.span`
   color: ${({ theme }) => theme.color.black};
-  ${({ theme }) => theme.typo.text_md};
+  ${({ theme }) => theme.typo.text_md.medium};
 `
 
 export const ClubIntroSubTitle = styled.span`
   color: ${({ theme }) => theme.color.gray[400]};
-  ${({ theme }) => theme.typo.text_md};
+  ${({ theme }) => theme.typo.text_sm.regular};
 `
 
 export const ClubIntroText = styled.div`
   margin: 1rem 1.5rem 0rem;
+
   li {
     color: ${({ theme }) => theme.color.gray['700']};
-    ${({ theme }) => theme.typo.text_sm};
+    ${({ theme }) => theme.typo.text_sm.regular};
   }
 `
 
@@ -234,7 +238,7 @@ export const ClubListWrapper = styled.div`
 
 export const ClubListTitle = styled.span`
   color: ${({ theme }) => theme.color.black};
-  ${({ theme }) => theme.typo.title_md};
+  ${({ theme }) => theme.typo.title_md.semibold};
 `
 
 export const ClubListBanner = styled.span<{ url: any }>`
@@ -254,7 +258,7 @@ export const ClubListContents = styled.div`
 
 export const ClubValueTitle = styled.span`
   color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.title_md};
+  ${({ theme }) => theme.typo.title_md.semibold};
 `
 
 export const ClubMainTextArea = styled.div`
@@ -272,7 +276,7 @@ export const ClubLeftTextArea = styled.div`
 
 export const ClubLeftText = styled.span`
   color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.text_lg};
+  ${({ theme }) => theme.typo.text_lg.semibold};
   height: 2.25rem;
   display: flex;
   align-items: center;
@@ -296,7 +300,7 @@ export const ClubRightTextLine = styled.div`
 
 export const ClubRightText = styled.div`
   color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.text_sm};
+  ${({ theme }) => theme.typo.text_sm.medium};
   height: 2.125rem;
   display: flex;
   align-items: center;
@@ -346,12 +350,12 @@ export const UniversityIntro = styled.div`
 
 export const UniversityName = styled.span`
   color: ${({ theme }) => theme.color.blue['300']};
-  ${({ theme }) => theme.typo.title_sm};
+  ${({ theme }) => theme.typo.title_sm.semibold};
 `
 
 export const UniversityText = styled.span`
   color: ${({ theme }) => theme.color.black};
-  ${({ theme }) => theme.typo.text_lg};
+  ${({ theme }) => theme.typo.text_lg.semibold};
   margin-top: 0.75rem;
 `
 
@@ -387,7 +391,7 @@ export const AgencyIntroItem = styled.div`
 
 export const AgencyValueName = styled.div<{ color: string }>`
   color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.text_lg};
+  ${({ theme }) => theme.typo.text_lg.semibold};
   position: absolute;
   margin-top: -3.125rem;
   display: flex;
@@ -413,7 +417,7 @@ export const AgencyNameBox = styled.div`
 
 export const AgencyName = styled.span`
   color: ${({ theme }) => theme.color.black};
-  ${({ theme }) => theme.typo.text_md};
+  ${({ theme }) => theme.typo.text_md.regular};
   margin-top: 0.5rem;
   text-align: center;
   margin-bottom: 1.5rem;

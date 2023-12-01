@@ -12,7 +12,7 @@ export const SequenceWrapper = styled.div`
 
 export const TextContainer = styled.div`
   margin-bottom: 3rem;
-  ${({ theme }) => theme.typo.text_sm};
+  ${({ theme }) => theme.typo.text_sm.regular};
   display: flex;
   flex-direction: row-reverse;
   color: ${({ theme }) => theme.color.white};

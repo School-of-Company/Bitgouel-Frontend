@@ -15,7 +15,7 @@ export const ActivityItemWrapper = styled.div`
 `
 
 export const ActivityTitle = styled.span`
-  ${({ theme }) => theme.typo.title_sm}
+  ${({ theme }) => theme.typo.title_sm.semibold}
 `
 
 export const Uploader = styled.span`
@@ -38,7 +38,7 @@ export const ApproveStatus = styled.div<{ approveColor: boolean }>`
     approveColor ? theme.color.blue['800'] : theme.color.red['800']};
   color: ${({ theme, approveColor }) =>
     approveColor ? theme.color.main : theme.color.error};
-  ${({ theme }) => theme.typo.text_md};
+  ${({ theme }) => theme.typo.text_md.regular};
   text-align: center;
   padding: 0.5rem 1rem;
   border-radius: 1.125rem;

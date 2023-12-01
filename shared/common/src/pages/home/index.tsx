@@ -109,9 +109,8 @@ const HomePage = () => {
       </S.UnionListContainer>
       <S.BannerTitleWrapper>
         <div>
-          <span>새내기 인재가 토박이 기술 장인으로 성장하는 혁신지구</span>
-          <br />
-          <span>지역 미래 산업을 선도할 핵심 분야 기술 인재 육성</span>
+          <div>새내기 인재가 토박이 기술 장인으로 성장하는 혁신지구</div>
+          <div>지역 미래 산업을 선도할 핵심 분야 기술 인재 육성</div>
         </div>
       </S.BannerTitleWrapper>
       <S.SchoolListContainer>

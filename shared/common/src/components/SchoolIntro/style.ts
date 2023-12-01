@@ -37,11 +37,11 @@ export const TextContainerFront = styled.div`
 `
 
 export const SubText = styled.span`
-  ${({ theme }) => theme.typo.text_sm};
+  ${({ theme }) => theme.typo.text_sm.regular};
 `
 
 export const TitleText = styled.span`
-  ${({ theme }) => theme.typo.text_lg};
+  ${({ theme }) => theme.typo.text_lg.semibold};
 `
 
 export const ImgWrapper = styled.div`
@@ -71,5 +71,5 @@ export const TextContainerBack = styled.div`
 
 export const ValueTextBox = styled.div`
   margin: 0 2rem 2rem 2rem;
-  ${({ theme }) => theme.typo.text_sm}
+  ${({ theme }) => theme.typo.text_sm.regular};
 `

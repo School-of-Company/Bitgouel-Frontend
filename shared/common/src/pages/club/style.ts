@@ -20,7 +20,7 @@ export const BgContainer = styled.div`
 
 export const ClubTitle = styled.span`
   color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.title_lg};
+  ${({ theme }) => theme.typo.title_lg.semibold};
 `
 
 export const ButtonContainer = styled.div`
@@ -43,7 +43,7 @@ export const ClubButton = styled.div`
   }
   span {
     color: ${({ theme }) => theme.color.white};
-    ${({ theme }) => theme.typo.text_md};
+    ${({ theme }) => theme.typo.text_md.regular};
     margin-left: 0.25rem;
   }
   &:hover {

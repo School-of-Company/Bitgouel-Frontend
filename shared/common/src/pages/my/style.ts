@@ -60,30 +60,30 @@ export const MyIdentifyWrapper = styled.div`
 
 export const Name = styled.span`
   color: ${({ theme }) => theme.color.black};
-  ${({ theme }) => theme.typo.title_lg};
+  ${({ theme }) => theme.typo.title_lg.semibold};
   margin-right: 0.8rem;
 `
 
 export const Role = styled.span`
   color: ${({ theme }) => theme.color.gray['700']};
-  ${({ theme }) => theme.typo.title_sm}
+  ${({ theme }) => theme.typo.title_sm.semibold}
 `
 
 export const OrganizationName = styled.span`
   color: ${({ theme }) => theme.color.gray['400']};
-  ${({ theme }) => theme.typo.text_lg}
+  ${({ theme }) => theme.typo.text_lg.semibold}
   margin-top: 0.25rem;
   margin-right: 0.8rem;
 `
 
 export const SubEnter = styled.span`
   color: ${({ theme }) => theme.color.gray['700']};
-  ${({ theme }) => theme.typo.text_lg};
+  ${({ theme }) => theme.typo.text_lg.semibold};
 `
 
 export const SubId = styled.span`
   color: ${({ theme }) => theme.color.gray['400']};
-  ${({ theme }) => theme.typo.text_md};
+  ${({ theme }) => theme.typo.text_md.regular};
 `
 
 export const AccountWrapper = styled.div`
@@ -91,7 +91,7 @@ export const AccountWrapper = styled.div`
 `
 
 export const MyTitle = styled.span`
-  ${({ theme }) => theme.typo.title_sm};
+  ${({ theme }) => theme.typo.title_sm.semibold};
 `
 
 export const AccountContainer = styled.div`
@@ -106,12 +106,12 @@ export const AccountContainer = styled.div`
 
 export const LeftText = styled.span`
   color: ${({ theme }) => theme.color.gray['400']};
-  ${({ theme }) => theme.typo.text_md};
+  ${({ theme }) => theme.typo.text_md.regular};
 `
 
 export const RightText = styled.span`
   color: ${({ theme }) => theme.color.gray['700']};
-  ${({ theme }) => theme.typo.text_md};
+  ${({ theme }) => theme.typo.text_md.regular};
 `
 
 export const SharedLine = styled.div`

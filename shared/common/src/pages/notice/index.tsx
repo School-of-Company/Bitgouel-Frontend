@@ -11,18 +11,18 @@ const NoticePage = () => {
         <S.BgContainer>
           <S.NoticeTitle>게시글</S.NoticeTitle>
           <S.ButtonContainer>
-            <S.LectureButton>
+            <S.NoticeButton>
               <MegaPhone />
               <span>공지사항</span>
-            </S.LectureButton>
-            <S.LectureButton>
+            </S.NoticeButton>
+            <S.NoticeButton>
               <Message />
               <span>취업 게시글</span>
-            </S.LectureButton>
-            <S.LectureButton>
+            </S.NoticeButton>
+            <S.NoticeButton>
               <Question />
               <span>문의사항</span>
-            </S.LectureButton>
+            </S.NoticeButton>
           </S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>

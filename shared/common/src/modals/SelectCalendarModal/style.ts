@@ -40,7 +40,7 @@ export const ShowDateBox = styled.div`
 
 export const ShowDateText = styled.h2`
   color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.title_sm};
+  ${({ theme }) => theme.typo.title_sm.semibold};
   margin: 0;
 `
 
@@ -77,7 +77,7 @@ export const TimeInput = styled.input`
   padding: 0;
   margin: 0;
   padding-left: 1.1rem;
-  ${({ theme }) => theme.typo.text_lg}
+  ${({ theme }) => theme.typo.text_lg.semibold}
 
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
@@ -136,7 +136,7 @@ export const CalendarContainer = styled.div`
       border: none;
 
       abbr {
-        ${({ theme }) => theme.typo.text_md}
+        ${({ theme }) => theme.typo.text_md.regular}
         cursor: pointer;
       }
     }

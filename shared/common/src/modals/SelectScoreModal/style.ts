@@ -21,7 +21,7 @@ export const SelectScoreBox = styled.div`
 `
 
 export const SelectScoreTitle = styled.h3`
-  ${({ theme }) => theme.typo.text_lg}
+  ${({ theme }) => theme.typo.text_lg.semibold}
   margin: 0;
   margin-top: 1rem;
   margin-left: 1rem;
@@ -60,6 +60,6 @@ export const SelectScoreCheckBox = styled.input`
 `
 
 export const SelectScoreText = styled.span`
-  ${({ theme }) => theme.typo.text_sm}
+  ${({ theme }) => theme.typo.text_sm.regular}
   margin-left: 0.5rem;
 `
