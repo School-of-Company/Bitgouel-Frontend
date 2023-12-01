@@ -54,7 +54,6 @@ const ActivityModifyPage = () => {
                   {isActivityDate && (
                     <SelectCalendarModal
                       date={activityDate}
-                      SettingForm
                       setDate={setActivityDate}
                       setText={setActivityDateText}
                     />
