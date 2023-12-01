@@ -15,6 +15,7 @@ import {
 import { ValueInput } from '../../../../components'
 import SignUpButtonContainer from '../SignUpButtonContainer'
 import * as S from './style'
+import { theme } from '../../../../styles'
 
 const Page3 = ({
   page,
@@ -152,15 +153,15 @@ const Page3 = ({
                   backgroundColor:
                     item.value.length > 0
                       ? !phoneCertificate && phoneCertificateText === '완료'
-                        ? '#b8b8b8'
-                        : '#288BE1'
-                      : '#b8b8b8',
+                        ? `${theme.color.gray['700']}`
+                        : `${theme.color.main}`
+                      : `${theme.color.gray['700']}`,
                   color:
                     item.value.length > 0
                       ? !phoneCertificate && phoneCertificateText === '완료'
-                        ? '#6b6b6b'
-                        : '#ffffff'
-                      : '#6b6b6b',
+                        ? `${theme.color.gray['400']}`
+                        : `${theme.color.white}`
+                      : `${theme.color.gray['400']}`,
                 }}
               >
                 {phoneCertificateText}
@@ -175,15 +176,15 @@ const Page3 = ({
                   backgroundColor:
                     item.value.length > 0
                       ? !emailCertificate && emailCertificateText === '완료'
-                        ? '#b8b8b8'
-                        : '#288BE1'
-                      : '#b8b8b8',
+                        ? `${theme.color.gray['700']}`
+                        : `${theme.color.main}`
+                      : `${theme.color.gray['700']}`,
                   color:
                     item.value.length > 0
                       ? !emailCertificate && emailCertificateText === '완료'
-                        ? '#6b6b6b'
-                        : '#ffffff'
-                      : '#6b6b6b',
+                        ? `${theme.color.gray['700']}`
+                        : `${theme.color.white}`
+                      : `${theme.color.gray['700']}`,
                 }}
               >
                 {emailCertificateText}
