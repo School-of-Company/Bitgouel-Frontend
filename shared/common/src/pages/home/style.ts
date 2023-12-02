@@ -430,7 +430,6 @@ export const UniversityIntro = styled.div`
 
 export const WhiteSpace = styled.div`
   width: 5rem;
-  height: 100%;
 `
 
 export const UniversityName = styled.span`
