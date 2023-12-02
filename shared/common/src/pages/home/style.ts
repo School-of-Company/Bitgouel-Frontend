@@ -400,9 +400,8 @@ export const UnionUniversityContainer = styled.div`
 `
 
 export const UnionUniversityList = styled.div`
-  width: 66.625rem;
-  height: 32.5rem;
   display: flex;
+  height: 32.5rem;
   margin-top: 5rem;
   justify-content: space-between;
 `
@@ -427,6 +426,11 @@ export const UniversityIntro = styled.div`
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
+`
+
+export const WhiteSpace = styled.div`
+  width: 5rem;
+  height: 100%;
 `
 
 export const UniversityName = styled.span`

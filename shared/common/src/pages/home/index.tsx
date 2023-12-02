@@ -307,6 +307,7 @@ const HomePage = () => {
               </S.UniversityText>
             </S.UniversityIntro>
           </S.UniversityLeftArea>
+          <S.WhiteSpace></S.WhiteSpace>
           <S.UniversityRightArea>
             <S.UniversityIntro>
               <S.UniversityName>호남대학교</S.UniversityName>
