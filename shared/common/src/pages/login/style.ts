@@ -37,7 +37,7 @@ export const TitleContainer = styled.div`
 
 export const TitleItem = styled.span`
   color: ${({ theme }) => theme.color.black};
-  ${({ theme }) => theme.typo.title_md};
+  ${({ theme }) => theme.typo.title_md.semibold};
 `
 
 export const InputWrapper = styled.div`
@@ -70,13 +70,13 @@ export const PasswordContainer = styled.div`
 `
 
 export const MenuItem = styled.span<{ isError?: boolean }>`
-  ${({ theme }) => theme.typo.caption};
+  ${({ theme }) => theme.typo.caption.regular};
   color: ${({ theme, isError }) =>
     isError ? theme.color.error : theme.color.gray['400']};
 `
 
 export const PasswordSearch = styled.span`
-  ${({ theme }) => theme.typo.caption};
+  ${({ theme }) => theme.typo.caption.regular};
   color: ${({ theme }) => theme.color.main};
   cursor: pointer;
 `
@@ -94,7 +94,7 @@ export const LoginButton = styled.button<{ isAble: boolean }>`
     isAble ? theme.color.main : theme.color.gray['700']};
   color: ${({ theme, isAble }) =>
     isAble ? theme.color.white : theme.color.gray['400']};
-  ${({ theme }) => theme.typo.text_lg};
+  ${({ theme }) => theme.typo.text_lg.semibold};
   width: 24rem;
   height: 3.25rem;
   border-radius: 0.5rem;
@@ -118,12 +118,12 @@ export const JoinContainer = styled.div`
 `
 
 export const NoAccountItem = styled.span`
-  ${({ theme }) => theme.typo.text_md};
+  ${({ theme }) => theme.typo.text_md.regular};
   color: ${({ theme }) => theme.color.black};
 `
 
 export const UserJoinItem = styled.span`
-  ${({ theme }) => theme.typo.text_md};
+  ${({ theme }) => theme.typo.text_md.regular};
   color: ${({ theme }) => theme.color.main};
   margin-left: 0.25rem;
   cursor: pointer;

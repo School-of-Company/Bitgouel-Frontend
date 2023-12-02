@@ -43,7 +43,7 @@ export const MenuWrapper = styled.div`
 
 export const MenuItem = styled.span<{ isSameRoute: boolean; color: string }>`
   cursor: pointer;
-  ${({ theme }) => theme.typo.text_lg};
+  ${({ theme }) => theme.typo.text_md.regular}
   font-weight: 400;
   color: ${({ isSameRoute, color, theme }) =>
     isSameRoute ? color : theme.color.gray['700']};

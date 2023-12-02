@@ -20,7 +20,7 @@ export const BgContainer = styled.div`
 
 export const LectureTitle = styled.span`
   color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.title_lg};
+  ${({ theme }) => theme.typo.title_lg.semibold};
 `
 
 export const DocumentWrapper = styled.div`
@@ -40,7 +40,7 @@ export const TitleContainer = styled.div`
 export const SubTitle = styled.div`
   padding: 0.5rem 0;
   span {
-    ${({ theme }) => theme.typo.text_md};
+    ${({ theme }) => theme.typo.text_md.regular};
   }
 `
 
@@ -54,7 +54,7 @@ export const Date = styled.span`
 `
 
 export const Title = styled.span`
-  ${({ theme }) => theme.typo.title_sm};
+  ${({ theme }) => theme.typo.title_sm.semibold};
   color: ${({ theme }) => theme.color.black};
 `
 
@@ -64,7 +64,7 @@ export const SubMenuContainer = styled.div`
 `
 
 export const From = styled.div`
-  ${({ theme }) => theme.typo.text_sm};
+  ${({ theme }) => theme.typo.text_sm.regular};
   color: ${({ theme }) => theme.color.gray['400']};
   background-color: ${({ theme }) => theme.color.gray['900']};
   padding: 0.25rem 0.5rem;
@@ -74,7 +74,7 @@ export const From = styled.div`
 export const MenuNum = styled.div`
   display: flex;
   margin-left: 1rem;
-  ${({ theme }) => theme.typo.text_sm};
+  ${({ theme }) => theme.typo.text_sm.regular};
   color: ${({ theme }) => theme.color.gray['700']};
   align-items: center;
   div {
@@ -84,8 +84,8 @@ export const MenuNum = styled.div`
 
 export const MainText = styled.div`
   color: ${({ theme }) => theme.color.gray['400']};
-  ${({ theme }) => theme.typo.text_sm};
-  line-height: 1.5rem;
+  ${({ theme }) => theme.typo.text_sm.regular};
+  line-height: 1.575rem;
   margin-top: 2.25rem;
   padding-bottom: 6.25rem;
 `
@@ -103,7 +103,7 @@ export const LectureApplyButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  ${({ theme }) => theme.typo.text_lg}
+  ${({ theme }) => theme.typo.text_lg.semibold}
   border: 0.0625rem solid ${({ theme }) => theme.color.main};
   border-radius: 0.5rem;
   cursor: pointer;

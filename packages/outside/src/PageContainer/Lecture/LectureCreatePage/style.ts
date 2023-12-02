@@ -20,7 +20,7 @@ export const BgContainer = styled.div`
 
 export const CreateTitle = styled.span`
   color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.title_lg};
+  ${({ theme }) => theme.typo.title_lg.semibold};
 `
 
 export const DocumentInputContainer = styled.div`
@@ -40,7 +40,7 @@ export const DocumentInput = styled.div`
 `
 
 export const InputTitle = styled.input`
-  ${({ theme }) => theme.typo.title_md};
+  ${({ theme }) => theme.typo.title_md.semibold};
   color: ${({ theme }) => theme.color.black};
   outline: none;
   border: none;
@@ -51,7 +51,7 @@ export const InputTitle = styled.input`
 `
 
 export const InputMainText = styled.textarea`
-  ${({ theme }) => theme.typo.text_lg};
+  ${({ theme }) => theme.typo.text_lg.regular};
   color: ${({ theme }) => theme.color.black};
   margin-top: 0.5rem;
   height: 19.25rem;
@@ -77,7 +77,7 @@ export const LectureSetting = styled.div`
 `
 
 export const SettingTitle = styled.div`
-  ${({ theme }) => theme.typo.text_lg};
+  ${({ theme }) => theme.typo.text_lg.semibold};
   color: ${({ theme }) => theme.color.gray['400']};
 `
 
@@ -92,7 +92,7 @@ export const SettingSelection = styled.div<{ isOpen?: boolean }>`
   margin-right: 2.5rem;
 
   span {
-    ${({ theme }) => theme.typo.text_md};
+    ${({ theme }) => theme.typo.text_md.regular};
     white-space: nowrap;
   }
 
@@ -126,10 +126,10 @@ export const SettingInput = styled.input`
   border: none;
   outline: none;
   color: ${({ theme }) => theme.color.gray['700']};
-  ${({ theme }) => theme.typo.text_md}
+  ${({ theme }) => theme.typo.text_md.regular}
 
   &::placeholder {
-    ${({ theme }) => theme.typo.text_sm}
+    ${({ theme }) => theme.typo.text_md.regular}
     color: ${({ theme }) => theme.color.gray['700']};
   }
 
@@ -142,7 +142,7 @@ export const SettingInput = styled.input`
 
 export const ShowPeople = styled.span`
   margin-left: 0.3rem;
-  ${({ theme }) => theme.typo.text_md}
+  ${({ theme }) => theme.typo.text_md.regular}
 `
 
 export const SettingButton = styled.span`
@@ -166,7 +166,7 @@ export const CreateButton = styled.div<{ isAble: boolean }>`
     isAble ? theme.color.main : theme.color.gray['700']};
   color: ${({ theme, isAble }) =>
     isAble ? theme.color.white : theme.color.gray['400']};
-  ${({ theme }) => theme.typo.text_lg};
+  ${({ theme }) => theme.typo.text_lg.semibold};
   font-weight: 400;
   cursor: pointer;
   bottom: 1.75rem;

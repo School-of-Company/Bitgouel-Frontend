@@ -25,14 +25,14 @@ export const LetterContainer = styled.div`
 `
 
 export const CreateQuestion = styled.h2`
-  ${({ theme }) => theme.typo.text_lg};
+  ${({ theme }) => theme.typo.text_lg.semibold};
   color: ${({ theme }) => theme.color.black};
 `
 
 export const CreateTitle = styled.p`
   width: 22rem;
   height: 3.75rem;
-  ${({ theme }) => theme.typo.text_sm};
+  ${({ theme }) => theme.typo.text_sm.regular};
   color: ${({ theme }) => theme.color.gray['400']};
   text-align: center;
   display: flex;
@@ -51,7 +51,7 @@ export const CreateButtonWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    ${({ theme }) => theme.typo.text_lg}
+    ${({ theme }) => theme.typo.text_lg.semibold}
     border-radius: 0.5rem;
     cursor: pointer;
   }

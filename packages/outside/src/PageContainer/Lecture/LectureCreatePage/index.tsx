@@ -255,7 +255,6 @@ const LectureCreatePage = () => {
                     }
                     type='number'
                     placeholder='최대 수강 인원 입력'
-                    pattern={'^[0-9]{3}$'}
                   />
                 ) : (
                   <S.ShowPeople onClick={() => setIsInput(true)}>

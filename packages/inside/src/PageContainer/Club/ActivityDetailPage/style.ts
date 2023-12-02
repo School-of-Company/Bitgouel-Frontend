@@ -20,7 +20,7 @@ export const BgContainer = styled.div`
 
 export const ActivityTitle = styled.span`
   color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.title_lg};
+  ${({ theme }) => theme.typo.title_lg.semibold};
 `
 
 export const TitleButtonContainer = styled.div`
@@ -28,7 +28,7 @@ export const TitleButtonContainer = styled.div`
   align-items: flex-end;
 `
 
-export const LectureButton = styled.div`
+export const ActivityButton = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -43,7 +43,7 @@ export const LectureButton = styled.div`
   }
   span {
     color: ${({ theme }) => theme.color.white};
-    ${({ theme }) => theme.typo.text_md};
+    ${({ theme }) => theme.typo.text_md.regular};
     margin-left: 0.25rem;
   }
   &:hover {
@@ -65,11 +65,16 @@ export const TitleContainer = styled.div`
   margin-top: 2rem;
 `
 
+export const Title = styled.span`
+  ${({ theme }) => theme.typo.title_md.semibold};
+  color: ${({ theme }) => theme.color.black};
+`
+
 export const SubTitle = styled.div`
   padding: 0.5rem 0;
   display: flex;
   span {
-    ${({ theme }) => theme.typo.text_md};
+    ${({ theme }) => theme.typo.text_md.regular};
     color: ${({ theme }) => theme.color.gray['400']};
   }
 `
@@ -79,7 +84,7 @@ export const ApproveStatus = styled.div<{ approveColor: boolean }>`
     approveColor ? theme.color.blue['800'] : theme.color.red['800']};
   color: ${({ theme, approveColor }) =>
     approveColor ? theme.color.main : theme.color.error};
-  ${({ theme }) => theme.typo.text_md};
+  ${({ theme }) => theme.typo.text_md.regular};
   text-align: center;
   padding: 0.5rem 1rem;
   border-radius: 1.125rem;
@@ -100,14 +105,9 @@ export const SubTitleBox = styled.div`
   margin-right: 0.5rem;
 `
 
-export const Title = styled.span`
-  ${({ theme }) => theme.typo.title_sm};
-  color: ${({ theme }) => theme.color.black};
-`
-
 export const MainText = styled.div`
   color: ${({ theme }) => theme.color.gray['400']};
-  ${({ theme }) => theme.typo.text_sm};
+  ${({ theme }) => theme.typo.text_sm.regular};
   line-height: 1.5rem;
   margin-top: 2.25rem;
   padding-bottom: 6.25rem;
@@ -124,7 +124,7 @@ export const ButtonContainer = styled.div`
   position: fixed;
   div {
     color: ${({ theme }) => theme.color.white};
-    ${({ theme }) => theme.typo.text_lg};
+    ${({ theme }) => theme.typo.text_lg.semibold};
     padding: 0.85rem 2.6rem;
     border-radius: 0.5rem;
     cursor: pointer;

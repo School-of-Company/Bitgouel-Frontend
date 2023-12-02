@@ -8,7 +8,7 @@ export const SelectFilterBox = styled.div<{ location: string }>`
   color: ${({ theme }) => theme.color.white};
   border-radius: 0.5rem;
   padding: 1rem;
-  
+
   &::after {
     content: '';
     position: absolute;
@@ -25,7 +25,7 @@ export const SelectFilterBox = styled.div<{ location: string }>`
 `
 
 export const SelectFilterTitle = styled.h3`
-  ${({ theme }) => theme.typo.text_lg}
+  ${({ theme }) => theme.typo.text_lg.semibold};
   margin: 0;
 `
 
@@ -61,6 +61,6 @@ export const SelectFilterCheckBox = styled.input`
 `
 
 export const SelectFilterText = styled.span`
-  ${({ theme }) => theme.typo.text_sm}
+  ${({ theme }) => theme.typo.text_sm.regular}
   margin-left: 0.5rem;
 `

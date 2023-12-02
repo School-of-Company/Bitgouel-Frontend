@@ -8,6 +8,7 @@ export const SchoolIntroWrapper = styled.div`
   transform-style: preserve-3d;
   &:hover {
     transform: perspective(50rem) rotateY(180deg);
+    margin-right: 0;
   }
   & > * {
     grid-area: 1 / 1 / 1 / 1;
@@ -15,6 +16,7 @@ export const SchoolIntroWrapper = styled.div`
     height: 15rem;
     border-radius: 0.5rem;
     backface-visibility: hidden;
+    margin: 0 1rem;
   }
 `
 
@@ -35,11 +37,11 @@ export const TextContainerFront = styled.div`
 `
 
 export const SubText = styled.span`
-  ${({ theme }) => theme.typo.text_sm};
+  ${({ theme }) => theme.typo.text_sm.regular};
 `
 
 export const TitleText = styled.span`
-  ${({ theme }) => theme.typo.text_lg};
+  ${({ theme }) => theme.typo.text_lg.semibold};
 `
 
 export const ImgWrapper = styled.div`
@@ -69,5 +71,5 @@ export const TextContainerBack = styled.div`
 
 export const ValueTextBox = styled.div`
   margin: 0 2rem 2rem 2rem;
-  ${({ theme }) => theme.typo.text_sm}
+  ${({ theme }) => theme.typo.text_sm.regular};
 `

@@ -9,7 +9,7 @@ export const LectureItemWrapper = styled.div`
 export const SubTitle = styled.div`
   padding: 0.5rem 0;
   span {
-    ${({ theme }) => theme.typo.text_sm};
+    ${({ theme }) => theme.typo.text_sm.regular};
   }
 `
 
@@ -25,7 +25,7 @@ export const Date = styled.span`
 export const Title = styled.span`
   margin-top: 0.5rem;
   color: ${({ theme }) => theme.color.black};
-  ${({ theme }) => theme.typo.text_lg};
+  ${({ theme }) => theme.typo.text_lg.semibold};
 `
 
 export const MainTextContainer = styled.section`
@@ -35,7 +35,7 @@ export const MainTextContainer = styled.section`
 `
 
 export const MainText = styled.span`
-  ${({ theme }) => theme.typo.text_sm};
+  ${({ theme }) => theme.typo.text_sm.regular};
   color: ${({ theme }) => theme.color.gray['400']};
 `
 
@@ -46,7 +46,7 @@ export const SubMenuContainer = styled.div`
 `
 
 export const From = styled.div`
-  ${({ theme }) => theme.typo.caption};
+  ${({ theme }) => theme.typo.caption.regular};
   color: ${({ theme }) => theme.color.gray['400']};
   background-color: ${({ theme }) => theme.color.gray['900']};
   padding: 0.25rem 0.5rem;
@@ -55,7 +55,7 @@ export const From = styled.div`
 `
 
 export const StatusFrom = styled.div<{ status: string; display: string }>`
-  ${({ theme }) => theme.typo.caption};
+  ${({ theme }) => theme.typo.caption.regular};
   color: ${({ status, theme }) =>
     status === 'PENDING' ? theme.color.error : theme.color.main};
   background-color: ${({ status, theme }) =>
@@ -70,7 +70,7 @@ export const MenuNum = styled.div`
   display: flex;
   align-items: center;
   span {
-    ${({ theme }) => theme.typo.caption};
+    ${({ theme }) => theme.typo.caption.regular};
     color: ${({ theme }) => theme.color.gray['700']};
     margin-right: 0.5rem;
   }

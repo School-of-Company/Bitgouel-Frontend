@@ -13,6 +13,11 @@ const color = {
     '900': '#EBEBEB',
   },
   blue: {
+    '100': '#072036',
+    '200': '#0E3B63',
+    '300': '#14568F',
+    '400': '#1A71BC',
+    '500': '#288BE1',
     '800': '#AED3F4',
   },
   red: {
@@ -24,39 +29,124 @@ const color = {
 
 const typo = {
   title_lg: {
-    fontSize: '3rem',
-    lineHeight: '120%',
-    fontWeight: '600',
+    semibold: {
+      fontSize: '3rem',
+      lineHeight: '120%',
+      fontWeight: '600',
+    },
+    medium: {
+      fontSize: '3rem',
+      lineHeight: '120%',
+      fontWeight: '500',
+    },
+    regular: {
+      fontSize: '3rem',
+      lineHeight: '120%',
+      fontWeight: '400',
+    },
   },
   title_md: {
-    fontSize: '2.25rem',
-    lineHeight: '120%',
-    fontWeight: '600',
+    semibold: {
+      fontSize: '2.25rem',
+      lineHeight: '120%',
+      fontWeight: '600',
+    },
+    medium: {
+      fontSize: '2.25rem',
+      lineHeight: '120%',
+      fontWeight: '500',
+    },
+    regular: {
+      fontSize: '2.25rem',
+      lineHeight: '120%',
+      fontWeight: '400',
+    },
   },
   title_sm: {
-    fontSize: '1.5rem',
-    lineHeight: '130%',
-    fontWeight: '600',
+    semibold: {
+      fontSize: '1.5rem',
+      lineHeight: '130%',
+      fontWeight: '600',
+    },
+    medium: {
+      fontSize: '1.5rem',
+      lineHeight: '130%',
+      fontWeight: '500',
+    },
+    regular: {
+      fontSize: '1.5rem',
+      lineHeight: '130%',
+      fontWeight: '400',
+    },
   },
   text_lg: {
-    fontSize: '1.125rem',
-    lineHeight: '140%',
-    fontWeight: '400',
+    semibold: {
+      fontSize: '1.125rem',
+      lineHeight: '140%',
+      fontWeight: '600',
+    },
+    medium: {
+      fontSize: '1.125rem',
+      lineHeight: '140%',
+      fontWeight: '500',
+    },
+    regular: {
+      fontSize: '1.125rem',
+      lineHeight: '140%',
+      fontWeight: '400',
+    },
   },
   text_md: {
-    fontSize: '1rem',
-    lineHeight: '140%',
-    fontWeight: '400',
+    semibold: {
+      fontSize: '1rem',
+      lineHeight: '140%',
+      fontWeight: '600',
+    },
+    medium: {
+      fontSize: '1rem',
+      lineHeight: '140%',
+      fontWeight: '500',
+    },
+    regular: {
+      fontSize: '1rem',
+      lineHeight: '140%',
+      fontWeight: '400',
+    },
   },
   text_sm: {
-    fontSize: '0.875rem',
-    lineHeight: '140%',
-    fontWeight: '400',
+    semibold: {
+      fontSize: '0.875rem',
+      lineHeight: '140%',
+      fontWeight: '600',
+    },
+    medium: {
+      fontSize: '0.875rem',
+      lineHeight: '140%',
+      fontWeight: '500',
+    },
+    regular: {
+      fontSize: '0.875rem',
+      lineHeight: '140%',
+      fontWeight: '400',
+    },
   },
   caption: {
-    fontSize: '0.75rem',
-    lineHeight: '140%',
-    fontWeight: '400',
+
+    semibold: {
+      fontSize: '0.75rem',
+      lineHeight: '140%',
+      fontWeight: '600',
+    },
+    medium: {
+      fontSize: '0.75rem',
+      lineHeight: '140%',
+      fontWeight: '500',
+    },
+    regular: {
+      fontSize: '0.75rem',
+      lineHeight: '140%',
+      fontWeight: '400',
+    },
   },
 } as const
 

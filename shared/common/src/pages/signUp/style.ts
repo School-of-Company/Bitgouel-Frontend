@@ -17,12 +17,12 @@ export const TitleItemWrapper = styled.div`
 `
 
 export const TitleItem = styled.span`
-  ${({ theme }) => theme.typo.title_sm};
+  ${({ theme }) => theme.typo.title_sm.semibold};
   letter-spacing: -0.125rem;
 `
 
 export const SubTitleItem = styled.span`
-  ${({ theme }) => theme.typo.text_sm};
+  ${({ theme }) => theme.typo.text_sm.regular};
   color: ${({ theme }) => theme.color.gray['400']};
   margin-top: 0.3rem;
   margin-bottom: 1rem;

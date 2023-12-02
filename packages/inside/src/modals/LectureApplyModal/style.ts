@@ -25,14 +25,14 @@ export const LectureLetterContainer = styled.div`
 `
 
 export const LectureApplyQuestion = styled.h2`
-  ${({ theme }) => theme.typo.text_lg};
+  ${({ theme }) => theme.typo.text_lg.semibold};
   color: ${({ theme }) => theme.color.black};
 `
 
 export const LectureApplyTitle = styled.p`
   width: 22rem;
   height: 3.75rem;
-  ${({ theme }) => theme.typo.text_sm};
+  ${({ theme }) => theme.typo.text_sm.regular};
   color: ${({ theme }) => theme.color.gray['400']};
   text-align: center;
 `
@@ -48,7 +48,7 @@ export const LectureApplyButtonWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    ${({ theme }) => theme.typo.text_lg}
+    ${({ theme }) => theme.typo.text_lg.semibold};
     border: 0.0625rem solid ${({ theme }) => theme.color.main};
     border-radius: 0.5rem;
     cursor: pointer;

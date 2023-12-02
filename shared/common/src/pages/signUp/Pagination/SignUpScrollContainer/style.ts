@@ -43,7 +43,7 @@ export const ScrollItem = styled.span`
   cursor: pointer;
   height: 200rem;
   margin-left: 1.5rem;
-  ${({ theme }) => theme.typo.text_sm};
+  ${({ theme }) => theme.typo.text_sm.regular};
   display: flex;
   align-items: center;
 

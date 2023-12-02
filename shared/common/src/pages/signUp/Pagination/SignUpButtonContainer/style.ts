@@ -15,7 +15,7 @@ export const PreButton = styled.button`
   border: 0.0625rem solid ${({ theme }) => theme.color.main};
   border-radius: 0.5rem;
   cursor: pointer;
-  ${({ theme }) => theme.typo.text_lg};
+  ${({ theme }) => theme.typo.text_lg.semibold};
   color: ${({ theme }) => theme.color.main};
 `
 
@@ -29,5 +29,5 @@ export const NextButton = styled.button<{ isNext: boolean }>`
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
-  ${({ theme }) => theme.typo.text_lg}
+  ${({ theme }) => theme.typo.text_lg.semibold}
 `

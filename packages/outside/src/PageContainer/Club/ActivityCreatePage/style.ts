@@ -20,7 +20,7 @@ export const BgContainer = styled.div`
 
 export const CreateTitle = styled.span`
   color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.title_lg};
+  ${({ theme }) => theme.typo.title_lg.semibold};
 `
 
 export const DocumentInputContainer = styled.div`
@@ -40,7 +40,7 @@ export const DocumentInput = styled.div`
 `
 
 export const InputTitle = styled.input`
-  ${({ theme }) => theme.typo.title_md};
+  ${({ theme }) => theme.typo.title_md.semibold};
   color: ${({ theme }) => theme.color.black};
   outline: none;
   border: none;
@@ -51,7 +51,7 @@ export const InputTitle = styled.input`
 `
 
 export const InputMainText = styled.textarea`
-  ${({ theme }) => theme.typo.text_lg};
+  ${({ theme }) => theme.typo.text_lg.regular};
   color: ${({ theme }) => theme.color.black};
   margin-top: 0.5rem;
   height: 19.25rem;
@@ -77,7 +77,7 @@ export const ActivitySetting = styled.div`
 `
 
 export const SettingTitle = styled.div`
-  ${({ theme }) => theme.typo.text_lg};
+  ${({ theme }) => theme.typo.text_lg.semibold};
   color: ${({ theme }) => theme.color.gray['400']};
 `
 
@@ -92,15 +92,8 @@ export const SettingSelection = styled.div`
   position: relative;
   margin-right: 2.5rem;
   span {
-    ${({ theme }) => theme.typo.text_md};
+    ${({ theme }) => theme.typo.text_md.regular};
   }
-`
-
-export const SettingForm = styled.form`
-  display: flex;
-  align-items: center;
-  margin-right: 2.5rem;
-  color: ${({ theme }) => theme.color.gray['700']};
 `
 
 export const SettingDateBox = styled.div`
@@ -111,29 +104,6 @@ export const SettingDateBox = styled.div`
 export const SettingScoreBox = styled.div`
   display: flex;
   align-items: center;
-`
-
-export const SettingInput = styled.input`
-  border: none;
-  outline: none;
-  color: ${({ theme }) => theme.color.gray['700']};
-  ${({ theme }) => theme.typo.text_md}
-
-  &::placeholder {
-    ${({ theme }) => theme.typo.text_sm}
-    color: ${({ theme }) => theme.color.gray['700']};
-  }
-
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-`
-
-export const ShowPeople = styled.span`
-  margin-left: 0.3rem;
-  ${({ theme }) => theme.typo.text_md}
 `
 
 export const SettingButton = styled.span`
@@ -155,7 +125,7 @@ export const ButtonContainer = styled.div`
 export const CreateButton = styled.div`
   background-color: ${({ theme }) => theme.color.gray['700']};
   color: ${({ theme }) => theme.color.gray['400']};
-  ${({ theme }) => theme.typo.text_lg};
+  ${({ theme }) => theme.typo.text_lg.semibold};
   cursor: pointer;
   bottom: 1.75rem;
   position: fixed;

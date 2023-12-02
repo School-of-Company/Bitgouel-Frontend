@@ -20,7 +20,7 @@ export const BgContainer = styled.div`
 
 export const NoticeTitle = styled.span`
   color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.title_lg};
+  ${({ theme }) => theme.typo.title_lg.semibold};
 `
 
 export const ButtonContainer = styled.div`
@@ -28,7 +28,7 @@ export const ButtonContainer = styled.div`
   align-items: flex-end;
 `
 
-export const LectureButton = styled.div`
+export const NoticeButton = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -43,7 +43,7 @@ export const LectureButton = styled.div`
   }
   span {
     color: ${({ theme }) => theme.color.white};
-    ${({ theme }) => theme.typo.text_md};
+    ${({ theme }) => theme.typo.text_md.regular};
     margin-left: 0.25rem;
   }
   &:hover {

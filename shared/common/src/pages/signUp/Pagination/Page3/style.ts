@@ -38,13 +38,13 @@ export const CertificationButton = styled.span`
   align-items: center;
   justify-content: center;
   margin-left: 0.3rem;
-  ${({ theme }) => theme.typo.text_lg};
+  ${({ theme }) => theme.typo.text_lg.semibold};
   border-radius: 0.5rem;
   cursor: pointer;
 `
 
 export const ErrorText = styled.span`
   color: ${({ theme }) => theme.color.error};
-  ${({ theme }) => theme.typo.caption}
+  ${({ theme }) => theme.typo.caption.regular}
   float: left;
 `

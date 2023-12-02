@@ -19,7 +19,7 @@ export const TitleContainer = styled.div`
 `
 
 export const TitleItem = styled.span`
-  ${({ theme }) => theme.typo.title_md};
+  ${({ theme }) => theme.typo.title_md.semibold};
 `
 
 export const SignUpWrapper = styled.div`
@@ -40,12 +40,12 @@ export const SignUpContainer = styled.div`
 `
 
 export const MainTitle = styled.span`
-  ${({ theme }) => theme.typo.title_sm};
+  ${({ theme }) => theme.typo.title_sm.semibold};
   color: ${({ theme }) => theme.color.black};
 `
 
 export const ViceTitle = styled.div`
-  ${({ theme }) => theme.typo.text_sm};
+  ${({ theme }) => theme.typo.text_sm.regular};
   color: ${({ theme }) => theme.color.gray['400']};
 `
 
@@ -59,7 +59,7 @@ export const BackButtonContainer = styled.div`
 export const BackButton = styled.button`
   background-color: ${({ theme }) => theme.color.main};
   color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.text_lg};
+  ${({ theme }) => theme.typo.text_lg.semibold};
   width: 24rem;
   height: 3.25rem;
   border-radius: 0.5rem;
