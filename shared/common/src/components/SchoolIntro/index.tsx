@@ -2,32 +2,50 @@
 
 import * as S from './style'
 import Image from 'next/image'
-import JEONNAM_TECHNICAL_HIGH_SCHOOL from '../../assets/png/schoolSymbols/JEONNAM_TECHNICAL_HIGH_SCHOOL.png'
 
-const SchoolIntro = () => {
+interface Type {
+  item: {
+    number: string
+    name: string
+    type: string
+    img: string
+    departments: string[]
+  }
+}
+
+const SchoolIntro = ({ item }: Type) => {
   return (
     <S.SchoolIntroWrapper>
       <S.MainWrapperFront>
         <S.TextContainerFront>
-          <S.SubText>II. 공업계열</S.SubText>
-          <S.TitleText>전남공업고등학교</S.TitleText>
+          <S.SubText>
+            {item.number}. {item.type + '계열'}
+          </S.SubText>
+          <S.TitleText>{item.name}</S.TitleText>
         </S.TextContainerFront>
         <S.ImgWrapper>
-          <Image src={JEONNAM_TECHNICAL_HIGH_SCHOOL} alt='전남공업고등학교' />
+          {item.name === '광주소프트웨어마이스터고등학교' ? (
+            <Image src={item.img} alt='school' width={100} height={50} />
+          ) : (
+            <Image src={item.img} alt='school' width={80} height={80} />
+          )}
         </S.ImgWrapper>
       </S.MainWrapperFront>
       <S.MainWrapperBack>
         <S.TextContainerBack>
-          <S.SubText>II. 공업계열</S.SubText>
-          <S.TitleText>전남공업고등학교</S.TitleText>
+          <S.SubText>
+            {item.number}. {item.type + '계열'}
+          </S.SubText>
+          <S.TitleText>{item.name}</S.TitleText>
         </S.TextContainerBack>
         <S.ValueTextBox>
           <span>
-            건축인테리어과 <br />
-            자동차과 <br />
-            스마트드론전자과 <br />
-            전기과 조리제빵과 <br />
-            토탈뷰티과
+            {item.departments.map((department) => (
+              <>
+                {department}
+                <br />
+              </>
+            ))}
           </span>
         </S.ValueTextBox>
       </S.MainWrapperBack>
