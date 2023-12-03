@@ -38,16 +38,18 @@ const SchoolIntro = ({ item }: Type) => {
           </S.SubText>
           <S.TitleText>{item.name}</S.TitleText>
         </S.TextContainerBack>
-        <S.ValueTextBox>
-          <span>
-            {item.departments.map((department) => (
-              <>
-                {department}
-                <br />
-              </>
+        <S.DepartMentsTextContainer>
+          <S.DepartMentsTextBox>
+            {item.departments.slice(0, 6).map((department) => (
+              <p>{department}</p>
             ))}
-          </span>
-        </S.ValueTextBox>
+          </S.DepartMentsTextBox>
+          <S.DepartMentsTextBox>
+            {item.departments.slice(6).map((department) => (
+              <p>{department}</p>
+            ))}
+          </S.DepartMentsTextBox>
+        </S.DepartMentsTextContainer>
       </S.MainWrapperBack>
     </S.SchoolIntroWrapper>
   )

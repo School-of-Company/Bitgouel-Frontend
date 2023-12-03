@@ -80,8 +80,21 @@ export const TextContainerBack = styled.div`
   margin: 2rem 2rem 0 2rem;
 `
 
-export const ValueTextBox = styled.div`
+export const DepartMentsTextContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
   margin: 0 2rem 2rem 2rem;
-  ${({ theme }) => theme.typo.text_sm.regular};
   text-align: left;
+  gap: 1.2rem;
+`
+
+export const DepartMentsTextBox = styled.div`
+  ${({ theme }) => theme.typo.text_sm.regular};
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  p {
+    margin: 0;
+  }
 `
