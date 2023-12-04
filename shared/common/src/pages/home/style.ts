@@ -4,17 +4,16 @@ import { P } from 'ts-pattern'
 
 const scrollingLeftFirst = keyframes`
   0% {left: 0%;}
-  100% {left: -116.5625rem;}
+  100% {left: -2110px;}
 `
 
 const scrollingLeftSecond = keyframes`
-  0% {left: 1865px;}
-
+  0% {left: 2110px;}
   100% {left: 0%;}
 `
 
 const scrollingRightFirst = keyframes`
-  0% {right: 2185px;}
+  0% {right: 2465px;}
 
   100% {right: 0%;}
 `
@@ -22,7 +21,7 @@ const scrollingRightFirst = keyframes`
 const scrollingRightSecond = keyframes`
   0% {right: 0%;}
 
-  100% {right: -2185px;}
+  100% {right: -2465px;}
 `
 
 export const HomeWrapper = styled.div`
@@ -210,6 +209,7 @@ const SchoolIntroListExample = styled.div`
   align-items: center;
   justify-content: center;
   height: inherit;
+  gap: 2.5rem;
 `
 
 export const SchoolIntroListLeftFirst = styled(SchoolIntroListExample)`
@@ -283,81 +283,14 @@ export const ClubIntroText = styled.div`
 
 export const ClubListWrapper = styled.div`
   margin-top: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 export const ClubListTitle = styled.span`
   color: ${({ theme }) => theme.color.black};
   ${({ theme }) => theme.typo.title_md.semibold};
-`
-
-export const ClubListBanner = styled.span<{ url: any }>`
-  margin-top: 2.5rem;
-  width: 100%;
-  height: 37rem;
-  background-image: url(${({ url }) => url.src});
-  background-position: center;
-  display: flex;
-  justify-content: center;
-`
-
-export const ClubListContents = styled.div`
-  margin-top: 2.5rem;
-  width: 75rem;
-`
-
-export const ClubValueTitle = styled.span`
-  color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.title_md.semibold};
-`
-
-export const ClubMainTextArea = styled.div`
-  margin: 2.5rem;
-  display: flex;
-  height: 26.25rem;
-`
-
-export const ClubLeftTextArea = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 15.125rem;
-`
-
-export const ClubLeftText = styled.span`
-  color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.text_lg.semibold};
-  height: 2.25rem;
-  display: flex;
-  align-items: center;
-  margin-bottom: 2.5rem;
-  &:last-child {
-    margin-bottom: 0;
-  }
-`
-
-export const ClubRightTextArea = styled.div`
-  width: 100%;
-`
-
-export const ClubRightTextLine = styled.div`
-  margin-bottom: 2.5rem;
-  display: flex;
-  &:last-child {
-    margin-bottom: 0;
-  }
-`
-
-export const ClubRightText = styled.div`
-  color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.text_sm.medium};
-  height: 2.125rem;
-  display: flex;
-  align-items: center;
-  border: 0.0625rem solid ${({ theme }) => theme.color.white};
-  border-radius: 2rem;
-  padding: 0 1rem;
-  width: fit-content;
-  margin-right: 1rem;
 `
 
 export const UnionUniversityContainer = styled.div`

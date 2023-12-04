@@ -1,31 +1,29 @@
 'use client'
 
+import Image from 'next/image'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { Arrow } from '../../assets'
-import Bg1 from '../../assets/png/slide1.png'
-import Bg2 from '../../assets/png/slide2.png'
-import Bg3 from '../../assets/png/slide3.png'
-import Bg4 from '../../assets/png/slide4.png'
-import Banner1 from '../../assets/png/clubListBanner1.png'
 import Agency1 from '../../assets/png/agencySymbols/agency1.png'
 import Agency2 from '../../assets/png/agencySymbols/agency2.png'
 import Agency3 from '../../assets/png/agencySymbols/agency3.png'
 import Agency4 from '../../assets/png/agencySymbols/agency4.png'
+import Banner1 from '../../assets/png/clubListBanner1.png'
 import Gwangju from '../../assets/png/Gwangju.png'
 import Office from '../../assets/png/OfficeGwangju.png'
-import { Sequence, SchoolIntro } from '../../components/index'
-import { useRouter } from 'next/navigation'
-import Image from 'next/image'
-import * as S from './style'
+import Bg1 from '../../assets/png/slide1.png'
+import Bg2 from '../../assets/png/slide2.png'
+import Bg3 from '../../assets/png/slide3.png'
+import Bg4 from '../../assets/png/slide4.png'
+import { ClubListSlider, SchoolIntro, Sequence } from '../../components'
 import { SchoolIntroObjects } from '../../constants'
-import Link from 'next/link'
+import * as S from './style'
 
 const HomePage = () => {
-  const router = useRouter()
   const [bgNum, setBgNum] = useState(2)
   const imageArr = [Bg1, Bg2, Bg3, Bg4]
-  const bannerArr = [Banner1]
   const blueArr = ['500', '400', '300', '200', '100']
+  const bannerArr = [Banner1]
 
   useEffect(() => {
     const background = setInterval(() => {
@@ -238,50 +236,8 @@ const HomePage = () => {
         </S.ClubIntroList>
         <S.ClubListWrapper>
           <S.ClubListTitle>핵심 분야 및 취업동아리 목록</S.ClubListTitle>
+          <ClubListSlider />
         </S.ClubListWrapper>
-        <S.ClubListBanner url={bannerArr[0]}>
-          <S.ClubListContents>
-            <S.ClubValueTitle>미래형 운송기기</S.ClubValueTitle>
-            <S.ClubMainTextArea>
-              <S.ClubLeftTextArea>
-                <S.ClubLeftText>광주공업고등학교</S.ClubLeftText>
-                <S.ClubLeftText>광주전자공업고등학교</S.ClubLeftText>
-                <S.ClubLeftText>금파공업고등학교</S.ClubLeftText>
-                <S.ClubLeftText>동일미래과학고등학교</S.ClubLeftText>
-                <S.ClubLeftText>숭의과학기술고등학교</S.ClubLeftText>
-                <S.ClubLeftText>전남공업고등학교</S.ClubLeftText>
-              </S.ClubLeftTextArea>
-              <S.ClubRightTextArea>
-                <S.ClubRightTextLine>
-                  <S.ClubRightText>SMART JOB PROJECT</S.ClubRightText>
-                  <S.ClubRightText>
-                    나의 미래는 내가 주인공이다!
-                  </S.ClubRightText>
-                  <S.ClubRightText>설비의 달인</S.ClubRightText>
-                  <S.ClubRightText>특수용접 화이팅</S.ClubRightText>
-                </S.ClubRightTextLine>
-                <S.ClubRightTextLine>
-                  <S.ClubRightText>감성기계</S.ClubRightText>
-                  <S.ClubRightText>열정 그 자체</S.ClubRightText>
-                </S.ClubRightTextLine>
-                <S.ClubRightTextLine>
-                  <S.ClubRightText>레프리</S.ClubRightText>
-                </S.ClubRightTextLine>
-                <S.ClubRightTextLine>
-                  <S.ClubRightText>놀GO잡GO</S.ClubRightText>
-                </S.ClubRightTextLine>
-                <S.ClubRightTextLine>
-                  <S.ClubRightText>서전트스나이퍼</S.ClubRightText>
-                  <S.ClubRightText>카-페인팅</S.ClubRightText>
-                </S.ClubRightTextLine>
-                <S.ClubRightTextLine>
-                  <S.ClubRightText>진짜기계</S.ClubRightText>
-                  <S.ClubRightText>핫앤쿨</S.ClubRightText>
-                </S.ClubRightTextLine>
-              </S.ClubRightTextArea>
-            </S.ClubMainTextArea>
-          </S.ClubListContents>
-        </S.ClubListBanner>
       </S.ClubListContainer>
       <S.UnionUniversityContainer>
         <S.SemiTitleBox>
