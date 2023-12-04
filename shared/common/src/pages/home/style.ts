@@ -1,9 +1,10 @@
 import { keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
+import { P } from 'ts-pattern'
 
 const scrollingLeftFirst = keyframes`
   0% {left: 0%;}
-  100% {left: -1865px;}
+  100% {left: -116.5625rem;}
 `
 
 const scrollingLeftSecond = keyframes`
@@ -80,7 +81,7 @@ export const SubTitleWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 31.25rem;
+  width: 50%;
 `
 
 export const SubTitleSub = styled.span`
@@ -94,44 +95,28 @@ export const SubTitleMain = styled.span`
   ${({ theme }) => theme.typo.title_lg.semibold}
 `
 
-export const FromLogoContainer = styled.div`
-  display: flex;
-  margin-top: 2.5rem;
-  div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 3.125rem;
+export const FromTextContainer = styled.span`
+  color: ${({ theme }) => theme.color.gray['400']};
+  ${({ theme }) => theme.typo.title_sm.regular}
+  a {
+    ${({ theme }) => theme.typo.title_sm.semibold}
   }
-`
-
-export const GwangjuBox = styled.div`
-  background-color: #e8340c;
-  margin-right: 1.5rem;
-  padding: 0.75rem 1rem;
-  img {
-    width: 3rem;
-    height: auto;
+  a:first-child {
+    color: #cd2329;
   }
-`
-
-export const OfficeBox = styled.div`
-  background-color: #2270c1;
-  padding: 0.75rem 1.25rem;
-  img {
-    width: 2.5rem;
-    height: auto;
+  a:last-child {
+    color: #2270c1;
   }
 `
 
 export const BoxText = styled.span`
   color: ${({ theme }) => theme.color.white};
   ${({ theme }) => theme.typo.title_sm.semibold}
-  margin-left: 12px;
+  margin-left: 0.75rem;
 `
 
 export const UnionListContainer = styled.div`
-  margin-top: 4rem;
+  margin-top: 5rem;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -430,8 +415,55 @@ export const CompanyIntroContainer = styled.div`
   margin-top: 10rem;
 `
 
+export const CompanyListBanner = styled.div<{ url: any }>`
+  margin-top: 2.5rem;
+  width: 100%;
+  height: 37rem;
+  background-image: url(${({ url }) => url.src});
+  background-position: center;
+  display: flex;
+  justify-content: center;
+`
+
+export const CompanyListContents = styled.div`
+  margin-top: 2.5rem;
+  width: 75rem;
+`
+
+export const CompanyValueTitle = styled.div`
+  color: ${({ theme }) => theme.color.white};
+  ${({ theme }) => theme.typo.title_md.semibold};
+`
+
+export const CompanyMainTextArea = styled.div`
+  margin: 2.5rem;
+  display: flex;
+`
+
+export const CompanyTextContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  &:last-child {
+    margin-bottom: 0;
+  }
+`
+
+export const CompanyText = styled.div`
+  color: ${({ theme }) => theme.color.white};
+  ${({ theme }) => theme.typo.text_sm.medium};
+  height: 2.125rem;
+  display: flex;
+  align-items: center;
+  border: 0.0625rem solid ${({ theme }) => theme.color.white};
+  border-radius: 2rem;
+  padding: 0 1rem;
+  width: fit-content;
+  margin-right: 1rem;
+  margin-bottom: 1.5rem;
+`
+
 export const AgencyIntroContainer = styled.div`
-  margin-top: 10rem;
+  margin: 10rem 0;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -488,4 +520,74 @@ export const AgencyName = styled.span`
   margin-top: 0.5rem;
   text-align: center;
   margin-bottom: 1.5rem;
+`
+
+export const Footer = styled.footer`
+  background-color: ${({ theme }) => theme.color.blue['200']};
+  width: 100%;
+  height: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+export const FooterTextContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: space-between;
+  width: 75rem;
+  height: 15.5rem;
+`
+
+export const CopyRightsContainer = styled.div`
+  span {
+    ${({ theme }) => theme.typo.text_lg.medium}
+  }
+`
+
+export const CopyRightText = styled.span`
+  color: ${({ theme }) => theme.color.white};
+`
+
+export const CopyRightLinkList = styled.div`
+  span {
+    color: ${({ theme }) => theme.color.blue['800']};
+    margin-right: 1.5rem;
+  }
+  span:last-child {
+    color: ${({ theme }) => theme.color.blue['800']};
+    margin-right: 0;
+  }
+`
+
+export const FromLogoContainer = styled.div`
+  img:first-child {
+    margin-right: 3rem;
+  }
+`
+
+export const AddressBox = styled.div`
+  display: flex;
+  span {
+    color: ${({ theme }) => theme.color.white};
+    ${({ theme }) => theme.typo.text_md.medium}
+    margin-bottom: 0.5rem;
+  }
+`
+
+export const AddressRightTitle = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const AddressLine = styled.div`
+  width: 0.0625rem;
+  background-color: ${({ theme }) => theme.color.white};
+  margin: 0 0.5rem;
+`
+
+export const AddressRightText = styled.div`
+  display: flex;
+  flex-direction: column;
 `

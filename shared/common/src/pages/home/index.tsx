@@ -6,18 +6,19 @@ import Bg1 from '../../assets/png/slide1.png'
 import Bg2 from '../../assets/png/slide2.png'
 import Bg3 from '../../assets/png/slide3.png'
 import Bg4 from '../../assets/png/slide4.png'
-import OfficeLogo from '../../assets/png/officeEducation.png'
-import GwangjuLogo from '../../assets/png/gwangjuLogo.png'
 import Banner1 from '../../assets/png/clubListBanner1.png'
 import Agency1 from '../../assets/png/agencySymbols/agency1.png'
 import Agency2 from '../../assets/png/agencySymbols/agency2.png'
 import Agency3 from '../../assets/png/agencySymbols/agency3.png'
 import Agency4 from '../../assets/png/agencySymbols/agency4.png'
+import Gwangju from '../../assets/png/Gwangju.png'
+import Office from '../../assets/png/OfficeGwangju.png'
 import { Sequence, SchoolIntro } from '../../components/index'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import * as S from './style'
 import { SchoolIntroObjects } from '../../constants'
+import Link from 'next/link'
 
 const HomePage = () => {
   const router = useRouter()
@@ -58,18 +59,21 @@ const HomePage = () => {
             <S.SubTitleSub>지역산업 발전을 위해 당신이 필요해요</S.SubTitleSub>
             <S.SubTitleMain>빛고을 직업교육 혁신지구</S.SubTitleMain>
           </S.SemiTitleBox>
-          <S.FromLogoContainer>
-            <S.GwangjuBox
-              onClick={() => router.push('https://www.gwangju.go.kr/main.do')}
-            >
-              <Image src={GwangjuLogo} alt='광주광역시심볼' />
-              <S.BoxText>광주광역시</S.BoxText>
-            </S.GwangjuBox>
-            <S.OfficeBox>
-              <Image src={OfficeLogo} alt='광주광역시교육청심볼' />
-              <S.BoxText>광주광역시교육청</S.BoxText>
-            </S.OfficeBox>
-          </S.FromLogoContainer>
+          <S.FromTextContainer>
+            본 사업은
+            <Link href={`https://www.gwangju.go.kr/`} passHref legacyBehavior>
+              <a target='_blank' rel='noopener noreferrer'>
+                광주광역시
+              </a>
+            </Link>
+            와
+            <Link href={`http://www.gen.go.kr/`} passHref legacyBehavior>
+              <a target='_blank' rel='noopener noreferrer'>
+                광주광역시교육청
+              </a>
+            </Link>
+            이 함께합니다.
+          </S.FromTextContainer>
         </S.SubTitleWrapper>
       </S.SubTitleContainer>
       <S.UnionListContainer>
@@ -83,19 +87,19 @@ const HomePage = () => {
             </div>
           </S.UnionItem>
           <S.UnionItem>
-            <S.UnionTitle>🏢 지역기업</S.UnionTitle>
-            <div>
-              <li>기업 연계 교육</li>
-              <li>심화교육</li>
-              <li>후학습지원</li>
-            </div>
-          </S.UnionItem>
-          <S.UnionItem>
             <S.UnionTitle>🎓 지역대학</S.UnionTitle>
             <div>
               <li>현장 맞춤형 교육</li>
               <li>현장실습</li>
               <li>고졸 채용</li>
+            </div>
+          </S.UnionItem>
+          <S.UnionItem>
+            <S.UnionTitle>🏢 지역기업</S.UnionTitle>
+            <div>
+              <li>기업 연계 교육</li>
+              <li>심화교육</li>
+              <li>후학습지원</li>
             </div>
           </S.UnionItem>
           <S.UnionItem>
@@ -307,6 +311,7 @@ const HomePage = () => {
               </S.UniversityText>
             </S.UniversityIntro>
           </S.UniversityLeftArea>
+          <S.WhiteSpace />
           <S.UniversityRightArea>
             <S.UniversityIntro>
               <S.UniversityName>호남대학교</S.UniversityName>
@@ -341,6 +346,27 @@ const HomePage = () => {
           <S.SubTitleSub>직업계고 계열별 학교현황 및 진로</S.SubTitleSub>
           <S.SubTitleMain>참여 기업 소개</S.SubTitleMain>
         </S.SemiTitleBox>
+        <S.CompanyListBanner url={bannerArr[0]}>
+          <S.CompanyListContents>
+            <S.CompanyValueTitle>미래형 운송기기</S.CompanyValueTitle>
+            <S.CompanyMainTextArea>
+              <S.CompanyTextContainer>
+                <S.CompanyText>보람엔지니어링</S.CompanyText>
+                <S.CompanyText>(주)인탑스테크닉</S.CompanyText>
+                <S.CompanyText>(주)삼도환경</S.CompanyText>
+                <S.CompanyText>에이테크솔루션(주)</S.CompanyText>
+                <S.CompanyText>창원종합사격장</S.CompanyText>
+                <S.CompanyText>제3함대(해군)</S.CompanyText>
+                <S.CompanyText>동양통상</S.CompanyText>
+                <S.CompanyText>다이나믹 디자인</S.CompanyText>
+                <S.CompanyText>다이나믹 디자인</S.CompanyText>
+                <S.CompanyText>다이나믹 디자인</S.CompanyText>
+                <S.CompanyText>다이나믹 디자인</S.CompanyText>
+                <S.CompanyText>다이나믹 디자인</S.CompanyText>
+              </S.CompanyTextContainer>
+            </S.CompanyMainTextArea>
+          </S.CompanyListContents>
+        </S.CompanyListBanner>
       </S.CompanyIntroContainer>
       <S.AgencyIntroContainer>
         <S.SemiTitleBox>
@@ -413,6 +439,45 @@ const HomePage = () => {
           </S.AgencyIntroItem>
         </S.AgencyIntroList>
       </S.AgencyIntroContainer>
+      <S.Footer>
+        <S.FooterTextContainer>
+          <S.CopyRightsContainer>
+            <S.CopyRightText>
+              ©2023 [Copyright Holder] All Rights Reserved.
+            </S.CopyRightText>
+            <S.CopyRightLinkList>
+              <span>개인정보처리방침</span>
+              <span>저작권신고 및 보호규정</span>
+              <span>자주 묻는 질문</span>
+              <span>문의하기</span>
+              <span>관리자</span>
+            </S.CopyRightLinkList>
+          </S.CopyRightsContainer>
+          <S.FromLogoContainer>
+            <Image src={Gwangju} alt='광주광역시' />
+            <Image src={Office} alt='광주광역시교육청' />
+          </S.FromLogoContainer>
+          <S.AddressBox>
+            <S.AddressRightTitle>
+              <span>우편</span>
+              <span>전화번호</span>
+              <span>팩스</span>
+            </S.AddressRightTitle>
+            <S.AddressLine></S.AddressLine>
+            <S.AddressRightText>
+              <span>[주소]</span>
+              <span>
+                [소속1]: [전화번호]([응답 시간대]), [소속2]: [전화번호]([응답
+                시간대])
+              </span>
+              <span>
+                [소속1]: [전화번호]([응답 시간대]), [소속2]: [전화번호]([응답
+                시간대])
+              </span>
+            </S.AddressRightText>
+          </S.AddressBox>
+        </S.FooterTextContainer>
+      </S.Footer>
     </S.HomeWrapper>
   )
 }
