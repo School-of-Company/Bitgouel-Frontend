@@ -14,13 +14,11 @@ import * as S from './style'
 import { useEffect, useRef } from 'react'
 
 const ClubListSlider = () => {
-  const sliderRef = useRef(null)
+  const sliderRef = useRef<any>(null)
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      if (sliderRef.current) {
-        sliderRef.current.slickNext()
-      }
+      sliderRef.current.slickNext()
     }, 10000)
 
     return () => clearInterval(intervalId)
