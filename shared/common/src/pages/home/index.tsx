@@ -80,35 +80,35 @@ const HomePage = () => {
         <S.UnionListWrapper>
           <S.UnionItem>
             <S.UnionTitle>🏫 직업계고</S.UnionTitle>
-            <div>
+            <ul>
               <li>교육과정 운영</li>
               <li>진로 지도</li>
               <li>학생 관리</li>
-            </div>
+            </ul>
           </S.UnionItem>
           <S.UnionItem>
             <S.UnionTitle>🎓 지역대학</S.UnionTitle>
-            <div>
+            <ul>
               <li>현장 맞춤형 교육</li>
               <li>현장실습</li>
               <li>고졸 채용</li>
-            </div>
+            </ul>
           </S.UnionItem>
           <S.UnionItem>
             <S.UnionTitle>🏢 지역기업</S.UnionTitle>
-            <div>
+            <ul>
               <li>기업 연계 교육</li>
               <li>심화교육</li>
               <li>후학습지원</li>
-            </div>
+            </ul>
           </S.UnionItem>
           <S.UnionItem>
             <S.UnionTitle>💼 유관기관</S.UnionTitle>
-            <div>
+            <ul>
               <li>산업 인력 분석</li>
               <li>특화프로그램 운영</li>
               <li>고졸채용네트워크 구축</li>
-            </div>
+            </ul>
           </S.UnionItem>
         </S.UnionListWrapper>
       </S.UnionListContainer>
