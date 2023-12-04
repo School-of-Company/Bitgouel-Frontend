@@ -11,6 +11,8 @@ import Agency1 from '../../assets/png/agencySymbols/agency1.png'
 import Agency2 from '../../assets/png/agencySymbols/agency2.png'
 import Agency3 from '../../assets/png/agencySymbols/agency3.png'
 import Agency4 from '../../assets/png/agencySymbols/agency4.png'
+import Gwangju from '../../assets/png/Gwangju.png'
+import Office from '../../assets/png/OfficeGwangju.png'
 import { Sequence, SchoolIntro } from '../../components/index'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
@@ -416,6 +418,45 @@ const HomePage = () => {
           </S.AgencyIntroItem>
         </S.AgencyIntroList>
       </S.AgencyIntroContainer>
+      <S.Footer>
+        <S.FooterTextContainer>
+          <S.CopyRightsContainer>
+            <S.CopyRightText>
+              ©2023 [Copyright Holder] All Rights Reserved.
+            </S.CopyRightText>
+            <S.CopyRightLinkList>
+              <span>개인정보처리방침</span>
+              <span>저작권신고 및 보호규정</span>
+              <span>자주 묻는 질문</span>
+              <span>문의하기</span>
+              <span>관리자</span>
+            </S.CopyRightLinkList>
+          </S.CopyRightsContainer>
+          <S.FromLogoContainer>
+            <Image src={Gwangju} alt='광주광역시' />
+            <Image src={Office} alt='광주광역시교육청' />
+          </S.FromLogoContainer>
+          <S.AddressBox>
+            <S.AddressRightTitle>
+              <span>우편</span>
+              <span>전화번호</span>
+              <span>팩스</span>
+            </S.AddressRightTitle>
+            <S.AddressLine></S.AddressLine>
+            <S.AddressRightText>
+              <span>[주소]</span>
+              <span>
+                [소속1]: [전화번호]([응답 시간대]), [소속2]: [전화번호]([응답
+                시간대])
+              </span>
+              <span>
+                [소속1]: [전화번호]([응답 시간대]), [소속2]: [전화번호]([응답
+                시간대])
+              </span>
+            </S.AddressRightText>
+          </S.AddressBox>
+        </S.FooterTextContainer>
+      </S.Footer>
     </S.HomeWrapper>
   )
 }

@@ -1,5 +1,6 @@
 import { keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
+import { P } from 'ts-pattern'
 
 const scrollingLeftFirst = keyframes`
   0% {left: 0%;}
@@ -101,10 +102,10 @@ export const FromTextContainer = styled.span`
     ${({ theme }) => theme.typo.title_sm.semibold}
   }
   a:first-child {
-    color: #CD2329;
+    color: #cd2329;
   }
   a:last-child {
-    color: #2270C1;
+    color: #2270c1;
   }
 `
 
@@ -415,7 +416,7 @@ export const CompanyIntroContainer = styled.div`
 `
 
 export const AgencyIntroContainer = styled.div`
-  margin-top: 10rem;
+  margin: 10rem 0;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -472,4 +473,74 @@ export const AgencyName = styled.span`
   margin-top: 0.5rem;
   text-align: center;
   margin-bottom: 1.5rem;
+`
+
+export const Footer = styled.footer`
+  background-color: ${({ theme }) => theme.color.blue['200']};
+  width: 100%;
+  height: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+export const FooterTextContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: space-between;
+  width: 75rem;
+  height: 15.5rem;
+`
+
+export const CopyRightsContainer = styled.div`
+  span {
+    ${({ theme }) => theme.typo.text_lg.medium}
+  }
+`
+
+export const CopyRightText = styled.span`
+  color: ${({ theme }) => theme.color.white};
+`
+
+export const CopyRightLinkList = styled.div`
+  span {
+    color: ${({ theme }) => theme.color.blue['800']};
+    margin-right: 1.5rem;
+  }
+  span:last-child {
+    color: ${({ theme }) => theme.color.blue['800']};
+    margin-right: 0;
+  }
+`
+
+export const FromLogoContainer = styled.div`
+  img:first-child {
+    margin-right: 3rem;
+  }
+`
+
+export const AddressBox = styled.div`
+  display: flex;
+  span {
+    color: ${({ theme }) => theme.color.white};
+    ${({ theme }) => theme.typo.text_md.medium}
+    margin-bottom: 0.5rem;
+  }
+`
+
+export const AddressRightTitle = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const AddressLine = styled.div`
+  width: 0.0625rem;
+  background-color: ${({ theme }) => theme.color.white};
+  margin: 0 0.5rem;
+`
+
+export const AddressRightText = styled.div`
+  display: flex;
+  flex-direction: column;
 `
