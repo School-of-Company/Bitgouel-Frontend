@@ -1,22 +1,27 @@
 import styled from '@emotion/styled'
 
-export const SchoolIntroWrapper = styled.div`
+export const SchoolIntroWrapper = styled.button`
   display: inline-grid;
   color: white;
   transition: transform 0.3s;
   transform: perspective(50rem) rotateY(0deg);
   transform-style: preserve-3d;
-  &:hover {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: none;
+
+  &:focus {
     transform: perspective(50rem) rotateY(180deg);
     margin-right: 0;
   }
+
   & > * {
     grid-area: 1 / 1 / 1 / 1;
     width: 18.75rem;
     height: 15rem;
     border-radius: 0.5rem;
     backface-visibility: hidden;
-    margin: 0 1rem;
   }
 `
 
@@ -29,8 +34,10 @@ export const MainWrapperFront = styled.div`
 export const TextContainerFront = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   width: 100%;
   margin: 2rem 2rem 0 2rem;
+
   span {
     color: ${({ theme }) => theme.color.black};
   }
@@ -42,6 +49,7 @@ export const SubText = styled.span`
 
 export const TitleText = styled.span`
   ${({ theme }) => theme.typo.text_lg.semibold};
+  text-align: left;
 `
 
 export const ImgWrapper = styled.div`
@@ -56,7 +64,10 @@ export const MainWrapperBack = styled.div`
   background-color: ${({ theme }) => theme.color.blue[300]};
   transform: rotateY(180deg);
   display: flex;
-  flex-wrap: wrap;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1rem;
+
   span {
     color: ${({ theme }) => theme.color.white};
   }
@@ -65,11 +76,26 @@ export const MainWrapperBack = styled.div`
 export const TextContainerBack = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   width: 100%;
   margin: 2rem 2rem 0 2rem;
 `
 
-export const ValueTextBox = styled.div`
+export const DepartMentsTextContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
   margin: 0 2rem 2rem 2rem;
+  text-align: left;
+  gap: 1.2rem;
+`
+
+export const DepartMentsTextBox = styled.div`
   ${({ theme }) => theme.typo.text_sm.regular};
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  p {
+    margin: 0;
+  }
 `

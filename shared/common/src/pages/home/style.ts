@@ -1,4 +1,28 @@
+import { keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
+
+const scrollingLeftFirst = keyframes`
+  0% {left: 0%;}
+  100% {left: -1865px;}
+`
+
+const scrollingLeftSecond = keyframes`
+  0% {left: 1865px;}
+
+  100% {left: 0%;}
+`
+
+const scrollingRightFirst = keyframes`
+  0% {right: 2185px;}
+
+  100% {right: 0%;}
+`
+
+const scrollingRightSecond = keyframes`
+  0% {right: 0%;}
+
+  100% {right: -2185px;}
+`
 
 export const HomeWrapper = styled.div`
   background-color: #f6f6f6;
@@ -176,11 +200,51 @@ export const SemiTitleBox = styled.div`
   margin-bottom: 2.5rem;
 `
 
-export const SchoolItemContainer = styled.div`
+export const SchoolIntroWrapper = styled.div`
+  width: 100vw;
+  height: 35rem;
+  overflow: hidden;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  margin-top: 6rem;
+`
+
+export const SchoolIntroListContainer = styled.div`
+  position: relative;
+  width: 100vw;
+  height: 15rem;
+  overflow: hidden;
+`
+
+const SchoolIntroListExample = styled.div`
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  margin-top: 2.5rem;
-  width: 100%;
+  height: inherit;
+`
+
+export const SchoolIntroListLeftFirst = styled(SchoolIntroListExample)`
+  left: 0;
+  height: inherit;
+  animation: ${scrollingLeftFirst} 20s linear 0s infinite normal none running;
+`
+
+export const SchoolIntroListLeftSecond = styled(SchoolIntroListExample)`
+  left: 0;
+  height: inherit;
+  animation: ${scrollingLeftSecond} 20s linear 0s infinite normal none running;
+`
+
+export const SchoolIntroListRightFirst = styled(SchoolIntroListExample)`
+  animation: ${scrollingRightFirst} 20s linear 0s infinite normal none running;
+`
+
+export const SchoolIntroListRightSecond = styled(SchoolIntroListExample)`
+  animation: ${scrollingRightSecond} 20s linear 0s infinite normal none running;
 `
 
 export const ClubListContainer = styled.div`
@@ -319,9 +383,8 @@ export const UnionUniversityContainer = styled.div`
 `
 
 export const UnionUniversityList = styled.div`
-  width: 66.625rem;
-  height: 32.5rem;
   display: flex;
+  height: 32.5rem;
   margin-top: 5rem;
   justify-content: space-between;
 `
@@ -346,6 +409,10 @@ export const UniversityIntro = styled.div`
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
+`
+
+export const WhiteSpace = styled.div`
+  width: 5rem;
 `
 
 export const UniversityName = styled.span`
