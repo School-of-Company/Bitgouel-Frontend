@@ -1,11 +1,11 @@
 'use client'
 
 import * as S from './style'
-import Banner2 from '../../../assets/png/clubListBanner2.png'
+import listBanner2 from '../../../assets/png/listBanner2.png'
 
-const ClubListContents1 = () => {
+const ClubListContents2 = () => {
   return (
-    <S.ClubListBanner url={Banner2}>
+    <S.ClubListBanner url={listBanner2}>
       <S.ClubListContents>
         <S.ClubValueTitle>에너지산업</S.ClubValueTitle>
         <S.ClubMainTextArea>
@@ -49,4 +49,4 @@ const ClubListContents1 = () => {
   )
 }
 
-export default ClubListContents1
+export default ClubListContents2

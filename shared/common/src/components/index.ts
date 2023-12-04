@@ -5,8 +5,18 @@ export { default as LectureItem } from './LectureItem'
 export { default as ActivityItem } from './ActivityItem'
 export { default as SchoolIntro } from './SchoolIntro'
 export { default as ClubListSlider } from './ClubListSlider'
-export { default as ClubListContents1 } from './ClubListContents/ClubListContents1'
-export { default as ClubListContents2 } from './ClubListContents/ClubListContents2'
-export { default as ClubListContents3 } from './ClubListContents/ClubListContents3'
-export { default as ClubListContents4 } from './ClubListContents/ClubListContents4'
-export { default as ClubListContents5 } from './ClubListContents/ClubListContents5'
+export { default as CompanyListSlider } from './CompanyListSlider'
+export {
+  ClubListContents1,
+  ClubListContents2,
+  ClubListContents3,
+  ClubListContents4,
+  ClubListContents5,
+} from './ClubListContents'
+export {
+  CompanyListContents1,
+  CompanyListContents2,
+  CompanyListContents3,
+  CompanyListContents4,
+  CompanyListContents5,
+} from './CompanyListContents'

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-export const ClubListSliderContainer = styled.div`
+export const CompanyListSliderContainer = styled.div`
   width: 100vw;
 
   .slick-dots {
