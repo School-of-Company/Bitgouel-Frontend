@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 
 const scrollingLeftFirst = keyframes`
   0% {left: 0%;}
-  100% {left: -1865px;}
+  100% {left: -116.5625rem;}
 `
 
 const scrollingLeftSecond = keyframes`
@@ -80,7 +80,7 @@ export const SubTitleWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 31.25rem;
+  width: 50%;
 `
 
 export const SubTitleSub = styled.span`
@@ -94,44 +94,28 @@ export const SubTitleMain = styled.span`
   ${({ theme }) => theme.typo.title_lg.semibold}
 `
 
-export const FromLogoContainer = styled.div`
-  display: flex;
-  margin-top: 2.5rem;
-  div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 3.125rem;
+export const FromTextContainer = styled.span`
+  color: ${({ theme }) => theme.color.gray['400']};
+  ${({ theme }) => theme.typo.title_sm.regular}
+  span {
+    ${({ theme }) => theme.typo.title_sm.semibold}
   }
-`
-
-export const GwangjuBox = styled.div`
-  background-color: #e8340c;
-  margin-right: 1.5rem;
-  padding: 0.75rem 1rem;
-  img {
-    width: 3rem;
-    height: auto;
+  span:first-child {
+    color: #CD2329;
   }
-`
-
-export const OfficeBox = styled.div`
-  background-color: #2270c1;
-  padding: 0.75rem 1.25rem;
-  img {
-    width: 2.5rem;
-    height: auto;
+  span:last-child {
+    color: #2270C1;
   }
 `
 
 export const BoxText = styled.span`
   color: ${({ theme }) => theme.color.white};
   ${({ theme }) => theme.typo.title_sm.semibold}
-  margin-left: 12px;
+  margin-left: 0.75rem;
 `
 
 export const UnionListContainer = styled.div`
-  margin-top: 4rem;
+  margin-top: 5rem;
   width: 100%;
   display: flex;
   justify-content: center;

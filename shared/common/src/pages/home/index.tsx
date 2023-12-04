@@ -58,18 +58,10 @@ const HomePage = () => {
             <S.SubTitleSub>지역산업 발전을 위해 당신이 필요해요</S.SubTitleSub>
             <S.SubTitleMain>빛고을 직업교육 혁신지구</S.SubTitleMain>
           </S.SemiTitleBox>
-          <S.FromLogoContainer>
-            <S.GwangjuBox
-              onClick={() => router.push('https://www.gwangju.go.kr/main.do')}
-            >
-              <Image src={GwangjuLogo} alt='광주광역시심볼' />
-              <S.BoxText>광주광역시</S.BoxText>
-            </S.GwangjuBox>
-            <S.OfficeBox>
-              <Image src={OfficeLogo} alt='광주광역시교육청심볼' />
-              <S.BoxText>광주광역시교육청</S.BoxText>
-            </S.OfficeBox>
-          </S.FromLogoContainer>
+          <S.FromTextContainer>
+            본 사업은 <span>광주광역시</span>와 <span>광주광역시교육청</span>이
+            함께합니다.
+          </S.FromTextContainer>
         </S.SubTitleWrapper>
       </S.SubTitleContainer>
       <S.UnionListContainer>
