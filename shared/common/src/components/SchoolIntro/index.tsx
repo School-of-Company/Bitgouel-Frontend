@@ -2,18 +2,9 @@
 
 import * as S from './style'
 import Image from 'next/image'
+import { SchoolIntroProps } from '@bitgouel/types'
 
-interface Type {
-  item: {
-    number: string
-    name: string
-    type: string
-    img: string
-    departments: string[]
-  }
-}
-
-const SchoolIntro = ({ item }: Type) => {
+const SchoolIntro = ({ item }: SchoolIntroProps) => {
   return (
     <S.SchoolIntroWrapper>
       <S.MainWrapperFront>
