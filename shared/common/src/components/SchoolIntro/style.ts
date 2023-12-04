@@ -49,6 +49,7 @@ export const SubText = styled.span`
 
 export const TitleText = styled.span`
   ${({ theme }) => theme.typo.text_lg.semibold};
+  text-align: left;
 `
 
 export const ImgWrapper = styled.div`

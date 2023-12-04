@@ -2,43 +2,26 @@ import { keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 
 const scrollingLeftFirst = keyframes`
-  0% {
-    left: 0%;
-  }
-
-  100% {
-    left: -122%;
-  }
+  0% {left: 0%;}
+  100% {left: -1865px;}
 `
 
 const scrollingLeftSecond = keyframes`
-  0% {
-    left: 122%;
-  }
+  0% {left: 1865px;}
 
-  100% {
-    left: 0%;
-  }
+  100% {left: 0%;}
 `
 
 const scrollingRightFirst = keyframes`
-  0% {
-    right: 142.3%;
-  }
+  0% {right: 2185px;}
 
-  100% {
-    right: 0%;
-  }
+  100% {right: 0%;}
 `
 
 const scrollingRightSecond = keyframes`
-  0% {
-    right: 0%;
-  }
+  0% {right: 0%;}
 
-  100% {
-    right: -142.3%;
-  }
+  100% {right: -2185px;}
 `
 
 export const HomeWrapper = styled.div`
