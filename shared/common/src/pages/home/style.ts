@@ -141,10 +141,6 @@ export const UnionItem = styled.div`
     ${({ theme }) => theme.typo.text_lg.medium}
     color: ${({ theme }) => theme.color.gray['400']};
   }
-  div {
-    margin-top: 2rem;
-    margin-left: 1rem;
-  }
 `
 
 export const UnionTitle = styled.span`
