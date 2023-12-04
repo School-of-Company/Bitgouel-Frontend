@@ -75,19 +75,19 @@ const HomePage = () => {
             </div>
           </S.UnionItem>
           <S.UnionItem>
-            <S.UnionTitle>🏢 지역기업</S.UnionTitle>
-            <div>
-              <li>기업 연계 교육</li>
-              <li>심화교육</li>
-              <li>후학습지원</li>
-            </div>
-          </S.UnionItem>
-          <S.UnionItem>
             <S.UnionTitle>🎓 지역대학</S.UnionTitle>
             <div>
               <li>현장 맞춤형 교육</li>
               <li>현장실습</li>
               <li>고졸 채용</li>
+            </div>
+          </S.UnionItem>
+          <S.UnionItem>
+            <S.UnionTitle>🏢 지역기업</S.UnionTitle>
+            <div>
+              <li>기업 연계 교육</li>
+              <li>심화교육</li>
+              <li>후학습지원</li>
             </div>
           </S.UnionItem>
           <S.UnionItem>
