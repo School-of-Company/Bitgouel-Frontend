@@ -97,13 +97,13 @@ export const SubTitleMain = styled.span`
 export const FromTextContainer = styled.span`
   color: ${({ theme }) => theme.color.gray['400']};
   ${({ theme }) => theme.typo.title_sm.regular}
-  span {
+  a {
     ${({ theme }) => theme.typo.title_sm.semibold}
   }
-  span:first-child {
+  a:first-child {
     color: #CD2329;
   }
-  span:last-child {
+  a:last-child {
     color: #2270C1;
   }
 `

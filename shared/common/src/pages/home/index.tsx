@@ -6,8 +6,6 @@ import Bg1 from '../../assets/png/slide1.png'
 import Bg2 from '../../assets/png/slide2.png'
 import Bg3 from '../../assets/png/slide3.png'
 import Bg4 from '../../assets/png/slide4.png'
-import OfficeLogo from '../../assets/png/officeEducation.png'
-import GwangjuLogo from '../../assets/png/gwangjuLogo.png'
 import Banner1 from '../../assets/png/clubListBanner1.png'
 import Agency1 from '../../assets/png/agencySymbols/agency1.png'
 import Agency2 from '../../assets/png/agencySymbols/agency2.png'
@@ -18,6 +16,7 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import * as S from './style'
 import { SchoolIntroObjects } from '../../constants'
+import Link from 'next/link'
 
 const HomePage = () => {
   const router = useRouter()
@@ -59,8 +58,19 @@ const HomePage = () => {
             <S.SubTitleMain>빛고을 직업교육 혁신지구</S.SubTitleMain>
           </S.SemiTitleBox>
           <S.FromTextContainer>
-            본 사업은 <span>광주광역시</span>와 <span>광주광역시교육청</span>이
-            함께합니다.
+            본 사업은
+            <Link href={`https://www.gwangju.go.kr/`} passHref legacyBehavior>
+              <a target='_blank' rel='noopener noreferrer'>
+                광주광역시
+              </a>
+            </Link>
+            와
+            <Link href={`http://www.gen.go.kr/`} passHref legacyBehavior>
+              <a target='_blank' rel='noopener noreferrer'>
+                광주광역시교육청
+              </a>
+            </Link>
+            이 함께합니다.
           </S.FromTextContainer>
         </S.SubTitleWrapper>
       </S.SubTitleContainer>
