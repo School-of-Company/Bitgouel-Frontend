@@ -348,7 +348,7 @@ const HomePage = () => {
         </S.SemiTitleBox>
         <S.CompanyListBanner url={bannerArr[0]}>
           <S.CompanyListContents>
-            <S.CompanyValueTitle>문화산업</S.CompanyValueTitle>
+            <S.CompanyValueTitle>미래형 운송기기</S.CompanyValueTitle>
             <S.CompanyMainTextArea>
               <S.CompanyTextContainer>
                 <S.CompanyText>보람엔지니어링</S.CompanyText>
