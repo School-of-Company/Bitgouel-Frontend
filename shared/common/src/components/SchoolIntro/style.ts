@@ -1,15 +1,19 @@
 import styled from '@emotion/styled'
 
-export const SchoolIntroWrapper = styled.button<{ rotate: number }>`
+export const SchoolIntroWrapper = styled.button`
   display: inline-grid;
   color: white;
   transition: transform 0.3s;
-  transform: perspective(50rem) rotateY(${({ rotate }) => `${rotate}deg`});
+  transform: perspective(50rem) rotateY(0deg);
   transform-style: preserve-3d;
   border: none;
   outline: none;
   cursor: pointer;
   background: none;
+
+  &:focus, &:active {
+    transform: perspective(50rem) rotateY(180deg);
+  }
 
   & > * {
     grid-area: 1 / 1 / 1 / 1;
