@@ -31,13 +31,13 @@ const SchoolIntro = ({ item }: SchoolIntroProps) => {
         </S.TextContainerBack>
         <S.DepartMentsTextContainer>
           <S.DepartMentsTextBox>
-            {item.departments.slice(0, 6).map((department) => (
-              <p>{department}</p>
+            {item.departments.slice(0, 6).map((department, idx) => (
+              <p key={idx}>{department}</p>
             ))}
           </S.DepartMentsTextBox>
           <S.DepartMentsTextBox>
-            {item.departments.slice(6).map((department) => (
-              <p>{department}</p>
+            {item.departments.slice(6).map((department, idx) => (
+              <p key={idx}>{department}</p>
             ))}
           </S.DepartMentsTextBox>
         </S.DepartMentsTextContainer>
