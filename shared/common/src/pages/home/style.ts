@@ -460,10 +460,14 @@ export const CopyRightLinkList = styled.div`
   span {
     color: ${({ theme }) => theme.color.blue['800']};
     margin-right: 1.5rem;
+    cursor: pointer;
   }
   span:last-child {
     color: ${({ theme }) => theme.color.blue['800']};
     margin-right: 0;
+  }
+  span:hover {
+    color: ${({ theme }) => theme.color.main};
   }
 `
 

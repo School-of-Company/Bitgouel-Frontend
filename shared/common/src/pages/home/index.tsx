@@ -61,13 +61,13 @@ const HomePage = () => {
             <S.SubTitleMain>빛고을 직업교육 혁신지구</S.SubTitleMain>
           </S.SemiTitleBox>
           <S.FromTextContainer>
-            <span>본 사업은 </span>
+            본 사업은
             <Link href={`https://www.gwangju.go.kr/`} passHref legacyBehavior>
               <a target='_blank' rel='noopener noreferrer'>
                 광주광역시
               </a>
             </Link>
-            <span>와 </span>
+            와
             <Link href={`http://www.gen.go.kr/`} passHref legacyBehavior>
               <a target='_blank' rel='noopener noreferrer'>
                 광주광역시교육청

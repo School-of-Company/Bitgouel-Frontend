@@ -9,9 +9,17 @@ import {
   CompanyListContents3,
   CompanyListContents4,
   CompanyListContents5,
-} from '..'
-import * as S from './style'
+} from '../..'
+import * as S from '../style'
 import { useEffect, useRef } from 'react'
+
+const setting = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+}
 
 const ClubListSlider = () => {
   const sliderRef = useRef<any>(null)
@@ -24,16 +32,8 @@ const ClubListSlider = () => {
     return () => clearInterval(intervalId)
   }, [])
 
-  const setting = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  }
-
   return (
-    <S.CompanyListSliderContainer>
+    <S.SliderContainer>
       <Slider ref={sliderRef} {...setting}>
         <CompanyListContents1 />
         <CompanyListContents2 />
@@ -41,7 +41,7 @@ const ClubListSlider = () => {
         <CompanyListContents4 />
         <CompanyListContents5 />
       </Slider>
-    </S.CompanyListSliderContainer>
+    </S.SliderContainer>
   )
 }
 
