@@ -81,7 +81,7 @@ const typo = {
   },
   text_lg: {
     semibold: {
-      fontSize: '18px',
+      fontSize: '1.125rem',
       lineHeight: '140%',
       fontWeight: '600',
     },
