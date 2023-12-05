@@ -4,7 +4,7 @@ export interface ActivityInformationListTypes {
   activityId: string
   title: string
   userId: string
-  username: string
+  userName: string
   approveStatus: ApproveStatusEnum
 }
 
