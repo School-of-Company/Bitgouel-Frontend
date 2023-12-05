@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'Pretendard';
+  font-family: 'Pretendard', sans-serif;
   font-weight: 600;
   font-display: swap;
   src: local('Pretendard SemiBold'),
@@ -8,7 +8,7 @@
 }
 
 @font-face {
-  font-family: 'Pretendard';
+  font-family: 'Pretendard', sans-serif;
   font-weight: 400;
   font-display: swap;
   src: local('Pretendard Regular'),
