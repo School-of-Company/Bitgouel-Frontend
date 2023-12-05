@@ -13,6 +13,7 @@ const Sequence = () => {
     '자주 묻는 질문',
   ]
 
+
   return (
     <S.SequenceWrapper>
       {sequenceList.map((sequence, idx) => (

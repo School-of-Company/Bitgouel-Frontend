@@ -42,7 +42,7 @@ const Header = () => {
     const onScroll = () => {
       const { scrollY } = window
       if (pathname === '/') {
-        if (scrollY >= 800) {
+        if (scrollY >= 700) {
           setBgColor(`${theme.color.white}`)
           setSymbolNum(Symbol2)
           setBtnColor('rgb(209, 209, 209, 1)')
