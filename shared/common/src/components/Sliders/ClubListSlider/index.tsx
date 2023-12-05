@@ -27,7 +27,7 @@ const ClubListSlider = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       sliderRef.current.slickNext()
-    }, 10000)
+    }, 10000000)
 
     return () => clearInterval(intervalId)
   }, [])

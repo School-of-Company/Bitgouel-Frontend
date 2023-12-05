@@ -3,9 +3,10 @@ import styled from '@emotion/styled'
 export const ClubListBanner = styled.span<{ url: any }>`
   margin-top: 2.5rem;
   width: 100vw;
-  height: 37rem;
+  height: 42.5rem;
   background-image: url(${({ url }) => url.src});
   background-position: center;
+  background-size: cover;
   display: flex;
   justify-content: center;
 `

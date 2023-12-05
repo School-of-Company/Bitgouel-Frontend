@@ -12,6 +12,7 @@ const ClubListContents2 = () => {
           <S.ClubLeftTextArea>
             <S.ClubLeftText>광주공업고등학교</S.ClubLeftText>
             <S.ClubLeftText>광주전자공업고등학교</S.ClubLeftText>
+            <S.ClubLeftText>광주전자공업고등학교</S.ClubLeftText>
             <S.ClubLeftText>금파공업고등학교</S.ClubLeftText>
             <S.ClubLeftText>동일미래과학고등학교</S.ClubLeftText>
             <S.ClubLeftText>숭의과학기술고등학교</S.ClubLeftText>
@@ -19,28 +20,35 @@ const ClubListContents2 = () => {
           </S.ClubLeftTextArea>
           <S.ClubRightTextArea>
             <S.ClubRightTextLine>
-              <S.ClubRightText>SMART JOB PROJECT</S.ClubRightText>
-              <S.ClubRightText>나의 미래는 내가 주인공이다!</S.ClubRightText>
-              <S.ClubRightText>설비의 달인</S.ClubRightText>
-              <S.ClubRightText>특수용접 화이팅</S.ClubRightText>
+              <S.ClubRightText>전기가 미래다</S.ClubRightText>
+              <S.ClubRightText>전자 어벤져</S.ClubRightText>
+              <S.ClubRightText>전자 히어로스</S.ClubRightText>
             </S.ClubRightTextLine>
             <S.ClubRightTextLine>
-              <S.ClubRightText>감성기계</S.ClubRightText>
-              <S.ClubRightText>열정 그 자체</S.ClubRightText>
+              <S.ClubRightText>HMI 동아리</S.ClubRightText>
+              <S.ClubRightText>마취제</S.ClubRightText>
+              <S.ClubRightText>빛go job go</S.ClubRightText>
+              <S.ClubRightText>취업진로 동아리</S.ClubRightText>
             </S.ClubRightTextLine>
             <S.ClubRightTextLine>
-              <S.ClubRightText>레프리</S.ClubRightText>
+              <S.ClubRightText>ACT</S.ClubRightText>
+              <S.ClubRightText>ECT</S.ClubRightText>
+              <S.ClubRightText>Tesla</S.ClubRightText>
             </S.ClubRightTextLine>
             <S.ClubRightTextLine>
-              <S.ClubRightText>놀GO잡GO</S.ClubRightText>
+              <S.ClubRightText>블라썸(blossom)</S.ClubRightText>
+              <S.ClubRightText>유선통신</S.ClubRightText>
+              <S.ClubRightText>전기꿈나무</S.ClubRightText>
             </S.ClubRightTextLine>
             <S.ClubRightTextLine>
-              <S.ClubRightText>서전트스나이퍼</S.ClubRightText>
-              <S.ClubRightText>카-페인팅</S.ClubRightText>
+              <S.ClubRightText>믿고잡고</S.ClubRightText>
             </S.ClubRightTextLine>
             <S.ClubRightTextLine>
-              <S.ClubRightText>진짜기계</S.ClubRightText>
-              <S.ClubRightText>핫앤쿨</S.ClubRightText>
+              <S.ClubRightText>드림온</S.ClubRightText>
+              <S.ClubRightText>볼트와암페어</S.ClubRightText>
+            </S.ClubRightTextLine>
+            <S.ClubRightTextLine>
+              <S.ClubRightText>에너지지키미</S.ClubRightText>
             </S.ClubRightTextLine>
           </S.ClubRightTextArea>
         </S.ClubMainTextArea>
