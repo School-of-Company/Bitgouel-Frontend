@@ -10,10 +10,13 @@ import Agency3 from '../../assets/png/agencySymbols/agency3.png'
 import Agency4 from '../../assets/png/agencySymbols/agency4.png'
 import Gwangju from '../../assets/png/Gwangju.png'
 import Office from '../../assets/png/OfficeGwangju.png'
+import Bg1 from '../../assets/png/slide1.png'
+import Bg2 from '../../assets/png/slide2.png'
+import Bg3 from '../../assets/png/slide3.png'
+import Bg4 from '../../assets/png/slide4.png'
 import {
   ClubListSlider,
   CompanyListSlider,
-  HomeBannerSlider,
   SchoolIntro,
   Sequence,
 } from '../../components'
@@ -22,6 +25,7 @@ import * as S from './style'
 
 const HomePage = () => {
   const [bgNum, setBgNum] = useState(2)
+  const imageArr = [Bg1, Bg2, Bg3, Bg4]
   const blueArr = ['500', '400', '300', '200', '100']
 
   useEffect(() => {
@@ -34,7 +38,22 @@ const HomePage = () => {
 
   return (
     <S.HomeWrapper>
-      <HomeBannerSlider />
+      <S.SlideBg url={imageArr[bgNum]}>
+        <S.BgContainer>
+          <S.HomeTitle>
+            빛고을 직업교육 혁신지구
+            <br />
+            사업 소개
+          </S.HomeTitle>
+          <Sequence />
+        </S.BgContainer>
+        <S.ViewContainer>
+          <S.View>
+            <Arrow />
+            둘러보기
+          </S.View>
+        </S.ViewContainer>
+      </S.SlideBg>
       <S.SubTitleContainer>
         <S.SubTitleWrapper>
           <S.SemiTitleBox>
@@ -42,13 +61,13 @@ const HomePage = () => {
             <S.SubTitleMain>빛고을 직업교육 혁신지구</S.SubTitleMain>
           </S.SemiTitleBox>
           <S.FromTextContainer>
-            <span>본 사업은 </span>
+            본 사업은
             <Link href={`https://www.gwangju.go.kr/`} passHref legacyBehavior>
               <a target='_blank' rel='noopener noreferrer'>
                 광주광역시
               </a>
             </Link>
-            <span>와 </span>
+            와
             <Link href={`http://www.gen.go.kr/`} passHref legacyBehavior>
               <a target='_blank' rel='noopener noreferrer'>
                 광주광역시교육청
