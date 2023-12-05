@@ -11,7 +11,8 @@ export const SchoolIntroWrapper = styled.button`
   cursor: pointer;
   background: none;
 
-  &:focus, &:active {
+  &:focus,
+  &:active {
     transform: perspective(50rem) rotateY(180deg);
   }
 

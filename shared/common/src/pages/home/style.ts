@@ -218,7 +218,6 @@ export const SchoolIntroListContainer = styled.div`
   position: relative;
   width: 100vw;
   height: 15rem;
-  overflow: hidden;
 `
 
 const SchoolIntroListExample = styled.div`
