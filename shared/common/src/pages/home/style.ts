@@ -99,8 +99,6 @@ export const FromTextContainer = styled.span`
   ${({ theme }) => theme.typo.title_sm.regular}
   a {
     ${({ theme }) => theme.typo.title_sm.semibold}
-  }
-  a:first-child {
     color: #cd2329;
   }
   a:last-child {
