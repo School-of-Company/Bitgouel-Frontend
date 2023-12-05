@@ -131,7 +131,6 @@ const typo = {
     },
   },
   caption: {
-
     semibold: {
       fontSize: '0.75rem',
       lineHeight: '140%',
