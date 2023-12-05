@@ -166,7 +166,20 @@ export const BannerTitleWrapper = styled.div`
   width: 100%;
   height: 12rem;
   margin-top: 7.5rem;
-  background: linear-gradient(to right, #288be1, #45dfda);
+  background: linear-gradient(-45deg, #288be1, #45dfda);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 
   div {
     ${({ theme }) => theme.typo.title_sm.semibold}
