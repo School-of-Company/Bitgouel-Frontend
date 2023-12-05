@@ -63,6 +63,15 @@ export const View = styled.div`
   align-items: center;
   margin-bottom: 1rem;
   ${({ theme }) => theme.typo.caption.regular}
+  animation: ani 0.9s infinite alternate;
+  @keyframes ani {
+    0% {
+      transform: translate(0, -0.25rem);
+    }
+    100% {
+      transform: translate(0, 0.25rem);
+    }
+  }
   svg {
     transform: rotate(90deg);
     margin-bottom: 0.5rem;
