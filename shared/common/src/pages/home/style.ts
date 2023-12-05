@@ -1,6 +1,5 @@
 import { keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
-import { P } from 'ts-pattern'
 
 const scrollingLeftFirst = keyframes`
   0% {left: 0%;}
@@ -63,6 +62,15 @@ export const View = styled.div`
   align-items: center;
   margin-bottom: 1rem;
   ${({ theme }) => theme.typo.caption.regular}
+  animation: ani 0.9s infinite alternate;
+  @keyframes ani {
+    0% {
+      transform: translate(0, -0.25rem);
+    }
+    100% {
+      transform: translate(0, 0.25rem);
+    }
+  }
   svg {
     transform: rotate(90deg);
     margin-bottom: 0.5rem;
@@ -99,8 +107,6 @@ export const FromTextContainer = styled.span`
   ${({ theme }) => theme.typo.title_sm.regular}
   a {
     ${({ theme }) => theme.typo.title_sm.semibold}
-  }
-  a:first-child {
     color: #cd2329;
   }
   a:last-child {
@@ -159,7 +165,20 @@ export const BannerTitleWrapper = styled.div`
   width: 100%;
   height: 12rem;
   margin-top: 7.5rem;
-  background: linear-gradient(to right, #288be1, #45dfda);
+  background: linear-gradient(-45deg, #288be1, #45dfda);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 
   div {
     ${({ theme }) => theme.typo.title_sm.semibold}
@@ -440,10 +459,14 @@ export const CopyRightLinkList = styled.div`
   span {
     color: ${({ theme }) => theme.color.blue['800']};
     margin-right: 1.5rem;
+    cursor: pointer;
   }
   span:last-child {
     color: ${({ theme }) => theme.color.blue['800']};
     margin-right: 0;
+  }
+  span:hover {
+    color: ${({ theme }) => theme.color.main};
   }
 `
 

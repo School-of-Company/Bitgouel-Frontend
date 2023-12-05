@@ -18,6 +18,9 @@ export const TextContainer = styled.div`
   color: ${({ theme }) => theme.color.white};
   opacity: 0.7;
   cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
   svg {
     margin-left: 1rem;
   }

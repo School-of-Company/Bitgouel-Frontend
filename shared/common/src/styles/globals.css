@@ -1,5 +1,8 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css');
+
 html,
 body {
+  font-family: 'Pretendard', sans-serif;
   overflow-x: hidden;
   margin: 0;
   padding: 0;

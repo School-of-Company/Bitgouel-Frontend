@@ -3,9 +3,10 @@ import styled from '@emotion/styled'
 export const ClubListBanner = styled.span<{ url: any }>`
   margin-top: 2.5rem;
   width: 100vw;
-  height: 37rem;
+  height: 42.5rem;
   background-image: url(${({ url }) => url.src});
   background-position: center;
+  background-size: cover;
   display: flex;
   justify-content: center;
 `
@@ -28,8 +29,8 @@ export const ClubMainTextArea = styled.div`
 
 export const ClubLeftTextArea = styled.div`
   display: flex;
-  flex-direction: column;
-  height: 100%;
+  flex-wrap: wrap;
+  align-content: space-between;
   width: 15.125rem;
 `
 
@@ -37,24 +38,20 @@ export const ClubLeftText = styled.span`
   color: ${({ theme }) => theme.color.white};
   ${({ theme }) => theme.typo.text_lg.semibold};
   height: 2.25rem;
+  width: 15.125rem;
   display: flex;
   align-items: center;
-  margin-bottom: 2.5rem;
-  &:last-child {
-    margin-bottom: 0;
-  }
 `
 
 export const ClubRightTextArea = styled.div`
-  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
 `
 
 export const ClubRightTextLine = styled.div`
-  margin-bottom: 2.5rem;
   display: flex;
-  &:last-child {
-    margin-bottom: 0;
-  }
+  width: 100%;
 `
 
 export const ClubRightText = styled.div`
