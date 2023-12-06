@@ -1,9 +1,6 @@
 'use client'
 
-import {
-  useGetActivityInformationList,
-  useGetActivityMyselfList,
-} from '@bitgouel/api'
+import { useGetActivityMyselfList } from '@bitgouel/api'
 import { Plus } from '@bitgouel/common'
 import Bg2 from '@bitgouel/common/src/assets/png/mainBg2.png'
 import { ActivityItem } from '@bitgouel/common/src/components'
@@ -17,16 +14,10 @@ const ActivityListPage = () => {
 
   const { data } = useGetActivityMyselfList({
     page: 1,
-    size: 5,
+    size: 2,
   }) //학생 조회
 
-  const { data: adminData } = useGetActivityInformationList({
-    page: 1,
-    size: 4,
-  }) // admin 조회
-
   console.log(data)
-  console.log(adminData)
 
   return (
     <div>
@@ -46,13 +37,9 @@ const ActivityListPage = () => {
 
       <S.ActivityWrapper>
         <S.ActivityContainer>
-          {role === 'student'
-            ? data?.data.activities.content.map((activity) => (
-                <ActivityItem item={activity} key={activity.activityId} />
-              ))
-            : adminData?.data.activities.content.map((activity) => (
-                <ActivityItem item={activity} key={activity.activityId} />
-              ))}
+          {data?.data.activities.content.map((activity) => (
+            <ActivityItem item={activity} key={activity.activityId} />
+          ))}
         </S.ActivityContainer>
       </S.ActivityWrapper>
     </div>
