@@ -30,15 +30,15 @@ export const activityUrl = {
   activityInformationRemove: (activity_id: string) =>
     `/activity/${activity_id}`,
   activityMyselfList: (options: ActivityOptionsTypes) =>
-    `/activity/my?page=${options.page}&size=${options.size}&sort=${options.sort}`,
+    `/activity/my?page=${options.page}&size=${options.size}`,
   activityList: (student_id: string, options: ActivityOptionsTypes) =>
-    `/activity/${student_id}?page=${options.page}&size=${options.size}&sort=${options.sort}`,
+    `/activity/${student_id}?page=${options.page}&size=${options.size}`,
   activityInformationList: (options: ActivityOptionsTypes) =>
-    `/activity?page=${options.page}&size=${options.size}&sort=${options.sort}`,
+    `/activity?page=${options.page}&size=${options.size}`,
   activityInformationDetail: (activity_id: string) =>
     `/activity/${activity_id}`,
 }
 
 export const userUrl = {
-  user: () => `/user`
+  user: () => `/user`,
 }
