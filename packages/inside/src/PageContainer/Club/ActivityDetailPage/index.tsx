@@ -1,18 +1,21 @@
 'use client'
 
-import {
-  usePatchActivityApprove,
-  useDeleteRejectActivity,
-  useGetActivityDetail,
-} from '@bitgouel/api'
 import { ApproveModal, Pen, RejectModal, TrashCan } from '@bitgouel/common'
 import Bg2 from '@bitgouel/common/src/assets/png/mainBg2.png'
+
 import * as S from './style'
 import { useRouter } from 'next/navigation'
-import { lectureStatusToKor } from '@bitgouel/common/src/constants'
+import { lectureStatusToKor, roleToKor } from '@bitgouel/common/src/constants'
 import { match } from 'ts-pattern'
 import { useModal } from '@bitgouel/common/src/hooks'
+
 import { ApproveStatusEnum } from '@bitgouel/types'
+
+import {
+  useDeleteRejectActivity,
+  useGetActivityDetail,
+  usePatchActivityApprove,
+} from '@bitgouel/api'
 
 const ActivityDetailPage = ({ activity_Id }: { activity_Id: string }) => {
   const router = useRouter()
@@ -22,15 +25,13 @@ const ActivityDetailPage = ({ activity_Id }: { activity_Id: string }) => {
   const { mutate: approve } = usePatchActivityApprove(activity_Id)
   const { mutate: reject } = useDeleteRejectActivity(activity_Id)
 
-  const role = 'student' // 예시 role 지정
-
   return (
     <div>
       <S.SlideBg url={Bg2}>
         <S.BgContainer>
           <S.ActivityTitle>게시글</S.ActivityTitle>
           <S.TitleButtonContainer>
-            {role === 'student' && (
+            {roleToKor.ROLE_STUDENT && (
               <>
                 <S.ActivityButton
                   onClick={() =>
@@ -107,36 +108,40 @@ const ActivityDetailPage = ({ activity_Id }: { activity_Id: string }) => {
             </S.SubTitle>
           </S.TitleContainer>
           <S.MainText>{data?.data.content}</S.MainText>
-          <S.ButtonWrapper>
-            <S.ButtonContainer>
-              <S.CreateNotApproveButton
-                onClick={() =>
-                  openModal(
-                    <RejectModal
-                      type='활동 추가'
-                      title={data?.data.title}
-                      onAppropriation={reject}
-                    />
-                  )
-                }
-              >
-                활동 거부하기
-              </S.CreateNotApproveButton>
-              <S.CreateApproveButton
-                onClick={() =>
-                  openModal(
-                    <ApproveModal
-                      type='활동 추가'
-                      title={data?.data.title}
-                      onAppropriation={approve}
-                    />
-                  )
-                }
-              >
-                활동 승인하기
-              </S.CreateApproveButton>
-            </S.ButtonContainer>
-          </S.ButtonWrapper>
+          {roleToKor.ROLE_TEACHER && (
+            <>
+              <S.ButtonWrapper>
+                <S.ButtonContainer>
+                  <S.CreateNotApproveButton
+                    onClick={() =>
+                      openModal(
+                        <RejectModal
+                          type='활동 추가'
+                          title={data?.data.title}
+                          onAppropriation={reject}
+                        />
+                      )
+                    }
+                  >
+                    활동 거부하기
+                  </S.CreateNotApproveButton>
+                  <S.CreateApproveButton
+                    onClick={() =>
+                      openModal(
+                        <ApproveModal
+                          type='활동 추가'
+                          title={data?.data.title}
+                          onAppropriation={approve}
+                        />
+                      )
+                    }
+                  >
+                    활동 승인하기
+                  </S.CreateApproveButton>
+                </S.ButtonContainer>
+              </S.ButtonWrapper>
+            </>
+          )}
         </S.Document>
       </S.DocumentWrapper>
     </div>
