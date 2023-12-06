@@ -1,10 +1,13 @@
 'use client'
 
 import * as S from './style'
+import { useRouter } from 'next/navigation'
 
 const NoticeItem = () => {
+  const router = useRouter()
+
   return (
-    <S.NoticeItem>
+    <S.NoticeItem onClick={() => router.push('/main/notice/detail')}>
       <div>
         <S.NoticeTitle>마이다스 IT 기업탐방</S.NoticeTitle>
       </div>
