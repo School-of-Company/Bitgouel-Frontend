@@ -39,7 +39,7 @@ const LoginPage = () => {
   const resetIsPasswordRgx = useResetRecoilState(IsPasswordRgx)
   const resetIsValidate = useResetRecoilState(IsValidate)
 
-  const router = useRouter()
+  const { push } = useRouter()
   const { mutate, error, isLoading } = usePostLogin()
 
   useEffect(() => {
@@ -174,7 +174,7 @@ const LoginPage = () => {
                 resetEmailCertificateText()
                 resetIsPasswordRgx()
                 resetIsValidate()
-                router.push('/auth/signUp')
+                push('/auth/signUp')
               }}
             >
               회원가입

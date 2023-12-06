@@ -33,7 +33,7 @@ const object: ActivityItemType = {
 }
 
 const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
-  const router = useRouter()
+  const { push } = useRouter()
   const { openModal } = useModal()
 
   const { mutate: approve } = usePatchActivityApprove(activityId)
@@ -46,9 +46,7 @@ const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
           <S.ActivityTitle>게시글</S.ActivityTitle>
           <S.TitleButtonContainer>
             <S.ActivityButton
-              onClick={() =>
-                router.push('/main/club/student/activity/detail/modify')
-              }
+              onClick={() => push('/main/club/student/activity/detail/modify')}
             >
               <Pen />
               <span>활동 수정</span>

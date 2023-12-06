@@ -5,13 +5,13 @@ import { usePathname, useRouter } from 'next/navigation'
 import { match } from 'ts-pattern'
 
 const NoticeItem = () => {
-  const router = useRouter()
+  const { push } = useRouter()
   const pathname = usePathname()
 
   return (
     <S.NoticeItem
       onClick={() =>
-        router.push(
+        push(
           match(pathname)
             .with('/main/notice', () => '/main/notice/detail')
             .otherwise(() => '/main/notice/notification/detail')

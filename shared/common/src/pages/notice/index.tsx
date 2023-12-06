@@ -7,7 +7,7 @@ import * as S from './style'
 import { useRouter } from 'next/navigation'
 
 const NoticePage = () => {
-  const router = useRouter()
+  const { push } = useRouter()
 
   return (
     <div>
@@ -15,9 +15,7 @@ const NoticePage = () => {
         <S.BgContainer>
           <S.NoticeTitle>게시글</S.NoticeTitle>
           <S.ButtonContainer>
-            <S.NoticeButton
-              onClick={() => router.push('/main/notice/notification')}
-            >
+            <S.NoticeButton onClick={() => push('/main/notice/notification')}>
               <MegaPhone />
               <span>공지사항</span>
             </S.NoticeButton>
