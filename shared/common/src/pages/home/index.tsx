@@ -37,7 +37,7 @@ const HomePage = () => {
   }, [])
 
   return (
-    <S.HomeWrapper>
+    <div>
       <S.SlideBg url={imageArr[bgNum]}>
         <S.BgContainer>
           <S.HomeTitle>
@@ -417,7 +417,7 @@ const HomePage = () => {
           </S.AddressBox>
         </S.FooterTextContainer>
       </S.Footer>
-    </S.HomeWrapper>
+    </div>
   )
 }
 

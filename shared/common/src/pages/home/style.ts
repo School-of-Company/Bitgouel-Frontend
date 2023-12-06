@@ -23,10 +23,6 @@ const scrollingRightSecond = keyframes`
   100% {right: -2465px;}
 `
 
-export const HomeWrapper = styled.div`
-  background-color: #f6f6f6;
-`
-
 export const SlideBg = styled.div<{ url: any }>`
   height: 50rem;
   width: 100%;

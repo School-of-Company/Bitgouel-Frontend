@@ -50,3 +50,14 @@ export const NoticeButton = styled.div`
     background-color: rgb(255, 255, 255, 0.4);
   }
 `
+
+export const NoticeListWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+export const NoticeListContainer = styled.div`
+  width: 75rem;
+  height: 100%;
+  margin-top: 2.5rem;
+`

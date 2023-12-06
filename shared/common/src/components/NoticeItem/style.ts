@@ -6,9 +6,13 @@ export const NoticeItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
   border-bottom: 0.0625rem solid ${({ theme }) => theme.color.gray['900']};
   div {
     margin: 0 1rem;
+  }
+  &:hover {
+    background-color: ${({ theme }) => theme.color.gray['900']};
   }
 `
 
