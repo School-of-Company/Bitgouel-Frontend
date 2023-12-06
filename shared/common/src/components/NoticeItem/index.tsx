@@ -1,13 +1,23 @@
 'use client'
 
 import * as S from './style'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
+import { match } from 'ts-pattern'
 
 const NoticeItem = () => {
   const router = useRouter()
+  const pathname = usePathname()
 
   return (
-    <S.NoticeItem onClick={() => router.push('/main/notice/detail')}>
+    <S.NoticeItem
+      onClick={() =>
+        router.push(
+          match(pathname)
+            .with('/main/notice', () => '/main/notice/detail')
+            .otherwise(() => '/main/notice/notification/detail')
+        )
+      }
+    >
       <div>
         <S.NoticeTitle>마이다스 IT 기업탐방</S.NoticeTitle>
       </div>
