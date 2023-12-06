@@ -42,6 +42,8 @@ export const SlideBg = styled.div<{ url: any }>`
 
 export const BgContainer = styled.div`
   width: 75rem;
+  display: flex;
+  justify-content: space-between;
 `
 
 export const HomeTitle = styled.span`
@@ -206,7 +208,6 @@ export const SemiTitleBox = styled.div`
 export const SchoolIntroWrapper = styled.div`
   width: 100vw;
   height: 35rem;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
