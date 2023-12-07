@@ -1,8 +1,8 @@
 import React from 'react'
 import { ClubDetailPage } from '@bitgouel/common/src/pages'
 
-const Detail = () => {
+const ClubDetail = () => {
   return <ClubDetailPage />
 }
 
-export default Detail
+export default ClubDetail

@@ -104,6 +104,6 @@ export const LinkWrapper = styled.div`
   margin-top: 0.25rem;
   a {
     color: ${({ theme }) => theme.color.gray['400']};
-    ${({ theme }) => theme.typo.text_md.medium};
+  ${({ theme }) => theme.typo.text_md.medium};
   }
 `
