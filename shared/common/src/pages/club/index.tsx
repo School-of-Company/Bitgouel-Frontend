@@ -15,7 +15,7 @@ const ClubPage = () => {
           <S.ClubTitle>취업 동아리 목록</S.ClubTitle>
           <S.ButtonContainer>
             <S.ClubButton>
-              <span onClick={() => router.push('/main/club/detail')}>
+              <span onClick={() => router.push('/main/club/student')}>
                 임시 상세 이동버튼
               </span>
             </S.ClubButton>
