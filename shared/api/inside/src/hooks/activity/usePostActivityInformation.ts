@@ -12,7 +12,7 @@ export const usePostActivityInformation = () => {
 
   return useMutation<AxiosResponse, Error, ActivityPayloadTypes>(
     activityQueryKeys.postActivityInformation(),
-    () => post(activityUrl.activityInformation(), {}),
+    (createValues) => post(activityUrl.activityInformation(), createValues),
     {
       onSuccess: () => {
         closeModal()
