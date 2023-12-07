@@ -1,8 +1,8 @@
 import React from 'react'
-import { ActivityDetailPage } from '@/PageContainer'
+import { ActivityModifyPage } from '@/PageContainer'
 
-const ActivityDetail = ({ params }: { params: { activity_Id: string } }) => {
-  return <ActivityDetailPage activity_Id={params.activity_Id} />
+const ActivityModify = ({ params }: { params: { activity_Id: string } }) => {
+  return <ActivityModifyPage activity_Id={params.activity_Id} />
 }
 
-export default ActivityDetail
+export default ActivityModify

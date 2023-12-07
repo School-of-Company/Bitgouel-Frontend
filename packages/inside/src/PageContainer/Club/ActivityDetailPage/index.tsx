@@ -3,27 +3,25 @@
 import { ApproveModal, Pen, RejectModal, TrashCan } from '@bitgouel/common'
 import Bg2 from '@bitgouel/common/src/assets/png/mainBg2.png'
 
-import * as S from './style'
-import { useRouter } from 'next/navigation'
 import { lectureStatusToKor, roleToKor } from '@bitgouel/common/src/constants'
-import { match } from 'ts-pattern'
 import { useModal } from '@bitgouel/common/src/hooks'
-
-import { ApproveStatusEnum } from '@bitgouel/types'
+import { useRouter } from 'next/navigation'
+import { match } from 'ts-pattern'
+import * as S from './style'
 
 import {
-  useDeleteRejectActivity,
+  useDeleteActivityReject,
   useGetActivityDetail,
   usePatchActivityApprove,
 } from '@bitgouel/api'
 
-const ActivityDetailPage = ({ activity_Id }: { activity_Id: string }) => {
+const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
   const router = useRouter()
-  const { data } = useGetActivityDetail(activity_Id)
+  const { data } = useGetActivityDetail(activityId)
   const { openModal } = useModal()
 
-  const { mutate: approve } = usePatchActivityApprove(activity_Id)
-  const { mutate: reject } = useDeleteRejectActivity(activity_Id)
+  const { mutate: approve } = usePatchActivityApprove(activityId)
+  const { mutate: reject } = useDeleteActivityReject(activityId)
 
   return (
     <div>
@@ -35,7 +33,9 @@ const ActivityDetailPage = ({ activity_Id }: { activity_Id: string }) => {
               <>
                 <S.ActivityButton
                   onClick={() =>
-                    router.push(`/main/club/student/activity/${activity_Id}`)
+                    router.push(
+                      `/main/club/student/activity/${activityId}/modify`
+                    )
                   }
                 >
                   <Pen />

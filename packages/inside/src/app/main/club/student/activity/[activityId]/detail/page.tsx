@@ -1,8 +1,8 @@
 import React from 'react'
-import { DetailPage } from '@bitgouel/common/src/pages'
+import { ActivityDetailPage } from '@/PageContainer'
 
-const Detail = () => {
-  return <DetailPage />
+const ActivityDetail = ({ params }: { params: { activityId: string } }) => {
+  return <ActivityDetailPage activityId={params.activityId} />
 }
 
-export default Detail
+export default ActivityDetail

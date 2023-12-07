@@ -16,7 +16,9 @@ const ActivityItem = ({ item }: ActivityItemProps) => {
 
   return (
     <S.ActivityItemWrapper
-      onClick={() => router.push('/main/club/student/activity/detail')}
+      onClick={() =>
+        router.push(`/main/club/student/activity/${item.activityId}/detail`)
+      }
     >
       <div>
         <div>
