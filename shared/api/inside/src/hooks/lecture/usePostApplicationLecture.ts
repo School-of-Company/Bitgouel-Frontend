@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 import { LectureApplicationErrorTypes } from '@bitgouel/types'
 
 export const usePostApplicationLecture = (id: string) => {
-  const router = useRouter()
+  const { push } = useRouter()
   const { closeModal } = useModal()
 
   return useMutation<void, AxiosError<LectureApplicationErrorTypes>>(
@@ -16,7 +16,7 @@ export const usePostApplicationLecture = (id: string) => {
     {
       onSuccess: () => {
         closeModal()
-        router.push('/main/lecture')
+        push('/main/lecture')
         toast.success('수강신청을 완료하였습니다')
       },
       onError: ({ response }) => {

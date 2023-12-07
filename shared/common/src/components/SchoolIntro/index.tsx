@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { SchoolIntroProps } from '@bitgouel/types'
 
 const SchoolIntro = ({ item }: SchoolIntroProps) => {
-
   return (
     <S.SchoolIntroWrapper>
       <S.MainWrapperFront>

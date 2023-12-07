@@ -13,7 +13,7 @@ import { lectureToEnum } from '@bitgouel/common/src/constants'
 import { useGetLectureList } from '@bitgouel/api'
 
 const LecturePage = () => {
-  const router = useRouter()
+  const { push } = useRouter()
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
   const [lectureTypeText, setLectureTypeText] =
     useRecoilState<string>(LectureTypeText)
@@ -32,9 +32,7 @@ const LecturePage = () => {
         <S.BgContainer>
           <S.LectureTitle>강의 목록</S.LectureTitle>
           <S.ButtonContainer>
-            <S.LectureButton
-              onClick={() => router.push('/main/lecture/create')}
-            >
+            <S.LectureButton onClick={() => push('/main/lecture/create')}>
               <Plus />
               <span>개설 신청하기</span>
             </S.LectureButton>

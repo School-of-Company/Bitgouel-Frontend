@@ -7,11 +7,11 @@ import { lectureStatusToKor } from '../../constants'
 import * as S from './style'
 
 const ActivityItem = ({ item }: ActivityItemProps) => {
-  const router = useRouter()
+  const { push } = useRouter()
 
   return (
     <S.ActivityItemWrapper
-      onClick={() => router.push('/main/club/student/activity/detail')}
+      onClick={() => push('/main/club/student/activity/detail')}
     >
       <div>
         <div>

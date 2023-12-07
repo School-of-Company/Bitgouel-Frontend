@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation'
 
 export const usePatchReissue = () => {
   const tokenManager = new TokenManager()
-  const router = useRouter()
+  const { push } = useRouter()
 
   return useMutation<AxiosResponse, AxiosError>(
     authQueryKeys.patchReissue(),
@@ -32,7 +32,7 @@ export const usePatchReissue = () => {
       },
       onError: (error) => {
         tokenManager.removeTokens()
-        return router.push('/auth/login')
+        return push('/auth/login')
       },
     }
   )
