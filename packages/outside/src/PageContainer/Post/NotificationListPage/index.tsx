@@ -1,6 +1,6 @@
 'use client'
 
-import { MegaPhone, Plus, Question } from '@bitgouel/common'
+import { Plus } from '@bitgouel/common'
 import { PostItem } from '@bitgouel/common/src/components'
 import Bg1 from '@bitgouel/common/src/assets/png/mainBg1.png'
 import * as S from './style'
