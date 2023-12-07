@@ -3,13 +3,20 @@
 import * as S from './style'
 import Bg1 from '../../../assets/png/mainBg1.png'
 import Link from 'next/link'
+import { Pen } from '../../../assets'
 
 const DetailPage = () => {
   return (
     <div>
       <S.SlideBg url={Bg1}>
         <S.BgContainer>
-          <S.ClubTitle>게시글 상세</S.ClubTitle>
+          <S.CreateTitle>게시글</S.CreateTitle>
+          <S.ButtonContainer>
+            <S.PostButton>
+              <Pen />
+              <span>수정하기</span>
+            </S.PostButton>
+          </S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
       <S.DocumentWrapper>

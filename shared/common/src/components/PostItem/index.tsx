@@ -13,7 +13,7 @@ const PostItem = () => {
       onClick={() =>
         push(
           match(pathname)
-            .with('/main/Post', () => '/main/post/detail')
+            .with('/main/post', () => '/main/post/detail')
             .otherwise(() => '/main/post/notification/detail')
         )
       }

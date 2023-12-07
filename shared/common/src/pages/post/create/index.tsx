@@ -25,7 +25,7 @@ const LectureCreatePage = () => {
             placeholder='게시글 내용 작성 (1000자 이내)'
           />
           <S.PostSetting>
-            <S.SettingTitle>강의 세부 설정</S.SettingTitle>
+            <S.SettingTitle>게시글 세부 설정</S.SettingTitle>
             <S.SettingSelectionContainer>
               <S.SettingForm>
                 <Link />
