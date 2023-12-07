@@ -1,8 +1,8 @@
 import React from 'react'
-import { NotificationPage } from '@bitgouel/common/src/pages'
+import { NotificationListPage } from '@/PageContainer'
 
 const Notification = () => {
-  return <NotificationPage />
+  return <NotificationListPage />
 }
 
 export default Notification
