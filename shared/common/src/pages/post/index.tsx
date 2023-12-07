@@ -23,7 +23,7 @@ const PostPage = () => {
               <Question />
               <span>문의사항</span>
             </S.PostButton>
-            <S.PostButton>
+            <S.PostButton onClick={() => push('/main/post/create')}>
               <Plus />
               <span>게시글 추가</span>
             </S.PostButton>
