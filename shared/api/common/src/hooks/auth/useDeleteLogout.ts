@@ -5,7 +5,7 @@ import { authUrl, del, authQueryKeys, TokenManager } from '../../libs'
 
 export const useDeleteLogout = () => {
   const tokenManager = new TokenManager()
-  const router = useRouter()
+  const { push } = useRouter()
 
   return useMutation(
     authQueryKeys.deleteLogout(),
@@ -19,7 +19,7 @@ export const useDeleteLogout = () => {
     {
       onSuccess: () => {
         tokenManager.removeTokens()
-        router.push('/auth/login')
+        push('/auth/login')
         toast.success('로그아웃 했습니다')
       },
     }

@@ -6,7 +6,7 @@ import { SettingOut } from '../../assets'
 import { useRouter } from 'next/navigation'
 
 const ClubPage = () => {
-  const router = useRouter()
+  const { push } = useRouter()
 
   return (
     <div>
@@ -15,7 +15,7 @@ const ClubPage = () => {
           <S.ClubTitle>취업 동아리 목록</S.ClubTitle>
           <S.ButtonContainer>
             <S.ClubButton>
-              <span onClick={() => router.push('/main/club/detail')}>
+              <span onClick={() => push('/main/club/detail')}>
                 임시 상세 이동버튼
               </span>
             </S.ClubButton>
