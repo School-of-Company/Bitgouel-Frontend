@@ -35,7 +35,7 @@ const ActivityDetailPage = ({ activity_Id }: { activity_Id: string }) => {
               <>
                 <S.ActivityButton
                   onClick={() =>
-                    router.push('/main/club/student/activity/detail/modify')
+                    router.push(`/main/club/student/activity/${activity_Id}`)
                   }
                 >
                   <Pen />
