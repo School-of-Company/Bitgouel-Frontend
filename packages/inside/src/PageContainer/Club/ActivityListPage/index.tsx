@@ -13,7 +13,7 @@ const ActivityListPage = () => {
   const role = 'student'
 
   const { data } = useGetActivityMyselfList({
-    page: 1,
+    page: 0,
     size: 2,
   }) //학생 조회
 
