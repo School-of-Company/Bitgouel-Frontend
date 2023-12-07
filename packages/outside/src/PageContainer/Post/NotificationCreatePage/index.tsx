@@ -31,6 +31,18 @@ const NotificationCreatePage = () => {
     )
   }
 
+  const saveNotificationTitle = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setNotificationTitle(event.target.value)
+  }
+
+  const saveNotificationMainText = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    setNotificationContent(event.target.value)
+  }
+
   return (
     <div>
       <S.SlideBg url={Bg1}>
