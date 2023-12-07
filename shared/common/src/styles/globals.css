@@ -7,7 +7,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: ${({ theme }) => theme.color.gray['1000']};
+  background-color: #f6f6f6;
 }
 a {
   text-decoration: none;
