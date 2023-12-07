@@ -18,7 +18,7 @@ export const BgContainer = styled.div`
   margin-bottom: 1rem;
 `
 
-export const NoticeTitle = styled.span`
+export const PostTitle = styled.span`
   color: ${({ theme }) => theme.color.white};
   ${({ theme }) => theme.typo.title_lg.semibold};
 `
@@ -28,7 +28,7 @@ export const ButtonContainer = styled.div`
   align-items: flex-end;
 `
 
-export const NoticeButton = styled.div`
+export const PostButton = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -51,12 +51,12 @@ export const NoticeButton = styled.div`
   }
 `
 
-export const NoticeListWrapper = styled.div`
+export const PostListWrapper = styled.div`
   display: flex;
   justify-content: center;
 `
 
-export const NoticeListContainer = styled.div`
+export const PostListContainer = styled.div`
   width: 75rem;
   height: 100%;
   margin-top: 2.5rem;

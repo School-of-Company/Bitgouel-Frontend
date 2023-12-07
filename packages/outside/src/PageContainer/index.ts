@@ -1,3 +1,3 @@
 export * from './Club'
 export * from './Lecture'
-export * from './Notice'
+export * from './Post'

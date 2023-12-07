@@ -21,7 +21,7 @@ const Header = () => {
     { kor: '사업소개', link: '/' },
     { kor: '강의', link: '/main/lecture' },
     { kor: '동아리', link: '/main/club' },
-    { kor: '게시글', link: '/main/notice' },
+    { kor: '게시글', link: '/main/post' },
   ]
 
   const [bgColor, setBgColor] = useState<string>('')
@@ -128,7 +128,7 @@ const Header = () => {
                 <Plus />
               </S.CreateIcon>
             ))
-            .with('/main/notice', () => <MegaPhone />)
+            .with('/main/post', () => <MegaPhone />)
             .otherwise(() => null)}
           {match(pathname)
             .with('/main/lecture', () => (
@@ -146,10 +146,10 @@ const Header = () => {
                 )}
               </S.SelectFilterContainer>
             ))
-            .with('/main/notice', () => <Message />)
+            .with('/main/post', () => <Message />)
             .otherwise(() => null)}
           {match(pathname)
-            .with('/main/notice', () => <Question />)
+            .with('/main/post', () => <Question />)
             .otherwise(() => null)}
         </S.ButtonWrapper>
         <S.LoginButton
