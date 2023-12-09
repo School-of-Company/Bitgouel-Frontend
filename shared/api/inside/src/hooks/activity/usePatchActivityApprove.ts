@@ -6,7 +6,7 @@ import { useModal } from '@bitgouel/common'
 import { toast } from 'react-toastify'
 
 export const usePatchActivityApprove = (activity_id: string) => {
-  const router = useRouter()
+  const { push } = useRouter()
   const { closeModal } = useModal()
 
   return useMutation<AxiosResponse, Error>(
@@ -16,7 +16,7 @@ export const usePatchActivityApprove = (activity_id: string) => {
     {
       onSuccess: () => {
         closeModal()
-        router.push('/main/club/student/activity/my')
+        push('/main/club/student/activity/my')
         toast.success('승인 되었습니다.')
       },
       onError: (error) => {

@@ -25,7 +25,7 @@ const SignUpButtonContainer = ({
   isNext: boolean
   setPage: React.Dispatch<React.SetStateAction<number>>
 }) => {
-  const router = useRouter()
+  const { push } = useRouter()
   const page1Obj = useRecoilValue(Page1Obj)
   const [page2Obj, setPage2Obj] = useRecoilState(Page2Obj)
   const page3Obj = useRecoilValue(Page3Obj)
@@ -152,7 +152,7 @@ const SignUpButtonContainer = ({
       <S.PreButton
         onClick={() =>
           match(page)
-            .with(1, () => router.push('/auth/login'))
+            .with(1, () => push('/auth/login'))
             .otherwise(() => setPage((prev) => prev - 1))
         }
       >

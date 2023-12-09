@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation'
 import * as S from './style'
 
 const ActivityListPage = () => {
-  const router = useRouter()
+  const { push } = useRouter()
 
   const { data } = useGetActivityMyselfList({
     page: 0,
@@ -24,7 +24,7 @@ const ActivityListPage = () => {
           <S.ClubTitle>(학생이름)의 학생 활동</S.ClubTitle>
           <S.ButtonContainer>
             <S.ClubButton
-              onClick={() => router.push('/main/club/student/activity/create')}
+              onClick={() => push('/main/club/student/activity/create')}
             >
               <Plus />
               <span>활동 추가</span>

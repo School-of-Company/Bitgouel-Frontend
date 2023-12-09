@@ -15,7 +15,7 @@ import * as S from './style'
 
 const Header = () => {
   const tokenManager = new TokenManager()
-  const router = useRouter()
+  const { push } = useRouter()
   const pathname = usePathname()
   const menuList = [
     { kor: '사업소개', link: '/' },
@@ -101,7 +101,7 @@ const Header = () => {
           {menuList.map((menu, idx) => (
             <S.MenuItem
               key={idx}
-              onClick={() => tokenManager.accessToken && router.push(menu.link)}
+              onClick={() => tokenManager.accessToken && push(menu.link)}
               isSameRoute={pathname === menu.link}
               color={spanColor}
             >
@@ -114,7 +114,7 @@ const Header = () => {
             .with('/main/lecture', () => (
               <S.CreateIcon
                 onClick={() => {
-                  router.push('/main/lecture/create')
+                  push('/main/lecture/create')
                 }}
                 view={match(role)
                   .with(
@@ -157,8 +157,8 @@ const Header = () => {
             tokenManager.accessToken
               ? match(pathname)
                   .with('/main/my', () => mutate())
-                  .otherwise(() => router.push('/main/my'))
-              : router.push('/auth/login')
+                  .otherwise(() => push('/main/my'))
+              : push('/auth/login')
           }
           color={btnColor}
         >

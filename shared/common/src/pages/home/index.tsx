@@ -21,7 +21,7 @@ import { SchoolIntroObjects } from '../../constants'
 import Link from 'next/link'
 
 const HomePage = () => {
-  const router = useRouter()
+  const { push } = useRouter()
   const [bgNum, setBgNum] = useState(2)
   const imageArr = [Bg1, Bg2, Bg3, Bg4]
   const bannerArr = [Banner1]
