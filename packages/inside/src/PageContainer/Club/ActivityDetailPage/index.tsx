@@ -39,7 +39,7 @@ const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
         <S.BgContainer>
           <S.ActivityTitle>게시글</S.ActivityTitle>
           <S.TitleButtonContainer>
-            {roleToKor.ROLE_STUDENT && (
+            {role === 'ROLE_STUDENT' && (
               <>
                 <S.ActivityButton
                   onClick={() =>
