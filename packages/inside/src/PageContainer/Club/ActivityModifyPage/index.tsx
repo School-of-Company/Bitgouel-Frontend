@@ -2,31 +2,32 @@
 
 import * as S from './style'
 import Bg2 from '@bitgouel/common/src/assets/png/mainBg2.png'
-import { Chevron } from '@bitgouel/common'
+import { Chevron, CreateModal, useModal } from '@bitgouel/common'
 import { ChangeEvent, useState } from 'react'
 import { SelectCalendarModal, SelectScoreModal } from '@bitgouel/common'
 import { useSearchParams } from 'next/navigation'
 import { useGetActivityDetail, usePatchActivityCorrection } from '@bitgouel/api'
 import { ActivityDetailTypes } from '@bitgouel/types'
 
-const ActivityModifyPage = ({ activity_Id }: { activity_Id: string }) => {
+const ActivityModifyPage = ({ activityId }: { activityId: string }) => {
   const MAXLENGTH: number = 1000 as const
+  const { openModal } = useModal()
 
-  const { data } = useGetActivityDetail(activity_Id)
-  const { mutate } = usePatchActivityCorrection(activity_Id)
+  const { data } = useGetActivityDetail(activityId)
+  const { mutate } = usePatchActivityCorrection(activityId)
+
+  const [modifyData, setModifyData] = useState<ActivityDetailTypes>(data?.data)
 
   const [isActivityDate, setIsActivityDate] = useState<boolean>(false)
   const [activityDate, setActivityDate] = useState<Date>(new Date())
-  const [activityDateText, setActivityDateText] = useState<string | any>(
+  const [activityDateText, setActivityDateText] = useState<string | undefined>(
     data?.data.activityDate
   )
 
   const [isScore, setIsScore] = useState<boolean>(false)
-  const [scoreText, setScoreText] = useState<string | any>(data?.data.credit)
-  const [modifyData, setModifyData] = useState<ActivityDetailTypes | any>(data)
-
-  console.log(modifyData)
-  console.log(modifyData)
+  const [scoreText, setScoreText] = useState<string | undefined>(
+    data?.data.credit.toString()
+  )
 
   const openSelectModal = (type: string) => {
     if (type === '학점 선택') {
@@ -45,7 +46,7 @@ const ActivityModifyPage = ({ activity_Id }: { activity_Id: string }) => {
     mutate({
       title: modifyData.title,
       content: modifyData.content,
-      credit: +scoreText.slice(0, 1),
+      credit: Number(scoreText?.slice(0, 1)),
       activityDate: `${activityDate.getFullYear()}-${(
         activityDate.getMonth() + 1
       )
@@ -55,6 +56,7 @@ const ActivityModifyPage = ({ activity_Id }: { activity_Id: string }) => {
         .toString()
         .padStart(2, '0')}`,
     })
+    console.log(scoreText)
   }
 
   return (
@@ -117,14 +119,25 @@ const ActivityModifyPage = ({ activity_Id }: { activity_Id: string }) => {
                     onClick={() => openSelectModal('학점 선택')}
                   >
                     <Chevron />
-                    <S.SettingButton>{scoreText}</S.SettingButton>
+                    <S.SettingButton>{scoreText + '점'}</S.SettingButton>
                   </S.SettingScoreBox>
                 </S.SelectModalContainer>
               </S.SettingSelection>
             </S.SettingSelectionContainer>
           </S.ActivitySetting>
           <S.ButtonContainer>
-            <S.CreateButton onClick={onModifyData}>
+            <S.CreateButton
+              onClick={() =>
+                openModal(
+                  <CreateModal
+                    question='활동을 수정하시겠습니까?'
+                    title={data?.data.title}
+                    onCreate={onModifyData}
+                    createText='수정하기'
+                  />
+                )
+              }
+            >
               활동 수정하기
             </S.CreateButton>
           </S.ButtonContainer>

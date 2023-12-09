@@ -1,6 +1,12 @@
 'use client'
 
-import { ApproveModal, Pen, RejectModal, TrashCan } from '@bitgouel/common'
+import {
+  ApproveModal,
+  Pen,
+  RejectModal,
+  Role,
+  TrashCan,
+} from '@bitgouel/common'
 import Bg2 from '@bitgouel/common/src/assets/png/mainBg2.png'
 
 import { lectureStatusToKor, roleToKor } from '@bitgouel/common/src/constants'
@@ -13,15 +19,19 @@ import {
   useDeleteActivityReject,
   useGetActivityDetail,
   usePatchActivityApprove,
+  useDeleteActivityInformationRemove,
 } from '@bitgouel/api'
+import { useRecoilValue } from 'recoil'
 
 const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
   const router = useRouter()
   const { data } = useGetActivityDetail(activityId)
   const { openModal } = useModal()
+  const role = useRecoilValue(Role)
 
   const { mutate: approve } = usePatchActivityApprove(activityId)
   const { mutate: reject } = useDeleteActivityReject(activityId)
+  const { mutate: remove } = useDeleteActivityInformationRemove(activityId)
 
   return (
     <div>
@@ -33,9 +43,7 @@ const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
               <>
                 <S.ActivityButton
                   onClick={() =>
-                    router.push(
-                      `/main/club/student/activity/${activityId}/modify`
-                    )
+                    router.push(`/main/club/student/activity/${activityId}`)
                   }
                 >
                   <Pen />
@@ -47,7 +55,7 @@ const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
                       <RejectModal
                         type='활동 추가'
                         title={data?.data.title}
-                        onAppropriation={reject}
+                        onAppropriation={remove}
                       />
                     )
                   }
@@ -70,7 +78,7 @@ const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
                   .with('APPROVED', () => true)
                   .otherwise(() => false)}
               >
-                {lectureStatusToKor['']}
+                {lectureStatusToKor[data?.data.approveStatus]}
               </S.ApproveStatus>
               <S.NumberBox>
                 <S.SubTitleBox>학점</S.SubTitleBox>
@@ -98,17 +106,13 @@ const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
                     5,
                     7
                   )}월 ${data?.data.modifiedAt.slice(8, 10)}일
-                    ${data?.data.modifiedAt.slice(
-                      13,
-                      15
-                    )}:${data?.data.modifiedAt.slice(16, 18)}
                   `}
                 </span>
               </S.NumberBox>
             </S.SubTitle>
           </S.TitleContainer>
           <S.MainText>{data?.data.content}</S.MainText>
-          {roleToKor.ROLE_TEACHER && (
+          {role === 'ROLE_TEACHER' && (
             <>
               <S.ButtonWrapper>
                 <S.ButtonContainer>

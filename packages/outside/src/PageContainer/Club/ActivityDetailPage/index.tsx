@@ -40,9 +40,7 @@ const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
           <S.ActivityTitle>게시글</S.ActivityTitle>
           <S.TitleButtonContainer>
             <S.LectureButton
-              onClick={() =>
-                router.push('/main/club/student/activity/detail/modify')
-              }
+              onClick={() => router.push('/main/club/student/activity/detail')}
             >
               <Pen />
               <span>활동 수정</span>
