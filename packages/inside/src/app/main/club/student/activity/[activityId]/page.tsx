@@ -1,8 +1,8 @@
 import React from 'react'
 import { ActivityModifyPage } from '@/PageContainer'
 
-const ActivityModify = ({ params }: { params: { activity_Id: string } }) => {
-  return <ActivityModifyPage activity_Id={params.activity_Id} />
+const ActivityModify = ({ params }: { params: { activityId: string } }) => {
+  return <ActivityModifyPage activityId={params.activityId} />
 }
 
 export default ActivityModify
