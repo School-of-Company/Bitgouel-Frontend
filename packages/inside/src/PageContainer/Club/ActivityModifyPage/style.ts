@@ -42,6 +42,7 @@ export const DocumentInput = styled.div`
 export const InputTitle = styled.input`
   ${({ theme }) => theme.typo.title_md.semibold};
   color: ${({ theme }) => theme.color.black};
+  background-color: ${({ theme }) => theme.color.gray['1000']};
   outline: none;
   border: none;
   width: 100%;
@@ -53,6 +54,7 @@ export const InputTitle = styled.input`
 export const InputMainText = styled.textarea`
   ${({ theme }) => theme.typo.text_lg.regular};
   color: ${({ theme }) => theme.color.black};
+  background-color: ${({ theme }) => theme.color.gray['1000']};
   margin-top: 0.5rem;
   height: 19.25rem;
   outline: none;

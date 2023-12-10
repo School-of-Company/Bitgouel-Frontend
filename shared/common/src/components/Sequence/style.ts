@@ -1,6 +1,9 @@
 import styled from '@emotion/styled'
 
 export const SequenceWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: end;
   div {
     &:last-child {
       div {
@@ -18,6 +21,10 @@ export const TextContainer = styled.div`
   color: ${({ theme }) => theme.color.white};
   opacity: 0.7;
   cursor: pointer;
+  width: fit-content;
+  &:hover {
+    opacity: 1;
+  }
   svg {
     margin-left: 1rem;
   }

@@ -1,20 +1,18 @@
 import { keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
-import { P } from 'ts-pattern'
 
 const scrollingLeftFirst = keyframes`
   0% {left: 0%;}
-  100% {left: -116.5625rem;}
+  100% {left: -2110px;}
 `
 
 const scrollingLeftSecond = keyframes`
-  0% {left: 1865px;}
-
+  0% {left: 2110px;}
   100% {left: 0%;}
 `
 
 const scrollingRightFirst = keyframes`
-  0% {right: 2185px;}
+  0% {right: 2465px;}
 
   100% {right: 0%;}
 `
@@ -22,11 +20,7 @@ const scrollingRightFirst = keyframes`
 const scrollingRightSecond = keyframes`
   0% {right: 0%;}
 
-  100% {right: -2185px;}
-`
-
-export const HomeWrapper = styled.div`
-  background-color: #f6f6f6;
+  100% {right: -2465px;}
 `
 
 export const SlideBg = styled.div<{ url: any }>`
@@ -44,6 +38,8 @@ export const SlideBg = styled.div<{ url: any }>`
 
 export const BgContainer = styled.div`
   width: 75rem;
+  display: flex;
+  justify-content: space-between;
 `
 
 export const HomeTitle = styled.span`
@@ -64,6 +60,15 @@ export const View = styled.div`
   align-items: center;
   margin-bottom: 1rem;
   ${({ theme }) => theme.typo.caption.regular}
+  animation: ani 0.9s infinite alternate;
+  @keyframes ani {
+    0% {
+      transform: translate(0, -0.25rem);
+    }
+    100% {
+      transform: translate(0, 0.25rem);
+    }
+  }
   svg {
     transform: rotate(90deg);
     margin-bottom: 0.5rem;
@@ -100,8 +105,6 @@ export const FromTextContainer = styled.span`
   ${({ theme }) => theme.typo.title_sm.regular}
   a {
     ${({ theme }) => theme.typo.title_sm.semibold}
-  }
-  a:first-child {
     color: #cd2329;
   }
   a:last-child {
@@ -160,7 +163,20 @@ export const BannerTitleWrapper = styled.div`
   width: 100%;
   height: 12rem;
   margin-top: 7.5rem;
-  background: linear-gradient(to right, #288be1, #45dfda);
+  background: linear-gradient(-45deg, #288be1, #45dfda);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 
   div {
     ${({ theme }) => theme.typo.title_sm.semibold}
@@ -188,7 +204,6 @@ export const SemiTitleBox = styled.div`
 export const SchoolIntroWrapper = styled.div`
   width: 100vw;
   height: 35rem;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -200,7 +215,6 @@ export const SchoolIntroListContainer = styled.div`
   position: relative;
   width: 100vw;
   height: 15rem;
-  overflow: hidden;
 `
 
 const SchoolIntroListExample = styled.div`
@@ -210,6 +224,7 @@ const SchoolIntroListExample = styled.div`
   align-items: center;
   justify-content: center;
   height: inherit;
+  gap: 2.5rem;
 `
 
 export const SchoolIntroListLeftFirst = styled(SchoolIntroListExample)`
@@ -283,81 +298,14 @@ export const ClubIntroText = styled.div`
 
 export const ClubListWrapper = styled.div`
   margin-top: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 export const ClubListTitle = styled.span`
   color: ${({ theme }) => theme.color.black};
   ${({ theme }) => theme.typo.title_md.semibold};
-`
-
-export const ClubListBanner = styled.span<{ url: any }>`
-  margin-top: 2.5rem;
-  width: 100%;
-  height: 37rem;
-  background-image: url(${({ url }) => url.src});
-  background-position: center;
-  display: flex;
-  justify-content: center;
-`
-
-export const ClubListContents = styled.div`
-  margin-top: 2.5rem;
-  width: 75rem;
-`
-
-export const ClubValueTitle = styled.span`
-  color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.title_md.semibold};
-`
-
-export const ClubMainTextArea = styled.div`
-  margin: 2.5rem;
-  display: flex;
-  height: 26.25rem;
-`
-
-export const ClubLeftTextArea = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 15.125rem;
-`
-
-export const ClubLeftText = styled.span`
-  color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.text_lg.semibold};
-  height: 2.25rem;
-  display: flex;
-  align-items: center;
-  margin-bottom: 2.5rem;
-  &:last-child {
-    margin-bottom: 0;
-  }
-`
-
-export const ClubRightTextArea = styled.div`
-  width: 100%;
-`
-
-export const ClubRightTextLine = styled.div`
-  margin-bottom: 2.5rem;
-  display: flex;
-  &:last-child {
-    margin-bottom: 0;
-  }
-`
-
-export const ClubRightText = styled.div`
-  color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.text_sm.medium};
-  height: 2.125rem;
-  display: flex;
-  align-items: center;
-  border: 0.0625rem solid ${({ theme }) => theme.color.white};
-  border-radius: 2rem;
-  padding: 0 1rem;
-  width: fit-content;
-  margin-right: 1rem;
 `
 
 export const UnionUniversityContainer = styled.div`
@@ -413,53 +361,6 @@ export const UniversityText = styled.span`
 
 export const CompanyIntroContainer = styled.div`
   margin-top: 10rem;
-`
-
-export const CompanyListBanner = styled.div<{ url: any }>`
-  margin-top: 2.5rem;
-  width: 100%;
-  height: 37rem;
-  background-image: url(${({ url }) => url.src});
-  background-position: center;
-  display: flex;
-  justify-content: center;
-`
-
-export const CompanyListContents = styled.div`
-  margin-top: 2.5rem;
-  width: 75rem;
-`
-
-export const CompanyValueTitle = styled.div`
-  color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.title_md.semibold};
-`
-
-export const CompanyMainTextArea = styled.div`
-  margin: 2.5rem;
-  display: flex;
-`
-
-export const CompanyTextContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  &:last-child {
-    margin-bottom: 0;
-  }
-`
-
-export const CompanyText = styled.div`
-  color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.text_sm.medium};
-  height: 2.125rem;
-  display: flex;
-  align-items: center;
-  border: 0.0625rem solid ${({ theme }) => theme.color.white};
-  border-radius: 2rem;
-  padding: 0 1rem;
-  width: fit-content;
-  margin-right: 1rem;
-  margin-bottom: 1.5rem;
 `
 
 export const AgencyIntroContainer = styled.div`
@@ -554,10 +455,14 @@ export const CopyRightLinkList = styled.div`
   span {
     color: ${({ theme }) => theme.color.blue['800']};
     margin-right: 1.5rem;
+    cursor: pointer;
   }
   span:last-child {
     color: ${({ theme }) => theme.color.blue['800']};
     margin-right: 0;
+  }
+  span:hover {
+    color: ${({ theme }) => theme.color.main};
   }
 `
 

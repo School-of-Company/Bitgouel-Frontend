@@ -38,18 +38,7 @@ const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
       <S.SlideBg url={Bg2}>
         <S.BgContainer>
           <S.ActivityTitle>게시글</S.ActivityTitle>
-          <S.TitleButtonContainer>
-            <S.LectureButton
-              onClick={() => push('/main/club/student/activity/detail')}
-            >
-              <Pen />
-              <span>활동 수정</span>
-            </S.LectureButton>
-            <S.LectureButton>
-              <TrashCan />
-              <span>활동 삭제</span>
-            </S.LectureButton>
-          </S.TitleButtonContainer>
+          <S.TitleButtonContainer></S.TitleButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
       <S.DocumentWrapper>

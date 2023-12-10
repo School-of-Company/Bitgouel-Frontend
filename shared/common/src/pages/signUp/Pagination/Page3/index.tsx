@@ -182,9 +182,9 @@ const Page3 = ({
                   color:
                     item.value.length > 0
                       ? !emailCertificate && emailCertificateText === '완료'
-                        ? `${theme.color.gray['700']}`
+                        ? `${theme.color.gray['400']}`
                         : `${theme.color.white}`
-                      : `${theme.color.gray['700']}`,
+                      : `${theme.color.gray['400']}`,
                 }}
               >
                 {emailCertificateText}

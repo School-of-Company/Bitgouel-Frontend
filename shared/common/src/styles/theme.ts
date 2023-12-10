@@ -11,6 +11,7 @@ const color = {
     '700': '#B8B8B8',
     '800': '#D1D1D1',
     '900': '#EBEBEB',
+    '1000': '#F6F6F6',
   },
   blue: {
     '100': '#072036',
@@ -131,7 +132,6 @@ const typo = {
     },
   },
   caption: {
-
     semibold: {
       fontSize: '0.75rem',
       lineHeight: '140%',

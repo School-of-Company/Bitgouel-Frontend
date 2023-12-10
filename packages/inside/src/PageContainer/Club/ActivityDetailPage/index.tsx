@@ -25,6 +25,7 @@ import { useRecoilValue } from 'recoil'
 
 const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
   const { push } = useRouter()
+
   const { data } = useGetActivityDetail(activityId)
   const { openModal } = useModal()
   const role = useRecoilValue(Role)
@@ -43,7 +44,7 @@ const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
               <>
                 <S.ActivityButton
                   onClick={() =>
-                    push(`/main/club/student/activity/${activityId}`)
+                    push(`/main/club/student/activity/${activityId}/modify`)
                   }
                 >
                   <Pen />
