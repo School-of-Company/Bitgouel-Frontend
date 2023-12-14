@@ -1,18 +1,27 @@
-import { useMutation } from '@tanstack/react-query'
-import { activityQueryKeys, patch, activityUrl } from '../../../../common'
-import { AxiosResponse } from 'axios'
+import { useModal } from '@bitgouel/common'
 import { ActivityPayloadTypes } from '@bitgouel/types'
+import { useMutation } from '@tanstack/react-query'
+import { AxiosResponse } from 'axios'
+import { useRouter } from 'next/navigation'
+import { activityQueryKeys, activityUrl, patch } from '../../../../common'
+import { toast } from 'react-toastify'
 
-export const usePatchActivityCorrection = (activity_id: string) =>
-  useMutation<AxiosResponse, Error, ActivityPayloadTypes>(
+export const usePatchActivityCorrection = (activity_id: string) => {
+  const { closeModal } = useModal()
+  const { push } = useRouter()
+
+  return useMutation<AxiosResponse, Error, ActivityPayloadTypes>(
     activityQueryKeys.patchActivityCorrection(activity_id),
-    () => patch(activityUrl.activityCorrection(activity_id), {}),
+    (data) => patch(activityUrl.activityCorrection(activity_id), data),
     {
       onSuccess: ({ data }) => {
-        console.log(data)
+        closeModal()
+        push('/main/club/student/activity/my')
+        toast.success('수정이되었습니다.')
       },
       onError: (error) => {
-        console.log(error)
+        toast.error('빈 공백이 있습니다.')
       },
     }
   )
+}
