@@ -1,11 +1,17 @@
 'use client'
 
-import { MegaPhone, Plus, Question } from '@bitgouel/common'
-import { PostItem } from '@bitgouel/common/src/components'
+import { useGetPostList } from '@bitgouel/api'
 import Bg1 from '@bitgouel/common/src/assets/png/mainBg1.png'
+import { PostItem } from '@bitgouel/common/src/components'
 import * as S from './style'
 
-const NotificationPage = () => {
+const NotificationListPage = () => {
+  const { data } = useGetPostList({
+    type: 'NOTICE',
+    size: 1,
+    page: 1,
+  })
+
   return (
     <div>
       <S.SlideBg url={Bg1}>
@@ -15,17 +21,13 @@ const NotificationPage = () => {
       </S.SlideBg>
       <S.NotificationListWrapper>
         <S.NotificationListContainer>
-          <PostItem />
-          <PostItem />
-          <PostItem />
-          <PostItem />
-          <PostItem />
-          <PostItem />
-          <PostItem />
+          {data?.data.posts.content.map((notice) => (
+            <PostItem key={notice.id} item={notice} />
+          ))}
         </S.NotificationListContainer>
       </S.NotificationListWrapper>
     </div>
   )
 }
 
-export default NotificationPage
+export default NotificationListPage

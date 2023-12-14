@@ -125,9 +125,13 @@ export const ButtonContainer = styled.div`
   div {
     color: ${({ theme }) => theme.color.white};
     ${({ theme }) => theme.typo.text_lg.semibold};
-    padding: 0.85rem 2.6rem;
     border-radius: 0.5rem;
     cursor: pointer;
+    width: 11.25rem;
+    height: 3.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `
 
