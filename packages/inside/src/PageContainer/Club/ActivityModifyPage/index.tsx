@@ -2,6 +2,7 @@
 
 import * as S from './style'
 import Bg2 from '@bitgouel/common/src/assets/png/mainBg2.png'
+import { ActivityPayloadTypes } from '@bitgouel/types'
 import { Chevron, CreateModal, useModal } from '@bitgouel/common'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { SelectCalendarModal, SelectScoreModal } from '@bitgouel/common'
@@ -14,6 +15,7 @@ const ActivityModifyPage = ({ activityId }: { activityId: string }) => {
   const { openModal } = useModal()
 
   const { data } = useGetActivityDetail(activityId)
+
   const { mutate } = usePatchActivityCorrection(activityId)
 
   const [modifyData, setModifyData] = useState<ActivityDetailTypes>(data?.data)
@@ -22,14 +24,15 @@ const ActivityModifyPage = ({ activityId }: { activityId: string }) => {
 
   const [isActivityDate, setIsActivityDate] = useState<boolean>(false)
   const [activityDate, setActivityDate] = useState<Date>(new Date())
-  const [activityDateText, setActivityDateText] = useState<string | undefined>(
-    data?.data.activityDate
-  )
+  const [activityDateText, setActivityDateText] = useState<string | undefined>()
+
+  // const [test, setTest] = useState<string>(activityId)
+
+  // console.log(test)
 
   const [isScore, setIsScore] = useState<boolean>(false)
-  const [scoreText, setScoreText] = useState<string | undefined>(
-    data?.data.credit.toString()
-  )
+  const [scoreText, setScoreText] = useState<string | undefined>('점')
+  const [isSelected, setIsSelected] = useState<boolean | undefined>(false)
 
   const openSelectModal = (type: string) => {
     if (type === '학점 선택') {
@@ -41,12 +44,9 @@ const ActivityModifyPage = ({ activityId }: { activityId: string }) => {
     }
   }
 
-  const params = useSearchParams()
-  console.log(params.get('title'))
-
   const onModifyData = () => {
-    if (modifyData)
-      mutate({
+    if (modifyData) {
+      const payload: ActivityPayloadTypes = {
         title: modifyData.title,
         content: modifyData.content,
         credit: Number(scoreText?.slice(0, 1)),
@@ -58,12 +58,27 @@ const ActivityModifyPage = ({ activityId }: { activityId: string }) => {
           .getDate()
           .toString()
           .padStart(2, '0')}`,
-      })
+      }
+
+      mutate(payload)
+    }
     console.log(scoreText)
   }
 
   useEffect(() => {
-    setModifyData(data?.data)
+    if (data) {
+      setModifyData(data.data)
+      setScoreText(data.data.credit.toString())
+      setActivityDateText(
+        `${data.data.activityDate?.slice(
+          0,
+          4
+        )}년 ${data.data.activityDate?.slice(
+          5,
+          7
+        )}월 ${data.data.activityDate?.slice(8)}일`
+      )
+    }
   }, [data])
 
   return (
@@ -122,7 +137,11 @@ const ActivityModifyPage = ({ activityId }: { activityId: string }) => {
                     <S.SelectModalContainer>
                       {isScore && (
                         <SelectScoreModal
-                          score={scoreText}
+                          score={
+                            Number.isInteger(Number(scoreText))
+                              ? scoreText + '점'
+                              : scoreText
+                          }
                           setScore={setScoreText}
                           setIsScore={setIsScore}
                         />
@@ -131,7 +150,10 @@ const ActivityModifyPage = ({ activityId }: { activityId: string }) => {
                         onClick={() => openSelectModal('학점 선택')}
                       >
                         <Chevron />
-                        <S.SettingButton>{scoreText + '점'}</S.SettingButton>
+                        <S.SettingButton>
+                          {scoreText}
+                          {Number.isInteger(Number(scoreText)) ? '점' : ''}
+                        </S.SettingButton>
                       </S.SettingScoreBox>
                     </S.SelectModalContainer>
                   </S.SettingSelection>
@@ -143,11 +165,17 @@ const ActivityModifyPage = ({ activityId }: { activityId: string }) => {
                     openModal(
                       <CreateModal
                         question='활동을 수정하시겠습니까?'
-                        title={data?.data.title}
+                        title={modifyData.title}
                         onCreate={onModifyData}
                         createText='수정하기'
                       />
                     )
+                  }
+                  isAble={
+                    modifyData.title !== '' &&
+                    modifyData.content !== '' &&
+                    activityDateText !== '활동 날짜 선택' &&
+                    scoreText !== '학점 선택'
                   }
                 >
                   활동 수정하기
