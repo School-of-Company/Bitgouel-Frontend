@@ -20,15 +20,9 @@ const ActivityModifyPage = ({ activityId }: { activityId: string }) => {
 
   const [modifyData, setModifyData] = useState<ActivityDetailTypes>(data?.data)
 
-  console.log(modifyData)
-
   const [isActivityDate, setIsActivityDate] = useState<boolean>(false)
   const [activityDate, setActivityDate] = useState<Date>(new Date())
   const [activityDateText, setActivityDateText] = useState<string | undefined>()
-
-  // const [test, setTest] = useState<string>(activityId)
-
-  // console.log(test)
 
   const [isScore, setIsScore] = useState<boolean>(false)
   const [scoreText, setScoreText] = useState<string | undefined>('점')
@@ -62,7 +56,6 @@ const ActivityModifyPage = ({ activityId }: { activityId: string }) => {
 
       mutate(payload)
     }
-    console.log(scoreText)
   }
 
   useEffect(() => {
