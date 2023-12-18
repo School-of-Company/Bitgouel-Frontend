@@ -153,7 +153,7 @@ const ActivityModifyPage = ({ activityId }: { activityId: string }) => {
                 </S.SettingSelectionContainer>
               </S.ActivitySetting>
               <S.ButtonContainer>
-                <S.CreateButton
+                <S.ModifyButton
                   onClick={() =>
                     openModal(
                       <CreateModal
@@ -172,7 +172,7 @@ const ActivityModifyPage = ({ activityId }: { activityId: string }) => {
                   }
                 >
                   활동 수정하기
-                </S.CreateButton>
+                </S.ModifyButton>
               </S.ButtonContainer>
             </S.DocumentInput>
           </S.DocumentInputContainer>
