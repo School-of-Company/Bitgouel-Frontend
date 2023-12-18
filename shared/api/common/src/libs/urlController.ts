@@ -37,8 +37,8 @@ export const activityUrl = {
     `/activity?page=${options.page}&size=${options.size}`,
   activityInformationDetail: (activity_id: string) =>
     `/activity/${activity_id}/detail`,
-}
+} as const
 
 export const userUrl = {
   user: () => `/user`,
-}
+} as const
