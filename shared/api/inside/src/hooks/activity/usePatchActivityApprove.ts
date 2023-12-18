@@ -11,8 +11,7 @@ export const usePatchActivityApprove = (activity_id: string) => {
 
   return useMutation<AxiosResponse, Error>(
     activityQueryKeys.patchActivityApprove(activity_id),
-    (createValues) =>
-      patch(activityUrl.activityApprove(activity_id), createValues),
+    () => patch(activityUrl.activityApprove(activity_id)),
     {
       onSuccess: () => {
         closeModal()
