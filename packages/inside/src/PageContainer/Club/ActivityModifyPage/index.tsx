@@ -90,10 +90,10 @@ const ActivityModifyPage = ({ activityId }: { activityId: string }) => {
                 placeholder='활동 제목(100자 이내)'
                 maxLength={100}
                 value={modifyData.title}
-                onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   setModifyData((prev) => ({
                     ...prev,
-                    title: event.target.value,
+                    title: e.target.value,
                   }))
                 }
               />
@@ -101,10 +101,10 @@ const ActivityModifyPage = ({ activityId }: { activityId: string }) => {
                 maxLength={MAXLENGTH}
                 placeholder='활동 내용 작성 (1000자 이내)'
                 value={modifyData.content}
-                onChange={(event: ChangeEvent<HTMLTextAreaElement>) =>
+                onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
                   setModifyData((prev) => ({
                     ...prev,
-                    content: event.target.value,
+                    content: e.target.value,
                   }))
                 }
               />
