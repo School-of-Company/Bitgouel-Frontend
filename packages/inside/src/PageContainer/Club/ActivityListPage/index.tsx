@@ -15,8 +15,6 @@ const ActivityListPage = () => {
     size: 12,
   }) //학생 조회
 
-  console.log(data)
-
   return (
     <div>
       <S.SlideBg url={Bg2}>
