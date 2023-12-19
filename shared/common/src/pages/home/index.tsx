@@ -238,7 +238,10 @@ const HomePage = () => {
           </S.ClubIntroListWrapper>
         </S.ClubIntroList>
         <S.ClubListWrapper>
-          <S.ClubListTitle>핵심 분야 및 취업동아리 목록</S.ClubListTitle>
+        <S.SemiTitleBox>
+          <S.SubTitleSub>직업계고 계열별 학교현황 및 진로</S.SubTitleSub>
+          <S.SubTitleMain>핵심 분야 및 취업 동아리 목록</S.SubTitleMain>
+        </S.SemiTitleBox>
           <ClubListSlider />
         </S.ClubListWrapper>
       </S.ClubListContainer>
@@ -387,7 +390,6 @@ const HomePage = () => {
             <S.CopyRightLinkList>
               <span>개인정보처리방침</span>
               <span>저작권신고 및 보호규정</span>
-              <span>자주 묻는 질문</span>
               <span>문의하기</span>
               <span>관리자</span>
             </S.CopyRightLinkList>
