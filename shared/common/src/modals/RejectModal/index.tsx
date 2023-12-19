@@ -22,7 +22,9 @@ const RejectModal = ({
         </S.RejectLetterContainer>
         <S.RejectButtonWrapper>
           <CancelButton onClick={closeModal}>취소</CancelButton>
-          <S.RejectButton onClick={onAppropriation}>거절하기</S.RejectButton>
+          <S.RejectButton onClick={onAppropriation}>
+            {type.includes('공지') ? '삭제하기' : '거절하기'}
+          </S.RejectButton>
         </S.RejectButtonWrapper>
       </S.RejectModalWrapper>
     </Portal>

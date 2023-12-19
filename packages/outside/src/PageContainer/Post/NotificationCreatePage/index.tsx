@@ -2,11 +2,14 @@
 
 import * as S from './style'
 import Bg1 from '@bitgouel/common/src/assets/png/mainBg1.png'
-import { Link } from '@bitgouel/common'
+import { CreateModal, Link, useModal } from '@bitgouel/common'
 import { ChangeEvent, useState } from 'react'
+import { usePostPost } from '@bitgouel/api'
 
-const NotificationCreatePage = () => {
+const NoticeCreatePage = () => {
   const MAXLENGTH: number = 1000 as const
+  const { openModal } = useModal()
+
   const [links, setLinks] = useState<
     { showValue: string; value: string; name: string }[]
   >([
@@ -15,9 +18,6 @@ const NotificationCreatePage = () => {
     { showValue: '', name: 'link3', value: '' },
     { showValue: '', name: 'link4', value: '' },
   ])
-
-  const [notificationTitle, setNotificationTitle] = useState<string>('')
-  const [notificationContent, setNotificationContent] = useState<string>('')
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target
@@ -31,42 +31,68 @@ const NotificationCreatePage = () => {
     )
   }
 
-  const saveNotificationTitle = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setNotificationTitle(event.target.value)
+  const [noticeTitle, setNoticeTitle] = useState<string>('')
+  const [noticeContent, setNoticeContent] = useState<string>('')
+
+  const saveNoticeTitle = (event: ChangeEvent<HTMLInputElement>) => {
+    setNoticeTitle(event.target.value)
   }
 
-  const saveNotificationMainText = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    setNotificationContent(event.target.value)
+  const saveNoticeMainText = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setNoticeContent(event.target.value)
+  }
+
+  const { mutate } = usePostPost('공지')
+
+  const onCreate = () => {
+    mutate({
+      title: noticeTitle,
+      content: noticeContent,
+      links: links
+        .filter((link) => link.value.length !== 0)
+        .map((link) => {
+          return { url: link.value }
+        }),
+      feedType: 'NOTICE',
+    })
+  }
+
+  const onCreateModal = () => {
+    if (noticeTitle !== '' && noticeContent !== '') {
+      openModal(
+        <CreateModal
+          question='공지사항을 추가하시겠습니까?'
+          title={noticeTitle}
+          onCreate={onCreate}
+          createText='추가하기'
+        />
+      )
+    } else return
   }
 
   return (
     <div>
       <S.SlideBg url={Bg1}>
         <S.BgContainer>
-          <S.CreateTitle>공지글 추가</S.CreateTitle>
+          <S.CreateTitle>공지사항 추가</S.CreateTitle>
         </S.BgContainer>
       </S.SlideBg>
       <S.DocumentInputContainer>
         <S.DocumentInput>
           <S.InputTitle
-            type='text'
-            value={notificationTitle}
+            value={noticeTitle}
             maxLength={100}
-            placeholder='공지글 제목 (100자 이내)'
-            onChange={saveNotificationTitle}
+            placeholder='공지사항 제목 (100자 이내)'
+            onChange={saveNoticeTitle}
           />
           <S.InputMainText
-            value={notificationContent}
+            value={noticeContent}
             maxLength={MAXLENGTH}
-            placeholder='공지글 내용 작성 (1000자 이내)'
-            onChange={saveNotificationMainText}
+            placeholder='공지사항 내용 작성 (1000자 이내)'
+            onChange={saveNoticeMainText}
           />
-          <S.PostSetting>
-            <S.SettingTitle>공지글 세부 설정</S.SettingTitle>
+          <S.NoticeSetting>
+            <S.SettingTitle>공지사항 세부 설정</S.SettingTitle>
             <S.SettingSelectionContainer>
               {links.map((link, idx) => (
                 <S.SettingForm key={idx}>
@@ -81,9 +107,14 @@ const NotificationCreatePage = () => {
                 </S.SettingForm>
               ))}
             </S.SettingSelectionContainer>
-          </S.PostSetting>
+          </S.NoticeSetting>
           <S.ButtonContainer>
-            <S.CreateButton>공지 추가하기</S.CreateButton>
+            <S.CreateButton
+              isAble={noticeTitle !== '' && noticeContent !== ''}
+              onClick={onCreateModal}
+            >
+              공지사항 추가하기
+            </S.CreateButton>
           </S.ButtonContainer>
         </S.DocumentInput>
       </S.DocumentInputContainer>
@@ -91,4 +122,4 @@ const NotificationCreatePage = () => {
   )
 }
 
-export default NotificationCreatePage
+export default NoticeCreatePage
