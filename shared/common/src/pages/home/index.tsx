@@ -238,7 +238,10 @@ const HomePage = () => {
           </S.ClubIntroListWrapper>
         </S.ClubIntroList>
         <S.ClubListWrapper>
-          <S.ClubListTitle>핵심 분야 및 취업동아리 목록</S.ClubListTitle>
+        <S.SemiTitleBox>
+          <S.SubTitleSub>직업계고 계열별 학교현황 및 진로</S.SubTitleSub>
+          <S.SubTitleMain>핵심 분야 및 취업 동아리 목록</S.SubTitleMain>
+        </S.SemiTitleBox>
           <ClubListSlider />
         </S.ClubListWrapper>
       </S.ClubListContainer>
