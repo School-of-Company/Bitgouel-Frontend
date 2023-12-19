@@ -114,7 +114,7 @@ const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
                     <RejectModal
                       type='활동 추가'
                       title={object.title}
-                      onAppropriation={reject}
+                      onAppropriation={() => reject()}
                     />
                   )
                 }
@@ -127,7 +127,7 @@ const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
                     <ApproveModal
                       type='활동 추가'
                       title={object.title}
-                      onAppropriation={approve}
+                      onAppropriation={() => approve()}
                     />
                   )
                 }
