@@ -1,7 +1,8 @@
-import {NotificationCreatePage} from '@/PageContainer'
+import React from 'react'
+import { NotificationCreatePage } from '@/PageContainer'
 
-const NotificationCreate = () => {
+const NotificationDetail = () => {
   return <NotificationCreatePage />
 }
 
-export default NotificationCreate
+export default NotificationDetail

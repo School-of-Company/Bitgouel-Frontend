@@ -1,12 +1,7 @@
-import { ApproveStatusEnum } from '../api'
+import { ActivityInformationListTypes, ApproveStatusEnum } from '../api'
 
-export interface ActivityItemType {
-  activityId: string
-  title: string
-  userId: string
+export interface ActivityItemType extends ActivityInformationListTypes {
   activityDate: string
-  userName: string
-  approveStatus: ApproveStatusEnum
 }
 
 export interface ActivityItemProps {

@@ -5,14 +5,8 @@ import { PostItem } from '../../components'
 import Bg1 from '../../assets/png/mainBg1.png'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
-import { useGetPostList } from '@bitgouel/api'
 
 const PostPage = () => {
-  const { data } = useGetPostList({
-    type: 'EMPLOYMENT',
-    page: 0,
-    size: 15,
-  })
   const { push } = useRouter()
 
   return (
@@ -38,9 +32,13 @@ const PostPage = () => {
       </S.SlideBg>
       <S.PostListWrapper>
         <S.PostListContainer>
-          {data?.data.posts.content.map((post) => (
-            <PostItem key={post.id} item={post} />
-          ))}
+          <PostItem />
+          <PostItem />
+          <PostItem />
+          <PostItem />
+          <PostItem />
+          <PostItem />
+          <PostItem />
         </S.PostListContainer>
       </S.PostListWrapper>
     </div>

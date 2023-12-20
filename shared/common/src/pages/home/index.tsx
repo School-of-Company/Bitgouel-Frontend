@@ -22,8 +22,11 @@ import {
 } from '../../components'
 import { SchoolIntroObjects } from '../../constants'
 import * as S from './style'
+import { useRouter } from 'next/navigation'
 
 const HomePage = () => {
+  const { push } = useRouter()
+
   const [bgNum, setBgNum] = useState(2)
   const imageArr = [Bg1, Bg2, Bg3, Bg4]
   const blueArr = ['500', '400', '300', '200', '100']
@@ -238,10 +241,7 @@ const HomePage = () => {
           </S.ClubIntroListWrapper>
         </S.ClubIntroList>
         <S.ClubListWrapper>
-        <S.SemiTitleBox>
-          <S.SubTitleSub>직업계고 계열별 학교현황 및 진로</S.SubTitleSub>
-          <S.SubTitleMain>핵심 분야 및 취업 동아리 목록</S.SubTitleMain>
-        </S.SemiTitleBox>
+          <S.ClubListTitle>핵심 분야 및 취업동아리 목록</S.ClubListTitle>
           <ClubListSlider />
         </S.ClubListWrapper>
       </S.ClubListContainer>
@@ -390,6 +390,7 @@ const HomePage = () => {
             <S.CopyRightLinkList>
               <span>개인정보처리방침</span>
               <span>저작권신고 및 보호규정</span>
+              <span>자주 묻는 질문</span>
               <span>문의하기</span>
               <span>관리자</span>
             </S.CopyRightLinkList>

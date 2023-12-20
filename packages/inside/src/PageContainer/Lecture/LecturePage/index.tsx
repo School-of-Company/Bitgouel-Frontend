@@ -5,7 +5,7 @@ import Bg3 from '@bitgouel/common/src/assets/png/mainBg3.png'
 import { LectureTypeText, Role } from '@bitgouel/common/src/atoms'
 import { LectureItem } from '@bitgouel/common/src/components'
 import { LectureTypeModal } from '@bitgouel/common'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import * as S from './style'
 import { useGetLectureList } from '@bitgouel/api'
@@ -17,16 +17,12 @@ const LecturePage = () => {
     useRecoilState<string>(LectureTypeText)
   const role = useRecoilValue(Role)
 
-  const { data, refetch } = useGetLectureList({
+  const { data } = useGetLectureList({
     page: 0,
-    size: 10,
+    size: 4,
     status: 'APPROVED',
     type: lectureToEnum[lectureTypeText],
   })
-
-  useEffect(() => {
-    refetch()
-  }, [lectureTypeText])
 
   return (
     <div>

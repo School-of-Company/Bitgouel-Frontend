@@ -15,7 +15,7 @@ const StudentPage = () => {
           <S.ClubTitle>학생 정보</S.ClubTitle>
           <S.ButtonContainer>
             <S.ClubButton>
-              <span onClick={() => push('/main/club/student/activity')}>
+              <span onClick={() => push('/main/club/student/activity/my')}>
                 임시 학생 활동 이동버튼
               </span>
             </S.ClubButton>
