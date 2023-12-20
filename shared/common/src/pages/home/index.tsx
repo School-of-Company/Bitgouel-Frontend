@@ -22,8 +22,11 @@ import {
 } from '../../components'
 import { SchoolIntroObjects } from '../../constants'
 import * as S from './style'
+import { useRouter } from 'next/navigation'
 
 const HomePage = () => {
+  const { push } = useRouter()
+
   const [bgNum, setBgNum] = useState(2)
   const imageArr = [Bg1, Bg2, Bg3, Bg4]
   const blueArr = ['500', '400', '300', '200', '100']
@@ -37,7 +40,7 @@ const HomePage = () => {
   }, [])
 
   return (
-    <S.HomeWrapper>
+    <div>
       <S.SlideBg url={imageArr[bgNum]}>
         <S.BgContainer>
           <S.HomeTitle>
@@ -61,13 +64,13 @@ const HomePage = () => {
             <S.SubTitleMain>빛고을 직업교육 혁신지구</S.SubTitleMain>
           </S.SemiTitleBox>
           <S.FromTextContainer>
-            본 사업은
+            <span>본 사업은 </span>
             <Link href={`https://www.gwangju.go.kr/`} passHref legacyBehavior>
               <a target='_blank' rel='noopener noreferrer'>
                 광주광역시
               </a>
             </Link>
-            와
+            <span>와 </span>
             <Link href={`http://www.gen.go.kr/`} passHref legacyBehavior>
               <a target='_blank' rel='noopener noreferrer'>
                 광주광역시교육청
@@ -417,7 +420,7 @@ const HomePage = () => {
           </S.AddressBox>
         </S.FooterTextContainer>
       </S.Footer>
-    </S.HomeWrapper>
+    </div>
   )
 }
 

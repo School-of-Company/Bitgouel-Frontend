@@ -31,27 +31,14 @@ const object: ActivityItemType = {
 }
 
 const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
-  const router = useRouter()
+  const { push } = useRouter()
 
   return (
     <div>
       <S.SlideBg url={Bg2}>
         <S.BgContainer>
           <S.ActivityTitle>게시글</S.ActivityTitle>
-          <S.TitleButtonContainer>
-            <S.LectureButton
-              onClick={() =>
-                router.push('/main/club/student/activity/detail/modify')
-              }
-            >
-              <Pen />
-              <span>활동 수정</span>
-            </S.LectureButton>
-            <S.LectureButton>
-              <TrashCan />
-              <span>활동 삭제</span>
-            </S.LectureButton>
-          </S.TitleButtonContainer>
+          <S.TitleButtonContainer></S.TitleButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
       <S.DocumentWrapper>

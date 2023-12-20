@@ -17,7 +17,7 @@ interface ActivityItemType {
 }
 
 const ActivityListPage = () => {
-  const router = useRouter()
+  const { push } = useRouter()
 
   const activityList: ActivityItemType[] = [
     {
@@ -56,7 +56,7 @@ const ActivityListPage = () => {
           <S.ClubTitle>학생 활동</S.ClubTitle>
           <S.ButtonContainer>
             <S.ClubButton
-              onClick={() => router.push('/main/club/student/activity/create')}
+              onClick={() => push('/main/club/student/activity/create')}
             >
               <Plus />
               <span>활동 추가</span>
