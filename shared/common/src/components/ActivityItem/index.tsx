@@ -16,9 +16,7 @@ const ActivityItem = ({ item }: ActivityItemProps) => {
 
   return (
     <S.ActivityItemWrapper
-      onClick={() =>
-        push(`/main/club/student/activity/${item.activityId}/detail`)
-      }
+      onClick={() => push(`/main/club/student/activity/${item.activityId}`)}
     >
       <div>
         <div>
