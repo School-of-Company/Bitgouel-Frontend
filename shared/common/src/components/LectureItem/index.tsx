@@ -6,10 +6,12 @@ import { useRouter } from 'next/navigation'
 import { LectureItemProps } from '@bitgouel/types'
 
 const LectureItem = ({ item, role }: LectureItemProps) => {
-  const { push } = useRouter()
+  const router = useRouter()
 
   return (
-    <S.LectureItemWrapper onClick={() => push(`/main/lecture/${item.id}`)}>
+    <S.LectureItemWrapper
+      onClick={() => router.push(`/main/lecture/${item.id}`)}
+    >
       <S.SubTitle>
         <S.Professor>{item.lecturer}</S.Professor>
         <S.Date>

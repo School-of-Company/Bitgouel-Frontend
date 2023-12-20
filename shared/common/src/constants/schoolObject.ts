@@ -151,7 +151,7 @@ export const SchoolIntroObjects = {
     },
     {
       number: 'I',
-      name: '광주자동화설비마이스터고등학교',
+      name: '광주자동화설비공업고등학교',
       type: '산업수요 맞춤형',
       img: 광주자동화설비공고,
       departments: ['자동차설비과'],

@@ -147,11 +147,7 @@ const LectureCreatePage = () => {
       </S.SlideBg>
       <S.DocumentInputContainer>
         <S.DocumentInput>
-          <S.InputTitle
-            maxLength={100}
-            placeholder='강의 제목 (100자 이내)'
-            onChange={saveLectureTitle}
-          />
+          <S.InputTitle placeholder='강의 제목' onChange={saveLectureTitle} />
           <S.InputMainText
             maxLength={MAXLENGTH}
             placeholder='강의 설명 작성 (1000자 이내)'

@@ -14,7 +14,7 @@ import { Role } from '@bitgouel/common/src/atoms'
 
 export const usePostLogin = () => {
   const tokenManager = new TokenManager()
-  const { push } = useRouter()
+  const router = useRouter()
   const setRole = useSetRecoilState(Role)
 
   return useMutation<
@@ -28,7 +28,7 @@ export const usePostLogin = () => {
       onSuccess: ({ data }) => {
         tokenManager.setTokens(data)
         setRole(data.authority)
-        return push('/')
+        return router.push('/')
       },
       onError: (error) => {
         return console.log(error)
