@@ -7,7 +7,7 @@ import { Chevron, CreateModal, useModal } from '@bitgouel/common'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { SelectCalendarModal, SelectScoreModal } from '@bitgouel/common'
 import { useSearchParams } from 'next/navigation'
-import { useGetActivityDetail, usePatchActivityCorrection } from '@bitgouel/api'
+import { useGetActivityDetail, usePatchActivityModify } from '@bitgouel/api'
 import { ActivityDetailTypes } from '@bitgouel/types'
 
 const ActivityModifyPage = ({ activityId }: { activityId: string }) => {
@@ -16,7 +16,7 @@ const ActivityModifyPage = ({ activityId }: { activityId: string }) => {
 
   const { data } = useGetActivityDetail(activityId)
 
-  const { mutate } = usePatchActivityCorrection(activityId)
+  const { mutate } = usePatchActivityModify(activityId)
 
   const [modifyData, setModifyData] = useState<ActivityDetailTypes>(data?.data)
 

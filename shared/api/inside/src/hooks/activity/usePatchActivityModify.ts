@@ -6,13 +6,13 @@ import { useRouter } from 'next/navigation'
 import { activityQueryKeys, activityUrl, patch } from '../../../../common'
 import { toast } from 'react-toastify'
 
-export const usePatchActivityCorrection = (activity_id: string) => {
+export const usePatchActivityModify = (activity_id: string) => {
   const { closeModal } = useModal()
   const { push } = useRouter()
 
   return useMutation<AxiosResponse, Error, ActivityPayloadTypes>(
-    activityQueryKeys.patchActivityCorrection(activity_id),
-    (data) => patch(activityUrl.activityCorrection(activity_id), data),
+    activityQueryKeys.patchActivityModify(activity_id),
+    (data) => patch(activityUrl.activityModify(activity_id), data),
     {
       onSuccess: ({ data }) => {
         closeModal()
