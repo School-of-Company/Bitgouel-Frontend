@@ -1,12 +1,12 @@
 import { useMutation } from '@tanstack/react-query'
-import { activityQueryKeys, post, activityUrl } from '../../../../common'
+import { activityQueryKeys, patch, activityUrl } from '../../../../common'
 import { AxiosResponse } from 'axios'
 import { ActivityPayloadTypes } from '@bitgouel/types'
 
-export const usePostActivityInformation = () =>
+export const usePatchActivityCorrection = (activity_id: string) =>
   useMutation<AxiosResponse, Error, ActivityPayloadTypes>(
-    activityQueryKeys.postActivityInformation(),
-    () => post(activityUrl.activityInformation(), {}),
+    activityQueryKeys.patchActivityCorrection(activity_id),
+    () => patch(activityUrl.activityCorrection(activity_id), {}),
     {
       onSuccess: ({ data }) => {
         console.log(data)

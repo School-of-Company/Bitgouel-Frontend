@@ -1,22 +1,17 @@
 'use client'
 
-import {
-  ActivityItemProps,
-  ActivityInformationListTypes,
-  ActivityItemType,
-} from '@bitgouel/types'
+import { ActivityItemProps } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { match } from 'ts-pattern'
 import { lectureStatusToKor } from '../../constants'
-
 import * as S from './style'
 
 const ActivityItem = ({ item }: ActivityItemProps) => {
-  const { push } = useRouter()
+  const router = useRouter()
 
   return (
     <S.ActivityItemWrapper
-      onClick={() => push(`/main/club/student/activity/${item.activityId}`)}
+      onClick={() => router.push('/main/club/student/activity/detail')}
     >
       <div>
         <div>

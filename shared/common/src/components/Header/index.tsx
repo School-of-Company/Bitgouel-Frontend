@@ -15,13 +15,13 @@ import * as S from './style'
 
 const Header = () => {
   const tokenManager = new TokenManager()
-  const { push } = useRouter()
+  const router = useRouter()
   const pathname = usePathname()
   const menuList = [
     { kor: '사업소개', link: '/' },
     { kor: '강의', link: '/main/lecture' },
     { kor: '동아리', link: '/main/club' },
-    { kor: '게시글', link: '/main/post' },
+    { kor: '게시글', link: '/main/notice' },
   ]
 
   const [bgColor, setBgColor] = useState<string>('')
@@ -101,7 +101,7 @@ const Header = () => {
           {menuList.map((menu, idx) => (
             <S.MenuItem
               key={idx}
-              onClick={() => tokenManager.accessToken && push(menu.link)}
+              onClick={() => tokenManager.accessToken && router.push(menu.link)}
               isSameRoute={pathname === menu.link}
               color={spanColor}
             >
@@ -114,7 +114,7 @@ const Header = () => {
             .with('/main/lecture', () => (
               <S.CreateIcon
                 onClick={() => {
-                  push('/main/lecture/create')
+                  router.push('/main/lecture/create')
                 }}
                 view={match(role)
                   .with(
@@ -128,7 +128,7 @@ const Header = () => {
                 <Plus />
               </S.CreateIcon>
             ))
-            .with('/main/post', () => <MegaPhone />)
+            .with('/main/notice', () => <MegaPhone />)
             .otherwise(() => null)}
           {match(pathname)
             .with('/main/lecture', () => (
@@ -146,10 +146,10 @@ const Header = () => {
                 )}
               </S.SelectFilterContainer>
             ))
-            .with('/main/post', () => <Message />)
+            .with('/main/notice', () => <Message />)
             .otherwise(() => null)}
           {match(pathname)
-            .with('/main/post', () => <Question />)
+            .with('/main/notice', () => <Question />)
             .otherwise(() => null)}
         </S.ButtonWrapper>
         <S.LoginButton
@@ -157,8 +157,8 @@ const Header = () => {
             tokenManager.accessToken
               ? match(pathname)
                   .with('/main/my', () => mutate())
-                  .otherwise(() => push('/main/my'))
-              : push('/auth/login')
+                  .otherwise(() => router.push('/main/my'))
+              : router.push('/auth/login')
           }
           color={btnColor}
         >

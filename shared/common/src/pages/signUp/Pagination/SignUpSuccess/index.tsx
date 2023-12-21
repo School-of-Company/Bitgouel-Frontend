@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import * as S from './style'
 
 const SignUpSuccess = () => {
-  const { push } = useRouter()
+  const router = useRouter()
 
   return (
     <S.SignUpSuccessWrapper>
@@ -24,7 +24,7 @@ const SignUpSuccess = () => {
         </S.SignUpContainer>
       </S.SignUpWrapper>
       <S.BackButtonContainer>
-        <S.BackButton onClick={() => push('/auth/login')}>
+        <S.BackButton onClick={() => router.push('/auth/login')}>
           돌아가기
         </S.BackButton>
       </S.BackButtonContainer>
