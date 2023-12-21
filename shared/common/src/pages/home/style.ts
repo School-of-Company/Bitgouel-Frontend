@@ -23,6 +23,10 @@ const scrollingRightSecond = keyframes`
   100% {right: -2465px;}
 `
 
+export const HomeWrapper = styled.div`
+  background-color: #f6f6f6;
+`
+
 export const SlideBg = styled.div<{ url: any }>`
   height: 50rem;
   width: 100%;
@@ -38,8 +42,6 @@ export const SlideBg = styled.div<{ url: any }>`
 
 export const BgContainer = styled.div`
   width: 75rem;
-  display: flex;
-  justify-content: space-between;
 `
 
 export const HomeTitle = styled.span`
@@ -204,6 +206,7 @@ export const SemiTitleBox = styled.div`
 export const SchoolIntroWrapper = styled.div`
   width: 100vw;
   height: 35rem;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -215,6 +218,7 @@ export const SchoolIntroListContainer = styled.div`
   position: relative;
   width: 100vw;
   height: 15rem;
+  overflow: hidden;
 `
 
 const SchoolIntroListExample = styled.div`

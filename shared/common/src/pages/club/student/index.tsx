@@ -6,7 +6,7 @@ import { Card, PersonOut } from '../../../assets'
 import { useRouter } from 'next/navigation'
 
 const StudentPage = () => {
-  const { push } = useRouter()
+  const router = useRouter()
 
   return (
     <div>
@@ -15,7 +15,7 @@ const StudentPage = () => {
           <S.ClubTitle>학생 정보</S.ClubTitle>
           <S.ButtonContainer>
             <S.ClubButton>
-              <span onClick={() => push('/main/club/student/activity/my')}>
+              <span onClick={() => router.push('/main/club/student/activity')}>
                 임시 학생 활동 이동버튼
               </span>
             </S.ClubButton>

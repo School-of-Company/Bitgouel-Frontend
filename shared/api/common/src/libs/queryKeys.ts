@@ -22,9 +22,9 @@ export const lectureQueryKeys = {
 
 export const activityQueryKeys = {
   postActivityInformation: () => ['activity', 'information'],
-  patchActivityModify: (activity_id: string) => [
+  patchActivityCorrection: (activity_id: string) => [
     'activity',
-    'modify',
+    'correction',
     activity_id,
   ],
   patchActivityApprove: (activity_id: string) => [
