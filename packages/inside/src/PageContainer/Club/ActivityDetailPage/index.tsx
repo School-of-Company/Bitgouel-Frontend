@@ -34,7 +34,7 @@ const object: ActivityItemType = {
 }
 
 const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
-  const { push } = useRouter()
+  const router = useRouter()
   const { openModal } = useModal()
 
   const { mutate: approve } = usePatchActivityApprove(activityId)
@@ -47,7 +47,9 @@ const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
           <S.ActivityTitle>게시글</S.ActivityTitle>
           <S.TitleButtonContainer>
             <S.ActivityButton
-              onClick={() => push('/main/club/student/activity/detail/modify')}
+              onClick={() =>
+                router.push('/main/club/student/activity/detail/modify')
+              }
             >
               <Pen />
               <span>활동 수정</span>
@@ -115,7 +117,7 @@ const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
                     <RejectModal
                       type='활동 추가'
                       title={object.title}
-                      onAppropriation={() => reject()}
+                      onAppropriation={reject}
                     />
                   )
                 }
@@ -128,7 +130,7 @@ const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
                     <ApproveModal
                       type='활동 추가'
                       title={object.title}
-                      onAppropriation={() => approve()}
+                      onAppropriation={approve}
                     />
                   )
                 }

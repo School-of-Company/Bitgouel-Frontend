@@ -31,7 +31,7 @@ const object: ActivityItemType = {
 }
 
 const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
-  const { push } = useRouter()
+  const router = useRouter()
 
   return (
     <div>
@@ -40,7 +40,9 @@ const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
           <S.ActivityTitle>게시글</S.ActivityTitle>
           <S.TitleButtonContainer>
             <S.LectureButton
-              onClick={() => push('/main/club/student/activity/detail/modify')}
+              onClick={() =>
+                router.push('/main/club/student/activity/detail/modify')
+              }
             >
               <Pen />
               <span>활동 수정</span>

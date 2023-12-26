@@ -60,4 +60,3 @@ export const postQueryKeys = {
   patchBoardModify: (id: string) => ['post', 'modify', id],
   deleteBoardDelete: (id: string) => ['post', 'delete', id],
 } as const
-

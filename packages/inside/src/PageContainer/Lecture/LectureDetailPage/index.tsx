@@ -2,14 +2,13 @@
 
 import Bg3 from '@bitgouel/common/src/assets/png/mainBg3.png'
 import * as S from './style'
-import { useGetDetailLecture, usePostApplicationLecture } from '@bitgouel/api'
+import { useGetDetailLecture } from '@bitgouel/api'
 import { lectureToKor } from '@bitgouel/common/src/constants'
 import { LectureApplyModal } from '@/modals'
 import { useModal } from '@bitgouel/common/src/hooks'
 
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
-  const { mutate } = usePostApplicationLecture(lectureId)
   const { openModal } = useModal()
 
   return (
@@ -107,7 +106,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
                 openModal(
                   <LectureApplyModal
                     title={data?.data.name}
-                    apply={() => mutate()}
+                    lectureId={lectureId}
                   />
                 )
               }

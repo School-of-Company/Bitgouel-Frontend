@@ -37,7 +37,7 @@ export const activityUrl = {
     `/activity?page=${options.page}&size=${options.size}&sort=${options.sort}`,
   activityInformationDetail: (activity_id: string) =>
     `/activity/${activity_id}`,
-} as const
+}
 
 export const userUrl = {
   user: () => `/user`,
@@ -51,4 +51,3 @@ export const postUrl = {
   postModify: (post_id: string) => `/post/${post_id}`,
   postDelete: (post_id: string) => `/post/${post_id}`,
 } as const
-
