@@ -6,3 +6,4 @@ export interface PostDetailResponseTypes {
   modifiedAt: string
   links: string[]
 }
+

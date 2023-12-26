@@ -3,3 +3,4 @@ export interface AppropriationModalProps {
   title: string | undefined
   onAppropriation: () => void
 }
+

@@ -10,3 +10,4 @@ export { default as PostCreatePage } from './post/create'
 export { default as PostModifyPage } from './post/modify'
 export { default as NotificationDetailPage } from './post/notification/detail'
 export { default as MyPage } from './my'
+

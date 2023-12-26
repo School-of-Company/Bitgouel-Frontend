@@ -92,3 +92,4 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
 }
 
 export default PostDetailPage
+

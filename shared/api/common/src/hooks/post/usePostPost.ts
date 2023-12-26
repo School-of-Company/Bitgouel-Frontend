@@ -27,3 +27,4 @@ export const usePostPost = (type: '게시' | '공지') => {
     }
   )
 }
+

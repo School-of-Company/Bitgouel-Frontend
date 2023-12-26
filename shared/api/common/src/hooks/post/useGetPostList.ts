@@ -14,3 +14,4 @@ export const useGetPostList = (
     () => get(postUrl.postList(queryString)),
     options
   )
+  

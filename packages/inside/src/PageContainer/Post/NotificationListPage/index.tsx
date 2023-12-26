@@ -2,8 +2,8 @@
 
 import { useGetPostList } from '@bitgouel/api'
 import Bg1 from '@bitgouel/common/src/assets/png/mainBg1.png'
-import { PostItem } from '@bitgouel/common/src/components'
 import * as S from './style'
+import { PostItem } from '@bitgouel/common/src/components'
 
 const NotificationListPage = () => {
   const { data } = useGetPostList({

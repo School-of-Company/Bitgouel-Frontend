@@ -16,7 +16,6 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { openModal } = useModal()
   const { mutate: approve } = usePatchApproveLecture(lectureId)
   const { mutate: reject } = useDeleteRejectLecture(lectureId)
-
   return (
     <div>
       <S.SlideBg url={Bg3}>

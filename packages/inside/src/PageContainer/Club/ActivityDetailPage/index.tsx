@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation'
 import { match } from 'ts-pattern'
 import * as S from './style'
 
+
 interface ActivityItemType {
   id: string
   title: string

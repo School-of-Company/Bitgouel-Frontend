@@ -16,7 +16,6 @@ const LecturePage = () => {
   const [lectureTypeText, setLectureTypeText] =
     useRecoilState<string>(LectureTypeText)
   const role = useRecoilValue(Role)
-
   const { data, refetch } = useGetLectureList({
     page: 0,
     size: 10,

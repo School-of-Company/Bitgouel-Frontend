@@ -1,5 +1,3 @@
-import { PostItemProps } from '../../common'
-
 export interface PostItemTypes {
   id: string
   title: string

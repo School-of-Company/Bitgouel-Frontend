@@ -23,3 +23,4 @@ export const useDeletePost = (id: string, type: '공지사항' | '게시글') =>
     }
   )
 }
+

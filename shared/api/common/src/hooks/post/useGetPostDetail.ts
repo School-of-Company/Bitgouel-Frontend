@@ -14,3 +14,4 @@ export const useGetPostDetail = (
     () => get(postUrl.postDetail(id)),
     options
   )
+  

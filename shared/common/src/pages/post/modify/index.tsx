@@ -45,7 +45,6 @@ const PostModifyPage = ({ postId }: { postId: string }) => {
   )
 
   const { openModal } = useModal()
-
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target
 
@@ -58,14 +57,7 @@ const PostModifyPage = ({ postId }: { postId: string }) => {
     )
   }
 
-  useEffect(() => {
-    if (data) {
-      setPostModifyTitle(data?.data.title)
-      setPostModifyContent(data?.data.content)
-      setPostModifyLinks(data?.data.links)
-    }
-  }, [data])
-
+  
   const onModify = () => {
     mutate({
       title: postModifyTitle,
@@ -73,23 +65,31 @@ const PostModifyPage = ({ postId }: { postId: string }) => {
       links: postModifyLinks.map((link) => link.value),
     })
   }
-
+  
   const onModifyModal = () => {
     if (
       initialData.title !== postModifyTitle ||
       initialData.content !== postModifyContent ||
       initialData.links !== postModifyLinks
-    ) {
-      openModal(
-        <CreateModal
+      ) {
+        openModal(
+          <CreateModal
           question='게시글을 수정하시겠습니까?'
           title={postModifyTitle}
           onCreate={onModify}
           createText='수정하기'
-        />
-      )
+          />
+          )
+        }
+      }
+      
+  useEffect(() => {
+    if (data) {
+      setPostModifyTitle(data?.data.title)
+      setPostModifyContent(data?.data.content)
+      setPostModifyLinks(data?.data.links)
     }
-  }
+  }, [data])
 
   return (
     <div>

@@ -10,9 +10,7 @@ import { CreateModal } from '../../../modals'
 
 const PostCreatePage = () => {
   const MAXLENGTH: number = 1000 as const
-
   const { openModal } = useModal()
-
   const [links, setLinks] = useState<
     { showValue: string; value: string; name: string }[]
   >([

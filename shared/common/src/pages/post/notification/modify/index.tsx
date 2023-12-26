@@ -11,7 +11,6 @@ const NoticeModifyPage = ({ postId }: { postId: string }) => {
   const MAXLENGTH: number = 1000 as const
   const { mutate } = usePatchPostModify(postId)
   const { data } = useGetPostDetail(postId, { staleTime: 0 })
-
   const [noticeModifyData, setNoticeModifyData] =
     useState<PostModifyPayloadTypes>(data?.data)
   const [noticeModifyTitle, setNoticeModifyTitle] = useState<string>(
@@ -114,3 +113,4 @@ const NoticeModifyPage = ({ postId }: { postId: string }) => {
 }
 
 export default NoticeModifyPage
+

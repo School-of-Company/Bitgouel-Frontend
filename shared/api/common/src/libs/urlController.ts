@@ -51,3 +51,4 @@ export const postUrl = {
   postModify: (post_id: string) => `/post/${post_id}`,
   postDelete: (post_id: string) => `/post/${post_id}`,
 } as const
+

@@ -1,4 +1,4 @@
-import {NotificationCreatePage} from '@/PageContainer'
+import { NotificationCreatePage } from '@/PageContainer'
 
 const NotificationCreate = () => {
   return <NotificationCreatePage />

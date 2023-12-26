@@ -14,7 +14,6 @@ const PostPage = () => {
     size: 15,
   })
   const { push } = useRouter()
-
   return (
     <div>
       <S.SlideBg url={Bg1}>

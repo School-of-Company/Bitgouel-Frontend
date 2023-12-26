@@ -33,6 +33,7 @@ const NoticeCreatePage = () => {
 
   const [noticeTitle, setNoticeTitle] = useState<string>('')
   const [noticeContent, setNoticeContent] = useState<string>('')
+  const { mutate } = usePostPost('공지')
 
   const saveNoticeTitle = (event: ChangeEvent<HTMLInputElement>) => {
     setNoticeTitle(event.target.value)
@@ -42,7 +43,6 @@ const NoticeCreatePage = () => {
     setNoticeContent(event.target.value)
   }
 
-  const { mutate } = usePostPost('공지')
 
   const onCreate = () => {
     mutate({

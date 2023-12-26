@@ -1,11 +1,9 @@
 'use client'
 
 import { useModal } from '@bitgouel/common/src/hooks'
-import React from 'react'
 import Portal from '@bitgouel/common/src/portal'
-import * as S from './style'
-import { usePostApplicationLecture } from '@bitgouel/api'
 import { LectureApplyModalProps } from '@bitgouel/types'
+import * as S from './style'
 
 const LectureApplyModal = ({ title, apply }: LectureApplyModalProps) => {
   const { closeModal } = useModal()

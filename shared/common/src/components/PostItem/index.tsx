@@ -34,4 +34,5 @@ const PostItem = ({ item }: PostItemProps) => {
     </S.PostItem>
   )
 }
+
 export default PostItem

@@ -9,3 +9,4 @@ export interface CreateModalProps {
   onCreate: () => void
   createText: '개설하기' | '추가하기' | '수정하기'
 }
+
