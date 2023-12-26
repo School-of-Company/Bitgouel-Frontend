@@ -42,8 +42,6 @@ export const SlideBg = styled.div<{ url: any }>`
 
 export const BgContainer = styled.div`
   width: 75rem;
-  display: flex;
-  justify-content: space-between;
 `
 
 export const HomeTitle = styled.span`
@@ -295,6 +293,7 @@ export const ClubIntroSubTitle = styled.span`
 
 export const ClubIntroText = styled.div`
   margin: 1rem 1.5rem 0rem;
+  width: 100%;
 
   li {
     color: ${({ theme }) => theme.color.gray['700']};
