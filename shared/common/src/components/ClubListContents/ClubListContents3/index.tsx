@@ -1,6 +1,6 @@
 'use client'
 
-import * as S from './style'
+import * as S from '../style'
 import listBanner3 from '../../../assets/png/listBanner3.png'
 
 const ClubListContents3 = () => {

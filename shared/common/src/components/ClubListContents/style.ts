@@ -7,6 +7,7 @@ export const ClubListBanner = styled.span<{ url: any }>`
   background-image: url(${({ url }) => url.src});
   background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
   display: flex;
   justify-content: center;
 `

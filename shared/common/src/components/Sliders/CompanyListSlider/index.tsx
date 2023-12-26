@@ -1,8 +1,9 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import 'slick-carousel/slick/slick.css'
 import {
   CompanyListContents1,
   CompanyListContents2,
@@ -10,15 +11,26 @@ import {
   CompanyListContents4,
   CompanyListContents5,
 } from '../..'
+import { SlideLeftArrow, SlideRightArrow } from '../../../assets'
 import * as S from '../style'
-import { useEffect, useRef } from 'react'
 
 const setting = {
+  arrows: true,
   dots: true,
   infinite: true,
   speed: 500,
   slidesToShow: 1,
   slidesToScroll: 1,
+  prevArrow: (
+    <S.PrevArrow>
+      <SlideLeftArrow />
+    </S.PrevArrow>
+  ),
+  nextArrow: (
+    <S.NextArrow>
+      <SlideRightArrow />
+    </S.NextArrow>
+  )
 }
 
 const ClubListSlider = () => {
@@ -31,7 +43,7 @@ const ClubListSlider = () => {
 
     return () => clearInterval(intervalId)
   }, [])
-
+  
   return (
     <S.SliderContainer>
       <Slider ref={sliderRef} {...setting}>
