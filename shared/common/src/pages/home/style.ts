@@ -42,6 +42,8 @@ export const SlideBg = styled.div<{ url: any }>`
 
 export const BgContainer = styled.div`
   width: 75rem;
+  display: flex;
+  justify-content: space-between;
 `
 
 export const HomeTitle = styled.span`
