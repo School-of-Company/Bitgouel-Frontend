@@ -51,4 +51,12 @@ export const activityQueryKeys = {
 
 export const myQueryKeys = {
   getMy: () => ['my', 'myData'],
-}
+} as const
+
+export const postQueryKeys = {
+  postBoardCreate: () => ['post', 'create'],
+  getBoardList: () => ['post', 'list'],
+  getBoardDetail: (id: string) => ['post', 'detail', id],
+  patchBoardModify: (id: string) => ['post', 'modify', id],
+  deleteBoardDelete: (id: string) => ['post', 'delete', id],
+} as const

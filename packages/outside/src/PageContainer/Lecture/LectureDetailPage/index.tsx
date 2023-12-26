@@ -16,7 +16,6 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { openModal } = useModal()
   const { mutate: approve } = usePatchApproveLecture(lectureId)
   const { mutate: reject } = useDeleteRejectLecture(lectureId)
-
   return (
     <div>
       <S.SlideBg url={Bg3}>
@@ -115,7 +114,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
                     <RejectModal
                       type='강의 개설'
                       title={data?.data.name}
-                      onAppropriation={approve}
+                      onAppropriation={() => approve()}
                     />
                   )
                 }
@@ -129,7 +128,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
                     <ApproveModal
                       type='강의 개설'
                       title={data?.data.name}
-                      onAppropriation={reject}
+                      onAppropriation={() => reject()}
                     />
                   )
                 }

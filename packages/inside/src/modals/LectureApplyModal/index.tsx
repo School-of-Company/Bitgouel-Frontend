@@ -1,15 +1,12 @@
 'use client'
 
 import { useModal } from '@bitgouel/common/src/hooks'
-import React from 'react'
 import Portal from '@bitgouel/common/src/portal'
-import * as S from './style'
-import { usePostApplicationLecture } from '@bitgouel/api'
 import { LectureApplyModalProps } from '@bitgouel/types'
+import * as S from './style'
 
-const LectureApplyModal = ({ title, lectureId }: LectureApplyModalProps) => {
+const LectureApplyModal = ({ title, apply }: LectureApplyModalProps) => {
   const { closeModal } = useModal()
-  const { mutate } = usePostApplicationLecture(lectureId)
 
   return (
     <Portal onClose={closeModal}>
@@ -22,9 +19,7 @@ const LectureApplyModal = ({ title, lectureId }: LectureApplyModalProps) => {
         </S.LectureLetterContainer>
         <S.LectureApplyButtonWrapper>
           <S.CancleButton onClick={closeModal}>취소</S.CancleButton>
-          <S.CreateButton onClick={() => mutate()}>
-            수강 신청하기
-          </S.CreateButton>
+          <S.CreateButton onClick={apply}>수강 신청하기</S.CreateButton>
         </S.LectureApplyButtonWrapper>
       </S.LectureApplyModalWrapper>
     </Portal>
