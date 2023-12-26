@@ -234,21 +234,21 @@ const SchoolIntroListExample = styled.div`
 export const SchoolIntroListLeftFirst = styled(SchoolIntroListExample)`
   left: 0;
   height: inherit;
-  animation: ${scrollingLeftFirst} 20s linear 0s infinite normal none running;
+  animation: ${scrollingLeftFirst} 22s linear 0s infinite normal none running;
 `
 
 export const SchoolIntroListLeftSecond = styled(SchoolIntroListExample)`
   left: 0;
   height: inherit;
-  animation: ${scrollingLeftSecond} 20s linear 0s infinite normal none running;
+  animation: ${scrollingLeftSecond} 22s linear 0s infinite normal none running;
 `
 
 export const SchoolIntroListRightFirst = styled(SchoolIntroListExample)`
-  animation: ${scrollingRightFirst} 20s linear 0s infinite normal none running;
+  animation: ${scrollingRightFirst} 22s linear 0s infinite normal none running;
 `
 
 export const SchoolIntroListRightSecond = styled(SchoolIntroListExample)`
-  animation: ${scrollingRightSecond} 20s linear 0s infinite normal none running;
+  animation: ${scrollingRightSecond} 22s linear 0s infinite normal none running;
 `
 
 export const ClubListContainer = styled.div`
