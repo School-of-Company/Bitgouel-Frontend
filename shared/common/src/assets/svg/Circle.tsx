@@ -1,8 +1,8 @@
 const Circle = () => {
   return (
     <svg
-      width='16'
-      height='16'
+      width='1rem'
+      height='1rem'
       viewBox='0 0 16 16'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
@@ -23,8 +23,8 @@ const Circle = () => {
           id='filter0_b_1380_69641'
           x='-8'
           y='-8'
-          width='32'
-          height='32'
+          width='2rem'
+          height='2rem'
           filterUnits='userSpaceOnUse'
           colorInterpolationFilters='sRGB'
         >
