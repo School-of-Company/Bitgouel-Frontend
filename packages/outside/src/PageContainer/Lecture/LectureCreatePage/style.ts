@@ -45,6 +45,7 @@ export const InputTitle = styled.input`
   outline: none;
   border: none;
   width: 100%;
+  background-color: ${({ theme }) => theme.color.gray['1000']};
   &::placeholder {
     color: ${({ theme }) => theme.color.gray['700']};
   }
@@ -55,6 +56,7 @@ export const InputMainText = styled.textarea`
   color: ${({ theme }) => theme.color.black};
   margin-top: 0.5rem;
   height: 19.25rem;
+  background-color: ${({ theme }) => theme.color.gray['1000']};
   outline: none;
   border: none;
   width: 100%;
@@ -125,6 +127,7 @@ export const SettingScoreBox = styled.div`
 export const SettingInput = styled.input`
   border: none;
   outline: none;
+  background-color: ${({ theme }) => theme.color.gray['1000']};
   color: ${({ theme }) => theme.color.gray['700']};
   ${({ theme }) => theme.typo.text_md.regular}
 
