@@ -1,26 +1,25 @@
 'use client'
 
 import { useMutation } from '@tanstack/react-query'
-import { post } from '../../libs/api/method'
-import { authQueryKeys } from '../../libs/queryKeys'
-import { authUrl } from '../../libs/urlController'
+import { post, authQueryKeys, authUrl } from '../../libs'
 import { useSetRecoilState } from 'recoil'
 import { Page } from '../../../../../common/src/atoms'
 import { AxiosError } from 'axios'
-import { ProfessorPayloadTypes } from '@bitgouel/types'
+import { ApiErrorTypes, ProfessorPayloadTypes } from '@bitgouel/types'
+import { toast } from 'react-toastify'
 
 export const usePostSignUpProfessor = () => {
   const setPage = useSetRecoilState(Page)
 
-  return useMutation<void, AxiosError, ProfessorPayloadTypes>(
+  return useMutation<void, AxiosError<ApiErrorTypes>, ProfessorPayloadTypes>(
     authQueryKeys.postSignUpProfessor(),
     (signUpValues) => post(authUrl.signUpPropessor(), signUpValues),
     {
       onSuccess: () => {
         setPage(4)
       },
-      onError: (error) => {
-        return console.log(error)
+      onError: ({ response }) => {
+        toast.error(response.data.message.split('.')[0])
       },
     }
   )

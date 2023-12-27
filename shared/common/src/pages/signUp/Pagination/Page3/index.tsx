@@ -19,7 +19,7 @@ const Page3 = ({
   const passwordRegex = new RegExp(
     /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,24}$/
   )
-  const phoneRegex = new RegExp(/^[0-9]{11}$/)
+  const phoneRegex = new RegExp(/^010[0-9]{8}$/)
 
   const [page3Obj, setPage3Obj] = useRecoilState(Page3Obj)
   const [isPhoneRgx, setIsPhoneRgx] = useState<boolean>(true)
