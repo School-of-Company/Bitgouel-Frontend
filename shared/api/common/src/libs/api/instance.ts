@@ -24,14 +24,14 @@ instance.interceptors.request.use(
     if (
       !accessTokenIsValid &&
       refreshTokenIsValid &&
-      !config.url.includes('/auth')
+      !config?.url?.includes('/auth')
     ) {
       await tokenManager.reissueToken()
       tokenManager.initToken()
     } else if (
       !accessTokenIsValid &&
       !refreshTokenIsValid &&
-      !config.url.includes('/auth')
+      !config?.url?.includes('/auth')
     )
       tokenManager.removeTokens()
 
