@@ -1,37 +1,37 @@
-import axios, { InternalAxiosRequestConfig, AxiosError } from 'axios'
-import { usePatchReissue } from '../../hooks'
+import axios, { InternalAxiosRequestConfig } from 'axios'
 import TokenManager from './TokenManager'
 
 export const instance = axios.create({
   baseURL: '/api',
   withCredentials: true,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 })
 
 instance.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
     const tokenManager = new TokenManager()
+    const accessTokenIsValid = tokenManager.validateToken(
+      tokenManager.accessExpired,
+      tokenManager.accessToken
+    )
+    const refreshTokenIsValid = tokenManager.validateToken(
+      tokenManager.refreshExpired,
+      tokenManager.refreshToken
+    )
+
     if (
-      !tokenManager.validateToken(
-        tokenManager.accessExpired,
-        tokenManager.accessToken
-      ) &&
-      tokenManager.validateToken(
-        tokenManager.refreshExpired,
-        tokenManager.refreshToken
-      )
+      !accessTokenIsValid &&
+      refreshTokenIsValid &&
+      !config?.url?.includes('/auth')
     ) {
-      // await useReissue()
+      await tokenManager.reissueToken()
       tokenManager.initToken()
     } else if (
-      !tokenManager.validateToken(
-        tokenManager.accessExpired,
-        tokenManager.accessToken
-      ) &&
-      !tokenManager.validateToken(
-        tokenManager.refreshExpired,
-        tokenManager.refreshToken
-      )
-      // !tokenManager.skipUrl()
+      !accessTokenIsValid &&
+      !refreshTokenIsValid &&
+      !config?.url?.includes('/auth')
     )
       tokenManager.removeTokens()
 
@@ -40,18 +40,5 @@ instance.interceptors.request.use(
       : undefined
 
     return config
-  },
-
-  async (error: AxiosError) => {
-    const tokenManager = new TokenManager()
-
-    if (
-      error.response &&
-      error.response.status === 401
-      // !tokenManager.skipUrl()
-    ) {
-      // return usePatchAccessToken()
-    }
-    return Promise.reject(error)
   }
 )
