@@ -1,23 +1,17 @@
 'use client'
 
-import * as S from './style'
-import { ValueInput } from '../../components'
-import { ChangeEvent, useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
 import { usePostLogin } from '@bitgouel/api'
+import { useRouter } from 'next/navigation'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { useResetRecoilState } from 'recoil'
+import { ValueInput } from '../../components'
+import * as S from './style'
 
 import {
   Page,
   Page1Obj,
   Page2Obj,
-  Page3Obj,
-  PhoneCertificate,
-  PhoneCertificateText,
-  EmailCertificate,
-  EmailCertificateText,
-  IsPasswordRgx,
-  IsValidate,
+  Page3Obj
 } from '../../atoms'
 import { theme } from '../../styles'
 
@@ -32,14 +26,8 @@ const LoginPage = () => {
   const resetPage1Obj = useResetRecoilState(Page1Obj)
   const resetPage2Obj = useResetRecoilState(Page2Obj)
   const resetPage3Obj = useResetRecoilState(Page3Obj)
-  const resetPhoneCertificate = useResetRecoilState(PhoneCertificate)
-  const resetPhoneCertificateText = useResetRecoilState(PhoneCertificateText)
-  const resetEmailCertificate = useResetRecoilState(EmailCertificate)
-  const resetEmailCertificateText = useResetRecoilState(EmailCertificateText)
-  const resetIsPasswordRgx = useResetRecoilState(IsPasswordRgx)
-  const resetIsValidate = useResetRecoilState(IsValidate)
 
-  const { push } = useRouter()
+  const router = useRouter()
   const { mutate, error, isLoading } = usePostLogin()
 
   useEffect(() => {
@@ -168,13 +156,7 @@ const LoginPage = () => {
                 resetPage1Obj()
                 resetPage2Obj()
                 resetPage3Obj()
-                resetPhoneCertificate()
-                resetPhoneCertificateText()
-                resetEmailCertificate()
-                resetEmailCertificateText()
-                resetIsPasswordRgx()
-                resetIsValidate()
-                push('/auth/signUp')
+                router.push('/auth/signUp')
               }}
             >
               회원가입

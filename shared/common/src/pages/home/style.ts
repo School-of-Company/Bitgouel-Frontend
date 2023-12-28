@@ -23,6 +23,10 @@ const scrollingRightSecond = keyframes`
   100% {right: -2465px;}
 `
 
+export const HomeWrapper = styled.div`
+  background-color: #f6f6f6;
+`
+
 export const SlideBg = styled.div<{ url: any }>`
   height: 50rem;
   width: 100%;
@@ -38,8 +42,6 @@ export const SlideBg = styled.div<{ url: any }>`
 
 export const BgContainer = styled.div`
   width: 75rem;
-  display: flex;
-  justify-content: space-between;
 `
 
 export const HomeTitle = styled.span`
@@ -204,6 +206,7 @@ export const SemiTitleBox = styled.div`
 export const SchoolIntroWrapper = styled.div`
   width: 100vw;
   height: 35rem;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -215,6 +218,7 @@ export const SchoolIntroListContainer = styled.div`
   position: relative;
   width: 100vw;
   height: 15rem;
+  overflow: hidden;
 `
 
 const SchoolIntroListExample = styled.div`
@@ -230,21 +234,21 @@ const SchoolIntroListExample = styled.div`
 export const SchoolIntroListLeftFirst = styled(SchoolIntroListExample)`
   left: 0;
   height: inherit;
-  animation: ${scrollingLeftFirst} 20s linear 0s infinite normal none running;
+  animation: ${scrollingLeftFirst} 22s linear 0s infinite normal none running;
 `
 
 export const SchoolIntroListLeftSecond = styled(SchoolIntroListExample)`
   left: 0;
   height: inherit;
-  animation: ${scrollingLeftSecond} 20s linear 0s infinite normal none running;
+  animation: ${scrollingLeftSecond} 22s linear 0s infinite normal none running;
 `
 
 export const SchoolIntroListRightFirst = styled(SchoolIntroListExample)`
-  animation: ${scrollingRightFirst} 20s linear 0s infinite normal none running;
+  animation: ${scrollingRightFirst} 22s linear 0s infinite normal none running;
 `
 
 export const SchoolIntroListRightSecond = styled(SchoolIntroListExample)`
-  animation: ${scrollingRightSecond} 20s linear 0s infinite normal none running;
+  animation: ${scrollingRightSecond} 22s linear 0s infinite normal none running;
 `
 
 export const ClubListContainer = styled.div`
@@ -289,6 +293,7 @@ export const ClubIntroSubTitle = styled.span`
 
 export const ClubIntroText = styled.div`
   margin: 1rem 1.5rem 0rem;
+  width: 100%;
 
   li {
     color: ${({ theme }) => theme.color.gray['700']};

@@ -4,10 +4,13 @@ import * as S from './style'
 import Bg1 from '../../../assets/png/mainBg1.png'
 import { Link } from '../../../assets'
 import { ChangeEvent, useState } from 'react'
+import { usePostPost } from '@bitgouel/api'
+import { useModal } from '../../../hooks'
+import { CreateModal } from '../../../modals'
 
 const PostCreatePage = () => {
   const MAXLENGTH: number = 1000 as const
-
+  const { openModal } = useModal()
   const [links, setLinks] = useState<
     { showValue: string; value: string; name: string }[]
   >([
@@ -39,6 +42,8 @@ const PostCreatePage = () => {
   const savePostMainText = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setPostContent(event.target.value)
   }
+
+  const { mutate } = usePostPost('게시')
 
   return (
     <div>
@@ -79,7 +84,34 @@ const PostCreatePage = () => {
             </S.SettingSelectionContainer>
           </S.PostSetting>
           <S.ButtonContainer>
-            <S.CreateButton>게시글 추가하기</S.CreateButton>
+            <S.CreateButton
+              isAble={postTitle !== '' && postContent !== ''}
+              onClick={() =>
+                postTitle !== '' &&
+                postContent &&
+                openModal(
+                  <CreateModal
+                    question='게시글을 추가하시겠습니까?'
+                    title={postTitle}
+                    onCreate={() =>
+                      mutate({
+                        title: postTitle,
+                        content: postContent,
+                        links: links
+                          .filter((link) => link.value.length !== 0)
+                          .map((link) => {
+                            return { url: link.value }
+                          }),
+                        feedType: 'EMPLOYMENT',
+                      })
+                    }
+                    createText='추가하기'
+                  />
+                )
+              }
+            >
+              게시글 추가하기
+            </S.CreateButton>
           </S.ButtonContainer>
         </S.DocumentInput>
       </S.DocumentInputContainer>

@@ -93,3 +93,5 @@ export const club: Record<string, string[]> = {
   ],
   광주소프트웨어마이스터고: ['dev GSM'],
 }
+
+export const admissionYear: ['2021', '2022', '2023', '2024'] = ['2021', '2022', '2023', '2024']

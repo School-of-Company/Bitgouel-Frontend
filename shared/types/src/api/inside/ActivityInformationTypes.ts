@@ -1,15 +1,15 @@
 import { ApproveStatusEnum } from '../common'
 
-export interface ActivityInformationListTypes {
+interface ActivityInformationItem {
   activityId: string
   title: string
   userId: string
-  userName: string
+  username: string
   approveStatus: ApproveStatusEnum
 }
 
-export interface ActivityInformationResponseTypes {
+export interface ActivityInformationTypes {
   activities: {
-    content: ActivityInformationListTypes[]
+    content: ActivityInformationItem[]
   }
 }

@@ -5,7 +5,7 @@ import { authUrl, del, authQueryKeys, TokenManager } from '../../libs'
 
 export const useDeleteWithDraw = () => {
   const tokenManager = new TokenManager()
-  const { push } = useRouter()
+  const router = useRouter()
 
   return useMutation(
     authQueryKeys.deleteWithDraw(),
@@ -13,7 +13,7 @@ export const useDeleteWithDraw = () => {
     {
       onSuccess: () => {
         tokenManager.removeTokens()
-        push('/auth/login')
+        router.push('/auth/login')
         toast.success('계정을 탈퇴했습니다')
       },
     }

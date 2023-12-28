@@ -42,6 +42,39 @@ export const Title = styled.span`
   color: ${({ theme }) => theme.color.black};
 `
 
+export const ButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  bottom: 1.6rem;
+  position: fixed;
+
+  div {
+    color: ${({ theme }) => theme.color.white};
+    ${({ theme }) => theme.typo.text_lg.semibold};
+    border-radius: 0.5rem;
+    cursor: pointer;
+    width: 11.25rem;
+    height: 3.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`
+
+export const DeleteNoticeButton = styled.div`
+  background-color: ${({ theme }) => theme.color.error};
+  margin-right: 1rem;
+`
+
+export const ModifyNoticeButton = styled.div`
+  background-color: ${({ theme }) => theme.color.main};
+`
+
 export const SubTitle = styled.div`
   padding: 0.5rem 0;
   display: flex;
@@ -104,6 +137,8 @@ export const LinkWrapper = styled.div`
   margin-top: 0.25rem;
   a {
     color: ${({ theme }) => theme.color.gray['400']};
-  ${({ theme }) => theme.typo.text_md.medium};
+    ${({ theme }) => theme.typo.text_md.medium};
   }
 `
+
+

@@ -1,8 +1,6 @@
-import React from 'react'
 import { PostCreatePage } from '@bitgouel/common/src/pages'
-
-const PostDetail = () => {
+const PostCreate = () => {
   return <PostCreatePage />
 }
 
-export default PostDetail
+export default PostCreate

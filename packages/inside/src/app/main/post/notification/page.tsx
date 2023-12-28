@@ -1,8 +1,6 @@
-import React from 'react'
 import { NotificationListPage } from '@/PageContainer'
-
-const Notification = () => {
+const NotificationList = () => {
   return <NotificationListPage />
 }
 
-export default Notification
+export default NotificationList

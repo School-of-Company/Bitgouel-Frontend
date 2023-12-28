@@ -7,5 +7,7 @@ export { default as StudentPage } from './club/student'
 export { default as PostPage } from './post'
 export { default as PostDetailPage } from './post/detail'
 export { default as PostCreatePage } from './post/create'
+export { default as PostModifyPage } from './post/modify'
 export { default as NotificationDetailPage } from './post/notification/detail'
 export { default as MyPage } from './my'
+

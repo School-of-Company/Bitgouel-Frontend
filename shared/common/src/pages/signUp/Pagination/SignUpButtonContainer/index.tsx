@@ -25,7 +25,7 @@ const SignUpButtonContainer = ({
   isNext: boolean
   setPage: React.Dispatch<React.SetStateAction<number>>
 }) => {
-  const { push } = useRouter()
+  const router = useRouter()
   const page1Obj = useRecoilValue(Page1Obj)
   const [page2Obj, setPage2Obj] = useRecoilState(Page2Obj)
   const page3Obj = useRecoilValue(Page3Obj)
@@ -46,9 +46,10 @@ const SignUpButtonContainer = ({
             ...prev,
             {
               value: '',
-              placeholder: '입학년도 입력',
+              placeholder: '입학년도 선택',
               type: 'number',
               maxLength: 4,
+              pattern: "2021|2022|2023|2024"
             },
             {
               value: '',
@@ -152,7 +153,7 @@ const SignUpButtonContainer = ({
       <S.PreButton
         onClick={() =>
           match(page)
-            .with(1, () => push('/auth/login'))
+            .with(1, () => router.push('/auth/login'))
             .otherwise(() => setPage((prev) => prev - 1))
         }
       >

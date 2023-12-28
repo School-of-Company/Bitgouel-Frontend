@@ -108,9 +108,10 @@ export const ButtonContainer = styled.div<{ isApprove: ApproveStatusEnum }>`
     background-color: ${({ theme, isApprove }) =>
       isApprove && theme.color.gray['700']};
     ${({ theme }) => theme.typo.text_lg.semibold};
-    padding: 0.85rem 2.6rem;
     border-radius: 0.5rem;
     cursor: pointer;
+    width: 11.25rem;
+    height: 3.25rem;
   }
 `
 
@@ -122,3 +123,4 @@ export const CreateNotApproveButton = styled.div`
 export const CreateApproveButton = styled.div`
   background-color: ${({ theme }) => theme.color.main};
 `
+

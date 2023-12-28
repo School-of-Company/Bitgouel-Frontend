@@ -1,10 +1,11 @@
 'use client'
 
+import { PostItemProps } from '@bitgouel/types'
 import * as S from './style'
 import { usePathname, useRouter } from 'next/navigation'
 import { match } from 'ts-pattern'
 
-const PostItem = () => {
+const PostItem = ({ item }: PostItemProps) => {
   const { push } = useRouter()
   const pathname = usePathname()
 
@@ -13,18 +14,25 @@ const PostItem = () => {
       onClick={() =>
         push(
           match(pathname)
-            .with('/main/post', () => '/main/post/detail')
-            .otherwise(() => '/main/post/notification/detail')
+            .with('/main/post', () => `/main/post/${item.id}`)
+            .otherwise(() => `/main/post/notification/${item.id}`)
         )
       }
     >
       <div>
-        <S.PostTitle>마이다스 IT 기업탐방</S.PostTitle>
+        <S.PostTitle>{item.title}</S.PostTitle>
       </div>
       <div>
-        <S.PostDate>2023년 11월 11일</S.PostDate>
+        <S.PostDate>{`${item.modifiedAt.slice(0, 4)}년 ${item.modifiedAt.slice(
+          5,
+          7
+        )}월 ${item.modifiedAt.slice(8, 10)}일 ${item.modifiedAt.slice(
+          11,
+          16
+        )}`}</S.PostDate>
       </div>
     </S.PostItem>
   )
 }
+
 export default PostItem
