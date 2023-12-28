@@ -1,6 +1,7 @@
 'use client'
 
 import {
+  admissionYear,
   belongs,
   club,
   insideJob,
@@ -83,6 +84,13 @@ const SignUpScrollContainer = ({
             {item}
           </S.ScrollItem>
         ))}
+      {placeholder === '입학년도 선택' && 
+        admissionYear.map((item, idx) => (
+          <S.ScrollItem key={idx} onClick={() => onChange(item)}>
+            {item}
+          </S.ScrollItem>
+        ))
+      }
     </S.SignUpScrollContainer>
   )
 }

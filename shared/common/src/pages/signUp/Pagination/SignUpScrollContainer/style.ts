@@ -10,7 +10,7 @@ export const SignUpScrollContainer = styled.div<{
       ? placeholder === '소속'
         ? '36.5%'
         : '43%'
-      : placeholder === '직업'
+      : idx === 3 ? '76.5%' : placeholder === '직업'
       ? '47.5%'
       : '54.2%'};
   left: 50%;

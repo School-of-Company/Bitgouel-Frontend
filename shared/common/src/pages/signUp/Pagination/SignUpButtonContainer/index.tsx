@@ -46,9 +46,10 @@ const SignUpButtonContainer = ({
             ...prev,
             {
               value: '',
-              placeholder: '입학년도 입력',
+              placeholder: '입학년도 선택',
               type: 'number',
               maxLength: 4,
+              pattern: "2021|2022|2023|2024"
             },
             {
               value: '',
