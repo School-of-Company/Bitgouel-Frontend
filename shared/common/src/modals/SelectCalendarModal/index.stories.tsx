@@ -1,14 +1,14 @@
 'use client'
 
-import SelectCalendarModal from '.'
+import SelectCalendarTimeModal from '.'
 import type { Meta, StoryObj } from '@storybook/react'
 
 export default {
-  title: 'common/modals/SelectCalendarModal',
-  component: SelectCalendarModal,
-} as Meta<typeof SelectCalendarModal>
+  title: 'common/modals/SelectCalendarTimeModal',
+  component: SelectCalendarTimeModal,
+} as Meta<typeof SelectCalendarTimeModal>
 
-type Story = StoryObj<typeof SelectCalendarModal>
+type Story = StoryObj<typeof SelectCalendarTimeModal>
 
 export const Primary: Story = {
   args: {

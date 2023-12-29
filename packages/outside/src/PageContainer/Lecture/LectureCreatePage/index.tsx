@@ -8,7 +8,7 @@ import { Chevron, People } from '@bitgouel/common'
 import { useModal } from '@bitgouel/common/src/hooks'
 import { CreateModal } from '@bitgouel/common/src/modals'
 import { lectureToEnum } from '@bitgouel/common/src/constants'
-import { SelectCalendarModal, SelectScoreModal } from '@bitgouel/common'
+import { SelectCalendarTimeModal, SelectScoreModal } from '@bitgouel/common'
 import { usePostCreateLecture } from '@/../../../shared/api'
 
 const LectureCreatePage = () => {
@@ -180,7 +180,7 @@ const LectureCreatePage = () => {
               <S.SettingSelection>
                 <S.SelectModalContainer>
                   {isStart && (
-                    <SelectCalendarModal
+                    <SelectCalendarTimeModal
                       date={startDate}
                       setDate={setStartDate}
                       setText={setStartDateText}
@@ -197,7 +197,7 @@ const LectureCreatePage = () => {
                 <S.DateRange> ~ </S.DateRange>
                 <S.SelectModalContainer>
                   {isEnd && (
-                    <SelectCalendarModal
+                    <SelectCalendarTimeModal
                       date={endDate}
                       setDate={setEndDate}
                       setText={setEndDateText}
@@ -215,7 +215,7 @@ const LectureCreatePage = () => {
               <S.SettingSelection>
                 <S.SelectModalContainer>
                   {isComplete && (
-                    <SelectCalendarModal
+                    <SelectCalendarTimeModal
                       date={completeDate}
                       setDate={setCompleteDate}
                       setText={setCompleteDateText}
