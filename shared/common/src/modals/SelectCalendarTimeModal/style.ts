@@ -1,28 +1,35 @@
 import styled from '@emotion/styled'
 
-export const SelectCalendarModalWrapper = styled.div`
-  position: absolute;
-  bottom: 3rem;
-  right: -16.4rem;
-  width: 20rem;
-  height: 18rem;
+export const SelectCalendarTimeModalWrapper = styled.div`
+  bottom: 13rem;
+  position: fixed;
+  width: 21.75rem;
+  height: 19.25rem;
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgba(129, 129, 129, 0.6);
-  opacity: 1;
-  z-index: 99;
+  background-color: ${({ theme }) => theme.color.gray['500']};
 
   &::after {
     content: '';
     position: absolute;
-    top: 18rem;
-    right: 16rem;
+    top: 19rem;
+    right: 15rem;
     border-left: 1.25rem solid transparent;
     border-right: 1.25rem solid transparent;
-    border-top: 1.25rem solid rgba(129, 129, 129, 0.6);
+    border-top: 1.25rem solid ${({ theme }) => theme.color.gray['500']};
   }
+`
+
+export const TimeContainer = styled.div`
+  width: 12rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-left: 1rem;
+  border-right: 0.0625rem solid ${({ theme }) => theme.color.gray['700']};
 `
 
 export const ShowDateBox = styled.div`
@@ -37,12 +44,54 @@ export const ShowDateText = styled.h2`
   margin: 0;
 `
 
+export const TimeBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  span {
+    color: ${({ theme }) => theme.color.white};
+  }
+`
+
+export const InputTimeBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+
+  svg {
+    cursor: pointer;
+  }
+`
+
+export const TimeInput = styled.input`
+  width: 3.5rem;
+  height: 2.625rem;
+  background-color: rgba(255, 255, 255, 0.35);
+  border-radius: 0.5rem;
+  border: 0.0625rem solid ${({ theme }) => theme.color.gray['400']};
+  color: ${({ theme }) => theme.color.white};
+  outline: none;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  padding-left: 1.1rem;
+  ${({ theme }) => theme.typo.text_lg.semibold}
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+`
+
 export const CalendarContainer = styled.div`
   .react-calendar {
     background: none;
     color: ${({ theme }) => theme.color.white};
     border-radius: 0.5rem;
-    padding: 0.8rem;
+    padding: 1rem;
     border: none;
     width: 18.75rem;
   }
@@ -54,9 +103,9 @@ export const CalendarContainer = styled.div`
 
     button {
       color: ${({ theme }) => theme.color.white};
-      ${({ theme }) => theme.typo.title_sm.regular};
       min-width: 15%;
       background: none;
+      font-size: 1.8rem;
       border: none;
       cursor: pointer;
     }
@@ -64,7 +113,7 @@ export const CalendarContainer = styled.div`
 
   .react-calendar__navigation__label {
     span {
-      ${({theme}) => theme.typo.text_md.regular};
+      color: ${({ theme }) => theme.color.white};
     }
   }
 

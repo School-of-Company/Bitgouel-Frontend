@@ -4,7 +4,7 @@ import * as S from './style'
 import Bg2 from '@bitgouel/common/src/assets/png/mainBg2.png'
 import { Chevron } from '@bitgouel/common'
 import { useState } from 'react'
-import { SelectCalendarModal, SelectScoreModal } from '@bitgouel/common'
+import { SelectCalendarTimeModal, SelectScoreModal } from '@bitgouel/common'
 import { useSearchParams } from 'next/navigation'
 
 const ActivityModifyPage = () => {
@@ -52,7 +52,7 @@ const ActivityModifyPage = () => {
               <S.SettingSelection>
                 <S.SelectModalContainer>
                   {isActivityDate && (
-                    <SelectCalendarModal
+                    <SelectCalendarTimeModal
                       date={activityDate}
                       setDate={setActivityDate}
                       setText={setActivityDateText}
