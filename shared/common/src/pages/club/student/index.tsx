@@ -9,7 +9,7 @@ import {
   AddCertificate,
 } from '../../../assets'
 import Bg2 from '../../../assets/png/mainBg2.png'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, use, useState } from 'react'
 import { SelectCalendarModal } from '../../../modals'
 
 interface Certificate {
@@ -24,6 +24,7 @@ const StudentPage = () => {
     { name: '정보처리기능사', acquisitionDate: '2023-02-16' },
     { name: '정보처리기능사', acquisitionDate: '2023-02-16' },
   ])
+  const [isAddCertificate, setIsAddCertificate] = useState<boolean>(true)
   const [certificate, setCertificate] = useState<string>('')
   const [isCertificateDate, setIsCertificateDate] = useState<boolean>(false)
   const [certificateDate, setCertificateDate] = useState<Date>(new Date())
@@ -68,7 +69,9 @@ const StudentPage = () => {
           <S.CertificateBox>
             <S.CertificatePlusBox>
               <h3>자격증</h3>
+              <S.PlusCertificateIcon onClick={() => setIsAddCertificate((prev) => !prev)}>
               <PlusCertificate />
+              </S.PlusCertificateIcon>
             </S.CertificatePlusBox>
             <S.CertificateListBox>
               {certificateList.map((certificate) => (
@@ -83,36 +86,40 @@ const StudentPage = () => {
                   </span>
                 </S.CertificateItemBox>
               ))}
-              <S.AddCertificateBox>
-                <S.ListToggle list='추가' />
-                <S.AddCertificateInput
-                  type='text'
-                  value={certificate}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setCertificate(e.target.value)
-                  }
-                />
-                <S.AddCertificateDateBox>
-                  <S.SelectDateContainer>
-                    {isCertificateDate && (
-                      <SelectCalendarModal
-                        date={certificateDate}
-                        setDate={setCertificateDate}
-                        setText={setCertificateDateText}
-                      />
-                    )}
-                    <div onClick={() => setIsCertificateDate((prev) => !prev)}>
-                      <CalendarIcon />
-                    </div>
-                  </S.SelectDateContainer>
-                  <S.ShowDateText>{certificateDateText}</S.ShowDateText>
-                </S.AddCertificateDateBox>
-                {certificate !== '' && certificateDateText !== '' && (
-                  <S.AddCertificateIcon onClick={onCreate}>
-                    <AddCertificate />
-                  </S.AddCertificateIcon>
-                )}
-              </S.AddCertificateBox>
+              {isAddCertificate && (
+                <S.AddCertificateBox>
+                  <S.ListToggle list='추가' />
+                  <S.AddCertificateInput
+                    type='text'
+                    value={certificate}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                      setCertificate(e.target.value)
+                    }
+                  />
+                  <S.AddCertificateDateBox>
+                    <S.SelectDateContainer>
+                      {isCertificateDate && (
+                        <SelectCalendarModal
+                          date={certificateDate}
+                          setDate={setCertificateDate}
+                          setText={setCertificateDateText}
+                        />
+                      )}
+                      <div
+                        onClick={() => setIsCertificateDate((prev) => !prev)}
+                      >
+                        <CalendarIcon />
+                      </div>
+                    </S.SelectDateContainer>
+                    <S.ShowDateText>{certificateDateText}</S.ShowDateText>
+                  </S.AddCertificateDateBox>
+                  {certificate !== '' && certificateDateText !== '' && (
+                    <S.AddCertificateIcon onClick={onCreate}>
+                      <AddCertificate />
+                    </S.AddCertificateIcon>
+                  )}
+                </S.AddCertificateBox>
+              )}
             </S.CertificateListBox>
           </S.CertificateBox>
         </S.CertificateContainer>

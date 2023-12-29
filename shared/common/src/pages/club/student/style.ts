@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import { unstable_getServerProps } from 'next/dist/build/templates/pages'
 
 export const SlideBg = styled.div<{ url: any }>`
   height: 15rem;
@@ -57,6 +56,7 @@ export const CertificateWrapper = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
+  overflow-y: hidden;
 `
 
 export const CertificateContainer = styled.div`
@@ -146,23 +146,30 @@ export const CertificateItemBox = styled.div`
     &:nth-of-type(1) {
       color: ${({ theme }) => theme.color.black};
     }
-    
+
     &:nth-of-type(2) {
       color: ${({ theme }) => theme.color.gray['400']};
     }
   }
-  `
-  export const ListToggle = styled.div<{list: '추가' | "추가됨"}>`
-    width: 0.375rem;
-    height: 0.375rem;
-    background-color: ${({ theme, list }) => list === '추가' ? theme.color.gray['700'] : theme.color.main};
-    border-radius: 50%;
-  `
+`
+export const ListToggle = styled.div<{ list: '추가' | '추가됨' }>`
+  width: 0.375rem;
+  height: 0.375rem;
+  background-color: ${({ theme, list }) =>
+    list === '추가' ? theme.color.gray['700'] : theme.color.main};
+  border-radius: 50%;
+`
 
 export const CertificatePlusInputBox = styled.div`
   display: flex;
   align-items: center;
   gap: 0.3rem;
+`
+
+export const PlusCertificateIcon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 export const AddCertificateBox = styled.div`
@@ -171,7 +178,6 @@ export const AddCertificateBox = styled.div`
   gap: 0.4rem;
 `
 
-
 export const AddCertificateInput = styled.input`
   border: none;
   outline: none;
@@ -179,7 +185,7 @@ export const AddCertificateInput = styled.input`
   width: 12.5rem;
   height: 1.5625rem;
   padding: 0;
-  ${({theme}) => theme.typo.text_md.regular};
+  ${({ theme }) => theme.typo.text_md.regular};
 `
 
 export const AddCertificateDateBox = styled.div`
@@ -203,7 +209,7 @@ export const SelectDateContainer = styled.div`
 `
 
 export const ShowDateText = styled.span`
-  ${({theme}) => theme.typo.text_md.regular};
+  ${({ theme }) => theme.typo.text_md.regular};
   margin-bottom: 0.4rem;
 `
 
