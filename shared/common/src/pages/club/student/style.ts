@@ -38,14 +38,17 @@ export const ClubButton = styled.div`
   padding: 0 0.75rem;
   border-radius: 0.5rem;
   backdrop-filter: blur(0.25rem);
+
   svg {
     fill: ${({ theme }) => theme.color.white};
   }
+
   span {
     color: ${({ theme }) => theme.color.white};
     ${({ theme }) => theme.typo.text_md.regular};
     margin-left: 0.25rem;
   }
+
   &:hover {
     background-color: rgb(255, 255, 255, 0.4);
   }
@@ -217,4 +220,11 @@ export const AddCertificateIcon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+`
+
+export const ModifyText = styled.span`
+  text-decoration: underline;
+  color: ${({theme}) => theme.color.gray['700']};
+  cursor: pointer;
 `
