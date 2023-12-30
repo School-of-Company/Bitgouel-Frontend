@@ -61,7 +61,7 @@ const StudentPage = () => {
       setCertificateList((prev) => [
         ...prev,
         {
-          id: prev.at(-1).id + 1,
+          id: 4,
           name: certificateText,
           acquisitionDate: certificateDateText,
           isModify: false,
@@ -71,8 +71,6 @@ const StudentPage = () => {
     setCertificateText('')
     setCertificateDateText('')
   }
-
-  console.log(certificateDateText)
 
   const handleModify = (id: number) => {
     setCertificateList((prev) => {
