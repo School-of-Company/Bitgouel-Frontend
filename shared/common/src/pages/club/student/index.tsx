@@ -9,8 +9,9 @@ import {
   AddCertificate,
 } from '../../../assets'
 import Bg2 from '../../../assets/png/mainBg2.png'
-import { ChangeEvent, use, useState } from 'react'
-import { SelectCalendarModal } from '../../../modals'
+import { ChangeEvent, useState } from 'react'
+import { CreateModal, SelectCalendarModal } from '../../../modals'
+import { useModal } from '../../../hooks'
 
 interface Certificate {
   id: number
@@ -46,6 +47,7 @@ const StudentPage = () => {
   const [isCertificateDate, setIsCertificateDate] = useState<boolean>(false)
   const [certificateDate, setCertificateDate] = useState<Date>(new Date())
   const [certificateDateText, setCertificateDateText] = useState<string>('')
+  const {openModal, closeModal} = useModal()
 
   const onCreate = (id?: number) => {
     if (id) {
@@ -70,6 +72,8 @@ const StudentPage = () => {
     }
     setCertificateText('')
     setCertificateDateText('')
+    setIsAddCertificate(false)
+    closeModal()
   }
 
   const handleModify = (id: number) => {
@@ -196,7 +200,7 @@ const StudentPage = () => {
                     <S.ShowDateText>{certificateDateText}</S.ShowDateText>
                   </S.AddCertificateDateBox>
                   {certificateText !== '' && certificateDateText !== '' && (
-                    <S.AddCertificateIcon onClick={() => onCreate()}>
+                    <S.AddCertificateIcon onClick={() => openModal(<CreateModal question='자격증 정보를 추가하시겠습니까?' title={certificateText} onCreate={() => onCreate()} createText='추가하기' />)}>
                       <AddCertificate />
                     </S.AddCertificateIcon>
                   )}
