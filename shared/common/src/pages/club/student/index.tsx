@@ -9,9 +9,11 @@ import {
   AddCertificate,
 } from '../../../assets'
 import Bg2 from '../../../assets/png/mainBg2.png'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useRef, useState } from 'react'
 import { CreateModal, SelectCalendarModal } from '../../../modals'
 import { useModal } from '../../../hooks'
+import { theme } from '../../../styles'
+import { toast } from 'react-toastify'
 
 interface Certificate {
   id: number
@@ -47,14 +49,19 @@ const StudentPage = () => {
   const [isCertificateDate, setIsCertificateDate] = useState<boolean>(false)
   const [certificateDate, setCertificateDate] = useState<Date>(new Date())
   const [certificateDateText, setCertificateDateText] = useState<string>('')
-  const {openModal, closeModal} = useModal()
+  const { openModal, closeModal } = useModal()
 
   const onCreate = (id?: number) => {
     if (id) {
       setCertificateList((prev) => {
         const changedModify = prev.map((certificate) =>
           certificate.id === id
-            ? { ...certificate, isModify: false, name: certificateText, acquisitionDate: certificateDateText }
+            ? {
+                ...certificate,
+                isModify: false,
+                name: certificateText,
+                acquisitionDate: certificateDateText,
+              }
             : certificate
         )
         return changedModify
@@ -76,13 +83,33 @@ const StudentPage = () => {
     closeModal()
   }
 
-  const handleModify = (id: number) => {
+  const onModify = (id: number, name?: string, date?: string) => {
     setCertificateList((prev) => {
       const changedModify = prev.map((certificate) =>
         certificate.id === id ? { ...certificate, isModify: true } : certificate
       )
       return changedModify
     })
+    setCertificateText(name)
+    setCertificateDateText(
+      date
+        .split('')
+        .map((v) => (v === '-' ? '.' : v))
+        .join('')
+    )
+  }
+
+  const cancelModify = (id: number) => {
+    setCertificateList((prev) => {
+      const changedModify = prev.map((certificate) =>
+        certificate.id === id
+          ? { ...certificate, isModify: false }
+          : certificate
+      )
+      return changedModify
+    })
+    setCertificateText('')
+    setCertificateDateText('')
   }
 
   return (
@@ -150,9 +177,43 @@ const StudentPage = () => {
                     </S.AddCertificateDateBox>
                     {certificateText !== '' && certificateDateText !== '' && (
                       <S.AddCertificateIcon
-                        onClick={() => onCreate(certificate.id)}
+                        onClick={() =>
+                          (certificateText !== '' &&
+                            certificateDateText !== '' &&
+                            certificate.name !== certificateText) ||
+                          certificate.acquisitionDate
+                            .split('')
+                            .map((v) => (v === '-' ? '.' : v))
+                            .join('') !== certificateDateText
+                            ? openModal(
+                                <CreateModal
+                                  question='자격증 정보를 수정하시겠습니까?'
+                                  title={certificateText}
+                                  onCreate={() => onCreate(certificate.id)}
+                                  createText='수정하기'
+                                />
+                              )
+                            : certificate.name === certificateText &&
+                              certificate.acquisitionDate
+                                .split('')
+                                .map((v) => (v === '-' ? '.' : v))
+                                .join('') === certificateDateText
+                            && cancelModify(certificate.id)
+                        }
                       >
-                        <AddCertificate />
+                        <AddCertificate
+                          color={
+                            (certificateText !== '' &&
+                              certificateDateText !== '' &&
+                              certificate.name !== certificateText) ||
+                            certificate.acquisitionDate
+                              .split('')
+                              .map((v) => (v === '-' ? '.' : v))
+                              .join('') !== certificateDateText
+                              ? theme.color.main
+                              : theme.color.gray['700']
+                          }
+                        />
                       </S.AddCertificateIcon>
                     )}
                   </S.AddCertificateBox>
@@ -166,7 +227,15 @@ const StudentPage = () => {
                         .map((v) => (v === '-' ? '.' : v))
                         .join('')}
                     </span>
-                    <S.ModifyText onClick={() => handleModify(certificate.id)}>
+                    <S.ModifyText
+                      onClick={() =>
+                        onModify(
+                          certificate.id,
+                          certificate.name,
+                          certificate.acquisitionDate
+                        )
+                      }
+                    >
                       수정하기
                     </S.ModifyText>
                   </S.CertificateItemBox>
@@ -199,11 +268,28 @@ const StudentPage = () => {
                     </S.SelectDateContainer>
                     <S.ShowDateText>{certificateDateText}</S.ShowDateText>
                   </S.AddCertificateDateBox>
-                  {certificateText !== '' && certificateDateText !== '' && (
-                    <S.AddCertificateIcon onClick={() => openModal(<CreateModal question='자격증 정보를 추가하시겠습니까?' title={certificateText} onCreate={() => onCreate()} createText='추가하기' />)}>
-                      <AddCertificate />
-                    </S.AddCertificateIcon>
-                  )}
+                  <S.AddCertificateIcon
+                    onClick={() =>
+                      certificateText !== '' && certificateDateText !== ''
+                        ? openModal(
+                            <CreateModal
+                              question='자격증 정보를 추가하시겠습니까?'
+                              title={certificateText}
+                              onCreate={() => onCreate()}
+                              createText='추가하기'
+                            />
+                          )
+                        : toast.info('자격증 정보를 입력해주세요')
+                    }
+                  >
+                    <AddCertificate
+                      color={
+                        certificateText !== '' && certificateDateText !== ''
+                          ? theme.color.main
+                          : theme.color.gray['700']
+                      }
+                    />
+                  </S.AddCertificateIcon>
                 </S.AddCertificateBox>
               )}
             </S.CertificateListBox>
