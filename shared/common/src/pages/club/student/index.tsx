@@ -33,13 +33,13 @@ const StudentPage = () => {
     },
     {
       id: 2,
-      name: '정보처리기능사',
+      name: '컴퓨터활용능력 1급',
       acquisitionDate: '2023-02-16',
       isModify: false,
     },
     {
       id: 3,
-      name: '정보처리기능사',
+      name: '정보기기운용기능사',
       acquisitionDate: '2023-02-16',
       isModify: false,
     },
@@ -47,6 +47,8 @@ const StudentPage = () => {
   const [isAddCertificate, setIsAddCertificate] = useState<boolean>(false)
   const [certificateText, setCertificateText] = useState<string>('')
   const [isCertificateDate, setIsCertificateDate] = useState<boolean>(false)
+  const [modifyText, setModifyText] = useState<string>('')
+  const [modifyDateText, setModifyDateText] = useState<string>('')
   const [certificateDate, setCertificateDate] = useState<Date>(new Date())
   const [certificateDateText, setCertificateDateText] = useState<string>('')
   const { openModal, closeModal } = useModal()
@@ -59,8 +61,8 @@ const StudentPage = () => {
             ? {
                 ...certificate,
                 isModify: false,
-                name: certificateText,
-                acquisitionDate: certificateDateText,
+                name: modifyText,
+                acquisitionDate: modifyDateText,
               }
             : certificate
         )
@@ -83,15 +85,17 @@ const StudentPage = () => {
     closeModal()
   }
 
-  const onModify = (id: number, name?: string, date?: string) => {
+  const onModify = (id: number, name: string, date: string) => {
     setCertificateList((prev) => {
       const changedModify = prev.map((certificate) =>
-        certificate.id === id ? { ...certificate, isModify: true } : certificate
+        certificate.id === id
+          ? { ...certificate, isModify: true }
+          : { ...certificate, isModify: false }
       )
       return changedModify
     })
-    setCertificateText(name)
-    setCertificateDateText(
+    setModifyText(name)
+    setModifyDateText(
       date
         .split('')
         .map((v) => (v === '-' ? '.' : v))
@@ -108,8 +112,8 @@ const StudentPage = () => {
       )
       return changedModify
     })
-    setCertificateText('')
-    setCertificateDateText('')
+    setModifyText('')
+    setModifyDateText('')
   }
 
   return (
@@ -153,9 +157,9 @@ const StudentPage = () => {
                     <S.ListToggle list='추가' />
                     <S.AddCertificateInput
                       type='text'
-                      value={certificateText}
+                      value={modifyText}
                       onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                        setCertificateText(e.target.value)
+                        setModifyText(e.target.value)
                       }
                     />
                     <S.AddCertificateDateBox>
@@ -164,7 +168,7 @@ const StudentPage = () => {
                           <SelectCalendarModal
                             date={certificateDate}
                             setDate={setCertificateDate}
-                            setText={setCertificateDateText}
+                            setText={setModifyDateText}
                           />
                         )}
                         <div
@@ -173,49 +177,47 @@ const StudentPage = () => {
                           <CalendarIcon />
                         </div>
                       </S.SelectDateContainer>
-                      <S.ShowDateText>{certificateDateText}</S.ShowDateText>
+                      <S.ShowDateText>{modifyDateText}</S.ShowDateText>
                     </S.AddCertificateDateBox>
-                    {certificateText !== '' && certificateDateText !== '' && (
-                      <S.AddCertificateIcon
-                        onClick={() =>
-                          (certificateText !== '' &&
-                            certificateDateText !== '' &&
-                            certificate.name !== certificateText) ||
-                          certificate.acquisitionDate
-                            .split('')
-                            .map((v) => (v === '-' ? '.' : v))
-                            .join('') !== certificateDateText
-                            ? openModal(
-                                <CreateModal
-                                  question='자격증 정보를 수정하시겠습니까?'
-                                  title={certificateText}
-                                  onCreate={() => onCreate(certificate.id)}
-                                  createText='수정하기'
-                                />
-                              )
-                            : certificate.name === certificateText &&
-                              certificate.acquisitionDate
-                                .split('')
-                                .map((v) => (v === '-' ? '.' : v))
-                                .join('') === certificateDateText
-                            && cancelModify(certificate.id)
-                        }
-                      >
-                        <AddCertificate
-                          color={
-                            (certificateText !== '' &&
-                              certificateDateText !== '' &&
-                              certificate.name !== certificateText) ||
+                    <S.AddCertificateIcon
+                      onClick={() =>
+                        (modifyText !== '' &&
+                          modifyDateText !== '' &&
+                          certificate.name !== modifyText) ||
+                        certificate.acquisitionDate
+                          .split('')
+                          .map((v) => (v === '-' ? '.' : v))
+                          .join('') !== modifyDateText
+                          ? openModal(
+                              <CreateModal
+                                question='자격증 정보를 수정하시겠습니까?'
+                                title={modifyText}
+                                onCreate={() => onCreate(certificate.id)}
+                                createText='수정하기'
+                              />
+                            )
+                          : certificate.name === modifyText &&
                             certificate.acquisitionDate
                               .split('')
                               .map((v) => (v === '-' ? '.' : v))
-                              .join('') !== certificateDateText
-                              ? theme.color.main
-                              : theme.color.gray['700']
-                          }
-                        />
-                      </S.AddCertificateIcon>
-                    )}
+                              .join('') === modifyDateText &&
+                            cancelModify(certificate.id)
+                      }
+                    >
+                      <AddCertificate
+                        color={
+                          (modifyText !== '' &&
+                            modifyDateText !== '' &&
+                            certificate.name !== modifyText) ||
+                          certificate.acquisitionDate
+                            .split('')
+                            .map((v) => (v === '-' ? '.' : v))
+                            .join('') !== modifyDateText
+                            ? theme.color.main
+                            : theme.color.gray['700']
+                        }
+                      />
+                    </S.AddCertificateIcon>
                   </S.AddCertificateBox>
                 ) : (
                   <S.CertificateItemBox key={idx}>
