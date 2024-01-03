@@ -81,7 +81,8 @@ const Page2 = ({
             />
           )}
 
-        {placeholder === '동아리 이름 선택' &&
+        {
+        placeholder === '동아리 이름 선택' &&
           page2Obj[0].value &&
           !value.length &&
           isScrollContainer && (
@@ -93,9 +94,25 @@ const Page2 = ({
               setIsScrollContainer={setIsScrollContainer}
             />
           )}
+        {
+          placeholder === '입학년도 선택' &&
+          !value.length &&
+          isScrollContainer && (
+            <SignUpScrollContainer 
+              idx={idx}
+              placeholder={placeholder}
+              obj={page2Obj}
+              setObj={setPage2Obj}
+              setIsScrollContainer={setIsScrollContainer}
+            />
+          )
+        }
       </PaginationInputsContainer>
       <SignUpButtonContainer
-        isNext={page2Obj.every((item) => item.value.length)}
+        isNext={
+          page2Obj.every((item) => item.value.length)
+          
+        }
         setPage={setPage}
         page={page}
       />

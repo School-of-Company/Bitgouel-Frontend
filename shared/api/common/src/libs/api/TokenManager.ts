@@ -1,11 +1,11 @@
-import { usePathname } from 'next/navigation'
-import {
-  accessToken,
-  refreshToken,
-  accessExpiredAt,
-  refreshExpiredAt,
-} from '../'
 import { TokensTypes } from '@bitgouel/types'
+import axios from 'axios'
+import {
+  accessExpiredAt,
+  accessToken,
+  refreshExpiredAt,
+  refreshToken
+} from '../'
 
 class TokenManager {
   private _accessToken: string | null = null
@@ -68,6 +68,27 @@ class TokenManager {
     localStorage.removeItem(refreshToken)
     localStorage.removeItem(accessExpiredAt)
     localStorage.removeItem(refreshExpiredAt)
+  }
+
+  async reissueToken() {
+    try {
+      const { data }: { data: TokensTypes } = await axios.patch(
+        '/auth',
+        {},
+        {
+          baseURL: '/api',
+          withCredentials: true,
+          headers: {
+            RefreshToken: `Bearer ${this.refreshToken}`,
+          },
+        }
+      )
+      this.setTokens(data)
+      return true
+    } catch (e: unknown) {
+      this.removeTokens()
+      return false
+    }
   }
 
   get accessToken() {
