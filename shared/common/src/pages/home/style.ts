@@ -208,7 +208,6 @@ export const SemiTitleBox = styled.div`
 export const SchoolIntroWrapper = styled.div`
   width: 100vw;
   height: 35rem;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -220,7 +219,6 @@ export const SchoolIntroListContainer = styled.div`
   position: relative;
   width: 100vw;
   height: 15rem;
-  overflow: hidden;
 `
 
 const SchoolIntroListExample = styled.div`
