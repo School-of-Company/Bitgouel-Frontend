@@ -3,16 +3,10 @@
 import * as S from './style'
 import Image from 'next/image'
 import { SchoolIntroProps } from '@bitgouel/types'
-import { useState } from 'react'
 
 const SchoolIntro = ({ item }: SchoolIntroProps) => {
-  const [rotateY, setRotateY] = useState(0)
-
   return (
-    <S.SchoolIntroWrapper
-      onClick={() => (rotateY === 0 ? setRotateY(180) : setRotateY(0))}
-      rotate={rotateY}
-    >
+    <S.SchoolIntroWrapper>
       <S.MainWrapperFront>
         <S.TextContainerFront>
           <S.SubText>
