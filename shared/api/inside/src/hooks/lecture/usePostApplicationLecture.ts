@@ -20,7 +20,7 @@ export const usePostApplicationLecture = (id: string) => {
         toast.success('수강신청을 완료하였습니다')
       },
       onError: ({response}) => {
-        toast.error(response.data.message.split(".")[0])
+        toast.error(response?.data.message.split(".")[0])
       },
     }
   )

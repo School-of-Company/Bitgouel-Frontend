@@ -19,7 +19,7 @@ export const usePostSignUpCompanyInstructor = () => {
         setPage(4)
       },
       onError: ({ response }) => {
-        toast.error(response.data.message.split('.')[0])
+        toast.error(response?.data.message.split('.')[0])
       },
     }
   )
