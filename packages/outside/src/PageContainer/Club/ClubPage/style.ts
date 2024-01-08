@@ -50,3 +50,19 @@ export const ClubButton = styled.div`
     background-color: rgb(255, 255, 255, 0.4);
   }
 `
+
+export const ClubWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+`
+
+export const ClubContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 75rem;
+  height: 100%;
+  margin-top: 4rem;
+  gap: 1rem;
+`
