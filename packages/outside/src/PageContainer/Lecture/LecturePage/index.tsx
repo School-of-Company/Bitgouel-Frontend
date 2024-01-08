@@ -6,7 +6,7 @@ import { LectureTypeText, Role } from '@bitgouel/common/src/atoms'
 import { LectureItem } from '@bitgouel/common/src/components'
 import { LectureTypeModal } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import * as S from './style'
 import { lectureToEnum } from '@bitgouel/common/src/constants'
@@ -19,12 +19,16 @@ const LecturePage = () => {
     useRecoilState<string>(LectureTypeText)
   const role = useRecoilValue(Role)
 
-  const { data } = useGetLectureList({
+  const { data, refetch } = useGetLectureList({
     page: 0,
     size: 1,
     status: 'PENDING',
     type: lectureToEnum[lectureTypeText],
   })
+
+  useEffect(() => {
+    refetch()
+  }, [lectureTypeText])
 
   return (
     <div>

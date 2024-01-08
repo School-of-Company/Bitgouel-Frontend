@@ -29,10 +29,7 @@ export const usePostLogin = () => {
         tokenManager.setTokens(data)
         setRole(data.authority)
         return router.push('/')
-      },
-      onError: (error) => {
-        return console.log(error)
-      },
+      }
     }
   )
 }
