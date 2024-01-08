@@ -51,3 +51,11 @@ export const postUrl = {
   postModify: (post_id: string) => `/post/${post_id}`,
   postDelete: (post_id: string) => `/post/${post_id}`,
 } as const
+
+export const certificateUrl = {
+  certificate: () => `/certification`,
+  certificateListTeacher: (student_id: string) =>
+    `/certification/${student_id}`,
+  certificateModify: (student_id: string, id: string) =>
+    `/certification/${id}/${student_id}`,
+}

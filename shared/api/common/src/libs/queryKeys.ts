@@ -60,3 +60,13 @@ export const postQueryKeys = {
   patchBoardModify: (id: string) => ['post', 'modify', id],
   deleteBoardDelete: (id: string) => ['post', 'delete', id],
 } as const
+
+export const certificateQueryKeys = {
+  getCertificateListTeacher: (student_id: string) => ['get', 'listTeacher'],
+  getCertificateListStudent: () => ['get', 'list'],
+  postCertificateCreate: () => ['post', 'create'],
+  patchCertificateModify: (student_id: string, id: string) => [
+    'patch',
+    'modify',
+  ],
+}
