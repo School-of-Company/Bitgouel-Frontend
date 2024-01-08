@@ -3,7 +3,7 @@
 import { InClubArrow } from '@bitgouel/common/src/assets'
 import * as S from './style'
 
-const ClubListItem = () => {
+const ClubItem = () => {
   return (
     <S.ClubListItemBox>
       <S.ClubName>dev GSM</S.ClubName>
@@ -15,4 +15,4 @@ const ClubListItem = () => {
   )
 }
 
-export default ClubListItem
+export default ClubItem

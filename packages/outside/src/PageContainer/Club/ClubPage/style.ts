@@ -18,7 +18,7 @@ export const BgContainer = styled.div`
   margin-bottom: 1rem;
 `
 
-export const ClubTitle = styled.span`
+export const Title = styled.span`
   color: ${({ theme }) => theme.color.white};
   ${({ theme }) => theme.typo.title_lg.semibold};
 `
@@ -59,10 +59,29 @@ export const ClubWrapper = styled.div`
 `
 
 export const ClubContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   width: 75rem;
   height: 100%;
-  margin-top: 4rem;
+  margin-top: 3rem;
+  gap: 2rem;
+`
+
+export const ClubGroupBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.2rem;
+`
+
+export const ClubSchoolTitle = styled.div`
+  ${({theme}) => theme.typo.title_sm.semibold};
+  color: ${({theme}) => theme.color.black};
+`
+
+export const ClubListBox = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
 `
