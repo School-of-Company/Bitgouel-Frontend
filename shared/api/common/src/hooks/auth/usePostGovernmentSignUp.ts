@@ -1,26 +1,25 @@
 'use client'
 
+import { ApiErrorTypes, GovernmentPayloadTypes } from '@bitgouel/types'
 import { useMutation } from '@tanstack/react-query'
-import { post } from '../../libs/api/method'
-import { authQueryKeys } from '../../libs/queryKeys'
-import { authUrl } from '../../libs/urlController'
 import { AxiosError } from 'axios'
+import { toast } from 'react-toastify'
 import { useSetRecoilState } from 'recoil'
 import { Page } from '../../../../../common/src/atoms'
-import { GovernmentPayloadTypes } from '@bitgouel/types'
+import { authQueryKeys, authUrl, post } from '../../libs'
 
 export const usePostSignUpGovernment = () => {
   const setPage = useSetRecoilState(Page)
 
-  return useMutation<void, AxiosError, GovernmentPayloadTypes>(
+  return useMutation<void, AxiosError<ApiErrorTypes>, GovernmentPayloadTypes>(
     authQueryKeys.postSignUpGoverment(),
     (signUpValues) => post(authUrl.signUpGovernment(), signUpValues),
     {
-      onSuccess: (data) => {
-        return setPage(4)
+      onSuccess: () => {
+        setPage(4)
       },
-      onError: (error) => {
-        return console.log(error)
+      onError: ({ response }) => {
+        toast.error(response?.data.message.split('.')[0])
       },
     }
   )

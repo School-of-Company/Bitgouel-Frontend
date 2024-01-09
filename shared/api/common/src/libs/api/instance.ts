@@ -1,5 +1,7 @@
 import axios, { InternalAxiosRequestConfig } from 'axios'
 import TokenManager from './TokenManager'
+import { useRouter } from 'next/navigation'
+import { toast } from 'react-toastify'
 
 export const instance = axios.create({
   baseURL: '/api',
@@ -32,9 +34,10 @@ instance.interceptors.request.use(
       !accessTokenIsValid &&
       !refreshTokenIsValid &&
       !config?.url?.includes('/auth')
-    )
+    ) {
       tokenManager.removeTokens()
-
+      toast.error('다시 로그인해주세요')
+    }
     config.headers.Authorization = tokenManager.accessToken
       ? `Bearer ${tokenManager.accessToken}`
       : undefined
