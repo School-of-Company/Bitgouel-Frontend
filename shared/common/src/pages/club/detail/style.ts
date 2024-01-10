@@ -38,14 +38,17 @@ export const ClubButton = styled.div`
   padding: 0 0.75rem;
   border-radius: 0.5rem;
   backdrop-filter: blur(0.25rem);
+  
   svg {
     fill: ${({ theme }) => theme.color.white};
   }
+  
   span {
     color: ${({ theme }) => theme.color.white};
     ${({ theme }) => theme.typo.text_md.regular};
     margin-left: 0.25rem;
   }
+
   &:hover {
     background-color: rgb(255, 255, 255, 0.4);
   }
@@ -138,7 +141,7 @@ export const ClubMemberBox = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  border-bottom: 1px solid ${({theme}) => theme.color.gray['900']};
+  border-bottom: 0.0625rem solid ${({theme}) => theme.color.gray['900']};
   cursor: pointer;
   
   &:hover {

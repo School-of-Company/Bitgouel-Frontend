@@ -4,9 +4,10 @@ interface StudentType {
     authority: string
 }
 
-export interface MyClubResponseTypes {
+export interface ClubDetailResponseTypes {
   clubName: string
   highSchoolName: string
-  studentHeadcount: number
+  headCount: number
   students: StudentType[]
+  teacher: string
 }

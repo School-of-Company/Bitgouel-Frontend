@@ -54,7 +54,7 @@ export const MyIdentify = styled.div`
 
 export const MyIdentifyWrapper = styled.div`
   div {
-    margin-top: 2px;
+    margin-top: 0.125rem;
   }
 `
 

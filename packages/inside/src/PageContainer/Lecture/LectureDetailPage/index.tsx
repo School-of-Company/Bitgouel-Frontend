@@ -14,7 +14,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
 
   return (
     <div>
-      <S.SlideBg url={{ Bg3 }}>
+      <S.SlideBg url={Bg3}>
         <S.BgContainer>
           <S.LectureTitle>강의 상세</S.LectureTitle>
         </S.BgContainer>
