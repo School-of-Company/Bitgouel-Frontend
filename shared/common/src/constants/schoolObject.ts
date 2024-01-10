@@ -1,16 +1,18 @@
-import 광주자연과학고 from '../assets/png/schoolSymbols/광주자연과학고.png'
-import 전남공고 from '../assets/png/schoolSymbols/전남공고.png'
-import 숭의과학기술고 from '../assets/png/schoolSymbols/숭의과학기술고.png'
-import 동일미래고 from '../assets/png/schoolSymbols/동일미래고.png'
-import 전남여상 from '../assets/png/schoolSymbols/전남여상.png'
-import 서진여고 from '../assets/png/schoolSymbols/서진여고.png'
-import 광주공고 from '../assets/png/schoolSymbols/광주공고.png'
-import 금파공고 from '../assets/png/schoolSymbols/금파공고.png'
-import 송원여상 from '../assets/png/schoolSymbols/송원여상.png'
-import 광주자동화설비공고 from '../assets/png/schoolSymbols/광주자동화설비공고.png'
-import 광주소마고 from '../assets/png/schoolSymbols/광주소마고.png'
-import 광주전자공고 from '../assets/png/schoolSymbols/광주전자공고.png'
-import 광주여상 from '../assets/png/schoolSymbols/광주여상.png'
+import {
+  광주자연과학고,
+  전남공고,
+  숭의과학기술고,
+  동일미래고,
+  전남여상,
+  서진여고,
+  광주공고,
+  금파공고,
+  송원여상,
+  광주자동화설비공고,
+  광주소마고,
+  광주전자공고,
+  광주여상,
+} from '../assets'
 
 export const schoolToConstants: Record<string, string> = {
   광주공업고: 'GWANGJU_TECHNICAL_HIGH_SCHOOL',
