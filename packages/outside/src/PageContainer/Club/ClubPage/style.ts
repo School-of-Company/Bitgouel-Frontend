@@ -76,8 +76,8 @@ export const ClubGroupBox = styled.div`
 `
 
 export const ClubSchoolTitle = styled.div`
-  ${({theme}) => theme.typo.title_sm.semibold};
-  color: ${({theme}) => theme.color.black};
+  ${({ theme }) => theme.typo.title_sm.semibold};
+  color: ${({ theme }) => theme.color.black};
 `
 
 export const ClubListBox = styled.div`

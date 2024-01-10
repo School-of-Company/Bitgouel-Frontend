@@ -51,3 +51,15 @@ export const postUrl = {
   postModify: (post_id: string) => `/post/${post_id}`,
   postDelete: (post_id: string) => `/post/${post_id}`,
 } as const
+
+export const clubUrl = {
+  schoolClub: () => `/school`,
+  club: (queryString: string) => {
+    console.log(queryString)
+    return `/club?highschool=${queryString}`
+  },
+  clubDetail: (club_id: string) => `/club/${club_id}`,
+  myClub: () => `/club/my`,
+  studentDetail: (club_id: string, student_id: string) =>
+    `/club/${club_id}/${student_id}`,
+} as const

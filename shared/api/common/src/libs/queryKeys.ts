@@ -60,3 +60,11 @@ export const postQueryKeys = {
   patchBoardModify: (id: string) => ['post', 'modify', id],
   deleteBoardDelete: (id: string) => ['post', 'delete', id],
 } as const
+
+export const clubQueryKeys = {
+  getSchoolClub: () => ['club', 'schoolClub'],
+  getClub: () => ['club', 'clubList'],
+  getClubDetail: () => ['club', 'detail'],
+  getMyClub: () => ['club', 'myClub'],
+  getStudentDetail: () => ['club', 'studentDetail']
+} as const

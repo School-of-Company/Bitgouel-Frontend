@@ -94,3 +94,8 @@ export const LectureDetails = atom<LectureItemType>({
   key: 'LectureDetails',
   default: undefined,
 })
+
+export const SchoolFilterText = atom<string>({
+  key: 'SchoolFilterText',
+  default: '',
+})
