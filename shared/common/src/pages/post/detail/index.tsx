@@ -4,7 +4,7 @@ import { RejectModal } from '../../../modals'
 import { useDeletePost, useGetPostDetail } from '@bitgouel/api'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import Bg1 from '../../../assets/png/mainBg1.png'
+import { Bg1 } from '../../../assets'
 import { useModal } from '../../../hooks'
 import * as S from './style'
 import { useRecoilValue } from 'recoil'
@@ -31,14 +31,15 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
             <S.SubTitle>
               <S.NumberBox>
                 <S.SubTitleBox>게시일</S.SubTitleBox>
-                <span>{`${data?.data.modifiedAt.slice(
+                <span>
+                  {`${data?.data.modifiedAt.slice(
                     0,
                     4
                   )}년 ${data?.data.modifiedAt.slice(
                     5,
                     7
                   )}월 ${data?.data.modifiedAt.slice(8, 10)}일`}
-                  </span>
+                </span>
               </S.NumberBox>
             </S.SubTitle>
           </S.TitleContainer>
@@ -92,4 +93,3 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
 }
 
 export default PostDetailPage
-

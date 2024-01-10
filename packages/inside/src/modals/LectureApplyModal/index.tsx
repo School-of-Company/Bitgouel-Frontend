@@ -18,7 +18,7 @@ const LectureApplyModal = ({ title, apply }: LectureApplyModalProps) => {
           <S.LectureApplyTitle>{title}</S.LectureApplyTitle>
         </S.LectureLetterContainer>
         <S.LectureApplyButtonWrapper>
-          <S.CancleButton onClick={closeModal}>취소</S.CancleButton>
+          <S.CancelButton onClick={closeModal}>취소</S.CancelButton>
           <S.CreateButton onClick={apply}>수강 신청하기</S.CreateButton>
         </S.LectureApplyButtonWrapper>
       </S.LectureApplyModalWrapper>

@@ -1,6 +1,6 @@
 'use client'
 
-import Bg3 from '@bitgouel/common/src/assets/png/mainBg3.png'
+import { Bg3 } from '@bitgouel/common'
 import * as S from './style'
 import { useGetDetailLecture, usePostApplicationLecture } from '@bitgouel/api'
 import { lectureToKor } from '@bitgouel/common/src/constants'
@@ -14,7 +14,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
 
   return (
     <div>
-      <S.SlideBg url={Bg3}>
+      <S.SlideBg url={{ Bg3 }}>
         <S.BgContainer>
           <S.LectureTitle>강의 상세</S.LectureTitle>
         </S.BgContainer>

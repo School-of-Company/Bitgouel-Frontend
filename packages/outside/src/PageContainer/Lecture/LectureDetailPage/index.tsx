@@ -1,6 +1,6 @@
 'use client'
 
-import Bg3 from '@bitgouel/common/src/assets/png/mainBg3.png'
+import { Bg3 } from '@bitgouel/common'
 import * as S from './style'
 import {
   useDeleteRejectLecture,
@@ -18,7 +18,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { mutate: reject } = useDeleteRejectLecture(lectureId)
   return (
     <div>
-      <S.SlideBg url={Bg3}>
+      <S.SlideBg url={ Bg3 }>
         <S.BgContainer>
           <S.LectureTitle>강의 상세</S.LectureTitle>
         </S.BgContainer>

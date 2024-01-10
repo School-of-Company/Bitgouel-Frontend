@@ -2,7 +2,7 @@
 
 import { usePatchActivityApprove } from '@bitgouel/api'
 import { ApproveModal, Pen, RejectModal, TrashCan } from '@bitgouel/common'
-import Bg2 from '@bitgouel/common/src/assets/png/mainBg2.png'
+import { Bg2 } from '@bitgouel/common'
 import { lectureStatusToKor } from '@bitgouel/common/src/constants'
 import { useModal } from '@bitgouel/common/src/hooks'
 import { ApproveStatusEnum } from '@bitgouel/types'
@@ -41,7 +41,7 @@ const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
 
   return (
     <div>
-      <S.SlideBg url={Bg2}>
+      <S.SlideBg url={ Bg2 }>
         <S.BgContainer>
           <S.ActivityTitle>게시글</S.ActivityTitle>
           <S.TitleButtonContainer>

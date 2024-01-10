@@ -2,7 +2,7 @@ export const belongs = ['학교', '외부']
 export const insideJob = ['학생', '취업동아리 선생님']
 export const outsideJob = ['기업 강사', '대학 교수', '뽀짝 선생님', '유관기관']
 
-export const school: string[] = [
+export const schools: string[] = [
   '금파공업고',
   '전남공업고',
   '광주공업고',

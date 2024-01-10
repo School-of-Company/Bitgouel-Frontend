@@ -1,8 +1,7 @@
 'use client'
 
 import * as S from './style'
-import Bg1 from '../../../assets/png/mainBg1.png'
-import { Link } from '../../../assets'
+import { Bg1, Link } from '../../../assets'
 import { ChangeEvent, useState } from 'react'
 import { usePostPost } from '@bitgouel/api'
 import { useModal } from '../../../hooks'

@@ -3,8 +3,7 @@
 import { useGetPostDetail, usePatchPostModify } from '@bitgouel/api'
 import { PostModifyPayloadTypes } from '@bitgouel/types'
 import { ChangeEvent, useEffect, useState } from 'react'
-import { Link } from '../../../../assets'
-import Bg1 from '../../../assets/png/mainBg1.png'
+import { Bg1, Link } from '../../../../assets'
 import * as S from './style'
 
 const NoticeModifyPage = ({ postId }: { postId: string }) => {
@@ -113,4 +112,3 @@ const NoticeModifyPage = ({ postId }: { postId: string }) => {
 }
 
 export default NoticeModifyPage
-

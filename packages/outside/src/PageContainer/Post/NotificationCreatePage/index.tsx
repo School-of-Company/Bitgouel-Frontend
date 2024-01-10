@@ -1,7 +1,7 @@
 'use client'
 
 import * as S from './style'
-import Bg1 from '@bitgouel/common/src/assets/png/mainBg1.png'
+import { Bg1 } from '@bitgouel/common'
 import { CreateModal, Link, useModal } from '@bitgouel/common'
 import { ChangeEvent, useState } from 'react'
 import { usePostPost } from '@bitgouel/api'
@@ -42,7 +42,6 @@ const NoticeCreatePage = () => {
   const saveNoticeMainText = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setNoticeContent(event.target.value)
   }
-
 
   const onCreate = () => {
     mutate({

@@ -6,7 +6,7 @@ import {
   club,
   insideJob,
   outsideJob,
-  school,
+  schools
 } from '../../../../constants'
 import * as S from './style'
 
@@ -72,7 +72,7 @@ const SignUpScrollContainer = ({
         ))}
 
       {placeholder === '학교 이름 선택' &&
-        school.map((item, idx) => (
+        schools.map((item, idx) => (
           <S.ScrollItem key={idx} onClick={() => onChange(item)}>
             {item}
           </S.ScrollItem>
