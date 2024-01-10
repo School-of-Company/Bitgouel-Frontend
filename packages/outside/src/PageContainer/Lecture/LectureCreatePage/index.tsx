@@ -3,7 +3,7 @@
 import { LectureTypeModal } from '@bitgouel/common'
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 import * as S from './style'
-import Bg3 from '@bitgouel/common/src/assets/png/mainBg3.png'
+import { Bg3 } from '@bitgouel/common'
 import { Chevron, People } from '@bitgouel/common'
 import { useModal } from '@bitgouel/common/src/hooks'
 import { CreateModal } from '@bitgouel/common/src/modals'
@@ -140,7 +140,7 @@ const LectureCreatePage = () => {
 
   return (
     <div>
-      <S.SlideBg url={Bg3}>
+      <S.SlideBg url={ Bg3 }>
         <S.BgContainer>
           <S.CreateTitle>강의 개설</S.CreateTitle>
         </S.BgContainer>

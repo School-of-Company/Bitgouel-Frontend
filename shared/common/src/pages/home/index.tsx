@@ -3,17 +3,19 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { Arrow } from '../../assets'
-import Agency1 from '../../assets/png/agencySymbols/agency1.png'
-import Agency2 from '../../assets/png/agencySymbols/agency2.png'
-import Agency3 from '../../assets/png/agencySymbols/agency3.png'
-import Agency4 from '../../assets/png/agencySymbols/agency4.png'
-import Gwangju from '../../assets/png/Gwangju.png'
-import Office from '../../assets/png/OfficeGwangju.png'
-import Bg1 from '../../assets/png/slide1.png'
-import Bg2 from '../../assets/png/slide2.png'
-import Bg3 from '../../assets/png/slide3.png'
-import Bg4 from '../../assets/png/slide4.png'
+import {
+  Slide1,
+  Slide2,
+  Slide3,
+  Slide4,
+  Arrow,
+  Agency1,
+  Agency2,
+  Agency3,
+  Agency4,
+  Gwangju,
+  OfficeGwangju,
+} from '../../assets'
 import {
   ClubListSlider,
   CompanyListSlider,
@@ -25,7 +27,7 @@ import * as S from './style'
 
 const HomePage = () => {
   const [bgNum, setBgNum] = useState(2)
-  const imageArr = [Bg1, Bg2, Bg3, Bg4]
+  const imageArr = [Slide1, Slide2, Slide3, Slide4]
   const blueArr = ['500', '400', '300', '200', '100']
 
   useEffect(() => {
@@ -393,7 +395,7 @@ const HomePage = () => {
           </S.CopyRightsContainer>
           <S.FromLogoContainer>
             <Image src={Gwangju} alt='광주광역시' />
-            <Image src={Office} alt='광주광역시교육청' />
+            <Image src={OfficeGwangju} alt='광주광역시교육청' />
           </S.FromLogoContainer>
           <S.AddressBox>
             <S.AddressRightTitle>

@@ -1,7 +1,7 @@
 'use client'
 
 import { useGetPostList } from '@bitgouel/api'
-import Bg1 from '@bitgouel/common/src/assets/png/mainBg1.png'
+import { Bg1 } from '@bitgouel/common'
 import * as S from './style'
 import { PostItem } from '@bitgouel/common/src/components'
 

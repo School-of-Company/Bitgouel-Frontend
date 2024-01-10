@@ -2,7 +2,7 @@
 
 import { useGetClubDetail, useGetMyClub } from '@bitgouel/api'
 import * as S from './style'
-import Bg2 from '../../../assets/png/mainBg2.png'
+import { Bg2 } from '../../../assets'
 import { useRouter } from 'next/navigation'
 
 const ClubDetailPage = ({ id }: { id?: string }) => {
@@ -12,7 +12,7 @@ const ClubDetailPage = ({ id }: { id?: string }) => {
 
   return (
     <div>
-      <S.SlideBg url={Bg2}>
+      <S.SlideBg url={ Bg2 }>
         <S.BgContainer>
           <S.Title>취업 동아리</S.Title>
         </S.BgContainer>

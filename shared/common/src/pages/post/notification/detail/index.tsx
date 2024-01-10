@@ -1,7 +1,7 @@
 'use client'
 
 import * as S from './style'
-import Bg1 from '../../../../assets/png/mainBg1.png'
+import { Bg1 } from '../../../../assets'
 import Link from 'next/link'
 import { useDeletePost, useGetPostDetail } from '@bitgouel/api'
 import { RejectModal } from '../../../../modals'

@@ -29,7 +29,7 @@ const ClubPage = () => {
 
   return (
     <div>
-      <S.SlideBg url={Bg2}>
+      <S.SlideBg url={ Bg2 }>
         <S.BgContainer>
           <S.Title>취업 동아리 목록</S.Title>
           <S.ButtonContainer>

@@ -1,7 +1,7 @@
 'use client'
 
 import { Filter, Plus } from '@bitgouel/common'
-import Bg3 from '@bitgouel/common/src/assets/png/mainBg3.png'
+import { Bg3 } from '@bitgouel/common'
 import { LectureTypeText, Role } from '@bitgouel/common/src/atoms'
 import { LectureItem } from '@bitgouel/common/src/components'
 import { LectureTypeModal } from '@bitgouel/common'
@@ -32,7 +32,7 @@ const LecturePage = () => {
 
   return (
     <div>
-      <S.SlideBg url={Bg3}>
+      <S.SlideBg url={ Bg3 }>
         <S.BgContainer>
           <S.LectureTitle>강의 목록</S.LectureTitle>
           <S.ButtonContainer>

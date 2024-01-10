@@ -3,13 +3,13 @@
 import * as S from './style'
 import { useRouter } from 'next/navigation'
 import {
+  Bg2,
   CalendarIcon,
   PlusCertificate,
   PersonOut,
   AddCertificate,
 } from '../../../assets'
-import Bg2 from '../../../assets/png/mainBg2.png'
-import { ChangeEvent, useRef, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { CreateModal, SelectCalendarModal } from '../../../modals'
 import { useModal } from '../../../hooks'
 import { theme } from '../../../styles'

@@ -1,7 +1,7 @@
 'use client'
 
 import * as S from './style'
-import Bg2 from '@bitgouel/common/src/assets/png/mainBg2.png'
+import { Bg2 } from '@bitgouel/common'
 import { Chevron } from '@bitgouel/common'
 import { useState } from 'react'
 import { SelectCalendarTimeModal, SelectScoreModal } from '@bitgouel/common'
@@ -33,7 +33,7 @@ const ActivityModifyPage = () => {
 
   return (
     <div>
-      <S.SlideBg url={Bg2}>
+      <S.SlideBg url={ Bg2 }>
         <S.BgContainer>
           <S.ModifyTitle>활동 수정</S.ModifyTitle>
           <S.ButtonContainer></S.ButtonContainer>
