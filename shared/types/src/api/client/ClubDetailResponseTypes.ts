@@ -9,5 +9,5 @@ export interface ClubDetailResponseTypes {
   highSchoolName: string
   headCount: number
   students: StudentType[]
-  teacher: string
+  teacher: {id: string, name: string}
 }

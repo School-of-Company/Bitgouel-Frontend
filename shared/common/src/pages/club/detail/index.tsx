@@ -36,7 +36,7 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
             <S.BelongBox>
               <S.ExpressTeacherBox>담당 선생님</S.ExpressTeacherBox>
               <span>
-                {clubId ? clubDetail?.data.teacher : myClub?.data.teacher}
+                {clubId ? clubDetail?.data.teacher.name : myClub?.data.teacher.name}
               </span>
             </S.BelongBox>
           </S.ClubInfoContainer>
