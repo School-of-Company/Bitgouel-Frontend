@@ -65,14 +65,14 @@ export const ClubContainer = styled.div`
   width: 75rem;
   height: 100%;
   margin-top: 3rem;
-  gap: 2rem;
+  gap: 3.75rem;
 `
 
 export const ClubGroupBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1.2rem;
+  gap: 1.5rem;
 `
 
 export const ClubSchoolTitle = styled.div`

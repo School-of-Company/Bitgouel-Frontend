@@ -57,7 +57,7 @@ export const SchoolListContainer = styled.div`
 export const SchoolItemBox = styled.div`
   width: 33.5625rem;
   height: 3.625rem;
-  border-bottom: 1px solid ${({ theme }) => theme.color.gray['900']};
+  border-bottom: 0.0625rem solid ${({ theme }) => theme.color.gray['900']};
   ${({ theme }) => theme.typo.text_lg.medium};
   padding: 1rem 0 1rem 0;
   cursor: pointer;

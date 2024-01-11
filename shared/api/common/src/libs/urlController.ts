@@ -54,10 +54,7 @@ export const postUrl = {
 
 export const clubUrl = {
   schoolClub: () => `/school`,
-  club: (queryString: string) => {
-    console.log(queryString)
-    return `/club?highschool=${queryString}`
-  },
+  club: (queryString: string) => `/club?highSchool=${queryString}`,
   clubDetail: (club_id: string) => `/club/${club_id}`,
   myClub: () => `/club/my`,
   studentDetail: (club_id: string, student_id: string) =>
