@@ -7,13 +7,14 @@ import { roleToKor } from '../../constants'
 
 const MyPage = () => {
   const { data } = useGetMy()
+  const { phoneNumber, name, authority, organization, email } = data?.data || {}
   const { mutate } = useDeleteWithDraw()
 
   const sliceNumber = (): string => {
-    return `${data?.data.phoneNumber.slice(
-      0,
-      3
-    )}-${data?.data.phoneNumber.slice(3, 7)}-${data?.data.phoneNumber.slice(7)}`
+    return `${phoneNumber?.slice(0, 3)}-${phoneNumber?.slice(
+      3,
+      7
+    )}-${phoneNumber?.slice(7)}`
   }
 
   return (
@@ -26,29 +27,27 @@ const MyPage = () => {
           <S.MyIdentify>
             <S.MyIdentifyWrapper>
               <div>
-                <S.Name>{data?.data.name}</S.Name>
-                <S.Role>
-                  {roleToKor[data?.data.authority || 'ROLE_ADMIN']}
-                </S.Role>
+                <S.Name>{name}</S.Name>
+                <S.Role>{roleToKor[authority || 'ROLE_ADMIN']}</S.Role>
               </div>
               <div>
                 <S.OrganizationName>
-                  {data?.data.organization.split('/')[0]}
+                  {organization?.split('/')[0]}
                 </S.OrganizationName>
                 <S.SubEnter>소속</S.SubEnter>
               </div>
               <div>
-                <S.SubId>{data?.data.organization.split('/')[1]}</S.SubId>
+                <S.SubId>{organization?.split('/')[1]}</S.SubId>
               </div>
               <div>
-                <S.SubId>{data?.data.organization.split('/')[2]}</S.SubId>
+                <S.SubId>{organization?.split('/')[2]}</S.SubId>
               </div>
             </S.MyIdentifyWrapper>
             <S.AccountWrapper>
               <S.MyTitle>계정 정보</S.MyTitle>
               <S.AccountContainer>
                 <div>
-                  <S.LeftText>{data?.data.email}</S.LeftText>
+                  <S.LeftText>{email}</S.LeftText>
                   <S.RightText>이메일</S.RightText>
                 </div>
                 <div>

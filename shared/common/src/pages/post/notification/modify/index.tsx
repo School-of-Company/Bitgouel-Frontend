@@ -9,49 +9,38 @@ import * as S from './style'
 const NoticeModifyPage = ({ postId }: { postId: string }) => {
   const MAXLENGTH: number = 1000 as const
   const { mutate } = usePatchPostModify(postId)
-  const { data } = useGetPostDetail(postId, { staleTime: 0 })
-  const [noticeModifyData, setNoticeModifyData] =
-    useState<PostModifyPayloadTypes>(data?.data)
-  const [noticeModifyTitle, setNoticeModifyTitle] = useState<string>(
-    noticeModifyData?.title
-  )
-  const [noticeModifyContent, setNoticeModifyContent] = useState<string>(
-    noticeModifyData?.content
-  )
-  const [modifyLinks, setModifyLinks] = useState<any[]>([
-    noticeModifyData?.links.map((link, idx) => {
-      return {
-        showValue: link.length > 31 ? `${link.slice(0, 32)}...` : link,
-        value: link,
-        name: `link${idx + 1}`,
-      }
-    }),
-  ])
+  const { data } = useGetPostDetail(postId)
+
+  const [noticeModifyTitle, setNoticeModifyTitle] = useState<string>('')
+  const [noticeModifyContent, setNoticeModifyContent] = useState<string>('')
+  const [noticeModifyLinks, setNoticeModifyLinks] = useState<any[]>([])
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target
 
     const slicedValue = value.length > 31 ? `${value.slice(0, 32)}...` : value
 
-    setModifyLinks((prevLinks) =>
+    setNoticeModifyLinks((prevLinks) =>
       prevLinks.map((link) =>
         link.name === name ? { ...link, value, showValue: slicedValue } : link
       )
     )
   }
 
-  const changeNoticeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNoticeModifyTitle(event.target.value)
-  }
-
-  const changeNoticeContent = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    setNoticeModifyContent(event.target.value)
-  }
-
   useEffect(() => {
-    setNoticeModifyData(data?.data)
+    if (data) {
+      setNoticeModifyTitle(data?.data.title)
+      setNoticeModifyContent(data?.data.content)
+      setNoticeModifyLinks(
+        data?.data.links.map((link, idx) => {
+          return {
+            showValue: link.length > 31 ? `${link.slice(0, 32)}...` : link,
+            value: link,
+            name: `link${idx + 1}`,
+          }
+        })
+      )
+    }
   }, [data])
 
   return (
@@ -67,18 +56,22 @@ const NoticeModifyPage = ({ postId }: { postId: string }) => {
             value={noticeModifyTitle}
             maxLength={100}
             placeholder='공지사항 제목 (100자 이내)'
-            onChange={changeNoticeTitle}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setNoticeModifyTitle(e.target.value)
+            }
           />
           <S.InputMainText
             value={noticeModifyContent}
             maxLength={MAXLENGTH}
             placeholder='공지사항 내용 작성 (1000자 이내)'
-            onChange={changeNoticeContent}
+            onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+              setNoticeModifyContent(e.target.value)
+            }
           />
           <S.PostSetting>
             <S.SettingTitle>공지사항 세부 설정</S.SettingTitle>
             <S.SettingSelectionContainer>
-              {modifyLinks?.map((link, idx) => (
+              {noticeModifyLinks?.map((link, idx) => (
                 <S.SettingForm key={idx}>
                   <Link />
                   <S.SettingInput
@@ -98,11 +91,11 @@ const NoticeModifyPage = ({ postId }: { postId: string }) => {
                 mutate({
                   title: noticeModifyTitle,
                   content: noticeModifyContent,
-                  links: modifyLinks.map((link) => link.value),
+                  links: noticeModifyLinks.map((link) => link.value),
                 })
               }
             >
-              공지사항 추가하기
+              공지사항 수정하기
             </S.CreateButton>
           </S.ButtonContainer>
         </S.DocumentInput>

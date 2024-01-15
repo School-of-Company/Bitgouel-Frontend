@@ -9,9 +9,11 @@ import { useRouter } from 'next/navigation'
 import { useModal } from '../../../../hooks'
 import { useRecoilValue } from 'recoil'
 import { Role } from '../../../../atoms'
+import { sliceDate } from '../../../../utils'
 
 const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
   const { data } = useGetPostDetail(noticeId)
+  const { title, content, modifiedAt, links } = data?.data || {}
   const { mutate } = useDeletePost(noticeId, '공지사항')
   const { openModal } = useModal()
   const { push } = useRouter()
@@ -27,22 +29,22 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
       <S.DocumentWrapper>
         <S.Document>
           <S.TitleContainer>
-            <S.Title>{data?.data.title}</S.Title>
+            <S.Title>{title}</S.Title>
             <S.SubTitle>
               <S.NumberBox>
                 <S.SubTitleBox>게시일</S.SubTitleBox>
-                <span>{data?.data.modifiedAt}</span>
+                <span>{sliceDate(modifiedAt)}</span>
               </S.NumberBox>
             </S.SubTitle>
           </S.TitleContainer>
-          <S.MainText>{data?.data.content}</S.MainText>
+          <S.MainText>{content}</S.MainText>
           <S.SharedLine />
           <S.LinkTextBox>
             <div>
               <S.LinkTitle>관련 링크 보기</S.LinkTitle>
             </div>
             <S.LinkWrapper>
-              {data?.data.links.map((link) => (
+              {links?.map((link) => (
                 <Link href={link} passHref legacyBehavior>
                   <a target='_blank' rel='noopener noreferrer'>
                     {link}
@@ -62,7 +64,7 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
                       openModal(
                         <RejectModal
                           type='공지사항'
-                          title={data?.data.title}
+                          title={title}
                           onAppropriation={() => mutate()}
                         />
                       )

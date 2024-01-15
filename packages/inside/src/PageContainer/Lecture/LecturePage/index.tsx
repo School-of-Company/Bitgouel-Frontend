@@ -23,13 +23,15 @@ const LecturePage = () => {
     type: lectureToEnum[lectureTypeText],
   })
 
+  const { lectures } = data?.data || {}
+
   useEffect(() => {
     refetch()
   }, [lectureTypeText])
 
   return (
     <div>
-      <S.SlideBg url={ Bg3 }>
+      <S.SlideBg url={Bg3}>
         <S.BgContainer>
           <S.LectureTitle>강의 목록</S.LectureTitle>
           <S.ButtonContainer>
@@ -54,7 +56,7 @@ const LecturePage = () => {
       </S.SlideBg>
       <S.ListWrapper>
         <S.ListContainer>
-          {data?.data.lectures.content.map((item) => (
+          {lectures?.content.map((item) => (
             <LectureItem key={item.id} role={role} item={item} />
           ))}
         </S.ListContainer>

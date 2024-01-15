@@ -12,6 +12,8 @@ const NotificationListPage = () => {
     page: 1,
   })
 
+  const { posts } = data?.data || {}
+
   return (
     <div>
       <S.SlideBg url={Bg1}>
@@ -21,7 +23,7 @@ const NotificationListPage = () => {
       </S.SlideBg>
       <S.NotificationListWrapper>
         <S.NotificationListContainer>
-          {data?.data.posts.content.map((notice) => (
+          {posts?.content.map((notice) => (
             <PostItem key={notice.id} item={notice} />
           ))}
         </S.NotificationListContainer>

@@ -15,6 +15,7 @@ const NotificationListPage = () => {
     size: 6,
     page: 0,
   })
+  const { posts } = data?.data || {}
   const role = useRecoilValue(Role)
 
   return (
@@ -36,7 +37,7 @@ const NotificationListPage = () => {
       </S.SlideBg>
       <S.NotificationListWrapper>
         <S.NotificationListContainer>
-          {data?.data.posts.content.map((notice) => (
+          {posts?.content.map((notice) => (
             <PostItem key={notice.id} item={notice} />
           ))}
         </S.NotificationListContainer>

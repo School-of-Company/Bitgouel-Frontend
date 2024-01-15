@@ -103,13 +103,16 @@ export const ButtonContainer = styled.div<{ isApprove: ApproveStatusEnum }>`
   position: fixed;
 
   div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: ${({ theme, isApprove }) =>
       isApprove === 'APPROVED' ? theme.color.gray['400'] : theme.color.white};
     background-color: ${({ theme, isApprove }) =>
       isApprove && theme.color.gray['700']};
     ${({ theme }) => theme.typo.text_lg.semibold};
     border-radius: 0.5rem;
-    cursor: pointer;
+    cursor: ${({ isApprove }) => (isApprove ? 'default' : 'pointer')};
     width: 11.25rem;
     height: 3.25rem;
   }
@@ -123,4 +126,3 @@ export const CreateNotApproveButton = styled.div`
 export const CreateApproveButton = styled.div`
   background-color: ${({ theme }) => theme.color.main};
 `
-

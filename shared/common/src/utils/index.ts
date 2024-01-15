@@ -1,0 +1,1 @@
+export {sliceDateTime, sliceDate} from './slideDate'

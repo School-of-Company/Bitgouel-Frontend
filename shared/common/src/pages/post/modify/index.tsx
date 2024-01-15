@@ -17,25 +17,26 @@ const PostModifyPage = ({ postId }: { postId: string }) => {
   const MAXLENGTH: number = 1000 as const
   const { mutate } = usePatchPostModify(postId)
   const { data } = useGetPostDetail(postId)
+  const {title, content, links} = data?.data || {}
 
   const initialData = {
-    title: data?.data.title,
-    content: data?.data.content,
-    links: data?.data.links,
+    title: title,
+    content: content,
+    links: links,
   }
 
   const [postModifyTitle, setPostModifyTitle] = useState<string | undefined>(
-    data?.data.title
+    title
   )
   const [postModifyContent, setPostModifyContent] = useState<
     string | undefined
-  >(data?.data.content)
+  >(content)
 
   const [postModifyLinks, setPostModifyLinks] = useState<
     LinksObjectTypes[] | string[]
   >(
-    data?.data.links
-      ? data.data.links.map((link, idx) => ({
+    links
+      ? links?.map((link, idx) => ({
           showValue: link.length > 31 ? `${link.slice(0, 32)}...` : link,
           value: link,
           name: `link${idx + 1}`,

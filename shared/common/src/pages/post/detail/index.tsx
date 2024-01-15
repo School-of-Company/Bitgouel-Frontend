@@ -9,9 +9,11 @@ import { useModal } from '../../../hooks'
 import * as S from './style'
 import { useRecoilValue } from 'recoil'
 import { Role } from '../../../atoms'
+import { sliceDate } from '../../../utils'
 
 const PostDetailPage = ({ postId }: { postId: string }) => {
   const { data } = useGetPostDetail(postId)
+  const { title, content, modifiedAt, links } = data?.data || {}
   const { mutate } = useDeletePost(postId, '게시글')
   const { openModal } = useModal()
   const { push } = useRouter()
@@ -27,30 +29,22 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
       <S.DocumentWrapper>
         <S.Document>
           <S.TitleContainer>
-            <S.Title>{data?.data.title}</S.Title>
+            <S.Title>{title}</S.Title>
             <S.SubTitle>
               <S.NumberBox>
                 <S.SubTitleBox>게시일</S.SubTitleBox>
-                <span>
-                  {`${data?.data.modifiedAt.slice(
-                    0,
-                    4
-                  )}년 ${data?.data.modifiedAt.slice(
-                    5,
-                    7
-                  )}월 ${data?.data.modifiedAt.slice(8, 10)}일`}
-                </span>
+                <span>{sliceDate(modifiedAt)}</span>
               </S.NumberBox>
             </S.SubTitle>
           </S.TitleContainer>
-          <S.MainText>{data?.data.content}</S.MainText>
+          <S.MainText>{content}</S.MainText>
           <S.SharedLine />
           <S.LinkTextBox>
             <div>
               <S.LinkTitle>관련 링크 보기</S.LinkTitle>
             </div>
             <S.LinkWrapper>
-              {data?.data.links.map((link) => (
+              {links?.map((link) => (
                 <Link href={link} passHref legacyBehavior>
                   <a target='_blank' rel='noopener noreferrer'>
                     {link}
@@ -70,7 +64,7 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
                       openModal(
                         <RejectModal
                           type='게시글'
-                          title={data?.data.title}
+                          title={title}
                           onAppropriation={() => mutate()}
                         />
                       )
