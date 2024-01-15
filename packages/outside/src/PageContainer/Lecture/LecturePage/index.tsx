@@ -21,7 +21,7 @@ const LecturePage = () => {
 
   const { data, refetch } = useGetLectureList({
     page: 0,
-    size: 1,
+    size: 10,
     status: 'PENDING',
     type: lectureToEnum[lectureTypeText],
   })
