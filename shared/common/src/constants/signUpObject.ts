@@ -1,8 +1,26 @@
-export const belongs = ['학교', '외부']
-export const insideJob = ['학생', '취업동아리 선생님']
-export const outsideJob = ['기업 강사', '대학 교수', '뽀짝 선생님', '유관기관']
+export const belongs: ['학교', '외부'] = ['학교', '외부']
+export const insideJob: ['학생', '취업동아리 선생님'] = [
+  '학생',
+  '취업동아리 선생님',
+]
+export const outsideJob: ['기업 강사', '대학 교수', '뽀짝 선생님', '유관기관'] =
+  ['기업 강사', '대학 교수', '뽀짝 선생님', '유관기관']
 
-export const schools: string[] = [
+export const schools: [
+  '금파공업고',
+  '전남공업고',
+  '광주공업고',
+  '전남여자상업고',
+  '광주자연과학고',
+  '광주전자공업고',
+  '서진여자고',
+  '숭의과학기술고',
+  '동일미래과학고',
+  '광주여자상업고',
+  '송원여자상업고',
+  '광주자동화설비마이스터고',
+  '광주소프트웨어마이스터고'
+] = [
   '금파공업고',
   '전남공업고',
   '광주공업고',
@@ -94,4 +112,9 @@ export const club: Record<string, string[]> = {
   광주소프트웨어마이스터고: ['dev GSM'],
 }
 
-export const admissionYear: ['2021', '2022', '2023', '2024'] = ['2021', '2022', '2023', '2024']
+export const admissionYear: ['2021', '2022', '2023', '2024'] = [
+  '2021',
+  '2022',
+  '2023',
+  '2024',
+]

@@ -7,11 +7,10 @@ import { clubQueryKeys, clubUrl, get } from '../common'
 export const useGetClubList = (
   queryString: string,
   options?: UseQueryOptions<AxiosResponse>
-) => {
+) => 
 
-return  useQuery<AxiosResponse<ClubListResponseTypes>, AxiosError<ApiError>>(
+useQuery<AxiosResponse<ClubListResponseTypes>, AxiosError<ApiError>>(
     clubQueryKeys.getClub(),
     () => get(clubUrl.club(queryString)),
     options
   )
-}

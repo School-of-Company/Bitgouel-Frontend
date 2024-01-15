@@ -1,11 +1,11 @@
 'use client'
 
-import React, { ChangeEvent, useState } from 'react'
-import * as S from './style'
+import { SelectCalendarModalProps } from '@bitgouel/types'
+import { useState } from 'react'
 import Calendar from 'react-calendar'
 import { Chevron } from '../../assets'
-import { SelectCalendarModalProps } from '@bitgouel/types'
 import { theme } from '../../styles'
+import * as S from './style'
 
 const SelectCalendarTimeModal = ({
   date,

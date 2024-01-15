@@ -1,10 +1,10 @@
 import styled from '@emotion/styled'
 
 export const SelectCalendarTimeModalWrapper = styled.div`
-  bottom: 13rem;
+  bottom: 10rem;
   position: fixed;
-  width: 21.75rem;
-  height: 19.25rem;
+  width: 33.25rem;
+  height: 20.5rem;
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
@@ -14,7 +14,7 @@ export const SelectCalendarTimeModalWrapper = styled.div`
   &::after {
     content: '';
     position: absolute;
-    top: 19rem;
+    top: 20.5rem;
     right: 15rem;
     border-left: 1.25rem solid transparent;
     border-right: 1.25rem solid transparent;
