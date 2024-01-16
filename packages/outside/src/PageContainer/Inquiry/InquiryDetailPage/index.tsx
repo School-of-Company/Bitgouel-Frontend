@@ -57,7 +57,7 @@ const InquiryDetailPage = () => {
               .otherwise(() => false)}
           >
             <S.AnswerTitleBox>
-              <S.AnswerTitle>문의에 대한 답변</S.AnswerTitle>
+              <S.AnswerTitle>문의 답변</S.AnswerTitle>
               <S.AnswerDate>2024년 01월 16일 21:43</S.AnswerDate>
             </S.AnswerTitleBox>
             <S.AnswerText>의 문</S.AnswerText>
