@@ -141,3 +141,36 @@ export const AnswerText = styled.div`
   line-height: 1.625rem;
   margin-top: 1rem;
 `
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  bottom: 1.6rem;
+  position: fixed;
+
+  div {
+    color: ${({ theme }) => theme.color.white};
+    ${({ theme }) => theme.typo.text_lg.semibold};
+    border-radius: 0.5rem;
+    cursor: pointer;
+    width: 11.25rem;
+    height: 3.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`
+
+export const DeleteNoticeButton = styled.div`
+  background-color: ${({ theme }) => theme.color.error};
+  margin-right: 1rem;
+`
+
+export const ModifyNoticeButton = styled.div`
+  background-color: ${({ theme }) => theme.color.main};
+`

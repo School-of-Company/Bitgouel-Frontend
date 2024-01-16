@@ -62,6 +62,16 @@ const InquiryDetailPage = () => {
             </S.AnswerTitleBox>
             <S.AnswerText>의 문</S.AnswerText>
           </S.AnswerBox>
+          <S.ButtonWrapper>
+            <S.ButtonContainer>
+              <S.DeleteNoticeButton>삭제하기</S.DeleteNoticeButton>
+              <S.ModifyNoticeButton
+                onClick={() => push(`/main/inquiry/answer`)}
+              >
+                답변하기
+              </S.ModifyNoticeButton>
+            </S.ButtonContainer>
+          </S.ButtonWrapper>
         </S.Document>
       </S.DocumentWrapper>
     </div>

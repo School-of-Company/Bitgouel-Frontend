@@ -14,18 +14,6 @@ const InquiryDetailPage = () => {
       <S.SlideBg url={Bg5}>
         <S.BgContainer>
           <S.InquiryTitle>문의 상세</S.InquiryTitle>
-          <S.TitleButtonContainer>
-            <S.InquiryButton
-              onClick={() => push('/main/inquiry/detail/modify')}
-            >
-              <Pen />
-              <span>문의 수정</span>
-            </S.InquiryButton>
-            <S.InquiryButton>
-              <TrashCan />
-              <span>문의 삭제</span>
-            </S.InquiryButton>
-          </S.TitleButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
       <S.DocumentWrapper>
