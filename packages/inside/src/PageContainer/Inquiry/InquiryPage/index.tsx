@@ -1,6 +1,6 @@
 'use client'
 
-import { Plus } from '@bitgouel/common'
+import { InquiryItem, Plus } from '@bitgouel/common'
 import { Bg5 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import * as S from './style'
@@ -21,7 +21,11 @@ const LecturePage = () => {
           </S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
-      <S.ListWrapper></S.ListWrapper>
+      <S.ListWrapper>
+        <S.ListContainer>
+          <InquiryItem />
+        </S.ListContainer>
+      </S.ListWrapper>
     </div>
   )
 }
