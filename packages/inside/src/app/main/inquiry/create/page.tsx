@@ -1,7 +1,7 @@
 import { InquiryCreatePage } from '@/PageContainer'
 
-const InquiryDetail = () => {
+const InquiryCreate = () => {
   return <InquiryCreatePage />
 }
 
-export default InquiryDetail
+export default InquiryCreate

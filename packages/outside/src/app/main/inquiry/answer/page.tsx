@@ -1,7 +1,7 @@
 import { InquiryAnswerPage } from '@/PageContainer'
 
-const InquiryDetail = () => {
+const InquiryAnswer = () => {
   return <InquiryAnswerPage />
 }
 
-export default InquiryDetail
+export default InquiryAnswer
