@@ -1,9 +1,12 @@
 'use client'
 import * as S from './style'
+import { useRouter } from 'next/navigation'
 
 const Header = () => {
+  const router = useRouter()
+
   return (
-    <S.InquiryItemWrapper>
+    <S.InquiryItemWrapper onClick={() => router.push(`/main/inquiry/detail`)}>
       <S.SubTitle>
         <S.Name>홍길동</S.Name>
         <S.Date>2024.01.14</S.Date>
