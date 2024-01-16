@@ -225,6 +225,6 @@ export const AddCertificateIcon = styled.div`
 
 export const ModifyText = styled.span`
   text-decoration: underline;
-  color: ${({theme}) => theme.color.gray['700']};
+  color: ${({ theme }) => theme.color.gray['700']};
   cursor: pointer;
 `
