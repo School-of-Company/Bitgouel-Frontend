@@ -13,12 +13,6 @@ const LecturePage = () => {
       <S.SlideBg url={Bg5}>
         <S.BgContainer>
           <S.InquiryTitle>문의사항</S.InquiryTitle>
-          <S.ButtonContainer>
-            <S.InquiryButton onClick={() => push('/main/inquiry/create')}>
-              <Plus />
-              <span>문의사항 추가</span>
-            </S.InquiryButton>
-          </S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
       <S.ListWrapper>
