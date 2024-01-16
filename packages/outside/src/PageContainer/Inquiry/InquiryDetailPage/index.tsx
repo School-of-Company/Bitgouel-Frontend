@@ -44,6 +44,10 @@ const InquiryDetailPage = () => {
                 <S.SubTitleBox>게시일</S.SubTitleBox>
                 <span>2023년 11월 11일 12:34</span>
               </S.SemiTitleBox>
+              <S.SemiTitleBox>
+                <S.SubTitleBox>게시자</S.SubTitleBox>
+                <span>홍길동</span>
+              </S.SemiTitleBox>
             </S.SubTitle>
           </S.TitleContainer>
           <S.MainText>문 의</S.MainText>
