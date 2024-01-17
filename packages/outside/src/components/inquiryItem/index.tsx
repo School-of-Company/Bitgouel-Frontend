@@ -4,10 +4,10 @@ import * as S from './style'
 import { useRouter } from 'next/navigation'
 
 const InquiryItem = () => {
-  const router = useRouter()
+  const { push } = useRouter()
 
   return (
-    <S.InquiryItemWrapper onClick={() => router.push(`/main/inquiry/detail`)}>
+    <S.InquiryItemWrapper onClick={() => push(`/main/inquiry/detail`)}>
       <S.SubTitle>
         <S.Name>홍길동</S.Name>
         <S.Date>2024.01.14</S.Date>
