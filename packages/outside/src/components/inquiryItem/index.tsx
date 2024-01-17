@@ -1,8 +1,9 @@
 'use client'
+
 import * as S from './style'
 import { useRouter } from 'next/navigation'
 
-const Header = () => {
+const InquiryItem = () => {
   const router = useRouter()
 
   return (
@@ -26,4 +27,4 @@ const Header = () => {
     </S.InquiryItemWrapper>
   )
 }
-export default Header
+export default InquiryItem
