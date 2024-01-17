@@ -1,12 +1,11 @@
 'use client'
 
-import {Bg1, MegaPhone, Plus, Question } from '../../assets'
-import { PostItem } from '../../components'
-import * as S from './style'
-import { useRouter } from 'next/navigation'
 import { useGetPostList } from '@bitgouel/api'
-import { useRecoilValue } from 'recoil'
-import { Role } from '../../atoms'
+import { RoleEnumTypes } from '@bitgouel/types'
+import { useRouter } from 'next/navigation'
+import { Bg1, MegaPhone, Plus, Question } from '../../../assets'
+import { PostItem } from '../../../components'
+import * as S from './style'
 
 const PostPage = () => {
   const { data } = useGetPostList({
@@ -14,7 +13,7 @@ const PostPage = () => {
     page: 0,
     size: 15,
   })
-  const role = useRecoilValue(Role)
+  const role = localStorage.getItem("Authority") as RoleEnumTypes
 
   const { push } = useRouter()
 

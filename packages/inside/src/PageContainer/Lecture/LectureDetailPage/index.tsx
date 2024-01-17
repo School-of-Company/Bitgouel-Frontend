@@ -1,16 +1,16 @@
 'use client'
 
-import * as S from './style'
-import { useGetDetailLecture, usePostApplicationLecture } from '@bitgouel/api'
 import { LectureApplyModal } from '@/modals'
-import { useRecoilValue } from 'recoil'
-import { Bg3, Role, lectureToKor,useModal } from '@bitgouel/common'
+import { useGetDetailLecture, usePostApplicationLecture } from '@bitgouel/api'
+import { Bg3, lectureToKor, useModal } from '@bitgouel/common'
+import * as S from './style'
+import { RoleEnumTypes } from '@bitgouel/types'
 
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
   const { mutate } = usePostApplicationLecture(lectureId)
   const { openModal } = useModal()
-  const role = useRecoilValue(Role)
+  const role = localStorage.getItem("Authority") as RoleEnumTypes
 
   return (
     <div>

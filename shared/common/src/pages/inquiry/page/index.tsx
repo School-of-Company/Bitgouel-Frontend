@@ -1,22 +1,27 @@
 'use client'
 
-import { InquiryItem, Plus, Bg5 } from '@bitgouel/common'
+import { RoleEnumTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
+import { Bg5, Plus } from '../../../assets'
+import { InquiryItem } from '../../../components'
 import * as S from './style'
 
 const InquiryPage = () => {
   const { push } = useRouter()
-
+  const role = localStorage.getItem("Authority") as RoleEnumTypes
+  
   return (
     <div>
       <S.SlideBg url={Bg5}>
         <S.BgContainer>
           <S.InquiryTitle>문의사항</S.InquiryTitle>
           <S.ButtonContainer>
-            <S.InquiryButton onClick={() => push('/main/inquiry/create')}>
-              <Plus />
-              <span>문의사항 추가</span>
-            </S.InquiryButton>
+            {role !== 'ROLE_ADMIN' && (
+              <S.InquiryButton onClick={() => push('/main/inquiry/create')}>
+                <Plus />
+                <span>문의사항 추가</span>
+              </S.InquiryButton>
+            )}
           </S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>

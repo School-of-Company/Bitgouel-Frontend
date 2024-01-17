@@ -1,22 +1,23 @@
 'use client'
 
-import { theme } from '../../styles'
 import { TokenManager, useDeleteLogout } from '@bitgouel/api'
+import { RoleEnumTypes } from '@bitgouel/types'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { match } from 'ts-pattern'
 import {
-  Symbol1,
-  Symbol2,
   Filter,
   MegaPhone,
   Message,
   Plus,
   Question,
+  Symbol1,
+  Symbol2,
 } from '../../assets'
-import { LectureTypeText, Role } from '../../atoms'
+import { LectureTypeText } from '../../atoms'
 import { LectureTypeModal } from '../../modals'
+import { theme } from '../../styles'
 import * as S from './style'
 
 const Header = () => {
@@ -40,7 +41,7 @@ const Header = () => {
   const [lectureTypeText, setLectureTypeText] =
     useRecoilState<string>(LectureTypeText)
   const [text, setText] = useState<string>('로그인')
-  const role = useRecoilValue(Role)
+  const role = localStorage.getItem("Authority") as RoleEnumTypes
 
   const { mutate } = useDeleteLogout()
 

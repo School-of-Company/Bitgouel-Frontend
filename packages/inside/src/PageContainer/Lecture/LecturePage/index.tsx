@@ -1,21 +1,21 @@
 'use client'
 
-import { Filter } from '@bitgouel/common'
-import { Bg3 } from '@bitgouel/common'
-import { LectureTypeText, Role } from '@bitgouel/common/src/atoms'
-import { LectureItem } from '@bitgouel/common/src/components'
-import { LectureTypeModal } from '@bitgouel/common'
-import { useState, useEffect } from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import * as S from './style'
 import { useGetLectureList } from '@bitgouel/api'
+import { Bg3, Filter, LectureTypeModal } from '@bitgouel/common'
+import { LectureTypeText } from '@bitgouel/common/src/atoms'
+import { LectureItem } from '@bitgouel/common/src/components'
 import { lectureToEnum } from '@bitgouel/common/src/constants'
+import { useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil'
+import * as S from './style'
+import { RoleEnumTypes } from '@bitgouel/types'
 
 const LecturePage = () => {
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
   const [lectureTypeText, setLectureTypeText] =
     useRecoilState<string>(LectureTypeText)
-  const role = useRecoilValue(Role)
+  const role = localStorage.getItem('Authority') as RoleEnumTypes
+
   const { data, refetch } = useGetLectureList({
     page: 0,
     size: 10,
@@ -29,7 +29,7 @@ const LecturePage = () => {
 
   return (
     <div>
-      <S.SlideBg url={ Bg3 }>
+      <S.SlideBg url={Bg3}>
         <S.BgContainer>
           <S.LectureTitle>강의 목록</S.LectureTitle>
           <S.ButtonContainer>

@@ -1,13 +1,14 @@
 'use client'
 
-import { Bg5 } from '@bitgouel/common'
-import { Pen, TrashCan } from '@bitgouel/common'
-import * as S from './style'
+import { RoleEnumTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { match } from 'ts-pattern'
+import { Bg5 } from '../../../assets'
+import * as S from './style'
 
 const InquiryDetailPage = () => {
   const { push } = useRouter()
+  const role = localStorage.getItem("Authority") as RoleEnumTypes
 
   return (
     <div>
@@ -50,16 +51,18 @@ const InquiryDetailPage = () => {
             </S.AnswerTitleBox>
             <S.AnswerText>의 문</S.AnswerText>
           </S.AnswerBox>
-          <S.ButtonWrapper>
-            <S.ButtonContainer>
-              <S.DeleteNoticeButton>삭제하기</S.DeleteNoticeButton>
-              <S.ModifyNoticeButton
-                onClick={() => push(`/main/inquiry/answer`)}
-              >
-                답변하기
-              </S.ModifyNoticeButton>
-            </S.ButtonContainer>
-          </S.ButtonWrapper>
+          {role === 'ROLE_ADMIN' && (
+            <S.ButtonWrapper>
+              <S.ButtonContainer>
+                <S.DeleteNoticeButton>삭제하기</S.DeleteNoticeButton>
+                <S.ModifyNoticeButton
+                  onClick={() => push(`/main/inquiry/answer`)}
+                >
+                  답변하기
+                </S.ModifyNoticeButton>
+              </S.ButtonContainer>
+            </S.ButtonWrapper>
+          )}
         </S.Document>
       </S.DocumentWrapper>
     </div>

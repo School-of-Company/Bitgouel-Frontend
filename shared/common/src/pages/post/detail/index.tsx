@@ -1,21 +1,20 @@
 'use client'
 
-import { RejectModal } from '../../../modals'
 import { useDeletePost, useGetPostDetail } from '@bitgouel/api'
+import { RoleEnumTypes } from '@bitgouel/types'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Bg1 } from '../../../assets'
 import { useModal } from '../../../hooks'
+import { RejectModal } from '../../../modals'
 import * as S from './style'
-import { useRecoilValue } from 'recoil'
-import { Role } from '../../../atoms'
 
 const PostDetailPage = ({ postId }: { postId: string }) => {
   const { data } = useGetPostDetail(postId)
   const { mutate } = useDeletePost(postId, '게시글')
   const { openModal } = useModal()
   const { push } = useRouter()
-  const role = useRecoilValue(Role)
+  const role = localStorage.getItem("Authority") as RoleEnumTypes
 
   return (
     <div>

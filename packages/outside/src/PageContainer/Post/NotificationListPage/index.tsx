@@ -1,12 +1,11 @@
 'use client'
 
 import { useGetPostList } from '@bitgouel/api'
-import { Bg1 } from '@bitgouel/common'
-import { Plus, Role } from '@bitgouel/common'
+import { Bg1, Plus } from '@bitgouel/common'
 import { PostItem } from '@bitgouel/common/src/components'
-import * as S from './style'
 import { useRouter } from 'next/navigation'
-import { useRecoilValue } from 'recoil'
+import * as S from './style'
+import { RoleEnumTypes } from '@bitgouel/types'
 
 const NotificationListPage = () => {
   const { push } = useRouter()
@@ -15,7 +14,7 @@ const NotificationListPage = () => {
     size: 6,
     page: 0,
   })
-  const role = useRecoilValue(Role)
+  const role = localStorage.getItem("Authority") as RoleEnumTypes
 
   return (
     <div>
