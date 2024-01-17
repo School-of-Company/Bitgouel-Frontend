@@ -5,7 +5,7 @@ import { Bg5 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import * as S from './style'
 
-const LecturePage = () => {
+const InquiryPage = () => {
   const { push } = useRouter()
 
   return (
@@ -30,4 +30,4 @@ const LecturePage = () => {
   )
 }
 
-export default LecturePage
+export default InquiryPage
