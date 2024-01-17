@@ -24,8 +24,10 @@ import {
 } from '../../components'
 import { SchoolIntroObjects } from '../../constants'
 import * as S from './style'
+import { useRouter } from 'next/navigation'
 
 const HomePage = () => {
+  const { push } = useRouter()
   const [bgNum, setBgNum] = useState(2)
   const imageArr = [Slide1, Slide2, Slide3, Slide4]
   const blueArr = ['500', '400', '300', '200', '100']
@@ -389,7 +391,7 @@ const HomePage = () => {
             <S.CopyRightLinkList>
               <span>개인정보처리방침</span>
               <span>저작권신고 및 보호규정</span>
-              <span>문의하기</span>
+              <span onClick={() => push('/main/inquiry')}>문의하기</span>
               <span>관리자</span>
             </S.CopyRightLinkList>
           </S.CopyRightsContainer>
