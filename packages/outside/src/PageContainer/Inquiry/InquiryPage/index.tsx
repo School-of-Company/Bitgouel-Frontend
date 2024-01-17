@@ -1,7 +1,6 @@
 'use client'
 
-import { InquiryItem } from '@bitgouel/common'
-import { Bg5 } from '@bitgouel/common'
+import { InquiryItem, Bg5 } from '@bitgouel/common'
 import * as S from './style'
 
 const LecturePage = () => {
