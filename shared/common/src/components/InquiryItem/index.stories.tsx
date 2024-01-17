@@ -1,13 +1,13 @@
 'use client'
 
-import inquiryItem from '.'
+import InquiryItem from '.'
 import type { Meta, StoryObj } from '@storybook/react'
 
 export default {
-  title: 'common/components/inquiryItem',
-  component: inquiryItem,
-} as Meta<typeof inquiryItem>
+  title: 'common/components/InquiryItem',
+  component: InquiryItem,
+} as Meta<typeof InquiryItem>
 
-type Story = StoryObj<typeof inquiryItem>
+type Story = StoryObj<typeof InquiryItem>
 
 export const Primary: Story = {}
