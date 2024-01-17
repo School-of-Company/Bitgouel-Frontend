@@ -62,7 +62,7 @@ const PostCreatePage = () => {
           <S.InputMainText
             value={postContent}
             maxLength={MAXLENGTH}
-            placeholder='게시글 내용 작성 (1000자 이내)'
+            placeholder='본문 입력 (1000자 이내)'
             onChange={savePostMainText}
           />
           <S.PostSetting>

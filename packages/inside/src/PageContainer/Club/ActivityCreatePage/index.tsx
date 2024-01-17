@@ -29,7 +29,7 @@ const ActivityCreatePage = () => {
 
   return (
     <div>
-      <S.SlideBg url={ Bg2 }>
+      <S.SlideBg url={Bg2}>
         <S.BgContainer>
           <S.CreateTitle>활동 추가</S.CreateTitle>
           <S.ButtonContainer></S.ButtonContainer>
@@ -40,7 +40,7 @@ const ActivityCreatePage = () => {
           <S.InputTitle placeholder='활동 제목(100자 이내)' maxLength={100} />
           <S.InputMainText
             maxLength={MAXLENGTH}
-            placeholder='활동 내용 작성 (1000자 이내)'
+            placeholder='본문 입력 (1000자 이내)'
           />
           <S.ActivitySetting>
             <S.SettingTitle>활동 세부 설정</S.SettingTitle>

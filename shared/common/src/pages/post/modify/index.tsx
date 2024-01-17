@@ -109,7 +109,7 @@ const PostModifyPage = ({ postId }: { postId: string }) => {
           <S.InputMainText
             value={postModifyContent}
             maxLength={MAXLENGTH}
-            placeholder='게시글 내용 작성 (1000자 이내)'
+            placeholder='본문 입력 (1000자 이내)'
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
               setPostModifyContent(e.target.value)
             }

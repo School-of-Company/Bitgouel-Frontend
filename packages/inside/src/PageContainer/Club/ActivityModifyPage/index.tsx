@@ -33,7 +33,7 @@ const ActivityModifyPage = () => {
 
   return (
     <div>
-      <S.SlideBg url={ Bg2 }>
+      <S.SlideBg url={Bg2}>
         <S.BgContainer>
           <S.ModifyTitle>활동 수정</S.ModifyTitle>
           <S.ButtonContainer></S.ButtonContainer>
@@ -44,7 +44,7 @@ const ActivityModifyPage = () => {
           <S.InputTitle placeholder='활동 제목(100자 이내)' maxLength={100} />
           <S.InputMainText
             maxLength={MAXLENGTH}
-            placeholder='활동 내용 작성 (1000자 이내)'
+            placeholder='본문 입력 (1000자 이내)'
           />
           <S.ActivitySetting>
             <S.SettingTitle>활동 세부 설정</S.SettingTitle>
