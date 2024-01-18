@@ -1,5 +1,6 @@
 import { keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
+import { StaticImageData } from 'next/image'
 
 const scrollingLeftFirst = keyframes`
   0% {left: 0%;}
@@ -27,7 +28,7 @@ export const HomeWrapper = styled.div`
   background-color: #f6f6f6;
 `
 
-export const SlideBg = styled.div<{ url: any }>`
+export const SlideBg = styled.div<{ url: StaticImageData }>`
   height: 50rem;
   width: 100%;
   overflow: hidden;
