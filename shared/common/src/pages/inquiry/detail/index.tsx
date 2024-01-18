@@ -3,63 +3,122 @@
 import { RoleEnumTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { match } from 'ts-pattern'
-import { Bg5 } from '../../../assets'
+import { Bg5, Pen, TrashCan } from '../../../assets'
 import * as S from './style'
+import { RejectModal } from '../../../modals'
+import { useDeleteInquiryReject, useDeleteMyInquiry, useGetInquiryDetail } from '@bitgouel/api'
+import { useModal } from '../../../hooks'
 
-const InquiryDetailPage = () => {
+const InquiryDetailPage = ({ inquiryId }: { inquiryId: string }) => {
   const { push } = useRouter()
-  const role = localStorage.getItem("Authority") as RoleEnumTypes
+  const role = typeof window !== 'undefined' ? localStorage.getItem('Authority') as RoleEnumTypes : null
+  const { data } = useGetInquiryDetail(inquiryId)
+  const { mutate: inquiryReject } = useDeleteInquiryReject(inquiryId)
+  const {mutate: myInquiryReject} = useDeleteMyInquiry(inquiryId)
+  const { openModal } = useModal()
 
   return (
     <div>
       <S.SlideBg url={Bg5}>
         <S.BgContainer>
           <S.InquiryTitle>문의 상세</S.InquiryTitle>
+          <S.TitleButtonContainer>
+            <S.InquiryButton
+              onClick={() => push(`/main/inquiry/modify/${inquiryId}`)}
+            >
+              <Pen />
+              <span>문의 수정</span>
+            </S.InquiryButton>
+            <S.InquiryButton
+              onClick={() =>
+                openModal(
+                  <RejectModal
+                    type='문의'
+                    purpose='삭제'
+                    title={data?.data.question}
+                    onAppropriation={() => myInquiryReject()}
+                  />
+                )
+              }
+            >
+              <TrashCan />
+              <span>문의 삭제</span>
+            </S.InquiryButton>
+          </S.TitleButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
       <S.DocumentWrapper>
         <S.Document>
           <S.TitleContainer>
-            <S.Title>문의가 문의문의해서 문의문의한 게 문의문의해요</S.Title>
+            <S.Title>{data?.data.question}</S.Title>
             <S.SubTitle>
               <S.ApproveStatus
-                approveColor={match('APPROVED')
-                  .with('APPROVED', () => true)
+                approveColor={match(data?.data.answerStatus)
+                  .with('ANSWERED', () => true)
                   .otherwise(() => false)}
               >
-                답변 완료됨
+                {data?.data.answerStatus ? '답변 완료됨' : '답변 대기 중'}
               </S.ApproveStatus>
               <S.SemiTitleBox>
                 <S.SubTitleBox>게시일</S.SubTitleBox>
-                <span>2023년 11월 11일 12:34</span>
+                <span>{`${data?.data.questionDate.slice(
+                  0,
+                  4
+                )}년 ${data?.data.questionDate.slice(
+                  5,
+                  7
+                )}월 ${data?.data.questionDate.slice(8, 10)}일
+                  ${data?.data.questionDate.slice(
+                    14,
+                    16
+                  )} : ${data?.data.questionDate.slice(17, 19)}
+                  `}</span>
               </S.SemiTitleBox>
               <S.SemiTitleBox>
                 <S.SubTitleBox>게시자</S.SubTitleBox>
-                <span>홍길동</span>
+                <span>{data?.data.questioner}</span>
               </S.SemiTitleBox>
             </S.SubTitle>
           </S.TitleContainer>
-          <S.MainText>문 의</S.MainText>
+          <S.MainText>{data?.data.questionDetail}</S.MainText>
           <S.AnswerBox
-            displayType={match('APPROVED')
-              .with('APPROVED', () => true)
+            displayType={match(data?.data.answerStatus)
+              .with('ANSWERED', () => true)
               .otherwise(() => false)}
           >
             <S.AnswerTitleBox>
               <S.AnswerTitle>문의 답변</S.AnswerTitle>
-              <S.AnswerDate>2024년 01월 16일 21:43</S.AnswerDate>
+              <S.AnswerDate>{`${data?.data.answeredDate?.slice(
+                0,
+                4
+              )}년 ${data?.data.answeredDate?.slice(
+                5,
+                7
+              )}월 ${data?.data.answeredDate?.slice(8, 10)}일
+                  ${data?.data.answeredDate?.slice(
+                    13,
+                    15
+                  )}:${data?.data.answeredDate?.slice(16, 18)}
+                  `}</S.AnswerDate>
             </S.AnswerTitleBox>
-            <S.AnswerText>의 문</S.AnswerText>
+            <S.AnswerText>{data?.data.answer}</S.AnswerText>
           </S.AnswerBox>
           {role === 'ROLE_ADMIN' && (
             <S.ButtonWrapper>
               <S.ButtonContainer>
-                <S.DeleteNoticeButton>삭제하기</S.DeleteNoticeButton>
-                <S.ModifyNoticeButton
-                  onClick={() => push(`/main/inquiry/answer`)}
+                <S.DeleteNoticeButton
+                  onClick={() => (
+                    <RejectModal
+                      type='문의'
+                      purpose='삭제'
+                      title={data?.data.question}
+                      onAppropriation={() => inquiryReject()}
+                    />
+                  )}
                 >
-                  답변하기
-                </S.ModifyNoticeButton>
+                  삭제하기
+                </S.DeleteNoticeButton>
+                <S.ModifyNoticeButton>답변하기</S.ModifyNoticeButton>
               </S.ButtonContainer>
             </S.ButtonWrapper>
           )}

@@ -5,11 +5,14 @@ import { useRouter } from 'next/navigation'
 import { Bg5, Plus } from '../../../assets'
 import { InquiryItem } from '../../../components'
 import * as S from './style'
+import { useGetInquiryList, useGetMyInquiryList } from '@bitgouel/api'
 
 const InquiryPage = () => {
   const { push } = useRouter()
-  const role = localStorage.getItem("Authority") as RoleEnumTypes
-  
+  const role = typeof window !== 'undefined' ? localStorage.getItem('Authority') as RoleEnumTypes : null
+  const { data: inquiryList } = useGetInquiryList()
+  const { data: myInquiryList } = useGetMyInquiryList()
+
   return (
     <div>
       <S.SlideBg url={Bg5}>
@@ -27,7 +30,13 @@ const InquiryPage = () => {
       </S.SlideBg>
       <S.ListWrapper>
         <S.ListContainer>
-          <InquiryItem />
+          {role === 'ROLE_ADMIN'
+            ? inquiryList?.data.inquiries.map((inquiry) => (
+                <InquiryItem item={inquiry} />
+              ))
+            : myInquiryList?.data.inquiries.map((inquiry) => (
+                <InquiryItem item={inquiry} />
+              ))}
         </S.ListContainer>
       </S.ListWrapper>
     </div>

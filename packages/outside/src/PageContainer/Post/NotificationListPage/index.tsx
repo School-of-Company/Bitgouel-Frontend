@@ -14,7 +14,8 @@ const NotificationListPage = () => {
     size: 6,
     page: 0,
   })
-  const role = localStorage.getItem("Authority") as RoleEnumTypes
+  const role = typeof window !== 'undefined' ?  localStorage.getItem("Authority") as RoleEnumTypes : null
+
 
   return (
     <div>

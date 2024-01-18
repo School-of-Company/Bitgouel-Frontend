@@ -14,7 +14,8 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
   const { mutate } = useDeletePost(noticeId, '공지사항')
   const { openModal } = useModal()
   const { push } = useRouter()
-  const role = localStorage.getItem("Authority") as RoleEnumTypes
+  const role = typeof window !== 'undefined' ?  localStorage.getItem("Authority") as RoleEnumTypes : null
+
 
   return (
     <div>
@@ -61,6 +62,7 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
                       openModal(
                         <RejectModal
                           type='공지사항'
+                          purpose='거절'
                           title={data?.data.title}
                           onAppropriation={() => mutate()}
                         />

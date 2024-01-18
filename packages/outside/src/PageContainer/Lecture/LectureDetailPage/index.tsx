@@ -113,6 +113,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
                   openModal(
                     <RejectModal
                       type='강의 개설'
+                      purpose='거절'
                       title={data?.data.name}
                       onAppropriation={() => approve()}
                     />

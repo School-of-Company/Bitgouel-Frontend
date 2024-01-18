@@ -13,7 +13,7 @@ const PostPage = () => {
     page: 0,
     size: 15,
   })
-  const role = localStorage.getItem("Authority") as RoleEnumTypes
+  const role = typeof window !== 'undefined' ?  localStorage.getItem("Authority") as RoleEnumTypes : null
 
   const { push } = useRouter()
 

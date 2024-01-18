@@ -1,4 +1,4 @@
-import { InquiryPage } from '@/PageContainer'
+import { InquiryPage } from "@bitgouel/common/src/pages"
 
 const Inquiry = () => {
   return <InquiryPage />

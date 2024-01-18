@@ -10,7 +10,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
   const { mutate } = usePostApplicationLecture(lectureId)
   const { openModal } = useModal()
-  const role = localStorage.getItem("Authority") as RoleEnumTypes
+  const role = typeof window !== 'undefined' ?  localStorage.getItem("Authority") as RoleEnumTypes : null
 
   return (
     <div>

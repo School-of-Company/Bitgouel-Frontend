@@ -14,7 +14,10 @@ const LecturePage = () => {
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
   const [lectureTypeText, setLectureTypeText] =
     useRecoilState<string>(LectureTypeText)
-  const role = localStorage.getItem('Authority') as RoleEnumTypes
+  const role =
+    typeof window !== 'undefined'
+      ? (localStorage.getItem('Authority') as RoleEnumTypes)
+      : null
 
   const { data, refetch } = useGetLectureList({
     page: 0,

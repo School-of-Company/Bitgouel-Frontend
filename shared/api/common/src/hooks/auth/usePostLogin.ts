@@ -10,7 +10,6 @@ import {
   LoginPayloadTypes,
 } from '@bitgouel/types'
 import { useSetRecoilState } from 'recoil'
-import { Role } from '@bitgouel/common/src/atoms'
 
 export const usePostLogin = () => {
   const tokenManager = new TokenManager()

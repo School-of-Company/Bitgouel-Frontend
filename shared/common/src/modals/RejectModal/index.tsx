@@ -8,6 +8,7 @@ import * as S from './style'
 
 const RejectModal = ({
   type,
+  purpose,
   title,
   onAppropriation,
 }: AppropriationModalProps) => {
@@ -17,12 +18,16 @@ const RejectModal = ({
     <Portal onClose={closeModal}>
       <S.RejectModalWrapper>
         <S.RejectLetterContainer>
-          <S.RejectQuestion>{type}을(를) 거절하시겠습니까?</S.RejectQuestion>
+          <S.RejectQuestion>
+            {type}을(를) {purpose}하시겠습니까?
+          </S.RejectQuestion>
           <S.RejectTitle>{title}</S.RejectTitle>
         </S.RejectLetterContainer>
         <S.RejectButtonWrapper>
           <CancelButton onClick={closeModal}>취소</CancelButton>
-          <S.RejectButton onClick={onAppropriation}>거절하기</S.RejectButton>
+          <S.RejectButton onClick={onAppropriation}>
+            {purpose}하기
+          </S.RejectButton>
         </S.RejectButtonWrapper>
       </S.RejectModalWrapper>
     </Portal>
@@ -30,4 +35,3 @@ const RejectModal = ({
 }
 
 export default RejectModal
-

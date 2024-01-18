@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { post, postQueryKeys, postUrl } from '../../..'
 import { AxiosError } from 'axios'
-import { PostCreatePayloadTypes } from '@bitgouel/types'
+import { ApiErrorTypes, PostCreatePayloadTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 import { useModal } from '@bitgouel/common/src/hooks'
@@ -10,7 +10,7 @@ export const usePostPost = (type: '게시' | '공지') => {
   const { push } = useRouter()
   const { closeModal } = useModal()
 
-  return useMutation<void, AxiosError, PostCreatePayloadTypes>(
+  return useMutation<void, AxiosError<ApiErrorTypes>, PostCreatePayloadTypes>(
     postQueryKeys.postBoardCreate(),
     (createValues) => post(postUrl.postCreate(), createValues),
     {

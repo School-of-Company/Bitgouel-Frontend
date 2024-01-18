@@ -10,30 +10,16 @@ const NoticeModifyPage = ({ postId }: { postId: string }) => {
   const MAXLENGTH: number = 1000 as const
   const { mutate } = usePatchPostModify(postId)
   const { data } = useGetPostDetail(postId, { staleTime: 0 })
-  const [noticeModifyData, setNoticeModifyData] =
-    useState<PostModifyPayloadTypes>(data?.data)
-  const [noticeModifyTitle, setNoticeModifyTitle] = useState<string>(
-    noticeModifyData?.title
-  )
-  const [noticeModifyContent, setNoticeModifyContent] = useState<string>(
-    noticeModifyData?.content
-  )
-  const [modifyLinks, setModifyLinks] = useState<any[]>([
-    noticeModifyData?.links.map((link, idx) => {
-      return {
-        showValue: link.length > 31 ? `${link.slice(0, 32)}...` : link,
-        value: link,
-        name: `link${idx + 1}`,
-      }
-    }),
-  ])
+  const [noticeModifyTitle, setNoticeModifyTitle] = useState<string>('')
+  const [noticeModifyContent, setNoticeModifyContent] = useState<string>('')
+  const [noticeModifyLinks, setNoticeModifyLinks] = useState<any[]>([])
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target
 
     const slicedValue = value.length > 31 ? `${value.slice(0, 32)}...` : value
 
-    setModifyLinks((prevLinks) =>
+    setNoticeModifyLinks((prevLinks) =>
       prevLinks.map((link) =>
         link.name === name ? { ...link, value, showValue: slicedValue } : link
       )
@@ -51,8 +37,20 @@ const NoticeModifyPage = ({ postId }: { postId: string }) => {
   }
 
   useEffect(() => {
-    setNoticeModifyData(data?.data)
-  }, [data])
+    if (data) {
+      setNoticeModifyTitle(data?.data.title)
+      setNoticeModifyContent(data?.data.content)
+      setNoticeModifyLinks(
+        data?.data.links.map((link, idx) => {
+          return {
+            showValue: link.length > 31 ? `${link.slice(0, 32)}...` : link,
+            value: link,
+            name: `link${idx + 1}`,
+          }
+        })
+      )
+    }
+  }, [])
 
   return (
     <div>
@@ -78,7 +76,7 @@ const NoticeModifyPage = ({ postId }: { postId: string }) => {
           <S.PostSetting>
             <S.SettingTitle>공지사항 세부 설정</S.SettingTitle>
             <S.SettingSelectionContainer>
-              {modifyLinks?.map((link, idx) => (
+              {noticeModifyLinks?.map((link, idx) => (
                 <S.SettingForm key={idx}>
                   <Link />
                   <S.SettingInput
@@ -98,7 +96,7 @@ const NoticeModifyPage = ({ postId }: { postId: string }) => {
                 mutate({
                   title: noticeModifyTitle,
                   content: noticeModifyContent,
-                  links: modifyLinks.map((link) => link.value),
+                  links: noticeModifyLinks.map((link) => link.value),
                 })
               }
             >
