@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
+import { StaticImageData } from 'next/image'
 
-export const SlideBg = styled.div<{ url: any }>`
+export const SlideBg = styled.div<{ url: StaticImageData }>`
   height: 15rem;
   width: 100%;
   display: flex;

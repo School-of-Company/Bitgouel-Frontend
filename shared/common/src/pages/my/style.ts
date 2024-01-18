@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
+import { StaticImageData } from 'next/image'
 
-export const MyPageWrapper = styled.div<{ url: any }>`
+export const MyPageWrapper = styled.div<{ url: StaticImageData }>`
   background-image: url(${({ url }) => url.src});
   position: absolute;
   display: flex;

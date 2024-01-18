@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
+import { StaticImageData } from 'next/image'
 
-export const ClubListBanner = styled.span<{ url: any }>`
+export const ClubListBanner = styled.span<{ url: StaticImageData }>`
   margin-top: 2.5rem;
   width: 100vw;
   height: 42.5rem;

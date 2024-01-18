@@ -24,6 +24,34 @@ export const InquiryTitle = styled.span`
   ${({ theme }) => theme.typo.title_lg.semibold};
 `
 
+export const TitleButtonContainer = styled.div`
+  display: flex;
+  align-items: flex-end;
+`
+
+export const InquiryButton = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: rgb(255, 255, 255, 0.2);
+  height: 2.5rem;
+  margin-left: 1rem;
+  padding: 0 0.75rem;
+  border-radius: 0.5rem;
+  backdrop-filter: blur(0.25rem);
+  svg {
+    fill: ${({ theme }) => theme.color.white};
+  }
+  span {
+    color: ${({ theme }) => theme.color.white};
+    ${({ theme }) => theme.typo.text_md.regular};
+    margin-left: 0.25rem;
+  }
+  &:hover {
+    background-color: rgb(255, 255, 255, 0.4);
+  }
+`
+
 export const DocumentWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -113,37 +141,4 @@ export const AnswerText = styled.div`
   ${({ theme }) => theme.typo.text_md.regular};
   line-height: 1.625rem;
   margin-top: 1rem;
-`
-
-export const ButtonWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
-
-export const ButtonContainer = styled.div`
-  display: flex;
-  bottom: 1.6rem;
-  position: fixed;
-
-  div {
-    color: ${({ theme }) => theme.color.white};
-    ${({ theme }) => theme.typo.text_lg.semibold};
-    border-radius: 0.5rem;
-    cursor: pointer;
-    width: 11.25rem;
-    height: 3.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-`
-
-export const DeleteNoticeButton = styled.div`
-  background-color: ${({ theme }) => theme.color.error};
-  margin-right: 1rem;
-`
-
-export const ModifyNoticeButton = styled.div`
-  background-color: ${({ theme }) => theme.color.main};
 `
