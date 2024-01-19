@@ -2,16 +2,12 @@
 
 import {
   useGetCertificateList,
-  useGetCertificateListTeacher
+  useGetCertificateListTeacher,
 } from '@bitgouel/api'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
-import {
-  Bg2,
-  PersonOut,
-  PlusCertificate
-} from '../../../assets'
+import { Bg2, PersonOut, PlusCertificate } from '../../../assets'
 import { Role } from '../../../atoms/index'
 import CertificateItem from '../../../components/CertificateItem'
 import { useModal } from '../../../hooks'
