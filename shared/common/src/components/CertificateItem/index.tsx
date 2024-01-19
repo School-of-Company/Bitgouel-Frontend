@@ -2,11 +2,11 @@ import { ChangeEvent, useState } from 'react'
 import * as S from './style'
 import { usePostCertificate, usePatchModifyCertificate } from '@bitgouel/api'
 import { Certificate, CertificateRequest } from '@bitgouel/types'
-import { AddCertificate, CalendarIcon } from '@/assets'
-import { useModal } from '@/hooks'
-import { CreateModal, SelectCalendarModal } from '@/modals'
-import { theme } from '@/styles'
-import { Role } from '@/atoms'
+import { AddCertificate, CalendarIcon } from '../../assets'
+import { useModal } from '../../hooks'
+import { CreateModal, SelectCalendarModal } from '../../modals'
+import { theme } from '../../styles'
+import { Role } from '../../atoms'
 import { useRecoilValue } from 'recoil'
 import { toast } from 'react-toastify'
 
@@ -110,29 +110,29 @@ const CertificateItem: React.FC<CertificateProps> = ({
             <S.ShowDateText>{modifyDateText}</S.ShowDateText>
           </S.AddCertificateDateBox>
           <S.AddCertificateIcon
-            onClick={() =>
-              (modifyText.trim() !== '' &&
-                modifyDateText.trim() !== '' &&
-                name !== modifyText) ||
-              acquisitionDate
-                .split('')
-                .map((v) => (v === '-' ? '.' : v))
-                .join('') !== modifyDateText
-                ? openModal(
-                    <CreateModal
-                      question='자격증 정보를 수정하시겠습니까?'
-                      title={modifyText}
-                      onCreate={() => onModify()}
-                      createText='수정하기'
-                    />
-                  )
-                : name === modifyText &&
-                  acquisitionDate
-                    .split('')
-                    .map((v) => (v === '-' ? '.' : v))
-                    .join('') === modifyDateText &&
-                  cancelModify()
-            }
+          // onClick={() =>
+          //   (modifyText.trim() !== '' &&
+          //     modifyDateText.trim() !== '' &&
+          //     name !== modifyText) ||
+          //   acquisitionDate
+          //     .split('')
+          //     .map((v) => (v === '-' ? '.' : v))
+          //     .join('') !== modifyDateText
+          //     ? openModal(
+          //         <CreateModal
+          //           question='자격증 정보를 수정하시겠습니까?'
+          //           title={modifyText}
+          //           onCreate={() => onModify()}
+          //           createText='수정하기'
+          //         />
+          //       )
+          //     : name === modifyText &&
+          //       acquisitionDate
+          //         .split('')
+          //         .map((v) => (v === '-' ? '.' : v))
+          //         .join('') === modifyDateText &&
+          //       cancelModify()
+          // }
           >
             <AddCertificate
               color={
@@ -159,7 +159,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
               .map((v) => (v === '-' ? '.' : v))
               .join('')}
           </span>
-          <S.ModifyText onClick={() => onModify()}>수정하기</S.ModifyText>
+          <S.ModifyText>수정하기</S.ModifyText>
         </S.CertificateItemBox>
       )}
 

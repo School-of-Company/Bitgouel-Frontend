@@ -1,4 +1,4 @@
-// 'use client'
+'use client'
 
 import * as S from './style'
 import { useRouter } from 'next/navigation'
@@ -15,7 +15,7 @@ import {
 } from '@bitgouel/api'
 import { Role } from '../../../atoms/index'
 import { CertificateRequest } from '@bitgouel/types'
-import CertificateItem from '@/components/CertificateItem'
+import CertificateItem from '../../../components/CertificateItem'
 
 interface Certificate {
   id: number
