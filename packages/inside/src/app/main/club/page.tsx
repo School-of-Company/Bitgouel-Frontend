@@ -1,7 +1,7 @@
-import { ClubPage } from "@/PageContainer"
+import { ClubDetailPage } from "@bitgouel/common/src/pages"
 
 const Club = () => {
-  return <ClubPage />
+  return <ClubDetailPage />
 }
 
 export default Club

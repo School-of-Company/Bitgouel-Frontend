@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
+import { StaticImageData } from 'next/image'
 
-export const MyPageWrapper = styled.div<{ url: any }>`
+export const MyPageWrapper = styled.div<{ url: StaticImageData }>`
   background-image: url(${({ url }) => url.src});
   position: absolute;
   display: flex;
@@ -54,7 +55,7 @@ export const MyIdentify = styled.div`
 
 export const MyIdentifyWrapper = styled.div`
   div {
-    margin-top: 2px;
+    margin-top: 0.125rem;
   }
 `
 

@@ -1,8 +1,7 @@
 'use client'
 
 import * as S from './style'
-import Bg1 from '../../../assets/png/mainBg1.png'
-import { Link } from '../../../assets'
+import { Bg1, Link } from '../../../assets'
 import { ChangeEvent, useState } from 'react'
 import { usePostPost } from '@bitgouel/api'
 import { useModal } from '../../../hooks'
@@ -63,7 +62,7 @@ const PostCreatePage = () => {
           <S.InputMainText
             value={postContent}
             maxLength={MAXLENGTH}
-            placeholder='게시글 내용 작성 (1000자 이내)'
+            placeholder='본문 입력 (1000자 이내)'
             onChange={savePostMainText}
           />
           <S.PostSetting>

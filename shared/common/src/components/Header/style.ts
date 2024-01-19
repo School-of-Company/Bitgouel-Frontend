@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { StaticImageData } from 'next/image'
 
 export const HeaderWrapper = styled.div<{
   bgColor: string
@@ -25,7 +26,7 @@ export const HeaderContainer = styled.div`
   justify-content: space-between;
 `
 
-export const SymbolContainer = styled.div<{ url: any }>`
+export const SymbolContainer = styled.div<{ url: StaticImageData }>`
   width: 2.375rem;
   height: 2.375rem;
   background-image: url(${({ url }) => url.src});

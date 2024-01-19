@@ -12,6 +12,7 @@ function getAbsolutePath(value) {
 const config = {
   stories: [
     '../../inside/src/modals/**!(node_modules)/*.stories.@(js|jsx|ts|tsx)',
+    '../../outside/src/components/**!(node_modules)/*.stories.@(js|jsx|ts|tsx)',
     '../../../shared/common/src/components/**/*.stories.@(js|jsx|ts|tsx)',
     '../../../shared/common/src/modals/**/*.stories.@(js|jsx|ts|tsx)',
     '../../../shared/common/src/pages/**!(node_modules)/*.stories.@(js|jsx|ts|tsx)',

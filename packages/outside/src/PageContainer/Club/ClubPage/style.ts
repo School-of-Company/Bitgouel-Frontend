@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
+import { StaticImageData } from 'next/image'
 
-export const SlideBg = styled.div<{ url: any }>`
+export const SlideBg = styled.div<{ url: StaticImageData }>`
   height: 15rem;
   width: 100%;
   display: flex;
@@ -65,19 +66,19 @@ export const ClubContainer = styled.div`
   width: 75rem;
   height: 100%;
   margin-top: 3rem;
-  gap: 2rem;
+  gap: 3.75rem;
 `
 
 export const ClubGroupBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1.2rem;
+  gap: 1.5rem;
 `
 
 export const ClubSchoolTitle = styled.div`
-  ${({theme}) => theme.typo.title_sm.semibold};
-  color: ${({theme}) => theme.color.black};
+  ${({ theme }) => theme.typo.title_sm.semibold};
+  color: ${({ theme }) => theme.color.black};
 `
 
 export const ClubListBox = styled.div`

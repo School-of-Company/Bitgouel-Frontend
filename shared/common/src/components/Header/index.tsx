@@ -6,9 +6,15 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { match } from 'ts-pattern'
-import { Filter, MegaPhone, Message, Plus, Question } from '../../assets'
-import Symbol1 from '../../assets/png/symbol1.png'
-import Symbol2 from '../../assets/png/symbol2.png'
+import {
+  Symbol1,
+  Symbol2,
+  Filter,
+  MegaPhone,
+  Message,
+  Plus,
+  Question,
+} from '../../assets'
 import { LectureTypeText, Role } from '../../atoms'
 import { LectureTypeModal } from '../../modals'
 import * as S from './style'
@@ -21,7 +27,7 @@ const Header = () => {
     { kor: '사업소개', link: '/' },
     { kor: '강의', link: '/main/lecture' },
     { kor: '동아리', link: '/main/club' },
-    { kor: '게시글', link: '/main/post' },
+    { kor: '게시판', link: '/main/post' },
   ]
 
   const [bgColor, setBgColor] = useState<string>('')

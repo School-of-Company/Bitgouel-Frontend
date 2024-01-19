@@ -59,3 +59,12 @@ export const certificateUrl = {
   certificateModify: (student_id: string, id: string) =>
     `/certification/${id}/${student_id}`,
 }
+
+export const clubUrl = {
+  schoolClub: () => `/school`,
+  club: (queryString: string) => `/club?highSchool=${queryString}`,
+  clubDetail: (club_id: string) => `/club/${club_id}`,
+  myClub: () => `/club/my`,
+  studentDetail: (club_id: string, student_id: string) =>
+    `/club/${club_id}/${student_id}`,
+} as const

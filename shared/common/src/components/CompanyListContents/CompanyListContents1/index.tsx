@@ -1,11 +1,11 @@
 'use client'
 
 import * as S from '../style'
-import listBanner1 from '../../../assets/png/listBanner1.png'
+import { Banner1 } from '../../../assets'
 
 const CompanyListContents1 = () => {
   return (
-    <S.CompanyListBanner url={listBanner1}>
+    <S.CompanyListBanner url={Banner1}>
       <S.CompanyListContents>
         <S.CompanyValueTitle>미래형 운송기기</S.CompanyValueTitle>
         <S.CompanyMainTextArea>

@@ -55,7 +55,7 @@ export const LectureApplyButtonWrapper = styled.div`
   }
 `
 
-export const CancleButton = styled.div`
+export const CancelButton = styled.div`
   color: ${({ theme }) => theme.color.main};
   background: none;
 `

@@ -2,8 +2,7 @@
 
 import { useGetPostDetail, usePatchPostModify } from '@bitgouel/api'
 import { ChangeEvent, useEffect, useState } from 'react'
-import { Link } from '../../../assets'
-import Bg1 from '../../../assets/png/mainBg1.png'
+import { Bg1, Link } from '../../../assets'
 import { useModal } from '../../../hooks'
 import { CreateModal } from '../../../modals'
 import * as S from './style'
@@ -57,7 +56,6 @@ const PostModifyPage = ({ postId }: { postId: string }) => {
     )
   }
 
-  
   const onModify = () => {
     mutate({
       title: postModifyTitle,
@@ -65,24 +63,24 @@ const PostModifyPage = ({ postId }: { postId: string }) => {
       links: postModifyLinks.map((link) => link.value),
     })
   }
-  
+
   const onModifyModal = () => {
     if (
       initialData.title !== postModifyTitle ||
       initialData.content !== postModifyContent ||
       initialData.links !== postModifyLinks
-      ) {
-        openModal(
-          <CreateModal
+    ) {
+      openModal(
+        <CreateModal
           question='게시글을 수정하시겠습니까?'
           title={postModifyTitle}
           onCreate={onModify}
           createText='수정하기'
-          />
-          )
-        }
-      }
-      
+        />
+      )
+    }
+  }
+
   useEffect(() => {
     if (data) {
       setPostModifyTitle(data?.data.title)
@@ -111,7 +109,7 @@ const PostModifyPage = ({ postId }: { postId: string }) => {
           <S.InputMainText
             value={postModifyContent}
             maxLength={MAXLENGTH}
-            placeholder='게시글 내용 작성 (1000자 이내)'
+            placeholder='본문 입력 (1000자 이내)'
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
               setPostModifyContent(e.target.value)
             }

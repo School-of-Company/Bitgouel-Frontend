@@ -2,7 +2,7 @@
 
 import * as S from './style'
 import { useState } from 'react'
-import Bg2 from '@bitgouel/common/src/assets/png/mainBg2.png'
+import { Bg2 } from '@bitgouel/common'
 import { Chevron } from '@bitgouel/common'
 import { SelectCalendarTimeModal, SelectScoreModal } from '@bitgouel/common'
 
@@ -40,7 +40,7 @@ const ActivityCreatePage = () => {
           <S.InputTitle placeholder='활동 제목(100자 이내)' maxLength={100} />
           <S.InputMainText
             maxLength={MAXLENGTH}
-            placeholder='활동 내용 작성 (1000자 이내)'
+            placeholder='본문 입력 (1000자 이내)'
           />
           <S.ActivitySetting>
             <S.SettingTitle>활동 세부 설정</S.SettingTitle>

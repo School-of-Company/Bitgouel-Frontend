@@ -1,6 +1,6 @@
 'use client'
 
-import Bg4 from '../../assets/png/mainBg4.png'
+import { Bg4 } from '../../assets'
 import * as S from './style'
 import { useGetMy, useDeleteWithDraw } from '@bitgouel/api'
 import { roleToKor } from '../../constants'
@@ -36,7 +36,7 @@ const MyPage = () => {
                   {data?.data.organization.split('/')[0]}
                 </S.OrganizationName>
                 <S.SubEnter>소속</S.SubEnter>
-              </div> 
+              </div>
               <div>
                 <S.SubId>{data?.data.organization.split('/')[1]}</S.SubId>
               </div>

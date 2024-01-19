@@ -1,8 +1,7 @@
 'use client'
 
-import { MegaPhone, Plus, Question } from '../../assets/'
+import {Bg1, MegaPhone, Plus, Question } from '../../assets'
 import { PostItem } from '../../components'
-import Bg1 from '../../assets/png/mainBg1.png'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
 import { useGetPostList } from '@bitgouel/api'

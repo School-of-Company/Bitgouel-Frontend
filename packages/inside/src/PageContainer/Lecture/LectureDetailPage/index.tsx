@@ -1,16 +1,16 @@
 'use client'
 
-import Bg3 from '@bitgouel/common/src/assets/png/mainBg3.png'
 import * as S from './style'
 import { useGetDetailLecture, usePostApplicationLecture } from '@bitgouel/api'
-import { lectureToKor } from '@bitgouel/common/src/constants'
 import { LectureApplyModal } from '@/modals'
-import { useModal } from '@bitgouel/common/src/hooks'
+import { useRecoilValue } from 'recoil'
+import { Bg3, Role, lectureToKor,useModal } from '@bitgouel/common'
 
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
   const { mutate } = usePostApplicationLecture(lectureId)
   const { openModal } = useModal()
+  const role = useRecoilValue(Role)
 
   return (
     <div>
@@ -103,16 +103,24 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
           <S.MainText>{data?.data.content}</S.MainText>
           <S.ButtonContainer>
             <S.LectureApplyButton
+              isRegistered={data?.data.isRegistered}
+              isStudent={role === "ROLE_STUDENT"}
               onClick={() =>
-                openModal(
-                  <LectureApplyModal
-                    title={data?.data.name}
-                    apply={() => mutate()}
-                  />
-                )
+                !data?.data.isRegistered
+                  ? openModal(
+                      <LectureApplyModal
+                        title={data?.data.name}
+                        apply={() => mutate()}
+                      />
+                    )
+                  : null
               }
             >
-              수강 신청하기
+              {data?.data.isRegistered
+                ? '수강 신청 완료'
+                : role === 'ROLE_STUDENT'
+                ? '수강 신청하기'
+                : '수강 신청 불가'}
             </S.LectureApplyButton>
           </S.ButtonContainer>
         </S.Document>

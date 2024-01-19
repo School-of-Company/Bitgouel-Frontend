@@ -1,33 +1,83 @@
 'use client'
 
+import { useGetClubDetail, useGetMyClub } from '@bitgouel/api'
 import * as S from './style'
-import Bg2 from '../../../assets/png/mainBg2.png'
-import { SettingOut } from '../../../assets'
+import { Bg2 } from '../../../assets'
 import { useRouter } from 'next/navigation'
+import { roleToKor } from '../../../constants'
 
-const DetailPage = () => {
-  const router = useRouter()
+const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
+  const { push } = useRouter()
+
+  const { data: clubDetail } = useGetClubDetail(clubId || '')
+  const { data: myClub } = useGetMyClub()
 
   return (
     <div>
       <S.SlideBg url={Bg2}>
         <S.BgContainer>
-          <S.ClubTitle>취업 동아리</S.ClubTitle>
-          <S.ButtonContainer>
-            <S.ClubButton>
-              <span onClick={() => router.push('/main/club/student')}>
-                임시 학생 정보 이동버튼
-              </span>
-            </S.ClubButton>
-            <S.ClubButton>
-              <SettingOut />
-              <span>학교 선택</span>
-            </S.ClubButton>
-          </S.ButtonContainer>
+          <S.Title>취업 동아리</S.Title>
         </S.BgContainer>
       </S.SlideBg>
+      <S.ClubWrapper>
+        <S.ClubContainer>
+          <S.ClubTitle>
+            {clubId ? clubDetail?.data.clubName : myClub?.data.clubName}
+          </S.ClubTitle>
+          <S.ClubInfoContainer>
+            <S.BelongBox>
+              <S.ExpressSchoolBox>소속 학교</S.ExpressSchoolBox>
+              <span>
+                {clubId
+                  ? clubDetail?.data.highSchoolName
+                  : myClub?.data.highSchoolName}
+              </span>
+            </S.BelongBox>
+            <S.BelongBox>
+              <S.ExpressTeacherBox>담당 선생님</S.ExpressTeacherBox>
+              <span>
+                {clubId
+                  ? clubDetail?.data.teacher.name
+                  : myClub?.data.teacher.name}
+              </span>
+            </S.BelongBox>
+          </S.ClubInfoContainer>
+          <S.ClubPersonnelBox>
+            <S.ClubPersonnelTitle>동아리 인원</S.ClubPersonnelTitle>
+            <span>
+              총 {clubId ? clubDetail?.data.headCount : myClub?.data.headCount}
+              명
+            </span>
+          </S.ClubPersonnelBox>
+          <S.ClubMemberListContainer>
+            {clubId
+              ? clubDetail?.data.students.map((student) => (
+                  <S.ClubMemberBox
+                    key={student.id}
+                    onClick={() =>
+                      push(`/main/club/${clubId}/student/${student.id}`)
+                    }
+                  >
+                    <S.MemberName>{student.name}</S.MemberName>
+                    <S.MemberRole>{roleToKor[student.authority]}</S.MemberRole>
+                  </S.ClubMemberBox>
+                ))
+              : myClub?.data.students.map((student) => (
+                  <S.ClubMemberBox
+                    key={student.id}
+                    onClick={() =>
+                      push(`/main/club/${clubId}/student/${student.id}`)
+                    }
+                  >
+                    <S.MemberName>{student.name}</S.MemberName>
+                    <S.MemberRole>{roleToKor[student.authority]}</S.MemberRole>
+                  </S.ClubMemberBox>
+                ))}
+          </S.ClubMemberListContainer>
+        </S.ClubContainer>
+      </S.ClubWrapper>
     </div>
   )
 }
 
-export default DetailPage
+export default ClubDetailPage
