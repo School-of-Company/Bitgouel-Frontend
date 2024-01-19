@@ -1,33 +1,21 @@
 'use client'
 
-import * as S from './style'
-import { useRouter } from 'next/navigation'
-<<<<<<< HEAD
-import { PlusCertificate, PersonOut } from '../../../assets'
-import Bg2 from '../../../assets/png/mainBg2.png'
-import { useState } from 'react'
-=======
-import {
-  Bg2,
-  CalendarIcon,
-  PlusCertificate,
-  PersonOut,
-  AddCertificate,
-} from '../../../assets'
-import { ChangeEvent, useState } from 'react'
-import { CreateModal, SelectCalendarModal } from '../../../modals'
->>>>>>> develop
-import { useModal } from '../../../hooks'
-import { useRecoilValue } from 'recoil'
 import {
   useGetCertificateList,
-  useGetCertificateListTeacher,
-  usePatchModifyCertificate,
-  usePostCertificate,
+  useGetCertificateListTeacher
 } from '@bitgouel/api'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+import { useRecoilValue } from 'recoil'
+import {
+  Bg2,
+  PersonOut,
+  PlusCertificate
+} from '../../../assets'
 import { Role } from '../../../atoms/index'
-import { CertificateRequest } from '@bitgouel/types'
 import CertificateItem from '../../../components/CertificateItem'
+import { useModal } from '../../../hooks'
+import * as S from './style'
 
 interface Certificate {
   id: number
