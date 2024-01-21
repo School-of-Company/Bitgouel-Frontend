@@ -21,7 +21,7 @@ const InquiryItem = ({ item }: { item: InquiryTypes }) => {
         <S.StatusFrom
           status={item.answerStatus}
         >
-          답변 대기 중
+          {item.answerStatus === 'ANSWERED' ? '답변 완료됨' : '답변 대기 중'}
         </S.StatusFrom>
       </S.SubMenuContainer>
     </S.InquiryItemWrapper>

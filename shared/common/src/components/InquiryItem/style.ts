@@ -49,9 +49,9 @@ export const SubMenuContainer = styled.div`
 export const StatusFrom = styled.div<{ status: AnswerStatus }>`
   ${({ theme }) => theme.typo.caption.regular};
   color: ${({ status, theme }) =>
-    status === 'UNANSWERD' ? theme.color.error : theme.color.main};
+    status === 'UNANSWERED' ? theme.color.error : theme.color.main};
   background-color: ${({ status, theme }) =>
-    status === 'UNANSWERD' ? theme.color.red['800'] : theme.color.blue['800']};
+    status === 'UNANSWERED' ? theme.color.red['800'] : theme.color.blue['800']};
   display: flex;
   padding: 0.25rem 0.5rem;
   border-radius: 1.125rem;

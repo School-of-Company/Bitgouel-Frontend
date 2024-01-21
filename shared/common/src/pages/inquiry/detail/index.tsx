@@ -57,7 +57,7 @@ const InquiryDetailPage = ({ inquiryId }: { inquiryId: string }) => {
                   .with('ANSWERED', () => true)
                   .otherwise(() => false)}
               >
-                {data?.data.answerStatus ? '답변 완료됨' : '답변 대기 중'}
+                {data?.data.answerStatus === 'ANSWERED' ? '답변 완료됨' : '답변 대기 중'}
               </S.ApproveStatus>
               <S.SemiTitleBox>
                 <S.SubTitleBox>게시일</S.SubTitleBox>

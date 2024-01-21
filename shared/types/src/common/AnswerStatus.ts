@@ -1,1 +1,1 @@
-export type AnswerStatus = 'ANSWERED' | 'UNANSWERD'
+export type AnswerStatus = 'ANSWERED' | 'UNANSWERED'
