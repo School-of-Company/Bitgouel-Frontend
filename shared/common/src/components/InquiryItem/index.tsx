@@ -1,27 +1,27 @@
 'use client'
 
+import { InquiryTypes } from '@bitgouel/types'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
 
-const InquiryItem = () => {
+const InquiryItem = ({ item }: { item: InquiryTypes }) => {
   const { push } = useRouter()
 
   return (
-    <S.InquiryItemWrapper onClick={() => push(`/main/inquiry/detail`)}>
+    <S.InquiryItemWrapper onClick={() => push(`/main/inquiry/${item.id}`)}>
       <S.SubTitle>
-        <S.Name>홍길동</S.Name>
-        <S.Date>2024.01.14</S.Date>
+        <S.Name>{item.username}</S.Name>
+        <S.Date>{`${item.createdAt.slice(0, 4)}.${item.createdAt.slice(
+          5,
+          7
+        )}.${item.createdAt.slice(8, 10)}`}</S.Date>
       </S.SubTitle>
-      <S.Title>문의가 문의문의해서 문의문의한 게 문의문의해요</S.Title>
-      <S.MainTextContainer>
-        <S.MainText>문 의</S.MainText>
-      </S.MainTextContainer>
+      <S.Title>{item.question}</S.Title>
       <S.SubMenuContainer>
         <S.StatusFrom
-          status={'PENDING'}
-          display={'ROLE_ADMIN' !== 'ROLE_ADMIN' ? 'none' : ''}
+          status={item.answerStatus}
         >
-          답변 대기 중
+          {item.answerStatus === 'ANSWERED' ? '답변 완료됨' : '답변 대기 중'}
         </S.StatusFrom>
       </S.SubMenuContainer>
     </S.InquiryItemWrapper>

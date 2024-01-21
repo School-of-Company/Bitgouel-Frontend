@@ -5,6 +5,7 @@ interface StudentType {
 }
 
 export interface ClubDetailResponseTypes {
+  clubId: number
   clubName: string
   highSchoolName: string
   headCount: number

@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { usePostInquiry } from '@bitgouel/api'
+import { Bg5, CreateModal, useModal } from '@bitgouel/common'
+import { ChangeEvent, useState } from 'react'
 import * as S from './style'
-import { Bg5 } from '@bitgouel/common'
 
 const InquiryCreatePage = () => {
   const MAXLENGTH: number = 1000 as const
@@ -10,15 +11,9 @@ const InquiryCreatePage = () => {
   const [inquiryTitle, setInquiryTitle] = useState<string>('')
   const [inquiryContent, setInquiryContent] = useState<string>('')
 
-  const saveInquiryTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInquiryTitle(event.target.value)
-  }
+  const { openModal } = useModal()
 
-  const saveInquiryMainText = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    setInquiryContent(event.target.value)
-  }
+  const { mutate } = usePostInquiry()
 
   return (
     <div>
@@ -30,19 +25,40 @@ const InquiryCreatePage = () => {
       <S.DocumentInputContainer>
         <S.DocumentInput>
           <S.InputTitle
+            value={inquiryTitle}
             placeholder='문의 제목(100자 이내)'
             maxLength={100}
-            onChange={saveInquiryTitle}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setInquiryTitle(e.target.value)
+            }
           />
           <S.InputMainText
+            value={inquiryContent}
             maxLength={MAXLENGTH}
             placeholder='본문 입력 (1000자 이내)'
-            onChange={saveInquiryMainText}
+            onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+              setInquiryContent(e.target.value)
+            }
           />
           <S.ButtonContainer>
             <S.CreateButton
-              isAble={
-                inquiryTitle !== '' && inquiryContent !== '' ? true : false
+              isAble={inquiryTitle !== '' && inquiryContent !== ''}
+              onClick={() =>
+                inquiryTitle !== '' && inquiryContent !== ''
+                  ? openModal(
+                      <CreateModal
+                        question='문의하시겠습니까?'
+                        title={inquiryTitle}
+                        onCreate={() =>
+                          mutate({
+                            question: inquiryTitle,
+                            questionDetail: inquiryContent,
+                          })
+                        }
+                        createText='문의하기'
+                      />
+                    )
+                  : null
               }
             >
               문의하기

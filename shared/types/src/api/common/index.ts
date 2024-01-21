@@ -19,4 +19,6 @@ export * from './PostListOptionsTypes'
 export * from './PostCreatePayloadTypes'
 export * from './PostDetailResponseTypes'
 export * from './PostModifyPayloadTypes'
+export * from './InquiryListResponseTypes'
+export * from './InquiryDetailResponseTypes'
 

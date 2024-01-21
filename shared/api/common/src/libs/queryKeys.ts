@@ -78,3 +78,14 @@ export const clubQueryKeys = {
   getMyClub: () => ['club', 'myClub'],
   getStudentDetail: () => ['club', 'studentDetail'],
 } as const
+
+export const inquiryQueryKeys = {
+  postInquiry: () => ['inquiry', 'create'],
+  getMyInquiry: () => ['inquiry', 'myInquiry'],
+  getInquiryDetail: (id: string) => ['inquiry', 'detail', id],
+  deleteMyInquiry: (id: string) => ['inquiry', 'myDelete', id],
+  patchInquiry: (id: string) => ['inquiry', 'correction', id],
+  postAnswer: (id: string) => ['inquiry', 'answer', id],
+  getInquiry: () => ['inquiry', 'inquiryList'],
+  deleteInquiry: (id: string) => ['inquiry', 'reject', id],
+} as const
