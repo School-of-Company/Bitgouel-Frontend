@@ -19,7 +19,7 @@ const InquiryModifyPage = ({ inquiryId }: { inquiryId: string }) => {
       setModifyTitle(data?.data.question)
       setModifyContent(data?.data.questionDetail)
     }
-  }, [])
+  }, [data])
 
   return (
     <div>
