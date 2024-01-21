@@ -39,20 +39,20 @@ const LoginPage = () => {
       setPasswordErrorText('잘못된 비밀번호입니다.')
     } else if (error?.response?.status === 400) {
       if (
-        Object.keys(error.response.data.fieldError).includes('email') &&
-        Object.keys(error.response.data.fieldError).includes('password')
+        Object.keys(error.response?.data.fieldError).includes('email') &&
+        Object.keys(error.response?.data.fieldError).includes('password')
       ) {
         setEmailErrorText('잘못된 이메일입니다')
         setPasswordErrorText('잘못된 비밀번호입니다')
       } else if (
-        Object.keys(error.response.data.fieldError).includes('email') &&
-        !Object.keys(error.response.data.fieldError).includes('password')
+        Object.keys(error.response?.data.fieldError).includes('email') &&
+        !Object.keys(error.response?.data.fieldError).includes('password')
       ) {
         setEmailErrorText('잘못된 이메일입니다.')
         setPasswordErrorText('')
       } else if (
-        Object.keys(error.response.data.fieldError).includes('password') &&
-        !Object.keys(error.response.data.fieldError).includes('email')
+        Object.keys(error.response?.data.fieldError).includes('password') &&
+        !Object.keys(error.response?.data.fieldError).includes('email')
       ) {
         setPasswordErrorText('잘못된 비밀번호입니다.')
         setEmailErrorText('')

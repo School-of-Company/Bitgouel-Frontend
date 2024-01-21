@@ -66,7 +66,7 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
                   <S.ClubMemberBox
                     key={student.id}
                     onClick={() =>
-                      push(`/main/club/${clubId}/student/${student.id}`)
+                      push(`/main/club/${myClub?.data.clubId}/student/${student.id}`)
                     }
                   >
                     <S.MemberName>{student.name}</S.MemberName>

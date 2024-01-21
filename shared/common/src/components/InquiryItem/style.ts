@@ -1,3 +1,4 @@
+import { AnswerStatus } from '@bitgouel/types/src/common/AnswerStatus'
 import styled from '@emotion/styled'
 
 export const InquiryItemWrapper = styled.div`
@@ -45,13 +46,13 @@ export const SubMenuContainer = styled.div`
   display: flex;
 `
 
-export const StatusFrom = styled.div<{ status: string; display: string }>`
+export const StatusFrom = styled.div<{ status: AnswerStatus }>`
   ${({ theme }) => theme.typo.caption.regular};
   color: ${({ status, theme }) =>
-    status === 'PENDING' ? theme.color.error : theme.color.main};
+    status === 'UNANSWERED' ? theme.color.error : theme.color.main};
   background-color: ${({ status, theme }) =>
-    status === 'PENDING' ? theme.color.red['800'] : theme.color.blue['800']};
-  display: ${({ display }) => (display === 'none' ? 'none' : 'flex')};
+    status === 'UNANSWERED' ? theme.color.red['800'] : theme.color.blue['800']};
+  display: flex;
   padding: 0.25rem 0.5rem;
   border-radius: 1.125rem;
   margin-right: 1rem;

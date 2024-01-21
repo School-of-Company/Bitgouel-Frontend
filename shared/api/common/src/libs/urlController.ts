@@ -60,3 +60,14 @@ export const clubUrl = {
   studentDetail: (club_id: string, student_id: string) =>
     `/club/${club_id}/${student_id}`,
 } as const
+
+export const inquiryUrl = {
+  inquiryCreate: () => `/inquiry`,
+  myInquiryList: () => `/inquiry`,
+  inquiryDetail: (inquiry_id: string) => `/inquiry/${inquiry_id}`,
+  myInquiryDelete: (inquiry_id: string) => `/inquiry/${inquiry_id}`,
+  myInquiryModify: (inquiry_id: string) => `/inquiry/${inquiry_id}`,
+  inquiryAnswer: (inquiry_id: string) => `/inquiry/${inquiry_id}/reply`,
+  inquiryList: () => `/inquiry/all`,
+  inquiryDelete: (inquiry_id: string) => `/inquiry/${inquiry_id}/reject`,
+} as const

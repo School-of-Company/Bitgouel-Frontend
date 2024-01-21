@@ -1,2 +1,2 @@
-export * from './useGetClubList'
-export * from './useGetSchoolClubList'
+export * from './club'
+export * from './inquiry'

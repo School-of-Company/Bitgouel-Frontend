@@ -113,6 +113,7 @@ const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
                   openModal(
                     <RejectModal
                       type='활동 추가'
+                      purpose='거절'
                       title={object.title}
                       onAppropriation={() => reject()}
                     />
