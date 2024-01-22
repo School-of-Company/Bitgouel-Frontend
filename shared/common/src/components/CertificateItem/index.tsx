@@ -6,18 +6,19 @@ import { AddCertificate, CalendarIcon } from '../../assets'
 import { useModal } from '../../hooks'
 import { CreateModal, SelectCalendarModal } from '../../modals'
 import { theme } from '../../styles'
-
 import { useRecoilValue } from 'recoil'
 import { toast } from 'react-toastify'
 
 interface CertificateProps {
   certificateItems: Certificate
   student_id: string
+  isAddCertificate: boolean
 }
 
 const CertificateItem: React.FC<CertificateProps> = ({
   certificateItems,
   student_id,
+  isAddCertificate,
 }) => {
   const { id, name, acquisitionDate } = certificateItems
   const { mutate: postCertificateMutate } = usePostCertificate()
@@ -26,7 +27,6 @@ const CertificateItem: React.FC<CertificateProps> = ({
     id
   )
 
-  const [isAddCertificate, setIsAddCertificate] = useState<boolean>(false)
   const [certificateText, setCertificateText] = useState<string>('')
   const [isCertificateDate, setIsCertificateDate] = useState<boolean>(false)
   const [modifyText, setModifyText] = useState<string>('')
@@ -81,6 +81,8 @@ const CertificateItem: React.FC<CertificateProps> = ({
   //     setModifyDateText('')
   //   }
 
+  console.log(isAddCertificate)
+
   return (
     <>
       {isAddCertificate ? (
@@ -88,7 +90,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
           <S.ListToggle list='추가' />
           <S.AddCertificateInput
             type='text'
-            value={modifyText}
+            value={name}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setModifyText(e.target.value)
             }
@@ -106,7 +108,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
                 <CalendarIcon />
               </div>
             </S.SelectDateContainer>
-            <S.ShowDateText>{modifyDateText}</S.ShowDateText>
+            <S.ShowDateText>{acquisitionDate}</S.ShowDateText>
           </S.AddCertificateDateBox>
           <S.AddCertificateIcon
           // onClick={() =>
@@ -160,57 +162,6 @@ const CertificateItem: React.FC<CertificateProps> = ({
           </span>
           <S.ModifyText>수정하기</S.ModifyText>
         </S.CertificateItemBox>
-      )}
-
-      {isAddCertificate && (
-        <S.AddCertificateBox>
-          <S.ListToggle list='추가' />
-          <S.AddCertificateInput
-            type='text'
-            value={certificateText}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setCertificateText(e.target.value)
-            }
-          />
-          <S.AddCertificateDateBox>
-            <S.SelectDateContainer>
-              {isCertificateDate && (
-                <SelectCalendarModal
-                  date={certificateDate}
-                  setDate={setCertificateDate}
-                  setText={setCertificateDateText}
-                />
-              )}
-              <div onClick={() => setIsCertificateDate((prev) => !prev)}>
-                <CalendarIcon />
-              </div>
-            </S.SelectDateContainer>
-            <S.ShowDateText>{certificateDateText}</S.ShowDateText>
-          </S.AddCertificateDateBox>
-          <S.AddCertificateIcon
-            onClick={() =>
-              certificateText.trim() !== '' && certificateDateText.trim() !== ''
-                ? openModal(
-                    <CreateModal
-                      question='자격증 정보를 추가하시겠습니까?'
-                      title={certificateText}
-                      onCreate={() => onCreate()}
-                      createText='추가하기'
-                    />
-                  )
-                : toast.info('자격증 정보를 입력해주세요')
-            }
-          >
-            <AddCertificate
-              color={
-                certificateText.trim() !== '' &&
-                certificateDateText.trim() !== ''
-                  ? theme.color.main
-                  : theme.color.gray['700']
-              }
-            />
-          </S.AddCertificateIcon>
-        </S.AddCertificateBox>
       )}
     </>
   )

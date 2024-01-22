@@ -3,15 +3,25 @@
 import {
   useGetCertificateList,
   useGetCertificateListTeacher,
+  usePostCertificate,
 } from '@bitgouel/api'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { useRecoilValue } from 'recoil'
-import { Bg2, PersonOut, PlusCertificate } from '../../../assets'
-import { RoleEnumTypes } from '@bitgouel/types'
+import {
+  AddCertificate,
+  Bg2,
+  CalendarIcon,
+  PersonOut,
+  PlusCertificate,
+} from '../../../assets'
+import { CertificateRequest, RoleEnumTypes } from '@bitgouel/types'
 import CertificateItem from '../../../components/CertificateItem'
 import { useModal } from '../../../hooks'
 import * as S from './style'
+import { CreateModal, SelectCalendarModal } from '../../../modals'
+import { toast } from 'react-toastify'
+import { theme } from '../../../styles'
 
 interface Certificate {
   id: number
@@ -26,13 +36,17 @@ interface StudentProps {
 
 const StudentPage: React.FC<StudentProps> = ({ student_id }) => {
   const { push } = useRouter()
+
   const [isAddCertificate, setIsAddCertificate] = useState<boolean>(false)
   const [certificateText, setCertificateText] = useState<string>('')
+  const [isCertificateDate, setIsCertificateDate] = useState<boolean>(false)
   const [modifyText, setModifyText] = useState<string>('')
   const [modifyDateText, setModifyDateText] = useState<string>('')
   const [certificateDate, setCertificateDate] = useState<Date>(new Date())
   const [certificateDateText, setCertificateDateText] = useState<string>('')
   const { openModal, closeModal } = useModal()
+
+  const { mutate: postCertificateMutate } = usePostCertificate()
 
   const role =
     typeof window !== 'undefined'
@@ -44,6 +58,23 @@ const StudentPage: React.FC<StudentProps> = ({ student_id }) => {
       : useGetCertificateListTeacher(student_id)
 
   console.log(certificateList)
+
+  const onCreate = () => {
+    const payload: CertificateRequest = {
+      name: certificateText,
+      acquisitionDate: `${certificateDate.getFullYear()}-${(
+        certificateDate.getMonth() + 1
+      )
+        .toString()
+        .padStart(2, '0')}-${certificateDate
+        .getDate()
+        .toString()
+        .padStart(2, '0')}`,
+    }
+    postCertificateMutate(payload)
+    closeModal()
+    window.location.reload()
+  }
 
   return (
     <div>
@@ -85,8 +116,62 @@ const StudentPage: React.FC<StudentProps> = ({ student_id }) => {
                   key={idx}
                   certificateItems={certificate}
                   student_id={student_id}
+                  isAddCertificate={isAddCertificate}
                 />
               ))}
+              {isAddCertificate && (
+                <S.AddCertificateBox>
+                  <S.ListToggle list='추가' />
+                  <S.AddCertificateInput
+                    type='text'
+                    value={certificateText}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                      setCertificateText(e.target.value)
+                    }
+                  />
+                  <S.AddCertificateDateBox>
+                    <S.SelectDateContainer>
+                      {isCertificateDate && (
+                        <SelectCalendarModal
+                          date={certificateDate}
+                          setDate={setCertificateDate}
+                          setText={setCertificateDateText}
+                        />
+                      )}
+                      <div
+                        onClick={() => setIsCertificateDate((prev) => !prev)}
+                      >
+                        <CalendarIcon />
+                      </div>
+                    </S.SelectDateContainer>
+                    <S.ShowDateText>{certificateDateText}</S.ShowDateText>
+                  </S.AddCertificateDateBox>
+                  <S.AddCertificateIcon
+                    onClick={() =>
+                      certificateText.trim() !== '' &&
+                      certificateDateText.trim() !== ''
+                        ? openModal(
+                            <CreateModal
+                              question='자격증 정보를 추가하시겠습니까?'
+                              title={certificateText}
+                              onCreate={() => onCreate()}
+                              createText='추가하기'
+                            />
+                          )
+                        : toast.info('자격증 정보를 입력해주세요')
+                    }
+                  >
+                    <AddCertificate
+                      color={
+                        certificateText.trim() !== '' &&
+                        certificateDateText.trim() !== ''
+                          ? theme.color.main
+                          : theme.color.gray['700']
+                      }
+                    />
+                  </S.AddCertificateIcon>
+                </S.AddCertificateBox>
+              )}
             </S.CertificateListBox>
           </S.CertificateBox>
         </S.CertificateContainer>
