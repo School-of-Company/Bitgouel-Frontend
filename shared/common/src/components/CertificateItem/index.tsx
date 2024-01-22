@@ -6,7 +6,7 @@ import { AddCertificate, CalendarIcon } from '../../assets'
 import { useModal } from '../../hooks'
 import { CreateModal, SelectCalendarModal } from '../../modals'
 import { theme } from '../../styles'
-import { Role } from '../../atoms'
+
 import { useRecoilValue } from 'recoil'
 import { toast } from 'react-toastify'
 
@@ -34,7 +34,6 @@ const CertificateItem: React.FC<CertificateProps> = ({
   const [certificateDate, setCertificateDate] = useState<Date>(new Date())
   const [certificateDateText, setCertificateDateText] = useState<string>('')
   const { openModal, closeModal } = useModal()
-  const role = useRecoilValue(Role)
 
   const onCreate = () => {
     const payload: CertificateRequest = {

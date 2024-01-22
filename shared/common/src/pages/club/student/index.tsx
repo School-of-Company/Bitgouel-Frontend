@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { Bg2, PersonOut, PlusCertificate } from '../../../assets'
-import { Role } from '../../../atoms/index'
+import { RoleEnumTypes } from '@bitgouel/types'
 import CertificateItem from '../../../components/CertificateItem'
 import { useModal } from '../../../hooks'
 import * as S from './style'
@@ -34,7 +34,10 @@ const StudentPage: React.FC<StudentProps> = ({ student_id }) => {
   const [certificateDateText, setCertificateDateText] = useState<string>('')
   const { openModal, closeModal } = useModal()
 
-  const role = useRecoilValue(Role)
+  const role =
+    typeof window !== 'undefined'
+      ? (localStorage.getItem('Authority') as RoleEnumTypes)
+      : null
   const { data: certificateList } =
     role === 'ROLE_STUDENT'
       ? useGetCertificateList()
