@@ -85,7 +85,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
 
   return (
     <>
-      {isAddCertificate ? (
+      {/* {isAddCertificate ? (
         <S.AddCertificateBox>
           <S.ListToggle list='추가' />
           <S.AddCertificateInput
@@ -150,19 +150,19 @@ const CertificateItem: React.FC<CertificateProps> = ({
             />
           </S.AddCertificateIcon>
         </S.AddCertificateBox>
-      ) : (
-        <S.CertificateItemBox id={id}>
-          <S.ListToggle list='추가됨' />
-          <span>{name}</span>
-          <span>
-            {acquisitionDate
-              .split('')
-              .map((v) => (v === '-' ? '.' : v))
-              .join('')}
-          </span>
-          <S.ModifyText>수정하기</S.ModifyText>
-        </S.CertificateItemBox>
-      )}
+      ) : ( */}
+      <S.CertificateItemBox id={id}>
+        <S.ListToggle list='추가됨' />
+        <span>{name}</span>
+        <span>
+          {acquisitionDate
+            .split('')
+            .map((v) => (v === '-' ? '.' : v))
+            .join('')}
+        </span>
+        <S.ModifyText>수정하기</S.ModifyText>
+      </S.CertificateItemBox>
+      {/* )} */}
     </>
   )
 }
