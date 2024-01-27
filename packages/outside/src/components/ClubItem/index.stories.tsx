@@ -10,4 +10,9 @@ export default {
 
 type Story = StoryObj<typeof ClubItem>
 
-export const Primary: Story = {}
+export const Primary: Story = {
+  args: {
+    clubId: '1234',
+    clubName: 'dev GSM'
+  }
+}

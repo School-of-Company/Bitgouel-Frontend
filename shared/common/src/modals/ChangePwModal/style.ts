@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-export const ChangePwContainer = styled.div`
+export const ChangePwWrapper = styled.div`
   position: relative;
   width: 27rem;
   height: 34.6875rem;
@@ -15,9 +15,10 @@ export const ChangePwContainer = styled.div`
 export const InputsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.5rem;
   width: 100%;
+  padding-left: 1.5rem;
 `
 
 export const ChangePwButtonContainer = styled.div`
@@ -46,10 +47,10 @@ export const CancelButton = styled.div`
   border: 0.0625rem solid ${({ theme }) => theme.color.main};
 `
 
-export const CompleteButton = styled.div<{ isValid: boolean }>`
-  color: ${({ theme, isValid }) =>
-    isValid ? theme.color.white : theme.color.gray['400']};
-  background-color: ${({ theme, isValid }) =>
-    isValid ? theme.color.main : theme.color.gray['700']};
+export const CompleteButton = styled.div<{ isAble: boolean }>`
+  color: ${({ theme, isAble }) =>
+    isAble ? theme.color.white : theme.color.gray['400']};
+  background-color: ${({ theme, isAble }) =>
+    isAble ? theme.color.main : theme.color.gray['700']};
   border: 0.0625rem solid ${({ theme }) => theme.color.gray['700']};
 `
