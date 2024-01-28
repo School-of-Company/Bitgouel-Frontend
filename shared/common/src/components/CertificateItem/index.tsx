@@ -29,11 +29,13 @@ const CertificateItem: React.FC<CertificateProps> = ({
 
   const [certificateText, setCertificateText] = useState<string>('')
   const [isCertificateDate, setIsCertificateDate] = useState<boolean>(false)
-  const [modifyText, setModifyText] = useState<string>('')
+  const [modifyText, setModifyText] = useState<string>(certificateItems.name)
   const [modifyDateText, setModifyDateText] = useState<string>('')
   const [certificateDate, setCertificateDate] = useState<Date>(new Date())
   const [certificateDateText, setCertificateDateText] = useState<string>('')
   const { openModal, closeModal } = useModal()
+
+  const [isModify, setIsModify] = useState<boolean>(false)
 
   const onCreate = () => {
     const payload: CertificateRequest = {
@@ -49,6 +51,10 @@ const CertificateItem: React.FC<CertificateProps> = ({
     }
     postCertificateMutate(payload)
   }
+
+  // const onModify = () => {
+  //   const modufyData:
+  // }
 
   //   const onModify = (id: number, name: string, date: string) => {
   //     setCertificateList((prev) => {
@@ -81,16 +87,16 @@ const CertificateItem: React.FC<CertificateProps> = ({
   //     setModifyDateText('')
   //   }
 
-  console.log(isAddCertificate)
+  // console.log(isAddCertificate)
 
   return (
     <>
-      {/* {isAddCertificate ? (
+      {isModify ? (
         <S.AddCertificateBox>
           <S.ListToggle list='추가' />
           <S.AddCertificateInput
             type='text'
-            value={name}
+            value={modifyText}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setModifyText(e.target.value)
             }
@@ -150,19 +156,21 @@ const CertificateItem: React.FC<CertificateProps> = ({
             />
           </S.AddCertificateIcon>
         </S.AddCertificateBox>
-      ) : ( */}
-      <S.CertificateItemBox id={id}>
-        <S.ListToggle list='추가됨' />
-        <span>{name}</span>
-        <span>
-          {acquisitionDate
-            .split('')
-            .map((v) => (v === '-' ? '.' : v))
-            .join('')}
-        </span>
-        <S.ModifyText>수정하기</S.ModifyText>
-      </S.CertificateItemBox>
-      {/* )} */}
+      ) : (
+        <S.CertificateItemBox id={id}>
+          <S.ListToggle list='추가됨' />
+          <span>{name}</span>
+          <span>
+            {acquisitionDate
+              .split('')
+              .map((v) => (v === '-' ? '.' : v))
+              .join('')}
+          </span>
+          <S.ModifyText onClick={() => setIsModify(true)}>
+            수정하기
+          </S.ModifyText>
+        </S.CertificateItemBox>
+      )}
     </>
   )
 }

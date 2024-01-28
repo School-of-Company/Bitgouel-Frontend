@@ -4,6 +4,7 @@ import {
   useGetCertificateList,
   useGetCertificateListTeacher,
   usePostCertificate,
+  useGetStudentDetail,
 } from '@bitgouel/api'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState } from 'react'
@@ -41,8 +42,8 @@ const StudentPage: React.FC<StudentProps> = ({ student_id }) => {
   const [certificateText, setCertificateText] = useState<string>('')
   const [isCertificateDate, setIsCertificateDate] = useState<boolean>(false)
   const [modifyText, setModifyText] = useState<string>('')
-  const [modifyDateText, setModifyDateText] = useState<string>('')
   const [certificateDate, setCertificateDate] = useState<Date>(new Date())
+  const [modifyDateText, setModifyDateText] = useState<string>('')
   const [certificateDateText, setCertificateDateText] = useState<string>('')
   const { openModal, closeModal } = useModal()
 
@@ -52,12 +53,11 @@ const StudentPage: React.FC<StudentProps> = ({ student_id }) => {
     typeof window !== 'undefined'
       ? (localStorage.getItem('Authority') as RoleEnumTypes)
       : null
+
   const { data: certificateList } =
     role === 'ROLE_STUDENT'
       ? useGetCertificateList()
       : useGetCertificateListTeacher(student_id)
-
-  console.log(certificateList)
 
   const onCreate = () => {
     const payload: CertificateRequest = {
