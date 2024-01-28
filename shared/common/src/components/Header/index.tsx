@@ -18,6 +18,7 @@ import {
 import { LectureTypeText } from '../../atoms'
 import { LectureTypeModal } from '../../modals'
 import { theme } from '../../styles'
+import { toast } from 'react-toastify'
 import * as S from './style'
 
 const Header = () => {
@@ -41,8 +42,10 @@ const Header = () => {
   const [lectureTypeText, setLectureTypeText] =
     useRecoilState<string>(LectureTypeText)
   const [text, setText] = useState<string>('로그인')
-  const role = typeof window !== 'undefined' ?  localStorage.getItem("Authority") as RoleEnumTypes : null
-
+  const role =
+    typeof window !== 'undefined'
+      ? (localStorage.getItem('Authority') as RoleEnumTypes)
+      : null
 
   const { mutate } = useDeleteLogout()
 
@@ -109,7 +112,11 @@ const Header = () => {
           {menuList.map((menu, idx) => (
             <S.MenuItem
               key={idx}
-              onClick={() => tokenManager.accessToken && push(menu.link)}
+              onClick={() =>
+                tokenManager.accessToken
+                  ? push(menu.link)
+                  : toast.info('로그인 후 이용해 주세요.')
+              }
               isSameRoute={pathname === menu.link}
               color={spanColor}
             >
