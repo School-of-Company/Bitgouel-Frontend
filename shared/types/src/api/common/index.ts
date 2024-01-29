@@ -21,4 +21,4 @@ export * from './PostDetailResponseTypes'
 export * from './PostModifyPayloadTypes'
 export * from './InquiryListResponseTypes'
 export * from './InquiryDetailResponseTypes'
-
+export * from './ChangePwPayloadTypes'

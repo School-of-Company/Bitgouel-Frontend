@@ -18,8 +18,6 @@ export const ValueInputBox = styled.div`
 export const ErrorText = styled.span`
   color: ${({ theme }) => theme.color.error};
   ${({ theme }) => theme.typo.caption.regular}
-  margin-left: 0.2rem;
-  margin-top: 0.4rem;
 `
 
 export const ValueInput = styled.input<{

@@ -14,7 +14,7 @@ const InquiryItem = ({ item }: { item: InquiryTypes }) => {
         <S.Date>{`${item.createdAt.slice(0, 4)}.${item.createdAt.slice(
           5,
           7
-        )}.${item.createdAt.slice(8, 10)}`}</S.Date>
+        )}.${item.createdAt.slice(8)}`}</S.Date>
       </S.SubTitle>
       <S.Title>{item.question}</S.Title>
       <S.SubMenuContainer>
