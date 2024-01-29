@@ -3,6 +3,22 @@
 import * as S from '../style'
 import { Banner2 } from '../../../assets'
 
+const companyList = [
+  '(유)삼환',
+  '(주)휘라포토닉스',
+  '(주)스위코진광',
+  'LG이노텍(주)',
+  '(주)유진테크노',
+  '(주)LCM에너지솔루션',
+  '동양통상',
+  '주식회사 금철',
+  '주식회사 칼선',
+  '(주)남양에스티엔',
+  '주식회사 유니컴퍼니',
+  '제이제이파트너스(주)',
+  '인텍전기전자',
+]
+
 const CompanyListContents2 = () => {
   return (
     <S.CompanyListBanner url={Banner2}>
@@ -10,20 +26,9 @@ const CompanyListContents2 = () => {
         <S.CompanyValueTitle>에너지산업</S.CompanyValueTitle>
         <S.CompanyMainTextArea>
           <S.CompanyTextContainer>
-            <S.CompanyText>(유)삼환</S.CompanyText>
-            <S.CompanyText>(주)휘라포토닉스</S.CompanyText>
-            <S.CompanyText>(주)스위코진광</S.CompanyText>
-            <S.CompanyText>LG이노텍(주)</S.CompanyText>
-            <S.CompanyText>(주)유진테크노</S.CompanyText>
-            <S.CompanyText>(주)LCM에너지솔루션</S.CompanyText>
-            <S.CompanyText>동양통상</S.CompanyText>
-            <S.CompanyText>주식회사 금철</S.CompanyText>
-            <S.CompanyText>주식회사 칼선</S.CompanyText>
-            <S.CompanyText>(주)남양에스티엔</S.CompanyText>
-            <S.CompanyText>(주)남양에스티엔</S.CompanyText>
-            <S.CompanyText>주식회사 유니컴퍼니</S.CompanyText>
-            <S.CompanyText>제이제이파트너스(주)</S.CompanyText>
-            <S.CompanyText>인텍전기전자</S.CompanyText>
+            {companyList.map((company) => (
+              <S.CompanyText>{company}</S.CompanyText>
+            ))}
           </S.CompanyTextContainer>
         </S.CompanyMainTextArea>
       </S.CompanyListContents>
