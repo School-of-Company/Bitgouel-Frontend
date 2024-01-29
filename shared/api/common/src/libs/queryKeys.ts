@@ -51,6 +51,7 @@ export const activityQueryKeys = {
 
 export const myQueryKeys = {
   getMy: () => ['my', 'myData'],
+  patchPw: () => ['my', 'changePw']
 } as const
 
 export const postQueryKeys = {

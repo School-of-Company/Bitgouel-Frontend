@@ -187,7 +187,7 @@ importers:
         version: 0.23.12
       react-calendar:
         specifier: ^4.6.1
-        version: 4.6.1(@types/react@18.2.31)(react-dom@18.2.0)(react@18.2.0)
+        version: 4.6.1(react-dom@18.2.0)(react@18.2.0)
       react-slick:
         specifier: ^0.29.0
         version: 0.29.0(react-dom@18.2.0)(react@18.2.0)
@@ -8763,7 +8763,7 @@ packages:
       unpipe: 1.0.0
     dev: true
 
-  /react-calendar@4.6.1(@types/react@18.2.31)(react-dom@18.2.0)(react@18.2.0):
+  /react-calendar@4.6.1(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-MvCPdvxEvq7wICBhFxlYwxS2+IsVvSjTcmlr0Kl3yDRVhoX7btNg0ySJx5hy9rb1eaM4nDpzQcW5c87nfQ8n8w==}
     peerDependencies:
       '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -8773,7 +8773,6 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@types/react': 18.2.31
       '@wojtekmaj/date-utils': 1.5.1
       clsx: 2.0.0
       get-user-locale: 2.3.1

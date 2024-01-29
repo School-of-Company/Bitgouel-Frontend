@@ -1,14 +1,15 @@
 'use client'
 
-import { ValueInputProps } from '@bitgouel/types'
-import {
-  Ref,
+import React, {
+  useState,
   forwardRef,
+  InputHTMLAttributes,
   useEffect,
-  useState
+  Ref,
 } from 'react'
-import { XIcon } from '../../assets'
 import * as S from './style'
+import { XIcon } from '../../assets'
+import { ValueInputProps } from '@bitgouel/types'
 
 const ValueInput = (
   { length, onClear, errorText, isLoading, ...rest }: ValueInputProps,
