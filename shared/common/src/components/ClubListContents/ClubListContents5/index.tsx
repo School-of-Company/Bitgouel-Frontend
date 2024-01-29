@@ -3,7 +3,7 @@
 import * as S from '../style'
 import { Banner5 } from '../../../assets'
 
-const schoolList = [
+const schoolList: string[] = [
   '광주공업고등학교',
   '광주여자상업고등학교',
   '광주자연과학고등학교',

@@ -3,7 +3,7 @@
 import * as S from '../style'
 import { Banner1 } from '../../../assets'
 
-const companyList = [
+const companyList: string[] = [
   '보람엔지니어링',
   '(주)인탑스테크닉',
   '(주)삼도환경',
