@@ -1,5 +1,5 @@
 export interface Certificate {
-  id: string
+  id?: string
   name: string
   acquisitionDate: string
 }
