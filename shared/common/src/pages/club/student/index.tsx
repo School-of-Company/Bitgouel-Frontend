@@ -32,11 +32,13 @@ interface Certificate {
 }
 
 interface StudentProps {
-  student_id: string
+  studentId: string
+  clubId: string
 }
 
-const StudentPage: React.FC<StudentProps> = ({ student_id }) => {
+const StudentPage: React.FC<StudentProps> = ({ studentId, clubId }) => {
   const { push } = useRouter()
+  console.log(studentId)
 
   const [isAddCertificate, setIsAddCertificate] = useState<boolean>(false)
   const [certificateText, setCertificateText] = useState<string>('')
@@ -47,6 +49,9 @@ const StudentPage: React.FC<StudentProps> = ({ student_id }) => {
   const [certificateDateText, setCertificateDateText] = useState<string>('')
   const { openModal, closeModal } = useModal()
 
+  const { data: myData } = useGetStudentDetail(clubId, studentId)
+
+  console.log(myData)
   const { mutate: postCertificateMutate } = usePostCertificate()
 
   const role =
@@ -57,7 +62,7 @@ const StudentPage: React.FC<StudentProps> = ({ student_id }) => {
   const { data: certificateList } =
     role === 'ROLE_STUDENT'
       ? useGetCertificateList()
-      : useGetCertificateListTeacher(student_id)
+      : useGetCertificateListTeacher(studentId)
 
   const onCreate = () => {
     const payload: CertificateRequest = {
@@ -92,12 +97,12 @@ const StudentPage: React.FC<StudentProps> = ({ student_id }) => {
       <S.CertificateWrapper>
         <S.CertificateContainer>
           <S.ProfileBox>
-            <h3>홍길동</h3>
+            <h3>{myData?.data.name}</h3>
             <S.ProfileInfoBox>
-              <span>010-1234-5678</span>
-              <span>a12345679@gmail.com</span>
+              <span>{myData?.data.phoneNumber}</span>
+              <span>{myData?.data.email}</span>
               <span>
-                총 학점 <b>300</b>
+                총 학점 <b>{myData?.data.credit}</b>
               </span>
             </S.ProfileInfoBox>
           </S.ProfileBox>
@@ -115,7 +120,7 @@ const StudentPage: React.FC<StudentProps> = ({ student_id }) => {
                 <CertificateItem
                   key={idx}
                   certificateItems={certificate}
-                  student_id={student_id}
+                  student_id={studentId}
                   isAddCertificate={isAddCertificate}
                 />
               ))}
