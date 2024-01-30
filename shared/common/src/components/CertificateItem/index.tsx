@@ -11,35 +11,33 @@ import { toast } from 'react-toastify'
 
 interface CertificateProps {
   certificateItems: Certificate
-  student_id: string
   isAddCertificate: boolean
 }
 
 const CertificateItem: React.FC<CertificateProps> = ({
   certificateItems,
-  student_id,
   isAddCertificate,
 }) => {
   const { id, name, acquisitionDate } = certificateItems
-  const { mutate: postCertificateMutate } = usePostCertificate()
-  const { mutate: patchModifyCertificateMutate } = usePatchModifyCertificate(
-    student_id,
-    id
-  )
+  const { mutate: patchModifyCertificateMutate } = usePatchModifyCertificate(id)
 
   const [certificateText, setCertificateText] = useState<string>('')
   const [isCertificateDate, setIsCertificateDate] = useState<boolean>(false)
   const [modifyText, setModifyText] = useState<string>(certificateItems.name)
-  const [modifyDateText, setModifyDateText] = useState<string>('')
+  const [modifyDateText, setModifyDateText] = useState<string>(
+    certificateItems.acquisitionDate
+  )
   const [certificateDate, setCertificateDate] = useState<Date>(new Date())
   const [certificateDateText, setCertificateDateText] = useState<string>('')
   const { openModal, closeModal } = useModal()
 
   const [isModify, setIsModify] = useState<boolean>(false)
 
-  const onCreate = () => {
+  console.log(id)
+
+  const onModify = () => {
     const payload: CertificateRequest = {
-      name: certificateText,
+      name: modifyText,
       acquisitionDate: `${certificateDate.getFullYear()}-${(
         certificateDate.getMonth() + 1
       )
@@ -49,7 +47,10 @@ const CertificateItem: React.FC<CertificateProps> = ({
         .toString()
         .padStart(2, '0')}`,
     }
-    postCertificateMutate(payload)
+
+    patchModifyCertificateMutate(payload)
+    closeModal()
+    window.location.reload()
   }
 
   // const onModify = () => {
@@ -74,19 +75,6 @@ const CertificateItem: React.FC<CertificateProps> = ({
   //     )
   //   }
 
-  //   const cancelModify = (id: number) => {
-  //     setCertificateList((prev) => {
-  //       const changedModify = prev.map((certificate) =>
-  //         certificate.id === id
-  //           ? { ...certificate, isModify: false }
-  //           : certificate
-  //       )
-  //       return changedModify
-  //     })
-  //     setModifyText('')
-  //     setModifyDateText('')
-  //   }
-
   // console.log(isAddCertificate)
 
   return (
@@ -107,39 +95,41 @@ const CertificateItem: React.FC<CertificateProps> = ({
                 <SelectCalendarModal
                   date={certificateDate}
                   setDate={setCertificateDate}
-                  setText={setModifyDateText}
+                  setText={(value) => {
+                    console.log(value)
+                    setModifyDateText(value)
+                  }}
                 />
               )}
               <div onClick={() => setIsCertificateDate((prev) => !prev)}>
                 <CalendarIcon />
               </div>
             </S.SelectDateContainer>
-            <S.ShowDateText>{acquisitionDate}</S.ShowDateText>
+            <S.ShowDateText>{modifyDateText}</S.ShowDateText>
           </S.AddCertificateDateBox>
           <S.AddCertificateIcon
-          // onClick={() =>
-          //   (modifyText.trim() !== '' &&
-          //     modifyDateText.trim() !== '' &&
-          //     name !== modifyText) ||
-          //   acquisitionDate
-          //     .split('')
-          //     .map((v) => (v === '-' ? '.' : v))
-          //     .join('') !== modifyDateText
-          //     ? openModal(
-          //         <CreateModal
-          //           question='자격증 정보를 수정하시겠습니까?'
-          //           title={modifyText}
-          //           onCreate={() => onModify()}
-          //           createText='수정하기'
-          //         />
-          //       )
-          //     : name === modifyText &&
-          //       acquisitionDate
-          //         .split('')
-          //         .map((v) => (v === '-' ? '.' : v))
-          //         .join('') === modifyDateText &&
-          //       cancelModify()
-          // }
+            onClick={() =>
+              (modifyText.trim() !== '' &&
+                modifyDateText.trim() !== '' &&
+                name !== modifyText) ||
+              acquisitionDate
+                .split('')
+                .map((v) => (v === '-' ? '.' : v))
+                .join('') !== modifyDateText
+                ? openModal(
+                    <CreateModal
+                      question='자격증 정보를 수정하시겠습니까?'
+                      title={modifyText}
+                      onCreate={() => onModify()}
+                      createText='수정하기'
+                    />
+                  )
+                : name === modifyText &&
+                  acquisitionDate
+                    .split('')
+                    .map((v) => (v === '-' ? '.' : v))
+                    .join('') === modifyDateText
+            }
           >
             <AddCertificate
               color={

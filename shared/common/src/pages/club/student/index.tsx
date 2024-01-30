@@ -28,7 +28,6 @@ interface Certificate {
   id: number
   name: string
   acquisitionDate: string
-  isModify: boolean
 }
 
 interface StudentProps {
@@ -120,7 +119,6 @@ const StudentPage: React.FC<StudentProps> = ({ studentId, clubId }) => {
                 <CertificateItem
                   key={idx}
                   certificateItems={certificate}
-                  student_id={studentId}
                   isAddCertificate={isAddCertificate}
                 />
               ))}
