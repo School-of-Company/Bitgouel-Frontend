@@ -19,7 +19,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
   isAddCertificate,
 }) => {
   const { id, name, acquisitionDate } = certificateItems
-  const { mutate: patchModifyCertificateMutate } = usePatchModifyCertificate(id)
+  const { mutate } = usePatchModifyCertificate(id)
 
   const [certificateText, setCertificateText] = useState<string>('')
   const [isCertificateDate, setIsCertificateDate] = useState<boolean>(false)
@@ -33,7 +33,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
 
   const [isModify, setIsModify] = useState<boolean>(false)
 
-  console.log(id)
+  console.log('id=' + id)
 
   const onModify = () => {
     const payload: CertificateRequest = {
@@ -48,7 +48,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
         .padStart(2, '0')}`,
     }
 
-    patchModifyCertificateMutate(payload)
+    mutate(payload)
     closeModal()
     window.location.reload()
   }

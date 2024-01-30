@@ -51,7 +51,7 @@ const StudentPage: React.FC<StudentProps> = ({ studentId, clubId }) => {
   const { data: myData } = useGetStudentDetail(clubId, studentId)
 
   console.log(myData)
-  const { mutate: postCertificateMutate } = usePostCertificate()
+  const { mutate } = usePostCertificate()
 
   const role =
     typeof window !== 'undefined'
@@ -75,7 +75,7 @@ const StudentPage: React.FC<StudentProps> = ({ studentId, clubId }) => {
         .toString()
         .padStart(2, '0')}`,
     }
-    postCertificateMutate(payload)
+    mutate(payload)
     closeModal()
     window.location.reload()
   }
