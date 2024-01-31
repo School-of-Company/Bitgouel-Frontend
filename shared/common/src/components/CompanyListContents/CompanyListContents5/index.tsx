@@ -3,6 +3,23 @@
 import * as S from '../style'
 import { Banner5 } from '../../../assets'
 
+const companyList: string[] = [
+  '(주)광주은행',
+  '파란손해사정(주)',
+  '한국조경수협회',
+  '(사)일도시연구소',
+  '24시노아동물메디컬센터',
+  '광주동물메디컬센터',
+  '(주)브레드세븐',
+  '파파레브',
+  '소맥베이커리',
+  '스튜디오버턴',
+  '공감플리서',
+  '(주)195F&B',
+  '가매',
+  '파운데이',
+]
+
 const CompanyListContents5 = () => {
   return (
     <S.CompanyListBanner url={Banner5}>
@@ -10,20 +27,9 @@ const CompanyListContents5 = () => {
         <S.CompanyValueTitle>문화산업</S.CompanyValueTitle>
         <S.CompanyMainTextArea>
           <S.CompanyTextContainer>
-            <S.CompanyText>(주)광주은행</S.CompanyText>
-            <S.CompanyText>파란손해사정(주)</S.CompanyText>
-            <S.CompanyText>한국조경수협회</S.CompanyText>
-            <S.CompanyText>(사)일도시연구소</S.CompanyText>
-            <S.CompanyText>24시노아동물메디컬센터</S.CompanyText>
-            <S.CompanyText>광주동물메디컬센터</S.CompanyText>
-            <S.CompanyText>(주)브레드세븐</S.CompanyText>
-            <S.CompanyText>파파레브</S.CompanyText>
-            <S.CompanyText>소맥베이커리</S.CompanyText>
-            <S.CompanyText>스튜디오버턴</S.CompanyText>
-            <S.CompanyText>공감플리서</S.CompanyText>
-            <S.CompanyText>(주)195F&B</S.CompanyText>
-            <S.CompanyText>가매</S.CompanyText>
-            <S.CompanyText>파운데이</S.CompanyText>
+            {companyList.map((company) => (
+              <S.CompanyText>{company}</S.CompanyText>
+            ))}
           </S.CompanyTextContainer>
         </S.CompanyMainTextArea>
       </S.CompanyListContents>
