@@ -42,9 +42,7 @@ const StudentPage: React.FC<StudentProps> = ({ studentId, clubId }) => {
   const [isAddCertificate, setIsAddCertificate] = useState<boolean>(false)
   const [certificateText, setCertificateText] = useState<string>('')
   const [isCertificateDate, setIsCertificateDate] = useState<boolean>(false)
-  const [modifyText, setModifyText] = useState<string>('')
   const [certificateDate, setCertificateDate] = useState<Date>(new Date())
-  const [modifyDateText, setModifyDateText] = useState<string>('')
   const [certificateDateText, setCertificateDateText] = useState<string>('')
   const { openModal, closeModal } = useModal()
 

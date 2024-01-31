@@ -21,14 +21,12 @@ const CertificateItem: React.FC<CertificateProps> = ({
   const { id, name, acquisitionDate } = certificateItems
   const { mutate } = usePatchModifyCertificate(id)
 
-  const [certificateText, setCertificateText] = useState<string>('')
   const [isCertificateDate, setIsCertificateDate] = useState<boolean>(false)
   const [modifyText, setModifyText] = useState<string>(certificateItems.name)
   const [modifyDateText, setModifyDateText] = useState<string>(
     certificateItems.acquisitionDate
   )
   const [certificateDate, setCertificateDate] = useState<Date>(new Date())
-  const [certificateDateText, setCertificateDateText] = useState<string>('')
   const { openModal, closeModal } = useModal()
 
   const [isModify, setIsModify] = useState<boolean>(false)
