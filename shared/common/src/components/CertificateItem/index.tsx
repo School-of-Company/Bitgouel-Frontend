@@ -49,7 +49,6 @@ const CertificateItem: React.FC<CertificateProps> = ({
     window.location.reload()
   }
 
-
   return (
     <>
       {isModify ? (
@@ -92,7 +91,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
                     <CreateModal
                       question='자격증 정보를 수정하시겠습니까?'
                       title={modifyText}
-                      onCreate={() => onModify()}
+                      onCreate={onModify}
                       createText='수정하기'
                     />
                   )

@@ -153,7 +153,7 @@ const StudentPage: React.FC<StudentProps> = ({ studentId, clubId }) => {
                             <CreateModal
                               question='자격증 정보를 추가하시겠습니까?'
                               title={certificateText}
-                              onCreate={() => onCreate()}
+                              onCreate={onCreate}
                               createText='추가하기'
                             />
                           )
