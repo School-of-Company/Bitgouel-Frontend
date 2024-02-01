@@ -111,13 +111,6 @@ const StudentPage: React.FC<StudentProps> = ({ studentId, clubId }) => {
               </S.PlusCertificateIcon>
             </S.CertificatePlusBox>
             <S.CertificateListBox>
-              {certificateList?.data?.certifications.map((certificate, idx) => (
-                <CertificateItem
-                  key={idx}
-                  certificateItems={certificate}
-                  isAddCertificate={isAddCertificate}
-                />
-              ))}
               {isAddCertificate && (
                 <S.AddCertificateBox>
                   <S.ListToggle list='추가' />
@@ -171,6 +164,13 @@ const StudentPage: React.FC<StudentProps> = ({ studentId, clubId }) => {
                   </S.AddCertificateIcon>
                 </S.AddCertificateBox>
               )}
+              {certificateList?.data?.certifications.map((certificate, idx) => (
+                <CertificateItem
+                  key={idx}
+                  certificateItems={certificate}
+                  isAddCertificate={isAddCertificate}
+                />
+              ))}
             </S.CertificateListBox>
           </S.CertificateBox>
         </S.CertificateContainer>
