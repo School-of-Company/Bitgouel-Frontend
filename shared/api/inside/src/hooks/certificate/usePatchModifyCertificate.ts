@@ -5,8 +5,8 @@ import { certificateQueryKeys, certificateUrl, patch } from '../../../../common'
 
 export const usePatchModifyCertificate = (id: string | undefined) => {
   return useMutation<void, AxiosError, Certificate>(
-    certificateQueryKeys.patchCertificateModify(id ? id : ''),
+    certificateQueryKeys.patchCertificateModify(id || ''),
     (modifyValue) =>
-      patch(certificateUrl.certificateModify(id ? id : ''), modifyValue)
+      patch(certificateUrl.certificateModify(id || ''), modifyValue)
   )
 }
