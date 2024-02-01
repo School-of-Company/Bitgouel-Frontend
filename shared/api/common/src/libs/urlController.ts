@@ -56,7 +56,8 @@ export const certificateUrl = {
   certificate: () => `/certification`,
   certificateListTeacher: (student_id: string) =>
     `/certification/${student_id}`,
-  certificateModify: (id: string) => `/certification//${id}`,
+  certificateModify: (certificate_id: string) =>
+    `/certification/${certificate_id}`,
 }
 
 export const clubUrl = {
