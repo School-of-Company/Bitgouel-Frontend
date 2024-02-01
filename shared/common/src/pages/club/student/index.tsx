@@ -37,7 +37,6 @@ interface StudentProps {
 
 const StudentPage: React.FC<StudentProps> = ({ studentId, clubId }) => {
   const { push } = useRouter()
-  console.log(studentId)
 
   const [isAddCertificate, setIsAddCertificate] = useState<boolean>(false)
   const [certificateText, setCertificateText] = useState<string>('')
@@ -48,7 +47,6 @@ const StudentPage: React.FC<StudentProps> = ({ studentId, clubId }) => {
 
   const { data: myData } = useGetStudentDetail(clubId, studentId)
 
-  console.log(myData)
   const { mutate } = usePostCertificate()
 
   const role =

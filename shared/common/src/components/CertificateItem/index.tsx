@@ -31,8 +31,6 @@ const CertificateItem: React.FC<CertificateProps> = ({
 
   const [isModify, setIsModify] = useState<boolean>(false)
 
-  console.log('id=' + id)
-
   const onModify = () => {
     const payload: CertificateRequest = {
       name: modifyText,
@@ -51,29 +49,6 @@ const CertificateItem: React.FC<CertificateProps> = ({
     window.location.reload()
   }
 
-  // const onModify = () => {
-  //   const modufyData:
-  // }
-
-  //   const onModify = (id: number, name: string, date: string) => {
-  //     setCertificateList((prev) => {
-  //       const changedModify = prev.map((certificate) =>
-  //         certificate.id === id
-  //           ? { ...certificate, isModify: true }
-  //           : { ...certificate, isModify: false }
-  //       )
-  //       return changedModify
-  //     })
-  //     setModifyText(name)
-  //     setModifyDateText(
-  //       date
-  //         .split('')
-  //         .map((v) => (v === '-' ? '.' : v))
-  //         .join('')
-  //     )
-  //   }
-
-  // console.log(isAddCertificate)
 
   return (
     <>
@@ -94,7 +69,6 @@ const CertificateItem: React.FC<CertificateProps> = ({
                   date={certificateDate}
                   setDate={setCertificateDate}
                   setText={(value) => {
-                    console.log(value)
                     setModifyDateText(value)
                   }}
                 />
