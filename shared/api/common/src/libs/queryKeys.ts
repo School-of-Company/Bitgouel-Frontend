@@ -63,7 +63,11 @@ export const postQueryKeys = {
 } as const
 
 export const certificateQueryKeys = {
-  getCertificateListTeacher: (student_id: string) => ['get', 'listTeacher'],
+  getCertificateListTeacher: (student_id: string) => [
+    'get',
+    'listTeacher',
+    student_id,
+  ],
   getCertificateListStudent: () => ['get', 'list'],
   postCertificateCreate: () => ['post', 'create'],
   patchCertificateModify: (id: string) => ['patch', 'modify'],
