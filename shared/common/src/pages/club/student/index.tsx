@@ -16,7 +16,11 @@ import {
   PersonOut,
   PlusCertificate,
 } from '../../../assets'
-import { CertificateRequest, RoleEnumTypes } from '@bitgouel/types'
+import {
+  CertificateRequest,
+  RoleEnumTypes,
+  StudentIdProps,
+} from '@bitgouel/types'
 import CertificateItem from '../../../components/CertificateItem'
 import { useModal } from '../../../hooks'
 import * as S from './style'
@@ -24,18 +28,12 @@ import { CreateModal, SelectCalendarModal } from '../../../modals'
 import { toast } from 'react-toastify'
 import { theme } from '../../../styles'
 
-interface Certificate {
-  id: number
-  name: string
-  acquisitionDate: string
-}
-
 interface StudentProps {
-  studentId: string
-  clubId: string
+  studentIdProps: StudentIdProps
 }
 
-const StudentPage: React.FC<StudentProps> = ({ studentId, clubId }) => {
+const StudentPage: React.FC<StudentProps> = ({ studentIdProps }) => {
+  const { studentId, clubId } = studentIdProps
   const { push } = useRouter()
 
   const [isAddCertificate, setIsAddCertificate] = useState<boolean>(false)
