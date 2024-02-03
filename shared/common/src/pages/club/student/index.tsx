@@ -165,11 +165,7 @@ const StudentPage: React.FC<StudentProps> = ({ studentId, clubId }) => {
                 </S.AddCertificateBox>
               )}
               {certificateList?.data?.certifications.map((certificate, idx) => (
-                <CertificateItem
-                  key={idx}
-                  certificateItems={certificate}
-                  isAddCertificate={isAddCertificate}
-                />
+                <CertificateItem key={idx} certificateItems={certificate} />
               ))}
             </S.CertificateListBox>
           </S.CertificateBox>

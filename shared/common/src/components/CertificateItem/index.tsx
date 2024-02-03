@@ -8,16 +8,13 @@ import { CreateModal, SelectCalendarModal } from '../../modals'
 import { theme } from '../../styles'
 import { useRecoilValue } from 'recoil'
 import { toast } from 'react-toastify'
+import { QueryClient, useQueries, useQuery } from '@tanstack/react-query'
 
 interface CertificateProps {
   certificateItems: Certificate
-  isAddCertificate: boolean
 }
 
-const CertificateItem: React.FC<CertificateProps> = ({
-  certificateItems,
-  isAddCertificate,
-}) => {
+const CertificateItem: React.FC<CertificateProps> = ({ certificateItems }) => {
   const { id, name, acquisitionDate } = certificateItems
   const { mutate } = usePatchModifyCertificate(id)
 
