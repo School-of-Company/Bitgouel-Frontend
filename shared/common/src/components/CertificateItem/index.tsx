@@ -6,9 +6,6 @@ import { AddCertificate, CalendarIcon } from '../../assets'
 import { useModal } from '../../hooks'
 import { CreateModal, SelectCalendarModal } from '../../modals'
 import { theme } from '../../styles'
-import { useRecoilValue } from 'recoil'
-import { toast } from 'react-toastify'
-import { QueryClient, useQueries, useQuery } from '@tanstack/react-query'
 
 interface CertificateProps {
   certificateItems: Certificate
