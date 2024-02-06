@@ -14,7 +14,9 @@ interface CertificateProps {
   certificateItems: Certificate
 }
 
-const CertificateItem: React.FC<CertificateProps> = ({ certificateItems }) => {
+const CertificateItem: React.FC<{ certificateItems: Certificate }> = ({
+  certificateItems,
+}) => {
   const { id, name, acquisitionDate } = certificateItems
   const { mutate } = usePatchModifyCertificate(id)
 
