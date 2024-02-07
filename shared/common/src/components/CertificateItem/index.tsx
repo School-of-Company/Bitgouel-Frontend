@@ -9,10 +9,12 @@ import { theme } from '../../styles'
 
 interface CertificateProps {
   certificateItems: Certificate
+  isOpenCalendar: boolean
 }
 
-const CertificateItem: React.FC<{ certificateItems: Certificate }> = ({
+const CertificateItem: React.FC<CertificateProps> = ({
   certificateItems,
+  isOpenCalendar,
 }) => {
   const { id, name, acquisitionDate } = certificateItems
   const { mutate } = usePatchModifyCertificate(id)
@@ -59,7 +61,7 @@ const CertificateItem: React.FC<{ certificateItems: Certificate }> = ({
           />
           <S.AddCertificateDateBox>
             <S.SelectDateContainer>
-              {isCertificateDate && (
+              {isCertificateDate && isOpenCalendar && (
                 <SelectCalendarModal
                   date={certificateDate}
                   setDate={setCertificateDate}

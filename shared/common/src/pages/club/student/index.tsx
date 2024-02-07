@@ -7,7 +7,7 @@ import {
   useGetStudentDetail,
 } from '@bitgouel/api'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import {
   AddCertificate,
@@ -41,6 +41,7 @@ const StudentPage: React.FC<StudentProps> = ({ studentIdProps }) => {
   const [isCertificateDate, setIsCertificateDate] = useState<boolean>(false)
   const [certificateDate, setCertificateDate] = useState<Date>(new Date())
   const [certificateDateText, setCertificateDateText] = useState<string>('')
+  const [certificateIndex, setCertificateIndex] = useState<number>(-1)
   const { openModal, closeModal } = useModal()
 
   const { data: myData } = useGetStudentDetail(clubId, studentId)
@@ -73,6 +74,8 @@ const StudentPage: React.FC<StudentProps> = ({ studentIdProps }) => {
     closeModal()
     window.location.reload()
   }
+
+  useEffect(() => {}, [certificateIndex])
 
   return (
     <div>
@@ -163,7 +166,18 @@ const StudentPage: React.FC<StudentProps> = ({ studentIdProps }) => {
                 </S.AddCertificateBox>
               )}
               {certificateList?.data?.certifications.map((certificate, idx) => (
-                <CertificateItem key={idx} certificateItems={certificate} />
+                <div
+                  onClick={() => {
+                    setCertificateIndex(idx)
+                    console.log(certificateIndex)
+                  }}
+                >
+                  <CertificateItem
+                    key={idx}
+                    certificateItems={certificate}
+                    isOpenCalendar={idx === certificateIndex}
+                  />
+                </div>
               ))}
             </S.CertificateListBox>
           </S.CertificateBox>
