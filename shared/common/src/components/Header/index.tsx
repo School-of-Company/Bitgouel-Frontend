@@ -92,8 +92,9 @@ const Header = () => {
 
   useEffect(() => {
     if (tokenManager.accessToken) {
-      if (pathname === '/main/my') setText('로그아웃')
-      else if (pathname !== '/main/my') setText('내 정보')
+      if (pathname === '/main/my') {
+        setText('로그아웃')
+      } else if (pathname !== '/main/my') setText('내 정보')
     }
   }, [pathname])
 
