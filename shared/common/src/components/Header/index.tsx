@@ -21,16 +21,17 @@ import { theme } from '../../styles'
 import { toast } from 'react-toastify'
 import * as S from './style'
 
-const Header = () => {
+const menuList = [
+  { kor: '사업소개', link: '/' },
+  { kor: '강의', link: '/main/lecture' },
+  { kor: '동아리', link: '/main/club' },
+  { kor: '게시판', link: '/main/post' },
+  { kor: '관리자', link: '/main/admin' },
+]
+const Header = ({ is_admin }: { is_admin: boolean }) => {
   const tokenManager = new TokenManager()
   const { push } = useRouter()
   const pathname = usePathname()
-  const menuList = [
-    { kor: '사업소개', link: '/' },
-    { kor: '강의', link: '/main/lecture' },
-    { kor: '동아리', link: '/main/club' },
-    { kor: '게시판', link: '/main/post' },
-  ]
 
   const [bgColor, setBgColor] = useState<string>('')
   const [symbolNum, setSymbolNum] = useState<any>(Symbol1)
@@ -108,21 +109,23 @@ const Header = () => {
     >
       <S.HeaderContainer>
         <S.SymbolContainer url={symbolNum} />
-        <S.MenuWrapper>
-          {menuList.map((menu, idx) => (
-            <S.MenuItem
-              key={idx}
-              onClick={() =>
-                tokenManager.accessToken
-                  ? push(menu.link)
-                  : toast.info('로그인 후 이용해 주세요.')
-              }
-              isSameRoute={pathname === menu.link}
-              color={spanColor}
-            >
-              {menu.kor}
-            </S.MenuItem>
-          ))}
+        <S.MenuWrapper is_admin={is_admin}>
+          {menuList
+            .filter((menu, idx) => (is_admin ? menu : idx !== 4))
+            .map((menu, idx) => (
+              <S.MenuItem
+                key={idx}
+                onClick={() =>
+                  tokenManager.accessToken
+                    ? push(menu.link)
+                    : toast.info('로그인 후 이용해 주세요.')
+                }
+                isSameRoute={pathname === menu.link}
+                color={spanColor}
+              >
+                {menu.kor}
+              </S.MenuItem>
+            ))}
         </S.MenuWrapper>
         <S.ButtonWrapper view={svgView}>
           {match(pathname)
