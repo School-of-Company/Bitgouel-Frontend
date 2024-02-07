@@ -26,8 +26,8 @@ const CompanyListContents2 = () => {
         <S.CompanyValueTitle>에너지산업</S.CompanyValueTitle>
         <S.CompanyMainTextArea>
           <S.CompanyTextContainer>
-            {companyList.map((company) => (
-              <S.CompanyText>{company}</S.CompanyText>
+            {companyList.map((company, idx) => (
+              <S.CompanyText key={idx}>{company}</S.CompanyText>
             ))}
           </S.CompanyTextContainer>
         </S.CompanyMainTextArea>

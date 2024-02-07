@@ -1,10 +1,11 @@
-import { TokensTypes } from '@bitgouel/types'
+import { RoleEnumTypes, TokensTypes } from '@bitgouel/types'
 import axios from 'axios'
 import {
+  Authority,
   accessExpiredAt,
   accessToken,
   refreshExpiredAt,
-  refreshToken
+  refreshToken,
 } from '../'
 
 class TokenManager {
@@ -12,6 +13,7 @@ class TokenManager {
   private _refreshToken: string | null = null
   private _accessExpiredAt: string | null = null
   private _refreshExpiredAt: string | null = null
+  private _authority: RoleEnumTypes | null = null
 
   constructor() {
     this.initToken()
@@ -30,19 +32,13 @@ class TokenManager {
     return expiredAt
   }
 
-  // skipUrl() {
-  //   const pathname = usePathname()
-  //   const skipUrlArr = ['/login', '/signUp']
-
-  //   return skipUrlArr.includes(pathname)
-  // }
-
   initToken() {
     if (typeof window === 'undefined') return
     this._accessToken = localStorage.getItem(accessToken)
     this._refreshToken = localStorage.getItem(refreshToken)
     this._accessExpiredAt = localStorage.getItem(accessExpiredAt)
     this._refreshExpiredAt = localStorage.getItem(refreshExpiredAt)
+    this._authority = localStorage.getItem(Authority) as RoleEnumTypes
   }
 
   setTokens(tokens: TokensTypes) {
@@ -50,11 +46,13 @@ class TokenManager {
     this._refreshToken = tokens.refreshToken
     this._accessExpiredAt = tokens.accessExpiredAt
     this._refreshExpiredAt = tokens.refreshExpiredAt
+    this._authority = tokens.authority
 
     localStorage.setItem(accessToken, tokens.accessToken)
     localStorage.setItem(refreshToken, tokens.refreshToken)
     localStorage.setItem(accessExpiredAt, tokens.accessExpiredAt)
     localStorage.setItem(refreshExpiredAt, tokens.refreshExpiredAt)
+    localStorage.setItem(Authority, tokens.authority)
   }
 
   removeTokens() {
@@ -63,11 +61,13 @@ class TokenManager {
     this._refreshToken = null
     this._accessExpiredAt = null
     this._refreshExpiredAt = null
+    this._authority = null
 
     localStorage.removeItem(accessToken)
     localStorage.removeItem(refreshToken)
     localStorage.removeItem(accessExpiredAt)
     localStorage.removeItem(refreshExpiredAt)
+    localStorage.removeItem(Authority)
   }
 
   async reissueToken() {
@@ -105,6 +105,10 @@ class TokenManager {
 
   get refreshExpired() {
     return this._refreshExpiredAt
+  }
+
+  get authority() {
+    return this._authority
   }
 }
 

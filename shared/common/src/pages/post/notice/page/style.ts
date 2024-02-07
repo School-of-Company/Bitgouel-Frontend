@@ -19,7 +19,7 @@ export const BgContainer = styled.div`
   margin-bottom: 1rem;
 `
 
-export const NotificationTitle = styled.span`
+export const NoticeTitle = styled.span`
   color: ${({ theme }) => theme.color.white};
   ${({ theme }) => theme.typo.title_lg.semibold};
 `
@@ -29,7 +29,7 @@ export const ButtonContainer = styled.div`
   align-items: flex-end;
 `
 
-export const NotificationButton = styled.div`
+export const NoticeButton = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -52,12 +52,12 @@ export const NotificationButton = styled.div`
   }
 `
 
-export const NotificationListWrapper = styled.div`
+export const NoticeListWrapper = styled.div`
   display: flex;
   justify-content: center;
 `
 
-export const NotificationListContainer = styled.div`
+export const NoticeListContainer = styled.div`
   width: 75rem;
   height: 100%;
   margin-top: 2.5rem;

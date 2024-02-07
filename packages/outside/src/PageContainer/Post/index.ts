@@ -1,2 +1,1 @@
-export { default as NotificationListPage } from './NotificationListPage'
-export { default as NotificationCreatePage } from './NotificationCreatePage'
+export { default as NoticeCreatePage } from './NoticeCreatePage'
