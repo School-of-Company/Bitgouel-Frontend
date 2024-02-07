@@ -43,7 +43,7 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
   const [lectureTypeText, setLectureTypeText] =
     useRecoilState<string>(LectureTypeText)
   const [text, setText] = useState<string>('로그인')
-  const [role, setRole] = useState<RoleEnumTypes>('ROLE_STUDENT')
+  const [role, setRole] = useState<RoleEnumTypes | null>(null)
   const { mutate } = useDeleteLogout()
 
   useEffect(() => {
