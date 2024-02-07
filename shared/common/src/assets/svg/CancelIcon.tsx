@@ -1,4 +1,6 @@
-const CancelIcon = () => {
+import { SVGProps } from 'react'
+
+const CancelIcon = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       width='32'

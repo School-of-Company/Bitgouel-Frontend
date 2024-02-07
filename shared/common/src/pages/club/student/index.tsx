@@ -171,11 +171,9 @@ const StudentPage = () => {
                             setText={setModifyDateText}
                           />
                         )}
-                        <div
+                        <CalendarIcon
                           onClick={() => setIsCertificateDate((prev) => !prev)}
-                        >
-                          <CalendarIcon />
-                        </div>
+                        />
                       </S.SelectDateContainer>
                       <S.ShowDateText>{modifyDateText}</S.ShowDateText>
                     </S.AddCertificateDateBox>
@@ -262,11 +260,9 @@ const StudentPage = () => {
                           setText={setCertificateDateText}
                         />
                       )}
-                      <div
+                      <CalendarIcon
                         onClick={() => setIsCertificateDate((prev) => !prev)}
-                      >
-                        <CalendarIcon />
-                      </div>
+                      />
                     </S.SelectDateContainer>
                     <S.ShowDateText>{certificateDateText}</S.ShowDateText>
                   </S.AddCertificateDateBox>

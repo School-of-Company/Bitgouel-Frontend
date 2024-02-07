@@ -127,9 +127,7 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
             .with('/main/lecture', () => (
               <>
                 <S.SelectFilterContainer>
-                  <div onClick={() => setIsLectureType((prev) => !prev)}>
-                    <Filter />
-                  </div>
+                  <Filter onClick={() => setIsLectureType((prev) => !prev)} />
                   {isLectureType && (
                     <LectureTypeModal
                       location='헤더'
@@ -156,7 +154,7 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
             .with('/main/post', () => (
               <>
                 <Message />
-                <Question />
+                <Question onClick={() => push('/main/inquiry')} />
               </>
             ))
             .otherwise(() => null)}

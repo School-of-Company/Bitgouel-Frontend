@@ -101,9 +101,10 @@ const SelectCalendarTimeModal = ({
               maxLength={2}
               disabled={true}
             />
-            <div onClick={() => hour !== 0 && handleHourUpDown(false)}>
-              <Chevron color={`${theme.color.white}`} />
-            </div>
+            <Chevron
+              onClick={() => hour !== 0 && handleHourUpDown(false)}
+              color={`${theme.color.white}`}
+            />
           </S.InputTimeBox>
           <span>:</span>
           <S.InputTimeBox>
@@ -119,9 +120,10 @@ const SelectCalendarTimeModal = ({
               maxLength={2}
               disabled={true}
             />
-            <div onClick={() => minutes !== 0 && handleMinutesUpDown(false)}>
-              <Chevron color={`${theme.color.white}`} />
-            </div>
+            <Chevron
+              onClick={() => minutes !== 0 && handleMinutesUpDown(false)}
+              color={`${theme.color.white}`}
+            />
           </S.InputTimeBox>
         </S.TimeBox>
       </S.TimeContainer>

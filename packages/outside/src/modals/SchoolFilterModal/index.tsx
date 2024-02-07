@@ -16,9 +16,7 @@ const SchoolFilterModal = () => {
       <S.SchoolFilterModalWrapper>
         <S.SchoolFilterTitleBox>
           <h1>학교 선택</h1>
-          <div onClick={closeModal}>
-            <CancelIcon />
-          </div>
+          <CancelIcon onClick={closeModal} />
         </S.SchoolFilterTitleBox>
         <S.SchoolListContainer>
           {schools
