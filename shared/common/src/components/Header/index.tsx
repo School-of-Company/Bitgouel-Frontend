@@ -21,17 +21,18 @@ import { theme } from '../../styles'
 import { toast } from 'react-toastify'
 import * as S from './style'
 
-const Header = () => {
+const menuList = [
+  { kor: '사업소개', link: '/' },
+  { kor: '강의', link: '/main/lecture' },
+  { kor: '동아리', link: '/main/club' },
+  { kor: '게시판', link: '/main/post' },
+  { kor: '관리자', link: '/main/admin' },
+]
+
+const Header = ({ is_admin }: { is_admin: boolean }) => {
   const tokenManager = new TokenManager()
   const { push } = useRouter()
   const pathname = usePathname()
-  const menuList = [
-    { kor: '사업소개', link: '/' },
-    { kor: '강의', link: '/main/lecture' },
-    { kor: '동아리', link: '/main/club' },
-    { kor: '게시판', link: '/main/post' },
-  ]
-
   const [bgColor, setBgColor] = useState<string>('')
   const [symbolNum, setSymbolNum] = useState<any>(Symbol1)
   const [btnColor, setBtnColor] = useState<string>('rgb(255, 255, 255, 0.2)')
@@ -42,11 +43,7 @@ const Header = () => {
   const [lectureTypeText, setLectureTypeText] =
     useRecoilState<string>(LectureTypeText)
   const [text, setText] = useState<string>('로그인')
-  const role =
-    typeof window !== 'undefined'
-      ? (localStorage.getItem('Authority') as RoleEnumTypes)
-      : null
-
+  const [role, setRole] = useState<RoleEnumTypes | null>(null)
   const { mutate } = useDeleteLogout()
 
   useEffect(() => {
@@ -91,6 +88,11 @@ const Header = () => {
   }, [])
 
   useEffect(() => {
+    const role =
+      typeof window !== 'undefined'
+        ? (localStorage.getItem('Authority') as RoleEnumTypes)
+        : null
+    setRole(role)
     if (tokenManager.accessToken) {
       if (pathname === '/main/my') setText('로그아웃')
       else if (pathname !== '/main/my') setText('내 정보')
@@ -108,63 +110,61 @@ const Header = () => {
     >
       <S.HeaderContainer>
         <S.SymbolContainer url={symbolNum} />
-        <S.MenuWrapper>
-          {menuList.map((menu, idx) => (
-            <S.MenuItem
-              key={idx}
-              onClick={() =>
-                tokenManager.accessToken
-                  ? push(menu.link)
-                  : toast.info('로그인 후 이용해 주세요.')
-              }
-              isSameRoute={pathname === menu.link}
-              color={spanColor}
-            >
-              {menu.kor}
-            </S.MenuItem>
-          ))}
+        <S.MenuWrapper is_admin={is_admin}>
+          {menuList
+            .filter((menu, idx) => (is_admin ? menu : idx !== 4))
+            .map((menu, idx) => (
+              <S.MenuItem
+                key={idx}
+                onClick={() =>
+                  tokenManager.accessToken
+                    ? push(menu.link)
+                    : toast.info('로그인 후 이용해 주세요.')
+                }
+                isSameRoute={pathname === menu.link}
+                color={spanColor}
+              >
+                {menu.kor}
+              </S.MenuItem>
+            ))}
         </S.MenuWrapper>
         <S.ButtonWrapper view={svgView}>
           {match(pathname)
             .with('/main/lecture', () => (
-              <S.CreateIcon
-                onClick={() => {
-                  push('/main/lecture/create')
-                }}
-                view={match(role)
-                  .with(
-                    'ROLE_PROFESSOR' ||
-                      'ROLE_GOVERNMENT' ||
-                      'ROLE_COMPANY_INSTRUCTOR',
-                    () => ''
-                  )
-                  .otherwise(() => 'none')}
-              >
-                <Plus />
-              </S.CreateIcon>
+              <>
+                <S.SelectFilterContainer>
+                  <div onClick={() => setIsLectureType((prev) => !prev)}>
+                    <Filter />
+                  </div>
+                  {isLectureType && (
+                    <LectureTypeModal
+                      location='헤더'
+                      text={lectureTypeText}
+                      setText={setLectureTypeText}
+                      setIsLectureType={setIsLectureType}
+                    />
+                  )}
+                </S.SelectFilterContainer>
+                <S.CreateIcon
+                  onClick={() => {
+                    push('/main/lecture/create')
+                  }}
+                  view={
+                    role === 'ROLE_PROFESSOR' ||
+                    role === 'ROLE_GOVERNMENT' ||
+                    role === 'ROLE_COMPANY_INSTRUCTOR'
+                  }
+                >
+                  <Plus />
+                </S.CreateIcon>
+              </>
             ))
-            .with('/main/post', () => <MegaPhone />)
-            .otherwise(() => null)}
-          {match(pathname)
-            .with('/main/lecture', () => (
-              <S.SelectFilterContainer>
-                <div onClick={() => setIsLectureType((prev) => !prev)}>
-                  <Filter />
-                </div>
-                {isLectureType && (
-                  <LectureTypeModal
-                    location='헤더'
-                    text={lectureTypeText}
-                    setText={setLectureTypeText}
-                    setIsLectureType={setIsLectureType}
-                  />
-                )}
-              </S.SelectFilterContainer>
+            .with('/main/post', () => (
+              <>
+                <Message />
+                <Question />
+              </>
             ))
-            .with('/main/post', () => <Message />)
-            .otherwise(() => null)}
-          {match(pathname)
-            .with('/main/post', () => <Question />)
             .otherwise(() => null)}
         </S.ButtonWrapper>
         <S.LoginButton
