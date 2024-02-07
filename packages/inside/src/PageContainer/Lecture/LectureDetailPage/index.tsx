@@ -5,12 +5,45 @@ import { useGetDetailLecture, usePostApplicationLecture } from '@bitgouel/api'
 import { Bg3, lectureToKor, useModal } from '@bitgouel/common'
 import * as S from './style'
 import { RoleEnumTypes } from '@bitgouel/types'
+import { useEffect, useState } from 'react'
 
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
   const { mutate } = usePostApplicationLecture(lectureId)
   const { openModal } = useModal()
-  const role = typeof window !== 'undefined' ?  localStorage.getItem("Authority") as RoleEnumTypes : null
+  const [lectureButtonText, setLectureButtonText] =
+    useState<string>('수강 신청 하기')
+  const [isAble, setIsAble] = useState<boolean>(true)
+  const role =
+    typeof window !== 'undefined'
+      ? (localStorage.getItem('Authority') as RoleEnumTypes)
+      : null
+
+  useEffect(() => {
+    if (
+      role !== 'ROLE_STUDENT' ||
+      data?.data.lectureStatus === 'CLOSED' ||
+      data?.data.headCount === data?.data.maxRegisteredUser
+    ) {
+      setLectureButtonText('수강 신청 불가')
+      setIsAble(false)
+    } else if (data?.data.isRegistered) 
+      setLectureButtonText('수강 신청 완료')
+    
+  }, [data])
+
+  const handleModalOpen = () => {
+    if (
+      data?.data.isRegistered ||
+      role !== 'ROLE_STUDENT' ||
+      data?.data.lectureStatus === 'CLOSED' ||
+      data?.data.headCount === data?.data.maxRegisteredUser
+    )
+      return
+    openModal(
+      <LectureApplyModal title={data?.data.name} apply={() => mutate()} />
+    )
+  }
 
   return (
     <div>
@@ -102,26 +135,13 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
           </S.TitleContainer>
           <S.MainText>{data?.data.content}</S.MainText>
           <S.ButtonContainer>
-            <S.LectureApplyButton
+            <S.LectureButton
               isRegistered={data?.data.isRegistered}
-              isStudent={role === "ROLE_STUDENT"}
-              onClick={() =>
-                !data?.data.isRegistered
-                  ? openModal(
-                      <LectureApplyModal
-                        title={data?.data.name}
-                        apply={() => mutate()}
-                      />
-                    )
-                  : null
-              }
+              isAble={isAble}
+              onClick={handleModalOpen}
             >
-              {data?.data.isRegistered
-                ? '수강 신청 완료'
-                : role === 'ROLE_STUDENT'
-                ? '수강 신청하기'
-                : '수강 신청 불가'}
-            </S.LectureApplyButton>
+              {lectureButtonText}
+            </S.LectureButton>
           </S.ButtonContainer>
         </S.Document>
       </S.DocumentWrapper>

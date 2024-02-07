@@ -96,18 +96,18 @@ export const ButtonContainer = styled.div`
   justify-content: center;
 `
 
-export const LectureApplyButton = styled.div<{
+export const LectureButton = styled.div<{
   isRegistered?: boolean
-  isStudent: boolean
+  isAble: boolean
 }>`
-  background-color: ${({ theme, isRegistered, isStudent }) =>
-    !isStudent
+  background-color: ${({ theme, isRegistered, isAble }) =>
+    !isAble
       ? theme.color.gray['700']
       : isRegistered
       ? 'none'
       : theme.color.main};
-  color: ${({ theme, isRegistered, isStudent }) =>
-    !isStudent
+  color: ${({ theme, isRegistered, isAble }) =>
+    !isAble
       ? theme.color.gray['400']
       : isRegistered
       ? theme.color.main
@@ -118,9 +118,9 @@ export const LectureApplyButton = styled.div<{
   align-items: center;
   justify-content: center;
   ${({ theme }) => theme.typo.text_lg.semibold}
-  border: ${({ theme, isStudent }) =>
-    !isStudent ? 'none' : `0.0625rem solid ${theme.color.main}`};
+  border: ${({ theme, isAble }) =>
+    !isAble ? 'none' : `0.0625rem solid ${theme.color.main}`};
   border-radius: 0.5rem;
-  cursor: ${({ isRegistered, isStudent }) =>
-    isRegistered || !isStudent ? 'default' : 'pointer'};
+  cursor: ${({ isRegistered, isAble }) =>
+    isRegistered || !isAble ? 'default' : 'pointer'};
 `

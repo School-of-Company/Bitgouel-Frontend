@@ -36,10 +36,10 @@ export const SymbolContainer = styled.div<{ url: StaticImageData }>`
   transition: all 0.5s;
 `
 
-export const MenuWrapper = styled.div`
+export const MenuWrapper = styled.div<{ is_admin: boolean }>`
   display: flex;
   justify-content: space-between;
-  width: 20rem;
+  width: ${({ is_admin }) => (is_admin ? '25rem' : '20rem')};
 `
 
 export const MenuItem = styled.span<{ isSameRoute: boolean; color: string }>`
@@ -53,8 +53,8 @@ export const MenuItem = styled.span<{ isSameRoute: boolean; color: string }>`
   }
 `
 
-export const CreateIcon = styled.div<{ view: string }>`
-  display: ${({ view }) => (view === 'none' ? 'none' : 'flex')};
+export const CreateIcon = styled.div<{ view: boolean }>`
+  display: ${({ view }) => (view ? 'flex' : 'none')};
 `
 
 export const ButtonWrapper = styled.div<{ view: string }>`
