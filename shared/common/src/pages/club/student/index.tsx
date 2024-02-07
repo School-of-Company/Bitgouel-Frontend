@@ -169,6 +169,7 @@ const StudentPage: React.FC<StudentProps> = ({ studentIdProps }) => {
                     setCertificateIndex(idx)
                     console.log(certificateIndex)
                   }}
+                  key={idx}
                 >
                   <CertificateItem
                     key={idx}
