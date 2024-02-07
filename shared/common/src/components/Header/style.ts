@@ -53,8 +53,8 @@ export const MenuItem = styled.span<{ isSameRoute: boolean; color: string }>`
   }
 `
 
-export const CreateIcon = styled.div<{ view: string }>`
-  display: ${({ view }) => (view === 'none' ? 'none' : 'flex')};
+export const CreateIcon = styled.div<{ view: boolean }>`
+  display: ${({ view }) => (view ? 'flex' : 'none')};
 `
 
 export const ButtonWrapper = styled.div<{ view: string }>`
