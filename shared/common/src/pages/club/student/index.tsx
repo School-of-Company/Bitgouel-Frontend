@@ -5,6 +5,7 @@ import {
   useGetCertificateListTeacher,
   usePostCertificate,
   useGetStudentDetail,
+  TokenManager,
 } from '@bitgouel/api'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
@@ -48,13 +49,10 @@ const StudentPage: React.FC<StudentProps> = ({ studentIdProps }) => {
 
   const { mutate } = usePostCertificate()
 
-  const role =
-    typeof window !== 'undefined'
-      ? (localStorage.getItem('Authority') as RoleEnumTypes)
-      : null
+  const tokenManager = new TokenManager()
 
   const { data: certificateList } =
-    role === 'ROLE_STUDENT'
+    tokenManager.authority === 'ROLE_STUDENT'
       ? useGetCertificateList()
       : useGetCertificateListTeacher(studentId)
 
