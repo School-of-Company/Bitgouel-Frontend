@@ -107,7 +107,7 @@ const Header = () => {
         .otherwise(() => false)}
     >
       <S.HeaderContainer>
-        <S.SymbolContainer url={symbolNum} />
+        <S.SymbolContainer url={symbolNum} onClick={() => push('/')} />
         <S.MenuWrapper>
           {menuList.map((menu, idx) => (
             <S.MenuItem
