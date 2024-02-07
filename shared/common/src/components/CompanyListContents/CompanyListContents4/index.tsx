@@ -20,8 +20,8 @@ const CompanyListContents4 = () => {
         <S.CompanyValueTitle>AI융복합</S.CompanyValueTitle>
         <S.CompanyMainTextArea>
           <S.CompanyTextContainer>
-            {companyList.map((company) => (
-              <S.CompanyText>{company}</S.CompanyText>
+            {companyList.map((company, idx) => (
+              <S.CompanyText key={idx}>{company}</S.CompanyText>
             ))}
           </S.CompanyTextContainer>
         </S.CompanyMainTextArea>

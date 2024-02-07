@@ -1,7 +1,7 @@
 import { NoticeDetailPage } from '@bitgouel/common/src/pages'
 
-const NotificationDetail = ({ params }: { params: { noticeId: string } }) => {
+const NoticeDetail = ({ params }: { params: { noticeId: string } }) => {
   return <NoticeDetailPage noticeId={params.noticeId} />
 }
 
-export default NotificationDetail
+export default NoticeDetail

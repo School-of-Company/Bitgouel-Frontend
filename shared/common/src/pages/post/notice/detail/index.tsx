@@ -1,6 +1,6 @@
 'use client'
 
-import { useDeletePost, useGetPostDetail } from '@bitgouel/api'
+import { TokenManager, useDeletePost, useGetPostDetail } from '@bitgouel/api'
 import { RoleEnumTypes } from '@bitgouel/types'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -14,8 +14,7 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
   const { mutate } = useDeletePost(noticeId, '공지사항')
   const { openModal } = useModal()
   const { push } = useRouter()
-  const role = typeof window !== 'undefined' ?  localStorage.getItem("Authority") as RoleEnumTypes : null
-
+  const tokenManager = new TokenManager()
 
   return (
     <div>
@@ -53,10 +52,10 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
           </S.LinkTextBox>
           <S.ButtonWrapper>
             <S.ButtonContainer>
-              {role === 'ROLE_ADMIN' ||
-                role === 'ROLE_COMPANY_INSTRUCTOR' ||
-                role === 'ROLE_PROFESSOR' ||
-                (role === 'ROLE_GOVERNMENT' && (
+              {tokenManager.authority === 'ROLE_ADMIN' ||
+                tokenManager.authority === 'ROLE_COMPANY_INSTRUCTOR' ||
+                tokenManager.authority === 'ROLE_PROFESSOR' ||
+                (tokenManager.authority === 'ROLE_GOVERNMENT' && (
                   <S.DeleteNoticeButton
                     onClick={() =>
                       openModal(
@@ -73,9 +72,7 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
                   </S.DeleteNoticeButton>
                 ))}
               <S.ModifyNoticeButton
-                onClick={() =>
-                  push(`/main/post/notification/modify/${noticeId}`)
-                }
+                onClick={() => push(`/main/post/notice/modify/${noticeId}`)}
               >
                 수정하기
               </S.ModifyNoticeButton>

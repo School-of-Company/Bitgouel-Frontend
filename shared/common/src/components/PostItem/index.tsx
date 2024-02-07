@@ -15,7 +15,7 @@ const PostItem = ({ item }: PostItemProps) => {
         push(
           match(pathname)
             .with('/main/post', () => `/main/post/${item.id}`)
-            .otherwise(() => `/main/post/notification/${item.id}`)
+            .otherwise(() => `/main/post/notice/${item.id}`)
         )
       }
     >

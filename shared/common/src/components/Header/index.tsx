@@ -43,7 +43,6 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
   const [lectureTypeText, setLectureTypeText] =
     useRecoilState<string>(LectureTypeText)
   const [text, setText] = useState<string>('로그인')
-  const [role, setRole] = useState<RoleEnumTypes | null>(null)
   const { mutate } = useDeleteLogout()
 
   useEffect(() => {
@@ -88,11 +87,6 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
   }, [])
 
   useEffect(() => {
-    const role =
-      typeof window !== 'undefined'
-        ? (localStorage.getItem('Authority') as RoleEnumTypes)
-        : null
-    setRole(role)
     if (tokenManager.accessToken) {
       if (pathname === '/main/my') setText('로그아웃')
       else if (pathname !== '/main/my') setText('내 정보')
@@ -150,9 +144,9 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
                     push('/main/lecture/create')
                   }}
                   view={
-                    role === 'ROLE_PROFESSOR' ||
-                    role === 'ROLE_GOVERNMENT' ||
-                    role === 'ROLE_COMPANY_INSTRUCTOR'
+                    tokenManager.authority === 'ROLE_PROFESSOR' ||
+                    tokenManager.authority === 'ROLE_GOVERNMENT' ||
+                    tokenManager.authority === 'ROLE_COMPANY_INSTRUCTOR'
                   }
                 >
                   <Plus />

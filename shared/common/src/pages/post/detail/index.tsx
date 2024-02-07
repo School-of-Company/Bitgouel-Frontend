@@ -1,6 +1,6 @@
 'use client'
 
-import { useDeletePost, useGetPostDetail } from '@bitgouel/api'
+import { TokenManager, useDeletePost, useGetPostDetail } from '@bitgouel/api'
 import { RoleEnumTypes } from '@bitgouel/types'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -14,7 +14,7 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
   const { mutate } = useDeletePost(postId, '게시글')
   const { openModal } = useModal()
   const { push } = useRouter()
-  const role = typeof window !== 'undefined' ?  localStorage.getItem("Authority") as RoleEnumTypes : null
+  const tokenManager = new TokenManager()
 
 
   return (
@@ -61,10 +61,10 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
           </S.LinkTextBox>
           <S.ButtonWrapper>
             <S.ButtonContainer>
-              {role === 'ROLE_ADMIN' ||
-                role === 'ROLE_COMPANY_INSTRUCTOR' ||
-                role === 'ROLE_PROFESSOR' ||
-                (role === 'ROLE_GOVERNMENT' && (
+              {tokenManager.authority === 'ROLE_ADMIN' ||
+                tokenManager.authority === 'ROLE_COMPANY_INSTRUCTOR' ||
+                tokenManager.authority === 'ROLE_PROFESSOR' ||
+                (tokenManager.authority === 'ROLE_GOVERNMENT' && (
                   <S.DeletePostButton
                     onClick={() =>
                       openModal(
