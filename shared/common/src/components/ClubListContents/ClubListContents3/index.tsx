@@ -30,15 +30,15 @@ const ClubListContents3 = () => {
         <S.ClubValueTitle>의료•헬스케어</S.ClubValueTitle>
         <S.ClubMainTextArea>
           <S.ClubLeftTextArea>
-            {schoolList.map((school) => (
-              <S.ClubLeftText>{school}</S.ClubLeftText>
+            {schoolList.map((school, idx) => (
+              <S.ClubLeftText key={idx}>{school}</S.ClubLeftText>
             ))}
           </S.ClubLeftTextArea>
           <S.ClubRightTextArea>
-            {clubList.map((club) => (
-              <S.ClubRightTextLine>
-                {club.map((value) => (
-                  <S.ClubRightText>{value}</S.ClubRightText>
+            {clubList.map((club, idx) => (
+              <S.ClubRightTextLine key={idx}>
+                {club.map((value, idx2) => (
+                  <S.ClubRightText key={idx2}>{value}</S.ClubRightText>
                 ))}
               </S.ClubRightTextLine>
             ))}

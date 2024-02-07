@@ -1,6 +1,6 @@
 'use client'
 
-import { useGetLectureList } from '@bitgouel/api'
+import { TokenManager, useGetLectureList } from '@bitgouel/api'
 import { Bg3, Filter, LectureTypeModal, Plus } from '@bitgouel/common'
 import { LectureTypeText } from '@bitgouel/common/src/atoms'
 import { LectureItem } from '@bitgouel/common/src/components'
@@ -9,15 +9,13 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import * as S from './style'
-import { RoleEnumTypes } from '@bitgouel/types'
 
 const LecturePage = () => {
   const { push } = useRouter()
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
   const [lectureTypeText, setLectureTypeText] =
     useRecoilState<string>(LectureTypeText)
-  const role = typeof window !== 'undefined' ? localStorage.getItem('Authority') as RoleEnumTypes : 'ROLE_STUDENT'
-
+  const tokenManager = new TokenManager()
   const { data, refetch } = useGetLectureList({
     page: 0,
     size: 10,
@@ -61,7 +59,7 @@ const LecturePage = () => {
       <S.ListWrapper>
         <S.ListContainer>
           {data?.data.lectures.content.map((item) => (
-            <LectureItem role={role} item={item} key={item.id} />
+            <LectureItem role={tokenManager.authority} item={item} key={item.id} />
           ))}
         </S.ListContainer>
       </S.ListWrapper>

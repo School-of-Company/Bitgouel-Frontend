@@ -1,11 +1,10 @@
 'use client'
 
 import { LectureApplyModal } from '@/modals'
-import { useGetDetailLecture, usePostApplicationLecture } from '@bitgouel/api'
+import { TokenManager, useGetDetailLecture, usePostApplicationLecture } from '@bitgouel/api'
 import { Bg3, lectureToKor, useModal } from '@bitgouel/common'
-import * as S from './style'
-import { RoleEnumTypes } from '@bitgouel/types'
 import { useEffect, useState } from 'react'
+import * as S from './style'
 
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
@@ -14,14 +13,11 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const [lectureButtonText, setLectureButtonText] =
     useState<string>('수강 신청 하기')
   const [isAble, setIsAble] = useState<boolean>(true)
-  const role =
-    typeof window !== 'undefined'
-      ? (localStorage.getItem('Authority') as RoleEnumTypes)
-      : null
+  const tokenManager = new TokenManager()
 
   useEffect(() => {
     if (
-      role !== 'ROLE_STUDENT' ||
+      tokenManager.authority !== 'ROLE_STUDENT' ||
       data?.data.lectureStatus === 'CLOSED' ||
       data?.data.headCount === data?.data.maxRegisteredUser
     ) {
@@ -35,7 +31,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const handleModalOpen = () => {
     if (
       data?.data.isRegistered ||
-      role !== 'ROLE_STUDENT' ||
+      tokenManager.authority !== 'ROLE_STUDENT' ||
       data?.data.lectureStatus === 'CLOSED' ||
       data?.data.headCount === data?.data.maxRegisteredUser
     )

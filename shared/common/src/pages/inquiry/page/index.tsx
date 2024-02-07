@@ -5,11 +5,11 @@ import { useRouter } from 'next/navigation'
 import { Bg5, Plus } from '../../../assets'
 import { InquiryItem } from '../../../components'
 import * as S from './style'
-import { useGetInquiryList, useGetMyInquiryList } from '@bitgouel/api'
+import { TokenManager, useGetInquiryList, useGetMyInquiryList } from '@bitgouel/api'
 
 const InquiryPage = () => {
   const { push } = useRouter()
-  const role = typeof window !== 'undefined' ? localStorage.getItem('Authority') as RoleEnumTypes : null
+  const tokenManager = new TokenManager()
   const { data: inquiryList } = useGetInquiryList()
   const { data: myInquiryList } = useGetMyInquiryList()
 
@@ -19,7 +19,7 @@ const InquiryPage = () => {
         <S.BgContainer>
           <S.InquiryTitle>문의사항</S.InquiryTitle>
           <S.ButtonContainer>
-            {role !== 'ROLE_ADMIN' && (
+            {tokenManager.authority !== 'ROLE_ADMIN' && (
               <S.InquiryButton onClick={() => push('/main/inquiry/create')}>
                 <Plus />
                 <span>문의사항 추가</span>
@@ -30,7 +30,7 @@ const InquiryPage = () => {
       </S.SlideBg>
       <S.ListWrapper>
         <S.ListContainer>
-          {role === 'ROLE_ADMIN'
+          {tokenManager.authority === 'ROLE_ADMIN'
             ? inquiryList?.data.inquiries.map((inquiry) => (
                 <InquiryItem item={inquiry} />
               ))

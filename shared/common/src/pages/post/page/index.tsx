@@ -1,6 +1,6 @@
 'use client'
 
-import { useGetPostList } from '@bitgouel/api'
+import { TokenManager, useGetPostList } from '@bitgouel/api'
 import { RoleEnumTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { Bg1, MegaPhone, Plus, Question } from '../../../assets'
@@ -13,9 +13,8 @@ const PostPage = () => {
     page: 0,
     size: 15,
   })
-  const role = typeof window !== 'undefined' ?  localStorage.getItem("Authority") as RoleEnumTypes : null
-
   const { push } = useRouter()
+  const tokenManager =  new TokenManager()
 
   return (
     <div>
@@ -23,7 +22,7 @@ const PostPage = () => {
         <S.BgContainer>
           <S.PostTitle>게시글</S.PostTitle>
           <S.ButtonContainer>
-            <S.PostButton onClick={() => push('/main/post/notification')}>
+            <S.PostButton onClick={() => push('/main/post/notice')}>
               <MegaPhone />
               <span>공지사항</span>
             </S.PostButton>
@@ -31,10 +30,10 @@ const PostPage = () => {
               <Question />
               <span>문의사항</span>
             </S.PostButton>
-            {role === 'ROLE_ADMIN' ||
-              role === 'ROLE_PROFESSOR' ||
-              role === 'ROLE_COMPANY_INSTRUCTOR' ||
-              (role === 'ROLE_GOVERNMENT' && (
+            {tokenManager.authority === 'ROLE_ADMIN' ||
+              tokenManager.authority === 'ROLE_PROFESSOR' ||
+              tokenManager.authority === 'ROLE_COMPANY_INSTRUCTOR' ||
+              (tokenManager.authority === 'ROLE_GOVERNMENT' && (
                 <S.PostButton onClick={() => push('/main/post/create')}>
                   <Plus />
                   <span>게시글 추가</span>
