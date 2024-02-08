@@ -95,7 +95,14 @@ export const UserSearchFilter = styled.div`
   border-radius: 0.5rem;
   ${({ theme }) => theme.typo.text_md.medium};
   color: ${({ theme }) => theme.color.gray['400']};
+  fill: ${({ theme }) => theme.color.gray['400']};
+  cursor: pointer;
   svg {
     margin-right: 0.5rem;
+  }
+  &:hover {
+    border: 0.0625rem solid ${({ theme }) => theme.color.main};
+    color: ${({ theme }) => theme.color.main};
+    fill: ${({ theme }) => theme.color.main};
   }
 `
