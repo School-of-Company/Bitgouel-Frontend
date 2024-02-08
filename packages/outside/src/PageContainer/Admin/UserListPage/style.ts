@@ -62,7 +62,40 @@ export const UserListWrapper = styled.div`
 export const UserListContainer = styled.div`
   display: flex;
   margin-top: 1.5rem;
-  width: 76.5rem;
+  width: 75rem;
   height: 100%;
   flex-wrap: wrap;
+`
+
+export const UserSearchContainer = styled.div`
+  width: 100%;
+  height: 3.375rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5625rem;
+`
+
+export const UserSearchInput = styled.input`
+  width: 65.75rem;
+  height: 100%;
+  border-radius: 0.5rem;
+  border: 0.0625rem solid ${({ theme }) => theme.color.gray['700']};
+  ${({ theme }) => theme.typo.text_sm.regular};
+  color: ${({ theme }) => theme.color.gray['400']};
+  padding: 0 1.25rem;
+`
+
+export const UserSearchFilter = styled.div`
+  width: 5.75rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.0625rem solid ${({ theme }) => theme.color.gray['400']};
+  border-radius: 0.5rem;
+  ${({ theme }) => theme.typo.text_md.medium};
+  color: ${({ theme }) => theme.color.gray['400']};
+  svg {
+    margin-right: 0.5rem;
+  }
 `

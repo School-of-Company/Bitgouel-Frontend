@@ -1,8 +1,8 @@
 'use client'
 
 import * as S from './style'
-import { Bg6 } from '@bitgouel/common'
-import { Plus, Minus } from '@bitgouel/common'
+import { Bg6, UserItem } from '@bitgouel/common'
+import { Plus, Minus, FilterOut } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 
 const UserListPage = () => {
@@ -31,7 +31,18 @@ const UserListPage = () => {
       </S.SlideBg>
 
       <S.UserListWrapper>
-        <S.UserListContainer></S.UserListContainer>
+        <S.UserListContainer>
+          <S.UserSearchContainer>
+            <S.UserSearchInput placeholder='이름으로 검색...'></S.UserSearchInput>
+            <S.UserSearchFilter>
+              <FilterOut />
+              필터
+            </S.UserSearchFilter>
+          </S.UserSearchContainer>
+          <UserItem />
+          <UserItem />
+          <UserItem />
+        </S.UserListContainer>
       </S.UserListWrapper>
     </div>
   )
