@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { SVGProps } from 'react'
 
-const CalendarIcon = () => {
+const CalendarIcon = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       width='1.5625rem'
@@ -8,6 +8,7 @@ const CalendarIcon = () => {
       viewBox='0 0 25 24'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
+      {...props}
     >
       <path
         fillRule='evenodd'

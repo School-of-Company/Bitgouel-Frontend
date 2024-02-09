@@ -127,9 +127,7 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
             .with('/main/lecture', () => (
               <>
                 <S.SelectFilterContainer>
-                  <div onClick={() => setIsLectureType((prev) => !prev)}>
-                    <Filter />
-                  </div>
+                  <Filter onClick={() => setIsLectureType((prev) => !prev)} />
                   {isLectureType && (
                     <LectureTypeModal
                       location='헤더'
@@ -139,24 +137,21 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
                     />
                   )}
                 </S.SelectFilterContainer>
-                <S.CreateIcon
-                  onClick={() => {
-                    push('/main/lecture/create')
-                  }}
-                  view={
-                    tokenManager.authority === 'ROLE_PROFESSOR' ||
-                    tokenManager.authority === 'ROLE_GOVERNMENT' ||
-                    tokenManager.authority === 'ROLE_COMPANY_INSTRUCTOR'
-                  }
-                >
-                  <Plus />
-                </S.CreateIcon>
+                {(tokenManager.authority === 'ROLE_PROFESSOR' ||
+                  tokenManager.authority === 'ROLE_GOVERNMENT' ||
+                  tokenManager.authority === 'ROLE_COMPANY_INSTRUCTOR') && (
+                  <Plus
+                    onClick={() => {
+                      push('/main/lecture/create')
+                    }}
+                  />
+                )}
               </>
             ))
             .with('/main/post', () => (
               <>
-                <Message />
-                <Question />
+                <Message onClick={() => push('/main/post/notice')} />
+                <Question onClick={() => push('/main/inquiry')} />
               </>
             ))
             .otherwise(() => null)}

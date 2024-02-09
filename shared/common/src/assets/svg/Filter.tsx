@@ -1,4 +1,6 @@
-const Filter = () => {
+import { SVGProps } from 'react'
+
+const Filter = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       width='1.5rem'
