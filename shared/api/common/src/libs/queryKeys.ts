@@ -51,7 +51,7 @@ export const activityQueryKeys = {
 
 export const myQueryKeys = {
   getMy: () => ['my', 'myData'],
-  patchPw: () => ['my', 'changePw']
+  patchPw: () => ['my', 'changePw'],
 } as const
 
 export const postQueryKeys = {
@@ -79,4 +79,11 @@ export const inquiryQueryKeys = {
   postAnswer: (id: string) => ['inquiry', 'answer', id],
   getInquiry: () => ['inquiry', 'inquiryList'],
   deleteInquiry: (id: string) => ['inquiry', 'reject', id],
+} as const
+
+export const adminQueryKeys = {
+  getUserList: () => ['admin', 'list'],
+  patchUserApprove: (user_id: string) => ['admin', 'approve', user_id],
+  deleteUserReject: (user_id: string) => ['admin', 'reject', user_id],
+  deleteUserWithout: (user_id: string) => ['admin', 'without', user_id],
 } as const

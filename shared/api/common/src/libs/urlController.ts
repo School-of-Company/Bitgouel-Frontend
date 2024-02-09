@@ -1,4 +1,8 @@
-import { LectureListOptionsTypes, ActivityOptionsTypes } from '@bitgouel/types'
+import {
+  LectureListOptionsTypes,
+  ActivityOptionsTypes,
+  UserListOptionsTypes,
+} from '@bitgouel/types'
 
 export const authUrl = {
   auth: () => `/auth`,
@@ -70,4 +74,10 @@ export const inquiryUrl = {
   inquiryAnswer: (inquiry_id: string) => `/inquiry/${inquiry_id}/reply`,
   inquiryList: () => `/inquiry/all`,
   inquiryDelete: (inquiry_id: string) => `/inquiry/${inquiry_id}/reject`,
+} as const
+
+export const adminUrl = {
+  userList: (queryString: UserListOptionsTypes) =>
+    `/admin?keyword=${queryString.keyword}&page=${queryString.page}&size=${queryString.size}`,
+  mutateAdmin: (user_id: string) => `/admin/${user_id}`,
 } as const
