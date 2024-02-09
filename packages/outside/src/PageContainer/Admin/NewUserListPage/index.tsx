@@ -1,7 +1,7 @@
 'use client'
 
 import * as S from './style'
-import { Bg6, Check, NewUserItem, PeopleCircle } from '@bitgouel/common'
+import { Bg6, Check, NewUserItem, People, PeopleCircle } from '@bitgouel/common'
 import { Minus } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 
@@ -15,7 +15,7 @@ const NewUserListPage = () => {
           <S.ClubTitle>신규 가입자 명단</S.ClubTitle>
           <S.ButtonContainer>
             <S.ButtonBox onClick={() => push('/main/admin')}>
-              <PeopleCircle />
+              <PeopleCircle banner={true} />
               <span>사용자 명단</span>
             </S.ButtonBox>
             <S.ButtonBox onClick={() => push('/main/admin/quit')}>
@@ -25,7 +25,6 @@ const NewUserListPage = () => {
           </S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
-
       <S.UserListWrapper>
         <S.UserListContainer>
           <S.RemarkBox>
@@ -34,16 +33,20 @@ const NewUserListPage = () => {
               <S.Remark>이름</S.Remark>
               <S.Remark>직업</S.Remark>
             </div>
-            <div>
-              <S.AloneCheckBox>
+            <S.SelectBoxContainer>
+              <S.SelectBox type='all'>
+                <PeopleCircle banner={false} />
+                전체 선택
+              </S.SelectBox>
+              <S.SelectBox type='approve'>
                 <Check />
                 선택 수락
-              </S.AloneCheckBox>
-              <S.WithCheckBox>
-                <PeopleCircle />
-                전체 수락
-              </S.WithCheckBox>
-            </div>
+              </S.SelectBox>
+              <S.SelectBox type='reject'>
+                <Check />
+                선택 거절
+              </S.SelectBox>
+            </S.SelectBoxContainer>
           </S.RemarkBox>
           <NewUserItem />
         </S.UserListContainer>

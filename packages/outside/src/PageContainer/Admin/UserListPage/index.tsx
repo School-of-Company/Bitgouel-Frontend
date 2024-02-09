@@ -1,8 +1,7 @@
 'use client'
 
 import * as S from './style'
-import { Bg6, UserItem } from '@bitgouel/common'
-import { Plus, Minus, FilterOut } from '@bitgouel/common'
+import { Bg6, FilterOut, Minus, Plus, UserItem } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 
 const UserListPage = () => {

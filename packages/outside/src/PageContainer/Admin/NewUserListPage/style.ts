@@ -1,6 +1,8 @@
 import styled from '@emotion/styled'
 import { StaticImageData } from 'next/image'
 
+type SelectBoxTypes = 'all' | 'approve' | 'reject'
+
 export const SlideBg = styled.div<{ url: StaticImageData }>`
   height: 15rem;
   width: 100%;
@@ -87,37 +89,52 @@ export const Remark = styled.span`
   }
 `
 
-export const AloneCheckBox = styled.div`
+export const SelectBoxContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+`
+
+export const SelectBox = styled.div<{ type: SelectBoxTypes }>`
   width: 7.75rem;
   height: 2.5rem;
-  border-radius: 0.5rem;
-  border: 0.0625rem solid ${({ theme }) => theme.color.main};
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 0.5rem;
   cursor: pointer;
-  color: ${({ theme }) => theme.color.main};
+  background: none;
   ${({ theme }) => theme.typo.text_md.medium};
-  margin-right: 0.625rem;
+  border: 0.0625rem solid
+    ${({ theme, type }) =>
+      type === 'all'
+        ? theme.color.gray['400']
+        : type === 'approve'
+        ? theme.color.main
+        : theme.color.error};
+  color: ${({ theme, type }) =>
+    type === 'all'
+      ? theme.color.gray['400']
+      : type === 'approve'
+      ? theme.color.main
+      : theme.color.error};
+
   svg {
-    fill: ${({ theme }) => theme.color.main};
+    fill: ${({ theme, type }) =>
+      type === 'all'
+        ? theme.color.gray['400']
+        : type === 'approve'
+        ? theme.color.main
+        : theme.color.error};
     margin-right: 0.5rem;
   }
 `
 
-export const WithCheckBox = styled.div`
-  width: 7.75rem;
-  height: 2.5rem;
-  border-radius: 0.5rem;
-  background-color: ${({ theme }) => theme.color.main};
+export const AloneCheckBox = styled.div`
   border: 0.0625rem solid ${({ theme }) => theme.color.main};
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
   cursor: pointer;
-  color: ${({ theme }) => theme.color.white};
+  color: ${({ theme }) => theme.color.main};
   ${({ theme }) => theme.typo.text_md.medium};
-  svg {
-    margin-right: 0.5rem;
-  }
+  margin-right: 0.625rem;
 `

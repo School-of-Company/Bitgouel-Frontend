@@ -15,7 +15,7 @@ const QuitUserListPage = () => {
           <S.ClubTitle>탈퇴 예정자 명단</S.ClubTitle>
           <S.ButtonContainer>
             <S.ButtonBox onClick={() => push('/main/admin')}>
-              <PeopleCircle />
+              <PeopleCircle banner={true} />
               <span>사용자 명단</span>
             </S.ButtonBox>
             <S.ButtonBox onClick={() => push('/main/admin/new')}>
@@ -40,7 +40,7 @@ const QuitUserListPage = () => {
                 선택 탈퇴
               </S.AloneCheckBox>
               <S.WithCheckBox>
-                <PeopleCircle />
+                <PeopleCircle banner={true} />
                 전체 탈퇴
               </S.WithCheckBox>
             </div>
