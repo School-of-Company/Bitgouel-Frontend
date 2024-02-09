@@ -14,15 +14,11 @@ const UserListPage = () => {
         <S.BgContainer>
           <S.ClubTitle>사용자 명단</S.ClubTitle>
           <S.ButtonContainer>
-            <S.ButtonBox
-              onClick={() => push('/main/club/student/activity/create')}
-            >
+            <S.ButtonBox onClick={() => push('/main/admin/new')}>
               <Plus />
               <span>신규 가입자 명단</span>
             </S.ButtonBox>
-            <S.ButtonBox
-              onClick={() => push('/main/club/student/activity/create')}
-            >
+            <S.ButtonBox onClick={() => push('/main/admin/quit')}>
               <Minus />
               <span>탈퇴 예정자 명단</span>
             </S.ButtonBox>
