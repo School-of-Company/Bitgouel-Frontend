@@ -6,15 +6,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { match } from 'ts-pattern'
-import {
-  Filter,
-  MegaPhone,
-  Message,
-  Plus,
-  Question,
-  Symbol1,
-  Symbol2,
-} from '../../assets'
+import { Filter, Message, Plus, Question, Symbol1, Symbol2 } from '../../assets'
 import { LectureTypeText } from '../../atoms'
 import { LectureTypeModal } from '../../modals'
 import { theme } from '../../styles'
