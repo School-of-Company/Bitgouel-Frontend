@@ -85,6 +85,8 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
     }
   }, [pathname])
 
+  console.log(pathname)
+
   return (
     <S.HeaderWrapper
       bgColor={bgColor}
@@ -107,7 +109,9 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
                     ? push(menu.link)
                     : toast.info('로그인 후 이용해 주세요.')
                 }
-                isSameRoute={pathname === menu.link}
+                isSameRoute={match(idx)
+                  .with(0, () => pathname === menu.link)
+                  .otherwise(() => pathname.includes(menu.link))}
                 color={spanColor}
               >
                 {menu.kor}
