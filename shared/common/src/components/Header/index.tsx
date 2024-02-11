@@ -103,7 +103,7 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
         .otherwise(() => false)}
     >
       <S.HeaderContainer>
-        <S.SymbolContainer url={symbolNum} />
+        <S.SymbolContainer url={symbolNum} onClick={() => push('/')} />
         <S.MenuWrapper is_admin={is_admin}>
           {menuList
             .filter((menu, idx) => (is_admin ? menu : idx !== 4))
