@@ -6,15 +6,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { match } from 'ts-pattern'
-import {
-  Filter,
-  MegaPhone,
-  Message,
-  Plus,
-  Question,
-  Symbol1,
-  Symbol2,
-} from '../../assets'
+import { Filter, Message, Plus, Question, Symbol1, Symbol2 } from '../../assets'
 import { LectureTypeText } from '../../atoms'
 import { LectureTypeModal } from '../../modals'
 import { theme } from '../../styles'
@@ -103,7 +95,7 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
         .otherwise(() => false)}
     >
       <S.HeaderContainer>
-        <S.SymbolContainer url={symbolNum} />
+        <S.SymbolContainer url={symbolNum} onClick={() => push('/')} />
         <S.MenuWrapper is_admin={is_admin}>
           {menuList
             .filter((menu, idx) => (is_admin ? menu : idx !== 4))
@@ -115,7 +107,9 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
                     ? push(menu.link)
                     : toast.info('로그인 후 이용해 주세요.')
                 }
-                isSameRoute={pathname === menu.link}
+                isSameRoute={match(idx)
+                  .with(0, () => pathname === menu.link)
+                  .otherwise(() => pathname.includes(menu.link))}
                 color={spanColor}
               >
                 {menu.kor}
