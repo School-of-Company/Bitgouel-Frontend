@@ -85,8 +85,6 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
     }
   }, [pathname])
 
-  console.log(pathname)
-
   return (
     <S.HeaderWrapper
       bgColor={bgColor}
