@@ -73,7 +73,7 @@ const StudentPage: React.FC<StudentProps> = ({ studentIdProps }) => {
     window.location.reload()
   }
 
-  useEffect(() => {}, [certificateIndex])
+  // useEffect(() => {}, [certificateIndex])
 
   return (
     <div>
@@ -122,7 +122,7 @@ const StudentPage: React.FC<StudentProps> = ({ studentIdProps }) => {
                   />
                   <S.AddCertificateDateBox>
                     <S.SelectDateContainer>
-                      {isCertificateDate && (
+                      {isCertificateDate && certificateIndex < 0 && (
                         <SelectCalendarModal
                           date={certificateDate}
                           setDate={setCertificateDate}
@@ -130,7 +130,10 @@ const StudentPage: React.FC<StudentProps> = ({ studentIdProps }) => {
                         />
                       )}
                       <div
-                        onClick={() => setIsCertificateDate((prev) => !prev)}
+                        onClick={() => {
+                          setIsCertificateDate((prev) => !prev)
+                          setCertificateIndex(-1)
+                        }}
                       >
                         <CalendarIcon />
                       </div>
