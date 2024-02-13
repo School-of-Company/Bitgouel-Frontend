@@ -1,10 +1,10 @@
 import { useMutation } from '@tanstack/react-query'
 import { adminQueryKeys, adminUrl, del } from '../../common'
 
-export const useDeleteUserReject = (user_id: string) =>
+export const useDeleteUserReject = (userIds: string[]) =>
   useMutation<void>(
-    adminQueryKeys.deleteUserReject(user_id),
-    () => del(adminUrl.mutateAdmin(user_id)),
+    adminQueryKeys.deleteUserReject(),
+    () => del(adminUrl.mutateAdmin(userIds)),
     {
       onSuccess: () => {
         console.log('success')

@@ -95,7 +95,7 @@ export const SelectBoxContainer = styled.div`
   gap: 0.625rem;
 `
 
-export const SelectBox = styled.div<{ type: SelectBoxTypes }>`
+export const SelectBox = styled.label<{ type: SelectBoxTypes }>`
   width: 7.75rem;
   height: 2.5rem;
   display: flex;

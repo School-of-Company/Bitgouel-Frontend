@@ -42,7 +42,7 @@ export const SelectFilterLabel = styled.label`
   align-items: center;
 `
 
-export const SelectFilterCheckBox = styled.input`
+export const Checkbox = styled.input`
   appearance: none;
   width: 1.5rem;
   height: 1.5rem;

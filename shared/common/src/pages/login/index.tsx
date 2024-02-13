@@ -7,19 +7,17 @@ import { useResetRecoilState } from 'recoil'
 import { ValueInput } from '../../components'
 import * as S from './style'
 
-import {
-  Page,
-  Page1Obj,
-  Page2Obj,
-  Page3Obj
-} from '../../atoms'
+import { Page, Page1Obj, Page2Obj, Page3Obj } from '../../atoms'
 import { theme } from '../../styles'
 
-const LoginPage = () => {
-  const [emailValue, setEmailValue] = useState<string>('')
+const LoginPage = ({ isAdmin }: { isAdmin: boolean }) => {
+  const [emailValue, setEmailValue] = useState<string>(
+    isAdmin ? 's11111@gsm.hs.kr' : ''
+  )
   const [emailErrorText, setEmailErrorText] = useState<string>('')
-
-  const [passwordValue, setPasswordValue] = useState<string>('')
+  const [passwordValue, setPasswordValue] = useState<string>(
+    isAdmin ? '12345678a@' : ''
+  )
   const [passwordErrorText, setPasswordErrorText] = useState<string>('')
 
   const resetPage = useResetRecoilState(Page)

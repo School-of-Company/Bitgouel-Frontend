@@ -1,11 +1,33 @@
 'use client'
 
-import * as S from './style'
+import { useGetUserList } from '@bitgouel/api'
 import { Bg6, FilterOut, Minus, Plus, UserItem } from '@bitgouel/common'
+import { RoleEnumTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
+import { ChangeEvent, useEffect, useState } from 'react'
+import * as S from './style'
 
 const UserListPage = () => {
   const { push } = useRouter()
+  const [keyword, setKeyword] = useState('')
+  const [authority, setAuthority] = useState<RoleEnumTypes | 'ROLE_USER'>(
+    'ROLE_USER'
+  )
+  const { data, refetch } = useGetUserList({
+    keyword,
+    authority,
+    approveStatus: 'APPROVED',
+    page: 0,
+    size: 10,
+  })
+
+  useEffect(() => {
+    const delayFetch = setTimeout(() => {
+      refetch()
+    }, 2000)
+
+    return () => clearTimeout(delayFetch)
+  }, [keyword, authority])
 
   return (
     <div>
@@ -24,19 +46,24 @@ const UserListPage = () => {
           </S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
-
       <S.UserListWrapper>
         <S.UserListContainer>
           <S.UserSearchContainer>
-            <S.UserSearchInput placeholder='이름으로 검색...'></S.UserSearchInput>
+            <S.UserSearchInput
+              value={keyword}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setKeyword(e.target.value)
+              }
+              placeholder='이름으로 검색...'
+            />
             <S.UserSearchFilter>
               <FilterOut />
               필터
             </S.UserSearchFilter>
           </S.UserSearchContainer>
-          <UserItem />
-          <UserItem />
-          <UserItem />
+          {data?.data.users.content.map((user) => (
+            <UserItem key={user.id} item={user} status='current' />
+          ))}
         </S.UserListContainer>
       </S.UserListWrapper>
     </div>

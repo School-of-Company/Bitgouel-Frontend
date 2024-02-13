@@ -1,9 +1,8 @@
 'use client'
 
-import * as S from './style'
-import { Bg6, Check, NewUserItem, PeopleCircle } from '@bitgouel/common'
-import { Plus } from '@bitgouel/common'
+import { Bg6, Check, PeopleCircle, Plus } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
+import * as S from './style'
 
 const QuitUserListPage = () => {
   const { push } = useRouter()
@@ -25,7 +24,6 @@ const QuitUserListPage = () => {
           </S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
-
       <S.UserListWrapper>
         <S.UserListContainer>
           <S.RemarkBox>
@@ -45,7 +43,9 @@ const QuitUserListPage = () => {
               </S.WithCheckBox>
             </div>
           </S.RemarkBox>
-          <NewUserItem />
+          {/* {data?.data.users.content.map((user) => (
+            <UserItem key={user.id} item={user} status='request' />
+          ))} */}
         </S.UserListContainer>
       </S.UserListWrapper>
     </div>
