@@ -17,8 +17,6 @@ const UserListPage = () => {
     keyword,
     authority,
     approveStatus: 'APPROVED',
-    page: 0,
-    size: 10,
   })
 
   useEffect(() => {
