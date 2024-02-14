@@ -73,8 +73,6 @@ const StudentPage: React.FC<StudentProps> = ({ studentIdProps }) => {
     window.location.reload()
   }
 
-  // useEffect(() => {}, [certificateIndex])
-
   return (
     <div>
       <S.SlideBg url={Bg2}>
