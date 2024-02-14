@@ -26,7 +26,7 @@ const PostPage = () => {
               <MegaPhone />
               <span>공지사항</span>
             </S.PostButton>
-            <S.PostButton>
+            <S.PostButton onClick={() => push('/main/post/inquiry')}>
               <Question />
               <span>문의사항</span>
             </S.PostButton>

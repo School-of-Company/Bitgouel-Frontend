@@ -6,15 +6,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { match } from 'ts-pattern'
-import {
-  Filter,
-  MegaPhone,
-  Message,
-  Plus,
-  Question,
-  Symbol1,
-  Symbol2,
-} from '../../assets'
+import { Filter, Message, Plus, Question, Symbol1, Symbol2 } from '../../assets'
 import { LectureTypeText } from '../../atoms'
 import { LectureTypeModal } from '../../modals'
 import { theme } from '../../styles'
@@ -103,7 +95,7 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
         .otherwise(() => false)}
     >
       <S.HeaderContainer>
-        <S.SymbolContainer url={symbolNum} />
+        <S.SymbolContainer url={symbolNum} onClick={() => push('/')} />
         <S.MenuWrapper is_admin={is_admin}>
           {menuList
             .filter((menu, idx) => (is_admin ? menu : idx !== 4))
@@ -115,7 +107,9 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
                     ? push(menu.link)
                     : toast.info('로그인 후 이용해 주세요.')
                 }
-                isSameRoute={pathname === menu.link}
+                isSameRoute={match(idx)
+                  .with(0, () => pathname === menu.link)
+                  .otherwise(() => pathname.includes(menu.link))}
                 color={spanColor}
               >
                 {menu.kor}
@@ -127,9 +121,7 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
             .with('/main/lecture', () => (
               <>
                 <S.SelectFilterContainer>
-                  <div onClick={() => setIsLectureType((prev) => !prev)}>
-                    <Filter />
-                  </div>
+                  <Filter onClick={() => setIsLectureType((prev) => !prev)} />
                   {isLectureType && (
                     <LectureTypeModal
                       location='헤더'
@@ -139,24 +131,21 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
                     />
                   )}
                 </S.SelectFilterContainer>
-                <S.CreateIcon
-                  onClick={() => {
-                    push('/main/lecture/create')
-                  }}
-                  view={
-                    tokenManager.authority === 'ROLE_PROFESSOR' ||
-                    tokenManager.authority === 'ROLE_GOVERNMENT' ||
-                    tokenManager.authority === 'ROLE_COMPANY_INSTRUCTOR'
-                  }
-                >
-                  <Plus />
-                </S.CreateIcon>
+                {(tokenManager.authority === 'ROLE_PROFESSOR' ||
+                  tokenManager.authority === 'ROLE_GOVERNMENT' ||
+                  tokenManager.authority === 'ROLE_COMPANY_INSTRUCTOR') && (
+                  <Plus
+                    onClick={() => {
+                      push('/main/lecture/create')
+                    }}
+                  />
+                )}
               </>
             ))
             .with('/main/post', () => (
               <>
-                <Message />
-                <Question />
+                <Message onClick={() => push('/main/post/notice')} />
+                <Question onClick={() => push('/main/inquiry')} />
               </>
             ))
             .otherwise(() => null)}

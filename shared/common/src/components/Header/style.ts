@@ -34,6 +34,7 @@ export const SymbolContainer = styled.div<{ url: StaticImageData }>`
   background-size: cover;
   background-repeat: no-repeat;
   transition: all 0.5s;
+  cursor: pointer;
 `
 
 export const MenuWrapper = styled.div<{ is_admin: boolean }>`
