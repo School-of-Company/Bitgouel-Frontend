@@ -1,14 +1,14 @@
 import styled from '@emotion/styled'
 
-export const CreateModalWrapper = styled.div`
+export const CreateModalWrapper = styled.div<{isAdmin: boolean}>`
   width: 24rem;
-  height: 13.375rem;
+  height: ${({isAdmin}) => isAdmin ? '7.875rem' : '13.375rem'};
   border-radius: 0.5rem;
   background-color: ${({ theme }) => theme.color.white};
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.8rem;
+  gap: ${({isAdmin}) => isAdmin ? '1rem' : '1.8rem'};
 `
 
 export const LetterContainer = styled.div`

@@ -1,7 +1,15 @@
 'use client'
 
 import { useGetUserList, usePatchUserApprove } from '@bitgouel/api'
-import { Bg6, Check, Minus, PeopleCircle, UserItem } from '@bitgouel/common'
+import {
+  Bg6,
+  Check,
+  CreateModal,
+  Minus,
+  PeopleCircle,
+  UserItem,
+  useModal,
+} from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import * as S from './style'
 import { ChangeEvent, useState } from 'react'
@@ -13,17 +21,21 @@ const NewUserListPage = () => {
     keyword: '',
     authority: 'ROLE_USER',
     approveStatus: 'PENDING',
-    page: 0,
-    size: 10,
   })
+  const { openModal } = useModal()
+  const { mutate } = usePatchUserApprove(userIds)
 
-  const handleSelectUsers = (checked: boolean, userId: string) => {
-    if (checked) setUserIds((prev) => [...prev, userId])
+  const handleSelectUsers = (
+    e: ChangeEvent<HTMLInputElement>,
+    userId: string
+  ) => {
+    if (e.target.checked) setUserIds((prev) => [...prev, userId])
     else setUserIds((prev) => prev.filter((listId) => listId !== userId))
   }
 
-  const onAll = (checked: boolean) => {
-    if (checked) setUserIds(data?.data.users.content.map((user) => user.id))
+  const onAll = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked)
+      setUserIds(data?.data.users.content.map((user) => user.id))
     else setUserIds([])
   }
 
@@ -57,15 +69,25 @@ const NewUserListPage = () => {
                 <input
                   type='checkbox'
                   id='all'
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    onAll(e.target.checked)
-                  }
+                  onChange={onAll}
                   style={{ display: 'none' }}
                 />
                 <PeopleCircle banner={false} />
                 전체 선택
               </S.SelectBox>
-              <S.SelectBox type='approve'>
+              <S.SelectBox
+                type='approve'
+                onClick={() =>
+                  openModal(
+                    <CreateModal
+                      question='가입을 수락하시겠습니까?'
+                      title=''
+                      onCreate={mutate}
+                      createText='수락하기'
+                    />
+                  )
+                }
+              >
                 <Check />
                 선택 수락
               </S.SelectBox>

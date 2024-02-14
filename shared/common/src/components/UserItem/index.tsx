@@ -17,9 +17,7 @@ const UserItem = ({
         <S.UserCheckBox
           type='checkbox'
           checked={userIds.includes(item.id)}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            handleSelectUsers(e.target.checked, item.id)
-          }
+          onChange={(e: ChangeEvent<HTMLInputElement>) => handleSelectUsers(e, item.id)}
         />
       )}
       <S.Name>{item.name}</S.Name>

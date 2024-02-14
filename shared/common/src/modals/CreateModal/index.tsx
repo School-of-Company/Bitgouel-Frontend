@@ -15,10 +15,10 @@ const CreateModal = ({
 
   return (
     <Portal onClose={closeModal}>
-      <S.CreateModalWrapper>
+      <S.CreateModalWrapper isAdmin={title.length === 0}>
         <S.LetterContainer>
           <S.CreateQuestion>{question}</S.CreateQuestion>
-          <S.CreateTitle>{title}</S.CreateTitle>
+          {title.length !== 0 && <S.CreateTitle>{title}</S.CreateTitle>}
         </S.LetterContainer>
         <S.CreateButtonWrapper>
           <S.CancelButton onClick={closeModal}>취소</S.CancelButton>

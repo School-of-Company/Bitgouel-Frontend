@@ -79,5 +79,5 @@ export const inquiryUrl = {
 export const adminUrl = {
   userList: (queryString: UserListOptionsTypes) =>
     `/admin?keyword=${queryString.keyword}&authority=${queryString.authority}&approveStatus=${queryString.approveStatus}&page=${queryString.page}&size=${queryString.size}`,
-  mutateAdmin: (userIds: string[]) => `/admin/${userIds.join(',')}`,
+  mutateAdmin: (userIds: string[]) => `/admin?userIds=${userIds.join(',')}`,
 } as const
