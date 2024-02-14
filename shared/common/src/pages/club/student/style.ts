@@ -60,7 +60,6 @@ export const CertificateWrapper = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
-  overflow-y: hidden;
 `
 
 export const CertificateContainer = styled.div`
