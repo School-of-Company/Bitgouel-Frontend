@@ -67,6 +67,7 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
             {clubId
               ? clubDetail?.data.students.map((student) => (
                   <S.ClubMemberBox
+                    isStudent={false}
                     key={student.id}
                     onClick={() =>
                       push(`/main/club/${clubId}/student/${student.id}`)
@@ -78,8 +79,10 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
                 ))
               : myClub?.data.students.map((student) => (
                   <S.ClubMemberBox
+                    isStudent={isStudent}
                     key={student.id}
                     onClick={() =>
+                      !isStudent &&
                       push(
                         `/main/club/${myClub?.data.clubId}/student/${student.id}`
                       )
