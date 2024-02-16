@@ -1,22 +1,36 @@
 'use client'
 
-import { useGetClubDetail, useGetMyClub } from '@bitgouel/api'
-import * as S from './style'
-import { Bg2 } from '../../../assets'
+import { TokenManager, useGetClubDetail, useGetMyClub } from '@bitgouel/api'
 import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { Bg2, PersonOut } from '../../../assets'
 import { roleToKor } from '../../../constants'
+import * as S from './style'
 
 const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
   const { push } = useRouter()
-
   const { data: clubDetail } = useGetClubDetail(clubId || '')
   const { data: myClub } = useGetMyClub()
+  const tokenManager = new TokenManager()
+  const [isStudent, setIsStudent] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (tokenManager.authority === 'ROLE_STUDENT') setIsStudent(true)
+  }, [])
 
   return (
     <div>
       <S.SlideBg url={Bg2}>
         <S.BgContainer>
           <S.Title>취업 동아리</S.Title>
+          {isStudent && (
+            <S.ButtonContainer>
+              <S.ClubButton>
+                <PersonOut />
+                <span>내 자격증 및 활동</span>
+              </S.ClubButton>
+            </S.ButtonContainer>
+          )}
         </S.BgContainer>
       </S.SlideBg>
       <S.ClubWrapper>
@@ -66,7 +80,9 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
                   <S.ClubMemberBox
                     key={student.id}
                     onClick={() =>
-                      push(`/main/club/${myClub?.data.clubId}/student/${student.id}`)
+                      push(
+                        `/main/club/${myClub?.data.clubId}/student/${student.id}`
+                      )
                     }
                   >
                     <S.MemberName>{student.name}</S.MemberName>
