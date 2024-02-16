@@ -25,7 +25,7 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
           <S.Title>취업 동아리</S.Title>
           {isStudent && (
             <S.ButtonContainer>
-              <S.ClubButton>
+              <S.ClubButton onClick={() => push(`/main/club/student/my`)}>
                 <PersonOut />
                 <span>내 자격증 및 활동</span>
               </S.ClubButton>
