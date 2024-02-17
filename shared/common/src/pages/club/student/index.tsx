@@ -1,120 +1,77 @@
 'use client'
 
-import * as S from './style'
-import { useRouter } from 'next/navigation'
 import {
+  TokenManager,
+  useGetCertificateList,
+  useGetCertificateListTeacher,
+  useGetStudentDetail,
+  usePostCertificate,
+} from '@bitgouel/api'
+import {
+  CertificateRequest,
+  StudentIdProps
+} from '@bitgouel/types'
+import { useRouter } from 'next/navigation'
+import { ChangeEvent, useState } from 'react'
+import { toast } from 'react-toastify'
+import {
+  AddCertificate,
   Bg2,
   CalendarIcon,
-  PlusCertificate,
   PersonOut,
-  AddCertificate,
+  PlusCertificate,
 } from '../../../assets'
-import { ChangeEvent, useState } from 'react'
-import { CreateModal, SelectCalendarModal } from '../../../modals'
+import { CertificateItem } from '../../../components'
 import { useModal } from '../../../hooks'
+import { CreateModal, SelectCalendarModal } from '../../../modals'
 import { theme } from '../../../styles'
-import { toast } from 'react-toastify'
+import * as S from './style'
 
-interface Certificate {
-  id: number
-  name: string
-  acquisitionDate: string
-  isModify: boolean
+interface StudentProps {
+  studentIdProps: StudentIdProps
 }
 
-const StudentPage = () => {
+const StudentPage: React.FC<StudentProps> = ({ studentIdProps }) => {
+  const { studentId, clubId } = studentIdProps
   const { push } = useRouter()
-  const [certificateList, setCertificateList] = useState<Certificate[]>([
-    {
-      id: 1,
-      name: '정보처리기능사',
-      acquisitionDate: '2023-02-16',
-      isModify: false,
-    },
-    {
-      id: 2,
-      name: '컴퓨터활용능력 1급',
-      acquisitionDate: '2023-02-16',
-      isModify: false,
-    },
-    {
-      id: 3,
-      name: '정보기기운용기능사',
-      acquisitionDate: '2023-02-16',
-      isModify: false,
-    },
-  ])
+
   const [isAddCertificate, setIsAddCertificate] = useState<boolean>(false)
   const [certificateText, setCertificateText] = useState<string>('')
   const [isCertificateDate, setIsCertificateDate] = useState<boolean>(false)
-  const [modifyText, setModifyText] = useState<string>('')
-  const [modifyDateText, setModifyDateText] = useState<string>('')
   const [certificateDate, setCertificateDate] = useState<Date>(new Date())
   const [certificateDateText, setCertificateDateText] = useState<string>('')
+  const [certificateIndex, setCertificateIndex] = useState<number>(-1)
   const { openModal, closeModal } = useModal()
 
-  const onCreate = (id?: number) => {
-    if (id) {
-      setCertificateList((prev) => {
-        const changedModify = prev.map((certificate) =>
-          certificate.id === id
-            ? {
-                ...certificate,
-                isModify: false,
-                name: modifyText,
-                acquisitionDate: modifyDateText,
-              }
-            : certificate
-        )
-        return changedModify
-      })
-    } else {
-      setCertificateList((prev) => [
-        ...prev,
-        {
-          id: 4,
-          name: certificateText,
-          acquisitionDate: certificateDateText,
-          isModify: false,
-        },
-      ])
+  const { data: myData } = useGetStudentDetail(clubId, studentId)
+
+  const { mutate } = usePostCertificate()
+
+  const tokenManager = new TokenManager()
+
+  const { data: certificateList } =
+    tokenManager.authority === 'ROLE_STUDENT'
+      ? useGetCertificateList()
+      : useGetCertificateListTeacher(studentId)
+
+  const onCreate = () => {
+    const payload: CertificateRequest = {
+      name: certificateText,
+      acquisitionDate: `${certificateDate.getFullYear()}-${(
+        certificateDate.getMonth() + 1
+      )
+        .toString()
+        .padStart(2, '0')}-${certificateDate
+        .getDate()
+        .toString()
+        .padStart(2, '0')}`,
     }
-    setCertificateText('')
-    setCertificateDateText('')
-    setIsAddCertificate(false)
+    mutate(payload)
     closeModal()
+    window.location.reload()
   }
 
-  const onModify = (id: number, name: string, date: string) => {
-    setCertificateList((prev) => {
-      const changedModify = prev.map((certificate) =>
-        certificate.id === id
-          ? { ...certificate, isModify: true }
-          : { ...certificate, isModify: false }
-      )
-      return changedModify
-    })
-    setModifyText(name)
-    setModifyDateText(
-      date
-        .split('')
-        .map((v) => (v === '-' ? '.' : v))
-        .join('')
-    )
-  }
-
-  const cancelModify = (id: number) => {
-    setCertificateList((prev) => {
-      const changedModify = prev.map((certificate) =>
-        certificate.id === id
-          ? { ...certificate, isModify: false }
-          : certificate
-      )
-      return changedModify
-    })
-    setModifyText('')
-    setModifyDateText('')
-  }
+  // useEffect(() => {}, [certificateIndex])
 
   return (
     <div>
@@ -132,12 +89,12 @@ const StudentPage = () => {
       <S.CertificateWrapper>
         <S.CertificateContainer>
           <S.ProfileBox>
-            <h3>홍길동</h3>
+            <h3>{myData?.data.name}</h3>
             <S.ProfileInfoBox>
-              <span>010-1234-5678</span>
-              <span>a12345679@gmail.com</span>
+              <span>{myData?.data.phoneNumber}</span>
+              <span>{myData?.data.email}</span>
               <span>
-                총 학점 <b>300</b>
+                총 학점 <b>{myData?.data.credit}</b>
               </span>
             </S.ProfileInfoBox>
           </S.ProfileBox>
@@ -151,96 +108,6 @@ const StudentPage = () => {
               </S.PlusCertificateIcon>
             </S.CertificatePlusBox>
             <S.CertificateListBox>
-              {certificateList.map((certificate, idx) =>
-                certificate.isModify ? (
-                  <S.AddCertificateBox key={idx}>
-                    <S.ListToggle list='추가' />
-                    <S.AddCertificateInput
-                      type='text'
-                      value={modifyText}
-                      onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                        setModifyText(e.target.value)
-                      }
-                    />
-                    <S.AddCertificateDateBox>
-                      <S.SelectDateContainer>
-                        {isCertificateDate && (
-                          <SelectCalendarModal
-                            date={certificateDate}
-                            setDate={setCertificateDate}
-                            setText={setModifyDateText}
-                          />
-                        )}
-                        <CalendarIcon
-                          onClick={() => setIsCertificateDate((prev) => !prev)}
-                        />
-                      </S.SelectDateContainer>
-                      <S.ShowDateText>{modifyDateText}</S.ShowDateText>
-                    </S.AddCertificateDateBox>
-                    <S.AddCertificateIcon
-                      onClick={() =>
-                        (modifyText !== '' &&
-                          modifyDateText !== '' &&
-                          certificate.name !== modifyText) ||
-                        certificate.acquisitionDate
-                          .split('')
-                          .map((v) => (v === '-' ? '.' : v))
-                          .join('') !== modifyDateText
-                          ? openModal(
-                              <CreateModal
-                                question='자격증 정보를 수정하시겠습니까?'
-                                title={modifyText}
-                                onCreate={() => onCreate(certificate.id)}
-                                createText='수정하기'
-                              />
-                            )
-                          : certificate.name === modifyText &&
-                            certificate.acquisitionDate
-                              .split('')
-                              .map((v) => (v === '-' ? '.' : v))
-                              .join('') === modifyDateText &&
-                            cancelModify(certificate.id)
-                      }
-                    >
-                      <AddCertificate
-                        color={
-                          (modifyText !== '' &&
-                            modifyDateText !== '' &&
-                            certificate.name !== modifyText) ||
-                          certificate.acquisitionDate
-                            .split('')
-                            .map((v) => (v === '-' ? '.' : v))
-                            .join('') !== modifyDateText
-                            ? theme.color.main
-                            : theme.color.gray['700']
-                        }
-                      />
-                    </S.AddCertificateIcon>
-                  </S.AddCertificateBox>
-                ) : (
-                  <S.CertificateItemBox key={idx}>
-                    <S.ListToggle list='추가됨' />
-                    <span>{certificate.name}</span>
-                    <span>
-                      {certificate.acquisitionDate
-                        .split('')
-                        .map((v) => (v === '-' ? '.' : v))
-                        .join('')}
-                    </span>
-                    <S.ModifyText
-                      onClick={() =>
-                        onModify(
-                          certificate.id,
-                          certificate.name,
-                          certificate.acquisitionDate
-                        )
-                      }
-                    >
-                      수정하기
-                    </S.ModifyText>
-                  </S.CertificateItemBox>
-                )
-              )}
               {isAddCertificate && (
                 <S.AddCertificateBox>
                   <S.ListToggle list='추가' />
@@ -253,27 +120,33 @@ const StudentPage = () => {
                   />
                   <S.AddCertificateDateBox>
                     <S.SelectDateContainer>
-                      {isCertificateDate && (
+                      {isCertificateDate && certificateIndex < 0 && (
                         <SelectCalendarModal
                           date={certificateDate}
                           setDate={setCertificateDate}
                           setText={setCertificateDateText}
                         />
                       )}
-                      <CalendarIcon
-                        onClick={() => setIsCertificateDate((prev) => !prev)}
-                      />
+                      <div
+                        onClick={() => {
+                          setIsCertificateDate((prev) => !prev)
+                          setCertificateIndex(-1)
+                        }}
+                      >
+                        <CalendarIcon />
+                      </div>
                     </S.SelectDateContainer>
                     <S.ShowDateText>{certificateDateText}</S.ShowDateText>
                   </S.AddCertificateDateBox>
                   <S.AddCertificateIcon
                     onClick={() =>
-                      certificateText !== '' && certificateDateText !== ''
+                      certificateText.trim() !== '' &&
+                      certificateDateText.trim() !== ''
                         ? openModal(
                             <CreateModal
                               question='자격증 정보를 추가하시겠습니까?'
                               title={certificateText}
-                              onCreate={() => onCreate()}
+                              onCreate={onCreate}
                               createText='추가하기'
                             />
                           )
@@ -282,7 +155,8 @@ const StudentPage = () => {
                   >
                     <AddCertificate
                       color={
-                        certificateText !== '' && certificateDateText !== ''
+                        certificateText.trim() !== '' &&
+                        certificateDateText.trim() !== ''
                           ? theme.color.main
                           : theme.color.gray['700']
                       }
@@ -290,6 +164,21 @@ const StudentPage = () => {
                   </S.AddCertificateIcon>
                 </S.AddCertificateBox>
               )}
+              {certificateList?.data?.certifications.map((certificate, idx) => (
+                <div
+                  onClick={() => {
+                    setCertificateIndex(idx)
+                    console.log(certificateIndex)
+                  }}
+                  key={idx}
+                >
+                  <CertificateItem
+                    key={idx}
+                    certificateItems={certificate}
+                    isOpenCalendar={idx === certificateIndex}
+                  />
+                </div>
+              ))}
             </S.CertificateListBox>
           </S.CertificateBox>
         </S.CertificateContainer>
