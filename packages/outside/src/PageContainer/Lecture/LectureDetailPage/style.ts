@@ -113,6 +113,9 @@ export const ButtonContainer = styled.div<{ isApprove: ApproveStatusEnum }>`
     cursor: pointer;
     width: 11.25rem;
     height: 3.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `
 
@@ -124,4 +127,3 @@ export const CreateNotApproveButton = styled.div`
 export const CreateApproveButton = styled.div`
   background-color: ${({ theme }) => theme.color.main};
 `
-

@@ -56,6 +56,14 @@ export const postUrl = {
   postDelete: (post_id: string) => `/post/${post_id}`,
 } as const
 
+export const certificateUrl = {
+  certificate: () => `/certification`,
+  certificateListTeacher: (student_id: string) =>
+    `/certification/${student_id}`,
+  certificateModify: (certificate_id: string) =>
+    `/certification/${certificate_id}`,
+}
+
 export const clubUrl = {
   schoolClub: () => `/school`,
   club: (queryString: string) => `/club?highSchool=${queryString}`,
@@ -78,6 +86,6 @@ export const inquiryUrl = {
 
 export const adminUrl = {
   userList: (queryString: UserListOptionsTypes) =>
-    `/admin?keyword=${queryString.keyword}&authority=${queryString.authority}&approveStatus=${queryString.approveStatus}&page=${queryString.page}&size=${queryString.size}`,
+    `/admin?keyword=${queryString.keyword}&authority=${queryString.authority}&approveStatus=${queryString.approveStatus}`,
   mutateAdmin: (userIds: string[]) => `/admin?userIds=${userIds.join(',')}`,
 } as const
