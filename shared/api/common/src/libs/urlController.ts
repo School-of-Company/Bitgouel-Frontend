@@ -52,6 +52,14 @@ export const postUrl = {
   postDelete: (post_id: string) => `/post/${post_id}`,
 } as const
 
+export const certificateUrl = {
+  certificate: () => `/certification`,
+  certificateListTeacher: (student_id: string) =>
+    `/certification/${student_id}`,
+  certificateModify: (certificate_id: string) =>
+    `/certification/${certificate_id}`,
+}
+
 export const clubUrl = {
   schoolClub: () => `/school`,
   club: (queryString: string) => `/club?highSchool=${queryString}`,

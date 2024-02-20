@@ -51,7 +51,7 @@ export const activityQueryKeys = {
 
 export const myQueryKeys = {
   getMy: () => ['my', 'myData'],
-  patchPw: () => ['my', 'changePw']
+  patchPw: () => ['my', 'changePw'],
 } as const
 
 export const postQueryKeys = {
@@ -61,6 +61,21 @@ export const postQueryKeys = {
   patchBoardModify: (id: string) => ['post', 'modify', id],
   deleteBoardDelete: (id: string) => ['post', 'delete', id],
 } as const
+
+export const certificateQueryKeys = {
+  getCertificateListTeacher: (student_id: string) => [
+    'get',
+    'listTeacher',
+    student_id,
+  ],
+  getCertificateListStudent: () => ['get', 'list'],
+  postCertificateCreate: () => ['post', 'create'],
+  patchCertificateModify: (certificate_id: string) => [
+    'patch',
+    'modify',
+    certificate_id,
+  ],
+}
 
 export const clubQueryKeys = {
   getSchoolClub: () => ['club', 'schoolClub'],
