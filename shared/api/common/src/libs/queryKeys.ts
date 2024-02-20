@@ -70,7 +70,11 @@ export const certificateQueryKeys = {
   ],
   getCertificateListStudent: () => ['get', 'list'],
   postCertificateCreate: () => ['post', 'create'],
-  patchCertificateModify: (id: string) => ['patch', 'modify', id],
+  patchCertificateModify: (certificate_id: string) => [
+    'patch',
+    'modify',
+    certificate_id,
+  ],
 }
 
 export const clubQueryKeys = {
