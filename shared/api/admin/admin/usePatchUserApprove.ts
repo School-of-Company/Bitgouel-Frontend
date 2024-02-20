@@ -1,10 +1,10 @@
 import { useMutation } from '@tanstack/react-query'
 import { adminQueryKeys, adminUrl, patch } from '../../common'
 
-export const usePatchUserApprove = (user_id: string) =>
+export const usePatchUserApprove = (userIds: string[]) =>
   useMutation<void>(
-    adminQueryKeys.patchUserApprove(user_id),
-    () => patch(adminUrl.mutateAdmin(user_id)),
+    adminQueryKeys.patchUserApprove(userIds),
+    () => patch(adminUrl.mutateAdmin(userIds)),
     {
       onSuccess: () => {
         console.log('success')

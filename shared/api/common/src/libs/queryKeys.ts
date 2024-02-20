@@ -98,7 +98,7 @@ export const inquiryQueryKeys = {
 
 export const adminQueryKeys = {
   getUserList: () => ['admin', 'list'],
-  patchUserApprove: () => ['admin', 'approve'],
-  deleteUserReject: () => ['admin', 'reject'],
-  deleteUserWithout: () => ['admin', 'without'],
+  patchUserApprove: (userIds: string[]) => ['admin', 'approve', userIds],
+  deleteUserReject: (userIds: string[]) => ['admin', 'reject', userIds],
+  deleteUserWithout: (userIds: string[]) => ['admin', 'without', userIds],
 } as const
