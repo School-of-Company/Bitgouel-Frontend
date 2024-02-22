@@ -1,15 +1,11 @@
 'use client'
 
-import { LectureTypeModal } from '@bitgouel/common'
+import { usePostCreateLecture } from '@/../../../shared/api'
+import { AppropriationModal, Bg3, Chevron, LectureTypeModal, People, SelectCalendarTimeModal, SelectScoreModal } from '@bitgouel/common'
+import { lectureToEnum } from '@bitgouel/common/src/constants'
+import { useModal } from '@bitgouel/common/src/hooks'
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 import * as S from './style'
-import { Bg3 } from '@bitgouel/common'
-import { Chevron, People } from '@bitgouel/common'
-import { useModal } from '@bitgouel/common/src/hooks'
-import { CreateModal } from '@bitgouel/common/src/modals'
-import { lectureToEnum } from '@bitgouel/common/src/constants'
-import { SelectCalendarTimeModal, SelectScoreModal } from '@bitgouel/common'
-import { usePostCreateLecture } from '@/../../../shared/api'
 
 const LectureCreatePage = () => {
   const MAXLENGTH: number = 1000 as const
@@ -129,11 +125,12 @@ const LectureCreatePage = () => {
         : true && people !== 0
     )
       openModal(
-        <CreateModal
+        <AppropriationModal
+          isApprove={true}
           question='강의를 개설하시겠습니까?'
           title={lectureTitle}
-          onCreate={onCreate}
-          createText='개설하기'
+          purpose='개설하기'
+          onAppropriation={() => onCreate()}
         />
       )
   }

@@ -1,16 +1,21 @@
+import { useModal } from '@bitgouel/common'
 import { useMutation } from '@tanstack/react-query'
+import { toast } from 'react-toastify'
 import { adminQueryKeys, adminUrl, patch } from '../../common'
 
-export const usePatchUserApprove = (userIds: string[]) =>
-  useMutation<void>(
+export const usePatchUserApprove = (userIds: string[]) => {
+  const { closeModal } = useModal()
+  return useMutation<void>(
     adminQueryKeys.patchUserApprove(userIds),
     () => patch(adminUrl.mutateAdmin(userIds)),
     {
       onSuccess: () => {
-        console.log('success')
+        closeModal()
+        toast.success('신규 가입자를 수락했습니다')
       },
-      onError: () => {
-        console.log('error')
-      }
+      onError: (e) => {
+        console.log(e)
+      },
     }
   )
+}

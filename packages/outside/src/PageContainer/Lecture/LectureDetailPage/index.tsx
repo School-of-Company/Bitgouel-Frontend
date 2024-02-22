@@ -1,24 +1,17 @@
 'use client'
 
-import { Bg3 } from '@bitgouel/common'
-import * as S from './style'
 import {
-  useDeleteRejectLecture,
-  useGetDetailLecture,
-  usePatchApproveLecture,
+  useGetDetailLecture
 } from '@bitgouel/api'
+import { Bg3 } from '@bitgouel/common'
 import { lectureToKor } from '@bitgouel/common/src/constants'
-import { useModal } from '@bitgouel/common/src/hooks'
-import { ApproveModal, RejectModal } from '@bitgouel/common'
+import * as S from './style'
 
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
-  const { openModal } = useModal()
-  const { mutate: approve } = usePatchApproveLecture(lectureId)
-  const { mutate: reject } = useDeleteRejectLecture(lectureId)
   return (
     <div>
-      <S.SlideBg url={ Bg3 }>
+      <S.SlideBg url={Bg3}>
         <S.BgContainer>
           <S.LectureTitle>강의 상세</S.LectureTitle>
         </S.BgContainer>
@@ -105,39 +98,6 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
             </S.SubMenuContainer>
           </S.TitleContainer>
           <S.MainText>{data?.data.content}</S.MainText>
-          <S.ButtonWrapper>
-            <S.ButtonContainer isApprove={data?.data.approveStatus}>
-              <S.CreateNotApproveButton
-                onClick={() =>
-                  data?.data.approveStatus === 'PENDING' &&
-                  openModal(
-                    <RejectModal
-                      type='강의 개설'
-                      purpose='거절'
-                      title={data?.data.name}
-                      onAppropriation={() => approve()}
-                    />
-                  )
-                }
-              >
-                신청 거부하기
-              </S.CreateNotApproveButton>
-              <S.CreateApproveButton
-                onClick={() =>
-                  data?.data.approveStatus === 'PENDING' &&
-                  openModal(
-                    <ApproveModal
-                      type='강의 개설'
-                      title={data?.data.name}
-                      onAppropriation={() => reject()}
-                    />
-                  )
-                }
-              >
-                신청 승인하기
-              </S.CreateApproveButton>
-            </S.ButtonContainer>
-          </S.ButtonWrapper>
         </S.Document>
       </S.DocumentWrapper>
     </div>

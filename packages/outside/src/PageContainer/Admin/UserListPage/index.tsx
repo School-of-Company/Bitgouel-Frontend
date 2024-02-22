@@ -59,7 +59,7 @@ const UserListPage = () => {
               필터
             </S.UserSearchFilter>
           </S.UserSearchContainer>
-          {data?.data.users.content.map((user) => (
+          {data?.data.users.map((user) => (
             <UserItem key={user.id} item={user} status='current' />
           ))}
         </S.UserListContainer>

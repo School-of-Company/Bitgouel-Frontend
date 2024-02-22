@@ -1,29 +1,34 @@
 'use client'
 
-import { useGetUserList, usePatchUserApprove } from '@bitgouel/api'
 import {
+  useDeleteUserReject,
+  useGetUserList,
+  usePatchUserApprove,
+} from '@bitgouel/api'
+import {
+  AppropriationModal,
   Bg6,
   Check,
-  CreateModal,
   Minus,
   PeopleCircle,
   UserItem,
-  useModal,
+  useModal
 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
+import { ChangeEvent, useEffect, useState } from 'react'
 import * as S from './style'
-import { ChangeEvent, useState } from 'react'
 
 const NewUserListPage = () => {
   const { push } = useRouter()
   const [userIds, setUserIds] = useState<string[]>([])
-  const { data } = useGetUserList({
+  const { data, refetch } = useGetUserList({
     keyword: '',
     authority: 'ROLE_USER',
     approveStatus: 'PENDING',
   })
   const { openModal } = useModal()
-  const { mutate } = usePatchUserApprove(userIds)
+  const { mutate: approve } = usePatchUserApprove(userIds)
+  const { mutate: reject } = useDeleteUserReject(userIds)
 
   const handleSelectUsers = (
     e: ChangeEvent<HTMLInputElement>,
@@ -34,10 +39,37 @@ const NewUserListPage = () => {
   }
 
   const onAll = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked)
-      setUserIds(data?.data.users.content.map((user) => user.id))
+    if (e.target.checked) setUserIds(data?.data.users.map((user) => user.id))
     else setUserIds([])
   }
+
+  const handleOpenModal = (type: 'approve' | 'reject') => {
+    if (userIds.length === 0) return
+    else if (type === 'approve') {
+      openModal(
+        <AppropriationModal
+          isApprove={true}
+          question='가입을 수락하시겠습니까?'
+          title=''
+          purpose='수락하기'
+          onAppropriation={() => approve}
+        />
+      )
+    } else if (type === 'reject')
+      openModal(
+        <AppropriationModal
+          isApprove={true}
+          question='가입을 거부하시겠습니까?'
+          purpose='거부하기'
+          title=''
+          onAppropriation={reject}
+        />
+      )
+  }
+
+  useEffect(() => {
+    refetch()
+  }, [data])
 
   return (
     <div>
@@ -77,27 +109,21 @@ const NewUserListPage = () => {
               </S.SelectBox>
               <S.SelectBox
                 type='approve'
-                onClick={() =>
-                  openModal(
-                    <CreateModal
-                      question='가입을 수락하시겠습니까?'
-                      title=''
-                      onCreate={mutate}
-                      createText='수락하기'
-                    />
-                  )
-                }
+                onClick={() => handleOpenModal('approve')}
               >
                 <Check />
                 선택 수락
               </S.SelectBox>
-              <S.SelectBox type='reject'>
+              <S.SelectBox
+                type='reject'
+                onClick={() => handleOpenModal('reject')}
+              >
                 <Check />
                 선택 거절
               </S.SelectBox>
             </S.SelectBoxContainer>
           </S.RemarkBox>
-          {data?.data.users.content.map((user) => (
+          {data?.data.users.map((user) => (
             <UserItem
               key={user.id}
               item={user}

@@ -1,4 +1,4 @@
-import { RoleEnumTypes } from "../common"
+import { RoleEnumTypes } from '../common'
 
 export type AuthorityKorTypes =
   | '관리자'
@@ -19,7 +19,5 @@ export interface UserTypes {
 }
 
 export interface UserListResponseTypes {
-  users: {
-    content: UserTypes[]
-  }
+  users: UserTypes[]
 }

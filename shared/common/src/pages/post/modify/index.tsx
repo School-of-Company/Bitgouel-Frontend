@@ -4,7 +4,7 @@ import { useGetPostDetail, usePatchPostModify } from '@bitgouel/api'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { Bg1, Link } from '../../../assets'
 import { useModal } from '../../../hooks'
-import { CreateModal } from '../../../modals'
+import { AppropriationModal } from '../../../modals'
 import * as S from './style'
 
 interface LinksObjectTypes {
@@ -71,11 +71,12 @@ const PostModifyPage = ({ postId }: { postId: string }) => {
       initialData.links !== postModifyLinks
     ) {
       openModal(
-        <CreateModal
+        <AppropriationModal
+          isApprove={true}
           question='게시글을 수정하시겠습니까?'
           title={postModifyTitle}
-          onCreate={onModify}
-          createText='수정하기'
+          purpose='수정하기'
+          onAppropriation={() => onModify()}
         />
       )
     }

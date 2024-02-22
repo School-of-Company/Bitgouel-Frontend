@@ -91,39 +91,3 @@ export const MainText = styled.div`
   margin-top: 2.25rem;
   padding-bottom: 6.25rem;
 `
-
-export const ButtonWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-
-export const ButtonContainer = styled.div<{ isApprove: ApproveStatusEnum }>`
-  display: flex;
-  bottom: 1.6rem;
-  position: fixed;
-
-  div {
-    color: ${({ theme, isApprove }) =>
-      isApprove === 'APPROVED' ? theme.color.gray['400'] : theme.color.white};
-    background-color: ${({ theme, isApprove }) =>
-      isApprove && theme.color.gray['700']};
-    ${({ theme }) => theme.typo.text_lg.semibold};
-    border-radius: 0.5rem;
-    cursor: pointer;
-    width: 11.25rem;
-    height: 3.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-`
-
-export const CreateNotApproveButton = styled.div`
-  background-color: ${({ theme }) => theme.color.error};
-  margin-right: 1rem;
-`
-
-export const CreateApproveButton = styled.div`
-  background-color: ${({ theme }) => theme.color.main};
-`

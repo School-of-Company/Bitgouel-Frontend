@@ -1,12 +1,11 @@
 'use client'
 
 import { TokenManager, useDeletePost, useGetPostDetail } from '@bitgouel/api'
-import { RoleEnumTypes } from '@bitgouel/types'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Bg1 } from '../../../../assets'
 import { useModal } from '../../../../hooks'
-import { RejectModal } from '../../../../modals'
+import { AppropriationModal } from '../../../../modals'
 import * as S from './style'
 
 const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
@@ -59,9 +58,10 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
                   <S.DeleteNoticeButton
                     onClick={() =>
                       openModal(
-                        <RejectModal
-                          type='공지사항'
-                          purpose='거절'
+                        <AppropriationModal
+                          isApprove={false}
+                          question='공지사항을 삭제하시겠습니까?'
+                          purpose='삭제하기'
                           title={data?.data.title}
                           onAppropriation={() => mutate()}
                         />

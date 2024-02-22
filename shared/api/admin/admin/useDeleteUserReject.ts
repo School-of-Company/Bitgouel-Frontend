@@ -3,7 +3,7 @@ import { adminQueryKeys, adminUrl, del } from '../../common'
 
 export const useDeleteUserReject = (userIds: string[]) =>
   useMutation<void>(
-    adminQueryKeys.deleteUserReject(),
+    adminQueryKeys.deleteUserReject(userIds),
     () => del(adminUrl.mutateAdmin(userIds)),
     {
       onSuccess: () => {

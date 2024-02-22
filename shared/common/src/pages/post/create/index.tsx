@@ -1,11 +1,11 @@
 'use client'
 
-import * as S from './style'
-import { Bg1, Link } from '../../../assets'
-import { ChangeEvent, useState } from 'react'
 import { usePostPost } from '@bitgouel/api'
+import { ChangeEvent, useState } from 'react'
+import { Bg1, Link } from '../../../assets'
 import { useModal } from '../../../hooks'
-import { CreateModal } from '../../../modals'
+import { AppropriationModal } from '../../../modals'
+import * as S from './style'
 
 const PostCreatePage = () => {
   const MAXLENGTH: number = 1000 as const
@@ -89,10 +89,12 @@ const PostCreatePage = () => {
                 postTitle !== '' &&
                 postContent &&
                 openModal(
-                  <CreateModal
+                  <AppropriationModal
+                    isApprove={true}
                     question='게시글을 추가하시겠습니까?'
                     title={postTitle}
-                    onCreate={() =>
+                    purpose='추가하기'
+                    onAppropriation={() =>
                       mutate({
                         title: postTitle,
                         content: postContent,
@@ -104,7 +106,6 @@ const PostCreatePage = () => {
                         feedType: 'EMPLOYMENT',
                       })
                     }
-                    createText='추가하기'
                   />
                 )
               }

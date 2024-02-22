@@ -1,7 +1,11 @@
 'use client'
 
 import { usePostInquiry } from '@bitgouel/api'
-import { Bg5, CreateModal, useModal } from '@bitgouel/common'
+import {
+  AppropriationModal,
+  Bg5,
+  useModal
+} from '@bitgouel/common'
 import { ChangeEvent, useState } from 'react'
 import * as S from './style'
 
@@ -46,16 +50,17 @@ const InquiryCreatePage = () => {
               onClick={() =>
                 inquiryTitle !== '' && inquiryContent !== ''
                   ? openModal(
-                      <CreateModal
+                      <AppropriationModal
+                        isApprove={true}
                         question='문의하시겠습니까?'
                         title={inquiryTitle}
-                        onCreate={() =>
+                        purpose='문의하기'
+                        onAppropriation={() =>
                           mutate({
                             question: inquiryTitle,
                             questionDetail: inquiryContent,
                           })
                         }
-                        createText='문의하기'
                       />
                     )
                   : null
