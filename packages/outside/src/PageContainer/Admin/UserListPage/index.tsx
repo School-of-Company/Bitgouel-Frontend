@@ -2,22 +2,20 @@
 
 import { useGetUserList } from '@bitgouel/api'
 import { Bg6, FilterOut, Minus, Plus, UserItem } from '@bitgouel/common'
-import { RoleEnumTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
+import { AdminFilter } from '../../../components'
 import * as S from './style'
 
 const UserListPage = () => {
   const { push } = useRouter()
   const [keyword, setKeyword] = useState('')
-  const [authority, setAuthority] = useState<RoleEnumTypes | 'ROLE_USER'>(
-    'ROLE_USER'
-  )
   const { data, refetch } = useGetUserList({
     keyword,
-    authority,
+    authority: 'ROLE_USER',
     approveStatus: 'APPROVED',
   })
+  const [isFilter, setIsFilter] = useState(false)
 
   useEffect(() => {
     const delayFetch = setTimeout(() => {
@@ -25,7 +23,7 @@ const UserListPage = () => {
     }, 2000)
 
     return () => clearTimeout(delayFetch)
-  }, [keyword, authority])
+  }, [keyword])
 
   return (
     <div>
@@ -45,20 +43,29 @@ const UserListPage = () => {
         </S.BgContainer>
       </S.SlideBg>
       <S.UserListWrapper>
-        <S.UserListContainer>
-          <S.UserSearchContainer>
-            <S.UserSearchInput
-              value={keyword}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setKeyword(e.target.value)
-              }
-              placeholder='이름으로 검색...'
-            />
-            <S.UserSearchFilter>
+        <S.UserSearchContainer>
+          <S.UserSearchInput
+            value={keyword}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setKeyword(e.target.value)
+            }
+            placeholder='이름으로 검색...'
+          />
+          <S.UserSearchFilterBox>
+            <S.UserSearchFilter onClick={() => setIsFilter((prev) => !prev)}>
               <FilterOut />
               필터
             </S.UserSearchFilter>
-          </S.UserSearchContainer>
+            {isFilter && <AdminFilter type='current' keyword={keyword} />}
+          </S.UserSearchFilterBox>
+        </S.UserSearchContainer>
+        <S.UserListContainer>
+          <div>
+            <S.DisplayBar>
+              <span>이름</span>
+              <span>직업</span>
+            </S.DisplayBar>
+          </div>
           {data?.data.users.map((user) => (
             <UserItem key={user.id} item={user} status='current' />
           ))}

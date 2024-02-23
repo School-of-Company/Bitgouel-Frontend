@@ -1,4 +1,3 @@
-import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 
 export const UserItem = styled.div<{ isCurrent: boolean }>`
@@ -7,15 +6,10 @@ export const UserItem = styled.div<{ isCurrent: boolean }>`
   display: flex;
   align-items: center;
   padding-left: ${({isCurrent}) => isCurrent ? '1rem' : '0'};
-  ${({ theme, isCurrent }) => css`
-    ${isCurrent
-      ? `border-bottom: 0.0625rem solid ${theme.color.gray['900']}`
-      : `border-top: 0.0625rem solid ${theme.color.gray['900']}`}
-  `}
+  border-top: 0.0625rem solid ${({theme}) => theme.color.gray['900']};
+  box-sizing: border-box;
 
   span {
-    margin-left: 1.5rem;
-
     &:last-child {
       margin-left: 3rem;
     }

@@ -45,7 +45,7 @@ const NewUserListPage = () => {
 
   const handleOpenModal = (type: 'approve' | 'reject') => {
     if (userIds.length === 0) return
-    else if (type === 'approve') {
+    if (type === 'approve') {
       openModal(
         <AppropriationModal
           isApprove={true}
@@ -58,11 +58,11 @@ const NewUserListPage = () => {
     } else if (type === 'reject')
       openModal(
         <AppropriationModal
-          isApprove={true}
+          isApprove={false}
           question='가입을 거부하시겠습니까?'
           purpose='거부하기'
           title=''
-          onAppropriation={reject}
+          onAppropriation={() => reject}
         />
       )
   }

@@ -1,11 +1,15 @@
 'use client'
 
-import { Bg6, Check, PeopleCircle, Plus } from '@bitgouel/common'
+import { useGetWithDrawUserList } from '@bitgouel/api'
+import { Bg6, Check, PeopleCircle, Plus, UserItem } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import * as S from './style'
 
-const QuitUserListPage = () => {
+const WithdrawUserListPage = () => {
   const { push } = useRouter()
+  const [cohort, setCohort] = useState()
+  const { data } = useGetWithDrawUserList()
 
   return (
     <div>
@@ -43,13 +47,13 @@ const QuitUserListPage = () => {
               </S.WithCheckBox>
             </div>
           </S.RemarkBox>
-          {/* {data?.data.users.content.map((user) => (
+          {data?.data.users.map((user) => (
             <UserItem key={user.id} item={user} status='request' />
-          ))} */}
+          ))}
         </S.UserListContainer>
       </S.UserListWrapper>
     </div>
   )
 }
 
-export default QuitUserListPage
+export default WithdrawUserListPage

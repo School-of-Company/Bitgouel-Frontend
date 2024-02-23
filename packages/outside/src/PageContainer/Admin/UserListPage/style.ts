@@ -54,21 +54,15 @@ export const ButtonBox = styled.div`
 
 export const UserListWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   height: 100%;
-`
-
-export const UserListContainer = styled.div`
-  display: flex;
-  margin-top: 1.5rem;
-  width: 75rem;
-  height: 100%;
-  flex-wrap: wrap;
 `
 
 export const UserSearchContainer = styled.div`
-  width: 100%;
+  margin-top: 2rem;
+  width: 75rem;
   height: 3.375rem;
   display: flex;
   justify-content: space-between;
@@ -85,9 +79,17 @@ export const UserSearchInput = styled.input`
   padding: 0 1.25rem;
 `
 
+export const UserSearchFilterBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 24rem;
+  position: relative;
+`
+
 export const UserSearchFilter = styled.div`
   width: 5.75rem;
-  height: 100%;
+  height: 3.375rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,5 +106,40 @@ export const UserSearchFilter = styled.div`
     border: 0.0625rem solid ${({ theme }) => theme.color.main};
     color: ${({ theme }) => theme.color.main};
     fill: ${({ theme }) => theme.color.main};
+  }
+`
+
+export const UserListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1.5rem;
+  width: 75rem;
+  height: 32.625rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  div {
+    width: 100%;
+  }
+`
+
+export const DisplayBar = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 3.625rem;
+  padding-left: 1rem;
+  color: ${({ theme }) => theme.color.gray['400']};
+  ${({ theme }) => theme.typo.text_sm.medium};
+
+  span {
+    &:last-child {
+      margin-left: 5.2rem;
+    }
   }
 `
