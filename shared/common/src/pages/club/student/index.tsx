@@ -78,12 +78,14 @@ const StudentPage: React.FC<StudentProps> = ({ studentIdProps }) => {
       <S.SlideBg url={Bg2}>
         <S.BgContainer>
           <S.ClubTitle>학생 정보</S.ClubTitle>
-          <S.ButtonContainer>
+          {['ROLE_ADMIN', 'ROLE_TEACHER', 'ROLE_STUDENT'].includes(
+            tokenManager.authority || ''
+          ) && (
             <S.ClubButton onClick={() => push('/main/club/student/activity')}>
               <PersonOut />
               <span>학생 활동</span>
             </S.ClubButton>
-          </S.ButtonContainer>
+          )}
         </S.BgContainer>
       </S.SlideBg>
       <S.CertificateWrapper>
