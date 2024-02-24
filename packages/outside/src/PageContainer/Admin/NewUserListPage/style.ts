@@ -56,37 +56,37 @@ export const ButtonBox = styled.div`
 
 export const UserListWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   height: 100%;
 `
 
-export const UserListContainer = styled.div`
-  display: flex;
-  margin-top: 1.5rem;
+export const TopContainer = styled.div`
+  margin-top: 3rem;
   width: 75rem;
-  height: 100%;
-  flex-wrap: wrap;
-`
-
-export const RemarkBox = styled.div`
-  padding: 1rem;
-  width: 100%;
+  height: 2.5rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  div {
-    display: flex;
+  padding-bottom: 1rem;
+  border-bottom: 0.0625rem solid ${({ theme }) => theme.color.gray['900']};
+`
+
+export const RemarkBox = styled.div`
+  display: flex;
+  align-items: center;
+  ${({ theme }) => theme.typo.text_sm.medium};
+  color: ${({ theme }) => theme.color.gray['400']};
+
+  span {
+    margin-left: 1rem;
   }
 `
 
 export const Remark = styled.span`
   color: ${({ theme }) => theme.color.gray['400']};
   ${({ theme }) => theme.typo.text_sm.medium};
-  margin-right: 1.5rem;
-  &:last-child {
-    margin-left: 3.5rem;
-  }
 `
 
 export const SelectBoxContainer = styled.div`
@@ -137,4 +137,22 @@ export const AloneCheckBox = styled.div`
   color: ${({ theme }) => theme.color.main};
   ${({ theme }) => theme.typo.text_md.medium};
   margin-right: 0.625rem;
+`
+
+export const UserListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 75rem;
+  height: 32.625rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  div {
+    width: 100%;
+  }
 `

@@ -5,14 +5,12 @@ export const UserItem = styled.div<{ isCurrent: boolean }>`
   height: 3.625rem;
   display: flex;
   align-items: center;
-  padding-left: ${({isCurrent}) => isCurrent ? '1rem' : '0'};
-  border-top: 0.0625rem solid ${({theme}) => theme.color.gray['900']};
+  padding-left: ${({ isCurrent }) => (isCurrent ? '1rem' : '0')};
+  border-bottom: 0.0625rem solid ${({ theme }) => theme.color.gray['900']};
   box-sizing: border-box;
 
   span {
-    &:last-child {
-      margin-left: 3rem;
-    }
+    margin-left: 1.5rem;
   }
 `
 

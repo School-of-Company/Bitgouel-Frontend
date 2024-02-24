@@ -1,6 +1,6 @@
 'use client'
 
-import { useGetUserList } from '@bitgouel/api'
+import { useGetUserList, useGetWithDrawUserList } from '@bitgouel/api'
 import * as S from './style'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { RoleEnumTypes } from '@bitgouel/types'
@@ -44,7 +44,7 @@ const JobFilter = ({ keyword }: { keyword: string }) => {
   }
 
   return (
-    <S.JobFilterWrapper>
+    <>
       <h3>직업</h3>
       <S.CheckListContainer>
         {jobs.map((job, idx) => (
@@ -59,7 +59,53 @@ const JobFilter = ({ keyword }: { keyword: string }) => {
           </S.CheckBox>
         ))}
       </S.CheckListContainer>
-    </S.JobFilterWrapper>
+    </>
+  )
+}
+
+const CohortFilter = () => {
+  const [years, setYears] = useState<{ text: string; checked: boolean }[]>([
+    { text: '2022년', checked: false },
+    { text: '2023년', checked: false },
+    { text: '2024년', checked: false },
+  ])
+
+  const [cohort, setCohort] = useState<'2022' | '2023' | '2024'>('2022')
+  const { refetch } = useGetWithDrawUserList()
+
+  useEffect(() => {
+    refetch()
+  }, [cohort])
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setYears((prev) =>
+      prev.map((year) =>
+        year.text === e.target.id
+          ? { ...year, checked: !year.checked }
+          : { ...year, checked: false }
+      )
+    )
+    if (e.target.checked) setCohort(e.target.id.slice(0, 4) as '2022' | '2023' | '2024')
+    else setCohort('2022')
+  }
+
+  return (
+    <>
+      <h3>입학년도</h3>
+      <S.CheckListContainer>
+        {years.map((year, idx) => (
+          <S.CheckBox key={idx} htmlFor={year.text}>
+            <S.Check
+              type='checkbox'
+              id={year.text}
+              checked={year.checked}
+              onChange={onChange}
+            />
+            <span>{year.text}</span>
+          </S.CheckBox>
+        ))}
+      </S.CheckListContainer>
+    </>
   )
 }
 
@@ -68,9 +114,13 @@ const AdminFilter = ({
   keyword,
 }: {
   type: 'current' | 'withdraw'
-  keyword: string
+  keyword?: string
 }) => {
-  return type === 'current' && <JobFilter keyword={keyword} />
+  return (
+    <S.AdminFilterWrapper type={type}>
+      {type === 'current' ? <JobFilter keyword={keyword} /> : <CohortFilter />}
+    </S.AdminFilterWrapper>
+  )
 }
 
 export default AdminFilter

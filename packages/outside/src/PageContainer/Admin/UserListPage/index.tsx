@@ -35,7 +35,7 @@ const UserListPage = () => {
               <Plus />
               <span>신규 가입자 명단</span>
             </S.ButtonBox>
-            <S.ButtonBox onClick={() => push('/main/admin/quit')}>
+            <S.ButtonBox onClick={() => push('/main/admin/withdraw')}>
               <Minus />
               <span>탈퇴 예정자 명단</span>
             </S.ButtonBox>

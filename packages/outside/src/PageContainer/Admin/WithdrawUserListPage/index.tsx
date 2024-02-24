@@ -1,15 +1,25 @@
 'use client'
 
 import { useGetWithDrawUserList } from '@bitgouel/api'
-import { Bg6, Check, PeopleCircle, Plus, UserItem } from '@bitgouel/common'
+import {
+  Bg6,
+  Check,
+  FilterOut,
+  PeopleCircle,
+  Plus,
+  UserItem,
+} from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import * as S from './style'
+import { UserListContainer } from '../UserListPage/style'
+import { AdminFilter } from '@/components'
 
 const WithdrawUserListPage = () => {
   const { push } = useRouter()
-  const [cohort, setCohort] = useState()
+  const [cohort, setCohort] = useState<2022 | 2023 | 2024 | 0>(0)
   const { data } = useGetWithDrawUserList()
+  const [isFilter, setIsFilter] = useState<boolean>(false)
 
   return (
     <div>
@@ -29,28 +39,35 @@ const WithdrawUserListPage = () => {
         </S.BgContainer>
       </S.SlideBg>
       <S.UserListWrapper>
-        <S.UserListContainer>
+        <S.TopContainer>
           <S.RemarkBox>
-            <div>
-              <S.Remark>선택</S.Remark>
-              <S.Remark>이름</S.Remark>
-              <S.Remark>직업</S.Remark>
-            </div>
-            <div>
-              <S.AloneCheckBox>
-                <Check />
-                선택 탈퇴
-              </S.AloneCheckBox>
-              <S.WithCheckBox>
-                <PeopleCircle banner={true} />
-                전체 탈퇴
-              </S.WithCheckBox>
-            </div>
+            <span>선택</span>
+            <span>이름</span>
+            <span>직업</span>
           </S.RemarkBox>
+          <S.WithdrawButtonContainer>
+            <S.FilterContainer>
+              <S.FilterBox onClick={() => setIsFilter((prev) => !prev)}>
+                <FilterOut />
+                필터
+              </S.FilterBox>
+              {isFilter && <AdminFilter type='withdraw' />}
+            </S.FilterContainer>
+            <S.SelectWithdrawBox>
+              <Check />
+              선택 탈퇴
+            </S.SelectWithdrawBox>
+            <S.AllWithdrawBox>
+              <PeopleCircle banner={true} />
+              전체 탈퇴
+            </S.AllWithdrawBox>
+          </S.WithdrawButtonContainer>
+        </S.TopContainer>
+        <UserListContainer>
           {data?.data.users.map((user) => (
             <UserItem key={user.id} item={user} status='request' />
           ))}
-        </S.UserListContainer>
+        </UserListContainer>
       </S.UserListWrapper>
     </div>
   )

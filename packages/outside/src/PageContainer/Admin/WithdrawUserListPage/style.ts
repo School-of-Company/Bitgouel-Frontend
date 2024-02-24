@@ -1,5 +1,7 @@
+import { get } from './../../../../../../shared/api/common/src/libs/api/method'
 import styled from '@emotion/styled'
 import { StaticImageData } from 'next/image'
+import { UserSearchFilter, UserSearchFilterBox } from '../UserListPage/style'
 
 export const SlideBg = styled.div<{ url: StaticImageData }>`
   height: 15rem;
@@ -54,69 +56,73 @@ export const ButtonBox = styled.div`
 
 export const UserListWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   height: 100%;
 `
 
-export const UserListContainer = styled.div`
-  display: flex;
-  margin-top: 1.5rem;
+export const TopContainer = styled.div`
+  margin-top: 2rem;
   width: 75rem;
-  height: 100%;
-  flex-wrap: wrap;
+  height: 3.625rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5625rem;
+  border-bottom: 0.0625rem solid ${({ theme }) => theme.color.gray['900']};
 `
 
 export const RemarkBox = styled.div`
-  padding: 1rem;
-  width: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  div {
-    display: flex;
-  }
-`
-
-export const Remark = styled.span`
-  color: ${({ theme }) => theme.color.gray['400']};
+  align-items: center;
   ${({ theme }) => theme.typo.text_sm.medium};
-  margin-right: 1.5rem;
-  &:last-child {
-    margin-left: 3.5rem;
+  color: ${({ theme }) => theme.color.gray['400']};
+
+  span {
+    margin-left: 1.1875rem;
+
+    &:last-of-type {
+      margin-left: 3rem;
+    }
   }
 `
 
-export const AloneCheckBox = styled.div`
+export const WithdrawButtonContainer = styled.div`
+  display: flex;
+  gap: 0.625rem;
+`
+
+export const FilterContainer = styled(UserSearchFilterBox)`
+  height: 16.375rem;
+`
+
+export const FilterBox = styled(UserSearchFilter)`
+  height: 2.5rem;
+`
+
+export const SelectWithdrawBox = styled.div`
   width: 7.75rem;
   height: 2.5rem;
   border-radius: 0.5rem;
-  border: 0.0625rem solid ${({ theme }) => theme.color.error};
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  border: 0.0625rem solid ${({ theme }) => theme.color.error};
   color: ${({ theme }) => theme.color.error};
   ${({ theme }) => theme.typo.text_md.medium};
-  margin-right: 0.625rem;
+
   svg {
     fill: ${({ theme }) => theme.color.error};
     margin-right: 0.5rem;
   }
 `
 
-export const WithCheckBox = styled.div`
-  width: 7.75rem;
-  height: 2.5rem;
-  border-radius: 0.5rem;
+export const AllWithdrawBox = styled(SelectWithdrawBox)`
   background-color: ${({ theme }) => theme.color.error};
-  border: 0.0625rem solid ${({ theme }) => theme.color.error};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
   color: ${({ theme }) => theme.color.white};
   ${({ theme }) => theme.typo.text_md.medium};
+
   svg {
     margin-right: 0.5rem;
   }

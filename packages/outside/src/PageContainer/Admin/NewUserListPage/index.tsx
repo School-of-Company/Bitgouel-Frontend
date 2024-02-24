@@ -12,7 +12,7 @@ import {
   Minus,
   PeopleCircle,
   UserItem,
-  useModal
+  useModal,
 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
@@ -81,7 +81,7 @@ const NewUserListPage = () => {
               <PeopleCircle banner={true} />
               <span>사용자 명단</span>
             </S.ButtonBox>
-            <S.ButtonBox onClick={() => push('/main/admin/quit')}>
+            <S.ButtonBox onClick={() => push('/main/admin/withdraw')}>
               <Minus />
               <span>탈퇴 예정자 명단</span>
             </S.ButtonBox>
@@ -89,40 +89,40 @@ const NewUserListPage = () => {
         </S.BgContainer>
       </S.SlideBg>
       <S.UserListWrapper>
-        <S.UserListContainer>
+        <S.TopContainer>
           <S.RemarkBox>
-            <div>
-              <S.Remark>선택</S.Remark>
-              <S.Remark>이름</S.Remark>
-              <S.Remark>직업</S.Remark>
-            </div>
-            <S.SelectBoxContainer>
-              <S.SelectBox type='all' htmlFor='all'>
-                <input
-                  type='checkbox'
-                  id='all'
-                  onChange={onAll}
-                  style={{ display: 'none' }}
-                />
-                <PeopleCircle banner={false} />
-                전체 선택
-              </S.SelectBox>
-              <S.SelectBox
-                type='approve'
-                onClick={() => handleOpenModal('approve')}
-              >
-                <Check />
-                선택 수락
-              </S.SelectBox>
-              <S.SelectBox
-                type='reject'
-                onClick={() => handleOpenModal('reject')}
-              >
-                <Check />
-                선택 거절
-              </S.SelectBox>
-            </S.SelectBoxContainer>
+            <S.Remark>선택</S.Remark>
+            <S.Remark style={{ marginLeft: '1.5rem' }}>이름</S.Remark>
+            <S.Remark style={{ marginLeft: '3.4rem' }}>직업</S.Remark>
           </S.RemarkBox>
+          <S.SelectBoxContainer>
+            <S.SelectBox type='all' htmlFor='all'>
+              <input
+                type='checkbox'
+                id='all'
+                onChange={onAll}
+                style={{ display: 'none' }}
+              />
+              <PeopleCircle banner={false} />
+              전체 선택
+            </S.SelectBox>
+            <S.SelectBox
+              type='approve'
+              onClick={() => handleOpenModal('approve')}
+            >
+              <Check />
+              선택 수락
+            </S.SelectBox>
+            <S.SelectBox
+              type='reject'
+              onClick={() => handleOpenModal('reject')}
+            >
+              <Check />
+              선택 거절
+            </S.SelectBox>
+          </S.SelectBoxContainer>
+        </S.TopContainer>
+        <S.UserListContainer>
           {data?.data.users.map((user) => (
             <UserItem
               key={user.id}

@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 
-export const JobFilterWrapper = styled.div`
+export const AdminFilterWrapper = styled.div<{ type: 'current' | 'withdraw' }>`
   width: 11.375rem;
-  height: 22.5rem;
+  height: ${({ type }) => (type === 'current' ? '22.5rem' : '12rem')};
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -11,18 +11,18 @@ export const JobFilterWrapper = styled.div`
   z-index: 99;
   border-radius: 0.5rem;
   position: absolute;
-  top: 22%;
+  top: ${({type}) =>type === 'current' ? '22%' : '27%'};
 
   h3 {
-    color: ${({theme}) => theme.color.white};
-    ${({theme}) => theme.typo.text_lg.semibold};
+    color: ${({ theme }) => theme.color.white};
+    ${({ theme }) => theme.typo.text_lg.semibold};
     margin: 1rem;
   }
 
   &::after {
     content: '';
     position: absolute;
-    top: -5.5%;
+    top: ${({type}) => type == 'current' ? '-5.5%' : '-10.5%'};
     right: 40%;
     border-left: 1.25rem solid transparent;
     border-right: 1.25rem solid transparent;
