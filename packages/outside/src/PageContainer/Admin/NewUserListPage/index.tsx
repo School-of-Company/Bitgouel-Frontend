@@ -52,7 +52,7 @@ const NewUserListPage = () => {
           question='가입을 수락하시겠습니까?'
           title=''
           purpose='수락하기'
-          onAppropriation={() => approve}
+          onAppropriation={() => approve()}
         />
       )
     } else if (type === 'reject')
@@ -62,14 +62,10 @@ const NewUserListPage = () => {
           question='가입을 거부하시겠습니까?'
           purpose='거부하기'
           title=''
-          onAppropriation={() => reject}
+          onAppropriation={() => reject()}
         />
       )
   }
-
-  useEffect(() => {
-    refetch()
-  }, [data])
 
   return (
     <div>

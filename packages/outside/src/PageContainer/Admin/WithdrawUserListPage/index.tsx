@@ -16,6 +16,7 @@ import { ChangeEvent, useState } from 'react'
 import { AdminFilter } from '../../../components'
 import { UserListContainer } from '../UserListPage/style'
 import * as S from './style'
+import { TopContainer } from '../NewUserListPage/style'
 
 const WithdrawUserListPage = () => {
   const { push } = useRouter()
@@ -68,7 +69,7 @@ const WithdrawUserListPage = () => {
         </S.BgContainer>
       </S.SlideBg>
       <S.UserListWrapper>
-        <S.TopContainer>
+        <TopContainer>
           <S.RemarkBox>
             <span>선택</span>
             <span style={{ marginLeft: '1.5rem' }}>이름</span>
@@ -96,7 +97,7 @@ const WithdrawUserListPage = () => {
               선택 탈퇴
             </S.SelectWithdrawBox>
           </S.WithdrawButtonContainer>
-        </S.TopContainer>
+        </TopContainer>
         <UserListContainer>
           {data?.data.students.map((user) => (
             <UserItem
