@@ -15,7 +15,7 @@ const SchoolFilterModal = () => {
     <Portal onClose={closeModal}>
       <S.SchoolFilterModalWrapper>
         <S.SchoolFilterTitleBox>
-          <h1>학교 선택</h1>
+          <h3>학교 선택</h3>
           <CancelIcon onClick={closeModal} />
         </S.SchoolFilterTitleBox>
         <S.SchoolListContainer>

@@ -7,18 +7,18 @@ import {
   FilterOut,
   PeopleCircle,
   Plus,
-  UserItem,
+  UserItem
 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import * as S from './style'
+import { AdminFilter } from '../../../components'
 import { UserListContainer } from '../UserListPage/style'
-import { AdminFilter } from '@/components'
+import * as S from './style'
 
 const WithdrawUserListPage = () => {
   const { push } = useRouter()
   const [cohort, setCohort] = useState<2022 | 2023 | 2024 | 0>(0)
-  const { data } = useGetWithDrawUserList()
+  const { data } = useGetWithDrawUserList(1)
   const [isFilter, setIsFilter] = useState<boolean>(false)
 
   return (
@@ -64,7 +64,7 @@ const WithdrawUserListPage = () => {
           </S.WithdrawButtonContainer>
         </S.TopContainer>
         <UserListContainer>
-          {data?.data.users.map((user) => (
+          {data?.data.students.map((user) => (
             <UserItem key={user.id} item={user} status='request' />
           ))}
         </UserListContainer>

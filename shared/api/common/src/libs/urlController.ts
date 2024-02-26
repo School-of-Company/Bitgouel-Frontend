@@ -19,11 +19,9 @@ export const authUrl = {
 export const lectureUrl = {
   lecture: () => `/lecture`,
   lectureList: (options: LectureListOptionsTypes) =>
-    `/lecture?page=${options.page}&size=${options.size}&status=${options.status}&type=${options.type}`,
+    `/lecture?page=${options.page}&size=${options.size}&type=${options.type}`,
   lectureDetail: (id: string) => `/lecture/${id}`,
-  lectureApplication: (id: string) => `/lecture/${id}`,
-  lectureApprove: (id: string) => `lecture/${id}/approve`,
-  lectureReject: (id: string) => `lecture/${id}/reject`,
+  lectureEnrolment: (id: string) => `/lecture/${id}`
 } as const
 
 export const activityUrl = {
@@ -87,6 +85,6 @@ export const inquiryUrl = {
 export const adminUrl = {
   userList: (queryString: UserListOptionsTypes) =>
     `/admin?keyword=${queryString.keyword}&authority=${queryString.authority}&approveStatus=${queryString.approveStatus}`,
-  withDrawUserList: () => `/withdraw`,
+  withDrawUserList: (cohort: string) => `/withdraw?cohort=${cohort}`,
   mutateAdmin: (userIds: string[]) => `/admin?userIds=${userIds.join(',')}`,
 } as const

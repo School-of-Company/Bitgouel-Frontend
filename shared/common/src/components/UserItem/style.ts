@@ -10,8 +10,13 @@ export const UserItem = styled.div<{ isCurrent: boolean }>`
   box-sizing: border-box;
 
   span {
-    margin-left: 1.5rem;
+    margin-left: ${({isCurrent}) => !isCurrent && '1.5rem'};
+    
+    &:last-child {
+      margin-left: ${({isCurrent}) => isCurrent && '3rem'};
+    }
   }
+
 `
 
 export const UserCheckBox = styled.input`

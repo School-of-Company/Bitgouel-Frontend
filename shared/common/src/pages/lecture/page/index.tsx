@@ -1,21 +1,23 @@
 'use client'
 
 import { TokenManager, useGetLectureList } from '@bitgouel/api'
-import { Bg3, Filter, LectureTypeModal } from '@bitgouel/common'
-import { LectureTypeText } from '@bitgouel/common/src/atoms'
-import { LectureItem } from '@bitgouel/common/src/components'
-import { lectureToEnum } from '@bitgouel/common/src/constants'
+import { Bg3, Filter, Plus } from '../../../assets'
+import { LectureTypeText } from '../../../atoms'
+import { LectureItem } from '../../../components'
+import { lectureToEnum } from '../../../constants'
+import { LectureTypeModal } from '../../../modals'
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import * as S from './style'
 import { RoleEnumTypes } from '@bitgouel/types'
+import { useRouter } from 'next/navigation'
 
-const LecturePage = () => {
+const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
   const [lectureTypeText, setLectureTypeText] =
     useRecoilState<string>(LectureTypeText)
   const tokenManager = new TokenManager()
-
+  const { push } = useRouter()
   const { data, refetch } = useGetLectureList({
     page: 0,
     size: 10,
@@ -34,6 +36,12 @@ const LecturePage = () => {
           <S.LectureTitle>강의 목록</S.LectureTitle>
           <S.ButtonContainer>
             <S.SelectFilterContainer>
+              {isAdmin && (
+                <S.LectureButton onClick={() => push('/main/lecture/create')}>
+                  <Plus />
+                  <span>개설 신청하기</span>
+                </S.LectureButton>
+              )}
               <S.LectureButton
                 onClick={() => setIsLectureType((prev) => !prev)}
               >
@@ -55,7 +63,11 @@ const LecturePage = () => {
       <S.ListWrapper>
         <S.ListContainer>
           {data?.data.lectures.content.map((item) => (
-            <LectureItem key={item.id} role={tokenManager.authority} item={item} />
+            <LectureItem
+              key={item.id}
+              role={tokenManager.authority}
+              item={item}
+            />
           ))}
         </S.ListContainer>
       </S.ListWrapper>

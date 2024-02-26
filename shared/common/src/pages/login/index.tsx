@@ -2,23 +2,23 @@
 
 import { usePostLogin } from '@bitgouel/api'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, useEffect, useState } from 'react'
-import { useResetRecoilState } from 'recoil'
+import { ChangeEvent, useState } from 'react'
+import { useRecoilState, useResetRecoilState } from 'recoil'
 import { ValueInput } from '../../components'
 import * as S from './style'
 
-import { Page, Page1Obj, Page2Obj, Page3Obj } from '../../atoms'
+import { EmailErrorText, Page, Page1Obj, Page2Obj, Page3Obj, PasswordErrorText } from '../../atoms'
 import { theme } from '../../styles'
 
 const LoginPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const [emailValue, setEmailValue] = useState<string>(
     isAdmin ? 's11111@gsm.hs.kr' : ''
   )
-  const [emailErrorText, setEmailErrorText] = useState<string>('')
+  const [emailErrorText, setEmailErrorText] = useRecoilState(EmailErrorText)
   const [passwordValue, setPasswordValue] = useState<string>(
     isAdmin ? '12345678a@' : ''
   )
-  const [passwordErrorText, setPasswordErrorText] = useState<string>('')
+  const [passwordErrorText, setPasswordErrorText] = useRecoilState(PasswordErrorText)
 
   const resetPage = useResetRecoilState(Page)
   const resetPage1Obj = useResetRecoilState(Page1Obj)
@@ -26,37 +26,7 @@ const LoginPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const resetPage3Obj = useResetRecoilState(Page3Obj)
 
   const router = useRouter()
-  const { mutate, error, isLoading } = usePostLogin()
-
-  useEffect(() => {
-    if (error?.response?.status === 404) {
-      setEmailErrorText('등록되지 않은 계정입니다')
-    } else if (error?.response?.status === 403) {
-      setEmailErrorText('아직 회원가입 대기중인 계정입니다')
-    } else if (error?.response?.status === 401) {
-      setPasswordErrorText('잘못된 비밀번호입니다.')
-    } else if (error?.response?.status === 400) {
-      if (
-        Object.keys(error.response?.data.fieldError).includes('email') &&
-        Object.keys(error.response?.data.fieldError).includes('password')
-      ) {
-        setEmailErrorText('잘못된 이메일입니다')
-        setPasswordErrorText('잘못된 비밀번호입니다')
-      } else if (
-        Object.keys(error.response?.data.fieldError).includes('email') &&
-        !Object.keys(error.response?.data.fieldError).includes('password')
-      ) {
-        setEmailErrorText('잘못된 이메일입니다.')
-        setPasswordErrorText('')
-      } else if (
-        Object.keys(error.response?.data.fieldError).includes('password') &&
-        !Object.keys(error.response?.data.fieldError).includes('email')
-      ) {
-        setPasswordErrorText('잘못된 비밀번호입니다.')
-        setEmailErrorText('')
-      }
-    }
-  }, [error])
+  const { mutate, isLoading } = usePostLogin()
 
   const onEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)

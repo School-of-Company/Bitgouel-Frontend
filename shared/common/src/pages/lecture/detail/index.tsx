@@ -3,8 +3,8 @@
 import {
   useGetDetailLecture
 } from '@bitgouel/api'
-import { Bg3 } from '@bitgouel/common'
-import { lectureToKor } from '@bitgouel/common/src/constants'
+import { Bg3 } from '../../../assets'
+import { lectureToKor } from '../../../constants'
 import * as S from './style'
 
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {

@@ -5,6 +5,8 @@ import * as S from './style'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { RoleEnumTypes } from '@bitgouel/types'
 
+type cohortTypes = '1' | '2' | '3' | '4'
+
 const JobFilter = ({ keyword }: { keyword: string }) => {
   const [jobs, setJobs] = useState<
     { text: string; authority: RoleEnumTypes; checked: boolean }[]
@@ -64,44 +66,45 @@ const JobFilter = ({ keyword }: { keyword: string }) => {
 }
 
 const CohortFilter = () => {
-  const [years, setYears] = useState<{ text: string; checked: boolean }[]>([
-    { text: '2022년', checked: false },
-    { text: '2023년', checked: false },
-    { text: '2024년', checked: false },
+  const [cohorts, setCohorts] = useState<{ text: string; checked: boolean }[]>([
+    { text: '1기', checked: false },
+    { text: '2기', checked: false },
+    { text: '3기', checked: false },
+    { text: '4기', checked: false },
   ])
 
-  const [cohort, setCohort] = useState<'2022' | '2023' | '2024'>('2022')
-  const { refetch } = useGetWithDrawUserList()
+  const [cohort, setCohort] = useState<cohortTypes>('1')
+  const { refetch } = useGetWithDrawUserList(cohort)
 
   useEffect(() => {
     refetch()
   }, [cohort])
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setYears((prev) =>
-      prev.map((year) =>
-        year.text === e.target.id
-          ? { ...year, checked: !year.checked }
-          : { ...year, checked: false }
+    setCohorts((prev) =>
+      prev.map((cohort) =>
+        cohort.text === e.target.id
+          ? { ...cohort, checked: !cohort.checked }
+          : { ...cohort, checked: false }
       )
     )
-    if (e.target.checked) setCohort(e.target.id.slice(0, 4) as '2022' | '2023' | '2024')
-    else setCohort('2022')
+    if (e.target.checked) setCohort(e.target.id.slice(0, 1) as cohortTypes)
+    else setCohort('1')
   }
 
   return (
     <>
       <h3>입학년도</h3>
       <S.CheckListContainer>
-        {years.map((year, idx) => (
-          <S.CheckBox key={idx} htmlFor={year.text}>
+        {cohorts.map((cohort, idx) => (
+          <S.CheckBox key={idx} htmlFor={cohort.text}>
             <S.Check
               type='checkbox'
-              id={year.text}
-              checked={year.checked}
+              id={cohort.text}
+              checked={cohort.checked}
               onChange={onChange}
             />
-            <span>{year.text}</span>
+            <span>{cohort.text}</span>
           </S.CheckBox>
         ))}
       </S.CheckListContainer>

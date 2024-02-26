@@ -1,7 +1,7 @@
-import { LecturePage } from '@/PageContainer'
+import { LecturePage } from '@bitgouel/common/src/pages'
 
 const Lecture = () => {
-  return <LecturePage />
+  return <LecturePage isAdmin={true} />
 }
 
 export default Lecture

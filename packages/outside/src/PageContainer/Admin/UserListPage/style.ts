@@ -61,7 +61,7 @@ export const UserListWrapper = styled.div`
 `
 
 export const UserSearchContainer = styled.div`
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   width: 75rem;
   height: 3.375rem;
   display: flex;
