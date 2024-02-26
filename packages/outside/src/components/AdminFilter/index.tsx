@@ -67,7 +67,7 @@ const JobFilter = ({ keyword }: { keyword: string }) => {
 
 const CohortFilter = () => {
   const [cohorts, setCohorts] = useState<{ text: string; checked: boolean }[]>([
-    { text: '1기', checked: false },
+    { text: '1기', checked: true },
     { text: '2기', checked: false },
     { text: '3기', checked: false },
     { text: '4기', checked: false },
@@ -94,7 +94,7 @@ const CohortFilter = () => {
 
   return (
     <>
-      <h3>입학년도</h3>
+      <h3>기수</h3>
       <S.CheckListContainer>
         {cohorts.map((cohort, idx) => (
           <S.CheckBox key={idx} htmlFor={cohort.text}>

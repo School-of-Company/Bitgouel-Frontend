@@ -1,7 +1,7 @@
 import { LecturePage } from '@bitgouel/common'
 
 const Lecture = () => {
-  return <LecturePage />
+  return <LecturePage isAdmin={false} />
 }
 
 export default Lecture

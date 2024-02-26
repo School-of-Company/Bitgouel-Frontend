@@ -18,8 +18,10 @@ type questionTypes =
   | '문의를 답변하시겠습니까?'
   | '가입을 수락하시겠습니까?'
   | '가입을 거부하시겠습니까?'
+  | '탈퇴를 승인하시겠습니까?'
 
 type purposeTypes =
+  | '신청하기'
   | '추가하기'
   | '수정하기'
   | '승인하기'
@@ -32,7 +34,7 @@ type purposeTypes =
 export interface AppropriationModalProps {
   isApprove: boolean
   question: questionTypes
-  title: string | undefined
+  title?: string
   purpose: purposeTypes
   onAppropriation: () => void
 }

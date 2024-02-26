@@ -6,7 +6,9 @@ import * as S from './style'
 import { ChangeEvent } from 'react'
 
 const UserItem = ({
-  item,
+  id,
+  name,
+  authority,
   status,
   handleSelectUsers,
   userIds,
@@ -17,14 +19,14 @@ const UserItem = ({
         {status === 'request' && (
           <S.UserCheckBox
             type='checkbox'
-            checked={userIds.includes(item.id)}
+            checked={userIds.includes(id)}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              handleSelectUsers(e, item.id)
+              handleSelectUsers(e, id)
             }
           />
         )}
-        <S.Name>{item.name}</S.Name>
-        <S.Role>{authorityToKor[item.authority]}</S.Role>
+        <S.Name>{name}</S.Name>
+        <S.Role>{authorityToKor[authority]}</S.Role>
       </S.UserItem>
     </div>
   )

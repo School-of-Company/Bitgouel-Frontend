@@ -67,7 +67,13 @@ const UserListPage = () => {
             </S.DisplayBar>
           </div>
           {data?.data.users.map((user) => (
-            <UserItem key={user.id} item={user} status='current' />
+            <UserItem
+              key={user.id}
+              id={user.id}
+              name={user.name}
+              authority={user.authority}
+              status='current'
+            />
           ))}
         </S.UserListContainer>
       </S.UserListWrapper>

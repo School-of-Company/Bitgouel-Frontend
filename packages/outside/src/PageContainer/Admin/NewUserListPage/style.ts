@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { StaticImageData } from 'next/image'
 
-type SelectBoxTypes = 'all' | 'approve' | 'reject'
+type SelectBoxTypes = 'allNew' | 'approve' | 'reject'
 
 export const SlideBg = styled.div<{ url: StaticImageData }>`
   height: 15rem;
@@ -63,7 +63,7 @@ export const UserListWrapper = styled.div`
 `
 
 export const TopContainer = styled.div`
-  margin-top: 3rem;
+  margin-top: 3.5rem;
   width: 75rem;
   height: 2.5rem;
   display: flex;
@@ -81,12 +81,9 @@ export const RemarkBox = styled.div`
 
   span {
     margin-left: 1rem;
+    color: ${({ theme }) => theme.color.gray['400']};
+    ${({ theme }) => theme.typo.text_sm.medium};
   }
-`
-
-export const Remark = styled.span`
-  color: ${({ theme }) => theme.color.gray['400']};
-  ${({ theme }) => theme.typo.text_sm.medium};
 `
 
 export const SelectBoxContainer = styled.div`
@@ -107,13 +104,13 @@ export const SelectBox = styled.label<{ type: SelectBoxTypes }>`
   ${({ theme }) => theme.typo.text_md.medium};
   border: 0.0625rem solid
     ${({ theme, type }) =>
-      type === 'all'
+      type === 'allNew'
         ? theme.color.gray['400']
         : type === 'approve'
         ? theme.color.main
         : theme.color.error};
   color: ${({ theme, type }) =>
-    type === 'all'
+    type === 'allNew'
       ? theme.color.gray['400']
       : type === 'approve'
       ? theme.color.main
@@ -121,7 +118,7 @@ export const SelectBox = styled.label<{ type: SelectBoxTypes }>`
 
   svg {
     fill: ${({ theme, type }) =>
-      type === 'all'
+      type === 'allNew'
         ? theme.color.gray['400']
         : type === 'approve'
         ? theme.color.main

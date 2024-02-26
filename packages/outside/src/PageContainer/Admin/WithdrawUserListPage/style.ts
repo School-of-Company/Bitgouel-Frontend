@@ -63,12 +63,13 @@ export const UserListWrapper = styled.div`
 `
 
 export const TopContainer = styled.div`
-  margin-top: 2rem;
+  margin-top: 3.5rem;
   width: 75rem;
   height: 3.625rem;
   display: flex;
+  align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 1.5625rem;
+  padding-bottom: 1rem;
   border-bottom: 0.0625rem solid ${({ theme }) => theme.color.gray['900']};
 `
 
@@ -79,11 +80,7 @@ export const RemarkBox = styled.div`
   color: ${({ theme }) => theme.color.gray['400']};
 
   span {
-    margin-left: 1.1875rem;
-
-    &:last-of-type {
-      margin-left: 3rem;
-    }
+    margin-left: 1rem;
   }
 `
 
@@ -93,7 +90,7 @@ export const WithdrawButtonContainer = styled.div`
 `
 
 export const FilterContainer = styled(UserSearchFilterBox)`
-  height: 16.375rem;
+  height: 40px;
 `
 
 export const FilterBox = styled(UserSearchFilter)`
@@ -108,22 +105,32 @@ export const SelectWithdrawBox = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  background-color: ${({theme}) => theme.color.error};
   border: 0.0625rem solid ${({ theme }) => theme.color.error};
-  color: ${({ theme }) => theme.color.error};
-  ${({ theme }) => theme.typo.text_md.medium};
-
-  svg {
-    fill: ${({ theme }) => theme.color.error};
-    margin-right: 0.5rem;
-  }
-`
-
-export const AllWithdrawBox = styled(SelectWithdrawBox)`
-  background-color: ${({ theme }) => theme.color.error};
   color: ${({ theme }) => theme.color.white};
   ${({ theme }) => theme.typo.text_md.medium};
 
   svg {
     margin-right: 0.5rem;
+    fill: ${({theme}) => theme.color.white};
+  }
+`
+
+export const AllWithdrawBox = styled.label`
+  width: 7.75rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 0.0625rem solid ${({ theme }) => theme.color.error};
+  background-color: ${({ theme }) => theme.color.white};
+  color: ${({ theme }) => theme.color.error};
+  ${({ theme }) => theme.typo.text_md.medium};
+
+  svg {
+    margin-right: 0.5rem;
+    fill: ${({ theme }) => theme.color.error};
   }
 `

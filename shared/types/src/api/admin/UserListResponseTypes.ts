@@ -18,10 +18,14 @@ export interface UserTypes {
   approveStatus: ApproveStatusTypes
 }
 
-export type WithdrawUserTypes = Omit<Omit<UserTypes, 'authority'>, 'approveStatus'>
-
 export interface UserListResponseTypes {
   users: UserTypes[]
+}
+
+export interface WithdrawUserTypes {
+  withdrawId: number
+  studentId: string
+  studentName: string
 }
 
 export interface WithdrawListResponseTypes {

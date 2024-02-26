@@ -78,7 +78,7 @@ const NewUserListPage = () => {
           <S.ClubTitle>신규 가입자 명단</S.ClubTitle>
           <S.ButtonContainer>
             <S.ButtonBox onClick={() => push('/main/admin')}>
-              <PeopleCircle banner={true} />
+              <PeopleCircle />
               <span>사용자 명단</span>
             </S.ButtonBox>
             <S.ButtonBox onClick={() => push('/main/admin/withdraw')}>
@@ -91,19 +91,19 @@ const NewUserListPage = () => {
       <S.UserListWrapper>
         <S.TopContainer>
           <S.RemarkBox>
-            <S.Remark>선택</S.Remark>
-            <S.Remark style={{ marginLeft: '1.5rem' }}>이름</S.Remark>
-            <S.Remark style={{ marginLeft: '3.4rem' }}>직업</S.Remark>
+            <span>선택</span>
+            <span style={{ marginLeft: '1.5rem' }}>이름</span>
+            <span style={{ marginLeft: '3.4rem' }}>직업</span>
           </S.RemarkBox>
           <S.SelectBoxContainer>
-            <S.SelectBox type='all' htmlFor='all'>
+            <S.SelectBox type='allNew' htmlFor='allNew'>
               <input
                 type='checkbox'
-                id='all'
+                id='allNew'
                 onChange={onAll}
                 style={{ display: 'none' }}
               />
-              <PeopleCircle banner={false} />
+              <PeopleCircle />
               전체 선택
             </S.SelectBox>
             <S.SelectBox
@@ -126,7 +126,9 @@ const NewUserListPage = () => {
           {data?.data.users.map((user) => (
             <UserItem
               key={user.id}
-              item={user}
+              id={user.id}
+              name={user.name}
+              authority={user.authority}
               status='request'
               handleSelectUsers={handleSelectUsers}
               userIds={userIds}

@@ -113,7 +113,6 @@ export const UserListContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 1.5rem;
   width: 75rem;
   height: 32.625rem;
   overflow-y: auto;
