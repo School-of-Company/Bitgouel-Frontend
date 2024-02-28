@@ -89,4 +89,5 @@ export const adminUrl = {
   approveUser: (userIds: string[]) => `/admin?userIds=${userIds.join(',')}`,
   rejectUser: (userIds: string[]) =>
     `/admin/${userIds.join(',')}/reject`,
+  withDrawUser: (userIds: string[]) => `/admin/${userIds.join(',')}`
 } as const

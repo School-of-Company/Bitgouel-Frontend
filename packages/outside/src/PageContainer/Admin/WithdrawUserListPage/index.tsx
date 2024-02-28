@@ -1,6 +1,6 @@
 'use client'
 
-import { useDeleteUserWithout, useGetWithDrawUserList } from '@bitgouel/api'
+import { useDeleteUserWithdraw, useGetWithDrawUserList } from '@bitgouel/api'
 import {
   AppropriationModal,
   Bg6,
@@ -14,15 +14,15 @@ import {
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState } from 'react'
 import { AdminFilter } from '../../../components'
+import { TopContainer } from '../NewUserListPage/style'
 import { UserListContainer } from '../UserListPage/style'
 import * as S from './style'
-import { TopContainer } from '../NewUserListPage/style'
 
 const WithdrawUserListPage = () => {
   const { push } = useRouter()
   const [userIds, setUserIds] = useState<string[]>([])
   const { data } = useGetWithDrawUserList('1')
-  const { mutate } = useDeleteUserWithout(userIds)
+  const { mutate } = useDeleteUserWithdraw(userIds)
   const [isFilter, setIsFilter] = useState<boolean>(false)
   const { openModal } = useModal()
 
@@ -38,13 +38,14 @@ const WithdrawUserListPage = () => {
       setUserIds(data?.data.students.map((student) => student.studentId))
     else setUserIds([])
   }
+
   const onWithdrawModal = () => {
     if (userIds.length === 0) return
     openModal(
       <AppropriationModal
         isApprove={false}
-        question='가입을 거부하시겠습니까?'
-        purpose='거부하기'
+        question='탈퇴를 승인하시겠습니까?'
+        purpose='승인하기'
         title=''
         onAppropriation={() => mutate()}
       />
@@ -82,7 +83,7 @@ const WithdrawUserListPage = () => {
               </S.FilterBox>
               {isFilter && <AdminFilter type='withdraw' />}
             </S.FilterContainer>
-            <S.AllWithdrawBox id='allWithdraw' htmlFor='allWithdraw'>
+            <S.AllWithdrawBox htmlFor='allWithdraw'>
               <input
                 type='checkbox'
                 id='allWithdraw'

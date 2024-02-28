@@ -21,7 +21,7 @@ import * as S from './style'
 const NewUserListPage = () => {
   const { push } = useRouter()
   const [userIds, setUserIds] = useState<string[]>([])
-  const { data, refetch } = useGetUserList({
+  const { data } = useGetUserList({
     keyword: '',
     authority: 'ROLE_USER',
     approveStatus: 'PENDING',
