@@ -5,7 +5,7 @@ import * as S from './style'
 import { useGetMy, useDeleteWithDraw } from '@bitgouel/api'
 import { roleToKor } from '../../constants'
 import { useModal } from '../../hooks'
-import {ChangePwModal} from '../../modals'
+import { ChangePwModal } from '../../modals'
 
 const MyPage = () => {
   const { data } = useGetMy()
@@ -66,7 +66,9 @@ const MyPage = () => {
               <S.AccountSettingContainer>
                 <div>
                   <S.LeftText>회원정보 수정</S.LeftText>
-                  <S.ModifyText onClick={() => openModal(<ChangePwModal />)}>비밀번호 수정</S.ModifyText>
+                  <S.ModifyText onClick={() => openModal(<ChangePwModal />)}>
+                    비밀번호 변경
+                  </S.ModifyText>
                 </div>
                 <S.SharedLine />
                 <div>
