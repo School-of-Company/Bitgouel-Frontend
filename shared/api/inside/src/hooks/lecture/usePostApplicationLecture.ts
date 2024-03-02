@@ -12,7 +12,7 @@ export const usePostApplicationLecture = (id: string) => {
 
   return useMutation<void, AxiosError<ApiErrorTypes>>(
     lectureQueryKeys.postLectureApplication(id),
-    () => post(lectureUrl.lectureApplication(id), {}),
+    () => post(lectureUrl.lectureEnrolment(id), {}),
     {
       onSuccess: () => {
         closeModal()
