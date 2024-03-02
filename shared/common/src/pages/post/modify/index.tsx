@@ -74,7 +74,7 @@ const PostModifyPage = ({ postId }: { postId: string }) => {
         <AppropriationModal
           isApprove={true}
           question='게시글을 수정하시겠습니까?'
-          title={postModifyTitle}
+          title={postModifyTitle as ''}
           purpose='수정하기'
           onAppropriation={() => onModify()}
         />

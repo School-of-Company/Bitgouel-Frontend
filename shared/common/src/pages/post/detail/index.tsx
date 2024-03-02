@@ -70,7 +70,7 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
                           isApprove={false}
                           question='게시글을 삭제하시겠습니까?'
                           purpose='삭제하기'
-                          title={data?.data.title}
+                          title={data?.data.title as ''}
                           onAppropriation={() => mutate()}
                         />
                       )

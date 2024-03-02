@@ -92,7 +92,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
                     <AppropriationModal
                       isApprove={true}
                       question='자격증 정보를 수정하시겠습니까?'
-                      title={modifyText}
+                      title={modifyText as ''}
                       purpose='수정하기'
                       onAppropriation={() => onModify}
                     />

@@ -59,7 +59,7 @@ const InquiryModifyPage = ({ inquiryId }: { inquiryId: string }) => {
                       <AppropriationModal
                         isApprove={true}
                         question='문의를 수정하시겠습니까?'
-                        title={modifyTitle}
+                        title={modifyTitle as ''}
                         purpose='수정하기'
                         onAppropriation={() =>
                           mutate({

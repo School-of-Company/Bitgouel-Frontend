@@ -1,4 +1,4 @@
-import { LecturePage } from '@bitgouel/common'
+import { LecturePage } from '@bitgouel/common/src/pages'
 
 const Lecture = () => {
   return <LecturePage isAdmin={false} />

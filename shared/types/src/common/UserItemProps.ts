@@ -1,5 +1,4 @@
 import { ChangeEvent } from 'react'
-import { UserTypes, WithdrawUserTypes } from '../api'
 
 type StatusTypes = 'current' | 'request'
 

@@ -19,14 +19,14 @@ const UserItem = ({
         {status === 'request' && (
           <S.UserCheckBox
             type='checkbox'
-            checked={userIds.includes(id)}
+            checked={userIds?.includes(id)}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              handleSelectUsers(e, id)
+              handleSelectUsers && handleSelectUsers(e, id)
             }
           />
         )}
         <S.Name>{name}</S.Name>
-        <S.Role>{authorityToKor[authority]}</S.Role>
+        {authority && <S.Role>{authorityToKor[authority]}</S.Role>}
       </S.UserItem>
     </div>
   )

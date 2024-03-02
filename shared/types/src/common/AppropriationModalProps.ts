@@ -34,7 +34,7 @@ type purposeTypes =
 export interface AppropriationModalProps {
   isApprove: boolean
   question: questionTypes
-  title?: string
+  title: string
   purpose: purposeTypes
   onAppropriation: () => void
 }

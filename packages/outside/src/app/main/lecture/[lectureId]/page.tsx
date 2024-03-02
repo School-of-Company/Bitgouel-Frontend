@@ -1,4 +1,3 @@
-import React from 'react'
 import { LectureDetailPage } from '@bitgouel/common/src/pages'
 
 const LectureDetail = ({ params }: { params: { lectureId: string } }) => {
