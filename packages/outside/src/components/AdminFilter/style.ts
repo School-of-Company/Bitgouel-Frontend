@@ -7,7 +7,6 @@ export const AdminFilterWrapper = styled.div<{ type: 'current' | 'withdraw' }>`
   flex-direction: column;
   align-items: flex-start;
   background-color: rgba(129, 129, 129, 0.6);
-  opacity: 1;
   z-index: 99;
   border-radius: 0.5rem;
   position: absolute;
