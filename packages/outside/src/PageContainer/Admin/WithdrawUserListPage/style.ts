@@ -133,4 +133,7 @@ export const AllWithdrawBox = styled.label`
     margin-right: 0.5rem;
     fill: ${({ theme }) => theme.color.error};
   }
+  input {
+    display: none;
+  }
 `

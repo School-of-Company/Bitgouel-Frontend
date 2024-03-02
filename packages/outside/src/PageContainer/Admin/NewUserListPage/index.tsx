@@ -97,7 +97,6 @@ const NewUserListPage = () => {
                 type='checkbox'
                 id='allNew'
                 onChange={onAll}
-                style={{ display: 'none' }}
               />
               <PeopleCircle />
               전체 선택

@@ -87,7 +87,6 @@ const WithdrawUserListPage = () => {
                 type='checkbox'
                 id='allWithdraw'
                 onChange={onAll}
-                style={{ display: 'none' }}
               />
               <PeopleCircle />
               전체 선택

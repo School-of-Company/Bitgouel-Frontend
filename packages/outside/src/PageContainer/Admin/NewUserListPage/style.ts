@@ -125,6 +125,9 @@ export const SelectBox = styled.label<{ type: SelectBoxTypes }>`
         : theme.color.error};
     margin-right: 0.5rem;
   }
+  input {
+    display: none;
+  }
 `
 
 export const AloneCheckBox = styled.div`
