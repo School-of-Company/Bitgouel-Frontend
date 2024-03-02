@@ -90,7 +90,7 @@ export const WithdrawButtonContainer = styled.div`
 `
 
 export const FilterContainer = styled(UserSearchFilterBox)`
-  height: 40px;
+  height: 2.5rem;
 `
 
 export const FilterBox = styled(UserSearchFilter)`
