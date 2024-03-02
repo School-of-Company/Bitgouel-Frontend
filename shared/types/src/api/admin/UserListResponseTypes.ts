@@ -24,7 +24,7 @@ export interface UserListResponseTypes {
 
 export interface WithdrawUserTypes {
   withdrawId: number
-  studentId: string
+  userId: string
   studentName: string
 }
 

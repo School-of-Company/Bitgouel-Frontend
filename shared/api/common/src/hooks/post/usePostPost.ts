@@ -16,7 +16,7 @@ export const usePostPost = (type: '게시' | '공지') => {
     {
       onSuccess: () => {
         closeModal()
-        push('/main/post')
+        push('/main/post/notice')
         toast.success(
           `${type === '공지' ? '공지사항' : '게시글'}을 추가했습니다`
         )

@@ -35,10 +35,9 @@ const WithdrawUserListPage = () => {
   }
   const onAll = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked)
-      setUserIds(data?.data.students.map((student) => student.studentId))
+      setUserIds(data?.data.students.map((student) => student.userId))
     else setUserIds([])
   }
-
   const onWithdrawModal = () => {
     if (userIds.length === 0) return
     openModal(
@@ -102,8 +101,8 @@ const WithdrawUserListPage = () => {
         <UserListContainer>
           {data?.data.students.map((user) => (
             <UserItem
-              key={user.studentId}
-              id={user.studentId}
+              key={user.withdrawId}
+              id={user.userId}
               name={user.studentName}
               status='request'
               handleSelectUsers={handleSelectUsers}
