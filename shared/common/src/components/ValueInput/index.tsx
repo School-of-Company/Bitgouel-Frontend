@@ -1,12 +1,6 @@
 'use client'
 
-import React, {
-  useState,
-  forwardRef,
-  InputHTMLAttributes,
-  useEffect,
-  Ref,
-} from 'react'
+import { useState, forwardRef, useEffect, Ref } from 'react'
 import * as S from './style'
 import { XIcon } from '../../assets'
 import { ValueInputProps } from '@bitgouel/types'
