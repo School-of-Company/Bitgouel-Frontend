@@ -16,7 +16,7 @@ const LectureTypeModal = ({
         <S.SelectFilterTitle>강의 유형</S.SelectFilterTitle>
         <S.SelectFilterItemContainer>
           <S.SelectFilterLabel htmlFor='check'>
-            <S.SelectFilterCheckBox
+            <S.Checkbox
               id='check'
               type='checkbox'
               checked={text === '상호학점인정교육과정'}
@@ -28,7 +28,7 @@ const LectureTypeModal = ({
             <S.SelectFilterText>상호학점인정교육과정</S.SelectFilterText>
           </S.SelectFilterLabel>
           <S.SelectFilterLabel htmlFor='check'>
-            <S.SelectFilterCheckBox
+            <S.Checkbox
               id='check'
               type='checkbox'
               checked={text === '대학탐방프로그램'}

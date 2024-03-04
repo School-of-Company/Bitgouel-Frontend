@@ -9,7 +9,8 @@ export interface CreateModalProps {
     | '자격증 정보를 수정하시겠습니까?'
     | '문의를 수정하시겠습니까?'
     | '문의하시겠습니까?'
+    | '가입을 수락하시겠습니까?'
   title: string | undefined
   onCreate: () => void
-  createText: '개설하기' | '추가하기' | '수정하기' | '문의하기'
+  createText: '개설하기' | '추가하기' | '수정하기' | '문의하기' | '수락하기'
 }

@@ -1,2 +1,1 @@
-export { default as LectureDetailPage } from './LectureDetailPage'
-export { default as LecturePage } from './LecturePage'
+export { default as LectureCreatePage } from './LectureCreatePage'

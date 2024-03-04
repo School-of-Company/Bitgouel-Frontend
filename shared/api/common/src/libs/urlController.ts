@@ -1,4 +1,8 @@
-import { LectureListOptionsTypes, ActivityOptionsTypes } from '@bitgouel/types'
+import {
+  LectureListOptionsTypes,
+  ActivityOptionsTypes,
+  UserListOptionsTypes,
+} from '@bitgouel/types'
 
 export const authUrl = {
   auth: () => `/auth`,
@@ -15,11 +19,9 @@ export const authUrl = {
 export const lectureUrl = {
   lecture: () => `/lecture`,
   lectureList: (options: LectureListOptionsTypes) =>
-    `/lecture?page=${options.page}&size=${options.size}&status=${options.status}&type=${options.type}`,
+    `/lecture?page=${options.page}&size=${options.size}&type=${options.type}`,
   lectureDetail: (id: string) => `/lecture/${id}`,
-  lectureApplication: (id: string) => `/lecture/${id}`,
-  lectureApprove: (id: string) => `lecture/${id}/approve`,
-  lectureReject: (id: string) => `lecture/${id}/reject`,
+  lectureEnrolment: (id: string) => `/lecture/${id}`,
 } as const
 
 export const activityUrl = {
@@ -78,4 +80,14 @@ export const inquiryUrl = {
   inquiryAnswer: (inquiry_id: string) => `/inquiry/${inquiry_id}/reply`,
   inquiryList: () => `/inquiry/all`,
   inquiryDelete: (inquiry_id: string) => `/inquiry/${inquiry_id}/reject`,
+} as const
+
+export const adminUrl = {
+  userList: (queryString: UserListOptionsTypes) =>
+    `/admin?keyword=${queryString.keyword}&authority=${queryString.authority}&approveStatus=${queryString.approveStatus}`,
+  withDrawUserList: (cohort: string) => `/withdraw?cohort=${cohort}`,
+  approveUser: (userIds: string[]) => `/admin?userIds=${userIds.join(',')}`,
+  rejectUser: (userIds: string[]) =>
+    `/admin/${userIds.join(',')}/reject`,
+  withDrawUser: (userIds: string[]) => `/admin/${userIds.join(',')}`
 } as const

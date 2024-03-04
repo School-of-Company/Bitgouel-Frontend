@@ -1,12 +1,11 @@
 'use client'
 
 import { TokenManager, useDeletePost, useGetPostDetail } from '@bitgouel/api'
-import { RoleEnumTypes } from '@bitgouel/types'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Bg1 } from '../../../assets'
 import { useModal } from '../../../hooks'
-import { RejectModal } from '../../../modals'
+import { AppropriationModal } from '../../../modals'
 import * as S from './style'
 
 const PostDetailPage = ({ postId }: { postId: string }) => {
@@ -15,7 +14,6 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
   const { openModal } = useModal()
   const { push } = useRouter()
   const tokenManager = new TokenManager()
-
 
   return (
     <div>
@@ -68,10 +66,11 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
                   <S.DeletePostButton
                     onClick={() =>
                       openModal(
-                        <RejectModal
-                          type='게시글'
-                          purpose='삭제'
-                          title={data?.data.title}
+                        <AppropriationModal
+                          isApprove={false}
+                          question='게시글을 삭제하시겠습니까?'
+                          purpose='삭제하기'
+                          title={data?.data.title as ''}
                           onAppropriation={() => mutate()}
                         />
                       )

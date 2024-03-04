@@ -13,3 +13,4 @@ export {
 } from './post'
 export { default as MyPage } from './my'
 export { InquiryPage, InquiryDetailPage } from './inquiry'
+export {LecturePage, LectureDetailPage} from './lecture'

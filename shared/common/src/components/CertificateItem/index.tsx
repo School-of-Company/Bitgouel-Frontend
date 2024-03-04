@@ -1,11 +1,14 @@
-import { ChangeEvent, useState } from 'react'
-import * as S from './style'
-import { usePostCertificate, usePatchModifyCertificate } from '@bitgouel/api'
+import { usePatchModifyCertificate } from '@bitgouel/api'
 import { Certificate, CertificateRequest } from '@bitgouel/types'
+import { ChangeEvent, useState } from 'react'
 import { AddCertificate, CalendarIcon } from '../../assets'
 import { useModal } from '../../hooks'
-import { CreateModal, SelectCalendarModal } from '../../modals'
+import {
+  AppropriationModal,
+  SelectCalendarModal
+} from '../../modals'
 import { theme } from '../../styles'
+import * as S from './style'
 
 interface CertificateProps {
   certificateItems: Certificate
@@ -86,11 +89,12 @@ const CertificateItem: React.FC<CertificateProps> = ({
                 .map((v) => (v === '-' ? '.' : v))
                 .join('') !== modifyDateText
                 ? openModal(
-                    <CreateModal
+                    <AppropriationModal
+                      isApprove={true}
                       question='자격증 정보를 수정하시겠습니까?'
-                      title={modifyText}
-                      onCreate={onModify}
-                      createText='수정하기'
+                      title={modifyText as ''}
+                      purpose='수정하기'
+                      onAppropriation={() => onModify}
                     />
                   )
                 : name === modifyText &&

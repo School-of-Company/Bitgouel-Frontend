@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation'
 import { match } from 'ts-pattern'
 import { Bg5, Pen, TrashCan } from '../../../assets'
 import { useModal } from '../../../hooks'
-import { RejectModal } from '../../../modals'
+import { AppropriationModal } from '../../../modals'
 import * as S from './style'
 
 const InquiryDetailPage = ({ inquiryId }: { inquiryId: string }) => {
@@ -36,10 +36,11 @@ const InquiryDetailPage = ({ inquiryId }: { inquiryId: string }) => {
             <S.InquiryButton
               onClick={() =>
                 openModal(
-                  <RejectModal
-                    type='문의'
-                    purpose='삭제'
-                    title={data?.data.question}
+                  <AppropriationModal
+                    isApprove={false}
+                    question='문의를 삭제하시겠습니까?'
+                    purpose='삭제하기'
+                    title={data?.data.question as ''}
                     onAppropriation={() => myInquiryReject()}
                   />
                 )
@@ -114,10 +115,11 @@ const InquiryDetailPage = ({ inquiryId }: { inquiryId: string }) => {
               <S.ButtonContainer>
                 <S.DeleteNoticeButton
                   onClick={() => (
-                    <RejectModal
-                      type='문의'
-                      purpose='삭제'
-                      title={data?.data.question}
+                    <AppropriationModal
+                      isApprove={false}
+                      question='문의를 삭제하시겠습니까?'
+                      purpose='삭제하기'
+                      title={data?.data.question as ''}
                       onAppropriation={() => inquiryReject()}
                     />
                   )}

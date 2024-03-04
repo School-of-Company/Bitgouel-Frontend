@@ -95,3 +95,11 @@ export const inquiryQueryKeys = {
   getInquiry: () => ['inquiry', 'inquiryList'],
   deleteInquiry: (id: string) => ['inquiry', 'reject', id],
 } as const
+
+export const adminQueryKeys = {
+  getUserList: () => ['admin', 'list'],
+  getWithdrawUserList: () => ['admin', 'quitList'],
+  patchUserApprove: (userIds: string[]) => ['admin', 'approve', userIds],
+  deleteUserReject: (userIds: string[]) => ['admin', 'reject', userIds],
+  deleteUserWithout: (userIds: string[]) => ['admin', 'without', userIds],
+} as const

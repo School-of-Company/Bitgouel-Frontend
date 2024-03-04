@@ -1,15 +1,16 @@
 'use client'
 
 import {
+  TokenManager,
   useGetCertificateList,
   useGetCertificateListTeacher,
-  usePostCertificate,
   useGetStudentDetail,
-  TokenManager,
+  usePostCertificate,
 } from '@bitgouel/api'
+import { CertificateRequest, StudentIdProps } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
+import { ChangeEvent, useState } from 'react'
+import { toast } from 'react-toastify'
 import {
   AddCertificate,
   Bg2,
@@ -17,17 +18,11 @@ import {
   PersonOut,
   PlusCertificate,
 } from '../../../assets'
-import {
-  CertificateRequest,
-  RoleEnumTypes,
-  StudentIdProps,
-} from '@bitgouel/types'
 import CertificateItem from '../../../components/CertificateItem'
 import { useModal } from '../../../hooks'
-import * as S from './style'
-import { CreateModal, SelectCalendarModal } from '../../../modals'
-import { toast } from 'react-toastify'
+import { AppropriationModal, SelectCalendarModal } from '../../../modals'
 import { theme } from '../../../styles'
+import * as S from './style'
 
 interface StudentProps {
   studentIdProps: StudentIdProps
@@ -145,11 +140,12 @@ const StudentPage: React.FC<StudentProps> = ({ studentIdProps }) => {
                       certificateText.trim() !== '' &&
                       certificateDateText.trim() !== ''
                         ? openModal(
-                            <CreateModal
+                            <AppropriationModal
+                              isApprove={true}
                               question='자격증 정보를 추가하시겠습니까?'
                               title={certificateText}
-                              onCreate={onCreate}
-                              createText='추가하기'
+                              purpose='추가하기'
+                              onAppropriation={() => onCreate()}
                             />
                           )
                         : toast.info('자격증 정보를 입력해주세요')

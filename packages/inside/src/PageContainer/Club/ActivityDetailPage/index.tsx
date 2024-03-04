@@ -1,7 +1,7 @@
 'use client'
 
 import { usePatchActivityApprove } from '@bitgouel/api'
-import { ApproveModal, Pen, RejectModal, TrashCan } from '@bitgouel/common'
+import { AppropriationModal, Pen, TrashCan } from '@bitgouel/common'
 import { Bg2 } from '@bitgouel/common'
 import { lectureStatusToKor } from '@bitgouel/common/src/constants'
 import { useModal } from '@bitgouel/common/src/hooks'
@@ -111,9 +111,10 @@ const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
               <S.CreateNotApproveButton
                 onClick={() =>
                   openModal(
-                    <RejectModal
-                      type='활동 추가'
-                      purpose='거절'
+                    <AppropriationModal
+                      isApprove={false}
+                      question='활동 추가를 거부하시겠습니까?'
+                      purpose='거부하기'
                       title={object.title}
                       onAppropriation={() => reject()}
                     />
@@ -125,8 +126,10 @@ const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
               <S.CreateApproveButton
                 onClick={() =>
                   openModal(
-                    <ApproveModal
-                      type='활동 추가'
+                    <AppropriationModal
+                      isApprove={false}
+                      question='활동 추가를 승인하시겠습니까?'
+                      purpose='승인하기'
                       title={object.title}
                       onAppropriation={() => approve()}
                     />
