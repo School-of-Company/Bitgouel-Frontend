@@ -56,9 +56,7 @@ const NoticeCreatePage = () => {
               content: noticeContent,
               links: links
                 .filter((link) => link.value.length !== 0)
-                .map((link) => {
-                  return { url: link.value }
-                }),
+                .map((link) => link.value),
               feedType: 'NOTICE',
             })
           }
