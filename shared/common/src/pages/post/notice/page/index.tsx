@@ -1,10 +1,10 @@
 'use client'
 
 import { TokenManager, useGetPostList } from '@bitgouel/api'
-import * as S from './style'
 import { useRouter } from 'next/navigation'
-import { Bg1, Plus } from '../../../../assets'
+import { Bg1, Message, Plus, Question } from '../../../../assets'
 import { PostItem } from '../../../../components'
+import * as S from './style'
 
 const NoticePage = () => {
   const { data } = useGetPostList({
@@ -19,12 +19,18 @@ const NoticePage = () => {
     <div>
       <S.SlideBg url={Bg1}>
         <S.BgContainer>
-          <S.NoticeTitle>공지 목록</S.NoticeTitle>
+          <S.NoticeTitle>공지사항</S.NoticeTitle>
           {tokenManager.authority === 'ROLE_ADMIN' && (
             <S.ButtonContainer>
-              <S.NoticeButton
-                onClick={() => push('/main/post/notice/create')}
-              >
+              <S.NoticeButton onClick={() => push(`/main/post`)}>
+                <Message />
+                <span>게시글</span>
+              </S.NoticeButton>
+              <S.NoticeButton onClick={() => push(`/main/inquiry`)}>
+                <Question />
+                <span>문의사항</span>
+              </S.NoticeButton>
+              <S.NoticeButton onClick={() => push('/main/post/notice/create')}>
                 <Plus />
                 <span>공지 추가</span>
               </S.NoticeButton>
