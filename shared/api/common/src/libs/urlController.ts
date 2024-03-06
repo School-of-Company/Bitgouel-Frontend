@@ -11,7 +11,7 @@ export const authUrl = {
   signUpStudent: () => `/auth/student`,
   signUpTeacher: () => `/auth/teacher`,
   signUpBbozzak: () => `/auth/bbozzak`,
-  signUpPropessor: () => `/auth/professor`,
+  signUpProfessor: () => `/auth/professor`,
   signUpGovernment: () => `/auth/government`,
   signUpCompanyInstructor: () => `/auth/company-instructor`,
 } as const
@@ -22,6 +22,8 @@ export const lectureUrl = {
     `/lecture?page=${options.page}&size=${options.size}&type=${options.type}`,
   lectureDetail: (id: string) => `/lecture/${id}`,
   lectureEnrolment: (id: string) => `/lecture/${id}`,
+  lectureInstructor: (keyword: string) =>
+    `/lecture/instructor?keyword=${keyword}`,
 } as const
 
 export const activityUrl = {
@@ -87,7 +89,6 @@ export const adminUrl = {
     `/admin?keyword=${queryString.keyword}&authority=${queryString.authority}&approveStatus=${queryString.approveStatus}`,
   withDrawUserList: (cohort: string) => `/withdraw?cohort=${cohort}`,
   approveUser: (userIds: string[]) => `/admin?userIds=${userIds.join(',')}`,
-  rejectUser: (userIds: string[]) =>
-    `/admin/${userIds.join(',')}/reject`,
-  withDrawUser: (userIds: string[]) => `/admin/${userIds.join(',')}`
+  rejectUser: (userIds: string[]) => `/admin/${userIds.join(',')}/reject`,
+  withDrawUser: (userIds: string[]) => `/admin/${userIds.join(',')}`,
 } as const

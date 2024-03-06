@@ -1,4 +1,9 @@
-import { LectureItemType, RoleEnumTypes } from '@bitgouel/types'
+import {
+  LectureItemType,
+  LectureLineEnum,
+  LectureTypeEnum,
+  RoleEnumTypes,
+} from '@bitgouel/types'
 import { ReactNode } from 'react'
 import { atom } from 'recoil'
 
@@ -85,26 +90,44 @@ export const LectureTypeText = atom<string>({
   default: '상호학점인정교육과정',
 })
 
-export const LectureType = atom<'상호학점인정교육과정' | '대학탐방프로그램'>({
+export const LectureType = atom<LectureTypeEnum>({
   key: 'LectureType',
-  default: '상호학점인정교육과정',
+  default: 'MUTUAL_CREDIT_RECOGNITION_PROGRAM',
 })
 
 export const LectureLine = atom<
-  | '기계'
-  | '자동차'
-  | '전기•전자'
-  | '생명화학공학'
-  | '뷰티'
-  | '의료•헬스'
-  | '드론'
+  LectureLineEnum
 >({
   key: 'LectureLine',
   default: '기계',
 })
 
+export const LectureStartDate = atom<number[]>({
+  key: 'LectureStartDate',
+  default: [0, 0, 0],
+})
+export const LectureEndDate = atom<number[]>({
+  key: 'LectureEndDate',
+  default: [0, 0, 0],
+})
+export const LectureStartTime = atom<number[]>({
+  key: 'LectureStartTime',
+  default: [0, 0],
+})
+export const LectureEndTime = atom<number[]>({
+  key: 'LectureEndTime',
+  default: [0, 0],
+})
+export const LectureProfessor = atom<string>({
+  key: 'LectureProfessor',
+  default: ''
+})
 export const SchoolFilterText = atom<string>({
   key: 'SchoolFilterText',
+  default: '',
+})
+export const LectureMax = atom<string>({
+  key: 'LectureMax',
   default: '',
 })
 

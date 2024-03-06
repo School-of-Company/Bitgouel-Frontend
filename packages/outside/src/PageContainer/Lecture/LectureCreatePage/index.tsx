@@ -1,15 +1,24 @@
 'use client'
 
-import { Bg3, FilterOut, LectureType } from '@bitgouel/common'
+import { Bg3, FilterOut, LectureEndDate, LectureEndTime, LectureLine, LectureMax, LectureProfessor, LectureStartDate, LectureType, useModal } from '@bitgouel/common'
 import { ChangeEvent, useState } from 'react'
 import * as S from './style'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { LectureSettingModal } from '@/modals'
 
 const LectureCreatePage = () => {
   const MAXLENGTH: number = 1000 as const
   const [lectureTitle, setLectureTitle] = useState<string>('')
   const [lectureContent, setLectureContent] = useState<string>('')
-  const [lectureType, setLectureType] = useRecoilState(LectureType)
+  const lectureType = useRecoilValue(LectureType)
+  const lectureLine = useRecoilValue(LectureLine)
+  const lectureStartDate = useRecoilValue(LectureStartDate)
+  const lectureStartTime = useRecoilValue(LectureStartDate)
+  const lectureEndDate = useRecoilValue(LectureEndDate)
+  const lectureEndTime = useRecoilValue(LectureEndTime)
+  const lectureProfessor = useRecoilValue(LectureProfessor)
+  const lectureMax = useRecoilValue(LectureMax)
+  const {openModal} = useModal()
 
   // const onCreate = () =>
   //   mutate({
@@ -53,7 +62,7 @@ const LectureCreatePage = () => {
         <S.BgContainer>
           <S.CreateTitle>강의 개설</S.CreateTitle>
           <S.TitleButtonContainer>
-            <S.LectureButton>
+            <S.LectureButton onClick={(() => openModal(<LectureSettingModal />))}>
               <FilterOut />
               <span>강의 세부 설정</span>
             </S.LectureButton>

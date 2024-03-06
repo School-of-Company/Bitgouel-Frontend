@@ -1,6 +1,6 @@
 'use client'
 
-import { lectureToKor, lectureStatusToKor } from '../../constants'
+import { lectureTypeToKor, lectureStatusToKor } from '../../constants'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
 import { LectureItemProps } from '@bitgouel/types'
@@ -33,7 +33,7 @@ const LectureItem = ({ item, role }: LectureItemProps) => {
         </S.MainText>
       </S.MainTextContainer>
       <S.SubMenuContainer>
-        <S.From>{lectureToKor[item.lectureType]}</S.From>
+        <S.From>{lectureTypeToKor[item.lectureType]}</S.From>
         <S.MenuNum>
           <span>
             {`${item.startDate.slice(0, 4)}년 ${item.startDate.slice(

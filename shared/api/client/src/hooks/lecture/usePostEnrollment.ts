@@ -6,7 +6,7 @@ import { useModal } from '@bitgouel/common/src/hooks'
 import { toast } from 'react-toastify'
 import { ApiErrorTypes } from '@bitgouel/types'
 
-export const usePostApplicationLecture = (id: string) => {
+export const usePostEnrollment = (id: string) => {
   const { push } = useRouter()
   const { closeModal } = useModal()
 

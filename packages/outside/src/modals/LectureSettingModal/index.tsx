@@ -1,61 +1,49 @@
+'use client'
+
 import {
   CancelIcon,
-  LectureLine,
-  LectureType,
+  LectureEndDate,
+  LectureStartDate,
   Portal,
-  useModal,
+  useModal
 } from '@bitgouel/common'
-import { useRecoilState } from 'recoil'
+import {
+  LocalizationProvider,
+  StaticDateRangePicker,
+} from '@mui/x-date-pickers-pro'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo'
+import { useSetRecoilState } from 'recoil'
+import LectureLineSelect from './LectureLineSelect'
+import LectureMaxInput from './LectureMaxInput'
+import LectureTypeSelect from './LectureTypeSelect'
+import SearchProfessor from './SearchProfessor'
+import ShowEnrollmentTime from './ShowEnrollment'
 import * as S from './style'
 
-const lectureTypes: ['상호학점인정교육과정', '대학탐방프로그램'] = [
-  '상호학점인정교육과정',
-  '대학탐방프로그램',
-]
+const LectureEnrollmentDate = () => {
+  const setStartDate = useSetRecoilState(LectureStartDate)
+  const setEndDate = useSetRecoilState(LectureEndDate)
 
-const lectureLines: [
-  '기계',
-  '자동차',
-  '전기•전자',
-  '생명화학공학',
-  '뷰티',
-  '의료•헬스',
-  '드론'
-] = ['기계', '자동차', '전기•전자', '생명화학공학', '뷰티', '의료•헬스', '드론']
+  const onDateChange = (datePick) => {
+    const start = new Date(datePick[0])
+    const end = new Date(datePick[1])
+    setStartDate(() => [
+      start.getFullYear(),
+      start.getMonth() + 1,
+      start.getDate(),
+    ])
+    setEndDate(() => [end.getFullYear(), end.getMonth() + 1, end.getDate()])
+  }
 
-const LectureTypeSelect = () => {
-  const [lectureType, setLectureType] = useRecoilState(LectureType)
   return (
-    <S.EnumSelectContainer>
-      {lectureTypes.map((type) => (
-        <S.EnumBox
-          key={type}
-          current={type}
-          selected={lectureType}
-          onClick={() => setLectureType(type)}
-        >
-          <span>{type}</span>
-        </S.EnumBox>
-      ))}
-    </S.EnumSelectContainer>
-  )
-}
-
-const LectureLineSelect = () => {
-  const [lectureLine, setLectureLine] = useRecoilState(LectureLine)
-  return (
-    <S.EnumSelectContainer>
-      {lectureLines.map((line) => (
-        <S.EnumBox
-          key={line}
-          current={line}
-          selected={lectureLine}
-          onClick={() => setLectureLine(line)}
-        >
-          <span>{line}</span>
-        </S.EnumBox>
-      ))}
-    </S.EnumSelectContainer>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DemoContainer components={['StaticDateRangePicker']}>
+        <DemoItem component='StaticDateRangePicker'>
+          <StaticDateRangePicker onChange={onDateChange} />
+        </DemoItem>
+      </DemoContainer>
+    </LocalizationProvider>
   )
 }
 
@@ -76,6 +64,21 @@ const LectureSettingModal = () => {
         <S.SettingContainer>
           <span>강의 계열</span>
           <LectureLineSelect />
+        </S.SettingContainer>
+        <S.SettingContainer>
+          <span>강의 신청 기간</span>
+          <S.EnrollmentDateBox>
+            <LectureEnrollmentDate />
+            <ShowEnrollmentTime />
+          </S.EnrollmentDateBox>
+        </S.SettingContainer>
+        <S.SettingContainer>
+          <span>담당 교수</span>
+          <SearchProfessor />
+        </S.SettingContainer>
+        <S.SettingContainer>
+          <span>모집 인원</span>
+          <LectureMaxInput />
         </S.SettingContainer>
       </S.LectureSettingModalWrapper>
     </Portal>

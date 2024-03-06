@@ -1,9 +1,9 @@
 'use client'
 
 import { useGetUserList } from '@bitgouel/api'
-import { Bg6, FilterOut, Minus, Plus, UserItem } from '@bitgouel/common'
+import { Bg6, FilterOut, Minus, Plus, SearchIcon, UserItem } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { AdminFilter } from '../../../components'
 import * as S from './style'
 
@@ -17,13 +17,10 @@ const UserListPage = () => {
   })
   const [isFilter, setIsFilter] = useState(false)
 
-  useEffect(() => {
-    const delayFetch = setTimeout(() => {
-      refetch()
-    }, 2000)
-
-    return () => clearTimeout(delayFetch)
-  }, [keyword])
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault()
+    refetch()
+  }
 
   return (
     <div>
@@ -44,13 +41,16 @@ const UserListPage = () => {
       </S.SlideBg>
       <S.UserListWrapper>
         <S.UserSearchContainer>
-          <S.UserSearchInput
-            value={keyword}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setKeyword(e.target.value)
-            }
-            placeholder='이름으로 검색...'
-          />
+          <S.UserSearchBox onSubmit={onSubmit}>
+            <S.UserSearchInput
+              value={keyword}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setKeyword(e.target.value)
+              }
+              placeholder='이름으로 검색...'
+            />
+            <SearchIcon onClick={() => refetch()} />
+          </S.UserSearchBox>
           <S.UserSearchFilterBox>
             <S.UserSearchFilter onClick={() => setIsFilter((prev) => !prev)}>
               <FilterOut />

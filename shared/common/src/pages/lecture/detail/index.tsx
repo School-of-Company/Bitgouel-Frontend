@@ -4,7 +4,7 @@ import {
   useGetDetailLecture
 } from '@bitgouel/api'
 import { Bg3 } from '../../../assets'
-import { lectureToKor } from '../../../constants'
+import { lectureTypeToKor } from '../../../constants'
 import * as S from './style'
 
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
@@ -36,7 +36,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
             <S.SubMenuContainer>
               <S.From>
                 {
-                  lectureToKor[
+                  lectureTypeToKor[
                     data?.data.lectureType ||
                       'MUTUAL_CREDIT_RECOGNITION_PROGRAM'
                   ]
