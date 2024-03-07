@@ -20,22 +20,22 @@ const NoticePage = () => {
       <S.SlideBg url={Bg1}>
         <S.BgContainer>
           <S.NoticeTitle>공지사항</S.NoticeTitle>
-          {tokenManager.authority === 'ROLE_ADMIN' && (
-            <S.ButtonContainer>
-              <S.NoticeButton onClick={() => push(`/main/post`)}>
-                <Message />
-                <span>게시글</span>
-              </S.NoticeButton>
-              <S.NoticeButton onClick={() => push(`/main/inquiry`)}>
-                <Question />
-                <span>문의사항</span>
-              </S.NoticeButton>
+          <S.ButtonContainer>
+            <S.NoticeButton onClick={() => push(`/main/post`)}>
+              <Message />
+              <span>게시글</span>
+            </S.NoticeButton>
+            <S.NoticeButton onClick={() => push(`/main/inquiry`)}>
+              <Question />
+              <span>문의사항</span>
+            </S.NoticeButton>
+            {tokenManager.authority === 'ROLE_ADMIN' && (
               <S.NoticeButton onClick={() => push('/main/post/notice/create')}>
                 <Plus />
                 <span>공지 추가</span>
               </S.NoticeButton>
-            </S.ButtonContainer>
-          )}
+            )}
+          </S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
       <S.NoticeListWrapper>

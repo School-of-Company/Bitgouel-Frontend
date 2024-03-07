@@ -392,7 +392,6 @@ const HomePage = () => {
               <span>개인정보처리방침</span>
               <span>저작권신고 및 보호규정</span>
               <span onClick={() => push('/main/inquiry')}>문의하기</span>
-              <span>관리자</span>
             </S.CopyRightLinkList>
           </S.CopyRightsContainer>
           <S.FromLogoContainer>

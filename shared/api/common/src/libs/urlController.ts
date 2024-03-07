@@ -2,6 +2,7 @@ import {
   LectureListOptionsTypes,
   ActivityOptionsTypes,
   UserListOptionsTypes,
+  AnswerStatus,
 } from '@bitgouel/types'
 
 export const authUrl = {
@@ -78,7 +79,8 @@ export const inquiryUrl = {
   myInquiryDelete: (inquiry_id: string) => `/inquiry/${inquiry_id}`,
   myInquiryModify: (inquiry_id: string) => `/inquiry/${inquiry_id}`,
   inquiryAnswer: (inquiry_id: string) => `/inquiry/${inquiry_id}/reply`,
-  inquiryList: () => `/inquiry/all`,
+  inquiryList: (answerStatus: AnswerStatus | string) =>
+    `/inquiry/all?answerStatus=${answerStatus}`,
   inquiryDelete: (inquiry_id: string) => `/inquiry/${inquiry_id}/reject`,
 } as const
 
@@ -87,7 +89,6 @@ export const adminUrl = {
     `/admin?keyword=${queryString.keyword}&authority=${queryString.authority}&approveStatus=${queryString.approveStatus}`,
   withDrawUserList: (cohort: string) => `/withdraw?cohort=${cohort}`,
   approveUser: (userIds: string[]) => `/admin?userIds=${userIds.join(',')}`,
-  rejectUser: (userIds: string[]) =>
-    `/admin/${userIds.join(',')}/reject`,
-  withDrawUser: (userIds: string[]) => `/admin/${userIds.join(',')}`
+  rejectUser: (userIds: string[]) => `/admin/${userIds.join(',')}/reject`,
+  withDrawUser: (userIds: string[]) => `/admin/${userIds.join(',')}`,
 } as const
