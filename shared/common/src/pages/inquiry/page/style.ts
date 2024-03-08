@@ -99,15 +99,16 @@ export const ListContainer = styled.div`
 
 export const InquiryFilter = styled.div`
   width: 11.375rem;
-  height: 7.625rem;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   background-color: rgba(129, 129, 129, 0.6);
   z-index: 99;
   border-radius: 0.5rem;
+  padding-bottom: 1.5rem;
   position: absolute;
-  top: 180%;
+  top: 150%;
   gap: 0.5rem;
 
   h3 {
@@ -122,7 +123,7 @@ export const InquiryFilter = styled.div`
   &::after {
     content: '';
     position: absolute;
-    top: -16.2%;
+    top: -13.5%;
     right: 40%;
     border-left: 1.25rem solid transparent;
     border-right: 1.25rem solid transparent;

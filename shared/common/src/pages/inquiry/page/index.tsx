@@ -24,8 +24,9 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const { data: myInquiryList } = useGetMyInquiryList()
   const [isFilter, setIsFilter] = useState<boolean>(false)
   const [inquiryStatus, setInquiryStatus] = useState<
-    { text: string; status: AnswerStatus; checked: false }[]
+    { text: string; status: AnswerStatus | string; checked: boolean }[]
   >([
+    { text: '전체', status: '', checked: true },
     { text: '답변 대기 중', status: 'UNANSWERED', checked: false },
     { text: '답변 완료됨', status: 'ANSWERED', checked: false },
   ])
