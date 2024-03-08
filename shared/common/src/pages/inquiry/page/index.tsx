@@ -11,10 +11,11 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { Bg5, FilterOut, Plus, SearchIcon } from '../../../assets'
 import { InquiryItem } from '../../../components'
 import * as S from './style'
+import { InquiryFiltersTypes } from '@bitgouel/types'
 
 const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const [keyword, setKeyword] = useState<string>('')
-  const [answerStatus, setAnswerStatus] = useState<AnswerStatus | string>('')
+  const [answerStatus, setAnswerStatus] = useState<AnswerStatus | ''>('')
   const { push } = useRouter()
   const tokenManager = new TokenManager()
   const { data: inquiryList, refetch } = useGetInquiryList({
@@ -23,9 +24,7 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
   })
   const { data: myInquiryList } = useGetMyInquiryList()
   const [isFilter, setIsFilter] = useState<boolean>(false)
-  const [inquiryStatus, setInquiryStatus] = useState<
-    { text: string; status: AnswerStatus | string; checked: boolean }[]
-  >([
+  const [inquiryStatus, setInquiryStatus] = useState<InquiryFiltersTypes[]>([
     { text: '전체', status: '', checked: true },
     { text: '답변 대기 중', status: 'UNANSWERED', checked: false },
     { text: '답변 완료됨', status: 'ANSWERED', checked: false },
