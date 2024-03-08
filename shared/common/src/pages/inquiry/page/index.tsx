@@ -35,12 +35,12 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
     setInquiryStatus((prev) =>
       prev.map((inquiry: any) =>
         inquiry.status === e.target.id
-          ? { ...inquiry, checked: !inquiry.checked }
+          ? { ...inquiry, checked: true }
           : { ...inquiry, checked: false }
       )
     )
     if (e.target.checked) setAnswerStatus(e.target.id as AnswerStatus)
-    else setAnswerStatus('UNANSWERED')
+    else return
   }
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
