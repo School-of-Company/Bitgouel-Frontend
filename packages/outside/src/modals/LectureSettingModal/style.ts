@@ -67,7 +67,7 @@ export const EnumBox = styled.div<{ current: string; selected: string }>`
     current === selected ? theme.color.main : theme.color.white};
   color: ${({ theme, current, selected }) =>
     current === selected ? theme.color.white : theme.color.gray['400']};
-  border: 1px solid
+  border: 0.0625rem solid
     ${({ theme, current, selected }) =>
       current === selected ? theme.color.main : theme.color.gray['400']};
   border-radius: 6.1875rem;
