@@ -1,23 +1,26 @@
 'use client'
 
-import { RoleEnumTypes } from '@bitgouel/types'
-import { useRouter } from 'next/navigation'
-import { Bg5, FilterOut, Plus } from '../../../assets'
-import { InquiryItem } from '../../../components'
-import * as S from './style'
 import {
   TokenManager,
   useGetInquiryList,
   useGetMyInquiryList,
 } from '@bitgouel/api'
-import { ChangeEvent, useEffect, useState } from 'react'
 import { AnswerStatus } from '@bitgouel/types/src/common/AnswerStatus'
+import { useRouter } from 'next/navigation'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { Bg5, FilterOut, Plus, SearchIcon } from '../../../assets'
+import { InquiryItem } from '../../../components'
+import * as S from './style'
 
 const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
+  const [keyword, setKeyword] = useState<string>('')
   const [answerStatus, setAnswerStatus] = useState<AnswerStatus | string>('')
   const { push } = useRouter()
   const tokenManager = new TokenManager()
-  const { data: inquiryList, refetch } = useGetInquiryList(answerStatus)
+  const { data: inquiryList, refetch } = useGetInquiryList({
+    keyword,
+    answerStatus,
+  })
   const { data: myInquiryList } = useGetMyInquiryList()
   const [isFilter, setIsFilter] = useState<boolean>(false)
   const [inquiryStatus, setInquiryStatus] = useState<
@@ -38,13 +41,17 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
     if (e.target.checked) setAnswerStatus(e.target.id as AnswerStatus)
     else setAnswerStatus('UNANSWERED')
   }
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault()
+    refetch()
+  }
 
   useEffect(() => {
     refetch()
   }, [answerStatus])
 
   return (
-    <div style={{ width: '100%', height: '100%' }}>
+    <div style={{ width: '100%', height: '100vh' }}>
       <S.SlideBg url={Bg5}>
         <S.BgContainer>
           <S.InquiryTitle>문의사항</S.InquiryTitle>
@@ -55,46 +62,61 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
                 <span>문의사항 추가</span>
               </S.InquiryButton>
             )}
-            {isAdmin && (
-              <S.InquiryFilterBox>
-                <S.InquiryButton onClick={() => setIsFilter((prev) => !prev)}>
-                  <FilterOut />
-                  <span>필터</span>
-                </S.InquiryButton>
-                {isFilter && (
-                  <S.InquiryFilter>
-                    <h3>문의 상태</h3>
-                    <S.CheckListContainer>
-                      {inquiryStatus.map((inquiry, idx) => (
-                        <S.CheckBox key={idx} htmlFor={inquiry.status}>
-                          <S.Check
-                            type='checkbox'
-                            id={inquiry.status}
-                            checked={inquiry.checked}
-                            onChange={onChange}
-                          />
-                          <span>{inquiry.text}</span>
-                        </S.CheckBox>
-                      ))}
-                    </S.CheckListContainer>
-                  </S.InquiryFilter>
-                )}
-              </S.InquiryFilterBox>
-            )}
           </S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
-      <S.ListWrapper>
-        <S.ListContainer>
-          {tokenManager.authority === 'ROLE_ADMIN'
-            ? inquiryList?.data.inquiries.map((inquiry) => (
-                <InquiryItem item={inquiry} />
-              ))
-            : myInquiryList?.data.inquiries.map((inquiry) => (
-                <InquiryItem item={inquiry} />
-              ))}
-        </S.ListContainer>
-      </S.ListWrapper>
+      <S.InquiryWrapper>
+        {isAdmin && (
+          <S.SearchContainer>
+            <S.SearchBox onSubmit={onSubmit}>
+              <S.SearchInput
+                type='text'
+                placeholder='키워드로 검색...'
+                value={keyword}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setKeyword(e.target.value)
+                }
+              />
+              <SearchIcon onClick={() => refetch()} />
+            </S.SearchBox>
+            <S.InquiryFilterBox>
+              <S.Filter onClick={() => setIsFilter((prev) => !prev)}>
+                <FilterOut />
+                <span>필터</span>
+              </S.Filter>
+              {isFilter && (
+                <S.InquiryFilter>
+                  <h3>문의 상태</h3>
+                  <S.CheckListContainer>
+                    {inquiryStatus.map((inquiry, idx) => (
+                      <S.CheckBox key={idx} htmlFor={inquiry.status}>
+                        <S.Check
+                          type='checkbox'
+                          id={inquiry.status}
+                          checked={inquiry.checked}
+                          onChange={onChange}
+                        />
+                        <span>{inquiry.text}</span>
+                      </S.CheckBox>
+                    ))}
+                  </S.CheckListContainer>
+                </S.InquiryFilter>
+              )}
+            </S.InquiryFilterBox>
+          </S.SearchContainer>
+        )}
+        <S.ListWrapper>
+          <S.ListContainer>
+            {tokenManager.authority === 'ROLE_ADMIN'
+              ? inquiryList?.data.inquiries.map((inquiry) => (
+                  <InquiryItem item={inquiry} />
+                ))
+              : myInquiryList?.data.inquiries.map((inquiry) => (
+                  <InquiryItem item={inquiry} />
+                ))}
+          </S.ListContainer>
+        </S.ListWrapper>
+      </S.InquiryWrapper>
     </div>
   )
 }

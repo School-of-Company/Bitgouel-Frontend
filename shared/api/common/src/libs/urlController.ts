@@ -79,8 +79,11 @@ export const inquiryUrl = {
   myInquiryDelete: (inquiry_id: string) => `/inquiry/${inquiry_id}`,
   myInquiryModify: (inquiry_id: string) => `/inquiry/${inquiry_id}`,
   inquiryAnswer: (inquiry_id: string) => `/inquiry/${inquiry_id}/reply`,
-  inquiryList: (answerStatus: AnswerStatus | string) =>
-    `/inquiry/all?answerStatus=${answerStatus}`,
+  inquiryList: (queryString: {
+    keyword: string
+    answerStatus?: AnswerStatus | string
+  }) =>
+    `/inquiry/all?answerStatus=${queryString.answerStatus}&keyword=${queryString.keyword}`,
   inquiryDelete: (inquiry_id: string) => `/inquiry/${inquiry_id}/reject`,
 } as const
 

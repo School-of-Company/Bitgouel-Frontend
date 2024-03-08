@@ -59,6 +59,35 @@ export const InquiryFilterBox = styled.div`
   position: relative;
 `
 
+export const InquiryWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+`
+
+export const Filter = styled.div`
+  width: 5.75rem;
+  height: 3.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 0.0625rem solid ${({ theme }) => theme.color.gray['400']};
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: ${({ theme }) => theme.color.gray['400']};
+  ${({ theme }) => theme.typo.text_md.medium};
+
+  &:hover {
+    border: 0.0625rem solid ${({ theme }) => theme.color.main};
+    fill: ${({ theme }) => theme.color.main};
+    color: ${({ theme }) => theme.color.main};
+  }
+`
+
 export const ListWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -131,4 +160,33 @@ export const Check = styled.input`
   &:checked {
     background-color: ${({ theme }) => theme.color.main};
   }
+`
+
+export const SearchContainer = styled.div`
+  width: 75rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  svg {
+    cursor: pointer;
+  }
+`
+
+export const SearchBox = styled.form`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 0.0625rem solid ${({ theme }) => theme.color.gray['400']};
+  border-radius: 0.5rem;
+  padding: 1.0625rem 1.25rem;
+`
+
+export const SearchInput = styled.input`
+  width: 64.25rem;
+  ${({ theme }) => theme.typo.text_sm.regular};
+  color: ${({ theme }) => theme.color.gray['400']};
+  border: none;
+  outline: none;
 `
