@@ -1,16 +1,15 @@
 'use client'
 
 import { TokenManager, useGetLectureList } from '@bitgouel/api'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil'
 import { Bg3, Filter, Plus } from '../../../assets'
 import { LectureTypeText } from '../../../atoms'
 import { LectureItem } from '../../../components'
 import { lectureToEnum } from '../../../constants'
 import { LectureTypeModal } from '../../../modals'
-import { useEffect, useState } from 'react'
-import { useRecoilState } from 'recoil'
 import * as S from './style'
-import { RoleEnumTypes } from '@bitgouel/types'
-import { useRouter } from 'next/navigation'
 
 const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
@@ -35,13 +34,13 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
         <S.BgContainer>
           <S.LectureTitle>강의 목록</S.LectureTitle>
           <S.ButtonContainer>
+            {isAdmin && (
+              <S.LectureButton onClick={() => push('/main/lecture/create')}>
+                <Plus />
+                <span>개설 신청하기</span>
+              </S.LectureButton>
+            )}
             <S.SelectFilterContainer>
-              {isAdmin && (
-                <S.LectureButton onClick={() => push('/main/lecture/create')}>
-                  <Plus />
-                  <span>개설 신청하기</span>
-                </S.LectureButton>
-              )}
               <S.LectureButton
                 onClick={() => setIsLectureType((prev) => !prev)}
               >
