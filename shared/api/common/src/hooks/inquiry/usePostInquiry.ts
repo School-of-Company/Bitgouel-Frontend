@@ -16,7 +16,7 @@ export const usePostInquiry = () => {
     {
       onSuccess: () => {
         closeModal()
-        push('/main/inquiry')
+        push('/main/post/inquiry')
         toast.success('문의했습니다')
       },
       onError: ({ response }) => {
