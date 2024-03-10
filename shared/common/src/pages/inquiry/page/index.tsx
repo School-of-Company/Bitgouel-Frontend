@@ -25,11 +25,16 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const [answerStatus, setAnswerStatus] = useState<AnswerStatus | ''>('')
   const { push } = useRouter()
   const tokenManager = new TokenManager()
-  const { data: inquiryList, refetch } = useGetInquiryList({
-    keyword,
-    answerStatus,
+  const { data: inquiryList, refetch } = useGetInquiryList(
+    {
+      keyword,
+      answerStatus,
+    },
+    { enabled: !!isAdmin }
+  )
+  const { data: myInquiryList } = useGetMyInquiryList({
+    enabled: !isAdmin,
   })
-  const { data: myInquiryList } = useGetMyInquiryList()
   const [isFilter, setIsFilter] = useState<boolean>(false)
   const [inquiryStatus, setInquiryStatus] = useState<InquiryFiltersTypes[]>([
     { text: '전체', status: '', checked: true },
@@ -108,7 +113,7 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
                     {inquiryStatus.map((inquiry, idx) => (
                       <S.CheckBox key={idx} htmlFor={inquiry.status}>
                         <S.Check
-                          type='checkbox'
+                          type='radio'
                           id={inquiry.status}
                           checked={inquiry.checked}
                           onChange={onChange}
@@ -124,12 +129,12 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
         )}
         <S.ListWrapper>
           <S.ListContainer>
-            {tokenManager.authority === 'ROLE_ADMIN'
+            {isAdmin
               ? inquiryList?.data.inquiries.map((inquiry) => (
-                  <InquiryItem item={inquiry} />
+                  <InquiryItem item={inquiry} key={inquiry.id} />
                 ))
               : myInquiryList?.data.inquiries.map((inquiry) => (
-                  <InquiryItem item={inquiry} />
+                  <InquiryItem item={inquiry} key={inquiry.id} />
                 ))}
           </S.ListContainer>
         </S.ListWrapper>
