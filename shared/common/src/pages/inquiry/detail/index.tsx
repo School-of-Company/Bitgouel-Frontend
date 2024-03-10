@@ -13,9 +13,14 @@ import { useModal } from '../../../hooks'
 import { AppropriationModal } from '../../../modals'
 import * as S from './style'
 
-const InquiryDetailPage = ({ inquiryId }: { inquiryId: string }) => {
+const InquiryDetailPage = ({
+  inquiryId,
+  isAdmin,
+}: {
+  inquiryId: string
+  isAdmin: boolean
+}) => {
   const { push } = useRouter()
-  const tokenManager = new TokenManager()
   const { data } = useGetInquiryDetail(inquiryId)
   const { mutate: inquiryReject } = useDeleteInquiryReject(inquiryId)
   const { mutate: myInquiryReject } = useDeleteMyInquiry(inquiryId)
@@ -26,30 +31,32 @@ const InquiryDetailPage = ({ inquiryId }: { inquiryId: string }) => {
       <S.SlideBg url={Bg5}>
         <S.BgContainer>
           <S.InquiryTitle>문의 상세</S.InquiryTitle>
-          <S.TitleButtonContainer>
-            <S.InquiryButton
-              onClick={() => push(`/main/inquiry/modify/${inquiryId}`)}
-            >
-              <Pen />
-              <span>문의 수정</span>
-            </S.InquiryButton>
-            <S.InquiryButton
-              onClick={() =>
-                openModal(
-                  <AppropriationModal
-                    isApprove={false}
-                    question='문의를 삭제하시겠습니까?'
-                    purpose='삭제하기'
-                    title={data?.data.question as ''}
-                    onAppropriation={() => myInquiryReject()}
-                  />
-                )
-              }
-            >
-              <TrashCan />
-              <span>문의 삭제</span>
-            </S.InquiryButton>
-          </S.TitleButtonContainer>
+          {!isAdmin && (
+            <S.TitleButtonContainer>
+              <S.InquiryButton
+                onClick={() => push(`/main/post/inquiry/modify/${inquiryId}`)}
+              >
+                <Pen />
+                <span>문의 수정</span>
+              </S.InquiryButton>
+              <S.InquiryButton
+                onClick={() =>
+                  openModal(
+                    <AppropriationModal
+                      isApprove={false}
+                      question='문의를 삭제하시겠습니까?'
+                      purpose='삭제하기'
+                      title={data?.data.question as ''}
+                      onAppropriation={() => myInquiryReject()}
+                    />
+                  )
+                }
+              >
+                <TrashCan />
+                <span>문의 삭제</span>
+              </S.InquiryButton>
+            </S.TitleButtonContainer>
+          )}
         </S.BgContainer>
       </S.SlideBg>
       <S.DocumentWrapper>
@@ -110,19 +117,21 @@ const InquiryDetailPage = ({ inquiryId }: { inquiryId: string }) => {
             </S.AnswerTitleBox>
             <S.AnswerText>{data?.data.answer}</S.AnswerText>
           </S.AnswerBox>
-          {tokenManager.authority === 'ROLE_ADMIN' && (
+          {isAdmin && (
             <S.ButtonWrapper>
               <S.ButtonContainer>
                 <S.DeleteNoticeButton
-                  onClick={() => (
-                    <AppropriationModal
-                      isApprove={false}
-                      question='문의를 삭제하시겠습니까?'
-                      purpose='삭제하기'
-                      title={data?.data.question as ''}
-                      onAppropriation={() => inquiryReject()}
-                    />
-                  )}
+                  onClick={() =>
+                    openModal(
+                      <AppropriationModal
+                        isApprove={false}
+                        question='문의를 삭제하시겠습니까?'
+                        purpose='삭제하기'
+                        title={data?.data.question as ''}
+                        onAppropriation={() => inquiryReject()}
+                      />
+                    )
+                  }
                 >
                   삭제하기
                 </S.DeleteNoticeButton>

@@ -25,7 +25,7 @@ const NoticePage = () => {
               <Message />
               <span>게시글</span>
             </S.NoticeButton>
-            <S.NoticeButton onClick={() => push(`/main/inquiry`)}>
+            <S.NoticeButton onClick={() => push(`/main/post/inquiry`)}>
               <Question />
               <span>문의사항</span>
             </S.NoticeButton>
