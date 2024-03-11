@@ -29,7 +29,7 @@ export const ModalTitleContainer = styled.div`
 
 export const AnswerBox = styled.textarea`
   width: 47rem;
-  height: 600px;
+  height: 37.5rem;
   resize: none;
   color: ${({ theme }) => theme.color.gray['400']};
   ${({ theme }) => theme.typo.text_md.regular};
