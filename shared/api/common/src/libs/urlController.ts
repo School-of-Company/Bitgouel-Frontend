@@ -78,7 +78,7 @@ export const inquiryUrl = {
   inquiryDetail: (inquiry_id: string) => `/inquiry/${inquiry_id}`,
   myInquiryDelete: (inquiry_id: string) => `/inquiry/${inquiry_id}`,
   myInquiryModify: (inquiry_id: string) => `/inquiry/${inquiry_id}`,
-  inquiryAnswer: (inquiry_id: string) => `/inquiry/${inquiry_id}/reply`,
+  inquiryAnswer: (inquiry_id: string) => `/inquiry/${inquiry_id}/answer`,
   inquiryList: (queryString: InquiryListQueryStringTypes) =>
     `/inquiry/all?answerStatus=${queryString.answerStatus}&keyword=${queryString.keyword}`,
   inquiryDelete: (inquiry_id: string) => `/inquiry/${inquiry_id}/reject`,

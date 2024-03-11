@@ -30,6 +30,7 @@ type purposeTypes =
   | '문의하기'
   | '수락하기'
   | '개설하기'
+  | '답변하기'
 
 export interface AppropriationModalProps {
   isApprove: boolean
