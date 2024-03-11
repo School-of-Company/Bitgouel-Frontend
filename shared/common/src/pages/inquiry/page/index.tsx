@@ -72,9 +72,9 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
               <Message />
               <span>게시글</span>
             </S.InquiryButton>
-            <S.InquiryButton onClick={() => push(`/main/post/inquiry`)}>
+            <S.InquiryButton onClick={() => push(`/main/post/notice`)}>
               <MegaPhone />
-              <span>문의사항</span>
+              <span>공지사항</span>
             </S.InquiryButton>
             {!isAdmin && (
               <S.InquiryButton

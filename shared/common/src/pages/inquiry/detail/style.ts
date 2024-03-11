@@ -167,11 +167,11 @@ export const ButtonContainer = styled.div`
   }
 `
 
-export const DeleteNoticeButton = styled.div`
+export const DeleteInquiryButton = styled.div`
   background-color: ${({ theme }) => theme.color.error};
   margin-right: 1rem;
 `
 
-export const ModifyNoticeButton = styled.div`
+export const AnswerInquiryButton = styled.div`
   background-color: ${({ theme }) => theme.color.main};
 `

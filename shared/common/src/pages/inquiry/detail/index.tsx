@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation'
 import { match } from 'ts-pattern'
 import { Bg5, Pen, TrashCan } from '../../../assets'
 import { useModal } from '../../../hooks'
-import { AppropriationModal } from '../../../modals'
+import { AppropriationModal, InquiryAnswerModal } from '../../../modals'
 import * as S from './style'
 
 const InquiryDetailPage = ({
@@ -120,7 +120,7 @@ const InquiryDetailPage = ({
           {isAdmin && (
             <S.ButtonWrapper>
               <S.ButtonContainer>
-                <S.DeleteNoticeButton
+                <S.DeleteInquiryButton
                   onClick={() =>
                     openModal(
                       <AppropriationModal
@@ -134,8 +134,12 @@ const InquiryDetailPage = ({
                   }
                 >
                   삭제하기
-                </S.DeleteNoticeButton>
-                <S.ModifyNoticeButton>답변하기</S.ModifyNoticeButton>
+                </S.DeleteInquiryButton>
+                <S.AnswerInquiryButton
+                  onClick={() => openModal(<InquiryAnswerModal inquiryId={inquiryId} />)}
+                >
+                  답변하기
+                </S.AnswerInquiryButton>
               </S.ButtonContainer>
             </S.ButtonWrapper>
           )}
