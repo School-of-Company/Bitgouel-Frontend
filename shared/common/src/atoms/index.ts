@@ -92,7 +92,7 @@ export const LectureType = atom<LectureTypeEnum>({
 
 export const LectureSession = atom<LectureSessionEnum>({
   key: 'LectureSession',
-  default: '1학년 2학기',
+  default: 'FIRST_YEAR_FALL_SEMESTER',
 })
 
 export const LectureStartDate = atom<number[]>({

@@ -12,7 +12,7 @@ import {
   SearchWrapper,
 } from '../style'
 
-const SearchProfessor = () => {
+const SearchLine = () => {
   const [professor, setProfessor] = useState<string>('')
   const setLectureProfessor = useSetRecoilState(LectureProfessor)
   const { data, refetch } = useGetProfessor(professor)
@@ -31,7 +31,7 @@ const SearchProfessor = () => {
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setProfessor(e.target.value)
           }
-          placeholder='이름 또는 학교명으로 검색...'
+          placeholder='계열 검색 또는 임의로 추가...'
         />
         <SearchIcon onClick={() => refetch()} />
       </SearchInputBox>
@@ -53,4 +53,4 @@ const SearchProfessor = () => {
   )
 }
 
-export default SearchProfessor
+export default SearchLine

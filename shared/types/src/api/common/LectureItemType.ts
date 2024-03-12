@@ -1,14 +1,5 @@
+import { LectureTypeEnum } from '../admin'
 import { ApproveStatusEnum } from './ApproveStatusEnum'
-
-export type LectureTypeEnum =
-  | 'MUTUAL_CREDIT_RECOGNITION_PROGRAM'
-  | 'UNIVERSITY_EXPLORATION_PROGRAM'
-
-export type LectureSessionEnum =
-  | '1학년 2학기'
-  | '2학년 1학기'
-  | '2학년 2학기'
-  | '3학년 1학기'
 
 export type LectureStatusEnum = 'OPEN' | 'CLOSED'
 

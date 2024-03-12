@@ -5,7 +5,7 @@ import {
   LectureEndDate,
   LectureStartDate,
   Portal,
-  useModal
+  useModal,
 } from '@bitgouel/common'
 import {
   LocalizationProvider,
@@ -14,7 +14,7 @@ import {
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo'
 import { useSetRecoilState } from 'recoil'
-import LectureLineSelect from './LectureLineSelect'
+import LectureSessionSelect from './LectureSessionSelect'
 import LectureMaxInput from './LectureMaxInput'
 import LectureTypeSelect from './LectureTypeSelect'
 import SearchProfessor from './SearchProfessor'
@@ -62,8 +62,8 @@ const LectureSettingModal = () => {
           <LectureTypeSelect />
         </S.SettingContainer>
         <S.SettingContainer>
-          <span>강의 계열</span>
-          <LectureLineSelect />
+          <span>수강 학기</span>
+          <LectureSessionSelect />
         </S.SettingContainer>
         <S.SettingContainer>
           <span>강의 신청 기간</span>

@@ -2,6 +2,7 @@ import {
   LectureListOptionsTypes,
   ActivityOptionsTypes,
   UserListOptionsTypes,
+  LinePayloadTypes,
 } from '@bitgouel/types'
 
 export const authUrl = {
@@ -24,6 +25,8 @@ export const lectureUrl = {
   lectureEnrolment: (id: string) => `/lecture/${id}`,
   lectureInstructor: (keyword: string) =>
     `/lecture/instructor?keyword=${keyword}`,
+  lectureLine: (queryString: LinePayloadTypes) =>
+    `/lecture/line?keywrod=${queryString.keyword}&division=${queryString.division}`,
 } as const
 
 export const activityUrl = {
