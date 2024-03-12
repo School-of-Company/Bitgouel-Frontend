@@ -1,24 +1,21 @@
 'use client'
 
-import { useGetLine } from '@bitgouel/api'
-import { LectureLine, SearchIcon } from '@bitgouel/common'
+import { useGetDepartment } from '@bitgouel/api'
+import { LectureDepartment, SearchIcon } from '@bitgouel/common'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { useSetRecoilState } from 'recoil'
 import {
-    SearchInput,
-    SearchInputBox,
-    SearchItem,
-    SearchListContainer,
-    SearchWrapper,
+  SearchInput,
+  SearchInputBox,
+  SearchItem,
+  SearchListContainer,
+  SearchWrapper,
 } from '../style'
 
 const SearchLine = () => {
-  const [line, setLine] = useState<string>('')
-  const setLectureLine = useSetRecoilState(LectureLine)
-  const { data, refetch } = useGetLine({
-    keyword: line,
-    division: 'AI_CONVERGENCE',
-  })
+  const [department, setDepartment] = useState<string>('')
+  const setLectureDepartment = useSetRecoilState(LectureDepartment)
+  const { data, refetch } = useGetDepartment()
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -30,25 +27,25 @@ const SearchLine = () => {
       <SearchInputBox onSubmit={onSubmit}>
         <SearchInput
           type='text'
-          value={line}
+          value={department}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setLine(e.target.value)
+            setDepartment(e.target.value)
           }
-          placeholder='계열 검색 또는 임의로 추가...'
+          placeholder='학과 검색'
         />
         <SearchIcon onClick={() => refetch()} />
       </SearchInputBox>
       <SearchListContainer>
-        {data?.data.lines.map((line) => (
+        {data?.data.departments.map((department) => (
           <SearchItem
-            key={line}
+            key={department}
             onClick={() => {
-              setLectureLine(line)
-              setLine('')
+              setLectureDepartment(department)
+              setDepartment('')
             }}
           >
-            <span>{line}</span>
-            <span>계열 추가하기...</span> 
+            <span>{department}</span>
+            <span>계열 추가하기...</span>
           </SearchItem>
         ))}
       </SearchListContainer>

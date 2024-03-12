@@ -27,6 +27,7 @@ export const lectureUrl = {
     `/lecture/instructor?keyword=${keyword}`,
   lectureLine: (queryString: LinePayloadTypes) =>
     `/lecture/line?keywrod=${queryString.keyword}&division=${queryString.division}`,
+  lectureDepartment: () => `/lecture/department`,
 } as const
 
 export const activityUrl = {

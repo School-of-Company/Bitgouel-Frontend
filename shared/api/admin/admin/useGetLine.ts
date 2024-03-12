@@ -8,7 +8,7 @@ export const useGetLine = (
   options?: UseQueryOptions<AxiosResponse>
 ) =>
   useQuery<AxiosResponse<LineResponseTypes>, AxiosError<ApiErrorTypes>>(
-    lectureQueryKeys.getProfessor(),
+    lectureQueryKeys.getLine(),
     () => get(lectureUrl.lectureLine(queryString)),
     options
   )

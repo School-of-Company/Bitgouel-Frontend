@@ -7,7 +7,7 @@ import { useRecoilState } from 'recoil'
 import { Bg3, Filter, Plus } from '../../../assets'
 import { LectureTypeText } from '../../../atoms'
 import { LectureItem } from '../../../components'
-import { lectureToEnum } from '../../../constants'
+import { lectureTypeToEnum } from '../../../constants'
 import { LectureTypeModal } from '../../../modals'
 import * as S from './style'
 
@@ -21,7 +21,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
     page: 0,
     size: 10,
     status: 'PENDING',
-    type: lectureToEnum[lectureTypeText],
+    type: lectureTypeToEnum[lectureTypeText],
   })
 
   useEffect(() => {

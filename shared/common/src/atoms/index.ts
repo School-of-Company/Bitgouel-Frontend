@@ -111,6 +111,14 @@ export const LectureEndTime = atom<number[]>({
   key: 'LectureEndTime',
   default: [0, 0],
 })
+export const LectureLine = atom<string>({
+  key: 'LectureLine',
+  default: '',
+})
+export const LectureDepartment = atom<string>({
+  key: 'LectureDepartment',
+  default: '',
+})
 export const LectureProfessor = atom<string>({
   key: 'LectureProfessor',
   default: '',

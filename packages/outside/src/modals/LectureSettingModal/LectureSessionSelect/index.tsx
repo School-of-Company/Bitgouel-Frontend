@@ -1,13 +1,12 @@
 'use client'
 
-import { LectureSessionEnum, LectureSessionKor } from '@bitgouel/types'
-import { useRecoilState } from 'recoil'
-import { EnumBox, EnumSelectContainer } from '../style'
 import {
   LectureSession,
-  lectureSessionToEnum,
-  lectureSessionToKor,
+  lectureSessionToKor
 } from '@bitgouel/common'
+import { LectureSessionEnum } from '@bitgouel/types'
+import { useRecoilState } from 'recoil'
+import { EnumBox, EnumSelectContainer } from '../style'
 
 const lectureSessions: LectureSessionEnum[] = [
   'FIRST_YEAR_FALL_SEMESTER',

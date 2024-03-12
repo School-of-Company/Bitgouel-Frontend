@@ -1,6 +1,6 @@
 'use client'
 
-import { Bg3, FilterOut, LectureEndDate, LectureEndTime, LectureLine, LectureMax, LectureProfessor, LectureStartDate, LectureType, useModal } from '@bitgouel/common'
+import { Bg3, FilterOut, LectureEndDate, LectureEndTime, LectureSession, LectureMax, LectureProfessor, LectureStartDate, LectureType, useModal } from '@bitgouel/common'
 import { ChangeEvent, useState } from 'react'
 import * as S from './style'
 import { useRecoilState, useRecoilValue } from 'recoil'
@@ -11,7 +11,7 @@ const LectureCreatePage = () => {
   const [lectureTitle, setLectureTitle] = useState<string>('')
   const [lectureContent, setLectureContent] = useState<string>('')
   const lectureType = useRecoilValue(LectureType)
-  const lectureLine = useRecoilValue(LectureLine)
+  const lectureSession = useRecoilValue(LectureSession)
   const lectureStartDate = useRecoilValue(LectureStartDate)
   const lectureStartTime = useRecoilValue(LectureStartDate)
   const lectureEndDate = useRecoilValue(LectureEndDate)
