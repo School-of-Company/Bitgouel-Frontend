@@ -1,32 +1,29 @@
 'use client'
 
+import { LectureSessionEnum } from '@bitgouel/types'
 import { useRecoilState } from 'recoil'
 import { EnumBox, EnumSelectContainer } from '../style'
-import { LectureLine } from '@bitgouel/common'
-import { LectureLineEnum } from '@bitgouel/types'
+import { LectureSession } from '@bitgouel/common'
 
-const lectureLines: LectureLineEnum[] = [
-  '기계',
-  '자동차',
-  '전기전자',
-  '생명화학공학',
-  '뷰티',
-  '의료헬스',
-  '드론',
+const lectureSessions: LectureSessionEnum[] = [
+  '1학년 2학기',
+  '2학년 1학기',
+  '2학년 2학기',
+  '3학년 1학기',
 ]
 
 const LectureLineSelect = () => {
-  const [lectureLine, setLectureLine] = useRecoilState(LectureLine)
+  const [lectureSession, setLectureSession] = useRecoilState(LectureSession)
   return (
     <EnumSelectContainer>
-      {lectureLines.map((line) => (
+      {lectureSessions.map((session) => (
         <EnumBox
-          key={line}
-          current={line}
-          selected={lectureLine}
-          onClick={() => setLectureLine(line)}
+          key={session}
+          current={session}
+          selected={lectureSession}
+          onClick={() => setLectureSession(session)}
         >
-          <span>{line}</span>
+          <span>{session}</span>
         </EnumBox>
       ))}
     </EnumSelectContainer>

@@ -1,9 +1,4 @@
-import {
-  LectureItemType,
-  LectureLineEnum,
-  LectureTypeEnum,
-  RoleEnumTypes,
-} from '@bitgouel/types'
+import { LectureSessionEnum, LectureTypeEnum } from '@bitgouel/types'
 import { ReactNode } from 'react'
 import { atom } from 'recoil'
 
@@ -95,11 +90,9 @@ export const LectureType = atom<LectureTypeEnum>({
   default: 'MUTUAL_CREDIT_RECOGNITION_PROGRAM',
 })
 
-export const LectureLine = atom<
-  LectureLineEnum
->({
-  key: 'LectureLine',
-  default: '기계',
+export const LectureSession = atom<LectureSessionEnum>({
+  key: 'LectureSession',
+  default: '1학년 2학기',
 })
 
 export const LectureStartDate = atom<number[]>({
@@ -120,7 +113,7 @@ export const LectureEndTime = atom<number[]>({
 })
 export const LectureProfessor = atom<string>({
   key: 'LectureProfessor',
-  default: ''
+  default: '',
 })
 export const SchoolFilterText = atom<string>({
   key: 'SchoolFilterText',

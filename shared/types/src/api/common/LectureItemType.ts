@@ -4,14 +4,11 @@ export type LectureTypeEnum =
   | 'MUTUAL_CREDIT_RECOGNITION_PROGRAM'
   | 'UNIVERSITY_EXPLORATION_PROGRAM'
 
-export type LectureLineEnum =
-  | '기계'
-  | '자동차'
-  | '전기전자'
-  | '생명화학공학'
-  | '뷰티'
-  | '의료헬스'
-  | '드론'
+export type LectureSessionEnum =
+  | '1학년 2학기'
+  | '2학년 1학기'
+  | '2학년 2학기'
+  | '3학년 1학기'
 
 export type LectureStatusEnum = 'OPEN' | 'CLOSED'
 
