@@ -1,7 +1,7 @@
 import {
   ApproveStatusEnum,
-  LectureSessionEnum,
-  LectureSessionKor,
+  LectureSemesterEnum,
+  LectureSemesterKor,
   LectureTypeEnum,
   LectureTypeKor,
 } from '@bitgouel/types'
@@ -16,9 +16,9 @@ export const lectureTypeToEnum: Record<LectureTypeKor, LectureTypeEnum> = {
   대학탐방프로그램: 'UNIVERSITY_EXPLORATION_PROGRAM',
 }
 
-export const lectureSessionToKor: Record<
-  LectureSessionEnum,
-  LectureSessionKor
+export const LectureSemesterToKor: Record<
+  LectureSemesterEnum,
+  LectureSemesterKor
 > = {
   FIRST_YEAR_FALL_SEMESTER: '1학년 2학기',
   SECOND_YEAR_SPRING_SEMESTER: '2학년 1학기',
@@ -26,9 +26,9 @@ export const lectureSessionToKor: Record<
   THIRD_YEAR_SPRING_SEMESTER: '3학년 1학기',
 }
 
-export const lectureSessionToEnum: Record<
-  LectureSessionKor,
-  LectureSessionEnum
+export const lectureSemesterToEnum: Record<
+  LectureSemesterKor,
+  LectureSemesterEnum
 > = {
   '1학년 2학기': 'FIRST_YEAR_FALL_SEMESTER',
   '2학년 1학기': 'SECOND_YEAR_FALL_SEMESTER',

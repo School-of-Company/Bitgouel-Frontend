@@ -15,7 +15,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo'
 import { useSetRecoilState } from 'recoil'
 import LectureMaxInput from './LectureMaxInput'
-import LectureSessionSelect from './LectureSessionSelect'
+import LectureSemesterSelect from './LectureSemesterSelect'
 import LectureTypeSelect from './LectureTypeSelect'
 import SearchLine from './SearchLine'
 import SearchProfessor from './SearchProfessor'
@@ -64,7 +64,7 @@ const LectureSettingModal = () => {
         </S.SettingContainer>
         <S.SettingContainer>
           <span>수강 학기</span>
-          <LectureSessionSelect />
+          <LectureSemesterSelect />
         </S.SettingContainer>
         <S.SettingContainer>
           <span>강의 계열</span>

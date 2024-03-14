@@ -1,23 +1,24 @@
 'use client'
 
-import { Bg3, FilterOut, LectureEndDate, LectureEndTime, LectureSession, LectureMax, LectureProfessor, LectureStartDate, LectureType, useModal } from '@bitgouel/common'
-import { ChangeEvent, useState } from 'react'
-import * as S from './style'
-import { useRecoilState, useRecoilValue } from 'recoil'
 import { LectureSettingModal } from '@/modals'
+import { Bg3, FilterOut, LectureEndDate, LectureEndTime, LectureMax, LectureProfessor, LectureSemester, LectureStartDate, LectureType, useModal } from '@bitgouel/common'
+import { ChangeEvent, useState } from 'react'
+import { useRecoilValue } from 'recoil'
+import * as S from './style'
 
 const LectureCreatePage = () => {
   const MAXLENGTH: number = 1000 as const
   const [lectureTitle, setLectureTitle] = useState<string>('')
   const [lectureContent, setLectureContent] = useState<string>('')
-  const lectureType = useRecoilValue(LectureType)
-  const lectureSession = useRecoilValue(LectureSession)
-  const lectureStartDate = useRecoilValue(LectureStartDate)
-  const lectureStartTime = useRecoilValue(LectureStartDate)
-  const lectureEndDate = useRecoilValue(LectureEndDate)
-  const lectureEndTime = useRecoilValue(LectureEndTime)
-  const lectureProfessor = useRecoilValue(LectureProfessor)
-  const lectureMax = useRecoilValue(LectureMax)
+  // const lectureSemester = useRecoilValue(LectureSemester)
+  // const lectureDivision = useRecoilValue()
+  // const lectureType = useRecoilValue(LectureType)
+  // const lectureStartDate = useRecoilValue(LectureStartDate)
+  // const lectureStartTime = useRecoilValue(LectureStartDate)
+  // const lectureEndDate = useRecoilValue(LectureEndDate)
+  // const lectureEndTime = useRecoilValue(LectureEndTime)
+  // const lectureProfessor = useRecoilValue(LectureProfessor)
+  // const lectureMax = useRecoilValue(LectureMax)
   const {openModal} = useModal()
 
   // const onCreate = () =>

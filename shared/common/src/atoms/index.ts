@@ -1,4 +1,4 @@
-import { LectureSessionEnum, LectureTypeEnum } from '@bitgouel/types'
+import { LectureSemesterEnum, LectureTypeEnum } from '@bitgouel/types'
 import { ReactNode } from 'react'
 import { atom } from 'recoil'
 
@@ -90,8 +90,8 @@ export const LectureType = atom<LectureTypeEnum>({
   default: 'MUTUAL_CREDIT_RECOGNITION_PROGRAM',
 })
 
-export const LectureSession = atom<LectureSessionEnum>({
-  key: 'LectureSession',
+export const LectureSemester = atom<LectureSemesterEnum>({
+  key: 'LectureSemester',
   default: 'FIRST_YEAR_FALL_SEMESTER',
 })
 
