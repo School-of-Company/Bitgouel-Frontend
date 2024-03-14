@@ -462,18 +462,19 @@ export const CopyRightLinkList = styled.div`
     color: ${({ theme }) => theme.color.blue['800']};
     margin-right: 1.5rem;
     cursor: pointer;
-  }
-  span:last-child {
-    color: ${({ theme }) => theme.color.blue['800']};
-    margin-right: 0;
-  }
-  span:hover {
-    color: ${({ theme }) => theme.color.main};
+
+    &:last-child {
+      color: ${({ theme }) => theme.color.blue['800']};
+      margin-right: 0;
+    }
+    &:hover {
+      color: ${({ theme }) => theme.color.main};
+    }
   }
 `
 
 export const FromLogoContainer = styled.div`
-  img:first-child {
+  img:first-of-type {
     margin-right: 3rem;
   }
 `

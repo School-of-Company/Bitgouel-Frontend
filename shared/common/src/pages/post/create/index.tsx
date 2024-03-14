@@ -18,6 +18,7 @@ const PostCreatePage = () => {
     { showValue: '', name: 'link3', value: '' },
     { showValue: '', name: 'link4', value: '' },
   ])
+  const { mutate } = usePostPost('게시')
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target
@@ -41,8 +42,6 @@ const PostCreatePage = () => {
   const savePostMainText = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setPostContent(event.target.value)
   }
-
-  const { mutate } = usePostPost('게시')
 
   return (
     <div>
@@ -100,9 +99,9 @@ const PostCreatePage = () => {
                         content: postContent,
                         links: links
                           .filter((link) => link.value.length !== 0)
-                          .map((link) => {
-                            return { url: link.value }
-                          }),
+                          .map((link) => (
+                            link.value
+                      )),
                         feedType: 'EMPLOYMENT',
                       })
                     }

@@ -16,7 +16,7 @@ export const useDeleteMyInquiry = (id: string) => {
     {
       onSuccess: () => {
         closeModal()
-        push('/main/inquiry')
+        push('/main/post/inquiry')
         toast.success('문의를 삭제했습니다')
       },
       onError: ({ response }) => {

@@ -1,11 +1,11 @@
 'use client'
 
 import { TokenManager, useGetPostList } from '@bitgouel/api'
-import { RoleEnumTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { Bg1, MegaPhone, Plus, Question } from '../../../assets'
 import { PostItem } from '../../../components'
 import * as S from './style'
+import { useEffect, useState } from 'react'
 
 const PostPage = () => {
   const { data } = useGetPostList({
@@ -14,7 +14,19 @@ const PostPage = () => {
     size: 15,
   })
   const { push } = useRouter()
-  const tokenManager =  new TokenManager()
+  const tokenManager = new TokenManager()
+  const [postAuth, setPostAuth] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (
+      tokenManager.authority === 'ROLE_ADMIN' ||
+      tokenManager.authority === 'ROLE_PROFESSOR' ||
+      tokenManager.authority === 'ROLE_COMPANY_INSTRUCTOR' ||
+      tokenManager.authority === 'ROLE_GOVERNMENT'
+    )
+      setPostAuth(true)
+    else setPostAuth(false)
+  }, [])
 
   return (
     <div>
@@ -30,15 +42,12 @@ const PostPage = () => {
               <Question />
               <span>문의사항</span>
             </S.PostButton>
-            {tokenManager.authority === 'ROLE_ADMIN' ||
-              tokenManager.authority === 'ROLE_PROFESSOR' ||
-              tokenManager.authority === 'ROLE_COMPANY_INSTRUCTOR' ||
-              (tokenManager.authority === 'ROLE_GOVERNMENT' && (
-                <S.PostButton onClick={() => push('/main/post/create')}>
-                  <Plus />
-                  <span>게시글 추가</span>
-                </S.PostButton>
-              ))}
+            {postAuth && (
+              <S.PostButton onClick={() => push('/main/post/create')}>
+                <Plus />
+                <span>게시글 추가</span>
+              </S.PostButton>
+            )}
           </S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>

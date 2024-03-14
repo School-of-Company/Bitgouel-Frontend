@@ -151,7 +151,7 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
             .with('/main/post', () => (
               <>
                 <Message onClick={() => push('/main/post/notice')} />
-                <Question onClick={() => push('/main/inquiry')} />
+                <Question onClick={() => push('/main/post/inquiry')} />
               </>
             ))
             .otherwise(() => null)}
