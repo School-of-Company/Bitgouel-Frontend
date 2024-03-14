@@ -1,4 +1,4 @@
-export type DivisionEnum =
+export type LectureDivisionEnum =
   | 'AUTOMOBILE_INDUSTRY'
   | 'ENERGY_INDUSTRY'
   | 'MEDICAL_HEALTHCARE'
@@ -7,5 +7,5 @@ export type DivisionEnum =
 
 export interface LinePayloadTypes {
   keyword: string
-  division: DivisionEnum
+  division: LectureDivisionEnum
 }

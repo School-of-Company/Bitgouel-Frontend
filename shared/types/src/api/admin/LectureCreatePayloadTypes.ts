@@ -1,3 +1,5 @@
+import { LectureDivisionEnum } from "./LinePayloadTypes"
+
 export type LectureTypeEnum =
   | 'MUTUAL_CREDIT_RECOGNITION_PROGRAM'
   | 'UNIVERSITY_EXPLORATION_PROGRAM'
@@ -16,7 +18,24 @@ export type LectureSemesterKor =
   | '2학년 2학기'
   | '3학년 1학기'
 
+interface LectureDate {
+  completeDate: string // LocalDate 날짜만
+  startTime: string // LocalTime 시간만
+  endDate: string // LocalTime 시간만
+}
+
 export interface LectureCreatePayloadTypes {
   name: string
   content: string
+  semester: LectureSemesterEnum
+  division: LectureDivisionEnum
+  department: string
+  line: string
+  userId: string
+  startDate: string // LocalDateTime 날짜 + 시간
+  endDate: string // LocalDateTime 날짜 + 시간
+  lectureDates: LectureDate[]
+  lectureType: LectureTypeEnum
+  credit: number
+  maxRegisteredUser: number
 }
