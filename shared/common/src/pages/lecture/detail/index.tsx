@@ -78,19 +78,6 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
                   </span>
                 </div>
                 <div>
-                  <span>강의 시작: </span>
-                  <span>{`${data?.data.completeDate.slice(
-                    0,
-                    4
-                  )}년 ${data?.data.completeDate.slice(
-                    5,
-                    7
-                  )}월 ${data?.data.completeDate.slice(
-                    8,
-                    10
-                  )}일 ${data?.data.completeDate.slice(11, 16)}`}</span>
-                </div>
-                <div>
                   <span>학점: </span>
                   <span>{data?.data.credit}점</span>
                 </div>

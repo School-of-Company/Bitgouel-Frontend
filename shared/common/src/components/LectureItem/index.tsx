@@ -14,15 +14,6 @@ const LectureItem = ({ item, role }: LectureItemProps) => {
     >
       <S.SubTitle>
         <S.Professor>{item.lecturer}</S.Professor>
-        <S.Date>
-          {`${item.completeDate.slice(0, 4)}년 ${item.completeDate.slice(
-            5,
-            7
-          )}월 ${item.completeDate.slice(8, 10)}일 ${item.completeDate.slice(
-            11,
-            16
-          )}`}
-        </S.Date>
       </S.SubTitle>
       <S.Title>{item.name}</S.Title>
       <S.MainTextContainer>
