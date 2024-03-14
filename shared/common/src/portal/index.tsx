@@ -10,6 +10,7 @@ import {
 } from 'react'
 import styled from '@emotion/styled'
 import { PortalProps } from '@bitgouel/types'
+import { useModal } from '..'
 
 const Portal = ({ children, onClose }: PortalProps) => {
   const [isCSR, setIsCSR] = useState(false)

@@ -1,7 +1,7 @@
 'use client'
 
 import * as S from './style'
-import Bg2 from '@bitgouel/common/src/assets/png/mainBg2.png'
+import { Bg2 } from '@bitgouel/common'
 import { Plus } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { ActivityItem } from '@bitgouel/common/src/components'
@@ -19,7 +19,7 @@ interface ActivityItemType {
 }
 
 const ActivityListPage = () => {
-  const router = useRouter()
+  const { push } = useRouter()
 
   const activityList: ActivityItemType[] = [
     {
@@ -53,12 +53,12 @@ const ActivityListPage = () => {
 
   return (
     <div>
-      <S.SlideBg url={Bg2}>
+      <S.SlideBg url={ Bg2 }>
         <S.BgContainer>
           <S.ClubTitle>(학생이름)의 학생 활동</S.ClubTitle>
           <S.ButtonContainer>
             <S.ClubButton
-              onClick={() => router.push('/main/club/student/activity/create')}
+              onClick={() => push('/main/club/student/activity/create')}
             >
               <Plus />
               <span>활동 추가</span>

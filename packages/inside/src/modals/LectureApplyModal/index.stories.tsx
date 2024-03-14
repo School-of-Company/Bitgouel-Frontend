@@ -10,4 +10,8 @@ export default {
 
 type Story = StoryObj<typeof LectureApplyModal>
 
-export const Primary: Story = {}
+export const Primary: Story = {
+  args: {
+    title: '청춘'
+  }
+}

@@ -1,13 +1,16 @@
 'use client'
 
-import Bg4 from '../../assets/png/mainBg4.png'
+import { Bg4 } from '../../assets'
 import * as S from './style'
 import { useGetMy, useDeleteWithDraw } from '@bitgouel/api'
 import { roleToKor } from '../../constants'
+import { useModal } from '../../hooks'
+import {ChangePwModal} from '../../modals'
 
 const MyPage = () => {
   const { data } = useGetMy()
   const { mutate } = useDeleteWithDraw()
+  const { openModal } = useModal()
 
   const sliceNumber = (): string => {
     return `${data?.data.phoneNumber.slice(
@@ -36,7 +39,7 @@ const MyPage = () => {
                   {data?.data.organization.split('/')[0]}
                 </S.OrganizationName>
                 <S.SubEnter>소속</S.SubEnter>
-              </div> 
+              </div>
               <div>
                 <S.SubId>{data?.data.organization.split('/')[1]}</S.SubId>
               </div>
@@ -63,7 +66,7 @@ const MyPage = () => {
               <S.AccountSettingContainer>
                 <div>
                   <S.LeftText>회원정보 수정</S.LeftText>
-                  <S.ModifyText>비밀번호 수정</S.ModifyText>
+                  <S.ModifyText onClick={() => openModal(<ChangePwModal />)}>비밀번호 수정</S.ModifyText>
                 </div>
                 <S.SharedLine />
                 <div>

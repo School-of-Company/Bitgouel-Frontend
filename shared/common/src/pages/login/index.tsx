@@ -1,76 +1,32 @@
 'use client'
 
-import * as S from './style'
-import { ValueInput } from '../../components'
-import { ChangeEvent, useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
 import { usePostLogin } from '@bitgouel/api'
-import { useResetRecoilState } from 'recoil'
+import { useRouter } from 'next/navigation'
+import { ChangeEvent, useState } from 'react'
+import { useRecoilState, useResetRecoilState } from 'recoil'
+import { ValueInput } from '../../components'
+import * as S from './style'
 
-import {
-  Page,
-  Page1Obj,
-  Page2Obj,
-  Page3Obj,
-  PhoneCertificate,
-  PhoneCertificateText,
-  EmailCertificate,
-  EmailCertificateText,
-  IsPasswordRgx,
-  IsValidate,
-} from '../../atoms'
+import { EmailErrorText, Page, Page1Obj, Page2Obj, Page3Obj, PasswordErrorText } from '../../atoms'
 import { theme } from '../../styles'
 
-const LoginPage = () => {
-  const [emailValue, setEmailValue] = useState<string>('')
-  const [emailErrorText, setEmailErrorText] = useState<string>('')
-
-  const [passwordValue, setPasswordValue] = useState<string>('')
-  const [passwordErrorText, setPasswordErrorText] = useState<string>('')
+const LoginPage = ({ isAdmin }: { isAdmin: boolean }) => {
+  const [emailValue, setEmailValue] = useState<string>(
+    isAdmin ? 's11111@gsm.hs.kr' : ''
+  )
+  const [emailErrorText, setEmailErrorText] = useRecoilState(EmailErrorText)
+  const [passwordValue, setPasswordValue] = useState<string>(
+    isAdmin ? '12345678a@' : ''
+  )
+  const [passwordErrorText, setPasswordErrorText] = useRecoilState(PasswordErrorText)
 
   const resetPage = useResetRecoilState(Page)
   const resetPage1Obj = useResetRecoilState(Page1Obj)
   const resetPage2Obj = useResetRecoilState(Page2Obj)
   const resetPage3Obj = useResetRecoilState(Page3Obj)
-  const resetPhoneCertificate = useResetRecoilState(PhoneCertificate)
-  const resetPhoneCertificateText = useResetRecoilState(PhoneCertificateText)
-  const resetEmailCertificate = useResetRecoilState(EmailCertificate)
-  const resetEmailCertificateText = useResetRecoilState(EmailCertificateText)
-  const resetIsPasswordRgx = useResetRecoilState(IsPasswordRgx)
-  const resetIsValidate = useResetRecoilState(IsValidate)
 
   const router = useRouter()
-  const { mutate, error, isLoading } = usePostLogin()
-
-  useEffect(() => {
-    if (error?.response?.status === 404) {
-      setEmailErrorText('등록되지 않은 계정입니다')
-    } else if (error?.response?.status === 403) {
-      setEmailErrorText('아직 회원가입 대기중인 계정입니다')
-    } else if (error?.response?.status === 401) {
-      setPasswordErrorText('잘못된 비밀번호입니다.')
-    } else if (error?.response?.status === 400) {
-      if (
-        Object.keys(error.response.data.fieldError).includes('email') &&
-        Object.keys(error.response.data.fieldError).includes('password')
-      ) {
-        setEmailErrorText('잘못된 이메일입니다')
-        setPasswordErrorText('잘못된 비밀번호입니다')
-      } else if (
-        Object.keys(error.response.data.fieldError).includes('email') &&
-        !Object.keys(error.response.data.fieldError).includes('password')
-      ) {
-        setEmailErrorText('잘못된 이메일입니다.')
-        setPasswordErrorText('')
-      } else if (
-        Object.keys(error.response.data.fieldError).includes('password') &&
-        !Object.keys(error.response.data.fieldError).includes('email')
-      ) {
-        setPasswordErrorText('잘못된 비밀번호입니다.')
-        setEmailErrorText('')
-      }
-    }
-  }, [error])
+  const { mutate, isLoading } = usePostLogin()
 
   const onEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
@@ -168,12 +124,6 @@ const LoginPage = () => {
                 resetPage1Obj()
                 resetPage2Obj()
                 resetPage3Obj()
-                resetPhoneCertificate()
-                resetPhoneCertificateText()
-                resetEmailCertificate()
-                resetEmailCertificateText()
-                resetIsPasswordRgx()
-                resetIsValidate()
                 router.push('/auth/signUp')
               }}
             >

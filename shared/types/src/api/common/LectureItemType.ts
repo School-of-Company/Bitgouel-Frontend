@@ -4,7 +4,7 @@ export type LectureTypeEnum =
   | 'MUTUAL_CREDIT_RECOGNITION_PROGRAM'
   | 'UNIVERSITY_EXPLORATION_PROGRAM'
 
-export type LectureStatusEnum = 'OPEN' | 'CLOSE'
+export type LectureStatusEnum = 'OPEN' | 'CLOSED'
 
 export interface LectureItemType {
   id: string

@@ -2,11 +2,6 @@ import { LectureItemType, RoleEnumTypes } from '@bitgouel/types'
 import { ReactNode } from 'react'
 import { atom } from 'recoil'
 
-export const Role = atom<RoleEnumTypes>({
-  key: 'Role',
-  default: 'ROLE_STUDENT',
-})
-
 export const Page = atom<number>({
   key: 'Page',
   default: 1,
@@ -90,7 +85,35 @@ export const LectureTypeText = atom<string>({
   default: '상호학점인정교육과정',
 })
 
-export const LectureDetails = atom<LectureItemType>({
-  key: 'LectureDetails',
-  default: undefined,
+export const LectureType = atom<'상호학점인정교육과정' | '대학탐방프로그램'>({
+  key: 'LectureType',
+  default: '상호학점인정교육과정',
+})
+
+export const LectureLine = atom<
+  | '기계'
+  | '자동차'
+  | '전기•전자'
+  | '생명화학공학'
+  | '뷰티'
+  | '의료•헬스'
+  | '드론'
+>({
+  key: 'LectureLine',
+  default: '기계',
+})
+
+export const SchoolFilterText = atom<string>({
+  key: 'SchoolFilterText',
+  default: '',
+})
+
+export const EmailErrorText = atom<string>({
+  key: 'EmailErrorText',
+  default: '',
+})
+
+export const PasswordErrorText = atom<string>({
+  key: 'PasswordErrorText',
+  default: '',
 })

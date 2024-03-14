@@ -1,27 +1,10 @@
 import styled from '@emotion/styled'
 
-export const CertificationInputBox = styled.div<{ placeholderText: string }>`
-  display: ${({ placeholderText }) =>
-    placeholderText === '전화번호 (- 제외)' || placeholderText === '이메일'
-      ? 'flex'
-      : 'block'};
-  align-items: center;
-  justify-content: space-around;
-  width: ${({ placeholderText }) =>
-    placeholderText === '전화번호 (- 제외)' ||
-    (placeholderText === '이메일' && '100%')};
-
+export const CertificationInputBox = styled.div`
   div {
-    width: ${({ placeholderText }) =>
-      placeholderText === '전화번호 (- 제외)' || placeholderText === '이메일'
-        ? '19.7rem'
-        : '24rem'};
-
+    width: 24rem;
     input {
-      width: ${({ placeholderText }) =>
-        placeholderText === '전화번호 (- 제외)' || placeholderText === '이메일'
-          ? '100%'
-          : '24rem'};
+      width: 24rem;
     }
 
     div {

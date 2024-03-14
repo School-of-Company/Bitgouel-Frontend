@@ -1,29 +1,36 @@
 'use client'
 
-import { theme } from '../../styles'
 import { TokenManager, useDeleteLogout } from '@bitgouel/api'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { toast } from 'react-toastify'
+import { useRecoilState } from 'recoil'
 import { match } from 'ts-pattern'
-import { Filter, MegaPhone, Message, Plus, Question } from '../../assets'
-import Symbol1 from '../../assets/png/symbol1.png'
-import Symbol2 from '../../assets/png/symbol2.png'
-import { LectureTypeText, Role } from '../../atoms'
+import {
+  Filter,
+  Message,
+  Plus,
+  Question,
+  Symbol1,
+  Symbol2
+} from '../../assets'
+import { LectureTypeText } from '../../atoms'
 import { LectureTypeModal } from '../../modals'
+import { theme } from '../../styles'
 import * as S from './style'
 
-const Header = () => {
-  const tokenManager = new TokenManager()
-  const router = useRouter()
-  const pathname = usePathname()
-  const menuList = [
-    { kor: '사업소개', link: '/' },
-    { kor: '강의', link: '/main/lecture' },
-    { kor: '동아리', link: '/main/club' },
-    { kor: '게시글', link: '/main/notice' },
-  ]
+const menuList = [
+  { kor: '사업소개', link: '/' },
+  { kor: '강의', link: '/main/lecture' },
+  { kor: '동아리', link: '/main/club' },
+  { kor: '게시판', link: '/main/post' },
+  { kor: '관리자', link: '/main/admin' },
+]
 
+const Header = ({ is_admin }: { is_admin: boolean }) => {
+  const tokenManager = new TokenManager()
+  const { push } = useRouter()
+  const pathname = usePathname()
   const [bgColor, setBgColor] = useState<string>('')
   const [symbolNum, setSymbolNum] = useState<any>(Symbol1)
   const [btnColor, setBtnColor] = useState<string>('rgb(255, 255, 255, 0.2)')
@@ -34,8 +41,6 @@ const Header = () => {
   const [lectureTypeText, setLectureTypeText] =
     useRecoilState<string>(LectureTypeText)
   const [text, setText] = useState<string>('로그인')
-  const role = useRecoilValue(Role)
-
   const { mutate } = useDeleteLogout()
 
   useEffect(() => {
@@ -96,60 +101,59 @@ const Header = () => {
         .otherwise(() => false)}
     >
       <S.HeaderContainer>
-        <S.SymbolContainer url={symbolNum} />
-        <S.MenuWrapper>
-          {menuList.map((menu, idx) => (
-            <S.MenuItem
-              key={idx}
-              onClick={() => tokenManager.accessToken && router.push(menu.link)}
-              isSameRoute={pathname === menu.link}
-              color={spanColor}
-            >
-              {menu.kor}
-            </S.MenuItem>
-          ))}
+        <S.SymbolContainer url={symbolNum} onClick={() => push('/')} />
+        <S.MenuWrapper is_admin={is_admin}>
+          {menuList
+            .filter((menu, idx) => (is_admin ? menu : idx !== 4))
+            .map((menu, idx) => (
+              <S.MenuItem
+                key={idx}
+                onClick={() =>
+                  tokenManager.accessToken
+                    ? push(menu.link)
+                    : toast.info('로그인 후 이용해 주세요.')
+                }
+                isSameRoute={match(idx)
+                  .with(0, () => pathname === menu.link)
+                  .otherwise(() => pathname.includes(menu.link))}
+                color={spanColor}
+              >
+                {menu.kor}
+              </S.MenuItem>
+            ))}
         </S.MenuWrapper>
         <S.ButtonWrapper view={svgView}>
           {match(pathname)
             .with('/main/lecture', () => (
-              <S.CreateIcon
-                onClick={() => {
-                  router.push('/main/lecture/create')
-                }}
-                view={match(role)
-                  .with(
-                    'ROLE_PROFESSOR' ||
-                      'ROLE_GOVERNMENT' ||
-                      'ROLE_COMPANY_INSTRUCTOR',
-                    () => ''
-                  )
-                  .otherwise(() => 'none')}
-              >
-                <Plus />
-              </S.CreateIcon>
-            ))
-            .with('/main/notice', () => <MegaPhone />)
-            .otherwise(() => null)}
-          {match(pathname)
-            .with('/main/lecture', () => (
-              <S.SelectFilterContainer>
-                <div onClick={() => setIsLectureType((prev) => !prev)}>
-                  <Filter />
-                </div>
-                {isLectureType && (
-                  <LectureTypeModal
-                    location='헤더'
-                    text={lectureTypeText}
-                    setText={setLectureTypeText}
-                    setIsLectureType={setIsLectureType}
+              <>
+                <S.SelectFilterContainer>
+                  <Filter onClick={() => setIsLectureType((prev) => !prev)} />
+                  {isLectureType && (
+                    <LectureTypeModal
+                      location='헤더'
+                      text={lectureTypeText}
+                      setText={setLectureTypeText}
+                      setIsLectureType={setIsLectureType}
+                    />
+                  )}
+                </S.SelectFilterContainer>
+                {(tokenManager.authority === 'ROLE_PROFESSOR' ||
+                  tokenManager.authority === 'ROLE_GOVERNMENT' ||
+                  tokenManager.authority === 'ROLE_COMPANY_INSTRUCTOR') && (
+                  <Plus
+                    onClick={() => {
+                      push('/main/lecture/create')
+                    }}
                   />
                 )}
-              </S.SelectFilterContainer>
+              </>
             ))
-            .with('/main/notice', () => <Message />)
-            .otherwise(() => null)}
-          {match(pathname)
-            .with('/main/notice', () => <Question />)
+            .with('/main/post', () => (
+              <>
+                <Message onClick={() => push('/main/post/notice')} />
+                <Question onClick={() => push('/main/post/inquiry')} />
+              </>
+            ))
             .otherwise(() => null)}
         </S.ButtonWrapper>
         <S.LoginButton
@@ -157,8 +161,8 @@ const Header = () => {
             tokenManager.accessToken
               ? match(pathname)
                   .with('/main/my', () => mutate())
-                  .otherwise(() => router.push('/main/my'))
-              : router.push('/auth/login')
+                  .otherwise(() => push('/main/my'))
+              : push('/auth/login')
           }
           color={btnColor}
         >

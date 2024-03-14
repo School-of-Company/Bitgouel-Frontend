@@ -1,47 +1,50 @@
 'use client'
 
-import * as S from './style'
-import listBanner1 from '../../../assets/png/listBanner1.png'
+import * as S from '../style'
+import { Banner1 } from '../../../assets'
+
+const schoolList: string[] = [
+  '광주공업고등학교',
+  '광주전자공업고등학교',
+  '금파공업고등학교',
+  '동일미래과학고등학교',
+  '숭의과학기술고등학교',
+  '전남공업고등학교',
+]
+
+const clubList: string[][] = [
+  [
+    'SMART JOB PROJECT',
+    '나의 미래는 내가 주인공이다!',
+    '설비의 달인',
+    '특수용접 화이팅',
+  ],
+  ['감성기계', '열정 그 자체'],
+  ['레프리'],
+  ['놀GO잡GO'],
+  ['서전트 스나이퍼', '카-페인팅'],
+  ['진짜기계', '핫앤쿨'],
+]
 
 const ClubListContents1 = () => {
   return (
-    <S.ClubListBanner url={listBanner1}>
+    <S.ClubListBanner url={Banner1}>
       <S.ClubListContents>
         <S.ClubValueTitle>미래형 운송기기</S.ClubValueTitle>
         <S.ClubMainTextArea>
           <S.ClubLeftTextArea>
-            <S.ClubLeftText>광주공업고등학교</S.ClubLeftText>
-            <S.ClubLeftText>광주전자공업고등학교</S.ClubLeftText>
-            <S.ClubLeftText>금파공업고등학교</S.ClubLeftText>
-            <S.ClubLeftText>동일미래과학고등학교</S.ClubLeftText>
-            <S.ClubLeftText>숭의과학기술고등학교</S.ClubLeftText>
-            <S.ClubLeftText>전남공업고등학교</S.ClubLeftText>
+            {schoolList.map((school, idx) => (
+              <S.ClubLeftText key={idx}>{school}</S.ClubLeftText>
+            ))}
           </S.ClubLeftTextArea>
           <S.ClubRightTextArea>
-            <S.ClubRightTextLine>
-              <S.ClubRightText>SMART JOB PROJECT</S.ClubRightText>
-              <S.ClubRightText>나의 미래는 내가 주인공이다!</S.ClubRightText>
-              <S.ClubRightText>설비의 달인</S.ClubRightText>
-              <S.ClubRightText>특수용접 화이팅</S.ClubRightText>
-            </S.ClubRightTextLine>
-            <S.ClubRightTextLine>
-              <S.ClubRightText>감성기계</S.ClubRightText>
-              <S.ClubRightText>열정 그 자체</S.ClubRightText>
-            </S.ClubRightTextLine>
-            <S.ClubRightTextLine>
-              <S.ClubRightText>레프리</S.ClubRightText>
-            </S.ClubRightTextLine>
-            <S.ClubRightTextLine>
-              <S.ClubRightText>놀GO잡GO</S.ClubRightText>
-            </S.ClubRightTextLine>
-            <S.ClubRightTextLine>
-              <S.ClubRightText>서전트스나이퍼</S.ClubRightText>
-              <S.ClubRightText>카-페인팅</S.ClubRightText>
-            </S.ClubRightTextLine>
-            <S.ClubRightTextLine>
-              <S.ClubRightText>진짜기계</S.ClubRightText>
-              <S.ClubRightText>핫앤쿨</S.ClubRightText>
-            </S.ClubRightTextLine>
+            {clubList.map((club, idx) => (
+              <S.ClubRightTextLine key={idx}>
+                {club.map((value, idx2) => (
+                  <S.ClubRightText key={idx2}>{value}</S.ClubRightText>
+                ))}
+              </S.ClubRightTextLine>
+            ))}
           </S.ClubRightTextArea>
         </S.ClubMainTextArea>
       </S.ClubListContents>

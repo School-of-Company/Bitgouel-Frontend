@@ -1,8 +1,16 @@
 export { default as LoginPage } from './login'
 export { default as SignUpPage } from './signUp'
 export { default as HomePage } from './home'
-export { default as ClubPage } from './club'
-export { default as DetailPage } from './club/detail'
-export { default as StudentPage } from './club/student'
-export { default as NoticePage } from './notice'
+export { ClubDetailPage, StudentPage } from './club'
+export {
+  PostPage,
+  PostDetailPage,
+  PostCreatePage,
+  PostModifyPage,
+  NoticePage,
+  NoticeDetailPage,
+  NoticeModifyPage,
+} from './post'
 export { default as MyPage } from './my'
+export { InquiryPage, InquiryDetailPage } from './inquiry'
+export {LecturePage, LectureDetailPage} from './lecture'

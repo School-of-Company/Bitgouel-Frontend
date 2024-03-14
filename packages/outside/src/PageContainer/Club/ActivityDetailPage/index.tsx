@@ -1,6 +1,6 @@
 'use client'
 
-import Bg2 from '@bitgouel/common/src/assets/png/mainBg2.png'
+import { Bg2 } from '@bitgouel/common'
 import { Pen, TrashCan } from '@bitgouel/common'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
@@ -31,18 +31,16 @@ const object: ActivityItemType = {
 }
 
 const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
-  const router = useRouter()
+  const { push } = useRouter()
 
   return (
     <div>
-      <S.SlideBg url={Bg2}>
+      <S.SlideBg url={ Bg2 }>
         <S.BgContainer>
           <S.ActivityTitle>게시글</S.ActivityTitle>
           <S.TitleButtonContainer>
             <S.LectureButton
-              onClick={() =>
-                router.push('/main/club/student/activity/detail/modify')
-              }
+              onClick={() => push('/main/club/student/activity/detail/modify')}
             >
               <Pen />
               <span>활동 수정</span>

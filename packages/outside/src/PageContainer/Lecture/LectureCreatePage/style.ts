@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
+import { StaticImageData } from 'next/image'
 
-export const SlideBg = styled.div<{ url: any }>`
+export const SlideBg = styled.div<{ url: StaticImageData }>`
   height: 15rem;
   width: 100%;
   display: flex;
@@ -21,6 +22,34 @@ export const BgContainer = styled.div`
 export const CreateTitle = styled.span`
   color: ${({ theme }) => theme.color.white};
   ${({ theme }) => theme.typo.title_lg.semibold};
+`
+
+export const TitleButtonContainer = styled.div`
+  display: flex;
+  align-items: flex-end;
+`
+
+export const LectureButton = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: rgb(255, 255, 255, 0.2);
+  height: 2.5rem;
+  margin-left: 1rem;
+  padding: 0 0.75rem;
+  border-radius: 0.5rem;
+  backdrop-filter: blur(0.25rem);
+  svg {
+    fill: ${({ theme }) => theme.color.white};
+  }
+  span {
+    color: ${({ theme }) => theme.color.white};
+    ${({ theme }) => theme.typo.text_md.regular};
+    margin-left: 0.25rem;
+  }
+  &:hover {
+    background-color: rgb(255, 255, 255, 0.4);
+  }
 `
 
 export const DocumentInputContainer = styled.div`
@@ -45,6 +74,7 @@ export const InputTitle = styled.input`
   outline: none;
   border: none;
   width: 100%;
+  background-color: ${({ theme }) => theme.color.gray['1000']};
   &::placeholder {
     color: ${({ theme }) => theme.color.gray['700']};
   }
@@ -55,6 +85,7 @@ export const InputMainText = styled.textarea`
   color: ${({ theme }) => theme.color.black};
   margin-top: 0.5rem;
   height: 19.25rem;
+  background-color: ${({ theme }) => theme.color.gray['1000']};
   outline: none;
   border: none;
   width: 100%;
@@ -125,6 +156,7 @@ export const SettingScoreBox = styled.div`
 export const SettingInput = styled.input`
   border: none;
   outline: none;
+  background-color: ${({ theme }) => theme.color.gray['1000']};
   color: ${({ theme }) => theme.color.gray['700']};
   ${({ theme }) => theme.typo.text_md.regular}
 

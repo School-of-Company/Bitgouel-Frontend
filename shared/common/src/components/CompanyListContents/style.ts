@@ -1,11 +1,14 @@
 import styled from '@emotion/styled'
+import { StaticImageData } from 'next/image'
 
-export const CompanyListBanner = styled.div<{ url: any }>`
+export const CompanyListBanner = styled.div<{ url: StaticImageData }>`
   margin-top: 2.5rem;
   width: 100%;
   height: 37rem;
   background-image: url(${({ url }) => url.src});
   background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   display: flex;
   justify-content: center;
 `
