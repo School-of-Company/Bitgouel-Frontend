@@ -1,5 +1,8 @@
 'use client'
 
+import { Bg2, Plus } from '../../../assets'
+import * as S from './style'
+import { useRouter } from 'next/navigation'
 import {
   TokenManager,
   useGetActivityList,
@@ -7,11 +10,8 @@ import {
   useGetMy,
 } from '@bitgouel/api'
 import { StudentIdProps } from '@bitgouel/types'
-import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { Bg2, Plus } from '../../../assets'
 import ActivityItem from '../../../components/ActivityItem'
-import * as S from './style'
 
 const ActivityListPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
   studentIdProps,
