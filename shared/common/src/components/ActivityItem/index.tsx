@@ -1,16 +1,14 @@
 'use client'
 
-import { ActivityInformationItem, StudentIdProps } from '@bitgouel/types'
+import {
+  ActivityInformationItem,
+  ActivityItemTypes,
+  StudentIdProps,
+} from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import * as S from './style'
 
-interface ActivityItems {
-  item: ActivityInformationItem
-  studentIdProps: StudentIdProps
-  activityId: string
-}
-
-const ActivityItem: React.FC<ActivityItems> = ({
+const ActivityItem: React.FC<ActivityItemTypes> = ({
   item,
   studentIdProps,
   activityId,
