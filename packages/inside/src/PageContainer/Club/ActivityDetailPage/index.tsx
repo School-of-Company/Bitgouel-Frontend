@@ -1,6 +1,5 @@
 'use client'
 
-import { usePatchActivityApprove } from '@bitgouel/api'
 import { AppropriationModal, Pen, TrashCan } from '@bitgouel/common'
 import { Bg2 } from '@bitgouel/common'
 import { lectureStatusToKor } from '@bitgouel/common/src/constants'
@@ -36,12 +35,9 @@ const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
   const { push } = useRouter()
   const { openModal } = useModal()
 
-  const { mutate: approve } = usePatchActivityApprove(activityId)
-  const { mutate: reject } = usePatchActivityApprove(activityId)
-
   return (
     <div>
-      <S.SlideBg url={ Bg2 }>
+      <S.SlideBg url={Bg2}>
         <S.BgContainer>
           <S.ActivityTitle>게시글</S.ActivityTitle>
           <S.TitleButtonContainer>
@@ -106,40 +102,6 @@ const ActivityDetailPage = ({ activityId }: { activityId: string }) => {
             </S.SubTitle>
           </S.TitleContainer>
           <S.MainText>{object.content}</S.MainText>
-          <S.ButtonWrapper>
-            <S.ButtonContainer>
-              <S.CreateNotApproveButton
-                onClick={() =>
-                  openModal(
-                    <AppropriationModal
-                      isApprove={false}
-                      question='활동 추가를 거부하시겠습니까?'
-                      purpose='거부하기'
-                      title={object.title}
-                      onAppropriation={() => reject()}
-                    />
-                  )
-                }
-              >
-                활동 거부하기
-              </S.CreateNotApproveButton>
-              <S.CreateApproveButton
-                onClick={() =>
-                  openModal(
-                    <AppropriationModal
-                      isApprove={false}
-                      question='활동 추가를 승인하시겠습니까?'
-                      purpose='승인하기'
-                      title={object.title}
-                      onAppropriation={() => approve()}
-                    />
-                  )
-                }
-              >
-                활동 승인하기
-              </S.CreateApproveButton>
-            </S.ButtonContainer>
-          </S.ButtonWrapper>
         </S.Document>
       </S.DocumentWrapper>
     </div>
