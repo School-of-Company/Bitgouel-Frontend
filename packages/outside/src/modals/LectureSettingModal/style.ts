@@ -18,6 +18,7 @@ export const LectureSettingModalWrapper = styled.div`
 `
 
 export const SettingTitleBox = styled.div`
+  background-color: ${({ theme }) => theme.color.white};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -75,5 +76,87 @@ export const EnumBox = styled.div<{ current: string; selected: string }>`
 
   span {
     ${({ theme }) => theme.typo.text_lg.medium};
+  }
+`
+
+export const EnrollmentDateBox = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0 4rem;
+  justify-content: space-between;
+  gap: 3rem;
+`
+
+export const SearchWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+
+  input {
+    margin: 0;
+  }
+`
+
+export const SearchInputBox = styled.form<{ isSelected?: boolean }>`
+  width: 94%;
+  background-color: ${({ theme, isSelected }) =>
+    isSelected ? theme.color.gray['900'] : theme.color.white};
+  border: 0.0625rem solid ${({ theme }) => theme.color.gray['700']};
+  border-radius: 0.5rem;
+  padding: 1.0625rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  svg {
+    cursor: pointer;
+  }
+`
+
+export const SearchInput = styled.input`
+  ${({ theme }) => theme.typo.text_sm.regular};
+  color: ${({ theme }) => theme.color.gray['400']};
+  border: none;
+  outline: none;
+  width: 43rem;
+`
+
+export const SearchListContainer = styled.div`
+  width: 100%;
+  height: 11rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`
+
+export const SearchItem = styled.div`
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 0.0625rem solid ${({ theme }) => theme.color.gray['900']};
+  transition: all 0.1s ease-in;
+
+  span {
+    &:first-of-type {
+      ${({ theme }) => theme.typo.text_lg.regular};
+      color: ${({ theme }) => theme.color.black};
+    }
+    &:last-of-type {
+      ${({ theme }) => theme.typo.text_md.regular};
+      color: ${({ theme }) => theme.color.gray['400']};
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: ${({ theme }) => theme.color.gray['900']};
   }
 `

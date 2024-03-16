@@ -4,7 +4,7 @@ import {
   useGetDetailLecture
 } from '@bitgouel/api'
 import { Bg3 } from '../../../assets'
-import { lectureToKor } from '../../../constants'
+import { lectureTypeToKor } from '../../../constants'
 import * as S from './style'
 
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
@@ -36,7 +36,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
             <S.SubMenuContainer>
               <S.From>
                 {
-                  lectureToKor[
+                  lectureTypeToKor[
                     data?.data.lectureType ||
                       'MUTUAL_CREDIT_RECOGNITION_PROGRAM'
                   ]
@@ -76,19 +76,6 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
                   <span>
                     {data?.data.headCount}/{data?.data.maxRegisteredUser}명
                   </span>
-                </div>
-                <div>
-                  <span>강의 시작: </span>
-                  <span>{`${data?.data.completeDate.slice(
-                    0,
-                    4
-                  )}년 ${data?.data.completeDate.slice(
-                    5,
-                    7
-                  )}월 ${data?.data.completeDate.slice(
-                    8,
-                    10
-                  )}일 ${data?.data.completeDate.slice(11, 16)}`}</span>
                 </div>
                 <div>
                   <span>학점: </span>

@@ -1,51 +1,24 @@
 'use client'
 
-import { Bg3, FilterOut, LectureType } from '@bitgouel/common'
+import { LectureSettingModal } from '@/modals'
+import { Bg3, FilterOut, useModal } from '@bitgouel/common'
 import { ChangeEvent, useState } from 'react'
 import * as S from './style'
-import { useRecoilState } from 'recoil'
 
 const LectureCreatePage = () => {
   const MAXLENGTH: number = 1000 as const
   const [lectureTitle, setLectureTitle] = useState<string>('')
   const [lectureContent, setLectureContent] = useState<string>('')
-  const [lectureType, setLectureType] = useRecoilState(LectureType)
-
-  // const onCreate = () =>
-  //   mutate({
-  //     name: lectureTitle,
-  //     content: lectureContent,
-  //     startDate: handleLocalDateTime(startDate, startDateText),
-  //     endDate: handleLocalDateTime(endDate, endDateText),
-  //     completeDate: handleLocalDateTime(completeDate, completeDateText),
-  //     lectureType: lectureToEnum[lectureTypeText],
-  //     credit:
-  //       lectureTypeText === '대학탐방프로그램' ? 0 : +scoreText.slice(0, 1),
-  //     maxRegisteredUser: people,
-  //   })
-
-  // const onCreateModal = () => {
-  //   if (
-  //     lectureTitle !== '' &&
-  //     lectureContent !== '' &&
-  //     lectureTypeText !== '강의 유형 선택' &&
-  //     startDateText !== '신청 시작일 선택' &&
-  //     endDateText !== '신청 마감일 선택' &&
-  //     completeDateText !== '강의 시작일 선택' &&
-  //     lectureTypeText !== '대학탐방프로그램'
-  //       ? scoreText !== '학점 선택'
-  //       : true && people !== 0
-  //   )
-  //     openModal(
-  //       <AppropriationModal
-  //         isApprove={true}
-  //         question='강의를 개설하시겠습니까?'
-  //         title={lectureTitle}
-  //         purpose='개설하기'
-  //         onAppropriation={() => onCreate()}
-  //       />
-  //     )
-  // }
+  // const lectureSemester = useRecoilValue(LectureSemester)
+  // const lectureDivision = useRecoilValue()
+  // const lectureType = useRecoilValue(LectureType)
+  // const lectureStartDate = useRecoilValue(LectureStartDate)
+  // const lectureStartTime = useRecoilValue(LectureStartDate)
+  // const lectureEndDate = useRecoilValue(LectureEndDate)
+  // const lectureEndTime = useRecoilValue(LectureEndTime)
+  // const lectureProfessor = useRecoilValue(LectureProfessor)
+  // const lectureMax = useRecoilValue(LectureMax)
+  const {openModal} = useModal()
 
   return (
     <div>
@@ -53,7 +26,7 @@ const LectureCreatePage = () => {
         <S.BgContainer>
           <S.CreateTitle>강의 개설</S.CreateTitle>
           <S.TitleButtonContainer>
-            <S.LectureButton>
+            <S.LectureButton onClick={(() => openModal(<LectureSettingModal />))}>
               <FilterOut />
               <span>강의 세부 설정</span>
             </S.LectureButton>

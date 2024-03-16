@@ -7,7 +7,7 @@ import { useRecoilState } from 'recoil'
 import { Bg3, Filter, Plus } from '../../../assets'
 import { LectureTypeText } from '../../../atoms'
 import { LectureItem } from '../../../components'
-import { lectureToEnum } from '../../../constants'
+import { lectureTypeToEnum } from '../../../constants'
 import { LectureTypeModal } from '../../../modals'
 import * as S from './style'
 
@@ -15,13 +15,12 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
   const [lectureTypeText, setLectureTypeText] =
     useRecoilState<string>(LectureTypeText)
-  const tokenManager = new TokenManager()
   const { push } = useRouter()
   const { data, refetch } = useGetLectureList({
     page: 0,
     size: 10,
     status: 'PENDING',
-    type: lectureToEnum[lectureTypeText],
+    type: lectureTypeToEnum[lectureTypeText],
   })
 
   useEffect(() => {
@@ -62,11 +61,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
       <S.ListWrapper>
         <S.ListContainer>
           {data?.data.lectures.content.map((item) => (
-            <LectureItem
-              key={item.id}
-              role={tokenManager.authority}
-              item={item}
-            />
+            <LectureItem key={item.id} item={item} />
           ))}
         </S.ListContainer>
       </S.ListWrapper>

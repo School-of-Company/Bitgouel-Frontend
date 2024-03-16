@@ -13,7 +13,7 @@ export const usePostSignUpProfessor = () => {
 
   return useMutation<void, AxiosError<ApiErrorTypes>, ProfessorPayloadTypes>(
     authQueryKeys.postSignUpProfessor(),
-    (signUpValues) => post(authUrl.signUpPropessor(), signUpValues),
+    (signUpValues) => post(authUrl.signUpProfessor(), signUpValues),
     {
       onSuccess: () => {
         setPage(4)

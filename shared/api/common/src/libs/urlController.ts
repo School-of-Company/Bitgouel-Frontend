@@ -1,5 +1,6 @@
 import {
   ActivityOptionsTypes,
+  LinePayloadTypes,
   InquiryListQueryStringTypes,
   LectureListOptionsTypes,
   UserListOptionsTypes,
@@ -12,7 +13,7 @@ export const authUrl = {
   signUpStudent: () => `/auth/student`,
   signUpTeacher: () => `/auth/teacher`,
   signUpBbozzak: () => `/auth/bbozzak`,
-  signUpPropessor: () => `/auth/professor`,
+  signUpProfessor: () => `/auth/professor`,
   signUpGovernment: () => `/auth/government`,
   signUpCompanyInstructor: () => `/auth/company-instructor`,
 } as const
@@ -23,6 +24,11 @@ export const lectureUrl = {
     `/lecture?page=${options.page}&size=${options.size}&type=${options.type}`,
   lectureDetail: (id: string) => `/lecture/${id}`,
   lectureEnrolment: (id: string) => `/lecture/${id}`,
+  lectureInstructor: (keyword: string) =>
+    `/lecture/instructor?keyword=${keyword}`,
+  lectureLine: (queryString: LinePayloadTypes) =>
+    `/lecture/line?keywrod=${queryString.keyword}&division=${queryString.division}`,
+  lectureDepartment: () => `/lecture/department`,
 } as const
 
 export const activityUrl = {

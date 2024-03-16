@@ -1,63 +1,13 @@
-import {
-  CancelIcon,
-  LectureLine,
-  LectureType,
-  Portal,
-  useModal,
-} from '@bitgouel/common'
-import { useRecoilState } from 'recoil'
+'use client'
+
+import { CancelIcon, Portal, useModal } from '@bitgouel/common'
+import LectureDivisionSelect from './LectureDivisonSelect'
+import LectureMaxInput from './LectureMaxInput'
+import LectureSemesterSelect from './LectureSemesterSelect'
+import LectureTypeSelect from './LectureTypeSelect'
+import SearchLine from './SearchLine'
+import SearchProfessor from './SearchProfessor'
 import * as S from './style'
-
-const lectureTypes: ['상호학점인정교육과정', '대학탐방프로그램'] = [
-  '상호학점인정교육과정',
-  '대학탐방프로그램',
-]
-
-const lectureLines: [
-  '기계',
-  '자동차',
-  '전기•전자',
-  '생명화학공학',
-  '뷰티',
-  '의료•헬스',
-  '드론'
-] = ['기계', '자동차', '전기•전자', '생명화학공학', '뷰티', '의료•헬스', '드론']
-
-const LectureTypeSelect = () => {
-  const [lectureType, setLectureType] = useRecoilState(LectureType)
-  return (
-    <S.EnumSelectContainer>
-      {lectureTypes.map((type) => (
-        <S.EnumBox
-          key={type}
-          current={type}
-          selected={lectureType}
-          onClick={() => setLectureType(type)}
-        >
-          <span>{type}</span>
-        </S.EnumBox>
-      ))}
-    </S.EnumSelectContainer>
-  )
-}
-
-const LectureLineSelect = () => {
-  const [lectureLine, setLectureLine] = useRecoilState(LectureLine)
-  return (
-    <S.EnumSelectContainer>
-      {lectureLines.map((line) => (
-        <S.EnumBox
-          key={line}
-          current={line}
-          selected={lectureLine}
-          onClick={() => setLectureLine(line)}
-        >
-          <span>{line}</span>
-        </S.EnumBox>
-      ))}
-    </S.EnumSelectContainer>
-  )
-}
 
 const LectureSettingModal = () => {
   const { closeModal } = useModal()
@@ -74,8 +24,31 @@ const LectureSettingModal = () => {
           <LectureTypeSelect />
         </S.SettingContainer>
         <S.SettingContainer>
+          <span>수강 학기</span>
+          <LectureSemesterSelect />
+        </S.SettingContainer>
+        <S.SettingContainer>
+          <span>강의 구분</span>
+          <LectureDivisionSelect />
+        </S.SettingContainer>
+        <S.SettingContainer>
           <span>강의 계열</span>
-          <LectureLineSelect />
+          <SearchLine />
+        </S.SettingContainer>
+        <S.SettingContainer>
+          <span>강의 학과</span>
+          <SearchLine />
+        </S.SettingContainer>
+        <S.SettingContainer>
+          <span>강의 신청 기간</span>
+        </S.SettingContainer>
+        <S.SettingContainer>
+          <span>담당 교수</span>
+          <SearchProfessor />
+        </S.SettingContainer>
+        <S.SettingContainer>
+          <span>모집 인원</span>
+          <LectureMaxInput />
         </S.SettingContainer>
       </S.LectureSettingModalWrapper>
     </Portal>
