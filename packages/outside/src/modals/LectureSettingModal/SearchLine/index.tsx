@@ -1,7 +1,12 @@
 'use client'
 
 import { useGetLine } from '@bitgouel/api'
-import { LectureDivision, LectureLine, SearchIcon } from '@bitgouel/common'
+import {
+  InputCancel,
+  LectureDivision,
+  LectureLine,
+  SearchIcon,
+} from '@bitgouel/common'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import {
@@ -32,7 +37,7 @@ const SearchLine = () => {
 
   return (
     <SearchWrapper>
-      <SearchInputBox onSubmit={onSubmit} isSelected={lectureLine !== ''}>
+      <SearchInputBox onSubmit={onSubmit} isSelected={!!lectureLine.length}>
         <SearchInput
           type='text'
           value={lectureLine.length ? lectureLine : line}
@@ -40,11 +45,15 @@ const SearchLine = () => {
             setLine(e.target.value)
           }
           placeholder='계열 검색 또는 임의로 추가...'
-          disabled={lectureLine !== ''}
+          disabled={!!lectureLine.length}
         />
-        <SearchIcon onClick={() => refetch()} />
+        {lectureLine.length ? (
+          <InputCancel onClick={() => setLectureLine('')} />
+        ) : (
+          <SearchIcon onClick={() => refetch()} />
+        )}
       </SearchInputBox>
-      {data?.data.lines.length ? (
+      {data?.data.lines && !lectureLine.length && (
         <SearchListContainer>
           {data?.data.lines.map((line) => (
             <SearchItem
@@ -59,8 +68,6 @@ const SearchLine = () => {
             </SearchItem>
           ))}
         </SearchListContainer>
-      ) : (
-        <></>
       )}
     </SearchWrapper>
   )
