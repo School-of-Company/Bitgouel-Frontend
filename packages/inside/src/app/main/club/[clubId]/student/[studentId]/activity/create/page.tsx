@@ -1,8 +1,9 @@
 import React from 'react'
 import { ActivityCreatePage } from '@/PageContainer'
+import { StudentIdProps } from '@bitgouel/types'
 
-const ActivityCreate = () => {
-  return <ActivityCreatePage />
+const ActivityCreate = ({ params }: { params: StudentIdProps }) => {
+  return <ActivityCreatePage studentIdProps={params} />
 }
 
 export default ActivityCreate

@@ -1,8 +1,12 @@
-import React from 'react'
-import ActivityListPage from '@/PageContainer/Club/ActivityListPage'
+import { ActivityListPage } from '@bitgouel/common/src/pages'
+import { StudentIdProps } from '@bitgouel/types'
 
-const ActivityList = () => {
-  return <ActivityListPage />
+const ActivityList = ({ params }: { params: StudentIdProps }) => {
+  return (
+    <ActivityListPage
+      studentIdProps={{ clubId: params.clubId, studentId: params.studentId }}
+    />
+  )
 }
 
 export default ActivityList
