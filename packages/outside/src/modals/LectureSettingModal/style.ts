@@ -40,10 +40,12 @@ export const SettingWrapper = styled.div`
 `
 
 export const SettingContainer = styled.div`
+width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.5rem;
+  margin-bottom: 1rem;
 
   span {
     ${({ theme }) => theme.typo.text_lg.semibold};
@@ -88,6 +90,7 @@ export const EnrollmentDateBox = styled.div`
 `
 
 export const SearchWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,7 +102,6 @@ export const SearchWrapper = styled.div`
 `
 
 export const SearchInputBox = styled.form<{ isSelected?: boolean }>`
-  width: 94%;
   background-color: ${({ theme, isSelected }) =>
     isSelected ? theme.color.gray['900'] : theme.color.white};
   border: 0.0625rem solid ${({ theme }) => theme.color.gray['700']};
@@ -116,10 +118,14 @@ export const SearchInputBox = styled.form<{ isSelected?: boolean }>`
 
 export const SearchInput = styled.input`
   ${({ theme }) => theme.typo.text_sm.regular};
-  color: ${({ theme }) => theme.color.gray['400']};
+  color: ${({ theme }) => theme.color.black};
   border: none;
   outline: none;
   width: 43rem;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.color.gray['400']};
+  }
 `
 
 export const SearchListContainer = styled.div`

@@ -1,6 +1,6 @@
 'use client'
 
-import { CancelIcon, Portal, useModal } from '@bitgouel/common'
+import { CancelIcon, LectureType, Portal, useModal } from '@bitgouel/common'
 import LectureDivisionSelect from './LectureDivisonSelect'
 import LectureMaxInput from './LectureMaxInput'
 import LectureSemesterSelect from './LectureSemesterSelect'
@@ -9,9 +9,12 @@ import SearchLine from './SearchLine'
 import SearchProfessor from './SearchProfessor'
 import * as S from './style'
 import SearchDepartment from './SearchDepartment'
+import LectureApplyTime from './LectureApplyTime'
+import { useRecoilValue } from 'recoil'
 
 const LectureSettingModal = () => {
   const { closeModal } = useModal()
+  const lectureType = useRecoilValue(LectureType)
 
   return (
     <Portal onClose={closeModal}>
@@ -41,11 +44,12 @@ const LectureSettingModal = () => {
           <SearchDepartment />
         </S.SettingContainer>
         <S.SettingContainer>
-          <span>강의 신청 기간</span>
-        </S.SettingContainer>
-        <S.SettingContainer>
           <span>담당 교수</span>
           <SearchProfessor />
+        </S.SettingContainer>
+        <S.SettingContainer>
+          <span>강의 신청 기간</span>
+          <LectureApplyTime />
         </S.SettingContainer>
         <S.SettingContainer>
           <span>모집 인원</span>
