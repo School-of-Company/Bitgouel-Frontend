@@ -1,9 +1,9 @@
 import {
   ActivityOptionsTypes,
-  UserListOptionsTypes,
   LinePayloadTypes,
   InquiryListQueryStringTypes,
   LectureListOptionsTypes,
+  UserListOptionsTypes,
 } from '@bitgouel/types'
 
 export const authUrl = {
@@ -33,17 +33,14 @@ export const lectureUrl = {
 
 export const activityUrl = {
   activityInformation: () => `/activity`,
-  activityCorrection: (activity_id: string) => `/activity/${activity_id}`,
-  activityApprove: (activity_id: string) => `/activity/${activity_id}/approve`,
-  activityReject: (activity_id: string) => `/activity/${activity_id}/reject`,
+  activityModifyInformation: (activity_id: string) =>
+    `/activity/${activity_id}`,
   activityInformationRemove: (activity_id: string) =>
     `/activity/${activity_id}`,
   activityMyselfList: (options: ActivityOptionsTypes) =>
-    `/activity/my?page=${options.page}&size=${options.size}&sort=${options.sort}`,
+    `/activity/my?page=${options.page}&size=${options.size}`,
   activityList: (student_id: string, options: ActivityOptionsTypes) =>
-    `/activity/${student_id}?page=${options.page}&size=${options.size}&sort=${options.sort}`,
-  activityInformationList: (options: ActivityOptionsTypes) =>
-    `/activity?page=${options.page}&size=${options.size}&sort=${options.sort}`,
+    `/activity/${student_id}?page=${options.page}&size=${options.size}`,
   activityInformationDetail: (activity_id: string) =>
     `/activity/${activity_id}`,
 }
