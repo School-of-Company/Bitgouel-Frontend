@@ -15,41 +15,6 @@ export const LectureSettingModalWrapper = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-
-  .MuiPickersCalendarHeader-root,
-  .MuiDayCalendar-weekContainer {
-    margin: 0;
-  }
-  .MuiButtonBase-root {
-    color: ${({ theme }) => theme.color.black};
-    ${({ theme }) => theme.typo.text_sm.regular};
-  }
-  .MuiDateRangeCalendar-monthContainer {
-    width: 19.75rem;
-    height: 18.25rem;
-    padding: 0.5rem 0;
-  }
-  .css-grqin-MuiButtonBase-root-MuiPickersDay-root-MuiDateRangePickerDay-day.Mui-selected,
-  .css-1a4q4r2-MuiButtonBase-root-MuiPickersDay-root-MuiDateRangePickerDay-day.Mui-selected,
-  .css-1x94ue7-MuiButtonBase-root-MuiPickersDay-root-MuiDateRangePickerDay-day.Mui-selected {
-    background-color: ${({ theme }) => theme.color.main};
-    color: ${({ theme }) => theme.color.white};
-    width: 2.25rem;
-    height: 2.25rem;
-  }
-  .css-gtjfra-MuiDateRangePickerDay-root,
-  .css-1gbl7yn-MuiDateRangePickerDay-root,
-  .css-1i2r8k1-MuiDateRangePickerDay-root,
-  .css-12tpyw1 .css-1i2r8k1-MuiDateRangePickerDay-root {
-    background-color: ${({ theme }) => theme.color.blue['800']};
-  }
-  .MuiPickersToolbar-root,
-  .MuiDialogActions-root,
-  .MuiDayCalendar-header,
-  .MuiDateRangePickerDay-rangeIntervalPreview
-    css-1o490ea-MuiDateRangePickerDay-rangeIntervalPreview {
-    display: none;
-  }
 `
 
 export const SettingTitleBox = styled.div`
@@ -127,15 +92,17 @@ export const SearchWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  
+
   input {
-    margin: 0
+    margin: 0;
   }
 `
 
-export const SearchInputBox = styled.form`
+export const SearchInputBox = styled.form<{ isSelected: boolean }>`
   width: 94%;
-  border: 0.0625rem solid ${({theme}) => theme.color.gray['700']};
+  background-color: ${({ theme, isSelected }) =>
+    isSelected ? theme.color.gray['900'] : theme.color.white};
+  border: 0.0625rem solid ${({ theme }) => theme.color.gray['700']};
   border-radius: 0.5rem;
   padding: 1.0625rem 1.25rem;
   display: flex;
@@ -148,8 +115,8 @@ export const SearchInputBox = styled.form`
 `
 
 export const SearchInput = styled.input`
-  ${({theme}) => theme.typo.text_sm.regular};
-  color: ${({theme}) => theme.color.gray['400']};
+  ${({ theme }) => theme.typo.text_sm.regular};
+  color: ${({ theme }) => theme.color.gray['400']};
   border: none;
   outline: none;
   width: 43rem;
@@ -157,9 +124,15 @@ export const SearchInput = styled.input`
 
 export const SearchListContainer = styled.div`
   width: 100%;
+  height: 11rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `
 
 export const SearchItem = styled.div`
@@ -168,23 +141,22 @@ export const SearchItem = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  border-bottom: 0.0625rem solid ${({theme}) => theme.color.gray['900']};
+  border-bottom: 0.0625rem solid ${({ theme }) => theme.color.gray['900']};
   transition: all 0.1s ease-in;
 
   span {
-   &:first-of-type {
-    ${({theme}) => theme.typo.text_lg.regular};
-     color: ${({theme}) => theme.color.black};
-   } 
-   &:last-of-type {
-    ${({theme}) => theme.typo.text_md.regular};
-     color: ${({theme}) => theme.color.gray['400']};
-   } 
+    &:first-of-type {
+      ${({ theme }) => theme.typo.text_lg.regular};
+      color: ${({ theme }) => theme.color.black};
+    }
+    &:last-of-type {
+      ${({ theme }) => theme.typo.text_md.regular};
+      color: ${({ theme }) => theme.color.gray['400']};
+    }
   }
 
   &:hover {
     cursor: pointer;
-    background-color: ${({theme}) => theme.color.gray['900']};
+    background-color: ${({ theme }) => theme.color.gray['900']};
   }
 `
-

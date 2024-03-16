@@ -1,52 +1,13 @@
 'use client'
 
-import {
-  CancelIcon,
-  LectureEndDate,
-  LectureStartDate,
-  Portal,
-  useModal,
-} from '@bitgouel/common'
-import {
-  LocalizationProvider,
-  StaticDateRangePicker,
-} from '@mui/x-date-pickers-pro'
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo'
-import { useSetRecoilState } from 'recoil'
+import { CancelIcon, Portal, useModal } from '@bitgouel/common'
+import LectureDivisionSelect from './LectureDivisonSelect'
 import LectureMaxInput from './LectureMaxInput'
 import LectureSemesterSelect from './LectureSemesterSelect'
 import LectureTypeSelect from './LectureTypeSelect'
 import SearchLine from './SearchLine'
 import SearchProfessor from './SearchProfessor'
-import ShowEnrollmentTime from './ShowEnrollment'
 import * as S from './style'
-
-const LectureEnrollmentDate = () => {
-  const setStartDate = useSetRecoilState(LectureStartDate)
-  const setEndDate = useSetRecoilState(LectureEndDate)
-
-  const onDateChange = (datePick) => {
-    const start = new Date(datePick[0])
-    const end = new Date(datePick[1])
-    setStartDate(() => [
-      start.getFullYear(),
-      start.getMonth() + 1,
-      start.getDate(),
-    ])
-    setEndDate(() => [end.getFullYear(), end.getMonth() + 1, end.getDate()])
-  }
-
-  return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['StaticDateRangePicker']}>
-        <DemoItem component='StaticDateRangePicker'>
-          <StaticDateRangePicker onChange={onDateChange} />
-        </DemoItem>
-      </DemoContainer>
-    </LocalizationProvider>
-  )
-}
 
 const LectureSettingModal = () => {
   const { closeModal } = useModal()
@@ -67,6 +28,10 @@ const LectureSettingModal = () => {
           <LectureSemesterSelect />
         </S.SettingContainer>
         <S.SettingContainer>
+          <span>강의 구분</span>
+          <LectureDivisionSelect />
+        </S.SettingContainer>
+        <S.SettingContainer>
           <span>강의 계열</span>
           <SearchLine />
         </S.SettingContainer>
@@ -76,10 +41,6 @@ const LectureSettingModal = () => {
         </S.SettingContainer>
         <S.SettingContainer>
           <span>강의 신청 기간</span>
-          <S.EnrollmentDateBox>
-            {/* <LectureEnrollmentDate /> */}
-            <ShowEnrollmentTime />
-          </S.EnrollmentDateBox>
         </S.SettingContainer>
         <S.SettingContainer>
           <span>담당 교수</span>

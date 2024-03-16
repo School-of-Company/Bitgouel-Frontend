@@ -1,10 +1,10 @@
-import { LectureMax } from '@bitgouel/common'
+import { LectureMaxRegistered } from '@bitgouel/common'
 import { ChangeEvent } from 'react'
 import { useRecoilState } from 'recoil'
 import * as S from './style'
 
 const LectureMaxInput = () => {
-  const [lectureMax, setLectureMax] = useRecoilState(LectureMax)
+  const [lectureMax, setLectureMax] = useRecoilState(LectureMaxRegistered)
   return (
     <S.LectureMaxInputWrapper>
       <S.MaxInputBox length={lectureMax.length}>
