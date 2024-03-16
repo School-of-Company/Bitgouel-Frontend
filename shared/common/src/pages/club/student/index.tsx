@@ -23,13 +23,12 @@ import { useModal } from '../../../hooks'
 import { AppropriationModal, SelectCalendarModal } from '../../../modals'
 import { theme } from '../../../styles'
 import * as S from './style'
-interface StudentProps {
-  studentIdProps: StudentIdProps
-}
 
 const roleArray: string[] = ['ROLE_STUDENT', 'ROLE_TEACHER', 'ROLE_ADMIN']
 
-const StudentPage: React.FC<StudentProps> = ({ studentIdProps }) => {
+const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
+  studentIdProps,
+}) => {
   const { studentId, clubId } = studentIdProps
   const { push } = useRouter()
   const [isAddCertificate, setIsAddCertificate] = useState<boolean>(false)
