@@ -9,6 +9,9 @@ import { SearchInput } from '../style'
 import * as S from './style'
 import { ChangeEvent } from 'react'
 
+const MaxDateLength = 10 as const
+const MaxTimeLength = 5 as const
+
 const LectureApplyTime = () => {
   const setLectureStartDate = useSetRecoilState(LectureStartDate)
   const setLectureStartTime = useSetRecoilState(LectureStartTime)
@@ -23,7 +26,7 @@ const LectureApplyTime = () => {
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setLectureStartDate(e.target.value)
             }
-            maxLength={10}
+            maxLength={MaxDateLength}
             style={{ width: '20.75rem' }}
           />
         </S.DateBox>
@@ -33,7 +36,7 @@ const LectureApplyTime = () => {
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setLectureStartTime(e.target.value)
             }
-            maxLength={5}
+            maxLength={MaxTimeLength}
             style={{ width: '20.75rem' }}
           />
         </S.DateBox>
@@ -45,7 +48,7 @@ const LectureApplyTime = () => {
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setLectureEndDate(e.target.value)
             }
-            maxLength={10}
+            maxLength={MaxDateLength}
             style={{ width: '20.75rem' }}
           />
         </S.DateBox>
@@ -55,7 +58,7 @@ const LectureApplyTime = () => {
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setLectureEndTime(e.target.value)
             }
-            maxLength={5}
+            maxLength={MaxTimeLength}
             style={{ width: '20.75rem' }}
           />
         </S.DateBox>
