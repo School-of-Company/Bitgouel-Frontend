@@ -51,19 +51,6 @@ const ActivityCreatePage: React.FC<StudentProps> = ({ studentIdProps }) => {
   const { mutate } = usePostActivityInformation()
 
   const onCreate = () => {
-    console.log('title' + title)
-    console.log('content' + content)
-    console.log('activityDate' + activityDate)
-    console.log('score' + scoreText)
-    console.log(
-      `${activityDate.getFullYear()}-${(activityDate.getMonth() + 1)
-        .toString()
-        .padStart(2, '0')}-${activityDate
-        .getDate()
-        .toString()
-        .padStart(2, '0')}`
-    )
-
     mutate({
       content: content,
       title: title,
