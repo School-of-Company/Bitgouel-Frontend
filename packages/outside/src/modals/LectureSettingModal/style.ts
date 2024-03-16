@@ -98,7 +98,7 @@ export const SearchWrapper = styled.div`
   }
 `
 
-export const SearchInputBox = styled.form<{ isSelected: boolean }>`
+export const SearchInputBox = styled.form<{ isSelected?: boolean }>`
   width: 94%;
   background-color: ${({ theme, isSelected }) =>
     isSelected ? theme.color.gray['900'] : theme.color.white};

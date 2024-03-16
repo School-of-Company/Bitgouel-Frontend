@@ -13,8 +13,8 @@ import {
 } from '../style'
 
 const SearchLine = () => {
-  const lectureDivision = useRecoilValue(LectureDivision)
   const [lectureLine, setLectureLine] = useRecoilState(LectureLine)
+  const lectureDivision = useRecoilValue(LectureDivision)
   const [line, setLine] = useState<string>('')
   const { data, refetch } = useGetLine({
     keyword: line,
