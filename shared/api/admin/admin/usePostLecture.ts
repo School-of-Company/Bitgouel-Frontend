@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 import { useModal } from '@bitgouel/common/src/hooks'
 
 export const usePostLecture = () => {
-  const router = useRouter()
+  const { push } = useRouter()
   const { closeModal } = useModal()
 
   return useMutation<void, AxiosError, LectureCreatePayloadTypes>(
@@ -16,7 +16,7 @@ export const usePostLecture = () => {
     {
       onSuccess: () => {
         closeModal()
-        router.push('/main/lecture')
+        push('/main/lecture')
         toast.success('강의를 개설했습니다')
       },
       onError: (error) => {

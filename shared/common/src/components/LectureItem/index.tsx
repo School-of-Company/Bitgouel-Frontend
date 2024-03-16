@@ -5,12 +5,12 @@ import * as S from './style'
 import { useRouter } from 'next/navigation'
 import { LectureItemProps } from '@bitgouel/types'
 
-const LectureItem = ({ item, role }: LectureItemProps) => {
-  const router = useRouter()
+const LectureItem = ({ item }: LectureItemProps) => {
+  const {push} = useRouter()
 
   return (
     <S.LectureItemWrapper
-      onClick={() => router.push(`/main/lecture/${item.id}`)}
+      onClick={() => push(`/main/lecture/${item.id}`)}
     >
       <S.SubTitle>
         <S.Professor>{item.lecturer}</S.Professor>
