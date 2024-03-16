@@ -26,6 +26,9 @@ import * as S from './style'
 interface StudentProps {
   studentIdProps: StudentIdProps
 }
+
+const roleArray: string[] = ['ROLE_STUDENT', 'ROLE_TEACHER', 'ROLE_ADMIN']
+
 const StudentPage: React.FC<StudentProps> = ({ studentIdProps }) => {
   const { studentId, clubId } = studentIdProps
   const { push } = useRouter()
@@ -37,8 +40,6 @@ const StudentPage: React.FC<StudentProps> = ({ studentIdProps }) => {
   const [certificateIndex, setCertificateIndex] = useState<number>(-1)
 
   const [isRole, setIsRole] = useState<boolean>(false)
-
-  const roleArray: string[] = ['ROLE_STUDENT', 'ROLE_TEACHER', 'ROLE_ADMIN']
 
   const { openModal, closeModal } = useModal()
 
