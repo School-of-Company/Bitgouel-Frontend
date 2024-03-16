@@ -19,11 +19,11 @@ interface StudentProps {
   studentIdProps: StudentIdProps
 }
 
+const MAXTITLELENGTH: number = 100 as const
+const MAXCONTENTLENGTH: number = 1000 as const
+
 const ActivityCreatePage: React.FC<StudentProps> = ({ studentIdProps }) => {
   const { studentId, clubId } = studentIdProps
-
-  const MAXTITLELENGTH: number = 100 as const
-  const MAXCONTENTLENGTH: number = 1000 as const
 
   const { openModal, closeModal } = useModal()
   const { push } = useRouter()
