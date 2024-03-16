@@ -1,15 +1,27 @@
 'use client'
 
-import { ActivityItemProps } from '@bitgouel/types'
+import {
+  ActivityInformationItem,
+  ActivityItemTypes,
+  StudentIdProps,
+} from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import * as S from './style'
 
-const ActivityItem = ({ item }: ActivityItemProps) => {
-  const router = useRouter()
+const ActivityItem: React.FC<ActivityItemTypes> = ({
+  item,
+  studentIdProps,
+  activityId,
+}) => {
+  const { push } = useRouter()
+
+  const { studentId, clubId } = studentIdProps
 
   return (
     <S.ActivityItemWrapper
-      onClick={() => router.push('/main/club/student/activity/detail')}
+      onClick={() =>
+        push(`/main/club/${clubId}/student/${studentId}/activity/${activityId}`)
+      }
     >
       <div>
         <div>
