@@ -1,9 +1,9 @@
 'use client'
 
 import { useGetDepartment } from '@bitgouel/api'
-import { LectureDepartment, SearchIcon } from '@bitgouel/common'
+import { InputCancel, LectureDepartment, SearchIcon } from '@bitgouel/common'
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import {
   SearchInput,
   SearchInputBox,
@@ -12,10 +12,11 @@ import {
   SearchWrapper,
 } from '../style'
 
-const SearchLine = () => {
+const SearchDepartment = () => {
+  const [lectureDepartment, setLectureDepartment] =
+    useRecoilState(LectureDepartment)
   const [department, setDepartment] = useState<string>('')
-  const setLectureDepartment = useSetRecoilState(LectureDepartment)
-  const { data, refetch } = useGetDepartment()
+  const { data, refetch } = useGetDepartment(department)
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -24,33 +25,43 @@ const SearchLine = () => {
 
   return (
     <SearchWrapper>
-      <SearchInputBox onSubmit={onSubmit}>
+      <SearchInputBox
+        onSubmit={onSubmit}
+        isSelected={!!lectureDepartment.length}
+      >
         <SearchInput
           type='text'
-          value={department}
+          value={lectureDepartment.length ? lectureDepartment : department}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setDepartment(e.target.value)
           }
           placeholder='학과 검색'
+          disabled={!!lectureDepartment.length}
         />
-        <SearchIcon onClick={() => refetch()} />
+        {lectureDepartment.length ? (
+          <InputCancel onClick={() => setLectureDepartment('')} />
+        ) : (
+          <SearchIcon onClick={() => refetch()} />
+        )}
       </SearchInputBox>
-      <SearchListContainer>
-        {data?.data.departments.map((department) => (
-          <SearchItem
-            key={department}
-            onClick={() => {
-              setLectureDepartment(department)
-              setDepartment('')
-            }}
-          >
-            <span>{department}</span>
-            <span>계열 추가하기...</span>
-          </SearchItem>
-        ))}
-      </SearchListContainer>
+      {data?.data.departments.length && !lectureDepartment.length && (
+        <SearchListContainer>
+          {data?.data.departments.map((department) => (
+            <SearchItem
+              key={department}
+              onClick={() => {
+                setLectureDepartment(department)
+                setDepartment('')
+              }}
+            >
+              <span>{department}</span>
+              <span>계열 추가하기...</span>
+            </SearchItem>
+          ))}
+        </SearchListContainer>
+      )}
     </SearchWrapper>
   )
 }
 
-export default SearchLine
+export default SearchDepartment

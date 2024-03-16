@@ -8,6 +8,7 @@ import LectureTypeSelect from './LectureTypeSelect'
 import SearchLine from './SearchLine'
 import SearchProfessor from './SearchProfessor'
 import * as S from './style'
+import SearchDepartment from './SearchDepartment'
 
 const LectureSettingModal = () => {
   const { closeModal } = useModal()
@@ -37,7 +38,7 @@ const LectureSettingModal = () => {
         </S.SettingContainer>
         <S.SettingContainer>
           <span>강의 학과</span>
-          <SearchLine />
+          <SearchDepartment />
         </S.SettingContainer>
         <S.SettingContainer>
           <span>강의 신청 기간</span>

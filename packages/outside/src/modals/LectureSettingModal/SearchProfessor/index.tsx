@@ -1,9 +1,9 @@
 'use client'
 
 import { useGetProfessor } from '@bitgouel/api'
-import { LectureProfessor, SearchIcon } from '@bitgouel/common'
+import { InputCancel, LectureProfessor, SearchIcon } from '@bitgouel/common'
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import {
   SearchInput,
   SearchInputBox,
@@ -13,8 +13,9 @@ import {
 } from '../style'
 
 const SearchProfessor = () => {
+  const [lectureProfessor, setLectureProfessor] =
+    useRecoilState(LectureProfessor)
   const [professor, setProfessor] = useState<string>('')
-  const setLectureProfessor = useSetRecoilState(LectureProfessor)
   const { data, refetch } = useGetProfessor(professor)
 
   const onSubmit = (e: FormEvent) => {
@@ -24,31 +25,41 @@ const SearchProfessor = () => {
 
   return (
     <SearchWrapper>
-      <SearchInputBox onSubmit={onSubmit}>
+      <SearchInputBox
+        onSubmit={onSubmit}
+        isSelected={!!lectureProfessor.length}
+      >
         <SearchInput
           type='text'
-          value={professor}
+          value={lectureProfessor.length ? lectureProfessor : professor}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setProfessor(e.target.value)
           }
           placeholder='이름 또는 학교명으로 검색...'
+          disabled={!!lectureProfessor.length}
         />
-        <SearchIcon onClick={() => refetch()} />
+        {lectureProfessor.length ? (
+          <InputCancel onClick={() => setLectureProfessor('')} />
+        ) : (
+          <SearchIcon onClick={() => refetch()} />
+        )}
       </SearchInputBox>
-      <SearchListContainer>
-        {data?.data.instructors.map((professor) => (
-          <SearchItem
-            key={professor.id}
-            onClick={() => {
-              setLectureProfessor(professor.name)
-              setProfessor('')
-            }}
-          >
-            <span>{professor.name}</span>
-            <span>{professor.organization}</span>
-          </SearchItem>
-        ))}
-      </SearchListContainer>
+      {data?.data.instructors && !lectureProfessor.length && (
+        <SearchListContainer>
+          {data?.data.instructors.map((professor) => (
+            <SearchItem
+              key={professor.id}
+              onClick={() => {
+                setLectureProfessor(professor.name)
+                setProfessor('')
+              }}
+            >
+              <span>{professor.name}</span>
+              <span>{professor.organization}</span>
+            </SearchItem>
+          ))}
+        </SearchListContainer>
+      )}
     </SearchWrapper>
   )
 }

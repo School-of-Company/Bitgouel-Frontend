@@ -1,17 +1,15 @@
 'use client'
 
-import { lectureTypeToKor, lectureStatusToKor } from '../../constants'
-import * as S from './style'
-import { useRouter } from 'next/navigation'
 import { LectureItemProps } from '@bitgouel/types'
+import { useRouter } from 'next/navigation'
+import { lectureTypeToKor } from '../../constants'
+import * as S from './style'
 
 const LectureItem = ({ item }: LectureItemProps) => {
-  const {push} = useRouter()
+  const { push } = useRouter()
 
   return (
-    <S.LectureItemWrapper
-      onClick={() => push(`/main/lecture/${item.id}`)}
-    >
+    <S.LectureItemWrapper onClick={() => push(`/main/lecture/${item.id}`)}>
       <S.SubTitle>
         <S.Professor>{item.lecturer}</S.Professor>
       </S.SubTitle>
