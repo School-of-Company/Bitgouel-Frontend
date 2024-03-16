@@ -12,18 +12,17 @@ const LectureEnrollmentDates = () => {
   const [lectureDates, setLectureDates] = useRecoilState(LectureDates)
   return (
     <S.LectureEnrollmentDateWrapper>
-      {lectureDates.map((_, idx) => (
-        <S.EnrollmentDateContainer>
+      {lectureDates.map((value, idx) => (
+        <S.EnrollmentDateContainer key={idx}>
           <DateBox>
             <SearchInput
+              value={value.completeDate}
               type='text'
               placeholder='강의 수강일 입력(ex: 2000.11.11)'
               onChange={(e: ChangeEvent<HTMLInputElement>) => {
                 setLectureDates((prev) =>
                   prev.map((date, i) =>
-                    idx === i
-                      ? { ...date, completeDate: e.target.value }
-                      : date
+                    idx === i ? { ...date, completeDate: e.target.value } : date
                   )
                 )
               }}
@@ -33,6 +32,7 @@ const LectureEnrollmentDates = () => {
           </DateBox>
           <DateBox>
             <SearchInput
+              value={value.startTime}
               type='text'
               placeholder='강의 시작 시간 입력'
               maxLength={MaxTimeLength}
@@ -48,6 +48,7 @@ const LectureEnrollmentDates = () => {
           </DateBox>
           <DateBox>
             <SearchInput
+              value={value.endTime}
               type='text'
               placeholder='강의 종료 시간 입력'
               maxLength={MaxTimeLength}
