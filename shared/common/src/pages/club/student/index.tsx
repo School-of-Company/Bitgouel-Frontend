@@ -45,10 +45,6 @@ const StudentPage: React.FC<StudentProps> = ({ studentIdProps }) => {
   const { data: clubStudent } = useGetStudentDetail(clubId, studentId)
   const { data: myPageData } = useGetMy()
 
-  console.log(myPageData)
-
-  console.log(clubStudent)
-
   const { mutate } = usePostCertificate()
 
   const tokenManager = new TokenManager()
