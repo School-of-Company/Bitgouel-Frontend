@@ -15,7 +15,6 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
   const [lectureTypeText, setLectureTypeText] =
     useRecoilState<string>(LectureTypeText)
-  const tokenManager = new TokenManager()
   const { push } = useRouter()
   const { data, refetch } = useGetLectureList({
     page: 0,
@@ -62,11 +61,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
       <S.ListWrapper>
         <S.ListContainer>
           {data?.data.lectures.content.map((item) => (
-            <LectureItem
-              key={item.id}
-              role={tokenManager.authority}
-              item={item}
-            />
+            <LectureItem key={item.id} item={item} />
           ))}
         </S.ListContainer>
       </S.ListWrapper>
