@@ -9,6 +9,7 @@ type AuthorityTypes =
   | 'ROLE_GOVERNMENT'
 
 export interface MyPageResponseTypes {
+  id: string
   name: string
   email: string
   phoneNumber: string
