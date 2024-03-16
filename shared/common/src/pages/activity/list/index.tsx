@@ -67,8 +67,7 @@ const ActivityListPage: React.FC<StudentProps> = ({ studentIdProps }) => {
             <ActivityItem
               item={activity}
               key={index}
-              studentId={studentId}
-              clubId={clubId}
+              studentIdProps={studentIdProps}
               activityId={activity.activityId}
             />
           ))}

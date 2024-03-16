@@ -6,19 +6,18 @@ import * as S from './style'
 
 interface ActivityItems {
   item: ActivityInformationItem
-  // studentIdProps: StudentIdProps
-  clubId: string
-  studentId: string
+  studentIdProps: StudentIdProps
   activityId: string
 }
 
 const ActivityItem: React.FC<ActivityItems> = ({
   item,
-  clubId,
-  studentId,
+  studentIdProps,
   activityId,
 }) => {
   const { push } = useRouter()
+
+  const { studentId, clubId } = studentIdProps
 
   return (
     <S.ActivityItemWrapper
