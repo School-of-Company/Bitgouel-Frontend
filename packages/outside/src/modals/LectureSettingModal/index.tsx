@@ -11,6 +11,7 @@ import * as S from './style'
 import SearchDepartment from './SearchDepartment'
 import LectureApplyTime from './LectureApplyTime'
 import { useRecoilValue } from 'recoil'
+import LectureEnrollmentDates from './LectureEnrollmentDates'
 
 const LectureSettingModal = () => {
   const { closeModal } = useModal()
@@ -50,6 +51,10 @@ const LectureSettingModal = () => {
         <S.SettingContainer>
           <span>강의 신청 기간</span>
           <LectureApplyTime />
+        </S.SettingContainer>
+        <S.SettingContainer>
+          <span>강의 수강일</span>
+          <LectureEnrollmentDates />
         </S.SettingContainer>
         <S.SettingContainer>
           <span>모집 인원</span>
