@@ -6,7 +6,6 @@ export interface ActivityItemType {
   userId: string
   activityDate: string
   username: string
-  approveStatus: ApproveStatusEnum
 }
 
 export interface ActivityItemProps {
