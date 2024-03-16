@@ -80,7 +80,7 @@ export const UserSearchBox = styled.form`
 `
 
 export const UserSearchInput = styled.input`
-  width: 1028px;
+  width: 64.25rem;
   border: none;
   outline: none;
 `
