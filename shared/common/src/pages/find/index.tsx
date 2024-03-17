@@ -4,14 +4,16 @@ import * as S from './style'
 import NewPassword from './Pagination/NewPassword'
 import ChangePasswordSuccess from './Pagination/ChangePasswordSuccess'
 import { useRecoilState } from 'recoil'
-import { Page } from '../../atoms'
+import { PwPage } from '../../atoms'
+import EmailCheck from './Pagination/EmailCheck'
+import NumberValid from './Pagination/NumberValid'
 
 const FindPage = () => {
-  const [page, setPage] = useRecoilState(Page)
+  const [pwPage, setPwPage] = useRecoilState(PwPage)
 
   return (
     <>
-      {page === 2 ? (
+      {pwPage === 4 ? (
         <ChangePasswordSuccess />
       ) : (
         <S.ChangePWWrapper>
@@ -22,7 +24,9 @@ const FindPage = () => {
             </S.TitleItemWrapper>
           </S.ChangePWTitleWrapper>
           <S.PaginationContainer>
-            {page === 1 && <NewPassword page={page} setPage={setPage} />}
+            {pwPage === 1 && <EmailCheck />}
+            {pwPage === 2 && <NumberValid />}
+            {pwPage === 3 && <NewPassword />}
           </S.PaginationContainer>
         </S.ChangePWWrapper>
       )}
