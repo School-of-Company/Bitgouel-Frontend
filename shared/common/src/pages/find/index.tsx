@@ -18,7 +18,7 @@ const FindPage = () => {
           <S.ChangePWTitleWrapper>
             <S.TitleItemWrapper>
               <S.TitleItem>비밀번호 변경</S.TitleItem>
-              <S.SubTitleItem>전화번호 인증을 진행합니다</S.SubTitleItem>
+              <S.SubTitleItem>이메일 인증을 진행합니다</S.SubTitleItem>
             </S.TitleItemWrapper>
           </S.ChangePWTitleWrapper>
           <S.PaginationContainer>

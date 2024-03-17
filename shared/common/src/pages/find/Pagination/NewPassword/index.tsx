@@ -16,12 +16,13 @@ const NewPassword = ({}: {
   const [currentPw] = useState<string>('')
   const [newPw, setNewPw] = useState<string>('')
   const [newErrorMessage, setNewErrorMessage] = useState<string>('')
-  const [number, setNumber] = useState<string>('')
-  const [numStatus, setNumStatus] = useState<boolean>(false)
-  const [numberErrorMessage, setNumberErrorMessage] = useState<string>('')
   const [newConfirmPw, setNewConfirmPw] = useState<string>('')
   const [newConfirmErrorMessage, setNewConfirmErrorMessage] =
     useState<string>('')
+  const [email, setEmail] = useState<string>('')
+  const [emailStatus, setEmailStatus] = useState<boolean>(false)
+  const [emailValue, setEmailValue] = useState<string>('')
+  const [emailErrorText, setEmailErrorText] = useState<string>('')
   const { error } = usePatchPassword()
 
   useEffect(() => {
@@ -30,16 +31,14 @@ const NewPassword = ({}: {
   }, [error])
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const passwordRegex = new RegExp(
-      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,24}$/
-    )
+    const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
     if (e.target.name === 'newPw') {
       setNewPw(e.target.value)
       if (e.target.value === '') {
         setNewErrorMessage('')
       } else if (currentPw === e.target.value) {
         setNewErrorMessage('새로운 비밀번호를 입력해주세요.')
-      } else if (!passwordRegex.test(e.target.value)) {
+      } else if (!emailRegex.test(e.target.value)) {
         setNewErrorMessage('잘못된 비밀번호입니다.')
       } else {
         setNewErrorMessage('')
@@ -48,7 +47,7 @@ const NewPassword = ({}: {
       setNewConfirmPw(e.target.value)
       if (e.target.value === '') {
         setNewConfirmErrorMessage('')
-      } else if (!passwordRegex.test(e.target.value)) {
+      } else if (!emailRegex.test(e.target.value)) {
         setNewConfirmErrorMessage('잘못된 비밀번호입니다.')
       } else if (newPw !== e.target.value) {
         setNewConfirmErrorMessage('비밀번호가 일치하지 않습니다.')
@@ -57,23 +56,20 @@ const NewPassword = ({}: {
       }
     }
   }
-
-  const checkNumber = (e: ChangeEvent<HTMLInputElement>) => {
-    const numberRegex = new RegExp(/^01[0-1]\d{7,8}$/)
-    setNumber(e.target.value)
+  const checkEmail = (e: ChangeEvent<HTMLInputElement>) => {
+    const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+    setEmailValue(e.target.value)
     if (e.target.value === '') {
-      setNumberErrorMessage('')
-      setNumStatus(false)
-    } else if (!numberRegex.test(e.target.value)) {
-      setNumberErrorMessage('잘못된 전화번호입니다.')
+      setEmailErrorText('')
+    } else if (!emailRegex.test(e.target.value)) {
+      setEmailErrorText('잘못된 이메일입니다.')
     } else {
-      setNumberErrorMessage('')
-      setNumStatus(true)
+      setEmailErrorText('')
     }
   }
 
   const checkSMS = () => {
-    if (numStatus) {
+    if (emailValue) {
       toast.success('인증번호를 발송했습니다')
     } else {
     }
@@ -85,23 +81,23 @@ const NewPassword = ({}: {
         <S.NumberBox>
           <S.FirstNumberInput>
             <ValueInput
-              type='number'
-              placeholder='전화번호 (- 제외)'
+              type='text'
+              placeholder='이메일'
               name='newPw'
               length={newPw.length}
-              onChange={checkNumber}
-              onClear={() => setNumber('')}
-              errorText={numberErrorMessage}
+              onChange={checkEmail}
+              onClear={() => setEmail('')}
+              errorText={emailErrorText}
             />
           </S.FirstNumberInput>
-          <S.FinishButton numStatus={numStatus} onClick={checkSMS}>
+          <S.FinishButton numStatus={emailStatus} onClick={checkSMS}>
             인증
           </S.FinishButton>
         </S.NumberBox>
         <S.PasswordInputContainer>
           <ValueInput
             type='password'
-            placeholder='새 비밀번호 (8~24자 이내의 영문 / 숫자, 특수문자 1개 이상)'
+            placeholder='새 비밀번호'
             name='newPw'
             value={newPw}
             onChange={onChange}
@@ -111,7 +107,7 @@ const NewPassword = ({}: {
           />
           <ValueInput
             type='password'
-            placeholder='비밀번호 확인'
+            placeholder='새 비밀번호 확인'
             name='newConfirmPw'
             value={newConfirmPw}
             onChange={onChange}
