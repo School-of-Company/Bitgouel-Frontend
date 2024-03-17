@@ -18,7 +18,7 @@ const LectureEnrollmentDates = () => {
             <SearchInput
               value={value.completeDate}
               type='text'
-              placeholder='강의 수강일 입력(ex: 2000.11.11)'
+              placeholder='강의 수강일 입력(ex: 2000-11-11)'
               onChange={(e: ChangeEvent<HTMLInputElement>) => {
                 setLectureDates((prev) =>
                   prev.map((date, i) =>
@@ -32,14 +32,20 @@ const LectureEnrollmentDates = () => {
           </DateBox>
           <DateBox>
             <SearchInput
-              value={value.startTime}
+              value={value.startShowTime}
               type='text'
               placeholder='강의 시작 시간 입력'
               maxLength={MaxTimeLength}
               onChange={(e: ChangeEvent<HTMLInputElement>) => {
                 setLectureDates((prev) =>
                   prev.map((date, i) =>
-                    idx === i ? { ...date, startTime: e.target.value } : date
+                    idx === i
+                      ? {
+                          ...date,
+                          startShowTime: e.target.value,
+                          startTime: e.target.value + ':00',
+                        }
+                      : date
                   )
                 )
               }}
@@ -48,14 +54,20 @@ const LectureEnrollmentDates = () => {
           </DateBox>
           <DateBox>
             <SearchInput
-              value={value.endTime}
+              value={value.endShowTime}
               type='text'
               placeholder='강의 종료 시간 입력'
               maxLength={MaxTimeLength}
               onChange={(e: ChangeEvent<HTMLInputElement>) => {
                 setLectureDates((prev) =>
                   prev.map((date, i) =>
-                    idx === i ? { ...date, endTime: e.target.value } : date
+                    idx === i
+                      ? {
+                          ...date,
+                          endShowTime: e.target.value,
+                          endTime: e.target.value + ':00',
+                        }
+                      : date
                   )
                 )
               }}
@@ -75,7 +87,13 @@ const LectureEnrollmentDates = () => {
         onClick={() =>
           setLectureDates((prev) => [
             ...prev,
-            { completeDate: '', startTime: '', endTime: '' },
+            {
+              completeDate: '',
+              startShowTime: '',
+              startTime: '',
+              endShowTime: '',
+              endTime: '',
+            },
           ])
         }
       >

@@ -31,10 +31,6 @@ const SearchLine = () => {
     refetch()
   }
 
-  useEffect(() => {
-    setLectureLine('')
-  }, [lectureDivision])
-
   return (
     <SearchWrapper>
       <SearchInputBox onSubmit={onSubmit} isSelected={!!lectureLine.length}>

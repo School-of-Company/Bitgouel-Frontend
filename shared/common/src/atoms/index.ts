@@ -8,6 +8,11 @@ import {
 import { ReactNode } from 'react'
 import { atom } from 'recoil'
 
+interface InputLectureDatesTypes extends LectureDate {
+  startShowTime: string
+  endShowTime: string
+}
+
 export const LectureTypeText = atom<LectureTypeKor>({
   key: 'LectureTypeText',
   default: '상호학점인정교육과정',
@@ -109,9 +114,17 @@ export const LectureEndTime = atom<string>({
   key: 'LectureEndTime',
   default: '',
 })
-export const LectureDates = atom<LectureDate[]>({
+export const LectureDates = atom<InputLectureDatesTypes[]>({
   key: 'LectureDates',
-  default: [{ completeDate: '', startTime: '', endTime: '' }],
+  default: [
+    {
+      completeDate: '',
+      startShowTime: '',
+      startTime: '',
+      endShowTime: '',
+      endTime: '',
+    },
+  ],
 })
 export const LectureMaxRegistered = atom<string>({
   key: 'LectureMax',
