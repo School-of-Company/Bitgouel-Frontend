@@ -4,13 +4,12 @@ import { Bg4 } from '../../assets'
 import * as S from './style'
 import { useGetMy, useDeleteWithDraw } from '@bitgouel/api'
 import { roleToKor } from '../../constants'
-import { useModal } from '../../hooks'
-import { ChangePwModal } from '../../modals'
+import { useRouter } from 'next/navigation'
 
 const MyPage = () => {
+  const { push } = useRouter()
   const { data } = useGetMy()
   const { mutate } = useDeleteWithDraw()
-  const { openModal } = useModal()
 
   const sliceNumber = (): string => {
     return `${data?.data.phoneNumber.slice(
@@ -66,7 +65,7 @@ const MyPage = () => {
               <S.AccountSettingContainer>
                 <div>
                   <S.LeftText>회원정보 수정</S.LeftText>
-                  <S.ModifyText onClick={() => openModal(<ChangePwModal />)}>
+                  <S.ModifyText onClick={() => push('/auth/find')}>
                     비밀번호 변경
                   </S.ModifyText>
                 </div>

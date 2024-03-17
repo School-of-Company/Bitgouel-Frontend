@@ -44,6 +44,8 @@ const EmailCheck = () => {
     }
   }
 
+  
+
   return (
     <>
       <S.EmailInputContainer>
