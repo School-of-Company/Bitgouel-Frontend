@@ -1,3 +1,5 @@
+'use client'
+
 import { usePostAnswer } from '@bitgouel/api'
 import { ChangeEvent, useState } from 'react'
 import { CancelIcon } from '../../assets'

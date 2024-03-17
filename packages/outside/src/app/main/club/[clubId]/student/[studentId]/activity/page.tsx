@@ -1,4 +1,4 @@
-import { ActivityListPage } from '@bitgouel/common/src/pages'
+import { ActivityListPage } from '@bitgouel/common'
 import { StudentIdProps } from '@bitgouel/types'
 
 const ActivityList = ({ params }: { params: StudentIdProps }) => {
