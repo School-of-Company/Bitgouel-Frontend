@@ -18,7 +18,6 @@ const ActivityDetailPage: React.FC<ActivityDetailType> = ({
   studentIdProps,
   activityId,
 }) => {
-  console.log(studentIdProps)
   const { push } = useRouter()
   const { openModal, closeModal } = useModal()
 
