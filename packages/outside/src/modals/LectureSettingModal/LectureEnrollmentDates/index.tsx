@@ -5,8 +5,8 @@ import { DateBox } from '../LectureApplyTime/style'
 import { SearchInput } from '../style'
 import * as S from './style'
 
-const MaxDateLength = 10 as const
-const MaxTimeLength = 5 as const
+const MaxDateLength: number = 10 as const
+const MaxTimeLength: number = 5 as const
 
 const LectureEnrollmentDates = () => {
   const [lectureDates, setLectureDates] = useRecoilState(LectureDates)
