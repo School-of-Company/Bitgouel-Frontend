@@ -7,22 +7,19 @@ import { ValueInput } from '../../../../components'
 import { usePatchPassword } from '@bitgouel/api'
 import { toast } from 'react-toastify'
 import { match } from 'ts-pattern'
+import { useSetRecoilState } from 'recoil'
+import { PwPage } from '../../../../atoms'
 
-const NewPassword = ({}: {
-  page: number
-  setPage: React.Dispatch<React.SetStateAction<number>>
-}) => {
+const NewPassword = () => {
   const { push } = useRouter()
+  const setPwPage = useSetRecoilState(PwPage)
   const [currentPw] = useState<string>('')
   const [newPw, setNewPw] = useState<string>('')
   const [newErrorMessage, setNewErrorMessage] = useState<string>('')
   const [newConfirmPw, setNewConfirmPw] = useState<string>('')
   const [newConfirmErrorMessage, setNewConfirmErrorMessage] =
     useState<string>('')
-  const [email, setEmail] = useState<string>('')
-  const [emailStatus, setEmailStatus] = useState<boolean>(false)
-  const [emailValue, setEmailValue] = useState<string>('')
-  const [emailErrorText, setEmailErrorText] = useState<string>('')
+  const [passwordStatus, setPasswordStatus] = useState<boolean>(false)
   const { error } = usePatchPassword()
 
   useEffect(() => {
@@ -31,69 +28,49 @@ const NewPassword = ({}: {
   }, [error])
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+    const passwordRegex = new RegExp(
+      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,24}$/
+    )
     if (e.target.name === 'newPw') {
       setNewPw(e.target.value)
       if (e.target.value === '') {
         setNewErrorMessage('')
+        setPasswordStatus(false)
       } else if (currentPw === e.target.value) {
         setNewErrorMessage('새로운 비밀번호를 입력해주세요.')
-      } else if (!emailRegex.test(e.target.value)) {
+      } else if (!passwordRegex.test(e.target.value)) {
         setNewErrorMessage('잘못된 비밀번호입니다.')
+        setPasswordStatus(false)
       } else {
         setNewErrorMessage('')
+        setPasswordStatus(false)
       }
     } else {
       setNewConfirmPw(e.target.value)
       if (e.target.value === '') {
         setNewConfirmErrorMessage('')
-      } else if (!emailRegex.test(e.target.value)) {
+        setPasswordStatus(false)
+      } else if (!passwordRegex.test(e.target.value)) {
         setNewConfirmErrorMessage('잘못된 비밀번호입니다.')
+        setPasswordStatus(false)
       } else if (newPw !== e.target.value) {
         setNewConfirmErrorMessage('비밀번호가 일치하지 않습니다.')
+        setPasswordStatus(false)
       } else {
         setNewConfirmErrorMessage('')
+        setPasswordStatus(true)
       }
     }
   }
-  const checkEmail = (e: ChangeEvent<HTMLInputElement>) => {
-    const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
-    setEmailValue(e.target.value)
-    if (e.target.value === '') {
-      setEmailErrorText('')
-    } else if (!emailRegex.test(e.target.value)) {
-      setEmailErrorText('잘못된 이메일입니다.')
-    } else {
-      setEmailErrorText('')
-    }
-  }
 
-  const checkSMS = () => {
-    if (emailValue) {
-      toast.success('인증번호를 발송했습니다')
-    } else {
-    }
+  const nextOnclick = () => {
+    toast.success('비밀번호가 변경 되었습니다.')
+    setPwPage(4)
   }
 
   return (
     <>
-      <div>
-        <S.NumberBox>
-          <S.FirstNumberInput>
-            <ValueInput
-              type='text'
-              placeholder='이메일'
-              name='newPw'
-              length={newPw.length}
-              onChange={checkEmail}
-              onClear={() => setEmail('')}
-              errorText={emailErrorText}
-            />
-          </S.FirstNumberInput>
-          <S.FinishButton numStatus={emailStatus} onClick={checkSMS}>
-            인증
-          </S.FinishButton>
-        </S.NumberBox>
+      <S.NewPasswordContainer>
         <S.PasswordInputContainer>
           <ValueInput
             type='password'
@@ -116,10 +93,12 @@ const NewPassword = ({}: {
             errorText={newConfirmErrorMessage}
           />
         </S.PasswordInputContainer>
-      </div>
+      </S.NewPasswordContainer>
       <S.ButtonContainer>
-        <S.PreButton onClick={() => push('/main/my')}>이전으로</S.PreButton>
-        <S.NextButton>다음으로</S.NextButton>
+        <S.PreButton onClick={() => setPwPage(2)}>이전으로</S.PreButton>
+        <S.NextButton statusColor={passwordStatus} onClick={nextOnclick}>
+          다음으로
+        </S.NextButton>
       </S.ButtonContainer>
     </>
   )

@@ -1,16 +1,9 @@
 import styled from '@emotion/styled'
 
-export const NumberBox = styled.div`
-  display: flex;
-  width: 24rem;
-  justify-content: space-between;
-  margin-bottom: 0.35rem;
-`
-
-export const FirstNumberInput = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 19rem;
+export const NewPasswordContainer = styled.div`
+height: 100%;
+display: flex;
+align-items: center;
 `
 
 export const FinishButton = styled.div<{ numStatus: boolean }>`
@@ -57,8 +50,10 @@ export const PreButton = styled.div`
   border: 0.0625rem solid ${({ theme }) => theme.color.main};
 `
 
-export const NextButton = styled.div`
-  background-color: ${({ theme }) => theme.color.gray['700']};
-  color: ${({ theme }) => theme.color.gray['400']};
+export const NextButton = styled.div<{ statusColor: boolean }>`
+  background-color: ${({ theme, statusColor }) =>
+    statusColor ? theme.color.main : theme.color.gray['700']};
+  color: ${({ theme, statusColor }) =>
+    statusColor ? theme.color.white : theme.color.gray['400']};
   border: 0.0625rem solid ${({ theme }) => theme.color.gray['700']};
 `
