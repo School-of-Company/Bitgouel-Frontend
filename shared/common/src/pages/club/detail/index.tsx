@@ -2,9 +2,9 @@
 
 import { useGetClubDetail, useGetMyClub } from '@bitgouel/api'
 import * as S from './style'
-import { Bg2 } from '../../../assets'
+import { Bg2 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
-import { roleToKor } from '../../../constants'
+import { roleToKor } from '@bitgouel/common'
 
 const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
   const { push } = useRouter()
@@ -66,7 +66,9 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
                   <S.ClubMemberBox
                     key={student.id}
                     onClick={() =>
-                      push(`/main/club/${myClub?.data.clubId}/student/${student.id}`)
+                      push(
+                        `/main/club/${myClub?.data.clubId}/student/${student.id}`
+                      )
                     }
                   >
                     <S.MemberName>{student.name}</S.MemberName>

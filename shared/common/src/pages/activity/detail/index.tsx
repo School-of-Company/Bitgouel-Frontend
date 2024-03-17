@@ -1,8 +1,8 @@
 'use client'
 
-import { Bg2, Pen, TrashCan } from '../../../assets'
-import { useModal } from '../../../hooks'
-import { AppropriationModal } from '../../../modals'
+import { Bg2, Pen, TrashCan } from '@bitgouel/common'
+import { useModal } from '@bitgouel/common'
+import { AppropriationModal } from '@bitgouel/common'
 import { StudentIdProps, ActivityDetailTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import * as S from './style'

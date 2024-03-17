@@ -15,14 +15,15 @@ import {
   Agency4,
   Gwangju,
   OfficeGwangju,
-} from '../../assets'
+} from '@bitgouel/common'
+
 import {
   ClubListSlider,
   CompanyListSlider,
   SchoolIntro,
   Sequence,
-} from '../../components'
-import { SchoolIntroObjects } from '../../constants'
+} from '@bitgouel/common'
+import { SchoolIntroObjects } from '@bitgouel/common'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
 
