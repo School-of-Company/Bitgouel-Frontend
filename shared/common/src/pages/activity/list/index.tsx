@@ -13,9 +13,11 @@ import { StudentIdProps } from '@bitgouel/types'
 import { useEffect, useState } from 'react'
 import { ActivityItem } from '@bitgouel/common'
 
-const ActivityListPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
-  studentIdProps,
-}) => {
+interface Props {
+  studentIdProps: StudentIdProps
+}
+
+const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
   const { studentId, clubId } = studentIdProps
 
   const { push } = useRouter()
