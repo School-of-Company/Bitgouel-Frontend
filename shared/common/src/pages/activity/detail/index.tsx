@@ -1,20 +1,19 @@
 'use client'
 
-import { Bg2, Pen, TrashCan } from '@bitgouel/common'
-import { useModal } from '@bitgouel/common'
-import { AppropriationModal } from '@bitgouel/common'
-import { StudentIdProps, ActivityDetailTypes } from '@bitgouel/types'
+import { useDeleteInformationRemove, useGetActivityDetail } from '@bitgouel/api'
+import {
+  AppropriationModal,
+  Bg2,
+  Pen,
+  TrashCan,
+  useModal,
+} from '@bitgouel/common'
+import { ActivityDetailProps } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
-import * as S from './style'
-import { useGetActivityDetail, useDeleteInformationRemove } from '@bitgouel/api'
 import { toast } from 'react-toastify'
+import * as S from './style'
 
-interface ActivityDetailType {
-  studentIdProps: StudentIdProps
-  activityId: string
-}
-
-const ActivityDetailPage: React.FC<ActivityDetailType> = ({
+const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
   studentIdProps,
   activityId,
 }) => {
