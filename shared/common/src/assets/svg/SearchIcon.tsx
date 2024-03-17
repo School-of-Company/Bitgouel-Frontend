@@ -5,7 +5,7 @@ const SearchIcon = (props: SVGProps<SVGSVGElement>) => {
     <svg
       width='1.5rem'
       height='1.5rem'
-      viewBox='0 0 1.5rem 1.5rem'
+      viewBox='0 0 24 24'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
       {...props}

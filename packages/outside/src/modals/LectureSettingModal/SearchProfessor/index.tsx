@@ -16,6 +16,7 @@ const SearchProfessor = () => {
   const [lectureProfessor, setLectureProfessor] =
     useRecoilState(LectureProfessor)
   const [professor, setProfessor] = useState<string>('')
+  const [showProfessor, setShowProfessor] = useState<string>('')
   const { data, refetch } = useGetProfessor(professor)
 
   const onSubmit = (e: FormEvent) => {
@@ -31,7 +32,7 @@ const SearchProfessor = () => {
       >
         <SearchInput
           type='text'
-          value={lectureProfessor.length ? lectureProfessor : professor}
+          value={lectureProfessor.length ? showProfessor : professor}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setProfessor(e.target.value)
           }
@@ -39,7 +40,12 @@ const SearchProfessor = () => {
           disabled={!!lectureProfessor.length}
         />
         {lectureProfessor.length ? (
-          <InputCancel onClick={() => setLectureProfessor('')} />
+          <InputCancel
+            onClick={() => {
+              setLectureProfessor('')
+              setShowProfessor('')
+            }}
+          />
         ) : (
           <SearchIcon onClick={() => refetch()} />
         )}
@@ -50,7 +56,8 @@ const SearchProfessor = () => {
             <SearchItem
               key={professor.id}
               onClick={() => {
-                setLectureProfessor(professor.name)
+                setLectureProfessor(professor.id)
+                setShowProfessor(professor.name)
                 setProfessor('')
               }}
             >
