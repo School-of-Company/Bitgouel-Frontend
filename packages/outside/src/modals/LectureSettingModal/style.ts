@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 
 export const LectureSettingModalWrapper = styled.div`
   width: 48rem;
-  height: 35rem;
+  height: 100vh;
   background-color: ${({ theme }) => theme.color.white};
   display: flex;
   flex-direction: column;
@@ -24,7 +24,7 @@ export const SettingTitleBox = styled.div`
   justify-content: space-between;
   width: 100%;
   height: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin: 1.5rem 0;
 
   h3 {
     margin: 0;
