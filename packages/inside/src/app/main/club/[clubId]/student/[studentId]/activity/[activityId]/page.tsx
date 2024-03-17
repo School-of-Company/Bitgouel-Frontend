@@ -1,5 +1,4 @@
 import { ActivityDetailPage } from '@bitgouel/common'
-import { StudentIdProps } from '@bitgouel/types'
 
 interface Props {
   params: {

@@ -6,6 +6,7 @@
   "dependencies": {
     "@bitgouel/api": "workspace:^",
     "@bitgouel/tsconfig": "workspace:^",
+    "@bitgouel/common": "workspace:^",
     "@bitgouel/types": "workspace:^",
     "@types/react-dom": "^18",
     "@types/react-slick": "^0.23.12",

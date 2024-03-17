@@ -43,7 +43,7 @@ export const activityUrl = {
   activityList: (student_id: string, options: ActivityOptionsTypes) =>
     `/activity/${student_id}?page=${options.page}&size=${options.size}`,
   activityInformationDetail: (activity_id: string) =>
-    `/activity/${activity_id}`,
+    `/activity/${activity_id}/detail`,
 }
 
 export const userUrl = {

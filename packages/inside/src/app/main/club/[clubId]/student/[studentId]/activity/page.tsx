@@ -1,7 +1,11 @@
 import { StudentIdProps } from '@bitgouel/types'
 import { ActivityListPage } from '@bitgouel/common'
 
-const ActivityList = ({ params }: { params: StudentIdProps }) => {
+interface Props {
+  params: StudentIdProps
+}
+
+const ActivityList: React.FC<Props> = ({ params }) => {
   return <ActivityListPage studentIdProps={params} />
 }
 

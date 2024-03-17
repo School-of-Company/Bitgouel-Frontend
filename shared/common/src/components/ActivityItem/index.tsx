@@ -1,10 +1,6 @@
 'use client'
 
-import {
-  ActivityInformationItem,
-  ActivityItemTypes,
-  StudentIdProps,
-} from '@bitgouel/types'
+import { ActivityItemTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import * as S from './style'
 
