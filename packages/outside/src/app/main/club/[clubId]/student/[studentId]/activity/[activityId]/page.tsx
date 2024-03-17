@@ -6,7 +6,12 @@ const ActivityDetail = ({
 }: {
   params: StudentIdProps & { activityId: string }
 }) => {
-  return <ActivityDetailPage studentIdProps={params} />
+  return (
+    <ActivityDetailPage
+      studentIdProps={params}
+      activityId={params.activityId}
+    />
+  )
 }
 
 export default ActivityDetail

@@ -9,23 +9,23 @@ import * as S from './style'
 import { useGetActivityDetail, useDeleteInformationRemove } from '@bitgouel/api'
 import { toast } from 'react-toastify'
 
-interface Props {
-  studentIdProps: {
-    activityId: string
-    studentId: string
-    clubId: string
-  }
+interface ActivityDetailType {
+  studentIdProps: StudentIdProps
+  activityId: string
 }
 
-const ActivityDetailPage: React.FC<Props> = ({ studentIdProps }) => {
+const ActivityDetailPage: React.FC<ActivityDetailType> = ({
+  studentIdProps,
+  activityId,
+}) => {
   console.log(studentIdProps)
   const { push } = useRouter()
   const { openModal, closeModal } = useModal()
 
   const { studentId, clubId } = studentIdProps
 
-  const { data } = useGetActivityDetail(studentIdProps.activityId)
-  const { mutate } = useDeleteInformationRemove(studentIdProps.activityId)
+  const { data } = useGetActivityDetail(activityId)
+  const { mutate } = useDeleteInformationRemove(activityId)
 
   return (
     <div>
@@ -36,7 +36,7 @@ const ActivityDetailPage: React.FC<Props> = ({ studentIdProps }) => {
             <S.ActivityButton
               onClick={() =>
                 push(
-                  `/main/club/${clubId}/student/${studentId}/activity/${studentIdProps.activityId}/modify`
+                  `/main/club/${clubId}/student/${studentId}/activity/${activityId}/modify`
                 )
               }
             >

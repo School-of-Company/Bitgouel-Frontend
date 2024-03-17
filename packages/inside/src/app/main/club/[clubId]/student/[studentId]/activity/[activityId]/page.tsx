@@ -1,15 +1,16 @@
+import { StudentIdProps } from '@bitgouel/types'
 import { ActivityDetailPage } from '@bitgouel/common'
 
-interface Props {
-  params: {
-    activityId: string
-    studentId: string
-    clubId: string
-  }
+const ActivityDetail = ({
+  params,
+}: {
+  params: StudentIdProps & { activityId: string }
+}) => {
+  return (
+    <ActivityDetailPage
+      studentIdProps={params}
+      activityId={params.activityId}
+    />
+  )
 }
-
-const ActivityDetail: React.FC<Props> = ({ params }) => {
-  return <ActivityDetailPage studentIdProps={params} />
-}
-
 export default ActivityDetail
