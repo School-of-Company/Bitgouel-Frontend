@@ -117,9 +117,9 @@ export const LectureMaxRegistered = atom<string>({
   key: 'LectureMax',
   default: '',
 })
-export const LectureCredit = atom<string>({
+export const LectureCredit = atom<number>({
   key: 'LectureCredit',
-  default: '',
+  default: 1,
 })
 
 export const SchoolFilterText = atom<string>({
