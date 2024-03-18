@@ -40,6 +40,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
   const [certificateIndex, setCertificateIndex] = useState<number>(-1)
 
   const [isRole, setIsRole] = useState<boolean>(false)
+  const [isStudent, setIsStudent] = useState<boolean>(false)
 
   const { openModal, closeModal } = useModal()
 
@@ -71,6 +72,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
 
   useEffect(() => {
     setIsRole(roleArray.includes(tokenManager.authority || ''))
+    setIsStudent(tokenManager.authority === 'ROLE_STUDENT')
   }, [])
 
   return (
@@ -110,7 +112,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
               <S.PlusCertificateIcon
                 onClick={() => setIsAddCertificate((prev) => !prev)}
               >
-                <PlusCertificate />
+                {isStudent && <PlusCertificate />}
               </S.PlusCertificateIcon>
             </S.CertificatePlusBox>
             <S.CertificateListBox>

@@ -1,12 +1,11 @@
-import { usePatchModifyCertificate } from '@bitgouel/api'
+import { usePatchModifyCertificate, TokenManager } from '@bitgouel/api'
 import { Certificate, CertificateRequest } from '@bitgouel/types'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { AddCertificate, CalendarIcon } from '../../assets'
 import { useModal } from '../../hooks'
-import {
-  AppropriationModal,
-  SelectCalendarModal
-} from '../../modals'
+
+import { AppropriationModal, SelectCalendarModal } from '@bitgouel/common'
+
 import { theme } from '../../styles'
 import * as S from './style'
 
@@ -15,12 +14,16 @@ interface CertificateProps {
   isOpenCalendar: boolean
 }
 
+const roleArray: string[] = ['ROLE_STUDENT', 'ROLE_TEACHER']
+
 const CertificateItem: React.FC<CertificateProps> = ({
   certificateItems,
   isOpenCalendar,
 }) => {
   const { id, name, acquisitionDate } = certificateItems
   const { mutate } = usePatchModifyCertificate(id)
+
+  const tokenManager = new TokenManager()
 
   const [isCertificateDate, setIsCertificateDate] = useState<boolean>(false)
   const [modifyText, setModifyText] = useState<string>(certificateItems.name)
@@ -31,6 +34,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
   const { openModal, closeModal } = useModal()
 
   const [isModify, setIsModify] = useState<boolean>(false)
+  const [isRole, setIsRole] = useState<boolean>(false)
 
   const onModify = () => {
     const payload: CertificateRequest = {
@@ -49,6 +53,10 @@ const CertificateItem: React.FC<CertificateProps> = ({
     closeModal()
     window.location.reload()
   }
+
+  useEffect(() => {
+    setIsRole(roleArray.includes(tokenManager.authority || ''))
+  })
 
   return (
     <>
@@ -129,9 +137,11 @@ const CertificateItem: React.FC<CertificateProps> = ({
               .map((v) => (v === '-' ? '.' : v))
               .join('')}
           </span>
-          <S.ModifyText onClick={() => setIsModify(true)}>
-            수정하기
-          </S.ModifyText>
+          {isRole && (
+            <S.ModifyText onClick={() => setIsModify(true)}>
+              수정하기
+            </S.ModifyText>
+          )}
         </S.CertificateItemBox>
       )}
     </>
