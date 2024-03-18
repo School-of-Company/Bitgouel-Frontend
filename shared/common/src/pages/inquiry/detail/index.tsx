@@ -8,9 +8,9 @@ import {
 } from '@bitgouel/api'
 import { useRouter } from 'next/navigation'
 import { match } from 'ts-pattern'
-import { Bg5, Pen, TrashCan } from '../../../assets'
-import { useModal } from '../../../hooks'
-import { AppropriationModal, InquiryAnswerModal } from '../../../modals'
+import { Bg5, Pen, TrashCan } from '@bitgouel/common'
+import { useModal } from '@bitgouel/common'
+import { AppropriationModal, InquiryAnswerModal } from '@bitgouel/common'
 import * as S from './style'
 
 const InquiryDetailPage = ({
@@ -136,7 +136,9 @@ const InquiryDetailPage = ({
                   삭제하기
                 </S.DeleteInquiryButton>
                 <S.AnswerInquiryButton
-                  onClick={() => openModal(<InquiryAnswerModal inquiryId={inquiryId} />)}
+                  onClick={() =>
+                    openModal(<InquiryAnswerModal inquiryId={inquiryId} />)
+                  }
                 >
                   답변하기
                 </S.AnswerInquiryButton>

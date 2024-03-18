@@ -1,5 +1,5 @@
-import { StudentIdProps } from '@bitgouel/types'
 import { ActivityDetailPage } from '@bitgouel/common'
+import { StudentIdProps } from '@bitgouel/types'
 
 const ActivityDetail = ({
   params,
@@ -13,4 +13,5 @@ const ActivityDetail = ({
     />
   )
 }
+
 export default ActivityDetail
