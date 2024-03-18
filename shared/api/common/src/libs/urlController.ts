@@ -1,4 +1,10 @@
-import { LectureListOptionsTypes, ActivityOptionsTypes } from '@bitgouel/types'
+import {
+  ActivityOptionsTypes,
+  LinePayloadTypes,
+  InquiryListQueryStringTypes,
+  LectureListOptionsTypes,
+  UserListOptionsTypes,
+} from '@bitgouel/types'
 
 export const authUrl = {
   auth: () => `/auth`,
@@ -7,7 +13,7 @@ export const authUrl = {
   signUpStudent: () => `/auth/student`,
   signUpTeacher: () => `/auth/teacher`,
   signUpBbozzak: () => `/auth/bbozzak`,
-  signUpPropessor: () => `/auth/professor`,
+  signUpProfessor: () => `/auth/professor`,
   signUpGovernment: () => `/auth/government`,
   signUpCompanyInstructor: () => `/auth/company-instructor`,
 } as const
@@ -15,28 +21,29 @@ export const authUrl = {
 export const lectureUrl = {
   lecture: () => `/lecture`,
   lectureList: (options: LectureListOptionsTypes) =>
-    `/lecture?page=${options.page}&size=${options.size}&status=${options.status}&type=${options.type}`,
+    `/lecture?page=${options.page}&size=${options.size}&type=${options.type}`,
   lectureDetail: (id: string) => `/lecture/${id}`,
-  lectureApplication: (id: string) => `/lecture/${id}`,
-  lectureApprove: (id: string) => `lecture/${id}/approve`,
-  lectureReject: (id: string) => `lecture/${id}/reject`,
+  lectureEnrolment: (id: string) => `/lecture/${id}`,
+  lectureInstructor: (keyword: string) =>
+    `/lecture/instructor?keyword=${keyword}`,
+  lectureLine: (queryString: LinePayloadTypes) =>
+    `/lecture/line?keywrod=${queryString.keyword}&division=${queryString.division}`,
+  lectureDepartment: (keyword: string) =>
+    `/lecture/department?keyword=${keyword}`,
 } as const
 
 export const activityUrl = {
   activityInformation: () => `/activity`,
-  activityCorrection: (activity_id: string) => `/activity/${activity_id}`,
-  activityApprove: (activity_id: string) => `/activity/${activity_id}/approve`,
-  activityReject: (activity_id: string) => `/activity/${activity_id}/reject`,
+  activityModifyInformation: (activity_id: string) =>
+    `/activity/${activity_id}`,
   activityInformationRemove: (activity_id: string) =>
     `/activity/${activity_id}`,
   activityMyselfList: (options: ActivityOptionsTypes) =>
-    `/activity/my?page=${options.page}&size=${options.size}&sort=${options.sort}`,
+    `/activity/my?page=${options.page}&size=${options.size}`,
   activityList: (student_id: string, options: ActivityOptionsTypes) =>
-    `/activity/${student_id}?page=${options.page}&size=${options.size}&sort=${options.sort}`,
-  activityInformationList: (options: ActivityOptionsTypes) =>
-    `/activity?page=${options.page}&size=${options.size}&sort=${options.sort}`,
+    `/activity/${student_id}?page=${options.page}&size=${options.size}`,
   activityInformationDetail: (activity_id: string) =>
-    `/activity/${activity_id}`,
+    `/activity/${activity_id}/detail`,
 }
 
 export const userUrl = {
@@ -51,6 +58,14 @@ export const postUrl = {
   postModify: (post_id: string) => `/post/${post_id}`,
   postDelete: (post_id: string) => `/post/${post_id}`,
 } as const
+
+export const certificateUrl = {
+  certificate: () => `/certification`,
+  certificateListTeacher: (student_id: string) =>
+    `/certification/${student_id}`,
+  certificateModify: (certificate_id: string) =>
+    `/certification/${certificate_id}`,
+}
 
 export const clubUrl = {
   schoolClub: () => `/school`,
@@ -67,7 +82,17 @@ export const inquiryUrl = {
   inquiryDetail: (inquiry_id: string) => `/inquiry/${inquiry_id}`,
   myInquiryDelete: (inquiry_id: string) => `/inquiry/${inquiry_id}`,
   myInquiryModify: (inquiry_id: string) => `/inquiry/${inquiry_id}`,
-  inquiryAnswer: (inquiry_id: string) => `/inquiry/${inquiry_id}/reply`,
-  inquiryList: () => `/inquiry/all`,
+  inquiryAnswer: (inquiry_id: string) => `/inquiry/${inquiry_id}/answer`,
+  inquiryList: (queryString: InquiryListQueryStringTypes) =>
+    `/inquiry/all?answerStatus=${queryString.answerStatus}&keyword=${queryString.keyword}`,
   inquiryDelete: (inquiry_id: string) => `/inquiry/${inquiry_id}/reject`,
+} as const
+
+export const adminUrl = {
+  userList: (queryString: UserListOptionsTypes) =>
+    `/admin?keyword=${queryString.keyword}&authority=${queryString.authority}&approveStatus=${queryString.approveStatus}`,
+  withDrawUserList: (cohort: string) => `/withdraw?cohort=${cohort}`,
+  approveUser: (userIds: string[]) => `/admin?userIds=${userIds.join(',')}`,
+  rejectUser: (userIds: string[]) => `/admin/${userIds.join(',')}/reject`,
+  withDrawUser: (userIds: string[]) => `/admin/${userIds.join(',')}`,
 } as const

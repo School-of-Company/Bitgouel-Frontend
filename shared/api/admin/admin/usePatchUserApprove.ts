@@ -3,14 +3,12 @@ import { adminQueryKeys, adminUrl, patch } from '../../common'
 
 export const usePatchUserApprove = (userIds: string[]) =>
   useMutation<void>(
-    adminQueryKeys.patchUserApprove(),
-    () => patch(adminUrl.mutateAdmin(userIds)),
+    adminQueryKeys.patchUserApprove(userIds),
+    () => patch(adminUrl.approveUser(userIds)),
     {
-      onSuccess: () => {
-        console.log('success')
+      onSuccess: () => window.location.reload(),
+      onError: (e) => {
+        console.log(e)
       },
-      onError: () => {
-        console.log('error')
-      }
     }
   )

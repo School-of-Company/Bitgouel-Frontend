@@ -18,23 +18,16 @@ export const lectureQueryKeys = {
   postLectureApplication: (id: string) => ['lecture', 'application', id],
   patchLectureApprove: (id: string) => ['lecture', 'approve', id],
   deleteLectureReject: (id: string) => ['lecture', 'reject', id],
+  getProfessor: () => ['lecture', 'professor'],
+  getLine: () => ['lecture', 'line'],
+  getDepartment: () => ['lecture', 'department']
 } as const
 
 export const activityQueryKeys = {
   postActivityInformation: () => ['activity', 'information'],
-  patchActivityCorrection: (activity_id: string) => [
+  patchActivityModifyInformation: (activity_id: string) => [
     'activity',
     'correction',
-    activity_id,
-  ],
-  patchActivityApprove: (activity_id: string) => [
-    'activity',
-    'approve',
-    activity_id,
-  ],
-  deleteActivityReject: (activity_id: string) => [
-    'activity',
-    'reject',
     activity_id,
   ],
   deleteActivityInformationRemove: (activity_id: string) => [
@@ -44,14 +37,16 @@ export const activityQueryKeys = {
   ],
   getActivityMyselfList: () => ['activity', 'myselfList'],
   getActivityList: (student_id: string) => ['activity', 'list', student_id],
-  getActivityInformationList: () => ['activity', 'informationList'],
-  getActivityInformationDetail: () => (activity_id: string) =>
-    ['activity', 'detail', activity_id],
+  getActivityInformationDetail: (activity_id: string) => [
+    'activity',
+    'detail',
+    activity_id,
+  ],
 } as const
 
 export const myQueryKeys = {
   getMy: () => ['my', 'myData'],
-  patchPw: () => ['my', 'changePw']
+  patchPw: () => ['my', 'changePw'],
 } as const
 
 export const postQueryKeys = {
@@ -61,6 +56,21 @@ export const postQueryKeys = {
   patchBoardModify: (id: string) => ['post', 'modify', id],
   deleteBoardDelete: (id: string) => ['post', 'delete', id],
 } as const
+
+export const certificateQueryKeys = {
+  getCertificateListTeacher: (student_id: string) => [
+    'get',
+    'listTeacher',
+    student_id,
+  ],
+  getCertificateListStudent: () => ['get', 'list'],
+  postCertificateCreate: () => ['post', 'create'],
+  patchCertificateModify: (certificate_id: string) => [
+    'patch',
+    'modify',
+    certificate_id,
+  ],
+}
 
 export const clubQueryKeys = {
   getSchoolClub: () => ['club', 'schoolClub'],
@@ -79,4 +89,12 @@ export const inquiryQueryKeys = {
   postAnswer: (id: string) => ['inquiry', 'answer', id],
   getInquiry: () => ['inquiry', 'inquiryList'],
   deleteInquiry: (id: string) => ['inquiry', 'reject', id],
+} as const
+
+export const adminQueryKeys = {
+  getUserList: () => ['admin', 'list'],
+  getWithdrawUserList: () => ['admin', 'quitList'],
+  patchUserApprove: (userIds: string[]) => ['admin', 'approve', userIds],
+  deleteUserReject: (userIds: string[]) => ['admin', 'reject', userIds],
+  deleteUserWithout: (userIds: string[]) => ['admin', 'without', userIds],
 } as const

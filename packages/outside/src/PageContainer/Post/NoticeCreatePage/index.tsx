@@ -1,10 +1,9 @@
 'use client'
 
-import * as S from './style'
-import { Bg1 } from '@bitgouel/common'
-import { CreateModal, Link, useModal } from '@bitgouel/common'
-import { ChangeEvent, useState } from 'react'
 import { usePostPost } from '@bitgouel/api'
+import { AppropriationModal, Bg1, Link, useModal } from '@bitgouel/common'
+import { ChangeEvent, useState } from 'react'
+import * as S from './style'
 
 const NoticeCreatePage = () => {
   const MAXLENGTH: number = 1000 as const
@@ -43,27 +42,24 @@ const NoticeCreatePage = () => {
     setNoticeContent(event.target.value)
   }
 
-  const onCreate = () => {
-    mutate({
-      title: noticeTitle,
-      content: noticeContent,
-      links: links
-        .filter((link) => link.value.length !== 0)
-        .map((link) => {
-          return { url: link.value }
-        }),
-      feedType: 'NOTICE',
-    })
-  }
-
   const onCreateModal = () => {
     if (noticeTitle !== '' && noticeContent !== '') {
       openModal(
-        <CreateModal
+        <AppropriationModal
+          isApprove={true}
           question='공지사항을 추가하시겠습니까?'
           title={noticeTitle}
-          onCreate={onCreate}
-          createText='추가하기'
+          purpose='추가하기'
+          onAppropriation={() =>
+            mutate({
+              title: noticeTitle,
+              content: noticeContent,
+              links: links
+                .filter((link) => link.value.length !== 0)
+                .map((link) => link.value),
+              feedType: 'NOTICE',
+            })
+          }
         />
       )
     } else return

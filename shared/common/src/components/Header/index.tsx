@@ -1,16 +1,22 @@
 'use client'
 
 import { TokenManager, useDeleteLogout } from '@bitgouel/api'
-import { RoleEnumTypes } from '@bitgouel/types'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 import { useRecoilState } from 'recoil'
 import { match } from 'ts-pattern'
-import { Filter, Message, Plus, Question, Symbol1, Symbol2 } from '../../assets'
+import {
+  Filter,
+  Message,
+  Plus,
+  Question,
+  Symbol1,
+  Symbol2
+} from '../../assets'
 import { LectureTypeText } from '../../atoms'
 import { LectureTypeModal } from '../../modals'
 import { theme } from '../../styles'
-import { toast } from 'react-toastify'
 import * as S from './style'
 
 const menuList = [
@@ -145,7 +151,7 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
             .with('/main/post', () => (
               <>
                 <Message onClick={() => push('/main/post/notice')} />
-                <Question onClick={() => push('/main/inquiry')} />
+                <Question onClick={() => push('/main/post/inquiry')} />
               </>
             ))
             .otherwise(() => null)}

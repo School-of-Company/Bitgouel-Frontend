@@ -1,7 +1,7 @@
 'use client'
 
 import { useGetInquiryDetail, usePatchMyInquiry } from '@bitgouel/api'
-import { ApproveModal, Bg5, CreateModal, useModal } from '@bitgouel/common'
+import { AppropriationModal, Bg5, useModal } from '@bitgouel/common'
 import { ChangeEvent, useEffect, useState } from 'react'
 import * as S from './style'
 
@@ -56,16 +56,17 @@ const InquiryModifyPage = ({ inquiryId }: { inquiryId: string }) => {
                 data?.data.question !== modifyTitle ||
                 data?.data.questionDetail !== modifyContent
                   ? openModal(
-                      <CreateModal
+                      <AppropriationModal
+                        isApprove={true}
                         question='문의를 수정하시겠습니까?'
-                        title={modifyTitle}
-                        onCreate={() =>
+                        title={modifyTitle as ''}
+                        purpose='수정하기'
+                        onAppropriation={() =>
                           mutate({
                             question: modifyTitle,
                             questionDetail: modifyContent,
                           })
                         }
-                        createText='수정하기'
                       />
                     )
                   : null

@@ -60,7 +60,6 @@ export const CertificateWrapper = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
-  overflow-y: hidden;
 `
 
 export const CertificateContainer = styled.div`
@@ -226,6 +225,6 @@ export const AddCertificateIcon = styled.div`
 
 export const ModifyText = styled.span`
   text-decoration: underline;
-  color: ${({theme}) => theme.color.gray['700']};
+  color: ${({ theme }) => theme.color.gray['700']};
   cursor: pointer;
 `

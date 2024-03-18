@@ -1,5 +1,4 @@
-import React from 'react'
-import { LectureDetailPage } from '@/PageContainer'
+import { LectureDetailPage } from '@bitgouel/common'
 
 const LectureDetail = ({ params }: { params: { lectureId: string } }) => {
   return <LectureDetailPage lectureId={params.lectureId} />

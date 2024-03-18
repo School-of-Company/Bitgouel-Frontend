@@ -1,7 +1,7 @@
 export interface PostCreatePayloadTypes {
   title: string
   content: string
-  links: { url: string }[]
+  links: string[]
   feedType: 'EMPLOYMENT' | 'NOTICE'
 }
 

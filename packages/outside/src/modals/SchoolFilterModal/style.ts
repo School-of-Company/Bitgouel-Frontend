@@ -19,7 +19,7 @@ export const SchoolFilterTitleBox = styled.div`
   height: 5rem;
   border-bottom: 0.0625rem solid ${({ theme }) => theme.color.gray['900']};
 
-  h1 {
+  h3 {
     margin: 0;
     margin-left: 1.5rem;
     ${({ theme }) => theme.typo.title_sm.semibold};

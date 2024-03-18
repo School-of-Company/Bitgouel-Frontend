@@ -11,7 +11,6 @@ export const SelectCalendarModalWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: rgba(129, 129, 129, 0.6);
-  opacity: 1;
   z-index: 99;
 
   &::after {

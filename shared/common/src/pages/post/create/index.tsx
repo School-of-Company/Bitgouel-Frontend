@@ -1,11 +1,11 @@
 'use client'
 
-import * as S from './style'
-import { Bg1, Link } from '../../../assets'
-import { ChangeEvent, useState } from 'react'
 import { usePostPost } from '@bitgouel/api'
+import { ChangeEvent, useState } from 'react'
+import { Bg1, Link } from '../../../assets'
 import { useModal } from '../../../hooks'
-import { CreateModal } from '../../../modals'
+import { AppropriationModal } from '../../../modals'
+import * as S from './style'
 
 const PostCreatePage = () => {
   const MAXLENGTH: number = 1000 as const
@@ -18,6 +18,7 @@ const PostCreatePage = () => {
     { showValue: '', name: 'link3', value: '' },
     { showValue: '', name: 'link4', value: '' },
   ])
+  const { mutate } = usePostPost('게시')
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target
@@ -41,8 +42,6 @@ const PostCreatePage = () => {
   const savePostMainText = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setPostContent(event.target.value)
   }
-
-  const { mutate } = usePostPost('게시')
 
   return (
     <div>
@@ -89,22 +88,23 @@ const PostCreatePage = () => {
                 postTitle !== '' &&
                 postContent &&
                 openModal(
-                  <CreateModal
+                  <AppropriationModal
+                    isApprove={true}
                     question='게시글을 추가하시겠습니까?'
                     title={postTitle}
-                    onCreate={() =>
+                    purpose='추가하기'
+                    onAppropriation={() =>
                       mutate({
                         title: postTitle,
                         content: postContent,
                         links: links
                           .filter((link) => link.value.length !== 0)
-                          .map((link) => {
-                            return { url: link.value }
-                          }),
+                          .map((link) => (
+                            link.value
+                      )),
                         feedType: 'EMPLOYMENT',
                       })
                     }
-                    createText='추가하기'
                   />
                 )
               }
