@@ -17,8 +17,9 @@ import {
   ActivityPayloadTypes,
   StudentIdProps,
 } from '@bitgouel/types'
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 import * as S from './style'
 
 interface StudentProps {
@@ -33,6 +34,7 @@ const ActivityModifyPage: React.FC<StudentProps> = ({
   const { studentId, clubId } = studentIdProps
 
   const { openModal, closeModal } = useModal()
+  const { push } = useRouter()
 
   const MAXLENGTH: number = 1000 as const
 
@@ -80,6 +82,8 @@ const ActivityModifyPage: React.FC<StudentProps> = ({
 
       mutate(payload)
       closeModal()
+      toast.success('수정하였습니다.')
+      push(`/main/club/${clubId}/student/${studentId}/activity`)
     }
   }
 
