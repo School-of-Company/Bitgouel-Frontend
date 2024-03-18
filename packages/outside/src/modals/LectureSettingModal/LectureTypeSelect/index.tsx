@@ -21,7 +21,7 @@ const LectureTypeSelect = () => {
           selected={lectureType}
           onClick={() => setLectureType(type)}
         >
-          <span>{lectureTypeToKor[lectureType]}</span>
+          <span>{lectureTypeToKor[type]}</span>
         </EnumBox>
       ))}
     </EnumSelectContainer>

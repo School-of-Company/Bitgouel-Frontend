@@ -1,8 +1,13 @@
 'use client'
 
-import { lectureTypeToKor, LectureDivision, lectureDivisionToKor } from '@bitgouel/common'
+import {
+  lectureTypeToKor,
+  LectureDivision,
+  lectureDivisionToKor,
+  LectureLine,
+} from '@bitgouel/common'
 import { LectureDivisionEnum } from '@bitgouel/types'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 import { EnumBox, EnumSelectContainer } from '../style'
 
 const lectureDivisions: LectureDivisionEnum[] = [
@@ -15,6 +20,7 @@ const lectureDivisions: LectureDivisionEnum[] = [
 
 const LectureDivisionSelect = () => {
   const [lectureDivision, setLectureDivision] = useRecoilState(LectureDivision)
+  const setLectureLine = useSetRecoilState(LectureLine)
   return (
     <EnumSelectContainer>
       {lectureDivisions.map((division) => (
@@ -22,7 +28,10 @@ const LectureDivisionSelect = () => {
           key={division}
           current={division}
           selected={lectureDivision}
-          onClick={() => setLectureDivision(division)}
+          onClick={() => {
+            if (division !== lectureDivision) setLectureLine('')
+            setLectureDivision(division)
+          }}
         >
           <span>{lectureDivisionToKor[division]}</span>
         </EnumBox>

@@ -3,6 +3,7 @@
 import { CancelIcon, LectureType, Portal, useModal } from '@bitgouel/common'
 import { useRecoilValue } from 'recoil'
 import LectureApplyTime from './LectureApplyTime'
+import LectureCreditSelect from './LectureCreditSelect'
 import LectureDivisionSelect from './LectureDivisonSelect'
 import LectureEnrollmentDates from './LectureEnrollmentDates'
 import LectureMaxInput from './LectureMaxInput'
@@ -28,6 +29,12 @@ const LectureSettingModal = () => {
           <span>강의 유형</span>
           <LectureTypeSelect />
         </S.SettingContainer>
+        {lectureType === 'MUTUAL_CREDIT_RECOGNITION_PROGRAM' && (
+          <S.SettingContainer>
+            <span>학점</span>
+            <LectureCreditSelect />
+          </S.SettingContainer>
+        )}
         <S.SettingContainer>
           <span>수강 학기</span>
           <LectureSemesterSelect />
