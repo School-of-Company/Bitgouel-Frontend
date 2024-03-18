@@ -14,9 +14,9 @@ import {
 } from '@bitgouel/common'
 import { ActivityDetailProps } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
-import { useEffect, useState } from 'react'
 
 const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
   studentIdProps,
