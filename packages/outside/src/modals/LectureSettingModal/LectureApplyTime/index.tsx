@@ -1,28 +1,31 @@
 import {
-  LectureEndDate,
-  LectureEndTime,
-  LectureStartDate,
-  LectureStartTime,
+    LectureEndDate,
+    LectureEndTime,
+    LectureStartDate,
+    LectureStartTime,
 } from '@bitgouel/common'
-import { useSetRecoilState } from 'recoil'
+import { ChangeEvent } from 'react'
+import { useRecoilState } from 'recoil'
 import { SearchInput } from '../style'
 import * as S from './style'
-import { ChangeEvent } from 'react'
 
 const MaxDateLength: number = 10 as const
 const MaxTimeLength: number = 5 as const
 
 const LectureApplyTime = () => {
-  const setLectureStartDate = useSetRecoilState(LectureStartDate)
-  const setLectureStartTime = useSetRecoilState(LectureStartTime)
-  const setLectureEndDate = useSetRecoilState(LectureEndDate)
-  const setLectureEndTime = useSetRecoilState(LectureEndTime)
+  const [lectureStartDate, setLectureStartDate] =
+    useRecoilState(LectureStartDate)
+  const [lectureStartTime, setLectureStartTime] =
+    useRecoilState(LectureStartTime)
+  const [lectureEndDate, setLectureEndDate] = useRecoilState(LectureEndDate)
+  const [lectureEndTime, setLectureEndTime] = useRecoilState(LectureEndTime)
   return (
     <S.LectureApplyTimeWrapper>
       <S.TimeContainer>
         <S.DateBox>
           <SearchInput
-            placeholder='신청 시작일 입력 (ex: 2000.11.11)'
+            value={lectureStartDate}
+            placeholder='신청 시작일 입력 (ex: 2000-11-11)'
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setLectureStartDate(e.target.value)
             }
@@ -32,6 +35,7 @@ const LectureApplyTime = () => {
         </S.DateBox>
         <S.DateBox>
           <SearchInput
+            value={lectureStartTime}
             placeholder='신청 시작 시간 입력 (ex: 12:34)'
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setLectureStartTime(e.target.value)
@@ -44,7 +48,8 @@ const LectureApplyTime = () => {
       <S.TimeContainer>
         <S.DateBox>
           <SearchInput
-            placeholder='신청 마감일 입력 (ex: 2000.11.11)'
+            value={lectureEndDate}
+            placeholder='신청 마감일 입력 (ex: 2000-11-11)'
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setLectureEndDate(e.target.value)
             }
@@ -54,6 +59,7 @@ const LectureApplyTime = () => {
         </S.DateBox>
         <S.DateBox>
           <SearchInput
+            value={lectureEndTime}
             placeholder='신청 마감 시간 입력 (ex: 12:34)'
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setLectureEndTime(e.target.value)

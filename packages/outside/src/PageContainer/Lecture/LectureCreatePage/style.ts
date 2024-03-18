@@ -66,6 +66,7 @@ export const DocumentInput = styled.div`
   width: 75rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
 `
 
 export const InputTitle = styled.input`
