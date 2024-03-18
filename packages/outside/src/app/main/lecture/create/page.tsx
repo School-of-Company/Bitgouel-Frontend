@@ -5,4 +5,3 @@ export default function LectureCreate() {
     <LectureCreatePage />
   )
 }
-

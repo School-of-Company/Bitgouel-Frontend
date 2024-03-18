@@ -1,8 +1,8 @@
 'use client'
 
+import { lectureTypeToKor } from '@bitgouel/common'
 import { LectureItemProps } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
-import { lectureTypeToKor } from '../../constants'
 import * as S from './style'
 
 const LectureItem = ({ item }: LectureItemProps) => {
