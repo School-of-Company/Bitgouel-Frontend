@@ -6,6 +6,7 @@ import {
   LectureSemesterEnum,
   LectureTypeEnum,
   LectureTypeKor,
+  SignUpObjTypes,
 } from '@bitgouel/types'
 import { ReactNode } from 'react'
 import { atom } from 'recoil'
@@ -27,29 +28,27 @@ export const IsModal = atom<ReactNode>({
 })
 
 // Auth
-export const Page = atom<number>({
-  key: 'Page',
+export const SignUpPageNumber = atom<number>({
+  key: 'SignUpPageNumber',
   default: 1,
 })
-export const Page1Obj = atom<
-  { value: string; placeholder: string; type: string }[]
->({
-  key: 'Page1Obj',
+export const SignUpPage1Obj = atom<SignUpObjTypes[]>({
+  key: 'SignUpPage1Obj',
   default: [
     { value: '', placeholder: '소속', type: 'text' },
     { value: '', placeholder: '직업', type: 'text' },
   ],
 })
-export const Page2Obj = atom({
-  key: 'Page2Obj',
+export const SignUpPage2Obj = atom<SignUpObjTypes[]>({
+  key: 'SignUpPage2Obj',
   default: [
     { value: '', placeholder: '학교 이름 선택', type: 'text' },
     { value: '', placeholder: '동아리 이름 선택', type: 'text' },
-    { value: '', placeholder: '이름 입력', type: 'text', maxLength: 6 },
+    { value: '', placeholder: '이름 입력', type: 'text', maxLength: 4 },
   ],
 })
-export const Page3Obj = atom({
-  key: 'Page3Obj',
+export const SignUpPage3Obj = atom<SignUpObjTypes[]>({
+  key: 'SignUpPage3Obj',
   default: [
     {
       value: '',
@@ -139,15 +138,5 @@ export const LectureCredit = atom<number>({
 
 export const SchoolFilterText = atom<string>({
   key: 'SchoolFilterText',
-  default: '',
-})
-
-export const EmailErrorText = atom<string>({
-  key: 'EmailErrorText',
-  default: '',
-})
-
-export const PasswordErrorText = atom<string>({
-  key: 'PasswordErrorText',
   default: '',
 })
