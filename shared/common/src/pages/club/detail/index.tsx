@@ -1,19 +1,10 @@
 'use client'
 
-<<<<<<< HEAD
-import { TokenManager, useGetClubDetail, useGetMyClub } from '@bitgouel/api'
-import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
-import { Bg2, PersonOut } from '../../../assets'
-import { roleToKor } from '../../../constants'
-import * as S from './style'
-=======
 import { useGetClubDetail, useGetMyClub } from '@bitgouel/api'
 import * as S from './style'
-import { Bg2 } from '@bitgouel/common'
+import { Bg2, roleToKor } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
-import { roleToKor } from '@bitgouel/common'
->>>>>>> 6a56c0150f7c31fe6ce6a5ae65d6da27feeb59e2
+import { useEffect } from 'react'
 
 const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
   const { push } = useRouter()
@@ -90,10 +81,7 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
                     isStudent={isStudent}
                     key={student.id}
                     onClick={() =>
-<<<<<<< HEAD
                       !isStudent &&
-=======
->>>>>>> 6a56c0150f7c31fe6ce6a5ae65d6da27feeb59e2
                       push(
                         `/main/club/${myClub?.data.clubId}/student/${student.id}`
                       )
