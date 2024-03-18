@@ -13,23 +13,18 @@ import {
   useModal,
 } from '@bitgouel/common'
 import {
+  ActivityDetailProps,
   ActivityDetailTypes,
   ActivityPayloadTypes,
-  StudentIdProps,
 } from '@bitgouel/types'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
 
-interface StudentProps {
-  studentIdProps: StudentIdProps
-  activityId: string
-}
-
 const MAXLENGTH: number = 1000 as const
 
-const ActivityModifyPage: React.FC<StudentProps> = ({
+const ActivityModifyPage: React.FC<ActivityDetailProps> = ({
   studentIdProps,
   activityId,
 }) => {
