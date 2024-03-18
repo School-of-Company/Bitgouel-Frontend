@@ -1,6 +1,5 @@
 export * from './ActivityItemProps'
 export * from './AppropriationModalProps'
-export * from './CreateModalProps'
 export * from './LectureItemProps'
 export * from './LectureTypeModalProps'
 export * from './PortalProps'
