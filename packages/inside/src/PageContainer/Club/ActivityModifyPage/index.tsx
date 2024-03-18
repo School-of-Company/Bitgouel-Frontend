@@ -27,6 +27,8 @@ interface StudentProps {
   activityId: string
 }
 
+const MAXLENGTH: number = 1000 as const
+
 const ActivityModifyPage: React.FC<StudentProps> = ({
   studentIdProps,
   activityId,
@@ -35,8 +37,6 @@ const ActivityModifyPage: React.FC<StudentProps> = ({
 
   const { openModal, closeModal } = useModal()
   const { push } = useRouter()
-
-  const MAXLENGTH: number = 1000 as const
 
   const { data } = useGetActivityDetail(activityId)
   const { mutate } = usePatchActivityModifyInformation(activityId)
