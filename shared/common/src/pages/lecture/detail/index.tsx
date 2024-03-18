@@ -36,10 +36,10 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
           <S.TitleContainer>
             <S.LectureStatusContainer>
               <S.LectureStatusBox>
-                {lectureTypeToKor[data?.data.lectureType]}
+                {lectureTypeToKor[data?.data.lectureType || '']}
               </S.LectureStatusBox>
               <S.LectureStatusBox>
-                {lectureDivisionToKor[data?.data.division]}
+                {lectureDivisionToKor[data?.data.division || '']}
               </S.LectureStatusBox>
             </S.LectureStatusContainer>
             <h1>{data?.data.name}</h1>
@@ -116,7 +116,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
               <AppropriationModal
                 isApprove={true}
                 question='수강 신청하시겠습니까?'
-                title={data?.data.name}
+                title={data?.data.name || ''}
                 purpose='신청하기'
                 onAppropriation={() => mutate()}
               />
