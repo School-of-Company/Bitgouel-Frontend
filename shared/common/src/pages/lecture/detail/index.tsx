@@ -60,7 +60,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
           <S.MainText>{data?.data.content}</S.MainText>
           <S.LectureDateWrapper>
             <h2>수강 신청 기간</h2>
-            <span>
+            <S.LectureDateText>
               •{' '}
               {`${data?.data.startDate.slice(
                 0,
@@ -86,12 +86,12 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
                 11,
                 13
               )}시 ${data?.data.startDate.slice(14, 16)}분`}
-            </span>
+            </S.LectureDateText>
           </S.LectureDateWrapper>
           <S.LectureDateWrapper>
             <h2>강의 수강 날짜</h2>
             {data?.data.lectureDates.map((date) => (
-              <span>
+              <S.LectureDateText>
                 •{' '}
                 {`${date.completeDate.slice(0, 4)}년 ${date.completeDate.slice(
                   5,
@@ -103,12 +103,14 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
                   0,
                   2
                 )}시 ${date.endTime.slice(3, 5)}분`}
-              </span>
+              </S.LectureDateText>
             ))}
           </S.LectureDateWrapper>
           <S.LectureMaxWrapper>
             <h2>모집 정원</h2>
-            <span>{data?.data.maxRegisteredUser}명</span>
+            <S.LectureMaxText>
+              {data?.data.maxRegisteredUser}명
+            </S.LectureMaxText>
           </S.LectureMaxWrapper>
         </S.Document>
         <S.ApplyButton

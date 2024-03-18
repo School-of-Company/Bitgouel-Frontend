@@ -103,16 +103,18 @@ export const LectureDateWrapper = styled.div`
   span {
     ${({ theme }) => theme.typo.text_lg.medium};
     color: ${({ theme }) => theme.color.gray['400']};
-    margin-left: 1rem;
   }
+`
+
+export const LectureDateText = styled.span`
+  margin-left: 1rem;
 `
 
 export const LectureMaxWrapper = styled(LectureDateWrapper)`
   border: none;
-
-  span {
-    margin: 0;
-  }
+`
+export const LectureMaxText = styled.span`
+  margin: 0;
 `
 
 export const ApplyButton = styled.div<{ isAble: boolean }>`
