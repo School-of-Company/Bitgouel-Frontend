@@ -1,40 +1,32 @@
 'use client'
 
-import React, { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { useRecoilState } from 'recoil'
-import { IsPasswordRgx, IsValidate, Page3Obj } from '../../../../atoms'
-import { ValueInput } from '../../../../components'
-import { PaginationInputsContainer } from '../Page1/style'
 import SignUpButtonContainer from '../SignUpButtonContainer'
+import { PaginationInputsContainer } from '../SignUpPage1/style'
 import * as S from './style'
+import { SignUpPage3Obj, ValueInput } from '@bitgouel/common'
 
-const Page3 = ({
-  page,
-  setPage,
-}: {
-  page: number
-  setPage: React.Dispatch<React.SetStateAction<number>>
-}) => {
-  const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
-  const passwordRegex = new RegExp(
+const SignUpPage3 = () => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  const passwordRegex =
     /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,24}$/
-  )
-  const phoneRegex = new RegExp(/^010[0-9]{8}$/)
+  const phoneRegex = /^010[0-9]{8}$/
 
-  const [page3Obj, setPage3Obj] = useRecoilState(Page3Obj)
+  const [signUpPage3Obj, setSignUpPage3Obj] = useRecoilState(SignUpPage3Obj)
   const [isPhoneRgx, setIsPhoneRgx] = useState<boolean>(true)
   const [isEmailRgx, setIsEmailRgx] = useState<boolean>(true)
   const [isPasswordRgx, setIsPasswordRgx] = useState<boolean>(true)
-  const [isValidate, setIsValidate] = useState<boolean>(true)
+  const [isPwValidate, setIsPwValidate] = useState<boolean>(true)
 
   const onClear = (idx: number) => {
-    const clearObj = [...page3Obj]
+    const clearObj = [...signUpPage3Obj]
     clearObj[idx] = { ...clearObj[idx], value: '' }
-    setPage3Obj(clearObj)
+    setSignUpPage3Obj(clearObj)
   }
 
   const onChange = (e: ChangeEvent<HTMLInputElement>, idx: number) => {
-    const updatedObj = [...page3Obj]
+    const updatedObj = [...signUpPage3Obj]
     if (idx === 0) {
       if (e.target.value === '') setIsPhoneRgx(true)
       else setIsPhoneRgx(phoneRegex.test(e.target.value))
@@ -45,10 +37,11 @@ const Page3 = ({
       if (e.target.value === '') setIsPasswordRgx(true)
       else setIsPasswordRgx(passwordRegex.test(e.target.value))
     } else if (idx === 3) {
-      if (e.target.value === '') setIsValidate(true)
+      if (e.target.value === '') setIsPwValidate(true)
       else
-        setIsValidate(
-          e.target.value === page3Obj.filter((_, i) => i === idx - 1)[0].value
+        setIsPwValidate(
+          e.target.value ===
+            signUpPage3Obj.filter((_, i) => i === idx - 1)[0].value
         )
     }
 
@@ -59,13 +52,13 @@ const Page3 = ({
           ? e.target.value.slice(0, e.target.maxLength)
           : e.target.value,
     }
-    setPage3Obj(updatedObj)
+    setSignUpPage3Obj(updatedObj)
   }
 
   return (
     <>
       <PaginationInputsContainer>
-        {page3Obj.map((item, idx) => (
+        {signUpPage3Obj.map((item, idx) => (
           <S.CertificationInputBox key={idx}>
             <ValueInput
               type={item.type}
@@ -82,23 +75,21 @@ const Page3 = ({
               {idx === 2 &&
                 !isPasswordRgx &&
                 '비밀번호는 (정규식)으로 해주세요'}
-              {idx === 3 && !isValidate && '비밀번호가 일치하지 않습니다'}
+              {idx === 3 && !isPwValidate && '비밀번호가 일치하지 않습니다'}
             </S.ErrorText>
           </S.CertificationInputBox>
         ))}
       </PaginationInputsContainer>
       <SignUpButtonContainer
         isNext={
-          page3Obj.every((item) => item.value.length) &&
+          signUpPage3Obj.every((item) => item.value.length) &&
           isEmailRgx &&
           isPasswordRgx &&
-          isValidate
+          isPwValidate
         }
-        setPage={setPage}
-        page={page}
       />
     </>
   )
 }
 
-export default Page3
+export default SignUpPage3
