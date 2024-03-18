@@ -1,16 +1,18 @@
 'use client'
 
-import { useGetClubDetail, useGetMyClub } from '@bitgouel/api'
-import * as S from './style'
-import { Bg2, roleToKor } from '@bitgouel/common'
+import { TokenManager, useGetClubDetail, useGetMyClub } from '@bitgouel/api'
+import { Bg2, PersonOut, roleToKor } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import * as S from './style'
 
 const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
   const { push } = useRouter()
-  const { data: clubDetail } = useGetClubDetail(clubId || '')
-  const { data: myClub } = useGetMyClub()
   const tokenManager = new TokenManager()
+  const { data: clubs } =
+    tokenManager.authority === 'ROLE_ADMIN'
+      ? useGetClubDetail(clubId || '')
+      : useGetMyClub()
   const [isStudent, setIsStudent] = useState<boolean>(false)
 
   useEffect(() => {
@@ -34,63 +36,35 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
       </S.SlideBg>
       <S.ClubWrapper>
         <S.ClubContainer>
-          <S.ClubTitle>
-            {clubId ? clubDetail?.data.clubName : myClub?.data.clubName}
-          </S.ClubTitle>
+          <S.ClubTitle>{clubs?.data.clubName}</S.ClubTitle>
           <S.ClubInfoContainer>
             <S.BelongBox>
               <S.ExpressSchoolBox>소속 학교</S.ExpressSchoolBox>
-              <span>
-                {clubId
-                  ? clubDetail?.data.highSchoolName
-                  : myClub?.data.highSchoolName}
-              </span>
+              <span>{clubs?.data.highSchoolName}</span>
             </S.BelongBox>
             <S.BelongBox>
               <S.ExpressTeacherBox>담당 선생님</S.ExpressTeacherBox>
-              <span>
-                {clubId
-                  ? clubDetail?.data.teacher.name
-                  : myClub?.data.teacher.name}
-              </span>
+              <span>{clubs?.data.teacher.name}</span>
             </S.BelongBox>
           </S.ClubInfoContainer>
           <S.ClubPersonnelBox>
             <S.ClubPersonnelTitle>동아리 인원</S.ClubPersonnelTitle>
-            <span>
-              총 {clubId ? clubDetail?.data.headCount : myClub?.data.headCount}
-              명
-            </span>
+            <span>총 {clubs?.data.headCount}명</span>
           </S.ClubPersonnelBox>
           <S.ClubMemberListContainer>
-            {clubId
-              ? clubDetail?.data.students.map((student) => (
-                  <S.ClubMemberBox
-                    isStudent={false}
-                    key={student.id}
-                    onClick={() =>
-                      push(`/main/club/${clubId}/student/${student.id}`)
-                    }
-                  >
-                    <S.MemberName>{student.name}</S.MemberName>
-                    <S.MemberRole>{roleToKor[student.authority]}</S.MemberRole>
-                  </S.ClubMemberBox>
-                ))
-              : myClub?.data.students.map((student) => (
-                  <S.ClubMemberBox
-                    isStudent={isStudent}
-                    key={student.id}
-                    onClick={() =>
-                      !isStudent &&
-                      push(
-                        `/main/club/${myClub?.data.clubId}/student/${student.id}`
-                      )
-                    }
-                  >
-                    <S.MemberName>{student.name}</S.MemberName>
-                    <S.MemberRole>{roleToKor[student.authority]}</S.MemberRole>
-                  </S.ClubMemberBox>
-                ))}
+            {clubs?.data.students.map((student) => (
+              <S.ClubMemberBox
+                isStudent={isStudent}
+                key={student.id}
+                onClick={() =>
+                  !isStudent &&
+                  push(`/main/club/${clubs?.data.clubId}/student/${student.id}`)
+                }
+              >
+                <S.MemberName>{student.name}</S.MemberName>
+                <S.MemberRole>{roleToKor[student.authority]}</S.MemberRole>
+              </S.ClubMemberBox>
+            ))}
           </S.ClubMemberListContainer>
         </S.ClubContainer>
       </S.ClubWrapper>
