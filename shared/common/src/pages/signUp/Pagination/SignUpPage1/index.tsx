@@ -1,41 +1,35 @@
 'use client'
 
-import React, { useState } from 'react'
+import { SignUpPage1Obj, ValueInput } from '@bitgouel/common'
+import { SignUpObjTypes } from '@bitgouel/types'
+import { useState } from 'react'
 import { useRecoilState } from 'recoil'
-import { Page1Obj } from '../../../../atoms'
-import { ValueInput } from '../../../../components'
 import SignUpButtonContainer from '../SignUpButtonContainer'
 import SignUpScrollContainer from '../SignUpScrollContainer'
 import * as S from './style'
 
-const Page1 = ({
-  page,
-  setPage,
-}: {
-  page: number
-  setPage: React.Dispatch<React.SetStateAction<number>>
-}) => {
-  const [isScrollContainer, setIsScrollContainer] = useState(false)
-  const [page1Obj, setPage1Obj] = useRecoilState(Page1Obj)
+const SignUpPage1 = () => {
+  const [isScrollContainer, setIsScrollContainer] = useState<boolean>(false)
+  const [signUpPage1Obj, setSignUpPage1Obj] = useRecoilState(SignUpPage1Obj)
   const [value, setValue] = useState<string>('')
   const [idx, setIdx] = useState<number>(0)
   const [placeholder, setPlaceholder] = useState<string>('')
 
   const onClear = (idx: number) => {
-    const clearObj = [...page1Obj]
+    const clearObj: SignUpObjTypes[] = [...signUpPage1Obj]
     if (idx === 0) {
       clearObj[idx] = { ...clearObj[idx], value: '' }
       clearObj[1] = { ...clearObj[1], value: '' }
     } else {
       clearObj[idx] = { ...clearObj[idx], value: '' }
     }
-    setPage1Obj(clearObj)
+    setSignUpPage1Obj(clearObj)
   }
 
   return (
     <>
       <S.PaginationInputsContainer>
-        {page1Obj.map((item, idx) => (
+        {signUpPage1Obj.map((item, idx) => (
           <div key={idx}>
             <ValueInput
               type={item.type}
@@ -61,30 +55,28 @@ const Page1 = ({
               <SignUpScrollContainer
                 idx={idx}
                 placeholder={placeholder}
-                obj={page1Obj}
-                setObj={setPage1Obj}
+                obj={signUpPage1Obj}
+                setObj={setSignUpPage1Obj}
                 setIsScrollContainer={setIsScrollContainer}
               />
             )
-          : page1Obj[0].value &&
+          : signUpPage1Obj[0].value &&
             !value.length &&
             isScrollContainer && (
               <SignUpScrollContainer
                 idx={idx}
                 placeholder={placeholder}
-                obj={page1Obj}
-                setObj={setPage1Obj}
+                obj={signUpPage1Obj}
+                setObj={setSignUpPage1Obj}
                 setIsScrollContainer={setIsScrollContainer}
               />
             )}
       </S.PaginationInputsContainer>
       <SignUpButtonContainer
-        page={page}
-        isNext={page1Obj.every((item) => item.value.length)}
-        setPage={setPage}
+        isNext={signUpPage1Obj.every((item) => item.value.length)}
       />
     </>
   )
 }
 
-export default Page1
+export default SignUpPage1
