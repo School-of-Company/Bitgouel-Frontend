@@ -5,11 +5,14 @@ import {
   useGetDetailLecture,
   usePostEnrollment,
 } from '@bitgouel/api'
-import { Bg3 } from '../../../assets'
-import { lectureDivisionToKor, lectureTypeToKor } from '../../../constants'
+import {
+  Bg3,
+  lectureDivisionToKor,
+  lectureTypeToKor,
+  useModal,
+  AppropriationModal,
+} from '@bitgouel/common'
 import * as S from './style'
-import { useModal } from '../../../hooks'
-import { AppropriationModal } from '../../../modals'
 
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
