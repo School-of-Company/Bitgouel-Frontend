@@ -1,29 +1,29 @@
-'use client'
-
-import { useState } from 'react'
+import { useEffect } from 'react'
+import { useGetEmail } from '@bitgouel/api'
 import * as S from './style'
-import { useRouter } from 'next/navigation'
+import { toast } from 'react-toastify'
 import { useSetRecoilState } from 'recoil'
 import { PwPage } from '../../../../atoms'
 
-const NumberValid = () => {
-  const { push } = useRouter()
-  const [validStatus, setValidStatus] = useState(false)
+const NumberValid = ({ emailValue }: { emailValue: string }) => {
   const setPwPage = useSetRecoilState(PwPage)
+  const { data, refetch } = useGetEmail({ email: emailValue })
 
-  const nextOnclick = () => {
-    setPwPage(3)
-  }
+  useEffect(() => {
+    const timer = setTimeout(() => refetch(), 5000)
+    if (data?.data.isAuthentication) {
+      setPwPage(4)
+      toast.success('이메일 인증이 확인되셨습니다')
+    }
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
     <>
-      <S.EmailInputContainer>찌야야야</S.EmailInputContainer>
-      <S.ButtonContainer>
-        <S.PreButton onClick={() => setPwPage(1)}>이전으로</S.PreButton>
-        <S.NextButton statusColor={validStatus} onClick={nextOnclick}>
-          다음으로
-        </S.NextButton>
-      </S.ButtonContainer>
+      <S.EmailInputContainer>
+        <S.EmailValue>{emailValue} 로</S.EmailValue>
+        <S.Title>확인 이메일 발송됨</S.Title>
+      </S.EmailInputContainer>
     </>
   )
 }

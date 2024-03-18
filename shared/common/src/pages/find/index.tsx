@@ -7,9 +7,11 @@ import { useRecoilState } from 'recoil'
 import { PwPage } from '../../atoms'
 import EmailCheck from './Pagination/EmailCheck'
 import NumberValid from './Pagination/NumberValid'
+import { useState } from 'react'
 
 const FindPage = () => {
   const [pwPage, setPwPage] = useRecoilState(PwPage)
+  const [emailValue, setEmailValue] = useState('')
 
   return (
     <>
@@ -24,8 +26,13 @@ const FindPage = () => {
             </S.TitleItemWrapper>
           </S.ChangePWTitleWrapper>
           <S.PaginationContainer>
-            {pwPage === 1 && <EmailCheck />}
-            {pwPage === 2 && <NumberValid />}
+            {pwPage === 1 && (
+              <EmailCheck
+                emailValue={emailValue}
+                setEmailValue={setEmailValue}
+              />
+            )}
+            {pwPage === 2 && <NumberValid emailValue={emailValue} />}
             {pwPage === 3 && <NewPassword />}
           </S.PaginationContainer>
         </S.ChangePWWrapper>

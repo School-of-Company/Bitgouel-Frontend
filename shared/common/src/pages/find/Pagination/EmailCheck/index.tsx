@@ -4,18 +4,16 @@ import { ChangeEvent, useEffect, useState } from 'react'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
 import { ValueInput } from '../../../../components'
-import { usePatchPassword } from '@bitgouel/api'
+import { usePatchPassword, usePostEmail } from '@bitgouel/api'
 import { toast } from 'react-toastify'
-import { useSetRecoilState } from 'recoil'
-import { PwPage } from '../../../../atoms'
+import { EmailProps } from '@bitgouel/types'
 
-const EmailCheck = () => {
+const EmailCheck = ({ emailValue, setEmailValue }: EmailProps) => {
   const { push } = useRouter()
   const [emailStatus, setEmailStatus] = useState<boolean>(false)
-  const [emailValue, setEmailValue] = useState<string>('')
   const [emailErrorText, setEmailErrorText] = useState<string>('')
-  const setPwPage = useSetRecoilState(PwPage)
   const { error } = usePatchPassword()
+  const { mutate } = usePostEmail()
 
   useEffect(() => {
     if (error?.response?.status === 401)
@@ -39,12 +37,9 @@ const EmailCheck = () => {
 
   const nextOnclick = () => {
     if (emailValue) {
-      toast.success('인증번호를 발송했습니다')
-      setPwPage(2)
+      mutate({ email: emailValue })
     }
   }
-
-  
 
   return (
     <>
