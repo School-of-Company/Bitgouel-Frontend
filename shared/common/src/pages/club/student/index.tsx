@@ -1,4 +1,5 @@
 'use client'
+
 import {
   TokenManager,
   useGetCertificateList,
@@ -17,11 +18,11 @@ import {
   CalendarIcon,
   PersonOut,
   PlusCertificate,
-} from '../../../assets'
+} from '@bitgouel/common'
 import CertificateItem from '../../../components/CertificateItem'
-import { useModal } from '../../../hooks'
-import { AppropriationModal, SelectCalendarModal } from '../../../modals'
-import { theme } from '../../../styles'
+import { useModal } from '@bitgouel/common'
+import { AppropriationModal, SelectCalendarModal } from '@bitgouel/common'
+import { theme } from '@bitgouel/common'
 import * as S from './style'
 
 const roleArray: string[] = ['ROLE_STUDENT', 'ROLE_TEACHER', 'ROLE_ADMIN']

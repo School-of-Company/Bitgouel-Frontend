@@ -1,4 +1,3 @@
-import React from 'react'
 import { StudentPage } from '@bitgouel/common/src/pages'
 import { StudentIdProps } from '@bitgouel/types'
 

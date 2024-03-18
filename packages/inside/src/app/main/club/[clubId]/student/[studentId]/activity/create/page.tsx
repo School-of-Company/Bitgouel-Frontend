@@ -1,4 +1,3 @@
-import React from 'react'
 import { ActivityCreatePage } from '@/PageContainer'
 import { StudentIdProps } from '@bitgouel/types'
 

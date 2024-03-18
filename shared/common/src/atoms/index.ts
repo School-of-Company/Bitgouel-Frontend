@@ -1,3 +1,5 @@
+'use client'
+
 import {
   LectureDate,
   LectureDivisionEnum,
