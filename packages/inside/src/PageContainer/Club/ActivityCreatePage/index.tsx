@@ -46,7 +46,13 @@ const ActivityCreatePage: React.FC<{ studentIdProps: StudentIdProps }> = ({
     }
   }
 
-  const { mutate } = usePostActivityInformation()
+  const { mutate } = usePostActivityInformation({
+    onSuccess: () => {
+      closeModal()
+      push(`/main/club/${clubId}/student/${studentId}/activity`)
+      toast.success('활동을 추가하였습니다.')
+    },
+  })
 
   const onCreate = () => {
     mutate({
@@ -62,10 +68,6 @@ const ActivityCreatePage: React.FC<{ studentIdProps: StudentIdProps }> = ({
         .toString()
         .padStart(2, '0')}`,
     })
-
-    closeModal()
-    push(`/main/club/${clubId}/student/${studentId}/activity`)
-    toast.success('활동을 추가하였습니다.')
   }
 
   return (

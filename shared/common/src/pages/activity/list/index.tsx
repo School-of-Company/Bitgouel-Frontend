@@ -28,7 +28,7 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
 
   const { data: userDetail } = useGetMy()
 
-  const { data: activityList } =
+  const { data: activityList, refetch } =
     tokenManager.authority === 'ROLE_STUDENT'
       ? useGetActivityMyselfList({
           page: 0,
@@ -39,6 +39,10 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
   useEffect(() => {
     setIsStudent(tokenManager.authority === 'ROLE_STUDENT')
   }, [])
+
+  useEffect(() => {
+    refetch()
+  }, [activityList])
 
   return (
     <div>
