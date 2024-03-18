@@ -33,8 +33,14 @@ const ActivityModifyPage: React.FC<ActivityDetailProps> = ({
   const { openModal, closeModal } = useModal()
   const { push } = useRouter()
 
-  const { data } = useGetActivityDetail(activityId)
-  const { mutate } = usePatchActivityModifyInformation(activityId)
+  const { data, refetch } = useGetActivityDetail(activityId)
+  const { mutate } = usePatchActivityModifyInformation(activityId, {
+    onSuccess: () => {
+      closeModal()
+      push(`/main/club/${clubId}/student/${studentId}/activity`)
+      toast.success('수정하였습니다.')
+    },
+  })
 
   const [isActivityDate, setIsActivityDate] = useState<boolean>(false)
   const [activityDate, setActivityDate] = useState<Date>(new Date())
@@ -76,9 +82,6 @@ const ActivityModifyPage: React.FC<ActivityDetailProps> = ({
       }
 
       mutate(payload)
-      closeModal()
-      toast.success('수정하였습니다.')
-      push(`/main/club/${clubId}/student/${studentId}/activity`)
     }
   }
 
