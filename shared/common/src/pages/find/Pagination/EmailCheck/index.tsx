@@ -3,7 +3,7 @@
 import { ChangeEvent, useEffect, useState } from 'react'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
-import { ValueInput } from '../../../../components'
+import { ValueInput } from '@bitgouel/common'
 import { usePatchPassword, usePostEmail } from '@bitgouel/api'
 import { toast } from 'react-toastify'
 import { EmailProps } from '@bitgouel/types'

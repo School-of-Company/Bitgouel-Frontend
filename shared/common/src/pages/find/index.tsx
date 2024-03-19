@@ -1,12 +1,14 @@
 'use client'
 
 import * as S from './style'
-import NewPassword from './Pagination/NewPassword'
-import ChangePasswordSuccess from './Pagination/ChangePasswordSuccess'
+import {
+  ChangePasswordSuccess,
+  NumberValid,
+  EmailCheck,
+  NewPassword,
+} from './Pagination'
 import { useRecoilState } from 'recoil'
-import { PwPage } from '../../atoms'
-import EmailCheck from './Pagination/EmailCheck'
-import NumberValid from './Pagination/NumberValid'
+import { PwPage } from '@bitgouel/common'
 import { useState } from 'react'
 
 const FindPage = () => {

@@ -3,11 +3,11 @@
 import { ChangeEvent, useEffect, useState } from 'react'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
-import { ValueInput } from '../../../../components'
+import { ValueInput } from '@bitgouel/common'
 import { usePatchPassword } from '@bitgouel/api'
 import { toast } from 'react-toastify'
 import { useSetRecoilState } from 'recoil'
-import { PwPage } from '../../../../atoms'
+import { PwPage } from '@bitgouel/common'
 
 const NewPassword = () => {
   const { push } = useRouter()

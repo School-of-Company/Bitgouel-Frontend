@@ -3,7 +3,7 @@ import { useGetEmail } from '@bitgouel/api'
 import * as S from './style'
 import { toast } from 'react-toastify'
 import { useSetRecoilState } from 'recoil'
-import { PwPage } from '../../../../atoms'
+import { PwPage } from '@bitgouel/common'
 
 const NumberValid = ({ emailValue }: { emailValue: string }) => {
   const setPwPage = useSetRecoilState(PwPage)

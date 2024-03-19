@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { myQueryKeys, patch, userUrl } from '../../libs'
+import { myQueryKeys, patch, userUrl } from '@bitgouel/api'
 import { AxiosError } from 'axios'
 import { ApiErrorTypes, ChangePwPayloadTypes } from '@bitgouel/types'
 import { useModal } from '@bitgouel/common'
