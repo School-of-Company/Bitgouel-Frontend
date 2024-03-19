@@ -54,25 +54,25 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
           <S.TitleContainer>
             <S.LectureStatusContainer>
               <S.LectureStatusBox>
-                {lectureTypeToKor[lectureType]}
+                {lectureTypeToKor[lectureType || '']}
               </S.LectureStatusBox>
               <S.LectureStatusBox>
-                {lectureDivisionToKor[division]}
+                {lectureDivisionToKor[division || '']}
               </S.LectureStatusBox>
             </S.LectureStatusContainer>
             <h1>{name}</h1>
             <S.LectureInfoContainer>
               <span>{lecturer} 교수</span>
-              <span>{dateToDot(createAt)}</span>
+              <span>{dateToDot(createAt || '')}</span>
             </S.LectureInfoContainer>
           </S.TitleContainer>
           <S.MainText>{content}</S.MainText>
           <S.LectureDateWrapper>
             <h2>수강 신청 기간</h2>
             <S.LectureDateText>
-              • {dateToConverterKor(startDate)}
+              • {dateToConverterKor(startDate || '')}
               {'  '}~{'  '}
-              {dateToConverterKor(endDate)}
+              {dateToConverterKor(endDate || '')}
             </S.LectureDateText>
           </S.LectureDateWrapper>
           <S.LectureDateWrapper>
@@ -81,9 +81,9 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
               <S.LectureDateText>
                 •{' '}
                 {`${dateToConverterKorAddTime(
-                  date.completeDate,
-                  date.startTime
-                )}~${timeToConverter(date.endTime)}`}
+                  date.completeDate || '',
+                  date.startTime || ''
+                )}~${timeToConverter(date.endTime || '')}`}
               </S.LectureDateText>
             ))}
           </S.LectureDateWrapper>
@@ -100,7 +100,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
               <AppropriationModal
                 isApprove={true}
                 question='수강 신청하시겠습니까?'
-                title={name}
+                title={name || ''}
                 purpose='신청하기'
                 onAppropriation={() => mutate()}
               />
