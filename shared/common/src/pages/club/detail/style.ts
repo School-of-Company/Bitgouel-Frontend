@@ -136,7 +136,7 @@ export const ClubMemberListContainer = styled.div`
   padding-left: 0.5rem;
 `
 
-export const ClubMemberBox = styled.div`
+export const ClubMemberBox = styled.div<{isStudent: boolean}>`
   width: 100%;
   display: flex;
   align-items: center;
@@ -146,7 +146,7 @@ export const ClubMemberBox = styled.div`
   cursor: pointer;
   
   &:hover {
-    background-color: ${({theme}) => theme.color.gray['900']};
+    background-color: ${({theme, isStudent}) => isStudent ? 'none' : theme.color.gray['900']};
   }
 `
 
