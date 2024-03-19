@@ -6,11 +6,15 @@ import {
   usePostEnrollment,
 } from '@bitgouel/api'
 import {
+  AppropriationModal,
   Bg3,
+  dateToConverterKor,
+  dateToConverterKorAddTime,
+  dateToDot,
   lectureDivisionToKor,
   lectureTypeToKor,
+  timeToConverter,
   useModal,
-  AppropriationModal,
 } from '@bitgouel/common'
 import * as S from './style'
 
@@ -26,6 +30,17 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   }
   const { openModal } = useModal()
   const { mutate } = usePostEnrollment(lectureId)
+  const {
+    lectureType,
+    name,
+    lecturer,
+    startDate,
+    content,
+    endDate,
+    division,
+    createAt,
+    maxRegisteredUser,
+  } = data?.data || {}
 
   return (
     <div>
@@ -39,53 +54,25 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
           <S.TitleContainer>
             <S.LectureStatusContainer>
               <S.LectureStatusBox>
-                {lectureTypeToKor[data?.data.lectureType || '']}
+                {lectureTypeToKor[lectureType]}
               </S.LectureStatusBox>
               <S.LectureStatusBox>
-                {lectureDivisionToKor[data?.data.division || '']}
+                {lectureDivisionToKor[division]}
               </S.LectureStatusBox>
             </S.LectureStatusContainer>
-            <h1>{data?.data.name}</h1>
+            <h1>{name}</h1>
             <S.LectureInfoContainer>
-              <span>{data?.data.lecturer} 교수</span>
-              <span>{`${data?.data.startDate.slice(
-                0,
-                4
-              )}.${data?.data.startDate.slice(
-                5,
-                7
-              )}.${data?.data.startDate.slice(8, 10)}`}</span>
+              <span>{lecturer} 교수</span>
+              <span>{dateToDot(createAt)}</span>
             </S.LectureInfoContainer>
           </S.TitleContainer>
-          <S.MainText>{data?.data.content}</S.MainText>
+          <S.MainText>{content}</S.MainText>
           <S.LectureDateWrapper>
             <h2>수강 신청 기간</h2>
             <S.LectureDateText>
-              •{' '}
-              {`${data?.data.startDate.slice(
-                0,
-                4
-              )}년 ${data?.data.startDate.slice(
-                5,
-                7
-              )}월 ${data?.data.startDate.slice(
-                8,
-                10
-              )}일 ${data?.data.startDate.slice(
-                11,
-                13
-              )}시 ${data?.data.startDate.slice(14, 16)}분`}
+              • {dateToConverterKor(startDate)}
               {'  '}~{'  '}
-              {`${data?.data.endDate.slice(0, 4)}년 ${data?.data.endDate.slice(
-                5,
-                7
-              )}월 ${data?.data.endDate.slice(
-                8,
-                10
-              )}일 ${data?.data.startDate.slice(
-                11,
-                13
-              )}시 ${data?.data.startDate.slice(14, 16)}분`}
+              {dateToConverterKor(endDate)}
             </S.LectureDateText>
           </S.LectureDateWrapper>
           <S.LectureDateWrapper>
@@ -93,24 +80,16 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
             {data?.data.lectureDates.map((date) => (
               <S.LectureDateText>
                 •{' '}
-                {`${date.completeDate.slice(0, 4)}년 ${date.completeDate.slice(
-                  5,
-                  7
-                )}월 ${date.completeDate.slice(8, 10)}일 ${date.startTime.slice(
-                  0,
-                  2
-                )}시 ${date.startTime.slice(3, 5)}분~${date.endTime.slice(
-                  0,
-                  2
-                )}시 ${date.endTime.slice(3, 5)}분`}
+                {`${dateToConverterKorAddTime(
+                  date.completeDate,
+                  date.startTime
+                )}~${timeToConverter(date.endTime)}`}
               </S.LectureDateText>
             ))}
           </S.LectureDateWrapper>
           <S.LectureMaxWrapper>
             <h2>모집 정원</h2>
-            <S.LectureMaxText>
-              {data?.data.maxRegisteredUser}명
-            </S.LectureMaxText>
+            <S.LectureMaxText>{maxRegisteredUser}명</S.LectureMaxText>
           </S.LectureMaxWrapper>
         </S.Document>
         <S.ApplyButton
@@ -121,7 +100,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
               <AppropriationModal
                 isApprove={true}
                 question='수강 신청하시겠습니까?'
-                title={data?.data.name || ''}
+                title={name}
                 purpose='신청하기'
                 onAppropriation={() => mutate()}
               />
