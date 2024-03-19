@@ -8,21 +8,22 @@ import {
   useGetStudentDetail,
   usePostCertificate,
 } from '@bitgouel/api'
+import {
+  AddCertificate,
+  AppropriationModal,
+  Bg2,
+  CalendarIcon,
+  CertificateItem,
+  PersonOut,
+  PlusCertificate,
+  SelectCalendarModal,
+  theme,
+  useModal,
+} from '@bitgouel/common'
 import { CertificateRequest, StudentIdProps } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
-import {
-  AddCertificate,
-  Bg2,
-  CalendarIcon,
-  PersonOut,
-  PlusCertificate,
-} from '@bitgouel/common'
-import CertificateItem from '../../../components/CertificateItem'
-import { useModal } from '@bitgouel/common'
-import { AppropriationModal, SelectCalendarModal } from '@bitgouel/common'
-import { theme } from '@bitgouel/common'
 import * as S from './style'
 
 const roleArray: string[] = ['ROLE_STUDENT', 'ROLE_TEACHER', 'ROLE_ADMIN']
@@ -38,9 +39,10 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
   const [certificateDate, setCertificateDate] = useState<Date>(new Date())
   const [certificateDateText, setCertificateDateText] = useState<string>('')
   const [certificateIndex, setCertificateIndex] = useState<number>(-1)
-
   const [isRole, setIsRole] = useState<boolean>(false)
   const [isStudent, setIsStudent] = useState<boolean>(false)
+
+  const { data: myData } = useGetStudentDetail(clubId, studentId)
 
   const { openModal, closeModal } = useModal()
 

@@ -1,4 +1,4 @@
-import { ClubDetailPage } from '@bitgouel/common/src/pages'
+import { ClubDetailPage } from '@bitgouel/common'
 
 const ClubDetail = ({params}: {params: {clubId: string}}) => {
   return <ClubDetailPage clubId={params.clubId} />

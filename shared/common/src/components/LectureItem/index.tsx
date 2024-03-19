@@ -1,6 +1,6 @@
 'use client'
 
-import { lectureTypeToKor } from '@bitgouel/common'
+import { dateToDot, lectureTypeToKor } from '@bitgouel/common'
 import { LectureItemProps } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import * as S from './style'
@@ -25,18 +25,7 @@ const LectureItem = ({ item }: LectureItemProps) => {
         <S.From>{lectureTypeToKor[item.lectureType]}</S.From>
         <S.MenuNum>
           <span>
-            {`${item.startDate.slice(0, 4)}년 ${item.startDate.slice(
-              5,
-              7
-            )}월 ${item.startDate.slice(8, 10)}일 ${item.startDate.slice(
-              11,
-              16
-            )}`}{' '}
-            ~{' '}
-            {`${item.endDate.slice(0, 4)}년 ${item.endDate.slice(
-              5,
-              7
-            )}월 ${item.endDate.slice(8, 10)}일 ${item.endDate.slice(11, 16)}`}
+            {dateToDot(item.startDate)} ~ {dateToDot(item.endDate)}
           </span>
           <span>•</span>
           <span>
