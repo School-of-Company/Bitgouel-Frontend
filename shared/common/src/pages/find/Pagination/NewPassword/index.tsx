@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation'
 import { ValueInput } from '../../../../components'
 import { usePatchPassword } from '@bitgouel/api'
 import { toast } from 'react-toastify'
-import { match } from 'ts-pattern'
 import { useSetRecoilState } from 'recoil'
 import { PwPage } from '../../../../atoms'
 
@@ -20,7 +19,7 @@ const NewPassword = () => {
   const [newConfirmErrorMessage, setNewConfirmErrorMessage] =
     useState<string>('')
   const [passwordStatus, setPasswordStatus] = useState<boolean>(false)
-  const { error } = usePatchPassword()
+  const { mutate, error } = usePatchPassword()
 
   useEffect(() => {
     if (error?.response?.status === 401)
@@ -64,8 +63,17 @@ const NewPassword = () => {
   }
 
   const nextOnclick = () => {
-    toast.success('비밀번호가 변경 되었습니다.')
-    setPwPage(4)
+    if (
+      currentPw !== '' &&
+      newPw !== '' &&
+      newConfirmPw !== '' &&
+      newPw === newConfirmPw &&
+      currentPw !== newPw
+    )
+      mutate({
+        currentPassword: currentPw,
+        newPassword: newPw,
+      })
   }
 
   return (
