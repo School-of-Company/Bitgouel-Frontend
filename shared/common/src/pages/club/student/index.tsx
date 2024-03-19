@@ -44,16 +44,24 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
 
   const { openModal, closeModal } = useModal()
 
-  const { data: clubStudent } = useGetStudentDetail(clubId, studentId)
+  const { data: clubStudent, refetch } = useGetStudentDetail(clubId, studentId)
   const { data: myPageData } = useGetMy()
 
-  const { mutate } = usePostCertificate()
+  const { mutate } = usePostCertificate({
+    onSuccess: () => {
+      console.log('gd')
+      closeModal()
+      refetch()
+      setIsAddCertificate(false)
+      toast.success('자격증을 추가하였습니다.')
+    },
+  })
 
   const tokenManager = new TokenManager()
-  const { data: certificateList } =
-    tokenManager.authority === 'ROLE_STUDENT'
-      ? useGetCertificateList()
-      : useGetCertificateListTeacher(studentId)
+
+  const { data: certificateList } = isStudent
+    ? useGetCertificateList()
+    : useGetCertificateListTeacher(studentId)
   const onCreate = () => {
     const payload: CertificateRequest = {
       name: certificateText,
@@ -67,7 +75,6 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
         .padStart(2, '0')}`,
     }
     mutate(payload)
-    window.location.reload()
   }
 
   useEffect(() => {
@@ -156,7 +163,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
                               question='자격증 정보를 추가하시겠습니까?'
                               title={certificateText}
                               purpose='추가하기'
-                              onAppropriation={() => onCreate()}
+                              onAppropriation={onCreate}
                             />
                           )
                         : toast.info('자격증 정보를 입력해주세요')
