@@ -1,30 +1,24 @@
 'use client'
 
-import {
-  TokenManager,
-  useGetInquiryList,
-  useGetMyInquiryList,
-} from '@bitgouel/api'
-import { InquiryFiltersTypes } from '@bitgouel/types'
-import { AnswerStatus } from '@bitgouel/types/src/common/AnswerStatus'
-import { useRouter } from 'next/navigation'
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { useGetInquiryList, useGetMyInquiryList } from '@bitgouel/api'
 import {
   Bg5,
   FilterOut,
+  InquiryItem,
   MegaPhone,
   Message,
   Plus,
   SearchIcon,
-} from '../../../assets'
-import { InquiryItem } from '../../../components'
+} from '@bitgouel/common'
+import { AnswerStatus, InquiryFiltersTypes } from '@bitgouel/types'
+import { useRouter } from 'next/navigation'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import * as S from './style'
 
 const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const [keyword, setKeyword] = useState<string>('')
   const [answerStatus, setAnswerStatus] = useState<AnswerStatus | ''>('')
   const { push } = useRouter()
-  const tokenManager = new TokenManager()
   const { data: inquiryList, refetch } = useGetInquiryList(
     {
       keyword,

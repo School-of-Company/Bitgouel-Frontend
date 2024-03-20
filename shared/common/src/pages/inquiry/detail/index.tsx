@@ -34,7 +34,7 @@ const InquiryDetailPage = ({
           {!isAdmin && (
             <S.TitleButtonContainer>
               <S.InquiryButton
-                onClick={() => push(`/main/post/inquiry/modify/${inquiryId}`)}
+                onClick={() => push(`/main/post/inquiry/${inquiryId}/modify`)}
               >
                 <Pen />
                 <span>문의 수정</span>
