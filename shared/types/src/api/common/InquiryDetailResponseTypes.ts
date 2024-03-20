@@ -4,6 +4,7 @@ export interface InquiryDetailResponseTypes {
   id: string
   question: string
   questionDetail: string
+  questionerId: string
   questioner: string
   questionDate: string
   answerStatus: AnswerStatus
