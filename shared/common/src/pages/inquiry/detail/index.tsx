@@ -26,7 +26,6 @@ const InquiryDetailPage = ({
   const { data: myData } = useGetMy()
   const { id } = myData?.data || {}
   const {
-    questionerId,
     question,
     questionDetail,
     questionDate,
@@ -41,7 +40,7 @@ const InquiryDetailPage = ({
       <S.SlideBg url={Bg5}>
         <S.BgContainer>
           <S.InquiryTitle>문의 상세</S.InquiryTitle>
-          {questionerId === id && (
+          {!isAdmin && (
             <S.TitleButtonContainer>
               <S.InquiryButton
                 onClick={() => push(`/main/post/inquiry/${inquiryId}/modify`)}
