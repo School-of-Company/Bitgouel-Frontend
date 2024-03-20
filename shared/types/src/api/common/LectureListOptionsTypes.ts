@@ -1,5 +1,5 @@
+import { LectureTypeEnum } from '../admin'
 import { ApproveStatusEnum } from './ApproveStatusEnum'
-import { LectureTypeEnum } from './LectureItemType'
 
 export interface LectureListOptionsTypes {
   page: number

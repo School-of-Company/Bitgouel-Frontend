@@ -1,8 +1,9 @@
 import {
   ActivityOptionsTypes,
+  LinePayloadTypes,
   InquiryListQueryStringTypes,
   LectureListOptionsTypes,
-  UserListOptionsTypes
+  UserListOptionsTypes,
 } from '@bitgouel/types'
 
 export const authUrl = {
@@ -12,7 +13,7 @@ export const authUrl = {
   signUpStudent: () => `/auth/student`,
   signUpTeacher: () => `/auth/teacher`,
   signUpBbozzak: () => `/auth/bbozzak`,
-  signUpPropessor: () => `/auth/professor`,
+  signUpProfessor: () => `/auth/professor`,
   signUpGovernment: () => `/auth/government`,
   signUpCompanyInstructor: () => `/auth/company-instructor`,
 } as const
@@ -23,23 +24,26 @@ export const lectureUrl = {
     `/lecture?page=${options.page}&size=${options.size}&type=${options.type}`,
   lectureDetail: (id: string) => `/lecture/${id}`,
   lectureEnrolment: (id: string) => `/lecture/${id}`,
+  lectureInstructor: (keyword: string) =>
+    `/lecture/instructor?keyword=${keyword}`,
+  lectureLine: (queryString: LinePayloadTypes) =>
+    `/lecture/line?keywrod=${queryString.keyword}&division=${queryString.division}`,
+  lectureDepartment: (keyword: string) =>
+    `/lecture/department?keyword=${keyword}`,
 } as const
 
 export const activityUrl = {
   activityInformation: () => `/activity`,
-  activityCorrection: (activity_id: string) => `/activity/${activity_id}`,
-  activityApprove: (activity_id: string) => `/activity/${activity_id}/approve`,
-  activityReject: (activity_id: string) => `/activity/${activity_id}/reject`,
+  activityModifyInformation: (activity_id: string) =>
+    `/activity/${activity_id}`,
   activityInformationRemove: (activity_id: string) =>
     `/activity/${activity_id}`,
   activityMyselfList: (options: ActivityOptionsTypes) =>
-    `/activity/my?page=${options.page}&size=${options.size}&sort=${options.sort}`,
+    `/activity/my?page=${options.page}&size=${options.size}`,
   activityList: (student_id: string, options: ActivityOptionsTypes) =>
-    `/activity/${student_id}?page=${options.page}&size=${options.size}&sort=${options.sort}`,
-  activityInformationList: (options: ActivityOptionsTypes) =>
-    `/activity?page=${options.page}&size=${options.size}&sort=${options.sort}`,
+    `/activity/${student_id}?page=${options.page}&size=${options.size}`,
   activityInformationDetail: (activity_id: string) =>
-    `/activity/${activity_id}`,
+    `/activity/${activity_id}/detail`,
 }
 
 export const userUrl = {
@@ -78,7 +82,7 @@ export const inquiryUrl = {
   inquiryDetail: (inquiry_id: string) => `/inquiry/${inquiry_id}`,
   myInquiryDelete: (inquiry_id: string) => `/inquiry/${inquiry_id}`,
   myInquiryModify: (inquiry_id: string) => `/inquiry/${inquiry_id}`,
-  inquiryAnswer: (inquiry_id: string) => `/inquiry/${inquiry_id}/reply`,
+  inquiryAnswer: (inquiry_id: string) => `/inquiry/${inquiry_id}/answer`,
   inquiryList: (queryString: InquiryListQueryStringTypes) =>
     `/inquiry/all?answerStatus=${queryString.answerStatus}&keyword=${queryString.keyword}`,
   inquiryDelete: (inquiry_id: string) => `/inquiry/${inquiry_id}/reject`,

@@ -69,14 +69,20 @@ export const UserSearchContainer = styled.div`
   margin-bottom: 1.5625rem;
 `
 
-export const UserSearchInput = styled.input`
-  width: 65.75rem;
-  height: 100%;
-  border-radius: 0.5rem;
+export const UserSearchBox = styled.form`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   border: 0.0625rem solid ${({ theme }) => theme.color.gray['700']};
-  ${({ theme }) => theme.typo.text_sm.regular};
+  padding: 1.0625rem 1.25rem;
+  border-radius: 0.5rem;
   color: ${({ theme }) => theme.color.gray['400']};
-  padding: 0 1.25rem;
+`
+
+export const UserSearchInput = styled.input`
+  width: 64.25rem;
+  border: none;
+  outline: none;
 `
 
 export const UserSearchFilterBox = styled.div`

@@ -4,48 +4,51 @@ import {
   TokenManager,
   useGetCertificateList,
   useGetCertificateListTeacher,
+  useGetMy,
   useGetStudentDetail,
   usePostCertificate,
 } from '@bitgouel/api'
-import { CertificateRequest, StudentIdProps } from '@bitgouel/types'
-import { useRouter } from 'next/navigation'
-import { ChangeEvent, useState } from 'react'
-import { toast } from 'react-toastify'
 import {
   AddCertificate,
+  AppropriationModal,
   Bg2,
   CalendarIcon,
+  CertificateItem,
   PersonOut,
   PlusCertificate,
-} from '../../../assets'
-import CertificateItem from '../../../components/CertificateItem'
-import { useModal } from '../../../hooks'
-import { AppropriationModal, SelectCalendarModal } from '../../../modals'
-import { theme } from '../../../styles'
+  SelectCalendarModal,
+  theme,
+  useModal,
+} from '@bitgouel/common'
+import { CertificateRequest, StudentIdProps } from '@bitgouel/types'
+import { useRouter } from 'next/navigation'
+import { ChangeEvent, useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 import * as S from './style'
 
-interface StudentProps {
-  studentIdProps: StudentIdProps
-}
+const roleArray: string[] = ['ROLE_STUDENT', 'ROLE_TEACHER', 'ROLE_ADMIN']
 
-const StudentPage: React.FC<StudentProps> = ({ studentIdProps }) => {
+const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
+  studentIdProps,
+}) => {
   const { studentId, clubId } = studentIdProps
   const { push } = useRouter()
-
   const [isAddCertificate, setIsAddCertificate] = useState<boolean>(false)
   const [certificateText, setCertificateText] = useState<string>('')
   const [isCertificateDate, setIsCertificateDate] = useState<boolean>(false)
   const [certificateDate, setCertificateDate] = useState<Date>(new Date())
   const [certificateDateText, setCertificateDateText] = useState<string>('')
   const [certificateIndex, setCertificateIndex] = useState<number>(-1)
-  const { openModal, closeModal } = useModal()
+  const [isRole, setIsRole] = useState<boolean>(false)
 
   const { data: myData } = useGetStudentDetail(clubId, studentId)
 
+  const { openModal, closeModal } = useModal()
+
+  const { data: clubStudent } = useGetStudentDetail(clubId, studentId)
+  const { data: myPageData } = useGetMy()
   const { mutate } = usePostCertificate()
-
   const tokenManager = new TokenManager()
-
   const { data: certificateList } =
     tokenManager.authority === 'ROLE_STUDENT'
       ? useGetCertificateList()
@@ -68,30 +71,38 @@ const StudentPage: React.FC<StudentProps> = ({ studentIdProps }) => {
     window.location.reload()
   }
 
+  useEffect(() => {
+    setIsRole(roleArray.includes(tokenManager.authority || ''))
+  }, [])
+
   return (
     <div>
       <S.SlideBg url={Bg2}>
         <S.BgContainer>
           <S.ClubTitle>학생 정보</S.ClubTitle>
-          {['ROLE_ADMIN', 'ROLE_TEACHER', 'ROLE_STUDENT'].includes(
-            tokenManager.authority || ''
-          ) && (
-            <S.ClubButton onClick={() => push('/main/club/student/activity')}>
-              <PersonOut />
-              <span>학생 활동</span>
-            </S.ClubButton>
+          {isRole && (
+            <S.ButtonContainer>
+              <S.ClubButton
+                onClick={() =>
+                  push(`/main/club/${clubId}/student/${studentId}/activity`)
+                }
+              >
+                <PersonOut />
+                <span>학생 활동</span>
+              </S.ClubButton>
+            </S.ButtonContainer>
           )}
         </S.BgContainer>
       </S.SlideBg>
       <S.CertificateWrapper>
         <S.CertificateContainer>
           <S.ProfileBox>
-            <h3>{myData?.data.name}</h3>
+            <h3>{clubStudent?.data.name}</h3>
             <S.ProfileInfoBox>
-              <span>{myData?.data.phoneNumber}</span>
-              <span>{myData?.data.email}</span>
+              <span>{clubStudent?.data.phoneNumber}</span>
+              <span>{clubStudent?.data.email}</span>
               <span>
-                총 학점 <b>{myData?.data.credit}</b>
+                총 학점 <b>{clubStudent?.data.credit}</b>
               </span>
             </S.ProfileInfoBox>
           </S.ProfileBox>

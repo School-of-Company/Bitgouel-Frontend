@@ -8,7 +8,7 @@ const InquiryItem = ({ item }: { item: InquiryTypes }) => {
   const { push } = useRouter()
 
   return (
-    <S.InquiryItemWrapper onClick={() => push(`/main/inquiry/${item.id}`)}>
+    <S.InquiryItemWrapper onClick={() => push(`/main/post/inquiry/${item.id}`)}>
       <S.SubTitle>
         <S.Name>{item.username}</S.Name>
         <S.Date>{`${item.createdAt.slice(0, 4)}.${item.createdAt.slice(

@@ -1,12 +1,10 @@
-import { useQuery, UseQueryOptions } from '@tanstack/react-query'
-import { lectureQueryKeys } from '../../libs/queryKeys'
-import { lectureUrl } from '../../libs/urlController'
-import { get } from '../../libs'
-import { AxiosResponse } from 'axios'
 import {
   LectureListOptionsTypes,
   LectureListResponseTypes,
 } from '@bitgouel/types'
+import { useQuery, UseQueryOptions } from '@tanstack/react-query'
+import { AxiosResponse } from 'axios'
+import { get, lectureQueryKeys, lectureUrl } from '../../libs'
 
 export const useGetLectureList = (
   queryString: LectureListOptionsTypes,

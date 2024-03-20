@@ -1,28 +1,34 @@
 'use client'
 
+import { useGetInquiryList, useGetMyInquiryList } from '@bitgouel/api'
 import {
-  TokenManager,
-  useGetInquiryList,
-  useGetMyInquiryList,
-} from '@bitgouel/api'
-import { AnswerStatus } from '@bitgouel/types/src/common/AnswerStatus'
+  Bg5,
+  FilterOut,
+  InquiryItem,
+  MegaPhone,
+  Message,
+  Plus,
+  SearchIcon,
+} from '@bitgouel/common'
+import { AnswerStatus, InquiryFiltersTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
-import { Bg5, FilterOut, Plus, SearchIcon } from '../../../assets'
-import { InquiryItem } from '../../../components'
 import * as S from './style'
-import { InquiryFiltersTypes } from '@bitgouel/types'
 
 const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const [keyword, setKeyword] = useState<string>('')
   const [answerStatus, setAnswerStatus] = useState<AnswerStatus | ''>('')
   const { push } = useRouter()
-  const tokenManager = new TokenManager()
-  const { data: inquiryList, refetch } = useGetInquiryList({
-    keyword,
-    answerStatus,
+  const { data: inquiryList, refetch } = useGetInquiryList(
+    {
+      keyword,
+      answerStatus,
+    },
+    { enabled: !!isAdmin }
+  )
+  const { data: myInquiryList } = useGetMyInquiryList({
+    enabled: !isAdmin,
   })
-  const { data: myInquiryList } = useGetMyInquiryList()
   const [isFilter, setIsFilter] = useState<boolean>(false)
   const [inquiryStatus, setInquiryStatus] = useState<InquiryFiltersTypes[]>([
     { text: '전체', status: '', checked: true },
@@ -56,8 +62,18 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
         <S.BgContainer>
           <S.InquiryTitle>문의사항</S.InquiryTitle>
           <S.ButtonContainer>
+            <S.InquiryButton onClick={() => push(`/main/post`)}>
+              <Message />
+              <span>게시글</span>
+            </S.InquiryButton>
+            <S.InquiryButton onClick={() => push(`/main/post/notice`)}>
+              <MegaPhone />
+              <span>공지사항</span>
+            </S.InquiryButton>
             {!isAdmin && (
-              <S.InquiryButton onClick={() => push('/main/inquiry/create')}>
+              <S.InquiryButton
+                onClick={() => push('/main/post/inquiry/create')}
+              >
                 <Plus />
                 <span>문의사항 추가</span>
               </S.InquiryButton>
@@ -92,7 +108,7 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
                     {inquiryStatus.map((inquiry, idx) => (
                       <S.CheckBox key={idx} htmlFor={inquiry.status}>
                         <S.Check
-                          type='checkbox'
+                          type='radio'
                           id={inquiry.status}
                           checked={inquiry.checked}
                           onChange={onChange}
@@ -108,12 +124,12 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
         )}
         <S.ListWrapper>
           <S.ListContainer>
-            {tokenManager.authority === 'ROLE_ADMIN'
+            {isAdmin
               ? inquiryList?.data.inquiries.map((inquiry) => (
-                  <InquiryItem item={inquiry} />
+                  <InquiryItem item={inquiry} key={inquiry.id} />
                 ))
               : myInquiryList?.data.inquiries.map((inquiry) => (
-                  <InquiryItem item={inquiry} />
+                  <InquiryItem item={inquiry} key={inquiry.id} />
                 ))}
           </S.ListContainer>
         </S.ListWrapper>

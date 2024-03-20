@@ -18,23 +18,16 @@ export const lectureQueryKeys = {
   postLectureApplication: (id: string) => ['lecture', 'application', id],
   patchLectureApprove: (id: string) => ['lecture', 'approve', id],
   deleteLectureReject: (id: string) => ['lecture', 'reject', id],
+  getProfessor: () => ['lecture', 'professor'],
+  getLine: () => ['lecture', 'line'],
+  getDepartment: () => ['lecture', 'department']
 } as const
 
 export const activityQueryKeys = {
   postActivityInformation: () => ['activity', 'information'],
-  patchActivityCorrection: (activity_id: string) => [
+  patchActivityModifyInformation: (activity_id: string) => [
     'activity',
     'correction',
-    activity_id,
-  ],
-  patchActivityApprove: (activity_id: string) => [
-    'activity',
-    'approve',
-    activity_id,
-  ],
-  deleteActivityReject: (activity_id: string) => [
-    'activity',
-    'reject',
     activity_id,
   ],
   deleteActivityInformationRemove: (activity_id: string) => [
@@ -44,9 +37,11 @@ export const activityQueryKeys = {
   ],
   getActivityMyselfList: () => ['activity', 'myselfList'],
   getActivityList: (student_id: string) => ['activity', 'list', student_id],
-  getActivityInformationList: () => ['activity', 'informationList'],
-  getActivityInformationDetail: () => (activity_id: string) =>
-    ['activity', 'detail', activity_id],
+  getActivityInformationDetail: (activity_id: string) => [
+    'activity',
+    'detail',
+    activity_id,
+  ],
 } as const
 
 export const myQueryKeys = {

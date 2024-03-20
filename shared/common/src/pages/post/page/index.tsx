@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Bg1, MegaPhone, Plus, Question } from '../../../assets'
 import { PostItem } from '../../../components'
 import * as S from './style'
+import { useEffect, useState } from 'react'
 
 const PostPage = () => {
   const { data } = useGetPostList({
@@ -14,6 +15,18 @@ const PostPage = () => {
   })
   const { push } = useRouter()
   const tokenManager = new TokenManager()
+  const [postAuth, setPostAuth] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (
+      tokenManager.authority === 'ROLE_ADMIN' ||
+      tokenManager.authority === 'ROLE_PROFESSOR' ||
+      tokenManager.authority === 'ROLE_COMPANY_INSTRUCTOR' ||
+      tokenManager.authority === 'ROLE_GOVERNMENT'
+    )
+      setPostAuth(true)
+    else setPostAuth(false)
+  }, [])
 
   return (
     <div>
@@ -25,14 +38,11 @@ const PostPage = () => {
               <MegaPhone />
               <span>공지사항</span>
             </S.PostButton>
-            <S.PostButton onClick={() => push('/main/inquiry')}>
+            <S.PostButton onClick={() => push('/main/post/inquiry')}>
               <Question />
               <span>문의사항</span>
             </S.PostButton>
-            {(tokenManager.authority === 'ROLE_ADMIN' ||
-              tokenManager.authority === 'ROLE_PROFESSOR' ||
-              tokenManager.authority === 'ROLE_COMPANY_INSTRUCTOR' ||
-              tokenManager.authority === 'ROLE_GOVERNMENT') && (
+            {postAuth && (
               <S.PostButton onClick={() => push('/main/post/create')}>
                 <Plus />
                 <span>게시글 추가</span>

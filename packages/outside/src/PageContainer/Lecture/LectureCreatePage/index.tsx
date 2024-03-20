@@ -1,51 +1,101 @@
 'use client'
 
-import { Bg3, FilterOut, LectureType } from '@bitgouel/common'
+import { LectureSettingModal } from '@/modals'
+import { usePostLecture } from '@bitgouel/api'
+import {
+  AppropriationModal,
+  Bg3,
+  FilterOut,
+  LectureCredit,
+  LectureDates,
+  LectureDepartment,
+  LectureDivision,
+  LectureEndDate,
+  LectureEndTime,
+  LectureLine,
+  LectureMaxRegistered,
+  LectureProfessor,
+  LectureSemester,
+  LectureStartDate,
+  LectureStartTime,
+  LectureType,
+  useModal,
+} from '@bitgouel/common'
 import { ChangeEvent, useState } from 'react'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import * as S from './style'
-import { useRecoilState } from 'recoil'
 
+const MAXLENGTH: number = 1000 as const
 const LectureCreatePage = () => {
-  const MAXLENGTH: number = 1000 as const
   const [lectureTitle, setLectureTitle] = useState<string>('')
   const [lectureContent, setLectureContent] = useState<string>('')
-  const [lectureType, setLectureType] = useRecoilState(LectureType)
+  const lectureSemester = useRecoilValue(LectureSemester)
+  const lectureDivision = useRecoilValue(LectureDivision)
+  const lectureDepartment = useRecoilValue(LectureDepartment)
+  const lectureLine = useRecoilValue(LectureLine)
+  const lectureProfessor = useRecoilValue(LectureProfessor)
+  const lectureStartDate = useRecoilValue(LectureStartDate)
+  const lectureStartTime = useRecoilValue(LectureStartTime)
+  const lectureEndDate = useRecoilValue(LectureEndDate)
+  const lectureEndTime = useRecoilValue(LectureEndTime)
+  const [lectureDates, setLectureDates] = useRecoilState(LectureDates)
+  const lectureType = useRecoilValue(LectureType)
+  const lectureCredit = useRecoilValue(LectureCredit)
+  const lectureMaxRegisteredUser = useRecoilValue(LectureMaxRegistered)
+  const { openModal } = useModal()
+  const { mutate } = usePostLecture()
 
-  // const onCreate = () =>
-  //   mutate({
-  //     name: lectureTitle,
-  //     content: lectureContent,
-  //     startDate: handleLocalDateTime(startDate, startDateText),
-  //     endDate: handleLocalDateTime(endDate, endDateText),
-  //     completeDate: handleLocalDateTime(completeDate, completeDateText),
-  //     lectureType: lectureToEnum[lectureTypeText],
-  //     credit:
-  //       lectureTypeText === '대학탐방프로그램' ? 0 : +scoreText.slice(0, 1),
-  //     maxRegisteredUser: people,
-  //   })
+  const isCondition = (): boolean => {
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/
+    const timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/
 
-  // const onCreateModal = () => {
-  //   if (
-  //     lectureTitle !== '' &&
-  //     lectureContent !== '' &&
-  //     lectureTypeText !== '강의 유형 선택' &&
-  //     startDateText !== '신청 시작일 선택' &&
-  //     endDateText !== '신청 마감일 선택' &&
-  //     completeDateText !== '강의 시작일 선택' &&
-  //     lectureTypeText !== '대학탐방프로그램'
-  //       ? scoreText !== '학점 선택'
-  //       : true && people !== 0
-  //   )
-  //     openModal(
-  //       <AppropriationModal
-  //         isApprove={true}
-  //         question='강의를 개설하시겠습니까?'
-  //         title={lectureTitle}
-  //         purpose='개설하기'
-  //         onAppropriation={() => onCreate()}
-  //       />
-  //     )
-  // }
+    if (
+      lectureTitle.length &&
+      lectureContent.length &&
+      lectureLine.length &&
+      lectureProfessor.length &&
+      dateRegex.test(lectureStartDate) &&
+      timeRegex.test(lectureStartTime) &&
+      dateRegex.test(lectureEndDate) &&
+      timeRegex.test(lectureEndTime) &&
+      lectureDates.every((date) => dateRegex.test(date.completeDate)) &&
+      lectureDates.every((date) => timeRegex.test(date.startShowTime)) &&
+      lectureDates.every((date) => timeRegex.test(date.endShowTime)) &&
+      lectureMaxRegisteredUser.length
+    )
+      return true
+    return false
+  }
+
+  const openCreateModal = () => {
+    if (!isCondition()) return
+    const filteredDates = lectureDates.map(({startShowTime, endShowTime, ...filtered}) => filtered)
+    openModal(
+      <AppropriationModal
+        isApprove={true}
+        question='강의를 개설하시겠습니까?'
+        title={lectureTitle}
+        purpose='개설하기'
+        onAppropriation={() =>
+          mutate({
+            name: lectureTitle,
+            content: lectureContent,
+            semester: lectureSemester,
+            division: lectureDivision,
+            department: lectureDepartment,
+            line: lectureLine,
+            userId: lectureProfessor,
+            startDate: `${lectureStartDate}T${lectureStartTime}:00`,
+            endDate: `${lectureEndDate}T${lectureEndTime}:00`,
+            lectureDates: filteredDates,
+            lectureType,
+            credit: lectureCredit,
+            maxRegisteredUser: +lectureMaxRegisteredUser,
+          })
+        }
+      />
+    )
+  }
 
   return (
     <div>
@@ -53,7 +103,7 @@ const LectureCreatePage = () => {
         <S.BgContainer>
           <S.CreateTitle>강의 개설</S.CreateTitle>
           <S.TitleButtonContainer>
-            <S.LectureButton>
+            <S.LectureButton onClick={() => openModal(<LectureSettingModal />)}>
               <FilterOut />
               <span>강의 세부 설정</span>
             </S.LectureButton>
@@ -78,22 +128,9 @@ const LectureCreatePage = () => {
               setLectureContent(e.target.value)
             }
           />
-          {/* <S.CreateButton
-            onClick={onCreateModal}
-            isAble={
-              lectureTitle !== '' &&
-              lectureContent !== '' &&
-              lectureTypeText !== '강의 유형 선택' &&
-              startDateText !== '신청 시작일 선택' &&
-              endDateText !== '신청 마감일 선택' &&
-              completeDateText !== '강의 시작일 선택' &&
-              lectureTypeText !== '대학탐방프로그램'
-                ? scoreText !== '학점 선택'
-                : true && people !== 0
-            }
-          >
-            개설 신청하기
-          </S.CreateButton> */}
+          <S.CreateButton onClick={openCreateModal} isAble={isCondition()}>
+            강의 개설하기
+          </S.CreateButton>
         </S.DocumentInput>
       </S.DocumentInputContainer>
     </div>

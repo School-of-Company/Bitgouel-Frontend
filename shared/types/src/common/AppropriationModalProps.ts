@@ -19,6 +19,7 @@ type questionTypes =
   | '가입을 수락하시겠습니까?'
   | '가입을 거부하시겠습니까?'
   | '탈퇴를 승인하시겠습니까?'
+  | '활동을 수정하시겠습니까?'
 
 type purposeTypes =
   | '신청하기'
@@ -30,6 +31,7 @@ type purposeTypes =
   | '문의하기'
   | '수락하기'
   | '개설하기'
+  | '답변하기'
 
 export interface AppropriationModalProps {
   isApprove: boolean
