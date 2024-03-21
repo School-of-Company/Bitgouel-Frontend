@@ -44,7 +44,7 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
     <div>
       <S.SlideBg url={Bg2}>
         <S.BgContainer>
-          <S.ClubTitle>{userDetail.data.name}의 학생 활동</S.ClubTitle>
+          <S.ClubTitle>{userDetail?.data.name}의 학생 활동</S.ClubTitle>
           {isStudent && (
             <S.ButtonContainer>
               <S.ClubButton
