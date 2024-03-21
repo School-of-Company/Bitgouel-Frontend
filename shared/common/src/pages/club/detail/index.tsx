@@ -107,11 +107,10 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
                   <S.ClubMemberBox
                     isStudent={isStudent}
                     key={student.id}
-                    onClick={() =>
-                      push(
-                        `/main/club/${myClub?.data.clubId}/student/${student.id}`
-                      )
-                    }
+                    onClick={() => {
+                      !isStudent &&
+                        push(`/main/club/${clubId}/student/${student.id}`)
+                    }}
                   >
                     <S.MemberName>{student.name}</S.MemberName>
                   </S.ClubMemberBox>
