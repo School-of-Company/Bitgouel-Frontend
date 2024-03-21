@@ -1,12 +1,20 @@
 'use client'
 
 import { TokenManager, useDeletePost, useGetPostDetail } from '@bitgouel/api'
+import { AppropriationModal, Bg1, useModal } from '@bitgouel/common'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Bg1 } from '../../../../assets'
-import { useModal } from '../../../../hooks'
-import { AppropriationModal } from '../../../../modals'
+import { LinkTextBox, LinkTitle, LinkWrapper } from '../../detail/style'
 import * as S from './style'
+import { RoleEnumTypes } from '@bitgouel/types'
+import { useEffect, useState } from 'react'
+
+const roleArray: RoleEnumTypes[] = [
+  'ROLE_ADMIN',
+  'ROLE_COMPANY_INSTRUCTOR',
+  'ROLE_PROFESSOR',
+  'ROLE_GOVERNMENT',
+]
 
 const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
   const { data } = useGetPostDetail(noticeId)
@@ -14,6 +22,11 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
   const { openModal } = useModal()
   const { push } = useRouter()
   const tokenManager = new TokenManager()
+  const [isRole, setIsRole] = useState<boolean>(false)
+
+  useEffect(() => {
+    setIsRole(roleArray.includes(tokenManager.authority || 'ROLE_STUDENT'))
+  }, [])
 
   return (
     <div>
@@ -35,11 +48,11 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
           </S.TitleContainer>
           <S.MainText>{data?.data.content}</S.MainText>
           <S.SharedLine />
-          <S.LinkTextBox>
+          <LinkTextBox>
             <div>
-              <S.LinkTitle>관련 링크 보기</S.LinkTitle>
+              <LinkTitle>관련 링크 보기</LinkTitle>
             </div>
-            <S.LinkWrapper>
+            <LinkWrapper>
               {data?.data.links.map((link) => (
                 <Link href={link} passHref legacyBehavior>
                   <a target='_blank' rel='noopener noreferrer'>
@@ -47,32 +60,29 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
                   </a>
                 </Link>
               ))}
-            </S.LinkWrapper>
-          </S.LinkTextBox>
+            </LinkWrapper>
+          </LinkTextBox>
           <S.ButtonWrapper>
             <S.ButtonContainer>
-              {tokenManager.authority === 'ROLE_ADMIN' ||
-                tokenManager.authority === 'ROLE_COMPANY_INSTRUCTOR' ||
-                tokenManager.authority === 'ROLE_PROFESSOR' ||
-                (tokenManager.authority === 'ROLE_GOVERNMENT' && (
-                  <S.DeleteNoticeButton
-                    onClick={() =>
-                      openModal(
-                        <AppropriationModal
-                          isApprove={false}
-                          question='공지사항을 삭제하시겠습니까?'
-                          purpose='삭제하기'
-                          title={data?.data.title as ''}
-                          onAppropriation={() => mutate()}
-                        />
-                      )
-                    }
-                  >
-                    삭제하기
-                  </S.DeleteNoticeButton>
-                ))}
+              {isRole && (
+                <S.DeleteNoticeButton
+                  onClick={() =>
+                    openModal(
+                      <AppropriationModal
+                        isApprove={false}
+                        question='공지사항을 삭제하시겠습니까?'
+                        purpose='삭제하기'
+                        title={data?.data.title as ''}
+                        onAppropriation={() => mutate()}
+                      />
+                    )
+                  }
+                >
+                  삭제하기
+                </S.DeleteNoticeButton>
+              )}
               <S.ModifyNoticeButton
-                onClick={() => push(`/main/post/notice/modify/${noticeId}`)}
+                onClick={() => push(`/main/post/notice/${noticeId}/modify`)}
               >
                 수정하기
               </S.ModifyNoticeButton>

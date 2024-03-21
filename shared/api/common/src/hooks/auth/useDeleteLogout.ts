@@ -1,11 +1,13 @@
+import { TokenManager, authQueryKeys, authUrl, del } from '@bitgouel/api'
 import { useMutation } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
-import { authUrl, del, authQueryKeys, TokenManager } from '../../libs'
+import { match } from 'ts-pattern'
 
 export const useDeleteLogout = () => {
   const tokenManager = new TokenManager()
   const router = useRouter()
+  const pathname = usePathname()
 
   return useMutation(
     authQueryKeys.deleteLogout(),
@@ -20,7 +22,9 @@ export const useDeleteLogout = () => {
       onSuccess: () => {
         tokenManager.removeTokens()
         router.push('/auth/login')
-        toast.success('로그아웃 했습니다')
+        match(pathname)
+          .with('/auth/find', () => toast.info('다시 로그인 해주세요'))
+          .otherwise(() => toast.success('로그아웃 했습니다'))
       },
     }
   )

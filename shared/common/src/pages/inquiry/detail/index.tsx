@@ -1,16 +1,21 @@
 'use client'
 
 import {
-  TokenManager,
   useDeleteInquiryReject,
   useDeleteMyInquiry,
   useGetInquiryDetail,
 } from '@bitgouel/api'
+import {
+  AppropriationModal,
+  Bg5,
+  InquiryAnswerModal,
+  Pen,
+  TrashCan,
+  dateToConverter,
+  useModal,
+} from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { match } from 'ts-pattern'
-import { Bg5, Pen, TrashCan } from '@bitgouel/common'
-import { useModal } from '@bitgouel/common'
-import { AppropriationModal, InquiryAnswerModal } from '@bitgouel/common'
 import * as S from './style'
 
 const InquiryDetailPage = ({
@@ -21,10 +26,19 @@ const InquiryDetailPage = ({
   isAdmin: boolean
 }) => {
   const { push } = useRouter()
-  const { data } = useGetInquiryDetail(inquiryId)
   const { mutate: inquiryReject } = useDeleteInquiryReject(inquiryId)
   const { mutate: myInquiryReject } = useDeleteMyInquiry(inquiryId)
   const { openModal } = useModal()
+  const { data: inquiryDetail } = useGetInquiryDetail(inquiryId)
+  const {
+    question,
+    questionDetail,
+    questionDate,
+    questioner,
+    answerStatus,
+    answeredDate,
+    answer,
+  } = inquiryDetail?.data || {}
 
   return (
     <div>
@@ -34,7 +48,7 @@ const InquiryDetailPage = ({
           {!isAdmin && (
             <S.TitleButtonContainer>
               <S.InquiryButton
-                onClick={() => push(`/main/post/inquiry/modify/${inquiryId}`)}
+                onClick={() => push(`/main/post/inquiry/${inquiryId}/modify`)}
               >
                 <Pen />
                 <span>문의 수정</span>
@@ -46,7 +60,7 @@ const InquiryDetailPage = ({
                       isApprove={false}
                       question='문의를 삭제하시겠습니까?'
                       purpose='삭제하기'
-                      title={data?.data.question as ''}
+                      title={question || ''}
                       onAppropriation={() => myInquiryReject()}
                     />
                   )
@@ -62,60 +76,36 @@ const InquiryDetailPage = ({
       <S.DocumentWrapper>
         <S.Document>
           <S.TitleContainer>
-            <S.Title>{data?.data.question}</S.Title>
+            <S.Title>{question}</S.Title>
             <S.SubTitle>
               <S.ApproveStatus
-                approveColor={match(data?.data.answerStatus)
+                approveColor={match(answerStatus || '')
                   .with('ANSWERED', () => true)
                   .otherwise(() => false)}
               >
-                {data?.data.answerStatus === 'ANSWERED'
-                  ? '답변 완료됨'
-                  : '답변 대기 중'}
+                {answerStatus === 'ANSWERED' ? '답변 완료됨' : '답변 대기 중'}
               </S.ApproveStatus>
               <S.SemiTitleBox>
                 <S.SubTitleBox>게시일</S.SubTitleBox>
-                <span>{`${data?.data.questionDate.slice(
-                  0,
-                  4
-                )}년 ${data?.data.questionDate.slice(
-                  5,
-                  7
-                )}월 ${data?.data.questionDate.slice(8, 10)}일
-                  ${data?.data.questionDate.slice(
-                    14,
-                    16
-                  )} : ${data?.data.questionDate.slice(17, 19)}
-                  `}</span>
+                <span>{dateToConverter(questionDate || '')}</span>
               </S.SemiTitleBox>
               <S.SemiTitleBox>
                 <S.SubTitleBox>게시자</S.SubTitleBox>
-                <span>{data?.data.questioner}</span>
+                <span>{questioner}</span>
               </S.SemiTitleBox>
             </S.SubTitle>
           </S.TitleContainer>
-          <S.MainText>{data?.data.questionDetail}</S.MainText>
+          <S.MainText>{questionDetail}</S.MainText>
           <S.AnswerBox
-            displayType={match(data?.data.answerStatus)
+            displayType={match(answerStatus || '')
               .with('ANSWERED', () => true)
               .otherwise(() => false)}
           >
             <S.AnswerTitleBox>
               <S.AnswerTitle>문의 답변</S.AnswerTitle>
-              <S.AnswerDate>{`${data?.data.answeredDate?.slice(
-                0,
-                4
-              )}년 ${data?.data.answeredDate?.slice(
-                5,
-                7
-              )}월 ${data?.data.answeredDate?.slice(8, 10)}일
-                  ${data?.data.answeredDate?.slice(
-                    13,
-                    15
-                  )}:${data?.data.answeredDate?.slice(16, 18)}
-                  `}</S.AnswerDate>
+              <S.AnswerDate>{dateToConverter(answeredDate || '')}</S.AnswerDate>
             </S.AnswerTitleBox>
-            <S.AnswerText>{data?.data.answer}</S.AnswerText>
+            <S.AnswerText>{answer}</S.AnswerText>
           </S.AnswerBox>
           {isAdmin && (
             <S.ButtonWrapper>
@@ -127,7 +117,7 @@ const InquiryDetailPage = ({
                         isApprove={false}
                         question='문의를 삭제하시겠습니까?'
                         purpose='삭제하기'
-                        title={data?.data.question as ''}
+                        title={question || ''}
                         onAppropriation={() => inquiryReject()}
                       />
                     )

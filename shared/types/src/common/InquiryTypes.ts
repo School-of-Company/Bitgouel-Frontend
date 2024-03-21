@@ -1,4 +1,4 @@
-import { AnswerStatus } from "./AnswerStatus"
+import { AnswerStatus } from './AnswerStatus'
 
 export interface InquiryTypes {
   id: string

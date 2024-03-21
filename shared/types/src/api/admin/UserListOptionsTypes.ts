@@ -1,4 +1,4 @@
-import { ApproveStatusEnum, RoleEnumTypes } from "../common"
+import { ApproveStatusEnum, RoleEnumTypes } from '../common'
 
 export interface UserListOptionsTypes {
   keyword: string

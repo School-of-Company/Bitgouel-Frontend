@@ -1,7 +1,7 @@
-import { NoticeCreatePage } from '@/PageContainer'
+import { NoticeWritePage } from '@/PageContainer'
 
 const NoticeCreate = () => {
-  return <NoticeCreatePage />
+  return <NoticeWritePage />
 }
 
 export default NoticeCreate

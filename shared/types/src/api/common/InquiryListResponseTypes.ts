@@ -1,4 +1,4 @@
-import { InquiryTypes } from "../../common"
+import { InquiryTypes } from '../../common'
 
 export interface InquiryListResponseTypes {
   inquiries: InquiryTypes[]

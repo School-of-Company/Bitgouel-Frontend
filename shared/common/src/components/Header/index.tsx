@@ -98,6 +98,7 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
       isAuth={match(pathname)
         .with('/auth/login', () => true)
         .with('/auth/signUp', () => true)
+        .with('/auth/find', () => true)
         .otherwise(() => false)}
     >
       <S.HeaderContainer>

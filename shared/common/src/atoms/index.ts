@@ -22,6 +22,11 @@ export const LectureTypeText = atom<LectureTypeKor>({
 })
 
 // Modal
+export const PwPage = atom<number>({
+  key: 'PwPage',
+  default: 1,
+})
+
 export const IsModal = atom<ReactNode>({
   key: 'IsModal',
   default: null,

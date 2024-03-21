@@ -1,4 +1,4 @@
-import { PostDetailResponseTypes } from "../api"
+import { PostDetailResponseTypes } from '../api'
 
 export interface PostModifyProps {
   modifyData: PostDetailResponseTypes | undefined

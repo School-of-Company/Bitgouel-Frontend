@@ -1,12 +1,12 @@
-import { useMutation } from '@tanstack/react-query'
-import { patch, postQueryKeys, postUrl } from '../../..'
-import { AxiosError } from 'axios'
+import { patch, postQueryKeys, postUrl } from '@bitgouel/api'
+import { useModal } from '@bitgouel/common'
 import { PostModifyPayloadTypes } from '@bitgouel/types'
+import { useMutation } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
-import { useModal } from '@bitgouel/common/src/hooks'
 import { toast } from 'react-toastify'
 
-export const usePatchPostModify = (id: string) => {
+export const usePatchPostModify = (id: string, type: '게시글' | '공지') => {
   const { push } = useRouter()
   const { closeModal } = useModal()
 
@@ -16,8 +16,9 @@ export const usePatchPostModify = (id: string) => {
     {
       onSuccess: () => {
         closeModal()
-        push('/main/post')
-        toast.success('게시글을 수정했습니다')
+        if (type == '게시글') push('/main/post')
+        else push('/main/post/notice')
+        toast.success(`${type}을(를) 수정했습니다`)
       },
       onError: ({ response }) => {
         console.log(response)

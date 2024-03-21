@@ -1,4 +1,4 @@
-import { LoginPage } from '@bitgouel/common/src/pages'
+import { LoginPage } from '@bitgouel/common'
 const Login = () => {
   return <LoginPage isAdmin={true} />
 }
