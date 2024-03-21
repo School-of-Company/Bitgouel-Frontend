@@ -10,13 +10,19 @@ const NumberValid = ({ emailValue }: { emailValue: string }) => {
   const { data, refetch } = useGetEmail({ email: emailValue })
 
   useEffect(() => {
-    const timer = setTimeout(() => refetch(), 5000)
+    const interval = setInterval(() => {
+      refetch()
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [refetch])
+
+  useEffect(() => {
     if (data?.data.isAuthentication) {
-      setPwPage(4)
-      toast.success('이메일 인증이 확인되셨습니다')
+      setPwPage(3)
+      toast.success('이메일 인증이 확인되었습니다')
     }
-    return () => clearTimeout(timer)
-  }, [])
+  }, [data, setPwPage])
 
   return (
     <>

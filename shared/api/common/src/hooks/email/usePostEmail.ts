@@ -18,8 +18,7 @@ export const usePostEmail = () => {
         setPwPage(2)
       },
       onError: ({ response }) => {
-        const dotIndex = response?.data.message.indexOf('.')
-        toast.error(response?.data.message.slice(0, dotIndex + 1))
+        toast.error(response?.data.message.split('.')[0])
       },
     }
   )

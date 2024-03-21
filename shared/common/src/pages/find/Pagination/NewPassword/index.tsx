@@ -2,7 +2,6 @@
 
 import { ChangeEvent, useEffect, useState } from 'react'
 import * as S from './style'
-import { useRouter } from 'next/navigation'
 import { ValueInput } from '@bitgouel/common'
 import { usePatchPassword } from '@bitgouel/api'
 import { toast } from 'react-toastify'
@@ -10,7 +9,6 @@ import { useSetRecoilState } from 'recoil'
 import { PwPage } from '@bitgouel/common'
 
 const NewPassword = () => {
-  const { push } = useRouter()
   const setPwPage = useSetRecoilState(PwPage)
   const [currentPw] = useState<string>('')
   const [newPw, setNewPw] = useState<string>('')
@@ -23,7 +21,7 @@ const NewPassword = () => {
 
   useEffect(() => {
     if (error?.response?.status === 401)
-      toast.error('기존 비밀번호가 일치하지 않습니다')
+      toast.error('로그인 된 대상을 찾을 수 없습니다')
   }, [error])
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -63,17 +61,12 @@ const NewPassword = () => {
   }
 
   const nextOnclick = () => {
-    if (
-      currentPw !== '' &&
-      newPw !== '' &&
-      newConfirmPw !== '' &&
-      newPw === newConfirmPw &&
-      currentPw !== newPw
-    )
+    if (passwordStatus) {
       mutate({
-        currentPassword: currentPw,
+        currentPassword: newConfirmPw,
         newPassword: newPw,
       })
+    }
   }
 
   return (
