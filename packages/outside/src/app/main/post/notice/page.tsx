@@ -1,7 +1,7 @@
-import { NoticePage } from "@bitgouel/common/src/pages"
+import { NoticePage } from "@bitgouel/common"
 
 const Notice = () => {
-  return <NoticePage />
+  return <NoticePage isAdmin={true} />
 }
 
 export default Notice

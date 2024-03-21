@@ -80,7 +80,7 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
                   </S.DeletePostButton>
                 ))}
               <S.ModifyPostButton
-                onClick={() => push(`/main/post/modify/${postId}`)}
+                onClick={() => push(`/main/post/${postId}/modify`)}
               >
                 수정하기
               </S.ModifyPostButton>

@@ -1,10 +1,10 @@
-import { useMutation } from '@tanstack/react-query'
-import { post, postQueryKeys, postUrl } from '../../..'
-import { AxiosError } from 'axios'
+import { useModal } from '@bitgouel/common'
 import { ApiErrorTypes, PostCreatePayloadTypes } from '@bitgouel/types'
+import { useMutation } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
-import { useModal } from '@bitgouel/common/src/hooks'
+import { post, postQueryKeys, postUrl } from '../../libs'
 
 export const usePostPost = (type: '게시' | '공지') => {
   const { push } = useRouter()
@@ -16,7 +16,7 @@ export const usePostPost = (type: '게시' | '공지') => {
     {
       onSuccess: () => {
         closeModal()
-        push('/main/post/notice')
+        push('/main/post')
         toast.success(
           `${type === '공지' ? '공지사항' : '게시글'}을 추가했습니다`
         )

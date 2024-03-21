@@ -1,1 +1,1 @@
-export { default as NoticeCreatePage } from './NoticeCreatePage'
+export { default as NoticeWritePage } from './NoticeWritePage'

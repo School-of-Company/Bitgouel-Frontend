@@ -1,6 +1,7 @@
-import { PostCreatePage } from '@bitgouel/common/src/pages'
+import { PostWritePage } from "@bitgouel/common"
+
 const PostCreate = () => {
-  return <PostCreatePage />
+  return <PostWritePage />
 }
 
 export default PostCreate

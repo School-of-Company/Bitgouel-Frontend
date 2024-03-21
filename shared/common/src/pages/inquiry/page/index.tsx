@@ -81,7 +81,6 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
           </S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
-<<<<<<< Updated upstream
       <S.InquiryWrapper>
         {isAdmin && (
           <S.SearchContainer>
@@ -134,11 +133,6 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
           </S.ListContainer>
         </S.ListWrapper>
       </S.InquiryWrapper>
-=======
-      <S.ListWrapper>
-ㅋ
-      </S.ListWrapper>
->>>>>>> Stashed changes
     </div>
   )
 }

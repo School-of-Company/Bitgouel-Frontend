@@ -1,11 +1,10 @@
 'use client'
 
 import { TokenManager, useDeletePost, useGetPostDetail } from '@bitgouel/api'
+import { AppropriationModal, Bg1, useModal } from '@bitgouel/common'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Bg1 } from '../../../../assets'
-import { useModal } from '../../../../hooks'
-import { AppropriationModal } from '../../../../modals'
+import { LinkTextBox, LinkTitle, LinkWrapper } from '../../detail/style'
 import * as S from './style'
 
 const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
@@ -35,11 +34,11 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
           </S.TitleContainer>
           <S.MainText>{data?.data.content}</S.MainText>
           <S.SharedLine />
-          <S.LinkTextBox>
+          <LinkTextBox>
             <div>
-              <S.LinkTitle>관련 링크 보기</S.LinkTitle>
+              <LinkTitle>관련 링크 보기</LinkTitle>
             </div>
-            <S.LinkWrapper>
+            <LinkWrapper>
               {data?.data.links.map((link) => (
                 <Link href={link} passHref legacyBehavior>
                   <a target='_blank' rel='noopener noreferrer'>
@@ -47,8 +46,8 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
                   </a>
                 </Link>
               ))}
-            </S.LinkWrapper>
-          </S.LinkTextBox>
+            </LinkWrapper>
+          </LinkTextBox>
           <S.ButtonWrapper>
             <S.ButtonContainer>
               {tokenManager.authority === 'ROLE_ADMIN' ||
@@ -72,7 +71,7 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
                   </S.DeleteNoticeButton>
                 ))}
               <S.ModifyNoticeButton
-                onClick={() => push(`/main/post/notice/modify/${noticeId}`)}
+                onClick={() => push(`/main/post/notice/${noticeId}/modify`)}
               >
                 수정하기
               </S.ModifyNoticeButton>

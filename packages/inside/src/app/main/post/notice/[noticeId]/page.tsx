@@ -1,4 +1,4 @@
-import { NoticeDetailPage } from '@bitgouel/common/src/pages'
+import { NoticeDetailPage } from '@bitgouel/common'
 
 const NoticeDetail = ({ params }: { params: { noticeId: string } }) => {
   return <NoticeDetailPage noticeId={params.noticeId} />
