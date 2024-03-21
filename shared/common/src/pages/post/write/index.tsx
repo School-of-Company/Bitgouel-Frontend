@@ -37,12 +37,25 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
     )
   }
 
+  useEffect(() => {
+    if (isSuccess) {
+      setPostTitle(title || '')
+      setPostContent(content || '')
+      setPostLinks((prev) =>
+        prev.map((link, idx) => {
+          if (idx < links?.length) return { value: links[idx], name: link.name }
+          else return link
+        })
+      )
+    }
+  }, [data])
+
   const isCondition = (): boolean => {
     if (isSuccess) {
       if (
         title !== postTitle ||
         content !== postContent ||
-        postLinks?.some((link, i) => link !== links[i][0])
+        links?.some((link, i) => link !== postLinks[i]['value'])
       )
         return true
       else return false
@@ -51,19 +64,6 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
       else return false
     }
   }
-
-  useEffect(() => {
-    if (isSuccess) {
-      setPostTitle(title || '')
-      setPostContent(content || '')
-      setPostLinks(
-        links?.map((link, idx) => ({
-          value: link,
-          name: `link${idx + 1}`,
-        }))
-      )
-    }
-  }, [data])
 
   const onPost = () => {
     if (isCondition()) {
