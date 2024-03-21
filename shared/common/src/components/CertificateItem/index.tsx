@@ -1,13 +1,16 @@
+'use client'
+
 import { usePatchModifyCertificate } from '@bitgouel/api'
+import {
+  AddCertificate,
+  AppropriationModal,
+  CalendarIcon,
+  SelectCalendarModal,
+  theme,
+  useModal,
+} from '@bitgouel/common'
 import { Certificate, CertificateRequest } from '@bitgouel/types'
 import { ChangeEvent, useState } from 'react'
-import { AddCertificate, CalendarIcon } from '../../assets'
-import { useModal } from '../../hooks'
-import {
-  AppropriationModal,
-  SelectCalendarModal
-} from '../../modals'
-import { theme } from '../../styles'
 import * as S from './style'
 
 interface CertificateProps {

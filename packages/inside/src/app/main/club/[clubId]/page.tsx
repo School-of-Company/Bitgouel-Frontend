@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { ClubDetailPage } from '@bitgouel/common'
 
 const ClubDetail = () => {
