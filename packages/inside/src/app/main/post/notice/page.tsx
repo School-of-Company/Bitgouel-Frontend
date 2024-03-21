@@ -1,4 +1,4 @@
-import { NoticePage } from "@bitgouel/common/src/pages"
+import { NoticePage } from '@bitgouel/common'
 
 const Notice = () => {
   return <NoticePage />
