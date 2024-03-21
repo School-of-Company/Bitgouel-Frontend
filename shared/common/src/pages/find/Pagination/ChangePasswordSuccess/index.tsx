@@ -3,10 +3,13 @@
 import { useRouter } from 'next/navigation'
 import * as S from './style'
 import { useDeleteLogout } from '@bitgouel/api'
+import { useResetRecoilState } from 'recoil'
+import { PwPage } from '@bitgouel/common'
 
 const SignUpSuccess = () => {
   const router = useRouter()
   const { mutate } = useDeleteLogout()
+  const resetPwPAge = useResetRecoilState(PwPage)
 
   return (
     <S.SignUpSuccessWrapper>
@@ -30,6 +33,7 @@ const SignUpSuccess = () => {
           onClick={() => {
             router.push('/auth/login')
             mutate()
+            resetPwPAge()
           }}
         >
           돌아가기
