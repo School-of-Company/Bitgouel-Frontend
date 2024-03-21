@@ -13,7 +13,7 @@ const FAQItem = ({ id, question, answer }: FAQProps) => {
         <S.QMark>Q.</S.QMark>
         <span>{question}</span>
       </S.TitleBox>
-      <S.AnswerBox answerView={answerStatus}>
+      <S.AnswerBox answerStatus={answerStatus}>
         <S.QMark>A.</S.QMark>
         <S.Answer>{answer}</S.Answer>
       </S.AnswerBox>

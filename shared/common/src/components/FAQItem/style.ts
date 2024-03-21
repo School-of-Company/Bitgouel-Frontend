@@ -22,11 +22,11 @@ export const QMark = styled.span`
   margin-right: 0.25rem;
 `
 
-export const AnswerBox = styled.div<{ answerView: boolean }>`
+export const AnswerBox = styled.div<{ answerStatus: boolean }>`
   border-top: 0.0625rem solid ${({ theme }) => theme.color.gray['400']};
   padding-top: 1.5rem;
   margin-top: 1.5rem;
-  display: ${({ answerView }) => (answerView ? 'flex' : 'none')};
+  display: ${({ answerStatus }) => (answerStatus ? 'flex' : 'none')};
 `
 export const Answer = styled.span`
   color: ${({ theme }) => theme.color.gray['400']};
