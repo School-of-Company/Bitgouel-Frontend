@@ -28,7 +28,7 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
 
   const { data: userDetail } = useGetMy()
 
-  const { data: activityList, refetch } =
+  const { data: activityList } =
     tokenManager.authority === 'ROLE_STUDENT'
       ? useGetActivityMyselfList({
           page: 0,
@@ -40,15 +40,11 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
     setIsStudent(tokenManager.authority === 'ROLE_STUDENT')
   }, [])
 
-  useEffect(() => {
-    refetch()
-  }, [activityList])
-
   return (
     <div>
       <S.SlideBg url={Bg2}>
         <S.BgContainer>
-          <S.ClubTitle>{userDetail?.data.name}의 학생 활동</S.ClubTitle>
+          <S.ClubTitle>{userDetail.data.name}의 학생 활동</S.ClubTitle>
           {isStudent && (
             <S.ButtonContainer>
               <S.ClubButton
