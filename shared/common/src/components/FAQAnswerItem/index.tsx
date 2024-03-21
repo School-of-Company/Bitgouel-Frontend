@@ -1,12 +1,16 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import * as S from './style'
+import { TokenManager } from '@bitgouel/api'
 
 const FAQAnswerItem = () => {
+  const tokenManager = new TokenManager()
+
   const [answerStatus, setAnswerStatus] = useState<boolean>(false)
   const [question, setQuestion] = useState<string>('')
   const [answer, setAnswer] = useState<string>('')
+  const [isAdmin, setIsAdmin] = useState<boolean>(false)
 
   const answeringDelete = () => {
     setQuestion('')
@@ -14,8 +18,12 @@ const FAQAnswerItem = () => {
     setAnswerStatus(false)
   }
 
+  useEffect(() => {
+    if (tokenManager.authority === 'ROLE_ADMIN') setIsAdmin(true)
+  }, [])
+
   return (
-    <S.FAQAnswerItemWrapper>
+    <S.FAQAnswerItemWrapper roleView={isAdmin}>
       <S.Title
         onClick={() => setAnswerStatus(!answerStatus)}
         answerView={answerStatus}
