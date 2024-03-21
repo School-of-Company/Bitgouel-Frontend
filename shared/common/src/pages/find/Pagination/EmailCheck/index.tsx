@@ -12,13 +12,7 @@ const EmailCheck = ({ emailValue, setEmailValue }: EmailProps) => {
   const { push } = useRouter()
   const [emailStatus, setEmailStatus] = useState<boolean>(false)
   const [emailErrorText, setEmailErrorText] = useState<string>('')
-  const { error } = usePatchPassword()
   const { mutate } = usePostEmail()
-
-  useEffect(() => {
-    if (error?.response?.status === 401)
-      toast.error('기존 비밀번호가 일치하지 않습니다')
-  }, [error])
 
   const checkEmail = (e: ChangeEvent<HTMLInputElement>) => {
     const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
