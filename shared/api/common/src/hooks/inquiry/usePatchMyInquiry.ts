@@ -1,9 +1,9 @@
+import { inquiryQueryKeys, inquiryUrl, patch } from '@bitgouel/api'
 import { useModal } from '@bitgouel/common'
 import { ApiErrorTypes, InquiryPayloadTypes } from '@bitgouel/types'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
-import { inquiryQueryKeys, inquiryUrl, patch } from '../../libs'
 import { toast } from 'react-toastify'
 
 export const usePatchMyInquiry = (id: string) => {

@@ -1,7 +1,7 @@
+import { TokenManager, authQueryKeys, authUrl, del } from '@bitgouel/api'
 import { useMutation } from '@tanstack/react-query'
 import { usePathname, useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
-import { authUrl, del, authQueryKeys, TokenManager } from '../../libs'
 import { match } from 'ts-pattern'
 
 export const useDeleteLogout = () => {

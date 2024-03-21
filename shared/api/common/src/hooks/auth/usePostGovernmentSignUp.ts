@@ -1,9 +1,9 @@
 'use client'
 
+import { authQueryKeys, authUrl, post } from '@bitgouel/api'
 import { ApiErrorTypes, GovernmentPayloadTypes } from '@bitgouel/types'
 import { UseMutationOptions, useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { authQueryKeys, authUrl, post } from '../../libs'
 
 export const usePostSignUpGovernment = (
   options: UseMutationOptions<
