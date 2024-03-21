@@ -2,11 +2,10 @@
 
 import { ChangeEvent, useEffect, useState } from 'react'
 import * as S from './style'
-import { ValueInput } from '@bitgouel/common'
+import { ValueInput, PwPage } from '@bitgouel/common'
 import { usePatchPassword } from '@bitgouel/api'
 import { toast } from 'react-toastify'
 import { useSetRecoilState } from 'recoil'
-import { PwPage } from '@bitgouel/common'
 
 const NewPassword = () => {
   const setPwPage = useSetRecoilState(PwPage)
