@@ -24,9 +24,9 @@ const NewPassword = () => {
   }, [error])
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const passwordRegex = new RegExp(
+    const passwordRegex =
       /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,24}$/
-    )
+
     if (e.target.name === 'newPw') {
       setNewPw(e.target.value)
       if (e.target.value === '') {
@@ -56,15 +56,6 @@ const NewPassword = () => {
         setNewConfirmErrorMessage('')
         setPasswordStatus(true)
       }
-    }
-  }
-
-  const nextOnclick = () => {
-    if (passwordStatus) {
-      mutate({
-        currentPassword: newConfirmPw,
-        newPassword: newPw,
-      })
     }
   }
 
