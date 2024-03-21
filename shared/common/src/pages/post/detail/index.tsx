@@ -47,7 +47,7 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
             <S.SubTitle>
               <S.NumberBox>
                 <S.SubTitleBox>게시일</S.SubTitleBox>
-                <span>{`${dateToRemoveTime(modifiedAt)}`}</span>
+                <span>{`${dateToRemoveTime(modifiedAt || '')}`}</span>
               </S.NumberBox>
             </S.SubTitle>
           </S.TitleContainer>
