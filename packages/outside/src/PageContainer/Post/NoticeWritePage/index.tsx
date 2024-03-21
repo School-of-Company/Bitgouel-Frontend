@@ -45,7 +45,8 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
       setNoticeContent(content)
       setNoticeLinks((prev) =>
         prev.map((link, idx) => {
-          if (idx < links?.length) return { value: links[idx], name: link.name }
+          if (idx < data?.data.links.length)
+            return { value: data?.data.links.length, name: link.name }
           else return link
         })
       )

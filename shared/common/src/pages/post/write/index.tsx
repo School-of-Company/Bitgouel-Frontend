@@ -43,7 +43,8 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
       setPostContent(content || '')
       setPostLinks((prev) =>
         prev.map((link, idx) => {
-          if (idx < links?.length) return { value: links[idx], name: link.name }
+          if (idx < data?.data.links.length)
+            return { value: data?.data.links[idx], name: link.name }
           else return link
         })
       )
