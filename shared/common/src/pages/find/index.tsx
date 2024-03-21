@@ -3,7 +3,7 @@
 import * as S from './style'
 import {
   ChangePasswordSuccess,
-  NumberValid,
+  EmailValid,
   EmailCheck,
   NewPassword,
 } from './Pagination'
@@ -45,7 +45,7 @@ const FindPage = () => {
                 setEmailValue={setEmailValue}
               />
             )}
-            {pwPage === 2 && <NumberValid emailValue={emailValue} />}
+            {pwPage === 2 && <EmailValid emailValue={emailValue} />}
             {pwPage === 3 && <NewPassword />}
           </S.PaginationContainer>
         </S.ChangePWWrapper>

@@ -1,11 +1,10 @@
 'use client'
 
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
 import { ValueInput } from '@bitgouel/common'
-import { usePatchPassword, usePostEmail } from '@bitgouel/api'
-import { toast } from 'react-toastify'
+import { usePostEmail } from '@bitgouel/api'
 import { EmailProps } from '@bitgouel/types'
 
 const EmailCheck = ({ emailValue, setEmailValue }: EmailProps) => {
@@ -15,7 +14,7 @@ const EmailCheck = ({ emailValue, setEmailValue }: EmailProps) => {
   const { mutate } = usePostEmail()
 
   const checkEmail = (e: ChangeEvent<HTMLInputElement>) => {
-    const emailRegex = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     setEmailValue(e.target.value)
     if (e.target.value === '') {
       setEmailErrorText('')

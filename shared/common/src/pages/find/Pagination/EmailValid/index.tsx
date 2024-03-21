@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 import { useSetRecoilState } from 'recoil'
 import { PwPage } from '@bitgouel/common'
 
-const NumberValid = ({ emailValue }: { emailValue: string }) => {
+const EmailValid = ({ emailValue }: { emailValue: string }) => {
   const setPwPage = useSetRecoilState(PwPage)
   const { data, refetch } = useGetEmail({ email: emailValue })
 
@@ -34,4 +34,4 @@ const NumberValid = ({ emailValue }: { emailValue: string }) => {
   )
 }
 
-export default NumberValid
+export default EmailValid
