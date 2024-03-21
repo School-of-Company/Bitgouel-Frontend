@@ -7,7 +7,7 @@ import { useResetRecoilState } from 'recoil'
 import { PwPage } from '@bitgouel/common'
 
 const SignUpSuccess = () => {
-  const router = useRouter()
+  const { push } = useRouter()
   const { mutate } = useDeleteLogout()
   const resetPwPAge = useResetRecoilState(PwPage)
 
@@ -31,7 +31,7 @@ const SignUpSuccess = () => {
       <S.BackButtonContainer>
         <S.BackButton
           onClick={() => {
-            router.push('/auth/login')
+            push('/auth/login')
             mutate()
             resetPwPAge()
           }}
