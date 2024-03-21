@@ -6,6 +6,15 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { LinkTextBox, LinkTitle, LinkWrapper } from '../../detail/style'
 import * as S from './style'
+import { RoleEnumTypes } from '@bitgouel/types'
+import { useEffect, useState } from 'react'
+
+const roleArray: RoleEnumTypes[] = [
+  'ROLE_ADMIN',
+  'ROLE_COMPANY_INSTRUCTOR',
+  'ROLE_PROFESSOR',
+  'ROLE_GOVERNMENT',
+]
 
 const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
   const { data } = useGetPostDetail(noticeId)
@@ -13,6 +22,11 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
   const { openModal } = useModal()
   const { push } = useRouter()
   const tokenManager = new TokenManager()
+  const [isRole, setIsRole] = useState<boolean>(false)
+
+  useEffect(() => {
+    setIsRole(roleArray.includes(tokenManager.authority || 'ROLE_STUDENT'))
+  }, [])
 
   return (
     <div>
@@ -50,26 +64,23 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
           </LinkTextBox>
           <S.ButtonWrapper>
             <S.ButtonContainer>
-              {tokenManager.authority === 'ROLE_ADMIN' ||
-                tokenManager.authority === 'ROLE_COMPANY_INSTRUCTOR' ||
-                tokenManager.authority === 'ROLE_PROFESSOR' ||
-                (tokenManager.authority === 'ROLE_GOVERNMENT' && (
-                  <S.DeleteNoticeButton
-                    onClick={() =>
-                      openModal(
-                        <AppropriationModal
-                          isApprove={false}
-                          question='공지사항을 삭제하시겠습니까?'
-                          purpose='삭제하기'
-                          title={data?.data.title as ''}
-                          onAppropriation={() => mutate()}
-                        />
-                      )
-                    }
-                  >
-                    삭제하기
-                  </S.DeleteNoticeButton>
-                ))}
+              {isRole && (
+                <S.DeleteNoticeButton
+                  onClick={() =>
+                    openModal(
+                      <AppropriationModal
+                        isApprove={false}
+                        question='공지사항을 삭제하시겠습니까?'
+                        purpose='삭제하기'
+                        title={data?.data.title as ''}
+                        onAppropriation={() => mutate()}
+                      />
+                    )
+                  }
+                >
+                  삭제하기
+                </S.DeleteNoticeButton>
+              )}
               <S.ModifyNoticeButton
                 onClick={() => push(`/main/post/notice/${noticeId}/modify`)}
               >
