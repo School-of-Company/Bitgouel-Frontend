@@ -15,6 +15,7 @@ import {
   Agency4,
   Gwangju,
   OfficeGwangju,
+  FAQSection,
 } from '@bitgouel/common'
 
 import {
@@ -383,6 +384,7 @@ const HomePage = () => {
           </S.AgencyIntroItem>
         </S.AgencyIntroList>
       </S.AgencyIntroContainer>
+      <FAQSection />
       <S.Footer>
         <S.FooterTextContainer>
           <S.CopyRightsContainer>
