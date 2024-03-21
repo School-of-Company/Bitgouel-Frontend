@@ -9,7 +9,7 @@ import { PwPage } from '@bitgouel/common'
 const SignUpSuccess = () => {
   const { push } = useRouter()
   const { mutate } = useDeleteLogout()
-  const resetPwPAge = useResetRecoilState(PwPage)
+  const resetPwPage = useResetRecoilState(PwPage)
 
   return (
     <S.SignUpSuccessWrapper>
@@ -33,7 +33,7 @@ const SignUpSuccess = () => {
           onClick={() => {
             push('/auth/login')
             mutate()
-            resetPwPAge()
+            resetPwPage()
           }}
         >
           돌아가기
