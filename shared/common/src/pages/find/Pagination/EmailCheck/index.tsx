@@ -28,12 +28,6 @@ const EmailCheck = ({ emailValue, setEmailValue }: EmailProps) => {
     }
   }
 
-  const nextOnclick = () => {
-    if (emailValue) {
-      mutate({ email: emailValue })
-    }
-  }
-
   return (
     <>
       <S.EmailInputContainer>
@@ -54,7 +48,10 @@ const EmailCheck = ({ emailValue, setEmailValue }: EmailProps) => {
       </S.EmailInputContainer>
       <S.ButtonContainer>
         <S.PreButton onClick={() => push('/main/my')}>이전으로</S.PreButton>
-        <S.NextButton statusColor={emailStatus} onClick={nextOnclick}>
+        <S.NextButton
+          statusColor={emailStatus}
+          onClick={() => emailValue && mutate({ email: emailValue })}
+        >
           다음으로
         </S.NextButton>
       </S.ButtonContainer>
