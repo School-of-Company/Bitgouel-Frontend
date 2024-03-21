@@ -4,7 +4,6 @@ import { ChangeEvent, useEffect, useState } from 'react'
 import * as S from './style'
 import { ValueInput, PwPage } from '@bitgouel/common'
 import { usePatchPassword } from '@bitgouel/api'
-import { toast } from 'react-toastify'
 import { useSetRecoilState } from 'recoil'
 
 const NewPassword = () => {
@@ -16,12 +15,7 @@ const NewPassword = () => {
   const [newConfirmErrorMessage, setNewConfirmErrorMessage] =
     useState<string>('')
   const [passwordStatus, setPasswordStatus] = useState<boolean>(false)
-  const { mutate, error } = usePatchPassword()
-
-  useEffect(() => {
-    if (error?.response?.status === 401)
-      toast.error('로그인 된 대상을 찾을 수 없습니다')
-  }, [error])
+  const { mutate } = usePatchPassword()
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const passwordRegex =
