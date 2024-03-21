@@ -1,5 +1,5 @@
 import { UseQueryOptions, useQuery } from '@tanstack/react-query'
-import { get, inquiryQueryKeys, inquiryUrl } from '../../libs'
+import { get, inquiryQueryKeys, inquiryUrl } from '@bitgouel/api'
 import { AxiosError, AxiosResponse } from 'axios'
 import { ApiErrorTypes, InquiryDetailResponseTypes } from '@bitgouel/types'
 

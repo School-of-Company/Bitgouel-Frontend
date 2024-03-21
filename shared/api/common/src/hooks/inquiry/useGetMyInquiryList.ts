@@ -1,7 +1,7 @@
+import { get, inquiryQueryKeys, inquiryUrl } from '@bitgouel/api'
 import { ApiErrorTypes, InquiryListResponseTypes } from '@bitgouel/types'
 import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 import { AxiosError, AxiosResponse } from 'axios'
-import { get, inquiryQueryKeys, inquiryUrl } from '../../libs'
 
 export const useGetMyInquiryList = (options?: UseQueryOptions<AxiosResponse>) =>
   useQuery<AxiosResponse<InquiryListResponseTypes>, AxiosError<ApiErrorTypes>>(

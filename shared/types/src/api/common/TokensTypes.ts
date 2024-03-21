@@ -1,4 +1,4 @@
-import { RoleEnumTypes } from "./LoginResponseTypes"
+import { RoleEnumTypes } from './LoginResponseTypes'
 
 export interface TokensTypes {
   accessToken: string

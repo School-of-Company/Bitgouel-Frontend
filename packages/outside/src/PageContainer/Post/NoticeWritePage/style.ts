@@ -67,7 +67,7 @@ export const InputMainText = styled.textarea`
   }
 `
 
-export const PostSetting = styled.div`
+export const NoticeSetting = styled.div`
   position: absolute;
   bottom: 6.25rem;
   width: 100%;
@@ -113,7 +113,7 @@ export const ButtonContainer = styled.div`
   justify-content: center;
 `
 
-export const ModifyButton = styled.div<{ isAble: boolean }>`
+export const NoticeButton = styled.div<{ isAble: boolean }>`
   background-color: ${({ theme, isAble }) =>
     isAble ? theme.color.main : theme.color.gray['700']};
   color: ${({ theme, isAble }) =>

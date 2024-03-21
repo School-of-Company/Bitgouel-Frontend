@@ -4,9 +4,16 @@ import {
   useDeleteInquiryReject,
   useDeleteMyInquiry,
   useGetInquiryDetail,
-  useGetMy
 } from '@bitgouel/api'
-import { AppropriationModal, Bg5, InquiryAnswerModal, Pen, TrashCan, dateToConverter, useModal } from '@bitgouel/common'
+import {
+  AppropriationModal,
+  Bg5,
+  InquiryAnswerModal,
+  Pen,
+  TrashCan,
+  dateToConverter,
+  useModal,
+} from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { match } from 'ts-pattern'
 import * as S from './style'
@@ -23,8 +30,6 @@ const InquiryDetailPage = ({
   const { mutate: myInquiryReject } = useDeleteMyInquiry(inquiryId)
   const { openModal } = useModal()
   const { data: inquiryDetail } = useGetInquiryDetail(inquiryId)
-  const { data: myData } = useGetMy()
-  const { id } = myData?.data || {}
   const {
     question,
     questionDetail,

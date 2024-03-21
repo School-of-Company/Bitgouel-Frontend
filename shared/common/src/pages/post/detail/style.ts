@@ -144,5 +144,9 @@ export const LinkWrapper = styled.div`
   a {
     color: ${({ theme }) => theme.color.gray['700']};
     ${({ theme }) => theme.typo.text_md.medium};
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `

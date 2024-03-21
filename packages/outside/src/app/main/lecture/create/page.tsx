@@ -1,7 +1,5 @@
-import { LectureCreatePage } from "@/PageContainer";
+import { LectureCreatePage } from '@/PageContainer'
 
 export default function LectureCreate() {
-  return (
-    <LectureCreatePage />
-  )
+  return <LectureCreatePage />
 }

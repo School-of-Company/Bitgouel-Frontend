@@ -4,11 +4,9 @@ export { default as HomePage } from './home'
 export {
   PostPage,
   PostDetailPage,
-  PostCreatePage,
-  PostModifyPage,
+  PostWritePage,
   NoticePage,
   NoticeDetailPage,
-  NoticeModifyPage,
 } from './post'
 export { default as MyPage } from './my'
 export { InquiryPage, InquiryDetailPage } from './inquiry'

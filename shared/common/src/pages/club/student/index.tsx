@@ -20,13 +20,21 @@ import {
   theme,
   useModal,
 } from '@bitgouel/common'
-import { CertificateRequest, StudentIdProps } from '@bitgouel/types'
+import {
+  CertificateRequest,
+  RoleEnumTypes,
+  StudentIdProps,
+} from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
 
-const roleArray: string[] = ['ROLE_STUDENT', 'ROLE_TEACHER', 'ROLE_ADMIN']
+const roleArray: RoleEnumTypes[] = [
+  'ROLE_STUDENT',
+  'ROLE_TEACHER',
+  'ROLE_ADMIN',
+]
 
 const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
   studentIdProps,
@@ -72,7 +80,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
   }
 
   useEffect(() => {
-    setIsRole(roleArray.includes(tokenManager.authority || ''))
+    setIsRole(roleArray.includes(tokenManager.authority || 'ROLE_STUDENT'))
   }, [])
 
   return (

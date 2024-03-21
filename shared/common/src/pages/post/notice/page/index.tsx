@@ -1,19 +1,18 @@
 'use client'
 
-import { TokenManager, useGetPostList } from '@bitgouel/api'
+import { useGetPostList } from '@bitgouel/api'
+import { Bg1, Message, Plus, PostItem, Question } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
-import { Bg1, Message, Plus, Question } from '../../../../assets'
-import { PostItem } from '../../../../components'
 import * as S from './style'
 
-const NoticePage = () => {
+const NoticePage = ({ isAdmin }: { isAdmin: boolean }) => {
   const { data } = useGetPostList({
     type: 'NOTICE',
+    page: 0,
     size: 10,
-    page: 1,
   })
-  const tokenManager = new TokenManager()
   const { push } = useRouter()
+  const { posts } = data?.data || {}
 
   return (
     <div>
@@ -29,7 +28,7 @@ const NoticePage = () => {
               <Question />
               <span>문의사항</span>
             </S.NoticeButton>
-            {tokenManager.authority === 'ROLE_ADMIN' && (
+            {isAdmin && (
               <S.NoticeButton onClick={() => push('/main/post/notice/create')}>
                 <Plus />
                 <span>공지 추가</span>
@@ -40,7 +39,7 @@ const NoticePage = () => {
       </S.SlideBg>
       <S.NoticeListWrapper>
         <S.NoticeListContainer>
-          {data?.data.posts.content.map((notice) => (
+          {posts?.content.map((notice) => (
             <PostItem key={notice.id} item={notice} />
           ))}
         </S.NoticeListContainer>

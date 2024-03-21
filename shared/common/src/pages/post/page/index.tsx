@@ -1,11 +1,18 @@
 'use client'
 
 import { TokenManager, useGetPostList } from '@bitgouel/api'
+import { Bg1, MegaPhone, Plus, PostItem, Question } from '@bitgouel/common'
+import { RoleEnumTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
-import { Bg1, MegaPhone, Plus, Question } from '../../../assets'
-import { PostItem } from '../../../components'
-import * as S from './style'
 import { useEffect, useState } from 'react'
+import * as S from './style'
+
+const roleArray: RoleEnumTypes[] = [
+  'ROLE_ADMIN',
+  'ROLE_COMPANY_INSTRUCTOR',
+  'ROLE_PROFESSOR',
+  'ROLE_GOVERNMENT',
+]
 
 const PostPage = () => {
   const { data } = useGetPostList({
@@ -13,19 +20,13 @@ const PostPage = () => {
     page: 0,
     size: 15,
   })
+  const { posts } = data?.data || {}
   const { push } = useRouter()
   const tokenManager = new TokenManager()
-  const [postAuth, setPostAuth] = useState<boolean>(false)
+  const [isRole, setIsRole] = useState<boolean>(false)
 
   useEffect(() => {
-    if (
-      tokenManager.authority === 'ROLE_ADMIN' ||
-      tokenManager.authority === 'ROLE_PROFESSOR' ||
-      tokenManager.authority === 'ROLE_COMPANY_INSTRUCTOR' ||
-      tokenManager.authority === 'ROLE_GOVERNMENT'
-    )
-      setPostAuth(true)
-    else setPostAuth(false)
+    setIsRole(roleArray[tokenManager.authority || 'ROLE_STUDENT'])
   }, [])
 
   return (
@@ -42,7 +43,7 @@ const PostPage = () => {
               <Question />
               <span>문의사항</span>
             </S.PostButton>
-            {postAuth && (
+            {isRole && (
               <S.PostButton onClick={() => push('/main/post/create')}>
                 <Plus />
                 <span>게시글 추가</span>
@@ -53,7 +54,7 @@ const PostPage = () => {
       </S.SlideBg>
       <S.PostListWrapper>
         <S.PostListContainer>
-          {data?.data.posts.content.map((post) => (
+          {posts?.content.map((post) => (
             <PostItem key={post.id} item={post} />
           ))}
         </S.PostListContainer>

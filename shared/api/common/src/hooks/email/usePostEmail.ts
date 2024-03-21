@@ -1,9 +1,9 @@
+import { emailQueryKeys, emailUrl, post } from '@bitgouel/api'
+import { PwPage } from '@bitgouel/common'
 import { ApiErrorTypes } from '@bitgouel/types'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { toast } from 'react-toastify'
-import { PwPage } from '@bitgouel/common'
-import { emailQueryKeys, emailUrl, post } from '../../libs'
 import { useSetRecoilState } from 'recoil'
 
 export const usePostEmail = () => {
