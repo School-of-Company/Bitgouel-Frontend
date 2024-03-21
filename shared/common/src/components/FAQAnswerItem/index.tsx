@@ -30,7 +30,7 @@ const FAQAnswerItem = () => {
       >
         + 자주 묻는 질문 추가하기
       </S.Title>
-      <S.AnsweringBox answerView={answerStatus}>
+      <S.AnsweringBox answerStatus={answerStatus}>
         <S.InputWrapper>
           <S.QMark>Q.</S.QMark>
           <S.Input

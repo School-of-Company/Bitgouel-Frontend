@@ -17,8 +17,8 @@ export const Title = styled.div<{ answerView: boolean }>`
   cursor: pointer;
 `
 
-export const AnsweringBox = styled.div<{ answerView: boolean }>`
-  display: ${({ answerView }) => (answerView ? 'block' : 'none')};
+export const AnsweringBox = styled.div<{ answerStatus: boolean }>`
+  display: ${({ answerStatus }) => (answerStatus ? 'block' : 'none')};
 `
 
 export const InputWrapper = styled.div`
