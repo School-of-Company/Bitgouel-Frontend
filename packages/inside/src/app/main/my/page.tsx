@@ -1,4 +1,4 @@
-import { MyPage } from '@bitgouel/common/src/pages'
+import { MyPage } from '@bitgouel/common'
 
 const My = () => {
   return <MyPage />

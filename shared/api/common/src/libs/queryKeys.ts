@@ -20,7 +20,7 @@ export const lectureQueryKeys = {
   deleteLectureReject: (id: string) => ['lecture', 'reject', id],
   getProfessor: () => ['lecture', 'professor'],
   getLine: () => ['lecture', 'line'],
-  getDepartment: () => ['lecture', 'department']
+  getDepartment: () => ['lecture', 'department'],
 } as const
 
 export const activityQueryKeys = {
@@ -98,3 +98,8 @@ export const adminQueryKeys = {
   deleteUserReject: (userIds: string[]) => ['admin', 'reject', userIds],
   deleteUserWithout: (userIds: string[]) => ['admin', 'without', userIds],
 } as const
+
+export const emailQueryKeys = {
+  postEmail: () => ['email', 'send'],
+  getEmail: () => ['email', 'check'],
+}
