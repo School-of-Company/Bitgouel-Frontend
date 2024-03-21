@@ -1,7 +1,7 @@
 import { ApiErrorTypes } from '@bitgouel/types'
 import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 import { AxiosError, AxiosResponse } from 'axios'
-import { emailQueryKeys, emailUrl, get } from '../../libs'
+import { emailQueryKeys, emailUrl, get } from '@bitgouel/api'
 
 export const useGetEmail = (
   sendValue: { email: string },

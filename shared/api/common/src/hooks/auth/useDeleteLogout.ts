@@ -8,7 +8,6 @@ export const useDeleteLogout = () => {
   const tokenManager = new TokenManager()
   const router = useRouter()
   const pathname = usePathname()
-  console.log(pathname)
 
   return useMutation(
     authQueryKeys.deleteLogout(),
