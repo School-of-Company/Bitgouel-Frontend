@@ -96,7 +96,16 @@ const NewPassword = () => {
       </S.NewPasswordContainer>
       <S.ButtonContainer>
         <S.PreButton onClick={() => setPwPage(1)}>이전으로</S.PreButton>
-        <S.NextButton statusColor={passwordStatus} onClick={nextOnclick}>
+        <S.NextButton
+          statusColor={passwordStatus}
+          onClick={() =>
+            passwordStatus &&
+            mutate({
+              currentPassword: newConfirmPw,
+              newPassword: newPw,
+            })
+          }
+        >
           다음으로
         </S.NextButton>
       </S.ButtonContainer>
