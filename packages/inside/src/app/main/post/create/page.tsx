@@ -1,4 +1,4 @@
-import { PostCreatePage } from '@bitgouel/common/src/pages'
+import { PostCreatePage } from '@bitgouel/common'
 const PostCreate = () => {
   return <PostCreatePage />
 }

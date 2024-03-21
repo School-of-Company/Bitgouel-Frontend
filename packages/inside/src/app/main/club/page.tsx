@@ -1,4 +1,4 @@
-import { ClubDetailPage } from '@bitgouel/common/src/pages'
+import { ClubDetailPage } from '@bitgouel/common'
 
 const Club = () => {
   return <ClubDetailPage />

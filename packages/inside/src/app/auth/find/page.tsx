@@ -1,4 +1,4 @@
-import { FindPage } from '@bitgouel/common/src/pages'
+import { FindPage } from '@bitgouel/common'
 
 const Find = () => {
   return <FindPage />
