@@ -14,7 +14,7 @@ export const usePatchPassword = () => {
     (newPassword) => patch(userUrl.user(), newPassword),
     {
       onSuccess: () => {
-        toast.success('비밀번호를 변경 되었습니다')
+        toast.success('비밀번호가 변경 되었습니다')
         setPwPage(4)
       },
     }
