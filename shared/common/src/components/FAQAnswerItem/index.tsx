@@ -23,7 +23,7 @@ const FAQAnswerItem = () => {
   }, [])
 
   return (
-    <S.FAQAnswerItemWrapper roleView={isAdmin}>
+    <S.FAQAnswerItemWrapper isAdmin={isAdmin}>
       <S.Title
         onClick={() => setAnswerStatus(!answerStatus)}
         answerView={answerStatus}

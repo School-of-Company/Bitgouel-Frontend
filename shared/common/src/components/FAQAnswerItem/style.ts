@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
-export const FAQAnswerItemWrapper = styled.div<{ roleView: boolean }>`
-  display: ${({ roleView }) => (roleView ? 'block' : 'none')};
+export const FAQAnswerItemWrapper = styled.div<{ isAdmin: boolean }>`
+  display: ${({ isAdmin }) => (isAdmin ? 'block' : 'none')};
   background-color: ${({ theme }) => theme.color.white};
   box-shadow: 0 0.0625rem 0.125rem 0 ${({ theme }) => theme.color.gray['700']};
   width: 100%;
