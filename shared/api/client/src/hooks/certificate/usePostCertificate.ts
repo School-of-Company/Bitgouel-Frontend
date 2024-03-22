@@ -8,7 +8,7 @@ export const usePostCertificate = (
 ) => {
   return useMutation<void, AxiosError, CertificateRequest>(
     certificateQueryKeys.postCertificateCreate(),
-    (creatValue) => post(certificateUrl.certificate(), creatValue),
+    (createValue) => post(certificateUrl.certificate(), createValue),
     options
   )
 }
