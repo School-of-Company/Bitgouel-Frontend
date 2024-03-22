@@ -61,7 +61,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
 
   useEffect(() => {
     setIsRole(roleArray.includes(tokenManager.authority || ''))
-  })
+  }, [])
 
   return (
     <>
