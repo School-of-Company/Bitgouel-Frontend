@@ -59,7 +59,6 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
 
   const { mutate } = usePostCertificate({
     onSuccess: () => {
-      console.log('gd')
       closeModal()
       refetch()
       setIsAddCertificate(false)

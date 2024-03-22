@@ -34,7 +34,6 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
       )
       if (foundStudent) {
         setUserId(foundStudent.id)
-        console.log(userId)
       }
     }
   }, [myClub, myData])
