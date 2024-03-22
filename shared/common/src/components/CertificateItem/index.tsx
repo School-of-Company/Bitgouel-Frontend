@@ -9,12 +9,16 @@ import {
   theme,
   useModal,
 } from '@bitgouel/common'
-import { CertificateProps, CertificateRequest } from '@bitgouel/types'
+import {
+  CertificateProps,
+  CertificateRequest,
+  RoleEnumTypes,
+} from '@bitgouel/types'
 import { ChangeEvent, useEffect, useState } from 'react'
 
 import * as S from './style'
 
-const roleArray: string[] = ['ROLE_STUDENT', 'ROLE_TEACHER']
+const roleArray: RoleEnumTypes[] = ['ROLE_STUDENT', 'ROLE_TEACHER']
 
 const CertificateItem: React.FC<CertificateProps> = ({
   certificateItems,
@@ -55,7 +59,11 @@ const CertificateItem: React.FC<CertificateProps> = ({
   }
 
   useEffect(() => {
-    setIsRole(roleArray.includes(tokenManager.authority || ''))
+    setIsRole(
+      tokenManager.authority
+        ? roleArray.includes(tokenManager.authority)
+        : false
+    )
   }, [])
 
   return (
