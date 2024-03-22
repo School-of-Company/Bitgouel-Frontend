@@ -9,15 +9,10 @@ import {
   theme,
   useModal,
 } from '@bitgouel/common'
-import { Certificate, CertificateRequest } from '@bitgouel/types'
+import { CertificateProps, CertificateRequest } from '@bitgouel/types'
 import { ChangeEvent, useEffect, useState } from 'react'
 
 import * as S from './style'
-
-interface CertificateProps {
-  certificateItems: Certificate
-  isOpenCalendar: boolean
-}
 
 const roleArray: string[] = ['ROLE_STUDENT', 'ROLE_TEACHER']
 
