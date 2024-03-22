@@ -1,7 +1,7 @@
 import { CertificateRequest } from '@bitgouel/types'
 import { UseMutationOptions, useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { certificateQueryKeys, certificateUrl, post } from '../../../../common'
+import { certificateQueryKeys, certificateUrl, post } from '@bitgouel/api'
 
 export const usePostCertificate = (
   options: UseMutationOptions<void, Error, CertificateRequest>

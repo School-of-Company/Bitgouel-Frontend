@@ -7,9 +7,9 @@ import {
   useGetMyClub,
 } from '@bitgouel/api'
 import * as S from './style'
-import { Bg2, PersonOut } from '../../../assets'
+import { Bg2, PersonOut } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
-import { roleToKor } from '../../../constants'
+import { roleToKor } from '@bitgouel/common'
 import { useEffect, useState } from 'react'
 
 const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
