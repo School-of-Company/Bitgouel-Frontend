@@ -13,7 +13,7 @@ import {
   Question,
   Symbol1,
   Symbol2
-} from '../../assets'
+} from '@bitgouel/common'
 import { LectureTypeText } from '../../atoms'
 import { LectureTypeModal } from '../../modals'
 import { theme } from '../../styles'
