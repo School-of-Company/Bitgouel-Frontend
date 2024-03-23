@@ -1,2 +1,2 @@
-// export * from './useGetListQuestions'
-// export * from './usePostQuestion'
+export * from './useGetListQuestions'
+export * from './usePostQuestion'
