@@ -1,8 +1,10 @@
 'use client'
 
+import { useModal } from '@bitgouel/common'
+import { TokenManager, usePostQuestion } from '@bitgouel/api'
 import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 import * as S from './style'
-import { TokenManager } from '@bitgouel/api'
 
 const FAQAnswerItem = () => {
   const tokenManager = new TokenManager()
@@ -12,10 +14,27 @@ const FAQAnswerItem = () => {
   const [answer, setAnswer] = useState<string>('')
   const [isAdmin, setIsAdmin] = useState<boolean>(false)
 
+  const { openModal, closeModal } = useModal()
+
+  const { mutate } = usePostQuestion({
+    onSuccess: () => {
+      toast.success('작성되었습니다.')
+    },
+  })
+
   const answeringDelete = () => {
     setQuestion('')
     setAnswer('')
     setAnswerStatus(false)
+  }
+
+  const onCreate = () => {
+    if (question && answer) {
+      mutate({
+        question: question,
+        answer: answer,
+      })
+    }
   }
 
   useEffect(() => {
@@ -51,7 +70,7 @@ const FAQAnswerItem = () => {
           <S.DeleteButton onClick={() => answeringDelete()}>
             취소
           </S.DeleteButton>
-          <S.SuccessButton>작성</S.SuccessButton>
+          <S.SuccessButton onClick={onCreate}>작성</S.SuccessButton>
         </S.ButtonWrapper>
       </S.AnsweringBox>
     </S.FAQAnswerItemWrapper>
