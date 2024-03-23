@@ -19,7 +19,7 @@ const FAQAnswerItem = () => {
   }
 
   useEffect(() => {
-    if (tokenManager.authority === 'ROLE_ADMIN') setIsAdmin(true)
+    setIsAdmin(tokenManager.authority === 'ROLE_ADMIN')
   }, [])
 
   return (

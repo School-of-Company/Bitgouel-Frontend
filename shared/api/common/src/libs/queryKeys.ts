@@ -103,3 +103,8 @@ export const emailQueryKeys = {
   postEmail: () => ['email', 'send'],
   getEmail: () => ['email', 'check'],
 }
+
+export const faqQueryKeys = {
+  postQuestion: () => ['FAQ', 'post'],
+  getQuestions: () => ['FAQ', 'get'],
+}

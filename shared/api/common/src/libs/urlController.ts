@@ -101,3 +101,7 @@ export const emailUrl = {
   email: () => `/email`,
 }
 
+export const faqUrl = {
+  postQuestion: () => `/FAQ`,
+  listQuestions: () => `/FAQ`,
+}
