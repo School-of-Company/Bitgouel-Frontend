@@ -50,8 +50,6 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
   const [isRole, setIsRole] = useState<boolean>(false)
   const [isStudent, setIsStudent] = useState<boolean>(false)
 
-  const { data: myData } = useGetStudentDetail(clubId, studentId)
-
   const { openModal, closeModal } = useModal()
 
   const { data: clubStudent, refetch } = useGetStudentDetail(clubId, studentId)
