@@ -1,9 +1,8 @@
 'use client'
 
+import { useGetListQuestions } from '@bitgouel/api'
 import { FAQAnswerItem, FAQItem } from '@bitgouel/common'
 import * as S from './style'
-import { FAQTypes } from '@bitgouel/types'
-import { useGetListQuestions } from '@bitgouel/api'
 
 const FAQSection = () => {
   const { data } = useGetListQuestions()
