@@ -105,6 +105,6 @@ export const emailQueryKeys = {
 }
 
 export const faqQueryKeys = {
-  postQuestion: () => ['FAQ', 'post'],
   getQuestions: () => ['FAQ', 'get'],
+  postQuestion: () => ['FAQ', 'post'],
 }
