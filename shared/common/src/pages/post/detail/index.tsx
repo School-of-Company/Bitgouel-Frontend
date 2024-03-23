@@ -30,7 +30,7 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
   const [isRole, setIsRole] = useState<boolean>(false)
 
   useEffect(() => {
-    setIsRole(roleArray[tokenManager.authority || 'ROLE_STUDENT'])
+    setIsRole(roleArray.includes(tokenManager.authority) ? true : false)
   }, [])
 
   return (

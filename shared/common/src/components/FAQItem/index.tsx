@@ -4,7 +4,7 @@ import { useState } from 'react'
 import * as S from './style'
 import { FAQProps } from '@bitgouel/types'
 
-const FAQItem = ({ id, question, answer }: FAQProps) => {
+const FAQItem = ({ question, answer }: Omit<FAQProps, 'id'>) => {
   const [answerStatus, setAnswerStatus] = useState<boolean>(false)
 
   return (

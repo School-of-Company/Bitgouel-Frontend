@@ -48,13 +48,8 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
   const [certificateDateText, setCertificateDateText] = useState<string>('')
   const [certificateIndex, setCertificateIndex] = useState<number>(-1)
   const [isRole, setIsRole] = useState<boolean>(false)
-
-  const { data: myData } = useGetStudentDetail(clubId, studentId)
-
   const { openModal, closeModal } = useModal()
-
   const { data: clubStudent } = useGetStudentDetail(clubId, studentId)
-  const { data: myPageData } = useGetMy()
   const { mutate } = usePostCertificate()
   const tokenManager = new TokenManager()
   const { data: certificateList } =
@@ -80,7 +75,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
   }
 
   useEffect(() => {
-    setIsRole(roleArray.includes(tokenManager.authority || 'ROLE_STUDENT'))
+    setIsRole(roleArray.includes(tokenManager.authority) ? true : false)
   }, [])
 
   return (

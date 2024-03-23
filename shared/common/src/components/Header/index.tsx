@@ -8,15 +8,15 @@ import { useRecoilState } from 'recoil'
 import { match } from 'ts-pattern'
 import {
   Filter,
+  LectureTypeModal,
+  LectureTypeText,
   Message,
   Plus,
   Question,
   Symbol1,
-  Symbol2
+  Symbol2,
+  theme
 } from '@bitgouel/common'
-import { LectureTypeText } from '../../atoms'
-import { LectureTypeModal } from '../../modals'
-import { theme } from '../../styles'
 import * as S from './style'
 
 const menuList = [

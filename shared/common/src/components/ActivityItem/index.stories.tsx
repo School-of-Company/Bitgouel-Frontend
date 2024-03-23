@@ -17,8 +17,12 @@ export const Primary: Story = {
       title: '청춘',
       userId: 'abcd',
       activityDate: '2023-11-28',
-      userName: '학생1',
-      approveStatus: 'APPROVED',
+      username: '이태랑'
     },
+    studentIdProps: {
+      studentId: 'abcd',
+      clubId: 'abcd',
+    },
+    activityId: 'abcd'
   },
 }

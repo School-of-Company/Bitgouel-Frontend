@@ -1,5 +1,3 @@
-import { ApproveStatusEnum } from '../common'
-
 export interface ActivityInformationItem {
   activityId: string
   title: string

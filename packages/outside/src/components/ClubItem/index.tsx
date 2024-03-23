@@ -1,8 +1,8 @@
 'use client'
 
-import { InClubArrow } from '@bitgouel/common/src/assets'
-import * as S from './style'
+import { InClubArrow } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
+import * as S from './style'
 
 const ClubItem = ({
   clubId,
