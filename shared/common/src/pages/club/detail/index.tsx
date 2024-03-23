@@ -15,8 +15,10 @@ import { useEffect, useState } from 'react'
 const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
   const { push } = useRouter()
 
-  const { data: clubDetail } = useGetClubDetail(clubId || '')
-  const { data: myClub } = useGetMyClub()
+  const { data: clubDetail } = useGetClubDetail(clubId || '', {
+    enabled: !!clubId,
+  })
+  const { data: myClub } = useGetMyClub({ enabled: !clubId })
   const { data: myData } = useGetMy()
 
   const [userId, setUserId] = useState<string>('')
