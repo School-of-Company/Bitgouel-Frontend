@@ -1,6 +1,6 @@
 'use client'
 
-import { usePatchModifyCertificate } from '@bitgouel/api'
+import { TokenManager, usePatchModifyCertificate } from '@bitgouel/api'
 import {
   AddCertificate,
   AppropriationModal,
@@ -9,14 +9,16 @@ import {
   theme,
   useModal,
 } from '@bitgouel/common'
-import { Certificate, CertificateRequest } from '@bitgouel/types'
-import { ChangeEvent, useState } from 'react'
+import {
+  CertificateProps,
+  CertificateRequest,
+  RoleEnumTypes,
+} from '@bitgouel/types'
+import { ChangeEvent, useEffect, useState } from 'react'
+
 import * as S from './style'
 
-interface CertificateProps {
-  certificateItems: Certificate
-  isOpenCalendar: boolean
-}
+const roleArray: RoleEnumTypes[] = ['ROLE_STUDENT', 'ROLE_TEACHER']
 
 const CertificateItem: React.FC<CertificateProps> = ({
   certificateItems,
@@ -24,6 +26,8 @@ const CertificateItem: React.FC<CertificateProps> = ({
 }) => {
   const { id, name, acquisitionDate } = certificateItems
   const { mutate } = usePatchModifyCertificate(id)
+
+  const tokenManager = new TokenManager()
 
   const [isCertificateDate, setIsCertificateDate] = useState<boolean>(false)
   const [modifyText, setModifyText] = useState<string>(certificateItems.name)
@@ -34,6 +38,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
   const { openModal, closeModal } = useModal()
 
   const [isModify, setIsModify] = useState<boolean>(false)
+  const [isRole, setIsRole] = useState<boolean>(false)
 
   const onModify = () => {
     const payload: CertificateRequest = {
@@ -52,6 +57,14 @@ const CertificateItem: React.FC<CertificateProps> = ({
     closeModal()
     window.location.reload()
   }
+
+  useEffect(() => {
+    setIsRole(
+      tokenManager.authority
+        ? roleArray.includes(tokenManager.authority)
+        : false
+    )
+  }, [])
 
   return (
     <>
@@ -97,7 +110,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
                       question='자격증 정보를 수정하시겠습니까?'
                       title={modifyText as ''}
                       purpose='수정하기'
-                      onAppropriation={() => onModify}
+                      onAppropriation={onModify}
                     />
                   )
                 : name === modifyText &&
@@ -132,9 +145,11 @@ const CertificateItem: React.FC<CertificateProps> = ({
               .map((v) => (v === '-' ? '.' : v))
               .join('')}
           </span>
-          <S.ModifyText onClick={() => setIsModify(true)}>
-            수정하기
-          </S.ModifyText>
+          {isRole && (
+            <S.ModifyText onClick={() => setIsModify(true)}>
+              수정하기
+            </S.ModifyText>
+          )}
         </S.CertificateItemBox>
       )}
     </>

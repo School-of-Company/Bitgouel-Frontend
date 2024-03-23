@@ -1,7 +1,7 @@
 interface StudentType {
-    id: string
-    name: string
-    authority: string
+  id: string
+  name: string
+  userId: string
 }
 
 export interface ClubDetailResponseTypes {
@@ -10,5 +10,5 @@ export interface ClubDetailResponseTypes {
   highSchoolName: string
   headCount: number
   students: StudentType[]
-  teacher: {id: string, name: string}
+  teacher: { id: string; name: string }
 }

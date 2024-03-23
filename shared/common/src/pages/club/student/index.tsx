@@ -48,20 +48,27 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
   const [certificateDateText, setCertificateDateText] = useState<string>('')
   const [certificateIndex, setCertificateIndex] = useState<number>(-1)
   const [isRole, setIsRole] = useState<boolean>(false)
-
-  const { data: myData } = useGetStudentDetail(clubId, studentId)
+  const [isStudent, setIsStudent] = useState<boolean>(false)
 
   const { openModal, closeModal } = useModal()
 
-  const { data: clubStudent } = useGetStudentDetail(clubId, studentId)
+  const { data: clubStudent, refetch } = useGetStudentDetail(clubId, studentId)
   const { data: myPageData } = useGetMy()
-  const { mutate } = usePostCertificate()
-  const tokenManager = new TokenManager()
-  const { data: certificateList } =
-    tokenManager.authority === 'ROLE_STUDENT'
-      ? useGetCertificateList()
-      : useGetCertificateListTeacher(studentId)
 
+  const { mutate } = usePostCertificate({
+    onSuccess: () => {
+      closeModal()
+      refetch()
+      setIsAddCertificate(false)
+      toast.success('자격증을 추가하였습니다.')
+    },
+  })
+
+  const tokenManager = new TokenManager()
+
+  const { data: certificateList } = isStudent
+    ? useGetCertificateList()
+    : useGetCertificateListTeacher(studentId)
   const onCreate = () => {
     const payload: CertificateRequest = {
       name: certificateText,
@@ -75,11 +82,11 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
         .padStart(2, '0')}`,
     }
     mutate(payload)
-    closeModal()
-    window.location.reload()
   }
 
   useEffect(() => {
+    setIsStudent(tokenManager.authority === 'ROLE_STUDENT')
+
     setIsRole(roleArray.includes(tokenManager.authority || 'ROLE_STUDENT'))
   }, [])
 
@@ -120,7 +127,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
               <S.PlusCertificateIcon
                 onClick={() => setIsAddCertificate((prev) => !prev)}
               >
-                <PlusCertificate />
+                {isStudent && <PlusCertificate />}
               </S.PlusCertificateIcon>
             </S.CertificatePlusBox>
             <S.CertificateListBox>
@@ -164,7 +171,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
                               question='자격증 정보를 추가하시겠습니까?'
                               title={certificateText}
                               purpose='추가하기'
-                              onAppropriation={() => onCreate()}
+                              onAppropriation={onCreate}
                             />
                           )
                         : toast.info('자격증 정보를 입력해주세요')
