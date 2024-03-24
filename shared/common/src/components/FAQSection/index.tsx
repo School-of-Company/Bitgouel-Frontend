@@ -3,9 +3,22 @@
 import { useGetListQuestions } from '@bitgouel/api'
 import { FAQAnswerItem, FAQItem } from '@bitgouel/common'
 import * as S from './style'
+import { useEffect, useState } from 'react'
 
 const FAQSection = () => {
-  const { data } = useGetListQuestions()
+  const { data, refetch } = useGetListQuestions()
+  // FAQ 목록을 저장할 상태, 초기값은 빈 배열로 설정
+  const [faqs, setFaqs] = useState([])
+
+  useEffect(() => {
+    if (data?.data) {
+      if (data.data.faqs.length !== faqs.length) {
+        refetch()
+      } else {
+        setFaqs(data.data.faqs)
+      }
+    }
+  }, [data])
 
   return (
     <S.FAQSectionWrapper>
