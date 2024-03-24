@@ -25,7 +25,7 @@ const FAQSection = () => {
               answer={item.answer}
             />
           ))}
-          <FAQAnswerItem />
+          <FAQAnswerItem refetchFAQs={refetch} />
         </S.FAQList>
       </S.FAQSectionContainer>
     </S.FAQSectionWrapper>

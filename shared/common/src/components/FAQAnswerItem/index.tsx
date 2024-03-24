@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
 
-const FAQAnswerItem = () => {
+const FAQAnswerItem = ({ refetchFAQs }) => {
   const tokenManager = new TokenManager()
 
   const [answerStatus, setAnswerStatus] = useState<boolean>(false)
@@ -19,6 +19,7 @@ const FAQAnswerItem = () => {
   const { mutate } = usePostQuestion({
     onSuccess: () => {
       toast.success('작성되었습니다.')
+      refetchFAQs()
     },
     onError: () => {
       toast.error('작성에 실패하였습니다.')
