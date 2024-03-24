@@ -20,6 +20,9 @@ const FAQAnswerItem = () => {
     onSuccess: () => {
       toast.success('작성되었습니다.')
     },
+    onError: () => {
+      toast.error('작성에 실패하였습니다.')
+    },
   })
 
   const answeringDelete = () => {
@@ -34,6 +37,9 @@ const FAQAnswerItem = () => {
         question: question,
         answer: answer,
       })
+      setAnswerStatus(false)
+    } else {
+      toast.error('빈 공백을 입력해주세요.')
     }
   }
 
