@@ -1,10 +1,10 @@
-import { useMutation } from '@tanstack/react-query'
 import { lectureQueryKeys, lectureUrl, post } from '@bitgouel/api'
+import { useModal } from '@bitgouel/common/src/hooks'
+import { ApiErrorTypes } from '@bitgouel/types'
+import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
-import { useModal } from '@bitgouel/common/src/hooks'
 import { toast } from 'react-toastify'
-import { ApiErrorTypes } from '@bitgouel/types'
 
 export const usePostEnrollment = (id: string) => {
   const { push } = useRouter()

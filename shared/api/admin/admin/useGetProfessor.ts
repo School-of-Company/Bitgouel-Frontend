@@ -1,7 +1,7 @@
-import { AxiosError, AxiosResponse } from 'axios'
+import { get, lectureQueryKeys, lectureUrl } from '@bitgouel/api'
 import { ApiErrorTypes, ProfessorResponseTypes } from '@bitgouel/types'
 import { UseQueryOptions, useQuery } from '@tanstack/react-query'
-import { get, lectureQueryKeys, lectureUrl } from '@bitgouel/api'
+import { AxiosError, AxiosResponse } from 'axios'
 
 export const useGetProfessor = (
   keyword: string,

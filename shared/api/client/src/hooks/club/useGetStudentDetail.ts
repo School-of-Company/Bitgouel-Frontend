@@ -1,5 +1,5 @@
-import { ClubStudentResponseTypes } from '@bitgouel/types'
 import { clubQueryKeys, clubUrl, get } from '@bitgouel/api'
+import { ClubStudentResponseTypes } from '@bitgouel/types'
 import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 import { AxiosError, AxiosResponse } from 'axios'
 import { ApiError } from 'next/dist/server/api-utils'

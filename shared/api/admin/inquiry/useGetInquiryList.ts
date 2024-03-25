@@ -1,8 +1,7 @@
-import { AnswerStatus, InquiryListQueryStringTypes } from '@bitgouel/types'
-import { ApiErrorTypes, InquiryListResponseTypes } from '@bitgouel/types'
+import { get, inquiryQueryKeys, inquiryUrl } from '@bitgouel/api'
+import { ApiErrorTypes, InquiryListQueryStringTypes, InquiryListResponseTypes } from '@bitgouel/types'
 import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 import { AxiosError, AxiosResponse } from 'axios'
-import { get, inquiryQueryKeys, inquiryUrl } from '@bitgouel/api'
 
 export const useGetInquiryList = (
   queryString: InquiryListQueryStringTypes,

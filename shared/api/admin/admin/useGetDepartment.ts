@@ -1,7 +1,7 @@
+import { get, lectureQueryKeys, lectureUrl } from '@bitgouel/api'
 import { ApiErrorTypes, DepartmentResponseTypes } from '@bitgouel/types'
 import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 import { AxiosError, AxiosResponse } from 'axios'
-import { get, lectureQueryKeys, lectureUrl } from '@bitgouel/api'
 
 export const useGetDepartment = (
   keyword: string,
