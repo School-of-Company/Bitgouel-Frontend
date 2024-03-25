@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { lectureQueryKeys, lectureUrl, post } from '../../../../common'
+import { lectureQueryKeys, lectureUrl, post } from '@bitgouel/api'
 import { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
 import { useModal } from '@bitgouel/common/src/hooks'
@@ -19,10 +19,9 @@ export const usePostEnrollment = (id: string) => {
         push('/main/lecture')
         toast.success('수강신청을 완료하였습니다')
       },
-      onError: ({response}) => {
-        toast.error(response?.data.message.split(".")[0])
+      onError: ({ response }) => {
+        toast.error(response?.data.message.split('.')[0])
       },
     }
   )
 }
-
