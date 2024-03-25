@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { adminQueryKeys, adminUrl, patch } from '../../common'
+import { adminQueryKeys, adminUrl, patch } from '@bitgouel/api'
 
 export const usePatchUserApprove = (userIds: string[]) =>
   useMutation<void>(

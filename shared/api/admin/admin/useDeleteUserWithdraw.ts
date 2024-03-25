@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { adminQueryKeys, adminUrl, del } from '../../common'
+import { adminQueryKeys, adminUrl, del } from '@bitgouel/api'
 
 export const useDeleteUserWithdraw = (userIds: string[]) =>
   useMutation<void>(

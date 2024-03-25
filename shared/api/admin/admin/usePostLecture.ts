@@ -2,7 +2,7 @@ import { LectureCreatePayloadTypes } from '@bitgouel/types'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
-import { lectureUrl, lectureQueryKeys, post } from '../../common'
+import { lectureUrl, lectureQueryKeys, post } from '@bitgouel/api'
 import { toast } from 'react-toastify'
 import { useModal } from '@bitgouel/common/src/hooks'
 

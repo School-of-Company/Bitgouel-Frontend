@@ -1,5 +1,5 @@
 import { UserListOptionsTypes, UserListResponseTypes } from '@bitgouel/types'
-import { adminQueryKeys, adminUrl, get } from '../../common'
+import { adminQueryKeys, adminUrl, get } from '@bitgouel/api'
 import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 import { AxiosResponse } from 'axios'
 
