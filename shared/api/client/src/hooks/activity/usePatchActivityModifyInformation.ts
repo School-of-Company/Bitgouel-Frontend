@@ -1,6 +1,6 @@
 import { ActivityPayloadTypes } from '@bitgouel/types'
 import { UseMutationOptions, useMutation } from '@tanstack/react-query'
-import { activityQueryKeys, activityUrl, patch } from '../../../../common'
+import { activityQueryKeys, activityUrl, patch } from '@bitgouel/api'
 
 export const usePatchActivityModifyInformation = (
   activityId: string,

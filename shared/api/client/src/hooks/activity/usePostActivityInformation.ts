@@ -1,7 +1,7 @@
 import { ActivityPayloadTypes } from '@bitgouel/types'
 import { UseMutationOptions, useMutation } from '@tanstack/react-query'
 import { AxiosResponse } from 'axios'
-import { activityQueryKeys, activityUrl, post } from '../../../../common'
+import { activityQueryKeys, activityUrl, post } from '@bitgouel/api'
 
 export const usePostActivityInformation = (
   options: UseMutationOptions<void, Error, ActivityPayloadTypes>

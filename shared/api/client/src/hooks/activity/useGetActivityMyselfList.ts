@@ -1,7 +1,7 @@
 import { ActivityInformationTypes, ActivityOptionsTypes } from '@bitgouel/types'
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
 import { AxiosResponse } from 'axios'
-import { activityQueryKeys, activityUrl, get } from '../../../../common'
+import { activityQueryKeys, activityUrl, get } from '@bitgouel/api'
 
 export const useGetActivityMyselfList = (
   queryString: ActivityOptionsTypes,
