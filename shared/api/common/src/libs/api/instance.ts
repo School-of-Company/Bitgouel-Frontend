@@ -29,6 +29,7 @@ instance.interceptors.request.use(
       await tokenManager.reissueToken()
       tokenManager.initToken()
     } else if (
+      !config?.url?.includes('/faq') &&
       !accessTokenIsValid &&
       !refreshTokenIsValid &&
       !config?.url?.includes('/auth')
