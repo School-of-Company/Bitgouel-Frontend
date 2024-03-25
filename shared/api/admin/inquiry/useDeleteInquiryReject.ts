@@ -4,7 +4,7 @@ import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
-import { del, inquiryQueryKeys, inquiryUrl } from '../../common'
+import { del, inquiryQueryKeys, inquiryUrl } from '@bitgouel/api'
 
 export const useDeleteInquiryReject = (id: string) => {
   const { push } = useRouter()
