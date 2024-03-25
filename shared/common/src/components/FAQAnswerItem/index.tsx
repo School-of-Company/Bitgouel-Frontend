@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
 
-const FAQAnswerItem = ({ refetchFAQs }) => {
+const FAQAnswerItem = ({ refetchFAQs }: { refetchFAQs: () => void }) => {
   const tokenManager = new TokenManager()
 
   const [answerStatus, setAnswerStatus] = useState<boolean>(false)
