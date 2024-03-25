@@ -1,9 +1,9 @@
+import { inquiryQueryKeys, inquiryUrl, post } from '@bitgouel/api'
 import { useModal } from '@bitgouel/common'
 import { ApiErrorTypes } from '@bitgouel/types'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
-import { inquiryQueryKeys, inquiryUrl, post } from '../../common'
 import { toast } from 'react-toastify'
 
 export const usePostAnswer = (id: string) => {

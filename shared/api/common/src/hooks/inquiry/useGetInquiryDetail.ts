@@ -1,7 +1,7 @@
-import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 import { get, inquiryQueryKeys, inquiryUrl } from '@bitgouel/api'
-import { AxiosError, AxiosResponse } from 'axios'
 import { ApiErrorTypes, InquiryDetailResponseTypes } from '@bitgouel/types'
+import { UseQueryOptions, useQuery } from '@tanstack/react-query'
+import { AxiosError, AxiosResponse } from 'axios'
 
 export const useGetInquiryDetail = (
   id: string,
