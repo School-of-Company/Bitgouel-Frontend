@@ -1,5 +1,5 @@
 import { lectureQueryKeys, lectureUrl, post } from '@bitgouel/api'
-import { useModal } from '@bitgouel/common/src/hooks'
+import { useModal } from '@bitgouel/common'
 import { ApiErrorTypes } from '@bitgouel/types'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
