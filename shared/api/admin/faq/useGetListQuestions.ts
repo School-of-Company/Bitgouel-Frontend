@@ -6,6 +6,6 @@ import { AxiosError, AxiosResponse } from 'axios'
 export const useGetListQuestions = (options?: UseQueryOptions<AxiosResponse>) =>
   useQuery<AxiosResponse<FAQListQuestionsTypes>, AxiosError<ApiErrorTypes>>(
     faqQueryKeys.getQuestions(),
-    () => get(faqUrl.listQuestions()),
+    () => get(faqUrl.faq()),
     options
   )

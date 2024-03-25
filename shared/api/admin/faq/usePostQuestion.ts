@@ -7,6 +7,6 @@ export const usePostQuestion = (
 ) =>
   useMutation<void, Error, FAQTypes>(
     faqQueryKeys.postQuestion(),
-    (value) => post(faqUrl.postQuestion(), value),
+    (value) => post(faqUrl.faq(), value),
     options
   )

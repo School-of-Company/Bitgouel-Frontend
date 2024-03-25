@@ -102,6 +102,5 @@ export const emailUrl = {
 }
 
 export const faqUrl = {
-  postQuestion: () => `/faq`,
-  listQuestions: () => `/faq`,
+  faq: () => `/faq`,
 }
