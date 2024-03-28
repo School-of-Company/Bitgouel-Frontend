@@ -38,7 +38,7 @@ export const Filter = styled.div`
   border-radius: 0.5rem;
   padding-bottom: 1.5rem;
   position: absolute;
-  top: 150%;
+  top: 4.5rem;
   gap: 0.5rem;
 
   h3 {

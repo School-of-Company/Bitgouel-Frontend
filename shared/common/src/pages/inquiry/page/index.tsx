@@ -11,7 +11,7 @@ import {
   Plus,
   SearchIcon,
 } from '@bitgouel/common'
-import { AnswerStatus, InquiryFiltersTypes } from '@bitgouel/types'
+import { AnswerStatus } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import * as S from './style'
@@ -32,7 +32,7 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
   })
   const [isFilter, setIsFilter] = useState<boolean>(false)
   const [inquiryStatus, setInquiryStatus] = useState([
-    { text: '전체', item: 'ds', checked: true },
+    { text: '전체', item: '', checked: true },
     { text: '답변 대기 중', item: 'UNANSWERED', checked: false },
     { text: '답변 완료됨', item: 'ANSWERED', checked: false },
   ])
@@ -46,6 +46,7 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
       )
     )
     if (e.target.checked) setAnswerStatus(e.target.id as AnswerStatus)
+    else if (e.target.id === '') setAnswerStatus('')
   }
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()

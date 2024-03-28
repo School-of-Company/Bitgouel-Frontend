@@ -10,11 +10,10 @@ import {
   SearchIcon,
   UserItem,
 } from '@bitgouel/common'
+import { RoleEnumTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
-import { AdminFilter } from '../../../components'
 import * as S from './style'
-import { RoleEnumTypes } from '@bitgouel/types'
 
 const UserListPage = () => {
   const [authority, setAuthority] = useState<RoleEnumTypes | 'ROLE_USER'>(

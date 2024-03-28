@@ -1,7 +1,6 @@
 export * from './ActivityItemProps'
 export * from './AppropriationModalProps'
 export * from './LectureItemProps'
-export * from './LectureTypeModalProps'
 export * from './PortalProps'
 export * from './SelectCalendarModalProps'
 export * from './SelectScoreModalProps'

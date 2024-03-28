@@ -1,23 +1,24 @@
 'use client'
 
-import { TokenManager, useDeleteLogout } from '@bitgouel/api'
+import { TokenManager, useDeleteLogout, useGetLectureList } from '@bitgouel/api'
 import { usePathname, useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useRecoilState } from 'recoil'
 import { match } from 'ts-pattern'
 import {
   Filter,
-  LectureTypeModal,
-  LectureTypeText,
+  FilterComponent,
+  LectureFilterType,
   Message,
   Plus,
   Question,
   Symbol1,
   Symbol2,
-  theme
+  theme,
 } from '@bitgouel/common'
 import * as S from './style'
+import { LectureTypeEnum } from '@bitgouel/types'
 
 const menuList = [
   { kor: '사업소개', link: '/' },
@@ -38,10 +39,37 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
   const [spanColor, setSpanColor] = useState<string>(`${theme.color.white}`)
   const [svgView, setSvgView] = useState<string>('none')
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
-  const [lectureTypeText, setLectureTypeText] =
-    useRecoilState<string>(LectureTypeText)
+  const [lectureTypes, setLectureTypes] = useState([
+    { text: '전체', item: '', checked: true },
+    { text: '상호학점인정교육과정', item: '', checked: true },
+    { text: '대학탐방프로그램', item: '', checked: true },
+  ])
+  const [lectureType, setLectureType] = useRecoilState<LectureTypeEnum | ''>(
+    LectureFilterType
+  )
   const [text, setText] = useState<string>('로그인')
   const { mutate } = useDeleteLogout()
+  const { refetch } = useGetLectureList({
+    page: 0,
+    size: 10,
+    type: lectureType || 'MUTUAL_CREDIT_RECOGNITION_PROGRAM',
+  })
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setLectureTypes((prev) =>
+      prev.map((type) =>
+        type.item === e.target.id
+          ? { ...type, checked: true }
+          : { ...type, checked: false }
+      )
+    )
+    if (e.target.checked) setLectureType(e.target.id as LectureTypeEnum)
+    else if (e.target.id === '') setLectureType('')
+  }
+
+  useEffect(() => {
+    refetch()
+  }, [lectureType])
 
   useEffect(() => {
     const onScroll = () => {
@@ -130,11 +158,10 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
                 <S.SelectFilterContainer>
                   <Filter onClick={() => setIsLectureType((prev) => !prev)} />
                   {isLectureType && (
-                    <LectureTypeModal
-                      location='헤더'
-                      text={lectureTypeText}
-                      setText={setLectureTypeText}
-                      setIsLectureType={setIsLectureType}
+                    <FilterComponent
+                      title='강의 유형'
+                      filterList={lectureTypes}
+                      onChange={onChange}
                     />
                   )}
                 </S.SelectFilterContainer>

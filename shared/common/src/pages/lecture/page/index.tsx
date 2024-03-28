@@ -4,32 +4,58 @@ import { useGetLectureList } from '@bitgouel/api'
 import {
   Bg3,
   Filter,
+  FilterComponent,
   LectureItem,
-  LectureTypeModal,
-  LectureTypeText,
+  LectureFilterType,
   Plus,
-  lectureTypeToEnum,
 } from '@bitgouel/common'
+import { LectureTypeEnum } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import * as S from './style'
 
 const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
+  const [lectureTypes, setLectureTypes] = useState([
+    { text: '전체', item: '', checked: true },
+    {
+      text: '상호학점인정교육과정',
+      item: 'MUTUAL_CREDIT_RECOGNITION_PROGRAM',
+      checked: true,
+    },
+    {
+      text: '대학탐방프로그램',
+      item: 'UNIVERSITY_EXPLORATION_PROGRAM',
+      checked: true,
+    },
+  ])
+  const [lectureType, setLectureType] = useRecoilState<LectureTypeEnum | ''>(
+    LectureFilterType
+  )
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
-  const [lectureTypeText, setLectureTypeText] =
-    useRecoilState<string>(LectureTypeText)
   const { push } = useRouter()
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setLectureTypes((prev) =>
+      prev.map((type) =>
+        type.item === e.target.id
+          ? { ...type, checked: true }
+          : { ...type, checked: false }
+      )
+    )
+    if (e.target.checked) setLectureType(e.target.id as LectureTypeEnum)
+    else if (e.target.id === '') setLectureType('')
+  }
+
   const { data, refetch } = useGetLectureList({
     page: 0,
     size: 10,
-    status: 'PENDING',
-    type: lectureTypeToEnum[lectureTypeText],
+    type: lectureType || 'MUTUAL_CREDIT_RECOGNITION_PROGRAM',
   })
-
+  
   useEffect(() => {
     refetch()
-  }, [lectureTypeText])
+  }, [lectureType])
 
   return (
     <div>
@@ -51,11 +77,10 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
                 <span>필터</span>
               </S.LectureButton>
               {isLectureType && (
-                <LectureTypeModal
-                  location='필터'
-                  text={lectureTypeText}
-                  setText={setLectureTypeText}
-                  setIsLectureType={setIsLectureType}
+                <FilterComponent
+                  title='강의 유형'
+                  filterList={lectureTypes}
+                  onChange={onChange}
                 />
               )}
             </S.SelectFilterContainer>
