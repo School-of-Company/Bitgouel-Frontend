@@ -75,7 +75,11 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
   }
 
   useEffect(() => {
-    setIsRole(roleArray.includes(tokenManager.authority) ? true : false)
+    setIsRole(
+      tokenManager.authority
+        ? roleArray.includes(tokenManager.authority)
+        : false
+    )
   }, [])
 
   return (
