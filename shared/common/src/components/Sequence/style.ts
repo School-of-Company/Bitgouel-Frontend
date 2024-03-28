@@ -30,7 +30,7 @@ export const TextContainer = styled.div`
     margin-right: 0.4375rem;
     margin-top: 1rem;
     width: 0.125rem;
-    height: 48px;
+    height: 3rem;
     background-color: ${({ theme }) => theme.color.white};
     opacity: 0.7;
   }
