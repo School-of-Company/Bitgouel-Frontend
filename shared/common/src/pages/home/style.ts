@@ -35,6 +35,7 @@ export const SlideBg = styled.div<{ url: StaticImageData }>`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
   background-image: url(${({ url }) => url.src});
   background-size: cover;
   justify-content: center;
