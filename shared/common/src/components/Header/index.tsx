@@ -49,11 +49,14 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
   )
   const [text, setText] = useState<string>('로그인')
   const { mutate } = useDeleteLogout()
-  const { refetch } = useGetLectureList({
-    page: 0,
-    size: 10,
-    type: lectureType || 'MUTUAL_CREDIT_RECOGNITION_PROGRAM',
-  })
+  const { refetch } = useGetLectureList(
+    {
+      page: 0,
+      size: 10,
+      type: lectureType || 'MUTUAL_CREDIT_RECOGNITION_PROGRAM',
+    },
+    { enabled: !!tokenManager.accessToken }
+  )
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setLectureTypes((prev) =>
@@ -66,10 +69,6 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
     if (e.target.checked) setLectureType(e.target.id as LectureTypeEnum)
     else if (e.target.id === '') setLectureType('')
   }
-
-  useEffect(() => {
-    refetch()
-  }, [lectureType])
 
   useEffect(() => {
     const onScroll = () => {
@@ -116,6 +115,7 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
     if (tokenManager.accessToken) {
       if (pathname === '/main/my') setText('로그아웃')
       else if (pathname !== '/main/my') setText('내 정보')
+      refetch()
     }
   }, [pathname])
 
