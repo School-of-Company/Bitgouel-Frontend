@@ -74,6 +74,17 @@ export const CheckLabel = styled.label`
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
+  position: relative;
+  
+
+  div {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background-color: ${({theme}) => theme.color.main};
+    position: absolute;
+    left: 0.24rem;
+  }
 
   span {
     color: ${({ theme }) => theme.color.white};

@@ -27,6 +27,7 @@ const FilterComponent = ({ title, filterList, onChange }: Props) => {
               checked={filter.checked}
               onChange={onChange}
             />
+            {filter.checked && <div />}
             <span>{filter.text}</span>
           </S.CheckLabel>
         ))}

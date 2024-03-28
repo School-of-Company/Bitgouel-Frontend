@@ -21,12 +21,12 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
     {
       text: '상호학점인정교육과정',
       item: 'MUTUAL_CREDIT_RECOGNITION_PROGRAM',
-      checked: true,
+      checked: false,
     },
     {
       text: '대학탐방프로그램',
       item: 'UNIVERSITY_EXPLORATION_PROGRAM',
-      checked: true,
+      checked: false,
     },
   ])
   const [lectureType, setLectureType] = useRecoilState<LectureTypeEnum | ''>(
@@ -52,7 +52,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
     size: 10,
     type: lectureType || 'MUTUAL_CREDIT_RECOGNITION_PROGRAM',
   })
-  
+
   useEffect(() => {
     refetch()
   }, [lectureType])

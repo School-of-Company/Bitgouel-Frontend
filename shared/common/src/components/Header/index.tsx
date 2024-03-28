@@ -41,8 +41,8 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
   const [lectureTypes, setLectureTypes] = useState([
     { text: '전체', item: '', checked: true },
-    { text: '상호학점인정교육과정', item: '', checked: true },
-    { text: '대학탐방프로그램', item: '', checked: true },
+    { text: '상호학점인정교육과정', item: '', checked: false },
+    { text: '대학탐방프로그램', item: '', checked: false },
   ])
   const [lectureType, setLectureType] = useRecoilState<LectureTypeEnum | ''>(
     LectureFilterType
