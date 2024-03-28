@@ -8,15 +8,19 @@ export const UserItem = styled.div<{ isCurrent: boolean }>`
   padding-left: ${({ isCurrent }) => (isCurrent ? '1rem' : '0')};
   border-bottom: 0.0625rem solid ${({ theme }) => theme.color.gray['900']};
   box-sizing: border-box;
+  position: relative;
 
   span {
-    margin-left: ${({isCurrent}) => !isCurrent && '1.5rem'};
-    
+    margin-left: ${({ isCurrent }) => !isCurrent && '1.5rem'};
     &:last-child {
-      margin-left: ${({isCurrent}) => isCurrent && '3rem'};
+      margin-left: ${({ isCurrent }) => isCurrent && '3rem'};
     }
   }
 
+  svg {
+    position: absolute;
+    left: 1.45rem;
+  }
 `
 
 export const UserCheckBox = styled.input`
@@ -25,6 +29,14 @@ export const UserCheckBox = styled.input`
   margin-left: 1.2rem;
   cursor: pointer;
   border: 0.0625rem solid ${({ theme }) => theme.color.gray['400']};
+  border-radius: 0.25rem;
+  background-color: ${({ theme }) => theme.color.white};
+  appearance: none;
+
+  &:checked {
+    background-color: ${({ theme }) => theme.color.main};
+    border: 0.0625rem solid ${({ theme }) => theme.color.main};
+  }
 `
 
 export const Name = styled.span`
