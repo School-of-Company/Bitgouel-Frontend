@@ -48,6 +48,7 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
     if (e.target.checked) setAnswerStatus(e.target.id as AnswerStatus)
     else if (e.target.id === '') setAnswerStatus('')
   }
+
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
     refetch()

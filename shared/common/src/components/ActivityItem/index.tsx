@@ -10,7 +10,6 @@ const ActivityItem: React.FC<ActivityItemTypes> = ({
   activityId,
 }) => {
   const { push } = useRouter()
-
   const { studentId, clubId } = studentIdProps
 
   return (
