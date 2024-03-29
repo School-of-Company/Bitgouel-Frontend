@@ -1,7 +1,7 @@
 'use client'
 // 어드민 페이지
 import { ClubItem } from '@/components'
-import SchoolFilterModal from '@/modals/SchoolFilterModal'
+import {SchoolFilterModal} from '@/modals'
 import { useGetClubList, useGetSchoolClubList } from '@bitgouel/api'
 import {
   Bg2,
