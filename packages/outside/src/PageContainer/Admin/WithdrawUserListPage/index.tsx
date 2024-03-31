@@ -44,7 +44,6 @@ const WithdrawUserListPage = () => {
       )
     )
     if (e.target.checked) setCohort(e.target.id as cohortTypes)
-    else setCohort('1')
   }
   const handleSelectUsers = (
     e: ChangeEvent<HTMLInputElement>,

@@ -18,7 +18,7 @@ import {
   theme,
 } from '@bitgouel/common'
 import * as S from './style'
-import { LectureTypeEnum } from '@bitgouel/types'
+import { LectureTypeEnum, LectureTypesFilterListTypes } from '@bitgouel/types'
 
 const menuList = [
   { kor: '사업소개', link: '/' },
@@ -39,10 +39,10 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
   const [spanColor, setSpanColor] = useState<string>(`${theme.color.white}`)
   const [svgView, setSvgView] = useState<string>('none')
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
-  const [lectureTypes, setLectureTypes] = useState([
-    { text: '전체', item: '', checked: true },
-    { text: '상호학점인정교육과정', item: '', checked: false },
-    { text: '대학탐방프로그램', item: '', checked: false },
+  const [lectureTypes, setLectureTypes] = useState<LectureTypesFilterListTypes[]>([
+    { text: '전체', item: 'all', checked: true },
+    { text: '상호학점인정교육과정', item: 'MUTUAL_CREDIT_RECOGNITION_PROGRAM', checked: false },
+    { text: '대학탐방프로그램', item: 'UNIVERSITY_EXPLORATION_PROGRAM', checked: false },
   ])
   const [lectureType, setLectureType] = useRecoilState<LectureTypeEnum | ''>(
     LectureFilterType
@@ -66,8 +66,8 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
           : { ...type, checked: false }
       )
     )
-    if (e.target.checked) setLectureType(e.target.id as LectureTypeEnum)
-    else if (e.target.id === '') setLectureType('')
+    if (e.target.checked && e.target.id === 'all') setLectureType('')
+    else if (e.target.checked) setLectureType(e.target.id as LectureTypeEnum)
   }
 
   useEffect(() => {

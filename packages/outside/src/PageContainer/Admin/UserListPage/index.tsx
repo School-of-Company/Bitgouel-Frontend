@@ -10,7 +10,7 @@ import {
   SearchIcon,
   UserItem,
 } from '@bitgouel/common'
-import { RoleEnumTypes } from '@bitgouel/types'
+import { JobsFilterListTypes, RoleEnumTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import * as S from './style'
@@ -19,7 +19,8 @@ const UserListPage = () => {
   const [authority, setAuthority] = useState<RoleEnumTypes | 'ROLE_USER'>(
     'ROLE_USER'
   )
-  const [jobs, setJobs] = useState([
+  const [jobs, setJobs] = useState<JobsFilterListTypes[]>([
+    { text: '전체', item: 'all', checked: true },
     { text: '관리자', item: 'ROLE_ADMIN', checked: false },
     { text: '학생', item: 'ROLE_STUDENT', checked: false },
     { text: '선생님', item: 'ROLE_TEACHER', checked: false },
@@ -37,8 +38,8 @@ const UserListPage = () => {
           : { ...job, checked: false }
       )
     )
-    if (e.target.checked) setAuthority(e.target.id as RoleEnumTypes)
-    else setAuthority('ROLE_USER')
+    if (e.target.checked && e.target.id === 'all') setAuthority('ROLE_USER')
+    else if (e.target.checked) setAuthority(e.target.id as RoleEnumTypes)
   }
 
   const { push } = useRouter()

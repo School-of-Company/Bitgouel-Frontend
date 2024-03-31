@@ -9,15 +9,17 @@ import {
   LectureFilterType,
   Plus,
 } from '@bitgouel/common'
-import { LectureTypeEnum } from '@bitgouel/types'
+import { LectureTypeEnum, LectureTypesFilterListTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import * as S from './style'
 
 const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
-  const [lectureTypes, setLectureTypes] = useState([
-    { text: '전체', item: '', checked: true },
+  const [lectureTypes, setLectureTypes] = useState<
+    LectureTypesFilterListTypes[]
+  >([
+    { text: '전체', item: 'all', checked: true },
     {
       text: '상호학점인정교육과정',
       item: 'MUTUAL_CREDIT_RECOGNITION_PROGRAM',
@@ -43,8 +45,9 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
           : { ...type, checked: false }
       )
     )
-    if (e.target.checked) setLectureType(e.target.id as LectureTypeEnum)
-    else if (e.target.id === '') setLectureType('')
+
+    if (e.target.checked && e.target.id === 'all') setLectureType('')
+    else if (e.target.checked) setLectureType(e.target.id as LectureTypeEnum)
   }
 
   const { data, refetch } = useGetLectureList({
