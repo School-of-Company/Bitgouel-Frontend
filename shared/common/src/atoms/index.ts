@@ -16,9 +16,9 @@ interface InputLectureDatesTypes extends LectureDate {
   endShowTime: string
 }
 
-export const LectureTypeText = atom<LectureTypeKor>({
-  key: 'LectureTypeText',
-  default: '상호학점인정교육과정',
+export const LectureFilterType = atom<LectureTypeEnum | ''>({
+  key: 'LectureFilterType',
+  default: '',
 })
 
 // Modal

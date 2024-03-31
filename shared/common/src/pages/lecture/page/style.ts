@@ -56,11 +56,14 @@ export const SelectFilterContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  gap: 1rem;
 `
 
 export const ListWrapper = styled.div`
   display: flex;
   justify-content: center;
+  height: 100vh;
 `
 export const ListContainer = styled.div`
   width: 75rem;

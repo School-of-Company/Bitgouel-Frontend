@@ -1,4 +1,3 @@
-import { get } from './../../../../../../shared/api/common/src/libs/api/method'
 import styled from '@emotion/styled'
 import { StaticImageData } from 'next/image'
 import { UserSearchFilter, UserSearchFilterBox } from '../UserListPage/style'
@@ -89,13 +88,8 @@ export const WithdrawButtonContainer = styled.div`
   gap: 0.625rem;
 `
 
-export const FilterContainer = styled(UserSearchFilterBox)`
-  height: 2.5rem;
-`
-
-export const FilterBox = styled(UserSearchFilter)`
-  height: 2.5rem;
-`
+export const FilterContainer = styled(UserSearchFilterBox)``
+export const FilterBox = styled(UserSearchFilter)`height: 2.5rem;`
 
 export const SelectWithdrawBox = styled.div`
   width: 7.75rem;

@@ -89,7 +89,6 @@ export const UserSearchFilterBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 24rem;
   position: relative;
 `
 

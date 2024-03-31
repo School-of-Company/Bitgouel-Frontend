@@ -14,5 +14,5 @@ export const Primary: Story = {
   args: {
     clubId: '1234',
     clubName: 'dev GSM'
-  }
+  },
 }
