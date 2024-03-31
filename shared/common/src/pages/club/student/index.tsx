@@ -50,11 +50,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
   const [isRole, setIsRole] = useState<boolean>(false)
   const { openModal, closeModal } = useModal()
   const [isStudent, setIsStudent] = useState<boolean>(false)
-
-  const { openModal, closeModal } = useModal()
-
   const { data: clubStudent, refetch } = useGetStudentDetail(clubId, studentId)
-  const { data: myPageData } = useGetMy()
 
   const { mutate } = usePostCertificate({
     onSuccess: () => {
