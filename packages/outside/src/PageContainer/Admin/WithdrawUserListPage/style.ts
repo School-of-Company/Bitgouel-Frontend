@@ -1,4 +1,3 @@
-import { get } from './../../../../../../shared/api/common/src/libs/api/method'
 import styled from '@emotion/styled'
 import { StaticImageData } from 'next/image'
 import { UserSearchFilter, UserSearchFilterBox } from '../UserListPage/style'

@@ -1,7 +1,7 @@
 'use client'
 
 import * as S from '../style'
-import { Banner1 } from '../../../assets'
+import { Banner1 } from '@bitgouel/common'
 
 const companyList: string[] = [
   '보람엔지니어링',

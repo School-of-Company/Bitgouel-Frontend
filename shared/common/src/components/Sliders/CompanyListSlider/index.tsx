@@ -1,16 +1,16 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import Slider from 'react-slick'
-import 'slick-carousel/slick/slick-theme.css'
-import 'slick-carousel/slick/slick.css'
 import {
   CompanyListContents1,
   CompanyListContents2,
   CompanyListContents3,
   CompanyListContents4,
   CompanyListContents5,
-} from '../..'
+} from '@bitgouel/common'
+import { useEffect, useRef } from 'react'
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick-theme.css'
+import 'slick-carousel/slick/slick.css'
 import { SlideLeftArrow, SlideRightArrow } from '../../../assets'
 import * as S from '../style'
 
