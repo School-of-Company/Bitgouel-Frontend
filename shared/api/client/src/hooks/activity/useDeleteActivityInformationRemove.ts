@@ -1,5 +1,5 @@
+import { activityQueryKeys, activityUrl, del } from '@bitgouel/api'
 import { useMutation } from '@tanstack/react-query'
-import { activityQueryKeys, del, activityUrl } from '../../../../common'
 import { AxiosResponse } from 'axios'
 
 export const useDeleteInformationRemove = (activity_id: string) =>

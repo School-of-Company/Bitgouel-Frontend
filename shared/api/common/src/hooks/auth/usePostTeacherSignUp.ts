@@ -1,5 +1,3 @@
-'use client'
-
 import { authQueryKeys, authUrl, post } from '@bitgouel/api'
 import { ApiErrorTypes, TeacherPayloadTypes } from '@bitgouel/types'
 import { UseMutationOptions, useMutation } from '@tanstack/react-query'

@@ -39,6 +39,7 @@ const ActivityModifyPage: React.FC<ActivityDetailProps> = ({
       closeModal()
       push(`/main/club/${clubId}/student/${studentId}/activity`)
       toast.success('수정하였습니다.')
+      refetch()
     },
   })
 

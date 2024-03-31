@@ -1,10 +1,12 @@
 'use client'
 
+import { useModal } from '@bitgouel/common'
+import { TokenManager, usePostQuestion } from '@bitgouel/api'
 import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 import * as S from './style'
-import { TokenManager } from '@bitgouel/api'
 
-const FAQAnswerItem = () => {
+const FAQAnswerItem = ({ refetchFAQs }: { refetchFAQs: () => void }) => {
   const tokenManager = new TokenManager()
 
   const [answerStatus, setAnswerStatus] = useState<boolean>(false)
@@ -12,14 +14,38 @@ const FAQAnswerItem = () => {
   const [answer, setAnswer] = useState<string>('')
   const [isAdmin, setIsAdmin] = useState<boolean>(false)
 
+  const { openModal, closeModal } = useModal()
+
+  const { mutate } = usePostQuestion({
+    onSuccess: () => {
+      toast.success('작성되었습니다.')
+      refetchFAQs()
+    },
+    onError: () => {
+      toast.error('작성에 실패하였습니다.')
+    },
+  })
+
   const answeringDelete = () => {
     setQuestion('')
     setAnswer('')
     setAnswerStatus(false)
   }
 
+  const onCreate = () => {
+    if (question && answer) {
+      mutate({
+        question: question,
+        answer: answer,
+      })
+      setAnswerStatus(false)
+    } else {
+      toast.error('빈 공백을 입력해주세요.')
+    }
+  }
+
   useEffect(() => {
-    if (tokenManager.authority === 'ROLE_ADMIN') setIsAdmin(true)
+    setIsAdmin(tokenManager.authority === 'ROLE_ADMIN')
   }, [])
 
   return (
@@ -51,7 +77,7 @@ const FAQAnswerItem = () => {
           <S.DeleteButton onClick={() => answeringDelete()}>
             취소
           </S.DeleteButton>
-          <S.SuccessButton>작성</S.SuccessButton>
+          <S.SuccessButton onClick={onCreate}>작성</S.SuccessButton>
         </S.ButtonWrapper>
       </S.AnsweringBox>
     </S.FAQAnswerItemWrapper>

@@ -1,7 +1,7 @@
+import { certificateQueryKeys, certificateUrl, get } from '@bitgouel/api'
 import { CertificateResponseTypes } from '@bitgouel/types'
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
 import { AxiosResponse } from 'axios'
-import { certificateQueryKeys, certificateUrl, get } from '../../../../common'
 
 export const useGetCertificateListTeacher = (
   student_id: string,

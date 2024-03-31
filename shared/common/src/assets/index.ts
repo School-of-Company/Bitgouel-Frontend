@@ -1,2 +1,2 @@
 export * from './svg'
-export * from './png'
+export * from './images'

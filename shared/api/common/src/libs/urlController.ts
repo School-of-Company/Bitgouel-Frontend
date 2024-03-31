@@ -39,9 +39,9 @@ export const activityUrl = {
   activityInformationRemove: (activity_id: string) =>
     `/activity/${activity_id}`,
   activityMyselfList: (options: ActivityOptionsTypes) =>
-    `/activity/my?page=${options.page}&size=${options.size}`,
+    `/activity/my?page=${options.page}&size=${options.size}&sort=activityDate,desc`,
   activityList: (student_id: string, options: ActivityOptionsTypes) =>
-    `/activity/${student_id}?page=${options.page}&size=${options.size}`,
+    `/activity/${student_id}?page=${options.page}&size=${options.size}&sort=activityDate, asc`,
   activityInformationDetail: (activity_id: string) =>
     `/activity/${activity_id}/detail`,
 }
@@ -101,3 +101,6 @@ export const emailUrl = {
   email: () => `/email`,
 }
 
+export const faqUrl = {
+  faq: () => `/faq`,
+}
