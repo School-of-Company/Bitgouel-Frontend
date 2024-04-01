@@ -47,8 +47,6 @@ const CertificateItem: React.FC<CertificateProps> = ({
   const [isModify, setIsModify] = useState<boolean>(false)
   const [isRole, setIsRole] = useState<boolean>(false)
 
-  const [isModifyCertificate, setIdModifyCertificate] = useState<boolean>(false)
-
   const onModify = () => {
     const payload: CertificateRequest = {
       name: modifyText,
