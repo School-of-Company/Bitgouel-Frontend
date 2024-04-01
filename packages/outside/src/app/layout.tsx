@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { GlobalLayout } from '@bitgouel/common/src/layouts'
 import '@bitgouel/common/src/styles/globals.css'
-import '@/styles/font.css'
 import { Header } from '@bitgouel/common/src/components'
 import RecoilRootProvider from './recoilRootProvider'
 
