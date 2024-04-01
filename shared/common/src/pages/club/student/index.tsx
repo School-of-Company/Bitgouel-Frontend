@@ -52,21 +52,12 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
 
   const { openModal, closeModal } = useModal()
 
-  const { data: clubStudent, refetch } = useGetStudentDetail(clubId, studentId)
+  const { data: clubStudent } = useGetStudentDetail(clubId, studentId)
   const { data: myPageData } = useGetMy()
-
-  const { mutate } = usePostCertificate({
-    onSuccess: () => {
-      closeModal()
-      refetch()
-      setIsAddCertificate(false)
-      toast.success('자격증을 추가하였습니다.')
-    },
-  })
 
   const tokenManager = new TokenManager()
 
-  const { data: certificateList } = isStudent
+  const { data: certificateList, refetch } = isStudent
     ? useGetCertificateList()
     : useGetCertificateListTeacher(studentId)
   const onCreate = () => {
@@ -84,6 +75,14 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
     mutate(payload)
   }
 
+  const { mutate } = usePostCertificate({
+    onSuccess: () => {
+      refetch()
+      closeModal()
+      setIsAddCertificate(false)
+      toast.success('자격증을 추가하였습니다.')
+    },
+  })
   useEffect(() => {
     setIsStudent(tokenManager.authority === 'ROLE_STUDENT')
 
@@ -192,7 +191,6 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
                 <div
                   onClick={() => {
                     setCertificateIndex(idx)
-                    console.log(certificateIndex)
                   }}
                   key={idx}
                 >
@@ -200,6 +198,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
                     key={idx}
                     certificateItems={certificate}
                     isOpenCalendar={idx === certificateIndex}
+                    refetchModify={refetch}
                   />
                 </div>
               ))}

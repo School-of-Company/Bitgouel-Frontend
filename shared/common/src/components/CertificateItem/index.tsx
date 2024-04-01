@@ -23,12 +23,19 @@ const roleArray: RoleEnumTypes[] = ['ROLE_STUDENT', 'ROLE_TEACHER']
 const CertificateItem: React.FC<CertificateProps> = ({
   certificateItems,
   isOpenCalendar,
+  refetchModify,
 }) => {
   const { id, name, acquisitionDate } = certificateItems
-  const { mutate } = usePatchModifyCertificate(id)
 
   const tokenManager = new TokenManager()
 
+  const { mutate } = usePatchModifyCertificate(id, {
+    onSuccess: () => {
+      closeModal()
+      refetchModify()
+      setIsModify(false)
+    },
+  })
   const [isCertificateDate, setIsCertificateDate] = useState<boolean>(false)
   const [modifyText, setModifyText] = useState<string>(certificateItems.name)
   const [modifyDateText, setModifyDateText] = useState<string>(
@@ -39,6 +46,8 @@ const CertificateItem: React.FC<CertificateProps> = ({
 
   const [isModify, setIsModify] = useState<boolean>(false)
   const [isRole, setIsRole] = useState<boolean>(false)
+
+  const [isModifyCertificate, setIdModifyCertificate] = useState<boolean>(false)
 
   const onModify = () => {
     const payload: CertificateRequest = {
@@ -52,10 +61,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
         .toString()
         .padStart(2, '0')}`,
     }
-
     mutate(payload)
-    closeModal()
-    window.location.reload()
   }
 
   useEffect(() => {
@@ -146,7 +152,11 @@ const CertificateItem: React.FC<CertificateProps> = ({
               .join('')}
           </span>
           {isRole && (
-            <S.ModifyText onClick={() => setIsModify(true)}>
+            <S.ModifyText
+              onClick={() => {
+                setIsModify(true)
+              }}
+            >
               수정하기
             </S.ModifyText>
           )}
