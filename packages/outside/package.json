@@ -15,7 +15,8 @@
     "@bitgouel/types": "workspace:^",
     "next": "13.4.2",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "sharp": "^0.33.3"
   },
   "devDependencies": {
     "@types/node": "^20",
