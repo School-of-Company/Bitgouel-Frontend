@@ -1,5 +1,5 @@
 import { GlobalLayout, Header } from '@bitgouel/common'
-import '@bitgouel/common'
+import '@bitgouel/common/src/styles/globals.css'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import RecoilRootProvider from './recoilRootProvider'
