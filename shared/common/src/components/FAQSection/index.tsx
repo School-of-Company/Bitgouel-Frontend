@@ -20,7 +20,6 @@ const FAQSection = () => {
           {data?.data.faqs.map((item) => (
             <FAQItem
               key={item.id}
-              id={item.id}
               question={item.question}
               answer={item.answer}
             />

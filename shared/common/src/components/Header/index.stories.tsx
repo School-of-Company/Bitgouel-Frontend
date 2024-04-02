@@ -10,4 +10,14 @@ export default {
 
 type Story = StoryObj<typeof Header>
 
-export const Primary: Story = {}
+export const Client: Story = {
+  args: {
+    is_admin: false
+  }
+}
+
+export const Admin: Story = {
+  args: {
+    is_admin: true
+  }
+}

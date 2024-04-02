@@ -5,6 +5,7 @@ import {
   AppropriationModal,
   Bg6,
   Check,
+  FilterComponent,
   FilterOut,
   PeopleCircle,
   Plus,
@@ -12,20 +13,38 @@ import {
   useModal,
 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, useState } from 'react'
-import { AdminFilter } from '../../../components'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { TopContainer } from '../NewUserListPage/style'
 import { UserListContainer } from '../UserListPage/style'
 import * as S from './style'
 
+type cohortTypes = '1' | '2' | '3' | '4'
+
 const WithdrawUserListPage = () => {
   const { push } = useRouter()
   const [userIds, setUserIds] = useState<string[]>([])
-  const { data } = useGetWithDrawUserList('1')
+  const [cohorts, setCohorts] = useState([
+    { text: '1기', item: '1', checked: true },
+    { text: '2기', item: '2', checked: false },
+    { text: '3기', item: '3', checked: false },
+    { text: '4기', item: '4', checked: false },
+  ])
+  const [cohort, setCohort] = useState<cohortTypes>('1')
+  const { data, refetch } = useGetWithDrawUserList(cohort)
   const { mutate } = useDeleteUserWithdraw(userIds)
   const [isFilter, setIsFilter] = useState<boolean>(false)
   const { openModal } = useModal()
 
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setCohorts((prev) =>
+      prev.map((cohort) =>
+        cohort.item === e.target.id
+          ? { ...cohort, checked: true }
+          : { ...cohort, checked: false }
+      )
+    )
+    if (e.target.checked) setCohort(e.target.id as cohortTypes)
+  }
   const handleSelectUsers = (
     e: ChangeEvent<HTMLInputElement>,
     userId: string
@@ -50,6 +69,10 @@ const WithdrawUserListPage = () => {
       />
     )
   }
+
+  useEffect(() => {
+    refetch()
+  }, [cohort])
 
   return (
     <div>
@@ -80,14 +103,16 @@ const WithdrawUserListPage = () => {
                 <FilterOut />
                 필터
               </S.FilterBox>
-              {isFilter && <AdminFilter type='withdraw' />}
+              {isFilter && (
+                <FilterComponent
+                  title='기수'
+                  filterList={cohorts}
+                  onChange={onChange}
+                />
+              )}
             </S.FilterContainer>
             <S.AllWithdrawBox htmlFor='allWithdraw'>
-              <input
-                type='checkbox'
-                id='allWithdraw'
-                onChange={onAll}
-              />
+              <input type='checkbox' id='allWithdraw' onChange={onAll} />
               <PeopleCircle />
               전체 선택
             </S.AllWithdrawBox>

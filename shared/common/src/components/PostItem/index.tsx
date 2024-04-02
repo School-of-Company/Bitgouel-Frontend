@@ -1,11 +1,11 @@
 'use client'
 
-import { PostItemProps } from '@bitgouel/types'
-import * as S from './style'
 import { usePathname, useRouter } from 'next/navigation'
 import { match } from 'ts-pattern'
+import * as S from './style'
+import { PostItemTypes } from '@bitgouel/types'
 
-const PostItem = ({ item }: PostItemProps) => {
+const PostItem = ({ item }: { item: PostItemTypes }) => {
   const { push } = useRouter()
   const pathname = usePathname()
 

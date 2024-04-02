@@ -5,9 +5,9 @@ import {
   AppropriationModal,
   Bg2,
   Chevron,
-  SelectCalendarTimeModal,
+  SelectCalendarModal,
   SelectScoreModal,
-  useModal,
+  useModal
 } from '@bitgouel/common'
 import { StudentIdProps } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
@@ -98,7 +98,7 @@ const ActivityCreatePage: React.FC<{ studentIdProps: StudentIdProps }> = ({
               <S.SettingSelection>
                 <S.SelectModalContainer>
                   {isActivityDate && (
-                    <SelectCalendarTimeModal
+                    <SelectCalendarModal
                       date={activityDate}
                       setDate={setActivityDate}
                       setText={setActivityDateText}

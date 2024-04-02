@@ -3,6 +3,7 @@
 import { useGetInquiryList, useGetMyInquiryList } from '@bitgouel/api'
 import {
   Bg5,
+  FilterComponent,
   FilterOut,
   InquiryItem,
   MegaPhone,
@@ -10,7 +11,7 @@ import {
   Plus,
   SearchIcon,
 } from '@bitgouel/common'
-import { AnswerStatus, InquiryFiltersTypes } from '@bitgouel/types'
+import { AnswerStatus, InquiryStatusFilterListTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import * as S from './style'
@@ -30,23 +31,24 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
     enabled: !isAdmin,
   })
   const [isFilter, setIsFilter] = useState<boolean>(false)
-  const [inquiryStatus, setInquiryStatus] = useState<InquiryFiltersTypes[]>([
-    { text: '전체', status: '', checked: true },
-    { text: '답변 대기 중', status: 'UNANSWERED', checked: false },
-    { text: '답변 완료됨', status: 'ANSWERED', checked: false },
+  const [inquiryStatus, setInquiryStatus] = useState<InquiryStatusFilterListTypes[]>([
+    { text: '전체', item: 'all', checked: true },
+    { text: '답변 대기 중', item: 'UNANSWERED', checked: false },
+    { text: '답변 완료됨', item: 'ANSWERED', checked: false },
   ])
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInquiryStatus((prev) =>
-      prev.map((inquiry: any) =>
-        inquiry.status === e.target.id
+      prev.map((inquiry) =>
+        inquiry.item === e.target.id
           ? { ...inquiry, checked: true }
           : { ...inquiry, checked: false }
       )
     )
-    if (e.target.checked) setAnswerStatus(e.target.id as AnswerStatus)
-    else return
+    if (e.target.checked && e.target.id === 'all') setAnswerStatus('')
+    else if (e.target.checked) setAnswerStatus(e.target.id as AnswerStatus)
   }
+
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
     refetch()
@@ -101,22 +103,11 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
                 <span>필터</span>
               </S.Filter>
               {isFilter && (
-                <S.InquiryFilter>
-                  <h3>문의 상태</h3>
-                  <S.CheckListContainer>
-                    {inquiryStatus.map((inquiry, idx) => (
-                      <S.CheckBox key={idx} htmlFor={inquiry.status}>
-                        <S.Check
-                          type='radio'
-                          id={inquiry.status}
-                          checked={inquiry.checked}
-                          onChange={onChange}
-                        />
-                        <span>{inquiry.text}</span>
-                      </S.CheckBox>
-                    ))}
-                  </S.CheckListContainer>
-                </S.InquiryFilter>
+                <FilterComponent
+                  title='문의 상태'
+                  filterList={inquiryStatus}
+                  onChange={onChange}
+                />
               )}
             </S.InquiryFilterBox>
           </S.SearchContainer>

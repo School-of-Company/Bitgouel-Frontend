@@ -49,11 +49,12 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
   const [certificateIndex, setCertificateIndex] = useState<number>(-1)
   const [isRole, setIsRole] = useState<boolean>(false)
   const [isStudent, setIsStudent] = useState<boolean>(false)
-
+  
   const { openModal, closeModal } = useModal()
 
-  const { data: clubStudent } = useGetStudentDetail(clubId, studentId)
+  const { data: clubStudent, refetch } = useGetStudentDetail(clubId, studentId)
   const { data: myPageData } = useGetMy()
+
 
   const tokenManager = new TokenManager()
 
@@ -84,9 +85,12 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
     },
   })
   useEffect(() => {
+    setIsRole(
+      tokenManager.authority
+        ? roleArray.includes(tokenManager.authority)
+        : false
+    )
     setIsStudent(tokenManager.authority === 'ROLE_STUDENT')
-
-    setIsRole(roleArray.includes(tokenManager.authority || 'ROLE_STUDENT'))
   }, [])
 
   return (

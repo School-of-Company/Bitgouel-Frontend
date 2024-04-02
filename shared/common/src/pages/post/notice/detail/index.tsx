@@ -25,7 +25,11 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
   const [isRole, setIsRole] = useState<boolean>(false)
 
   useEffect(() => {
-    setIsRole(roleArray.includes(tokenManager.authority || 'ROLE_STUDENT'))
+    setIsRole(
+      tokenManager.authority
+        ? roleArray.includes(tokenManager.authority)
+        : false
+    )
   }, [])
 
   return (

@@ -1,7 +1,7 @@
 'use client'
 
 import * as S from '../style'
-import { Banner2 } from '../../../assets'
+import { Banner2 } from '@bitgouel/common'
 
 const schoolList: string[] = [
   '광주공업고등학교',
