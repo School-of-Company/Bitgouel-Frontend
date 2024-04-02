@@ -3,6 +3,9 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   transpilePackages: ['common', 'api'],
+  images: {
+    formats: ['image/avif', 'image/webp'],
+  },
 
   async rewrites() {
     return [
