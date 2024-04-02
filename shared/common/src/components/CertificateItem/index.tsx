@@ -150,11 +150,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
               .join('')}
           </span>
           {isRole && (
-            <S.ModifyText
-              onClick={() => {
-                setIsModify(true)
-              }}
-            >
+            <S.ModifyText onClick={() => setIsModify(true)}>
               수정하기
             </S.ModifyText>
           )}
