@@ -48,22 +48,16 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
   const [certificateDateText, setCertificateDateText] = useState<string>('')
   const [certificateIndex, setCertificateIndex] = useState<number>(-1)
   const [isRole, setIsRole] = useState<boolean>(false)
-  const { openModal, closeModal } = useModal()
   const [isStudent, setIsStudent] = useState<boolean>(false)
-  const { data: clubStudent, refetch } = useGetStudentDetail(clubId, studentId)
 
-  const { mutate } = usePostCertificate({
-    onSuccess: () => {
-      closeModal()
-      refetch()
-      setIsAddCertificate(false)
-      toast.success('자격증을 추가하였습니다.')
-    },
-  })
+  const { openModal, closeModal } = useModal()
+
+  const { data: clubStudent } = useGetStudentDetail(clubId, studentId)
+  const { data: myPageData } = useGetMy()
 
   const tokenManager = new TokenManager()
 
-  const { data: certificateList } = isStudent
+  const { data: certificateList, refetch } = isStudent
     ? useGetCertificateList()
     : useGetCertificateListTeacher(studentId)
   const onCreate = () => {
@@ -81,6 +75,14 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
     mutate(payload)
   }
 
+  const { mutate } = usePostCertificate({
+    onSuccess: () => {
+      refetch()
+      closeModal()
+      setIsAddCertificate(false)
+      toast.success('자격증을 추가하였습니다.')
+    },
+  })
   useEffect(() => {
     setIsRole(
       tokenManager.authority
@@ -192,7 +194,6 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
                 <div
                   onClick={() => {
                     setCertificateIndex(idx)
-                    console.log(certificateIndex)
                   }}
                   key={idx}
                 >
@@ -200,6 +201,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
                     key={idx}
                     certificateItems={certificate}
                     isOpenCalendar={idx === certificateIndex}
+                    refetchModify={refetch}
                   />
                 </div>
               ))}
