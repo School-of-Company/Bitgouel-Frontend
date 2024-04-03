@@ -1,8 +1,9 @@
 import { ActivityCreatePage } from '@/PageContainer'
 import { StudentIdProps } from '@bitgouel/types'
+import { ActivityWritePage } from '@bitgouel/common'
 
-const ActivityCreate = ({ params }: { params: StudentIdProps }) => {
-  return <ActivityCreatePage studentIdProps={params} />
+const ActivityCreate = () => {
+  return <ActivityWritePage />
 }
 
 export default ActivityCreate

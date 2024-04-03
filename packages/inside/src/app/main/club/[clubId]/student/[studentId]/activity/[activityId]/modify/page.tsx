@@ -1,14 +1,16 @@
 import { ActivityModifyPage } from '@/PageContainer'
 import { StudentIdProps } from '@bitgouel/types'
+import { ActivityWritePage } from '@bitgouel/common'
 
 const ActivityModify = ({
   params,
 }: {
-  params: StudentIdProps & { activityId: string }
+  params: { studentId: string; clubId: string; activityId: string }
 }) => {
   return (
-    <ActivityModifyPage
-      studentIdProps={params}
+    <ActivityWritePage
+      studentId={params.studentId}
+      clubId={params.clubId}
       activityId={params.activityId}
     />
   )
