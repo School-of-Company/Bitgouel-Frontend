@@ -165,17 +165,17 @@ const ActivityWritePage = ({
             value={activityTitle}
             placeholder='활동 제목(100자 이내)'
             maxLength={MAXTITLELENGTH}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setActivityTitle(e.target.value)
-            }}
+            }
           />
           <S.InputMainText
             value={activityContent}
             maxLength={MAXCONTENTLENGTH}
             placeholder='본문 입력 (1000자 이내)'
-            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
+            onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
               setActivityContent(e.target.value)
-            }}
+            }
           />
           <S.ActivitySetting>
             <S.SettingTitle>활동 세부 설정</S.SettingTitle>
