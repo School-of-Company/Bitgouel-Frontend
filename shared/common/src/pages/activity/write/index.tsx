@@ -49,7 +49,7 @@ const ActivityWritePage = ({
   const [activityTitle, setActivityTitle] = useState<string>('')
   const [activityContent, setActivityContent] = useState<string>('')
 
-  const openSelectModal = (type: string) => {
+  const openSelectModal = (type: '학점 선택' | '활동 날짜 선택') => {
     if (type === '학점 선택') {
       setIsActivityDate(false)
       setIsScore((prev) => !prev)
