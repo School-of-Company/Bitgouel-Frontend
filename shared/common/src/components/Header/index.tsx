@@ -39,24 +39,26 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
   const [spanColor, setSpanColor] = useState<string>(`${theme.color.white}`)
   const [svgView, setSvgView] = useState<string>('none')
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
-  const [lectureTypes, setLectureTypes] = useState<LectureTypesFilterListTypes[]>([
+  const [lectureTypes, setLectureTypes] = useState<
+    LectureTypesFilterListTypes[]
+  >([
     { text: '전체', item: 'all', checked: true },
-    { text: '상호학점인정교육과정', item: 'MUTUAL_CREDIT_RECOGNITION_PROGRAM', checked: false },
-    { text: '대학탐방프로그램', item: 'UNIVERSITY_EXPLORATION_PROGRAM', checked: false },
+    {
+      text: '상호학점인정교육과정',
+      item: 'MUTUAL_CREDIT_RECOGNITION_PROGRAM',
+      checked: false,
+    },
+    {
+      text: '대학탐방프로그램',
+      item: 'UNIVERSITY_EXPLORATION_PROGRAM',
+      checked: false,
+    },
   ])
   const [lectureType, setLectureType] = useRecoilState<LectureTypeEnum | ''>(
     LectureFilterType
   )
   const [text, setText] = useState<string>('로그인')
   const { mutate } = useDeleteLogout()
-  const { refetch } = useGetLectureList(
-    {
-      page: 0,
-      size: 10,
-      type: lectureType || 'MUTUAL_CREDIT_RECOGNITION_PROGRAM',
-    },
-    { enabled: !!tokenManager.accessToken }
-  )
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setLectureTypes((prev) =>
@@ -115,7 +117,6 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
     if (tokenManager.accessToken) {
       if (pathname === '/main/my') setText('로그아웃')
       else if (pathname !== '/main/my') setText('내 정보')
-      refetch()
     }
   }, [pathname])
 
@@ -153,29 +154,6 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
         </S.MenuWrapper>
         <S.ButtonWrapper view={svgView}>
           {match(pathname)
-            .with('/main/lecture', () => (
-              <>
-                <S.SelectFilterContainer>
-                  <Filter onClick={() => setIsLectureType((prev) => !prev)} />
-                  {isLectureType && (
-                    <FilterComponent
-                      title='강의 유형'
-                      filterList={lectureTypes}
-                      onChange={onChange}
-                    />
-                  )}
-                </S.SelectFilterContainer>
-                {(tokenManager.authority === 'ROLE_PROFESSOR' ||
-                  tokenManager.authority === 'ROLE_GOVERNMENT' ||
-                  tokenManager.authority === 'ROLE_COMPANY_INSTRUCTOR') && (
-                  <Plus
-                    onClick={() => {
-                      push('/main/lecture/create')
-                    }}
-                  />
-                )}
-              </>
-            ))
             .with('/main/post', () => (
               <>
                 <Message onClick={() => push('/main/post/notice')} />
