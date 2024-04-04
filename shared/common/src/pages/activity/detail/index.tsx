@@ -13,6 +13,7 @@ import {
   useModal,
 } from '@bitgouel/common'
 import { ActivityDetailProps } from '@bitgouel/types'
+import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
@@ -24,13 +25,11 @@ const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
 }) => {
   const { push } = useRouter()
   const { openModal, closeModal } = useModal()
-
   const tokenManager = new TokenManager()
-
-  const { studentId, clubId } = studentIdProps
-
-  const { data } = useGetActivityDetail(activityId)
-  const { mutate } = useDeleteInformationRemove(activityId)
+  const { studentId, clubId } = studentIdProps || {}
+  const { data } = useGetActivityDetail(activityId || '')
+  const { title, content, credit, activityDate, modifiedAt } = data?.data || {}
+  const { mutate } = useDeleteInformationRemove(activityId || '')
 
   const [isStudent, setIsStudent] = useState<boolean>(false)
 
@@ -60,7 +59,7 @@ const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
                   openModal(
                     <AppropriationModal
                       isApprove={true}
-                      title={data?.data.title}
+                      title={title || ''}
                       question='활동을 삭제하시겠습니까?'
                       purpose='삭제하기'
                       onAppropriation={() => {
@@ -85,40 +84,23 @@ const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
       <S.DocumentWrapper>
         <S.Document>
           <S.TitleContainer>
-            <S.Title>{data?.data.title}</S.Title>
+            <S.Title>{title}</S.Title>
             <S.SubTitle>
               <S.NumberBox>
                 <S.SubTitleBox>학점</S.SubTitleBox>
-                <span>{data?.data.credit}점 수여</span>
+                <span>{credit}점 수여</span>
               </S.NumberBox>
               <S.NumberBox>
-                <S.SubTitleBox>학점</S.SubTitleBox>
-                <span>
-                  {`${data?.data.activityDate.slice(
-                    0,
-                    4
-                  )}년 ${data?.data.activityDate.slice(
-                    5,
-                    7
-                  )}월 ${data?.data.activityDate.slice(8, 10)}일`}
-                </span>
+                <S.SubTitleBox>활동 날짜</S.SubTitleBox>
+                <span>{dayjs(activityDate).format('YYYY년 MM월 DD일')}</span>
               </S.NumberBox>
               <S.NumberBox>
                 <S.SubTitleBox>최근 수정일</S.SubTitleBox>
-                <span>
-                  {`${data?.data.modifiedAt.slice(
-                    0,
-                    4
-                  )}년 ${data?.data.modifiedAt.slice(
-                    5,
-                    7
-                  )}월 ${data?.data.modifiedAt.slice(8, 10)}일
-                  `}
-                </span>
+                <span>{dayjs(modifiedAt).format('YYYY년 MM월 DD일')}</span>
               </S.NumberBox>
             </S.SubTitle>
           </S.TitleContainer>
-          <S.MainText>{data?.data.content}</S.MainText>
+          <S.MainText>{content}</S.MainText>
         </S.Document>
       </S.DocumentWrapper>
     </div>

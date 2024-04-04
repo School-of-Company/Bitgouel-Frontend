@@ -18,7 +18,7 @@ interface Props {
 }
 
 const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
-  const { studentId, clubId } = studentIdProps
+  const { studentId, clubId } = studentIdProps || {}
 
   const { push } = useRouter()
 

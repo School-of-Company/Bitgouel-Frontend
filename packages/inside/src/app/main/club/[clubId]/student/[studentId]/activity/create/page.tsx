@@ -1,6 +1,4 @@
-import { ActivityCreatePage } from '@/PageContainer'
-import { StudentIdProps } from '@bitgouel/types'
-import { ActivityWritePage } from '@bitgouel/common'
+import { ActivityWritePage } from '@/PageContainer'
 
 const ActivityCreate = () => {
   return <ActivityWritePage />

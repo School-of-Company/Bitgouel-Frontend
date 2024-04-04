@@ -8,15 +8,12 @@ import {
 import {
   AppropriationModal,
   Bg3,
-  dateToConverterKor,
-  dateToConverterKorAddTime,
-  dateToDot,
   lectureDivisionToKor,
   lectureTypeToKor,
-  timeToConverter,
   useModal,
 } from '@bitgouel/common'
 import * as S from './style'
+import dayjs from 'dayjs'
 
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
@@ -63,27 +60,25 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
             <h1>{name}</h1>
             <S.LectureInfoContainer>
               <span>{lecturer} 교수</span>
-              <span>{dateToDot(createAt || '')}</span>
+              <span>{dayjs(createAt).format('YYYY.MM.DD')}</span>
             </S.LectureInfoContainer>
           </S.TitleContainer>
           <S.MainText>{content}</S.MainText>
           <S.LectureDateWrapper>
             <h2>수강 신청 기간</h2>
             <S.LectureDateText>
-              • {dateToConverterKor(startDate || '')}
-              {'  '}~{'  '}
-              {dateToConverterKor(endDate || '')}
+              • {dayjs(startDate).format('YYYY년 MM월 DD일 HH시 mm분')}
+              {'  '}~{'  '}•{' '}
+              {dayjs(endDate).format('YYYY년 MM월 DD일 HH시 mm분')}
             </S.LectureDateText>
           </S.LectureDateWrapper>
           <S.LectureDateWrapper>
             <h2>강의 수강 날짜</h2>
             {data?.data.lectureDates.map((date) => (
               <S.LectureDateText>
-                •{' '}
-                {`${dateToConverterKorAddTime(
-                  date.completeDate || '',
-                  date.startTime || ''
-                )}~${timeToConverter(date.endTime || '')}`}
+                • {dayjs(date.completeDate).format('YYYY년 MM월 DD일')}~
+                {dayjs(date.endTime).format('HH시 mm분')}
+                {dayjs(date.startTime).format('HH시 mm분')}
               </S.LectureDateText>
             ))}
           </S.LectureDateWrapper>

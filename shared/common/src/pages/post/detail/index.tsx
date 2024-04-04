@@ -4,7 +4,6 @@ import { TokenManager, useDeletePost, useGetPostDetail } from '@bitgouel/api'
 import {
   AppropriationModal,
   Bg1,
-  dateToRemoveTime,
   useModal,
 } from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
@@ -12,6 +11,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import * as S from './style'
+import dayjs from 'dayjs'
 
 const roleArray: RoleEnumTypes[] = [
   'ROLE_ADMIN',
@@ -51,7 +51,7 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
             <S.SubTitle>
               <S.NumberBox>
                 <S.SubTitleBox>게시일</S.SubTitleBox>
-                <span>{`${dateToRemoveTime(modifiedAt || '')}`}</span>
+                <span>{dayjs(modifiedAt).format('YYYY년 MM월 DD일')}</span>
               </S.NumberBox>
             </S.SubTitle>
           </S.TitleContainer>

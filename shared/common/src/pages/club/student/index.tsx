@@ -39,7 +39,7 @@ const roleArray: RoleEnumTypes[] = [
 const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
   studentIdProps,
 }) => {
-  const { studentId, clubId } = studentIdProps
+  const { studentId, clubId } = studentIdProps || {}
   const { push } = useRouter()
   const [isAddCertificate, setIsAddCertificate] = useState<boolean>(false)
   const [certificateText, setCertificateText] = useState<string>('')

@@ -11,9 +11,9 @@ import {
   InquiryAnswerModal,
   Pen,
   TrashCan,
-  dateToConverter,
   useModal,
 } from '@bitgouel/common'
+import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import { match } from 'ts-pattern'
 import * as S from './style'
@@ -87,7 +87,7 @@ const InquiryDetailPage = ({
               </S.ApproveStatus>
               <S.SemiTitleBox>
                 <S.SubTitleBox>게시일</S.SubTitleBox>
-                <span>{dateToConverter(questionDate || '')}</span>
+                <span>{dayjs(questionDate).format('YYYY년 MM월 DD일 HH:mm:dd')}</span>
               </S.SemiTitleBox>
               <S.SemiTitleBox>
                 <S.SubTitleBox>게시자</S.SubTitleBox>
@@ -103,7 +103,7 @@ const InquiryDetailPage = ({
           >
             <S.AnswerTitleBox>
               <S.AnswerTitle>문의 답변</S.AnswerTitle>
-              <S.AnswerDate>{dateToConverter(answeredDate || '')}</S.AnswerDate>
+              <S.AnswerDate>{dayjs(answeredDate).format('YYYY년 MM월 DD일 HH:mm:dd')}</S.AnswerDate>
             </S.AnswerTitleBox>
             <S.AnswerText>{answer}</S.AnswerText>
           </S.AnswerBox>

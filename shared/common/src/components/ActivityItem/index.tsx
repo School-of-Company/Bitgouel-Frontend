@@ -1,6 +1,7 @@
 'use client'
 
 import { ActivityItemTypes } from '@bitgouel/types'
+import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import * as S from './style'
 
@@ -10,7 +11,7 @@ const ActivityItem: React.FC<ActivityItemTypes> = ({
   activityId,
 }) => {
   const { push } = useRouter()
-  const { studentId, clubId } = studentIdProps
+  const { studentId, clubId } = studentIdProps || {}
 
   return (
     <S.ActivityItemWrapper
@@ -27,13 +28,9 @@ const ActivityItem: React.FC<ActivityItemTypes> = ({
           </S.ActivityTitle>
         </div>
         <div>
-          <S.Date>{`${item.activityDate.slice(
-            0,
-            4
-          )}년 ${item.activityDate.slice(5, 7)}월 ${item.activityDate.slice(
-            8,
-            10
-          )}일 ${item.activityDate.slice(11, 16)}`}</S.Date>
+          <S.Date>
+            {dayjs(item.activityDate).format('YYYY년 MM월 DD일 HH:mm')}
+          </S.Date>
         </div>
         <div>
           <S.Uploader>{item.username}</S.Uploader>
