@@ -1,14 +1,14 @@
 'use client'
 
-import { Bg4 } from '../../assets'
-import * as S from './style'
-import { useGetMy, useDeleteWithDraw } from '@bitgouel/api'
-import { roleToKor } from '../../constants'
+import { useDeleteWithDraw, useGetMy } from '@bitgouel/api'
+import { Bg4, roleToKor } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
+import * as S from './style'
 
 const MyPage = () => {
   const { push } = useRouter()
   const { data } = useGetMy()
+  const { name, organization, email, authority } = data?.data || {}
   const { mutate } = useDeleteWithDraw()
 
   const sliceNumber = (): string => {
@@ -17,6 +17,7 @@ const MyPage = () => {
       3
     )}-${data?.data.phoneNumber.slice(3, 7)}-${data?.data.phoneNumber.slice(7)}`
   }
+
 
   return (
     <S.MyPageWrapper url={Bg4}>
@@ -28,29 +29,29 @@ const MyPage = () => {
           <S.MyIdentify>
             <S.MyIdentifyWrapper>
               <div>
-                <S.Name>{data?.data.name}</S.Name>
+                <S.Name>{name}</S.Name>
                 <S.Role>
-                  {roleToKor[data?.data.authority || 'ROLE_ADMIN']}
+                  {roleToKor[authority || 'ROLE_ADMIN']}
                 </S.Role>
               </div>
               <div>
                 <S.OrganizationName>
-                  {data?.data.organization.split('/')[0]}
+                  {organization?.split('/')[0]}
                 </S.OrganizationName>
                 <S.SubEnter>소속</S.SubEnter>
               </div>
               <div>
-                <S.SubId>{data?.data.organization.split('/')[1]}</S.SubId>
+                <S.SubId>{organization?.split('/')[1]}</S.SubId>
               </div>
               <div>
-                <S.SubId>{data?.data.organization.split('/')[2]}</S.SubId>
+                <S.SubId>{organization?.split('/')[2]}</S.SubId>
               </div>
             </S.MyIdentifyWrapper>
             <S.AccountWrapper>
               <S.MyTitle>계정 정보</S.MyTitle>
               <S.AccountContainer>
                 <div>
-                  <S.LeftText>{data?.data.email}</S.LeftText>
+                  <S.LeftText>{email}</S.LeftText>
                   <S.RightText>이메일</S.RightText>
                 </div>
                 <div>

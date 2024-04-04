@@ -1,2 +1,2 @@
 export { default as ActivityListPage } from './list'
-export { default as ActivityWrite } from './write'
+export { default as ActivityDetailPage } from './detail'

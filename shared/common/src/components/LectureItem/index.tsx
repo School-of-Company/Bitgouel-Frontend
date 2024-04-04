@@ -1,7 +1,8 @@
 'use client'
 
-import { dateToDot, lectureTypeToKor } from '@bitgouel/common'
+import { lectureTypeToKor } from '@bitgouel/common'
 import { LectureItemProps } from '@bitgouel/types'
+import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import * as S from './style'
 
@@ -25,7 +26,7 @@ const LectureItem = ({ item }: LectureItemProps) => {
         <S.From>{lectureTypeToKor[item.lectureType]}</S.From>
         <S.MenuNum>
           <span>
-            {dateToDot(item.startDate)} ~ {dateToDot(item.endDate)}
+            {dayjs(item.startDate).format('YYYY.MM.DD')} ~ {dayjs(item.endDate).format('YYYY.MM.DD')}
           </span>
           <span>•</span>
           <span>

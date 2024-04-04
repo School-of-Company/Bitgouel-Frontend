@@ -1,9 +1,9 @@
 'use client'
 
 import {
-  usePostActivityInformation,
   useGetActivityDetail,
   usePatchActivityModifyInformation,
+  usePostActivityInformation,
 } from '@bitgouel/api'
 import {
   AppropriationModal,
@@ -13,12 +13,8 @@ import {
   SelectScoreModal,
   useModal,
 } from '@bitgouel/common'
-import {
-  StudentIdProps,
-  ActivityDetailProps,
-  ActivityDetailTypes,
-  ActivityPayloadTypes,
-} from '@bitgouel/types'
+import { ActivityDetailProps } from '@bitgouel/types'
+import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
@@ -28,17 +24,13 @@ const MAXTITLELENGTH: number = 100 as const
 const MAXCONTENTLENGTH: number = 1000 as const
 
 const ActivityWritePage = ({
-  studentId,
-  clubId,
+  studentIdProps,
   activityId,
-}: {
-  studentId?: string
-  clubId?: string
-  activityId?: string
-}) => {
+}: ActivityDetailProps) => {
   const { openModal, closeModal } = useModal()
   const { push } = useRouter()
 
+  const { studentId, clubId } = studentIdProps || {}
   const [isActivityDate, setIsActivityDate] = useState<boolean>(false)
   const [activityTaskDate, setActivityTaskDate] = useState<Date>(new Date())
   const [activityDateText, setActivityDateText] =
@@ -142,12 +134,7 @@ const ActivityWritePage = ({
       setActivityTitle(title || '')
       setActivityContent(content || '')
       setScoreText(credit + '점' || '')
-      setActivityDateText(
-        `${activityDate?.slice(0, 4)}.${activityDate?.slice(
-          5,
-          7
-        )}.${activityDate?.slice(8)}` || ''
-      )
+      setActivityDateText(dayjs(activityDate).format('YYYY.MM.DD'))
     }
   }, [data])
 

@@ -1,2 +1,1 @@
-export { default as ActivityCreatePage } from './ActivityCreatePage'
-export { default as ActivityModifyPage } from './ActivityModifyPage'
+export { default as ActivityWritePage } from './ActivityWritePage'
