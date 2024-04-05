@@ -2,4 +2,10 @@
   "extends": "@bitgouel/tsconfig/react.json",
   "include": ["**/*.ts", "**/*.tsx", "src", "src/custom.d.ts"],
   "exclude": ["node_modules"],
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
 }
