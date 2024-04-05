@@ -1,10 +1,12 @@
 'use client'
 
 import { usePostAnswer } from '@bitgouel/api'
-import { CancelIcon, Portal, useModal } from '@bitgouel/common'
 import { ChangeEvent, useState } from 'react'
-import AppropriationModal from '../AppropriationModal'
+import { CancelIcon } from '../../assets'
+import { useModal } from '../../hooks'
+import Portal from '../../portal'
 import * as S from './style'
+import AppropriationModal from '../AppropriationModal'
 
 const InquiryAnswerModal = ({ inquiryId }: { inquiryId: string }) => {
   const { openModal, closeModal } = useModal()

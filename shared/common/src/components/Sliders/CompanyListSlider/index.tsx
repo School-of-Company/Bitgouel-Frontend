@@ -6,13 +6,12 @@ import {
   CompanyListContents3,
   CompanyListContents4,
   CompanyListContents5,
-  SlideLeftArrow,
-  SlideRightArrow,
 } from '@bitgouel/common'
 import { useEffect, useRef } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
+import { SlideLeftArrow, SlideRightArrow } from '../../../assets'
 import * as S from '../style'
 
 const setting = {
@@ -31,7 +30,7 @@ const setting = {
     <S.NextArrow>
       <SlideRightArrow />
     </S.NextArrow>
-  ),
+  )
 }
 
 const ClubListSlider = () => {
@@ -44,7 +43,7 @@ const ClubListSlider = () => {
 
     return () => clearInterval(intervalId)
   }, [])
-
+  
   return (
     <S.SliderContainer>
       <Slider ref={sliderRef} {...setting}>
