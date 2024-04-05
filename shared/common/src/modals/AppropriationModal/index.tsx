@@ -1,9 +1,8 @@
 'use client'
 
 import { AppropriationModalProps } from '@bitgouel/types'
-import { useModal } from '../../hooks'
-import Portal from '../../portal'
 import * as S from './style'
+import { useModal, Portal } from '@bitgouel/common'
 
 const AppropriationModal = ({
   isApprove,
