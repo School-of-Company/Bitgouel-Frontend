@@ -7,7 +7,7 @@ import {
   insideJob,
   outsideJob,
   schools
-} from '../../../../constants'
+} from '@bitgouel/common'
 import * as S from './style'
 
 const SignUpScrollContainer = ({
