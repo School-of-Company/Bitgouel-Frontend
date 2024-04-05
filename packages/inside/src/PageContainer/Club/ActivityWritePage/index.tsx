@@ -82,7 +82,7 @@ const ActivityWritePage = ({
       openModal(
         <AppropriationModal
           isApprove={true}
-          question='게시글을 수정하시겠습니까?'
+          question='활동을 수정하시겠습니까?'
           title={activityTitle || ''}
           purpose='수정하기'
           onAppropriation={() =>
@@ -106,7 +106,7 @@ const ActivityWritePage = ({
       openModal(
         <AppropriationModal
           isApprove={true}
-          question='게시글을 추가하시겠습니까?'
+          question='활동을 추가하시겠습니까?'
           title={activityTitle || ''}
           purpose='추가하기'
           onAppropriation={() =>
