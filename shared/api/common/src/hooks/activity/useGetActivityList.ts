@@ -1,7 +1,7 @@
+import { activityQueryKeys, activityUrl, get } from '@bitgouel/api'
 import { ActivityInformationTypes, ActivityOptionsTypes } from '@bitgouel/types'
 import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 import { AxiosResponse } from 'axios'
-import { activityQueryKeys, activityUrl, get } from '../../../../common'
 
 export const useGetActivityList = (
   studentId: string,
