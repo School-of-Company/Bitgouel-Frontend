@@ -1,3 +1,5 @@
+'use client'
+
 import { useGetLectureExcel } from '@bitgouel/api'
 import { saveAs } from 'file-saver'
 
@@ -9,9 +11,8 @@ const useDownload = ({
   fileName: '강의 신청 결과'
   fileTypes: 'xlsx'
 }) => {
-  const { data } = useGetLectureExcel()
-
   let fileBlob: Blob
+  const { data } = useGetLectureExcel()
   const excelDown = () => {
     fileBlob = new Blob([data?.data], {
       type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
