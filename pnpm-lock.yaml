@@ -200,6 +200,9 @@ importers:
       '@types/react-slick':
         specifier: ^0.23.12
         version: 0.23.12
+      file-saver:
+        specifier: ^2.0.5
+        version: 2.0.5
       react-calendar:
         specifier: ^4.6.1
         version: 4.6.1(@types/react@18.2.31)(react-dom@18.2.0)(react@18.2.0)
@@ -6522,6 +6525,10 @@ packages:
   /fetch-retry@5.0.6:
     resolution: {integrity: sha512-3yurQZ2hD9VISAhJJP9bpYFNQrHHBXE2JxxjY5aLEcDi46RmAzJE2OC9FAde0yis5ElW0jTTzs0zfg/Cca4XqQ==}
     dev: true
+
+  /file-saver@2.0.5:
+    resolution: {integrity: sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==}
+    dev: false
 
   /file-system-cache@2.3.0:
     resolution: {integrity: sha512-l4DMNdsIPsVnKrgEXbJwDJsA5mB8rGwHYERMgqQx/xAUtChPJMre1bXBzDEqqVbWv9AIbFezXMxeEkZDSrXUOQ==}
