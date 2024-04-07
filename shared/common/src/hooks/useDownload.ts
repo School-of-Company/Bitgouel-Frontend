@@ -1,6 +1,6 @@
 'use client'
 
-import { useGetLectureExcel } from '@bitgouel/api'
+import { TokenManager, useGetLectureExcel } from '@bitgouel/api'
 import { saveAs } from 'file-saver'
 
 // 추후 다른 파일 다운로드가 생길 시 대비 custom hooks
@@ -12,9 +12,12 @@ const useDownload = ({
   fileTypes: 'xlsx'
 }) => {
   let fileBlob: Blob
-  const { data } = useGetLectureExcel()
+  const tokenMaanger = new TokenManager()
+  const { data } = useGetLectureExcel({
+    enabled: tokenMaanger.authority === 'ROLE_ADMIN',
+  })
   const excelDown = () => {
-    fileBlob = new Blob([data?.data], {
+    fileBlob = new Blob([data?.data || ''], {
       type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
     })
     saveAs(fileBlob, `${fileName}.${fileTypes}`)
