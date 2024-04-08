@@ -5,9 +5,11 @@ import {
   Bg3,
   Filter,
   FilterComponent,
-  LectureItem,
   LectureFilterType,
+  LectureItem,
   Plus,
+  PrintIcon,
+  useDownload,
 } from '@bitgouel/common'
 import { LectureTypeEnum, LectureTypesFilterListTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
@@ -35,6 +37,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
     LectureFilterType
   )
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
+  const [isClick, setIsClick] = useState<boolean>(false)
   const { push } = useRouter()
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -55,10 +58,16 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
     size: 10,
     type: lectureType || 'MUTUAL_CREDIT_RECOGNITION_PROGRAM',
   })
+  const {excelDown} = useDownload({fileName: '강의 신청 결과', fileTypes: 'xlsx', isClick})
 
   useEffect(() => {
     refetch()
   }, [lectureType])
+
+  const onClick = () => {
+    setIsClick(true)
+    excelDown()
+  }
 
   return (
     <div>
@@ -67,10 +76,16 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
           <S.LectureTitle>강의 목록</S.LectureTitle>
           <S.ButtonContainer>
             {isAdmin && (
-              <S.LectureButton onClick={() => push('/main/lecture/create')}>
-                <Plus />
-                <span>강의 개설하기</span>
-              </S.LectureButton>
+              <>
+                <S.LectureButton onClick={onClick}>
+                  <PrintIcon />
+                  <span>신청 명단 출력</span>
+                </S.LectureButton>
+                <S.LectureButton onClick={() => push('/main/lecture/create')}>
+                  <Plus />
+                  <span>강의 개설하기</span>
+                </S.LectureButton>
+              </>
             )}
             <S.SelectFilterContainer>
               <S.LectureButton

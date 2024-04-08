@@ -7,14 +7,16 @@ import { saveAs } from 'file-saver'
 const useDownload = ({
   fileName,
   fileTypes,
+  isClick
 }: {
   fileName: '강의 신청 결과'
-  fileTypes: 'xlsx'
+  fileTypes: 'xlsx',
+  isClick: boolean
 }) => {
   let fileBlob: Blob
   const tokenMaanger = new TokenManager()
   const { data } = useGetLectureExcel({
-    enabled: tokenMaanger.authority === 'ROLE_ADMIN',
+    enabled: tokenMaanger.authority === 'ROLE_ADMIN' && isClick,
   })
   const excelDown = () => {
     fileBlob = new Blob([data?.data || ''], {
