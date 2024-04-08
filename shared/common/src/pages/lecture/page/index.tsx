@@ -69,7 +69,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
             {isAdmin && (
               <S.LectureButton onClick={() => push('/main/lecture/create')}>
                 <Plus />
-                <span>개설 신청하기</span>
+                <span>강의 개설하기</span>
               </S.LectureButton>
             )}
             <S.SelectFilterContainer>

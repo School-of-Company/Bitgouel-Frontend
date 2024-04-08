@@ -56,9 +56,6 @@ const ClubListSlider = () => {
         <ClubListContents4 />
         <ClubListContents5 />
       </Slider>
-      <div>
-        <div></div>
-      </div>
     </S.SliderContainer>
   )
 }
