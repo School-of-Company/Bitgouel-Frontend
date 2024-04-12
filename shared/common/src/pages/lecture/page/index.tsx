@@ -7,6 +7,7 @@ import {
   FilterComponent,
   LectureFilterType,
   LectureItem,
+  PaginationPages,
   Plus,
   PrintIcon,
   useDownload,
@@ -53,22 +54,54 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
     else if (e.target.checked) setLectureType(e.target.id as LectureTypeEnum)
   }
 
+  const [page, setPage] = useState(1)
   const { data, refetch } = useGetLectureList({
-    page: 0,
-    size: 10,
+    page: page - 1,
+    size: 2,
     type: lectureType || 'MUTUAL_CREDIT_RECOGNITION_PROGRAM',
   })
-  const {excelDown} = useDownload({fileName: '강의 신청 결과', fileTypes: 'xlsx', isClick})
+  const { first, last, content } = data?.data.lectures || {}
+  const { excelDown } = useDownload({
+    fileName: '강의 신청 결과',
+    fileTypes: 'xlsx',
+    isClick,
+  })
 
   useEffect(() => {
     refetch()
-  }, [lectureType])
+  }, [lectureType, page])
+
+  // const pages = Array.from({ length: data?.data.lectures.totalPages }).map(
+  //   (_, i) => i
+  // )
+  const pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  const [slicePages, setSlicePages] = useState<number[]>(pages.slice(0, 5))
+
+  const onNextPage = (isDouble: boolean) => {
+    if (isDouble) setPage(pages[pages.length - 1])
+    else {
+      if (page % 5 === 0) setSlicePages(pages.slice(page, page + 5))
+      setPage((prev) => prev + 1)
+    }
+  }
+
+  const onPrevPage = (isDouble: boolean) => {
+    if (isDouble) setPage(0)
+    else {
+      if (page === slicePages[slicePages.length - 1] - 4)
+        setSlicePages(pages.slice(page - 6, page - 1))
+      setPage((prev) => prev - 1)
+    }
+  }
+
+  const onPageClick = (pageNum: number) => {
+    setPage(pageNum)
+  }
 
   const onClick = () => {
     setIsClick(true)
     excelDown()
   }
-
   return (
     <div>
       <S.SlideBg url={Bg3}>
@@ -107,10 +140,19 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
       </S.SlideBg>
       <S.ListWrapper>
         <S.ListContainer>
-          {data?.data.lectures.content.map((item) => (
+          {content?.map((item) => (
             <LectureItem key={item.id} item={item} />
           ))}
         </S.ListContainer>
+        <PaginationPages
+          currentPage={page}
+          isFirst={first}
+          isLast={last}
+          slicePages={slicePages}
+          onPrevPage={onPrevPage}
+          onNextPage={onNextPage}
+          onPageClick={onPageClick}
+        />
       </S.ListWrapper>
     </div>
   )
