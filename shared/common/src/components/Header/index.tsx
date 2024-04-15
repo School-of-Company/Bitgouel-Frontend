@@ -65,12 +65,12 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
       }
     }
 
-    const throttle = (callback: any, delay) => {
-      let timerId: any = null
-      return (...args) => {
+    const throttle = (callback: () => void, delay: number) => {
+      let timerId: NodeJS.Timeout | null = null
+      return (...args: any[]) => {
         if (!timerId) {
           timerId = setTimeout(() => {
-            callback.apply(args)
+            callback.apply(null, args)
             timerId = null
           }, delay)
         }
