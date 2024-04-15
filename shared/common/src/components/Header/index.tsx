@@ -66,14 +66,13 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
     }
 
     const throttle = (callback, delay) => {
-      let lastExecTime = 0
-
+      let timerId = null
       return function (...args) {
-        const currentTime = Date.now()
-
-        if (!lastExecTime || currentTime - lastExecTime >= delay) {
-          callback.apply(this, args)
-          lastExecTime = currentTime
+        if (!timerId) {
+          timerId = setTimeout(() => {
+            callback.apply(this, args)
+            timerId = null
+          }, delay)
         }
       }
     }
@@ -83,10 +82,10 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
       200
     )
 
-    window.addEventListener('scroll', throttledScrollHandlerWithThrottle)
+    const intervalId = setInterval(throttledScrollHandlerWithThrottle, 200)
 
     return () => {
-      window.removeEventListener('scroll', throttledScrollHandlerWithThrottle)
+      clearInterval(intervalId)
     }
   }, [])
 
