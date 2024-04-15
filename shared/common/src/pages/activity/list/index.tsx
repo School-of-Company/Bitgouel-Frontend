@@ -1,17 +1,16 @@
 'use client'
 
-import { Bg2, Plus } from '@bitgouel/common'
-import * as S from './style'
-import { useRouter } from 'next/navigation'
 import {
   TokenManager,
   useGetActivityList,
   useGetActivityMyselfList,
-  useGetMy,
+  useGetStudentDetail,
 } from '@bitgouel/api'
+import { ActivityItem, Bg2, Plus } from '@bitgouel/common'
 import { StudentIdProps } from '@bitgouel/types'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { ActivityItem } from '@bitgouel/common'
+import * as S from './style'
 
 interface Props {
   studentIdProps: StudentIdProps
@@ -26,7 +25,7 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
 
   const [isStudent, setIsStudent] = useState<boolean>(false)
 
-  const { data: userDetail } = useGetMy()
+  const { data: userDetail } = useGetStudentDetail(clubId, studentId)
 
   const { data: activityList } =
     tokenManager.authority === 'ROLE_STUDENT'
