@@ -1,17 +1,20 @@
-'use client'
-
 import { TokenManager, useDeleteLogout } from '@bitgouel/api'
-import {
-  Message,
-  Question,
-  Symbol1,
-  Symbol2,
-  theme
-} from '@bitgouel/common'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
+import { useRecoilState } from 'recoil'
 import { match } from 'ts-pattern'
+import {
+  Filter,
+  Message,
+  Plus,
+  Question,
+  Symbol1,
+  Symbol2,
+} from '@bitgouel/common'
+import { LectureTypeText } from '../../atoms'
+import { LectureTypeModal } from '../../modals'
+import { theme } from '../../styles'
 import * as S from './style'
 
 const menuList = [
@@ -32,11 +35,14 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
   const [borderColor, setBorderColor] = useState<string>('')
   const [spanColor, setSpanColor] = useState<string>(`${theme.color.white}`)
   const [svgView, setSvgView] = useState<string>('none')
+  const [isLectureType, setIsLectureType] = useState<boolean>(false)
+  const [lectureTypeText, setLectureTypeText] =
+    useRecoilState<string>(LectureTypeText)
   const [text, setText] = useState<string>('로그인')
   const { mutate } = useDeleteLogout()
 
   useEffect(() => {
-    const onScroll = () => {
+    const throttledScrollHandler = () => {
       const { scrollY } = window
       if (pathname === '/') {
         if (scrollY >= 700) {
@@ -70,9 +76,29 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
         }
       }
     }
-    window.addEventListener('scroll', onScroll)
+
+    const throttle = (callback, delay) => {
+      let lastExecTime = 0
+
+      return function (...args) {
+        const currentTime = Date.now()
+
+        if (!lastExecTime || currentTime - lastExecTime >= delay) {
+          callback.apply(this, args)
+          lastExecTime = currentTime
+        }
+      }
+    }
+
+    const throttledScrollHandlerWithThrottle = throttle(
+      throttledScrollHandler,
+      200
+    )
+
+    window.addEventListener('scroll', throttledScrollHandlerWithThrottle)
+
     return () => {
-      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('scroll', throttledScrollHandlerWithThrottle)
     }
   }, [])
 
@@ -117,6 +143,30 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
         </S.MenuWrapper>
         <S.ButtonWrapper view={svgView}>
           {match(pathname)
+            .with('/main/lecture', () => (
+              <>
+                <S.SelectFilterContainer>
+                  <Filter onClick={() => setIsLectureType((prev) => !prev)} />
+                  {isLectureType && (
+                    <LectureTypeModal
+                      location='헤더'
+                      text={lectureTypeText}
+                      setText={setLectureTypeText}
+                      setIsLectureType={setIsLectureType}
+                    />
+                  )}
+                </S.SelectFilterContainer>
+                {(tokenManager.authority === 'ROLE_PROFESSOR' ||
+                  tokenManager.authority === 'ROLE_GOVERNMENT' ||
+                  tokenManager.authority === 'ROLE_COMPANY_INSTRUCTOR') && (
+                  <Plus
+                    onClick={() => {
+                      push('/main/lecture/create')
+                    }}
+                  />
+                )}
+              </>
+            ))
             .with('/main/post', () => (
               <>
                 <Message onClick={() => push('/main/post/notice')} />
