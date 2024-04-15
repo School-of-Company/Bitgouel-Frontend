@@ -66,8 +66,8 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
     }
 
     const throttle = (callback, delay) => {
-      let timerId:any = null
-      return function (...args) {
+      let timerId: any = null
+      return (...args) => {
         if (!timerId) {
           timerId = setTimeout(() => {
             callback.apply(this, args)
