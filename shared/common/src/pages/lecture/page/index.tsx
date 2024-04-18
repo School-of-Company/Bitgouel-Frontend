@@ -63,7 +63,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
   const [currentPage, setCurrentPage] = useState(0)
   const { data, refetch, isLoading } = useGetLectureList({
     page: currentPage,
-    size: 2,
+    size: 10,
     type: lectureType || 'MUTUAL_CREDIT_RECOGNITION_PROGRAM',
   })
   const { first, content, totalPages } = data?.data.lectures || {}
