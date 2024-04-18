@@ -12,12 +12,9 @@ type Story = StoryObj<typeof PaginationPages>
 
 export const Primary: Story = {
   args: {
-    currentPage: 6,
+    pages: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    currentPage: 0,
+    setCurrentPage: () => {},
     isFirst: false,
-    isLast: false,
-    slicePages: [6, 7, 8, 9, 10],
-    onPrevPage(isDouble) {},
-    onNextPage(isDouble) {},
-    onPageClick() {},
   },
 }
