@@ -27,9 +27,8 @@ const PaginationPages = ({
   const onNextPage = (double?: boolean) => {
     if (double) {
       const dividePages = makeSplice()
-      const nextSection = dividePages.find((divide) =>
-        divide.includes(currentPage)
-      )
+      const nextSection =
+        dividePages.find((divide) => divide.includes(currentPage)) || []
       setStartPage(nextSection[nextSection.length - 1] + 1)
       setCurrentPage(nextSection[nextSection.length - 1] + 1)
     } else if (currentPage !== 0 && (currentPage + 1) % 5 === 0) {
