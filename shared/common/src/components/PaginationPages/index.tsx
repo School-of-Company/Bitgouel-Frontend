@@ -1,27 +1,53 @@
 'use client'
 
 import { ArrowIcon, DoubleArrowIcon } from '@bitgouel/common'
+import { PaginationPagesProps } from '@bitgouel/types'
+import { useState } from 'react'
 import * as S from './style'
 
-interface PaginationPagesProps {
-  currentPage: number
-  isFirst: boolean
-  isLast: boolean
-  slicePages: number[]
-  onPrevPage: (isDouble: boolean) => void
-  onNextPage: (isDouble: boolean) => void
-  onPageClick: (pageNum: number) => void
-}
-
 const PaginationPages = ({
+  pages,
   currentPage,
+  setCurrentPage,
   isFirst,
-  isLast,
-  slicePages,
-  onPrevPage,
-  onNextPage,
-  onPageClick,
 }: PaginationPagesProps) => {
+  const [startPage, setStartPage] = useState(0)
+
+  const makeSplice = (): number[][] => {
+    const dividePages: number[][] = []
+    const copyPages = [...pages]
+    while (copyPages.length > 0) {
+      const splicePage = copyPages.splice(0, 5)
+      dividePages.push(splicePage)
+    }
+    return dividePages
+  }
+  const isLast = makeSplice()[makeSplice().length - 1].includes(currentPage)
+
+  const onNextPage = (double?: boolean) => {
+    if (double) {
+      const dividePages = makeSplice()
+      const nextSection = dividePages.find((divide) =>
+        divide.includes(currentPage)
+      )
+      setStartPage(nextSection[nextSection.length - 1] + 1)
+      setCurrentPage(nextSection[nextSection.length - 1] + 1)
+    } else if (currentPage !== 0 && (currentPage + 1) % 5 === 0) {
+      setStartPage((prev) => prev + 5)
+      setCurrentPage((prev) => prev + 1)
+    } else setCurrentPage((prev) => prev + 1)
+  }
+
+  const onPrevPage = (double?: boolean) => {
+    if (double) {
+      setStartPage(0)
+      setCurrentPage(0)
+    } else if (currentPage % 5 === 0) {
+      setStartPage((prev) => prev - 5)
+      setCurrentPage((prev) => prev - 1)
+    } else setCurrentPage((prev) => prev - 1)
+  }
+
   return (
     <S.PaginationWrapper>
       {!isFirst && (
@@ -31,17 +57,17 @@ const PaginationPages = ({
         </S.ArrowContainer>
       )}
       <S.NumbersContainer>
-        {slicePages.map((num) => (
+        {pages.slice(startPage, startPage + 5).map((num) => (
           <S.PageNumber
             key={num}
             selected={currentPage === num}
-            onClick={() => onPageClick(num)}
+            onClick={() => setCurrentPage(num)}
           >
-            {num}
+            {num + 1}
           </S.PageNumber>
         ))}
       </S.NumbersContainer>
-      {!isLast && (
+      {!isLast && pages.length > 5 && (
         <S.ArrowContainer isPrev={false}>
           <ArrowIcon onClick={() => onNextPage(false)} />
           <DoubleArrowIcon onClick={() => onNextPage(true)} />

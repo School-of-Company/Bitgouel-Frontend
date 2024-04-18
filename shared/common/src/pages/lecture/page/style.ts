@@ -62,8 +62,10 @@ export const SelectFilterContainer = styled.div`
 
 export const ListWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   height: 100vh;
+  gap: 1rem;
 `
 export const ListContainer = styled.div`
   width: 75rem;
