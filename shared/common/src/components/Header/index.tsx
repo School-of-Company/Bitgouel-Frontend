@@ -1,13 +1,7 @@
 'use client'
 
 import { TokenManager, useDeleteLogout } from '@bitgouel/api'
-import {
-  Message,
-  Question,
-  Symbol1,
-  Symbol2,
-  theme
-} from '@bitgouel/common'
+import { Message, Question, Symbol1, Symbol2, theme } from '@bitgouel/common'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
@@ -36,7 +30,7 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
   const { mutate } = useDeleteLogout()
 
   useEffect(() => {
-    const onScroll = () => {
+    const throttledScrollHandler = () => {
       const { scrollY } = window
       if (pathname === '/') {
         if (scrollY >= 700) {
@@ -70,9 +64,28 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
         }
       }
     }
-    window.addEventListener('scroll', onScroll)
+
+    const throttle = (callback: () => void, delay: number) => {
+      let timerId: NodeJS.Timeout | null = null
+      return (...args: any[]) => {
+        if (!timerId) {
+          timerId = setTimeout(() => {
+            callback.apply(null, args)
+            timerId = null
+          }, delay)
+        }
+      }
+    }
+
+    const throttledScrollHandlerWithThrottle = throttle(
+      throttledScrollHandler,
+      200
+    )
+
+    const intervalId = setInterval(throttledScrollHandlerWithThrottle, 200)
+
     return () => {
-      window.removeEventListener('scroll', onScroll)
+      clearInterval(intervalId)
     }
   }, [])
 
