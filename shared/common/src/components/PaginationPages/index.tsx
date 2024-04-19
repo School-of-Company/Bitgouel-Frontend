@@ -68,14 +68,13 @@ const PaginationPages = ({
           </S.PageNumber>
         ))}
       </S.NumbersContainer>
-      {pages.length > 5 && (
-        <S.ArrowContainer isPrev={false}>
-          {lastPage[lastPage.length - 1] !== currentPage && (
-            <ArrowIcon onClick={() => onNextPage(false)} />
-          )}
-          {!isLast && <DoubleArrowIcon onClick={() => onNextPage(true)} />}
-        </S.ArrowContainer>
-      )}
+
+      <S.ArrowContainer isPrev={false}>
+        {lastPage[lastPage.length - 1] !== currentPage && (
+          <ArrowIcon onClick={() => onNextPage(false)} />
+        )}
+        {!isLast && <DoubleArrowIcon onClick={() => onNextPage(true)} />}
+      </S.ArrowContainer>
     </S.PaginationWrapper>
   )
 }

@@ -120,7 +120,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
             <LectureItem key={item.id} item={item} />
           ))}
         </S.ListContainer>
-        {data && !isLoading && (
+        {content?.length && !isLoading && (
           <PaginationPages
             pages={pages}
             currentPage={currentPage}
