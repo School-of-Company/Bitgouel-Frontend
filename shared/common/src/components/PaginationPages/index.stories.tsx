@@ -15,6 +15,5 @@ export const Primary: Story = {
     pages: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     currentPage: 0,
     setCurrentPage: () => {},
-    isFirst: false,
   },
 }

@@ -4,5 +4,4 @@ export interface PaginationPagesProps {
   pages: number[]
   currentPage: number
   setCurrentPage: Dispatch<React.SetStateAction<number>>
-  isFirst: boolean
 }

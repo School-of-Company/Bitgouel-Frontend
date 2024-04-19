@@ -66,7 +66,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
     size: 10,
     type: lectureType || 'MUTUAL_CREDIT_RECOGNITION_PROGRAM',
   })
-  const { first, content, totalPages } = data?.data.lectures || {}
+  const { content, totalPages } = data?.data.lectures || {}
   const pages = Array.from({ length: totalPages || 0 }).map((_, i) => i)
 
   const onDownload = () => {
@@ -125,7 +125,6 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
             pages={pages}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
-            isFirst={first || true}
           />
         )}
       </S.ListWrapper>

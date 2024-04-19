@@ -9,7 +9,6 @@ const PaginationPages = ({
   pages,
   currentPage,
   setCurrentPage,
-  isFirst,
 }: PaginationPagesProps) => {
   const [startPage, setStartPage] = useState(0)
 
@@ -22,11 +21,13 @@ const PaginationPages = ({
     }
     return dividePages
   }
-  const isLast = makeSplice()[makeSplice().length - 1].includes(currentPage)
+  const dividePages = makeSplice()
+  const lastPage = dividePages[dividePages.length - 1]
+  const isLast = lastPage.includes(currentPage)
+  const isFirst = dividePages[0].includes(currentPage)
 
   const onNextPage = (double?: boolean) => {
     if (double) {
-      const dividePages = makeSplice()
       const nextSection =
         dividePages.find((divide) => divide.includes(currentPage)) || []
       setStartPage(nextSection[nextSection.length - 1] + 1)
@@ -39,8 +40,11 @@ const PaginationPages = ({
 
   const onPrevPage = (double?: boolean) => {
     if (double) {
-      setStartPage(0)
-      setCurrentPage(0)
+      const prevSection =
+        dividePages.find((divide) => divide.includes(currentPage)) || []
+      console.log(prevSection)
+      setStartPage(prevSection[0] - 5)
+      setCurrentPage(prevSection[0] - 5)
     } else if (currentPage % 5 === 0) {
       setStartPage((prev) => prev - 5)
       setCurrentPage((prev) => prev - 1)
@@ -49,12 +53,10 @@ const PaginationPages = ({
 
   return (
     <S.PaginationWrapper>
-      {!isFirst && (
-        <S.ArrowContainer isPrev={true}>
-          <DoubleArrowIcon onClick={() => onPrevPage(true)} />
-          <ArrowIcon onClick={() => onPrevPage(false)} />
-        </S.ArrowContainer>
-      )}
+      <S.ArrowContainer isPrev={true}>
+        {!isFirst && <DoubleArrowIcon onClick={() => onPrevPage(true)} />}
+        {currentPage !== 0 && <ArrowIcon onClick={() => onPrevPage(false)} />}
+      </S.ArrowContainer>
       <S.NumbersContainer>
         {pages.slice(startPage, startPage + 5).map((num) => (
           <S.PageNumber
@@ -66,10 +68,12 @@ const PaginationPages = ({
           </S.PageNumber>
         ))}
       </S.NumbersContainer>
-      {!isLast && pages.length > 5 && (
+      {pages.length > 5 && (
         <S.ArrowContainer isPrev={false}>
-          <ArrowIcon onClick={() => onNextPage(false)} />
-          <DoubleArrowIcon onClick={() => onNextPage(true)} />
+          {lastPage[lastPage.length - 1] !== currentPage && (
+            <ArrowIcon onClick={() => onNextPage(false)} />
+          )}
+          {!isLast && <DoubleArrowIcon onClick={() => onNextPage(true)} />}
         </S.ArrowContainer>
       )}
     </S.PaginationWrapper>
