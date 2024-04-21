@@ -42,7 +42,6 @@ const PaginationPages = ({
     if (double) {
       const prevSection =
         dividePages.find((divide) => divide.includes(currentPage)) || []
-      console.log(prevSection)
       setStartPage(prevSection[0] - 5)
       setCurrentPage(prevSection[0] - 5)
     } else if (currentPage % 5 === 0) {
