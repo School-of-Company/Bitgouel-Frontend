@@ -46,7 +46,7 @@ const PaginationPages = ({
       setCurrentPage(prevSection[0] - 5)
     } else if (currentPage % 5 === 0) {
       setStartPage((prev) => prev - 5)
-      setCurrentPage((prev) => prev - 1)
+      setCurrentPage((prev) => prev - 5)
     } else setCurrentPage((prev) => prev - 1)
   }
 
