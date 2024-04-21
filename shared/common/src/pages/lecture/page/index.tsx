@@ -7,6 +7,7 @@ import {
   FilterComponent,
   LectureFilterType,
   LectureItem,
+  PaginationPages,
   Plus,
   PrintIcon,
   useDownload,
@@ -53,21 +54,29 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
     else if (e.target.checked) setLectureType(e.target.id as LectureTypeEnum)
   }
 
-  const { data, refetch } = useGetLectureList({
-    page: 0,
+  const { excelDown } = useDownload({
+    fileName: '강의 신청 결과',
+    fileTypes: 'xlsx',
+    isClick,
+  })
+
+  const [currentPage, setCurrentPage] = useState(0)
+  const { data, refetch, isLoading } = useGetLectureList({
+    page: currentPage,
     size: 10,
     type: lectureType || 'MUTUAL_CREDIT_RECOGNITION_PROGRAM',
   })
-  const {excelDown} = useDownload({fileName: '강의 신청 결과', fileTypes: 'xlsx', isClick})
+  const { content, totalPages } = data?.data.lectures || {}
+  const pages = Array.from({ length: totalPages || 0 }).map((_, i) => i)
 
-  useEffect(() => {
-    refetch()
-  }, [lectureType])
-
-  const onClick = () => {
+  const onDownload = () => {
     setIsClick(true)
     excelDown()
   }
+
+  useEffect(() => {
+    refetch()
+  }, [lectureType, currentPage])
 
   return (
     <div>
@@ -77,7 +86,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
           <S.ButtonContainer>
             {isAdmin && (
               <>
-                <S.LectureButton onClick={onClick}>
+                <S.LectureButton onClick={onDownload}>
                   <PrintIcon />
                   <span>신청 명단 출력</span>
                 </S.LectureButton>
@@ -107,10 +116,17 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
       </S.SlideBg>
       <S.ListWrapper>
         <S.ListContainer>
-          {data?.data.lectures.content.map((item) => (
+          {content?.map((item) => (
             <LectureItem key={item.id} item={item} />
           ))}
         </S.ListContainer>
+        {content?.length && !isLoading && (
+          <PaginationPages
+            pages={pages}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        )}
       </S.ListWrapper>
     </div>
   )

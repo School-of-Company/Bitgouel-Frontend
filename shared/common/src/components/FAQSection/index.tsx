@@ -1,10 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { FAQItem, FAQAnswerItem } from '@bitgouel/common'
-import * as S from './style'
-import { FAQTypes } from '@bitgouel/types'
 import { useGetListQuestions } from '@bitgouel/api'
+import { FAQAnswerItem, FAQItem } from '@bitgouel/common'
+import * as S from './style'
 
 const FAQSection = () => {
   const { data, refetch } = useGetListQuestions()
