@@ -10,6 +10,7 @@ import {
   PeopleCircle,
   Plus,
   UserItem,
+  handleSelect,
   useModal,
 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
@@ -48,10 +49,8 @@ const WithdrawUserListPage = () => {
     if (e.target.checked) setCohort(e.target.id as cohortTypes)
   }
 
-  const handleSelectUsers = (checked: boolean, userId: string) => {
-    if (checked) setUserIds((prev) => [...prev, userId])
-    else setUserIds((prev) => prev.filter((listId) => listId !== userId))
-  }
+  const handleSelectUsers = (checked: boolean, userId: string) =>
+    handleSelect({ checked, id: userId, setIds: setUserIds })
   const onAll = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked)
       setUserIds(data?.data.students.map((student) => student.userId))
