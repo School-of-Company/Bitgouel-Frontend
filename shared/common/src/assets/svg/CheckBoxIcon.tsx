@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { SVGProps } from 'react'
 
 const CheckBoxIcon = () => {
   return (

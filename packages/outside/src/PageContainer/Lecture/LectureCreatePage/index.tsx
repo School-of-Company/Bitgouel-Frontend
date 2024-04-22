@@ -69,7 +69,9 @@ const LectureCreatePage = () => {
 
   const openCreateModal = () => {
     if (!isCondition()) return
-    const filteredDates = lectureDates.map(({startShowTime, endShowTime, ...filtered}) => filtered)
+    const filteredDates = lectureDates.map(
+      ({ startShowTime, endShowTime, ...filtered }) => filtered
+    )
     openModal(
       <AppropriationModal
         isApprove={true}
