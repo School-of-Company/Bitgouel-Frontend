@@ -1,8 +1,7 @@
 'use client'
 
-import React, { ChangeEvent } from 'react'
-import * as S from './style'
 import { CommonCheckBox } from '@bitgouel/common'
+import * as S from './style'
 
 interface ApplyItemProps {
   item: {

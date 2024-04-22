@@ -1,4 +1,4 @@
-import { LectureApplyListPage } from '@/PageContainer'
+import { LectureApplyListPage } from '@bitgouel/common'
 
 const LectureApplyList = () => {
   return <LectureApplyListPage />

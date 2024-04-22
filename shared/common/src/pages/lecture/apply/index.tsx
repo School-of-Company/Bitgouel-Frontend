@@ -1,9 +1,11 @@
 'use client'
 
-import { Bg3, handleSelect } from '@bitgouel/common'
+import { ApplyItem, Bg3, handleSelect } from '@bitgouel/common'
+import { useEffect, useState } from 'react'
 import * as S from './style'
-import React, { ChangeEvent, useState } from 'react'
-import { ApplyItem } from '@/components'
+import { TokenManager } from '@bitgouel/api'
+import { RoleEnumTypes } from '@bitgouel/types'
+import { redirect } from 'next/navigation'
 
 const obj = {
   id: '1234',
@@ -17,10 +19,20 @@ const obj = {
   email: 'bitgouel@gmail.com',
 }
 
+const roleArray: RoleEnumTypes[] = ['ROLE_ADMIN', 'ROLE_TEACHER']
+
 const LectureApplyListPage = () => {
   const [applyIds, setApplyIds] = useState<string[]>([])
   const handleSelectUsers = (checked: boolean, userId: string) =>
     handleSelect({ checked, id: userId, setIds: setApplyIds })
+  const tokenManager = new TokenManager()
+  useEffect(() => {
+    if (tokenManager.authority) {
+      if (roleArray.includes(tokenManager.authority)) return
+      else return redirect('/')
+    }
+  }, [])
+
   return (
     <div>
       <S.SlideBg url={Bg3}>
