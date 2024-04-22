@@ -1,13 +1,11 @@
 'use client'
 
 import styled from '@emotion/styled'
-import { useRef } from 'react'
 import { CheckBoxIcon } from '../../assets'
 
 const CommonCheckboxContainer = styled.div`
   position: relative;
   cursor: pointer;
-  color: red;
 
   svg {
     position: absolute;
@@ -22,7 +20,6 @@ const CommonCheckBoxStyle = styled.input`
   width: 1.25rem;
   height: 1.25rem;
   margin-left: 1.2rem;
-  cursor: pointer;
   border: 0.0625rem solid ${({ theme }) => theme.color.gray['400']};
   border-radius: 0.25rem;
   background-color: ${({ theme }) => theme.color.white};
@@ -43,15 +40,12 @@ const CommonCheckBox = ({
   ids: string[]
   onChange: (checked: boolean) => void
 }) => {
-  const checkRef = useRef<HTMLInputElement>(null)
-
   return (
     <CommonCheckboxContainer>
       <CommonCheckBoxStyle
-        ref={checkRef}
         type='checkbox'
         checked={ids?.includes(id)}
-        onChange={(e) => onChange(checkRef.current.checked)}
+        onChange={(e) => onChange(e.target.checked)}
       />
       {ids?.includes(id) && <CheckBoxIcon />}
     </CommonCheckboxContainer>
