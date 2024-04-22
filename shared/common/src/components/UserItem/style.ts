@@ -23,22 +23,6 @@ export const UserItem = styled.div<{ isCurrent: boolean }>`
   }
 `
 
-export const UserCheckBox = styled.input`
-  width: 1.25rem;
-  height: 1.25rem;
-  margin-left: 1.2rem;
-  cursor: pointer;
-  border: 0.0625rem solid ${({ theme }) => theme.color.gray['400']};
-  border-radius: 0.25rem;
-  background-color: ${({ theme }) => theme.color.white};
-  appearance: none;
-
-  &:checked {
-    background-color: ${({ theme }) => theme.color.main};
-    border: 0.0625rem solid ${({ theme }) => theme.color.main};
-  }
-`
-
 export const Name = styled.span`
   color: ${({ theme }) => theme.color.black};
   ${({ theme }) => theme.typo.text_lg.medium}
