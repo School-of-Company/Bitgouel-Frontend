@@ -19,7 +19,7 @@ const UserItem = ({
         {status === 'request' && (
           <CommonCheckBox
             id={id}
-            ids={userIds}
+            ids={userIds || []}
             onChange={(checked: boolean) =>
               handleSelectUsers && handleSelectUsers(checked, id)
             }
