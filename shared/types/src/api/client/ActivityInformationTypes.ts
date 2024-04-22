@@ -1,3 +1,5 @@
+import { PageTypes } from '../common'
+
 export interface ActivityInformationItem {
   activityId: string
   title: string
@@ -9,5 +11,5 @@ export interface ActivityInformationItem {
 export interface ActivityInformationTypes {
   activities: {
     content: ActivityInformationItem[]
-  }
+  } & PageTypes
 }

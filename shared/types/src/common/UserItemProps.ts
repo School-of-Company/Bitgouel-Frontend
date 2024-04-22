@@ -8,6 +8,6 @@ export interface UserItemProps {
   name: string
   authority?: RoleEnumTypes
   status: StatusTypes
-  handleSelectUsers?: (e: ChangeEvent<HTMLInputElement>, userId: string) => void
+  handleSelectUsers?: (checked: boolean, userId: string) => void
   userIds?: string[]
 }

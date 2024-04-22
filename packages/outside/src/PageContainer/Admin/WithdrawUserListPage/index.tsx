@@ -10,6 +10,7 @@ import {
   PeopleCircle,
   Plus,
   UserItem,
+  handleSelect,
   useModal,
 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
@@ -17,6 +18,7 @@ import { ChangeEvent, useEffect, useState } from 'react'
 import { TopContainer } from '../NewUserListPage/style'
 import { UserListContainer } from '../UserListPage/style'
 import * as S from './style'
+import { WithdrawListResponseTypes } from '@bitgouel/types'
 
 type cohortTypes = '1' | '2' | '3' | '4'
 
@@ -31,6 +33,7 @@ const WithdrawUserListPage = () => {
   ])
   const [cohort, setCohort] = useState<cohortTypes>('1')
   const { data, refetch } = useGetWithDrawUserList(cohort)
+  const { students } = data?.data || ({} as WithdrawListResponseTypes)
   const { mutate } = useDeleteUserWithdraw(userIds)
   const [isFilter, setIsFilter] = useState<boolean>(false)
   const { openModal } = useModal()
@@ -45,13 +48,9 @@ const WithdrawUserListPage = () => {
     )
     if (e.target.checked) setCohort(e.target.id as cohortTypes)
   }
-  const handleSelectUsers = (
-    e: ChangeEvent<HTMLInputElement>,
-    userId: string
-  ) => {
-    if (e.target.checked) setUserIds((prev) => [...prev, userId])
-    else setUserIds((prev) => prev.filter((listId) => listId !== userId))
-  }
+
+  const handleSelectUsers = (checked: boolean, userId: string) =>
+    handleSelect({ checked, id: userId, setIds: setUserIds })
   const onAll = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked)
       setUserIds(data?.data.students.map((student) => student.userId))
@@ -123,7 +122,7 @@ const WithdrawUserListPage = () => {
           </S.WithdrawButtonContainer>
         </TopContainer>
         <UserListContainer>
-          {data?.data.students.map((user) => (
+          {students?.map((user) => (
             <UserItem
               key={user.withdrawId}
               id={user.userId}

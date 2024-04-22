@@ -3,8 +3,8 @@ import React from 'react'
 const InClubArrow = () => {
   return (
     <svg
-      width='7'
-      height='12'
+      width='0.4375rem'
+      height='0.75rem'
       viewBox='0 0 7 12'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'

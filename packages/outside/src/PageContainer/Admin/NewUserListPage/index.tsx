@@ -12,11 +12,13 @@ import {
   Minus,
   PeopleCircle,
   UserItem,
+  handleSelect,
   useModal,
 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import * as S from './style'
+import { UserListResponseTypes } from '@bitgouel/types'
 
 const NewUserListPage = () => {
   const { push } = useRouter()
@@ -26,22 +28,18 @@ const NewUserListPage = () => {
     authority: 'ROLE_USER',
     approveStatus: 'PENDING',
   })
+  const { users } = data?.data || ({} as UserListResponseTypes)
   const { openModal } = useModal()
   const { mutate: approve } = usePatchUserApprove(userIds)
   const { mutate: reject } = useDeleteUserReject(userIds)
 
-  const handleSelectUsers = (
-    e: ChangeEvent<HTMLInputElement>,
-    userId: string
-  ) => {
-    if (e.target.checked) setUserIds((prev) => [...prev, userId])
-    else setUserIds((prev) => prev.filter((listId) => listId !== userId))
-  }
-
   const onAll = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked) setUserIds(data?.data.users.map((user) => user.id))
+    if (e.target.checked) setUserIds(users?.map((user) => user.id))
     else setUserIds([])
   }
+
+  const handleSelectUsers = (checked: boolean, userId: string) =>
+    handleSelect({ checked, id: userId, setIds: setUserIds })
 
   const handleOpenModal = (type: 'approve' | 'reject') => {
     if (userIds.length === 0) return
@@ -93,11 +91,7 @@ const NewUserListPage = () => {
           </S.RemarkBox>
           <S.SelectBoxContainer>
             <S.SelectBox type='allNew' htmlFor='allNew'>
-              <input
-                type='checkbox'
-                id='allNew'
-                onChange={onAll}
-              />
+              <input type='checkbox' id='allNew' onChange={onAll} />
               <PeopleCircle />
               전체 선택
             </S.SelectBox>
@@ -118,7 +112,7 @@ const NewUserListPage = () => {
           </S.SelectBoxContainer>
         </S.TopContainer>
         <S.UserListContainer>
-          {data?.data.users.map((user) => (
+          {users?.map((user) => (
             <UserItem
               key={user.id}
               id={user.id}
