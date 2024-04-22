@@ -13,14 +13,14 @@ const CommonCheckBox = ({
   onChange: (checked: boolean) => void
 }) => {
   return (
-    <S.CommonCheckboxContainer>
+    <S.CommonCheckBoxContainer>
       <S.CommonCheckBoxStyle
         type='checkbox'
         checked={ids?.includes(id)}
         onChange={(e) => onChange(e.target.checked)}
       />
       {ids?.includes(id) && <CheckBoxIcon />}
-    </S.CommonCheckboxContainer>
+    </S.CommonCheckBoxContainer>
   )
 }
 
