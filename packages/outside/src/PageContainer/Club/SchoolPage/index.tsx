@@ -10,7 +10,6 @@ import * as S from '../ClubPage/style'
 const ClubPage = () => {
   const { openModal } = useModal()
   const schoolFilterText = useRecoilValue(SchoolFilterText)
-
   const { data, refetch } = useGetClubList(schoolToConstants[schoolFilterText])
 
   useEffect(() => {
