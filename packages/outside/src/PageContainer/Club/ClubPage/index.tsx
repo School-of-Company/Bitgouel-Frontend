@@ -1,9 +1,8 @@
 'use client'
 // 어드민 페이지
 import { ClubItem, SchoolFilter } from '@/components'
-import { SchoolFilterModal } from '@/modals'
 import { useGetSchoolClubList } from '@bitgouel/api'
-import { Bg2, SchoolFilterText, SettingOut, useModal } from '@bitgouel/common'
+import { SchoolFilterText, useModal } from '@bitgouel/common'
 import { useEffect } from 'react'
 import { useRecoilValue } from 'recoil'
 import * as S from './style'
@@ -12,9 +11,6 @@ const ClubPage = () => {
   const { openModal } = useModal()
   const schoolFilterText = useRecoilValue(SchoolFilterText)
   const { data, refetch } = useGetSchoolClubList()
-  // const { data: clubList, refetch } = useGetClubList(
-  //   schoolToConstants[schoolFilterText]
-  // )
 
   useEffect(() => {
     refetch()
