@@ -1,15 +1,8 @@
 'use client'
 // 어드민 페이지
 import { ClubItem, SchoolFilter } from '@/components'
-import { SchoolFilterModal } from '@/modals'
 import { useGetClubList } from '@bitgouel/api'
-import {
-  Bg2,
-  SchoolFilterText,
-  SettingOut,
-  schoolToConstants,
-  useModal,
-} from '@bitgouel/common'
+import { SchoolFilterText, schoolToConstants, useModal } from '@bitgouel/common'
 import { useEffect } from 'react'
 import { useRecoilValue } from 'recoil'
 import * as S from '../ClubPage/style'
