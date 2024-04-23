@@ -2,7 +2,7 @@
 // 어드민 페이지
 import { ClubItem } from '@/components'
 import { SchoolFilterModal } from '@/modals'
-import { useGetClubList, useGetSchoolClubList } from '@bitgouel/api'
+import { useGetClubList } from '@bitgouel/api'
 import {
   Bg2,
   SchoolFilterText,
@@ -17,13 +17,8 @@ import * as S from '../ClubPage/style'
 const ClubPage = () => {
   const { openModal } = useModal()
   const schoolFilterText = useRecoilValue(SchoolFilterText)
-  const { data: schoolList } = useGetSchoolClubList({
-    enabled: !schoolFilterText.length,
-  })
-  const { data: clubList, refetch } = useGetClubList(
-    schoolToConstants[schoolFilterText],
-    { enabled: !!schoolFilterText.length }
-  )
+
+  const { data, refetch } = useGetClubList(schoolToConstants[schoolFilterText])
 
   useEffect(() => {
     refetch()
@@ -44,35 +39,14 @@ const ClubPage = () => {
       </S.SlideBg>
       <S.ClubWrapper>
         <S.ClubContainer>
-          {!schoolFilterText.length ? (
-            schoolList?.data.schools.map((school) => (
-              <S.ClubGroupBox key={school.id}>
-                <S.ClubSchoolTitle>{school.schoolName}</S.ClubSchoolTitle>
-                <S.ClubListBox>
-                  {school.clubs.map((club) => (
-                    <ClubItem
-                      key={club.id}
-                      clubId={club.id}
-                      clubName={club.name}
-                    />
-                  ))}
-                </S.ClubListBox>
-              </S.ClubGroupBox>
-            ))
-          ) : (
-            <S.ClubGroupBox>
-              <S.ClubSchoolTitle>{schoolFilterText}</S.ClubSchoolTitle>
-              <S.ClubListBox>
-                {clubList?.data.clubs.map((club) => (
-                  <ClubItem
-                    key={club.id}
-                    clubId={club.id}
-                    clubName={club.name}
-                  />
-                ))}
-              </S.ClubListBox>
-            </S.ClubGroupBox>
-          )}
+          <S.ClubGroupBox>
+            <S.ClubSchoolTitle>{schoolFilterText}</S.ClubSchoolTitle>
+            <S.ClubListBox>
+              {data?.data.clubs.map((club) => (
+                <ClubItem key={club.id} clubId={club.id} clubName={club.name} />
+              ))}
+            </S.ClubListBox>
+          </S.ClubGroupBox>
         </S.ClubContainer>
       </S.ClubWrapper>
     </div>
