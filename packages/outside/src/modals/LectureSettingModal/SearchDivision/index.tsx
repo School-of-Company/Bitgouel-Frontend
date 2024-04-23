@@ -18,13 +18,11 @@ import {
   SearchWrapper,
 } from '../style'
 
-const SearchLine = () => {
-  const [lectureLine, setLectureLine] = useRecoilState(LectureLine)
-  const lectureDivision = useRecoilValue(LectureDivision)
-  const [line, setLine] = useState<string>('')
-  const { data, refetch } = useGetLines({
-    keyword: line,
-    division: lectureDivision,
+const SearchDivision = () => {
+  const [lectureDivision, setLectureDivision] = useRecoilState(LectureDivision)
+  const [division, setDivision] = useState<string>('')
+  const { data, refetch } = useGetDivisions({
+    keyword: division,
   })
 
   const onSubmit = (e: FormEvent) => {
@@ -32,24 +30,24 @@ const SearchLine = () => {
     refetch()
   }
 
-  const { lines } = data?.data || ({} as LineResponseTypes)
+  const { divisions } = data?.data || ({} as DivisionResponseTypes)
 
   return (
     <SearchWrapper>
-      <SearchInputBox onSubmit={onSubmit} isSelected={!!lectureLine.length}>
+      <SearchInputBox onSubmit={onSubmit} isSelected={!!lectureDivision.length}>
         <SearchInput
           type='text'
-          value={lectureLine.length ? lectureLine : line}
+          value={lectureDivision.length ? lectureDivision : division}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setLine(e.target.value)
+            setDivision(e.target.value)
           }
           placeholder='계열 검색 또는 임의로 추가...'
-          disabled={!!lectureLine.length}
+          disabled={!!lectureDivision.length}
         />
-        {lectureLine.length ? (
+        {lectureDivision.length ? (
           <InputCancel
             onClick={() => {
-              setLectureLine('')
+              setLectureDivision('')
               refetch()
             }}
           />
@@ -57,28 +55,28 @@ const SearchLine = () => {
           <SearchIcon onClick={() => refetch()} />
         )}
       </SearchInputBox>
-      {lines && !lectureLine.length && (
+      {divisions && !lectureDivision.length && (
         <SearchListContainer>
-          {lines.map((line) => (
+          {divisions.map((division) => (
             <SearchItem
-              key={line}
+              key={division}
               onClick={() => {
-                setLectureLine(line)
-                setLine('')
+                setLectureDivision(division)
+                setDivision('')
               }}
             >
-              <span>{line}</span>
+              <span>{division}</span>
             </SearchItem>
           ))}
-          {!lines?.length && (
+          {!divisions?.length && (
             <SearchItem
               onClick={() => {
-                setLectureLine(line)
-                setLine('')
+                setLectureDivision(division)
+                setDivision('')
               }}
             >
-              <span>{line}</span>
-              <span>새 계열 추가하기...</span>
+              <span>{division}</span>
+              <span>새 구분 추가하기...</span>
             </SearchItem>
           )}
         </SearchListContainer>
@@ -87,4 +85,11 @@ const SearchLine = () => {
   )
 }
 
-export default SearchLine
+export default SearchDivision
+// const lectureDivisions: LectureDivisionEnum[] = [
+//   'AUTOMOBILE_INDUSTRY',
+//   'ENERGY_INDUSTRY',
+//   'MEDICAL_HEALTHCARE',
+//   'AI_CONVERGENCE',
+//   'CULTURAL_INDUSTRY',
+// ]

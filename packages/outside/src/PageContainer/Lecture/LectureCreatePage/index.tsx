@@ -12,9 +12,9 @@ import {
   LectureDivision,
   LectureEndDate,
   LectureEndTime,
+  LectureInstructor,
   LectureLine,
   LectureMaxRegistered,
-  LectureProfessor,
   LectureSemester,
   LectureStartDate,
   LectureStartTime,
@@ -22,6 +22,7 @@ import {
   useModal,
 } from '@bitgouel/common'
 import { ChangeEvent, useState } from 'react'
+import { toast } from 'react-toastify'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import * as S from './style'
 
@@ -33,12 +34,12 @@ const LectureCreatePage = () => {
   const lectureDivision = useRecoilValue(LectureDivision)
   const lectureDepartment = useRecoilValue(LectureDepartment)
   const lectureLine = useRecoilValue(LectureLine)
-  const lectureProfessor = useRecoilValue(LectureProfessor)
+  const lectureProfessor = useRecoilValue(LectureInstructor)
   const lectureStartDate = useRecoilValue(LectureStartDate)
   const lectureStartTime = useRecoilValue(LectureStartTime)
   const lectureEndDate = useRecoilValue(LectureEndDate)
   const lectureEndTime = useRecoilValue(LectureEndTime)
-  const [lectureDates, setLectureDates] = useRecoilState(LectureDates)
+  const [lectureDates] = useRecoilState(LectureDates)
   const lectureType = useRecoilValue(LectureType)
   const lectureCredit = useRecoilValue(LectureCredit)
   const lectureMaxRegisteredUser = useRecoilValue(LectureMaxRegistered)
@@ -68,7 +69,7 @@ const LectureCreatePage = () => {
   }
 
   const openCreateModal = () => {
-    if (!isCondition()) return
+    if (!isCondition()) return toast.error('입력 요소들을 다시 확인해주세요')
     const filteredDates = lectureDates.map(
       ({ startShowTime, endShowTime, ...filtered }) => filtered
     )

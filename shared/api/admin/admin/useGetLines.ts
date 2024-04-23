@@ -7,12 +7,12 @@ import {
 import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 import { AxiosError, AxiosResponse } from 'axios'
 
-export const useGetLine = (
+export const useGetLines = (
   queryString: LinePayloadTypes,
   options?: UseQueryOptions<AxiosResponse>
 ) =>
   useQuery<AxiosResponse<LineResponseTypes>, AxiosError<ApiErrorTypes>>(
-    lectureQueryKeys.getLine(),
+    lectureQueryKeys.getLines(),
     () => get(lectureUrl.lectureLine(queryString)),
     options
   )

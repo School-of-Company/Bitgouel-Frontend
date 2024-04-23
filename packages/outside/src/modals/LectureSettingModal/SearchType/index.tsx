@@ -1,8 +1,8 @@
 'use client'
 
-import { LectureType, lectureTypeToKor } from '@bitgouel/common'
+import { LectureCredit, LectureType, lectureTypeToKor } from '@bitgouel/common'
 import { EnumBox, EnumSelectContainer } from '../style'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 import { LectureTypeEnum } from '@bitgouel/types'
 
 const lectureTypes: LectureTypeEnum[] = [
@@ -12,6 +12,8 @@ const lectureTypes: LectureTypeEnum[] = [
 
 const LectureTypeSelect = () => {
   const [lectureType, setLectureType] = useRecoilState(LectureType)
+  const setLectureCredit = useSetRecoilState(LectureCredit)
+
   return (
     <EnumSelectContainer>
       {lectureTypes.map((type) => (
@@ -19,7 +21,10 @@ const LectureTypeSelect = () => {
           key={type}
           current={type}
           selected={lectureType}
-          onClick={() => setLectureType(type)}
+          onClick={() => {
+            setLectureType(type)
+            setLectureCredit(1)
+          }}
         >
           <span>{lectureTypeToKor[type]}</span>
         </EnumBox>

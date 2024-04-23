@@ -1,7 +1,8 @@
 'use client'
 
-import { useGetDepartment } from '@bitgouel/api'
+import { useGetDepartments } from '@bitgouel/api'
 import { InputCancel, LectureDepartment, SearchIcon } from '@bitgouel/common'
+import { DepartmentResponseTypes } from '@bitgouel/types'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import {
@@ -16,7 +17,8 @@ const SearchDepartment = () => {
   const [lectureDepartment, setLectureDepartment] =
     useRecoilState(LectureDepartment)
   const [department, setDepartment] = useState<string>('')
-  const { data, refetch } = useGetDepartment(department)
+  const { data, refetch } = useGetDepartments(department)
+  const { departments } = data?.data || ({} as DepartmentResponseTypes)
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -39,25 +41,40 @@ const SearchDepartment = () => {
           disabled={!!lectureDepartment.length}
         />
         {lectureDepartment.length ? (
-          <InputCancel onClick={() => setLectureDepartment('')} />
+          <InputCancel
+            onClick={() => {
+              setLectureDepartment('')
+              refetch()
+            }}
+          />
         ) : (
           <SearchIcon onClick={() => refetch()} />
         )}
       </SearchInputBox>
-      {data?.data.departments.length && !lectureDepartment.length && (
+      {departments && !lectureDepartment.length && (
         <SearchListContainer>
-          {data?.data.departments.map((department) => (
+          {departments.map((departmentItem) => (
             <SearchItem
-              key={department}
+              key={departmentItem}
+              onClick={() => {
+                setLectureDepartment(departmentItem)
+                setDepartment('')
+              }}
+            >
+              <span>{departmentItem}</span>
+            </SearchItem>
+          ))}
+          {!departments.length && (
+            <SearchItem
               onClick={() => {
                 setLectureDepartment(department)
                 setDepartment('')
               }}
             >
               <span>{department}</span>
-              <span>계열 추가하기...</span>
+              <span>새 학과 추가하기...</span>
             </SearchItem>
-          ))}
+          )}
         </SearchListContainer>
       )}
     </SearchWrapper>
