@@ -1,5 +1,7 @@
-import { ClubPage } from '@/PageContainer'
+import { SchoolPage } from '@/PageContainer'
 
-const SchoolPage = () => {
-  return <ClubPage />
+const School = () => {
+  return <SchoolPage />
 }
+
+export default School
