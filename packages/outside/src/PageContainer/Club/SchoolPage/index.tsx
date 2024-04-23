@@ -1,6 +1,6 @@
 'use client'
 // 어드민 페이지
-import { ClubItem } from '@/components'
+import { ClubItem, SchoolFilter } from '@/components'
 import { SchoolFilterModal } from '@/modals'
 import { useGetClubList } from '@bitgouel/api'
 import {
@@ -26,17 +26,7 @@ const ClubPage = () => {
 
   return (
     <div>
-      <S.SlideBg url={Bg2}>
-        <S.BgContainer>
-          <S.Title>취업 동아리 목록</S.Title>
-          <S.ButtonContainer>
-            <S.ClubButton onClick={() => openModal(<SchoolFilterModal />)}>
-              <SettingOut />
-              <span>학교 선택</span>
-            </S.ClubButton>
-          </S.ButtonContainer>
-        </S.BgContainer>
-      </S.SlideBg>
+      <SchoolFilter />
       <S.ClubWrapper>
         <S.ClubContainer>
           <S.ClubGroupBox>
