@@ -10,7 +10,12 @@ export {
 } from './post'
 export { default as MyPage } from './my'
 export { InquiryPage, InquiryDetailPage } from './inquiry'
-export { LecturePage, LectureDetailPage, LectureApplyListPage } from './lecture'
+export {
+  LecturePage,
+  LectureDetailPage,
+  LectureApplyListPage,
+  LectureCreatePage,
+} from './lecture'
 export { default as ActivityListPage } from './activity/list'
 export { default as ActivityDetailPage } from './activity/detail'
 export { default as ClubDetailPage } from './club/detail'
