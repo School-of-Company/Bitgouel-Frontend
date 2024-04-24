@@ -4,14 +4,14 @@ import { CancelIcon, LectureType, Portal, useModal } from '@bitgouel/common'
 import { useRecoilValue } from 'recoil'
 import LectureApplyTime from './LectureApplyTime'
 import LectureCreditSelect from './LectureCreditSelect'
-import LectureDivisionSelect from './LectureDivisonSelect'
 import LectureEnrollmentDates from './LectureEnrollmentDates'
 import LectureMaxInput from './LectureMaxInput'
 import LectureSemesterSelect from './LectureSemesterSelect'
-import LectureTypeSelect from './LectureTypeSelect'
 import SearchDepartment from './SearchDepartment'
+import SearchDivision from './SearchDivision'
+import SearchInstructor from './SearchInstructor'
 import SearchLine from './SearchLine'
-import SearchProfessor from './SearchProfessor'
+import LectureTypeSelect from './SearchType'
 import * as S from './style'
 
 const LectureSettingModal = () => {
@@ -26,6 +26,10 @@ const LectureSettingModal = () => {
           <CancelIcon onClick={closeModal} />
         </S.SettingTitleBox>
         <S.SettingContainer>
+          <span>수강 학기</span>
+          <LectureSemesterSelect />
+        </S.SettingContainer>
+        <S.SettingContainer>
           <span>강의 유형</span>
           <LectureTypeSelect />
         </S.SettingContainer>
@@ -36,12 +40,8 @@ const LectureSettingModal = () => {
           </S.SettingContainer>
         )}
         <S.SettingContainer>
-          <span>수강 학기</span>
-          <LectureSemesterSelect />
-        </S.SettingContainer>
-        <S.SettingContainer>
           <span>강의 구분</span>
-          <LectureDivisionSelect />
+          <SearchDivision />
         </S.SettingContainer>
         <S.SettingContainer>
           <span>강의 계열</span>
@@ -53,7 +53,7 @@ const LectureSettingModal = () => {
         </S.SettingContainer>
         <S.SettingContainer>
           <span>담당 교수</span>
-          <SearchProfessor />
+          <SearchInstructor />
         </S.SettingContainer>
         <S.SettingContainer>
           <span>강의 신청 기간</span>
