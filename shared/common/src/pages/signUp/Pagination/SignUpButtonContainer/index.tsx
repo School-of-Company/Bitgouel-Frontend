@@ -15,11 +15,12 @@ import {
   SignUpPageNumber,
   schoolToConstants,
 } from '@bitgouel/common'
+import { SignUpCommonPayloadTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
+import { toast } from 'react-toastify'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { match } from 'ts-pattern'
 import * as S from './style'
-import { toast } from 'react-toastify'
 
 const SignUpButtonContainer = ({ isNext }: { isNext: boolean }) => {
   const { push } = useRouter()
@@ -28,6 +29,15 @@ const SignUpButtonContainer = ({ isNext }: { isNext: boolean }) => {
   const signUpPage1Obj = useRecoilValue(SignUpPage1Obj)
   const [signUpPage2Obj, setSignUpPage2Obj] = useRecoilState(SignUpPage2Obj)
   const signUpPage3Obj = useRecoilValue(SignUpPage3Obj)
+
+  const commonPayload: SignUpCommonPayloadTypes = {
+    email: signUpPage3Obj[1].value,
+    name: signUpPage2Obj[2].value,
+    phoneNumber: signUpPage3Obj[0].value,
+    password: signUpPage3Obj[2].value,
+    highSchool: schoolToConstants[signUpPage2Obj[0].value],
+    clubName: signUpPage2Obj[1].value,
+  }
 
   const { mutate: postStudent } = usePostSignUpStudent({
     onSuccess: () => setSignUpPageNumber(4),
@@ -60,7 +70,7 @@ const SignUpButtonContainer = ({ isNext }: { isNext: boolean }) => {
       toast.error(response?.data.message.split('.')[0]),
   })
 
-  const onNext = async () => {
+  const onNext = () => {
     if (isNext) {
       if (signUpPageNumber === 1) {
         setSignUpPage2Obj((prev) => prev.slice(0, 3))
@@ -99,7 +109,9 @@ const SignUpButtonContainer = ({ isNext }: { isNext: boolean }) => {
         } else if (signUpPage1Obj[1].value === '유관기관') {
           setSignUpPage2Obj((prev) => [
             ...prev,
-            { value: '', placeholder: '소속 기관 입력', type: 'text' },
+            { value: '', placeholder: '소속 기관명 입력', type: 'text' },
+            { value: '', placeholder: '본인의 직책 입력', type: 'text' },
+            { value: '', placeholder: '소속 기관의 업종 입력', type: 'text' },
           ])
         }
         setSignUpPageNumber((prev) => prev + 1)
@@ -107,63 +119,31 @@ const SignUpButtonContainer = ({ isNext }: { isNext: boolean }) => {
       else if (signUpPageNumber === 3) {
         if (signUpPage1Obj[1].value === '학생') {
           postStudent({
-            email: signUpPage3Obj[1].value,
-            name: signUpPage2Obj[2].value,
-            phoneNumber: signUpPage3Obj[0].value,
-            password: signUpPage3Obj[2].value,
-            highSchool: schoolToConstants[signUpPage2Obj[0].value],
-            clubName: signUpPage2Obj[1].value,
+            ...commonPayload,
             grade: +signUpPage2Obj[4].value.slice(0, 1),
             classRoom: +signUpPage2Obj[4].value.slice(1, 2),
             number: +signUpPage2Obj[4].value.slice(2),
             admissionNumber: +signUpPage2Obj[3].value,
           })
         } else if (signUpPage1Obj[1].value === '취업동아리 선생님') {
-          postTeacher({
-            email: signUpPage3Obj[1].value,
-            name: signUpPage2Obj[2].value,
-            phoneNumber: signUpPage3Obj[0].value,
-            password: signUpPage3Obj[2].value,
-            highSchool: schoolToConstants[signUpPage2Obj[0].value],
-            clubName: signUpPage2Obj[1].value,
-          })
+          postTeacher(commonPayload)
         } else if (signUpPage1Obj[1].value === '뽀짝 선생님') {
-          postBbozzak({
-            email: signUpPage3Obj[1].value,
-            name: signUpPage2Obj[2].value,
-            phoneNumber: signUpPage3Obj[0].value,
-            password: signUpPage3Obj[2].value,
-            highSchool: schoolToConstants[signUpPage2Obj[0].value],
-            clubName: signUpPage2Obj[1].value,
-          })
+          postBbozzak(commonPayload)
         } else if (signUpPage1Obj[1].value === '대학 교수') {
           postProfessor({
-            email: signUpPage3Obj[1].value,
-            name: signUpPage2Obj[2].value,
-            phoneNumber: signUpPage3Obj[0].value,
-            password: signUpPage3Obj[2].value,
-            highSchool: schoolToConstants[signUpPage2Obj[0].value],
-            clubName: signUpPage2Obj[1].value,
+            ...commonPayload,
             university: signUpPage2Obj[3].value,
           })
         } else if (signUpPage1Obj[1].value === '유관기관') {
           postGovernment({
-            email: signUpPage3Obj[1].value,
-            name: signUpPage2Obj[2].value,
-            phoneNumber: signUpPage3Obj[0].value,
-            password: signUpPage3Obj[2].value,
-            highSchool: schoolToConstants[signUpPage2Obj[0].value],
-            clubName: signUpPage2Obj[1].value,
+            ...commonPayload,
             governmentName: signUpPage2Obj[3].value,
+            position: signUpPage2Obj[4].value,
+            sectors: signUpPage2Obj[5].value,
           })
         } else if (signUpPage1Obj[1].value === '기업 강사') {
           postCompanyInstructor({
-            email: signUpPage3Obj[1].value,
-            name: signUpPage2Obj[2].value,
-            phoneNumber: signUpPage3Obj[0].value,
-            password: signUpPage3Obj[2].value,
-            highSchool: schoolToConstants[signUpPage2Obj[0].value],
-            clubName: signUpPage2Obj[1].value,
+            ...commonPayload,
             company: signUpPage2Obj[3].value,
           })
         }
