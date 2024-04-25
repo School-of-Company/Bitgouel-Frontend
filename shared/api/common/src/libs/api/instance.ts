@@ -39,7 +39,7 @@ instance.interceptors.request.use(
       window.location.href = '/'
     }
     config.headers.Authorization = tokenManager.accessToken
-      ? `Bearer ${tokenManager.accessToken}`
+      ? `Bearer ${encodeURI(tokenManager.accessToken)}`
       : undefined
 
     return config
