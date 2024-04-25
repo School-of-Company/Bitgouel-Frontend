@@ -29,35 +29,35 @@ const LoginPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const resetPage2Obj = useResetRecoilState(SignUpPage2Obj)
   const resetPage3Obj = useResetRecoilState(SignUpPage3Obj)
   const tokenManager = new TokenManager()
-  const router = useRouter()
+  const { push } = useRouter()
   const { mutate, isLoading } = usePostLogin({
-    onSuccess: ({ data }) => {
+    onSuccess: (data) => {
       tokenManager.setTokens(data)
-      router.push('/')
+      push(`/`)
     },
     onError: (error) => {
-      if (error?.response?.status === 404) {
+      if (error.status === 404) {
         setEmailErrorText('등록되지 않은 계정입니다')
-      } else if (error?.response?.status === 403) {
+      } else if (error.status === 403) {
         setEmailErrorText('아직 회원가입 대기중인 계정입니다')
-      } else if (error?.response?.status === 401) {
+      } else if (error.status === 401) {
         setPasswordErrorText('비밀번호가 일치하지 않습니다')
-      } else if (error?.response?.status === 400) {
+      } else if (error.status === 400) {
         if (
-          Object.keys(error.response?.data.fieldError).includes('email') &&
-          Object.keys(error.response?.data.fieldError).includes('password')
+          Object.keys(error.fieldError).includes('email') &&
+          Object.keys(error.fieldError).includes('password')
         ) {
           setEmailErrorText('잘못된 이메일입니다')
           setPasswordErrorText('잘못된 비밀번호입니다')
         } else if (
-          Object.keys(error.response?.data.fieldError).includes('email') &&
-          !Object.keys(error.response?.data.fieldError).includes('password')
+          Object.keys(error.fieldError).includes('email') &&
+          !Object.keys(error.fieldError).includes('password')
         ) {
           setEmailErrorText('잘못된 이메일입니다.')
           setPasswordErrorText('')
         } else if (
-          Object.keys(error.response?.data.fieldError).includes('password') &&
-          !Object.keys(error.response?.data.fieldError).includes('email')
+          Object.keys(error.fieldError).includes('password') &&
+          !Object.keys(error.fieldError).includes('email')
         ) {
           setPasswordErrorText('잘못된 비밀번호입니다.')
           setEmailErrorText('')
@@ -91,7 +91,7 @@ const LoginPage = ({ isAdmin }: { isAdmin: boolean }) => {
     resetPage1Obj()
     resetPage2Obj()
     resetPage3Obj()
-    router.push('/auth/signUp')
+    push(`/auth/signUp`)
   }
 
   return (
