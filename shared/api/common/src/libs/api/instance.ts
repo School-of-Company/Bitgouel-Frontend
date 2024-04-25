@@ -51,7 +51,6 @@ instance.interceptors.response.use(
     if (response.status >= 200 && response.status < 300) {
       return response.data
     }
-    return Promise.reject(response.data)
   },
   async (error) => {
     const tokenManager = new TokenManager()
