@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 import { useRecoilValue } from 'recoil'
 import * as S from '../ClubPage/style'
 
-const ClubPage = () => {
+const SchoolListPage = () => {
   const { openModal } = useModal()
   const schoolFilterText = useRecoilValue(SchoolFilterText)
   const { data, refetch } = useGetClubList(schoolToConstants[schoolFilterText])
@@ -35,4 +35,4 @@ const ClubPage = () => {
   )
 }
 
-export default ClubPage
+export default SchoolListPage

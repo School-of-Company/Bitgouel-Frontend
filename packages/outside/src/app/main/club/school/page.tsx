@@ -1,7 +1,7 @@
-import { SchoolPage } from '@/PageContainer'
+import { SchoolListPage } from '@/PageContainer'
 
 const School = () => {
-  return <SchoolPage />
+  return <SchoolListPage />
 }
 
 export default School
