@@ -7,8 +7,10 @@ import {
 } from '@bitgouel/common'
 import * as S from './style'
 import { useSetRecoilState } from 'recoil'
+import { useRouter } from 'next/navigation'
 
 const SchoolFilterModal = () => {
+  const { push } = useRouter()
   const { closeModal } = useModal()
   const setSchoolFilterText = useSetRecoilState(SchoolFilterText)
   return (
@@ -16,9 +18,19 @@ const SchoolFilterModal = () => {
       <S.SchoolFilterModalWrapper>
         <S.SchoolFilterTitleBox>
           <h3>학교 선택</h3>
-          <CancelIcon onClick={closeModal} />
+          <div>
+            <CancelIcon onClick={closeModal} />
+          </div>
         </S.SchoolFilterTitleBox>
         <S.SchoolListContainer>
+          <S.SchoolItemBox
+            onClick={() => {
+              push(`/main/club`)
+              closeModal()
+            }}
+          >
+            모든 학교
+          </S.SchoolItemBox>
           {schools
             .map((school) => school + '등학교')
             .map((school, idx) => (
@@ -27,6 +39,7 @@ const SchoolFilterModal = () => {
                 onClick={() => {
                   setSchoolFilterText(school.slice(0, -3))
                   closeModal()
+                  push(`/main/club/school`)
                 }}
               >
                 {school}

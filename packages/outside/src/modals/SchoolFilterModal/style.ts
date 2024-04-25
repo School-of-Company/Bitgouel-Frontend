@@ -17,11 +17,10 @@ export const SchoolFilterTitleBox = styled.div`
   justify-content: space-between;
   width: 100%;
   height: 5rem;
-  border-bottom: 0.0625rem solid ${({ theme }) => theme.color.gray['900']};
 
   h3 {
     margin: 0;
-    margin-left: 1.5rem;
+    margin-left: 2.2rem;
     ${({ theme }) => theme.typo.title_sm.semibold};
     color: ${({ theme }) => theme.color.black};
   }
@@ -46,9 +45,9 @@ export const SchoolListContainer = styled.div`
 
   &::-webkit-scrollbar {
     width: 0.375rem;
-}
+  }
 
-&::-webkit-scrollbar-thumb {
+  &::-webkit-scrollbar-thumb {
     border-radius: 0.625rem;
     background-color: ${({ theme }) => theme.color.gray['700']};
   }
