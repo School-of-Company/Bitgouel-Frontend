@@ -24,7 +24,7 @@ const SignUpSuccess = () => {
         </S.SignUpContainer>
       </S.SignUpWrapper>
       <S.BackButtonContainer>
-        <S.BackButton onClick={() => push('/auth/login')}>
+        <S.BackButton onClick={() => push(`/auth/login`)}>
           돌아가기
         </S.BackButton>
       </S.BackButtonContainer>
