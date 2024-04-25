@@ -79,9 +79,9 @@ export const IsValidate = atom<boolean>({
 })
 
 // 강의 생성
-export const LectureType = atom<LectureTypeEnum>({
+export const LectureType = atom<string>({
   key: 'LectureType',
-  default: 'MUTUAL_CREDIT_RECOGNITION_PROGRAM',
+  default: '',
 })
 export const LectureSemester = atom<LectureSemesterEnum>({
   key: 'LectureSemester',
