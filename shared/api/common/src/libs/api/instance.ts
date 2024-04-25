@@ -45,3 +45,28 @@ instance.interceptors.request.use(
     return config
   }
 )
+
+instance.interceptors.response.use(
+  (response) => {
+    if (response.status >= 200 && response.status < 300) {
+      return response.data
+    }
+    return Promise.reject(response.data)
+  },
+  async (error) => {
+    const tokenManager = new TokenManager()
+    if (error.response.status === 401) {
+      try {
+        await tokenManager.reissueToken()
+        tokenManager.initToken()
+        error.config.headers['Authorization'] = tokenManager.accessToken
+          ? `Bearer ${encodeURI(tokenManager.accessToken)}`
+          : undefined
+        return instance(error.config)
+      } catch (err) {
+        window.location.replace('/')
+      }
+    }
+    return Promise.reject(error)
+  }
+)
