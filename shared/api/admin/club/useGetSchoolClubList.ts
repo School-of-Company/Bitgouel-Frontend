@@ -5,9 +5,9 @@ import { AxiosError, AxiosResponse } from 'axios'
 import { ApiError } from 'next/dist/server/api-utils'
 
 export const useGetSchoolClubList = (
-  options?: UseQueryOptions<AxiosResponse>
+  options?: UseQueryOptions<SchoolClubListResponseTypes>
 ) =>
-  useQuery<AxiosResponse<SchoolClubListResponseTypes>, AxiosError<ApiError>>(
+  useQuery<SchoolClubListResponseTypes, ApiError>(
     clubQueryKeys.getSchoolClub(),
     () => get(clubUrl.schoolClub()),
     options
