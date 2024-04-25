@@ -21,7 +21,7 @@ const ClubPage = () => {
       <SchoolFilter />
       <S.ClubWrapper>
         <S.ClubContainer>
-          {data?.data.schools.map((school) => (
+          {data?.schools.map((school) => (
             <S.ClubGroupBox key={school.id}>
               <S.ClubSchoolTitle>{school.schoolName}</S.ClubSchoolTitle>
               <S.ClubListBox>
