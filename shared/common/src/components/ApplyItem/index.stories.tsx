@@ -4,7 +4,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import ApplyItem from '.'
 
 export default {
-  title: '/common/components/ApplyItem',
+  title: 'common/components/ApplyItem',
   component: ApplyItem,
 } as Meta<typeof ApplyItem>
 
