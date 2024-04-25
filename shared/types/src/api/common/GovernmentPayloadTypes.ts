@@ -1,9 +1,7 @@
-export interface GovernmentPayloadTypes {
-  email: string
-  name: string
-  phoneNumber: string
-  password: string
-  highSchool: string
-  clubName: string
+import { SignUpCommonPayloadTypes } from './SignUpCommonPayloadTypes'
+
+export interface GovernmentPayloadTypes extends SignUpCommonPayloadTypes {
   governmentName: string
+  position: string
+  sectors: string
 }

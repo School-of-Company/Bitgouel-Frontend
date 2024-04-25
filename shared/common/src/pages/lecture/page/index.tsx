@@ -34,7 +34,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
       checked: false,
     },
   ])
-  const [lectureType, setLectureType] = useRecoilState<LectureTypeEnum | ''>(
+  const [lectureType, setLectureType] = useRecoilState<string>(
     LectureFilterType
   )
   const [isLectureType, setIsLectureType] = useState<boolean>(false)

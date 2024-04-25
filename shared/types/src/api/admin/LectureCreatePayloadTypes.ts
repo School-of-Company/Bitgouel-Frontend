@@ -35,14 +35,14 @@ export interface LectureCreatePayloadTypes {
   name: string
   content: string
   semester: LectureSemesterEnum
-  division: LectureDivisionEnum
+  division: string
   department: string
   line: string
   userId: string
   startDate: string // LocalDateTime 날짜 + 시간
   endDate: string // LocalDateTime 날짜 + 시간
   lectureDates: LectureDate[]
-  lectureType: LectureTypeEnum
+  lectureType: string
   credit: number
   maxRegisteredUser: number
 }

@@ -5,7 +5,6 @@ import {
   LectureDivisionEnum,
   LectureSemesterEnum,
   LectureTypeEnum,
-  LectureTypeKor,
   SignUpObjTypes,
 } from '@bitgouel/types'
 import { ReactNode } from 'react'
@@ -16,7 +15,7 @@ interface InputLectureDatesTypes extends LectureDate {
   endShowTime: string
 }
 
-export const LectureFilterType = atom<LectureTypeEnum | ''>({
+export const LectureFilterType = atom<string>({
   key: 'LectureFilterType',
   default: '',
 })
@@ -80,9 +79,9 @@ export const IsValidate = atom<boolean>({
 })
 
 // 강의 생성
-export const LectureType = atom<LectureTypeEnum>({
+export const LectureType = atom<string>({
   key: 'LectureType',
-  default: 'MUTUAL_CREDIT_RECOGNITION_PROGRAM',
+  default: '',
 })
 export const LectureSemester = atom<LectureSemesterEnum>({
   key: 'LectureSemester',

@@ -1,4 +1,4 @@
-export interface TeacherPayloadTypes {
+export interface SignUpCommonPayloadTypes {
   email: string
   name: string
   phoneNumber: string
