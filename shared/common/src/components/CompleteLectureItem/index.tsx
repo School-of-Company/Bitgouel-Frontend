@@ -1,3 +1,5 @@
+'use client'
+
 import * as S from './style'
 
 const CompleteLectureItem = () => {
@@ -9,7 +11,7 @@ const CompleteLectureItem = () => {
             <S.TitleType>상호학점인정교육과정</S.TitleType>
           </S.TitleTypeBox>
           <S.TitleBox>
-            <S.Title>그날 학교는 파괴적인 불꽃으로 타올랐다</S.Title>
+            <S.Title>그날 학교는 파괴적인 불꽃으로 타올랐다.</S.Title>
             <S.Line />
           </S.TitleBox>
         </S.TitleContainer>
