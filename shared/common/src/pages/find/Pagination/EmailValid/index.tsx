@@ -1,9 +1,9 @@
-import { useEffect } from 'react'
 import { useGetEmail } from '@bitgouel/api'
-import * as S from './style'
+import { PwPage } from '@bitgouel/common'
+import { useEffect } from 'react'
 import { toast } from 'react-toastify'
 import { useSetRecoilState } from 'recoil'
-import { PwPage } from '@bitgouel/common'
+import * as S from './style'
 
 const EmailValid = ({ emailValue }: { emailValue: string }) => {
   const setPwPage = useSetRecoilState(PwPage)
@@ -18,7 +18,7 @@ const EmailValid = ({ emailValue }: { emailValue: string }) => {
   }, [refetch])
 
   useEffect(() => {
-    if (data?.data.isAuthentication) {
+    if (data?.isAuthentication) {
       setPwPage(3)
       toast.success('이메일 인증이 확인되었습니다')
     }

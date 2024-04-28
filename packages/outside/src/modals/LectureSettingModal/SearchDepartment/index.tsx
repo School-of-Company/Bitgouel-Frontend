@@ -44,9 +44,9 @@ const SearchDepartment = () => {
           <SearchIcon onClick={() => refetch()} />
         )}
       </SearchInputBox>
-      {data?.data.departments.length && !lectureDepartment.length && (
+      {data?.departments.length && !lectureDepartment.length && (
         <SearchListContainer>
-          {data?.data.departments.map((department) => (
+          {data?.departments.map((department) => (
             <SearchItem
               key={department}
               onClick={() => {

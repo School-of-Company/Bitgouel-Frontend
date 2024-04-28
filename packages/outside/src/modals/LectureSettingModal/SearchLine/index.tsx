@@ -49,9 +49,9 @@ const SearchLine = () => {
           <SearchIcon onClick={() => refetch()} />
         )}
       </SearchInputBox>
-      {data?.data.lines && !lectureLine.length && (
+      {data?.lines && !lectureLine.length && (
         <SearchListContainer>
-          {data?.data.lines.map((line) => (
+          {data?.lines.map((line) => (
             <SearchItem
               key={line}
               onClick={() => {

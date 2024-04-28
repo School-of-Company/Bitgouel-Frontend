@@ -50,9 +50,9 @@ const SearchProfessor = () => {
           <SearchIcon onClick={() => refetch()} />
         )}
       </SearchInputBox>
-      {data?.data.instructors && !lectureProfessor.length && (
+      {data?.instructors && !lectureProfessor.length && (
         <SearchListContainer>
-          {data?.data.instructors.map((professor) => (
+          {data?.instructors.map((professor) => (
             <SearchItem
               key={professor.id}
               onClick={() => {

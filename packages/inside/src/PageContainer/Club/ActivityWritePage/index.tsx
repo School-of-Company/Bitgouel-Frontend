@@ -51,11 +51,32 @@ const ActivityWritePage = ({
     }
   }
 
+  const isAble = () => {
+    if (isSuccess && data) {
+      if (
+        data.title !== activityTitle ||
+        (data.content !== activityContent &&
+          activityDateText !== '활동 날짜 선택' &&
+          scoreText !== '학점 선택')
+      )
+        return true
+      else return false
+    } else {
+      if (
+        activityTitle !== '' &&
+        activityContent !== '' &&
+        activityDateText !== '활동 날짜 선택' &&
+        scoreText !== '학점 선택'
+      )
+        return true
+      else return false
+    }
+  }
+
   const { data, refetch, isSuccess } = useGetActivityDetail(activityId || '', {
     enabled: !!studentId,
     refetchOnWindowFocus: false,
   })
-  const { title, content, activityDate, credit } = data?.data || {}
 
   const { mutate: createActivity } = usePostActivityInformation({
     onSuccess: () => {
@@ -131,10 +152,10 @@ const ActivityWritePage = ({
 
   useEffect(() => {
     if (isSuccess) {
-      setActivityTitle(title || '')
-      setActivityContent(content || '')
-      setScoreText(credit + '점' || '')
-      setActivityDateText(dayjs(activityDate).format('YYYY.MM.DD'))
+      setActivityTitle(data?.title || '')
+      setActivityContent(data?.content || '')
+      setScoreText(data?.credit + '점' || '')
+      setActivityDateText(dayjs(data?.activityDate).format('YYYY.MM.DD'))
     }
   }, [data])
 
@@ -209,22 +230,8 @@ const ActivityWritePage = ({
           </S.ActivitySetting>
           <S.ButtonContainer>
             <S.CreateButton
-              onClick={() => {
-                if (
-                  title !== '' &&
-                  content !== '' &&
-                  activityDateText !== '활동 날짜 선택' &&
-                  scoreText !== '학점 선택'
-                ) {
-                  onSubmit()
-                }
-              }}
-              isAble={
-                title !== '' &&
-                content !== '' &&
-                activityDateText !== '활동 날짜 선택' &&
-                scoreText !== '학점 선택'
-              }
+              onClick={() => isAble() && onSubmit()}
+              isAble={isAble()}
             >
               {activityId ? '수정하기' : '추가하기'}
             </S.CreateButton>

@@ -76,7 +76,7 @@ const LectureCreatePage = () => {
       <AppropriationModal
         isApprove={true}
         question='강의를 개설하시겠습니까?'
-        title={lectureTitle}
+        title={lectureTitle || ''}
         purpose='개설하기'
         onAppropriation={() =>
           mutate({

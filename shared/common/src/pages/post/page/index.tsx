@@ -20,7 +20,6 @@ const PostPage = () => {
     page: 0,
     size: 15,
   })
-  const { posts } = data?.data || {}
   const { push } = useRouter()
   const tokenManager = new TokenManager()
   const [isRole, setIsRole] = useState<boolean>(false)
@@ -58,7 +57,7 @@ const PostPage = () => {
       </S.SlideBg>
       <S.PostListWrapper>
         <S.PostListContainer>
-          {posts?.content.map((post) => (
+          {data?.posts.content.map((post) => (
             <PostItem key={post.id} item={post} />
           ))}
         </S.PostListContainer>

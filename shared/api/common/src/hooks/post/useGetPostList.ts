@@ -1,13 +1,13 @@
 import { get, postQueryKeys, postUrl } from '@bitgouel/api'
 import { PostListOptionsTypes, PostListResponseTypes } from '@bitgouel/types'
 import { UseQueryOptions, useQuery } from '@tanstack/react-query'
-import { AxiosResponse } from 'axios'
+import { AxiosError } from 'axios'
 
 export const useGetPostList = (
   queryString: PostListOptionsTypes,
-  options?: UseQueryOptions<AxiosResponse>
+  options?: UseQueryOptions<PostListResponseTypes>
 ) =>
-  useQuery<AxiosResponse<PostListResponseTypes>>(
+  useQuery<PostListResponseTypes, AxiosError>(
     postQueryKeys.getBoardList(),
     () => get(postUrl.postList(queryString)),
     options

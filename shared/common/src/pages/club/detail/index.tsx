@@ -6,14 +6,14 @@ import {
   useGetMy,
   useGetMyClub,
 } from '@bitgouel/api'
-import * as S from './style'
 import { Bg2, PersonOut } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
-import { roleToKor } from '@bitgouel/common'
 import { useEffect, useState } from 'react'
+import * as S from './style'
 
 const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
   const { push } = useRouter()
+  const tokenManager = new TokenManager()
 
   const { data: clubDetail } = useGetClubDetail(clubId || '', {
     enabled: !!clubId,
@@ -22,17 +22,14 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
   const { data: myData } = useGetMy()
 
   const [userId, setUserId] = useState<string>('')
-
-  const tokenManager = new TokenManager()
-
   const [isStudent, setIsStudent] = useState<boolean>(false)
 
   useEffect(() => {
     setIsStudent(tokenManager.authority === 'ROLE_STUDENT')
 
     if (myClub && myData) {
-      const foundStudent = myClub.data.students.find(
-        (student) => student.userId === myData.data.id
+      const foundStudent = myClub.students.find(
+        (student) => student.userId === myData.id
       )
       if (foundStudent) {
         setUserId(foundStudent.id)
@@ -51,7 +48,7 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
                 <PersonOut />
                 <span
                   onClick={() =>
-                    push(`/main/club/${myClub?.data.clubId}/student/${userId}`)
+                    push(`/main/club/${myClub?.clubId}/student/${userId}`)
                   }
                 >
                   내 자격증 및 활동
@@ -64,36 +61,31 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
       <S.ClubWrapper>
         <S.ClubContainer>
           <S.ClubTitle>
-            {clubId ? clubDetail?.data.clubName : myClub?.data.clubName}
+            {clubId ? clubDetail?.clubName : myClub?.clubName}
           </S.ClubTitle>
           <S.ClubInfoContainer>
             <S.BelongBox>
               <S.ExpressSchoolBox>소속 학교</S.ExpressSchoolBox>
               <span>
-                {clubId
-                  ? clubDetail?.data.highSchoolName
-                  : myClub?.data.highSchoolName}
+                {clubId ? clubDetail?.highSchoolName : myClub?.highSchoolName}
               </span>
             </S.BelongBox>
             <S.BelongBox>
               <S.ExpressTeacherBox>담당 선생님</S.ExpressTeacherBox>
               <span>
-                {clubId
-                  ? clubDetail?.data.teacher.name
-                  : myClub?.data.teacher.name}
+                {clubId ? clubDetail?.teacher.name : myClub?.teacher.name}
               </span>
             </S.BelongBox>
           </S.ClubInfoContainer>
           <S.ClubPersonnelBox>
             <S.ClubPersonnelTitle>동아리 인원</S.ClubPersonnelTitle>
             <span>
-              총 {clubId ? clubDetail?.data.headCount : myClub?.data.headCount}
-              명
+              총 {clubId ? clubDetail?.headCount : myClub?.headCount}명
             </span>
           </S.ClubPersonnelBox>
           <S.ClubMemberListContainer>
             {clubId
-              ? clubDetail?.data.students.map((student) => (
+              ? clubDetail?.students.map((student) => (
                   <S.ClubMemberBox
                     isStudent={isStudent}
                     key={student.id}
@@ -104,7 +96,7 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
                     <S.MemberName>{student.name}</S.MemberName>
                   </S.ClubMemberBox>
                 ))
-              : myClub?.data.students.map((student) => (
+              : myClub?.students.map((student) => (
                   <S.ClubMemberBox
                     isStudent={isStudent}
                     key={student.id}

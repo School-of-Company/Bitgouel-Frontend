@@ -7,7 +7,6 @@ import { FAQListQuestionsTypes } from '@bitgouel/types'
 
 const FAQSection = () => {
   const { data, refetch } = useGetListQuestions()
-  const { faqs } = data?.data || ({} as FAQListQuestionsTypes)
 
   return (
     <S.FAQSectionWrapper>
@@ -17,7 +16,7 @@ const FAQSection = () => {
           <S.Title>자주 묻는 질문</S.Title>
         </S.TitleBox>
         <S.FAQList>
-          {faqs?.map((item) => (
+          {data?.faqs.map((item) => (
             <FAQItem
               key={item.id}
               question={item.question}

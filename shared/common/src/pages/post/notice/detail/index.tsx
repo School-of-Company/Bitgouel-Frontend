@@ -2,13 +2,13 @@
 
 import { TokenManager, useDeletePost, useGetPostDetail } from '@bitgouel/api'
 import { AppropriationModal, Bg1, useModal } from '@bitgouel/common'
+import { RoleEnumTypes } from '@bitgouel/types'
+import dayjs from 'dayjs'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { LinkTextBox, LinkTitle, LinkWrapper } from '../../detail/style'
 import * as S from './style'
-import { RoleEnumTypes } from '@bitgouel/types'
-import { useEffect, useState } from 'react'
-import dayjs from 'dayjs'
 
 const roleArray: RoleEnumTypes[] = [
   'ROLE_ADMIN',
@@ -19,7 +19,6 @@ const roleArray: RoleEnumTypes[] = [
 
 const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
   const { data } = useGetPostDetail(noticeId)
-  const { title, content, modifiedAt, links } = data?.data || {}
   const { mutate } = useDeletePost(noticeId, '공지사항')
   const { openModal } = useModal()
   const { push } = useRouter()
@@ -44,24 +43,24 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
       <S.DocumentWrapper>
         <S.Document>
           <S.TitleContainer>
-            <S.Title>{title}</S.Title>
+            <S.Title>{data?.title}</S.Title>
             <S.SubTitle>
               <S.NumberBox>
                 <S.SubTitleBox>게시일</S.SubTitleBox>
                 <span>
-                  {dayjs(modifiedAt).format('YYYY년 MM월 DD일 HH:mm')}
+                  {dayjs(data?.modifiedAt).format('YYYY년 MM월 DD일 HH:mm')}
                 </span>
               </S.NumberBox>
             </S.SubTitle>
           </S.TitleContainer>
-          <S.MainText>{content}</S.MainText>
+          <S.MainText>{data?.content}</S.MainText>
           <S.SharedLine />
           <LinkTextBox>
             <div>
               <LinkTitle>관련 링크 보기</LinkTitle>
             </div>
             <LinkWrapper>
-              {links?.map((link) => (
+              {data?.links.map((link) => (
                 <Link href={link} passHref legacyBehavior>
                   <a target='_blank' rel='noopener noreferrer'>
                     {link}
@@ -80,7 +79,7 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
                         isApprove={false}
                         question='공지사항을 삭제하시겠습니까?'
                         purpose='삭제하기'
-                        title={title || ''}
+                        title={data?.title || ''}
                         onAppropriation={() => mutate()}
                       />
                     )

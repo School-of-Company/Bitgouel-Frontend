@@ -18,7 +18,6 @@ import { ChangeEvent, useEffect, useState } from 'react'
 import { TopContainer } from '../NewUserListPage/style'
 import { UserListContainer } from '../UserListPage/style'
 import * as S from './style'
-import { WithdrawListResponseTypes } from '@bitgouel/types'
 
 type cohortTypes = '1' | '2' | '3' | '4'
 
@@ -33,7 +32,6 @@ const WithdrawUserListPage = () => {
   ])
   const [cohort, setCohort] = useState<cohortTypes>('1')
   const { data, refetch } = useGetWithDrawUserList(cohort)
-  const { students } = data?.data || ({} as WithdrawListResponseTypes)
   const { mutate } = useDeleteUserWithdraw(userIds)
   const [isFilter, setIsFilter] = useState<boolean>(false)
   const { openModal } = useModal()
@@ -53,7 +51,7 @@ const WithdrawUserListPage = () => {
     handleSelect({ checked, id: userId, setIds: setUserIds })
   const onAll = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked)
-      setUserIds(data?.data.students.map((student) => student.userId))
+      setUserIds(data?.students.map((student) => student.userId))
     else setUserIds([])
   }
   const onWithdrawModal = () => {
@@ -122,7 +120,7 @@ const WithdrawUserListPage = () => {
           </S.WithdrawButtonContainer>
         </TopContainer>
         <UserListContainer>
-          {students?.map((user) => (
+          {data?.students.map((user) => (
             <UserItem
               key={user.withdrawId}
               id={user.userId}
