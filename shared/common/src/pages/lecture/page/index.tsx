@@ -63,7 +63,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
   const { data, refetch, isLoading } = useGetLectureList({
     page: currentPage,
     size: 10,
-    type: lectureType || 'MUTUAL_CREDIT_RECOGNITION_PROGRAM',
+    type: lectureType,
   })
   const pages = Array.from({ length: data?.lectures.totalPages || 0 }).map(
     (_, i) => i
@@ -116,11 +116,13 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
       </S.SlideBg>
       <S.ListWrapper>
         <S.ListContainer>
-          {data?.lectures.content.map((item) => (
-            <LectureItem key={item.id} item={item} />
-          ))}
+          {data?.lectures.content.length
+            ? data.lectures.content.map((item) => (
+                <LectureItem key={item.id} item={item} />
+              ))
+            : '강의 목록이 없습니다.'}
         </S.ListContainer>
-        {data?.lectures.content?.length && !isLoading && (
+        {!!data?.lectures.content?.length && !isLoading && (
           <PaginationPages
             pages={pages}
             currentPage={currentPage}

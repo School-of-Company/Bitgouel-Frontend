@@ -1,11 +1,10 @@
 'use client'
 
-import { lectureTypeToKor } from '@bitgouel/common'
+import { LectureSemesterToKor } from '@bitgouel/common'
 import { LectureItemProps } from '@bitgouel/types'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import * as S from './style'
-
 const LectureItem = ({ item }: LectureItemProps) => {
   const { push } = useRouter()
 
@@ -23,14 +22,25 @@ const LectureItem = ({ item }: LectureItemProps) => {
         </S.MainText>
       </S.MainTextContainer>
       <S.SubMenuContainer>
-        <S.From>{lectureTypeToKor[item.lectureType]}</S.From>
+        <S.LectureInfoContainer>
+          <S.LectureInfoItem>
+            {LectureSemesterToKor[item.semester]}
+          </S.LectureInfoItem>
+          <S.LectureInfoItem>
+            {item.division}
+            <span>|</span>
+            {item.line}
+            <span>|</span>
+            {item.department}
+          </S.LectureInfoItem>
+        </S.LectureInfoContainer>
         <S.MenuNum>
           <span>
-            {dayjs(item.startDate).format('YYYY.MM.DD')} ~ {dayjs(item.endDate).format('YYYY.MM.DD')}
-          </span>
-          <span>•</span>
-          <span>
             {item.headCount}/{item.maxRegisteredUser}명
+          </span>
+          <span>
+            {dayjs(item.startDate).format('YYYY.MM.DD')} ~{' '}
+            {dayjs(item.endDate).format('YYYY.MM.DD')}
           </span>
         </S.MenuNum>
       </S.SubMenuContainer>

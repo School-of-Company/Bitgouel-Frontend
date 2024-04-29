@@ -4,7 +4,6 @@ import {
   LectureDate,
   LectureDivisionEnum,
   LectureSemesterEnum,
-  LectureTypeEnum,
   SignUpObjTypes,
 } from '@bitgouel/types'
 import { ReactNode } from 'react'
