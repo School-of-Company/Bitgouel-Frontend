@@ -72,20 +72,23 @@ class TokenManager {
 
   async reissueToken() {
     try {
-      const { data }: { data: TokensTypes } = await axios.patch(
+      const { data } = await axios.patch(
         '/auth',
         {},
         {
           baseURL: '/api',
           withCredentials: true,
           headers: {
-            RefreshToken: `Bearer ${this.refreshToken}`,
+            RefreshToken:
+              this.refreshToken &&
+              `Bearer ${encodeURI(this.refreshToken || '')}`,
           },
         }
       )
+
       this.setTokens(data)
-      return true
-    } catch (e: unknown) {
+      window.location.replace(window.location.href)
+    } catch (error) {
       this.removeTokens()
       return false
     }

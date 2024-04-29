@@ -1,17 +1,16 @@
 'use client'
 
-import { Bg2, Plus } from '@bitgouel/common'
-import * as S from './style'
-import { useRouter } from 'next/navigation'
 import {
   TokenManager,
   useGetActivityList,
   useGetActivityMyselfList,
-  useGetMy,
+  useGetStudentDetail,
 } from '@bitgouel/api'
+import { ActivityItem, Bg2, Plus } from '@bitgouel/common'
 import { StudentIdProps } from '@bitgouel/types'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { ActivityItem } from '@bitgouel/common'
+import * as S from './style'
 
 interface Props {
   studentIdProps: StudentIdProps
@@ -19,15 +18,10 @@ interface Props {
 
 const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
   const { studentId, clubId } = studentIdProps || {}
-
   const { push } = useRouter()
-
   const tokenManager = new TokenManager()
-
   const [isStudent, setIsStudent] = useState<boolean>(false)
-
-  const { data: userDetail } = useGetMy()
-
+  const { data: userDetail } = useGetStudentDetail(clubId, studentId)
   const { data: activityList } =
     tokenManager.authority === 'ROLE_STUDENT'
       ? useGetActivityMyselfList({
@@ -44,7 +38,7 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
     <div>
       <S.SlideBg url={Bg2}>
         <S.BgContainer>
-          <S.ClubTitle>{userDetail?.data.name}의 학생 활동</S.ClubTitle>
+          <S.ClubTitle>{userDetail?.name}의 학생 활동</S.ClubTitle>
           {isStudent && (
             <S.ButtonContainer>
               <S.ClubButton
@@ -63,7 +57,7 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
       </S.SlideBg>
       <S.ActivityWrapper>
         <S.ActivityContainer>
-          {activityList?.data.activities.content.map((activity, index) => (
+          {activityList?.activities.content.map((activity, index) => (
             <ActivityItem
               item={activity}
               key={index}

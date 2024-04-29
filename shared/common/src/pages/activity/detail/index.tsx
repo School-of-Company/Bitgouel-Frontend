@@ -28,9 +28,7 @@ const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
   const tokenManager = new TokenManager()
   const { studentId, clubId } = studentIdProps || {}
   const { data } = useGetActivityDetail(activityId || '')
-  const { title, content, credit, activityDate, modifiedAt } = data?.data || {}
   const { mutate } = useDeleteInformationRemove(activityId || '')
-
   const [isStudent, setIsStudent] = useState<boolean>(false)
 
   useEffect(() => {
@@ -59,7 +57,7 @@ const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
                   openModal(
                     <AppropriationModal
                       isApprove={true}
-                      title={title || ''}
+                      title={data?.title || ''}
                       question='활동을 삭제하시겠습니까?'
                       purpose='삭제하기'
                       onAppropriation={() => {
@@ -84,23 +82,27 @@ const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
       <S.DocumentWrapper>
         <S.Document>
           <S.TitleContainer>
-            <S.Title>{title}</S.Title>
+            <S.Title>{data?.title}</S.Title>
             <S.SubTitle>
               <S.NumberBox>
                 <S.SubTitleBox>학점</S.SubTitleBox>
-                <span>{credit}점 수여</span>
+                <span>{data?.credit}점 수여</span>
               </S.NumberBox>
               <S.NumberBox>
                 <S.SubTitleBox>활동 날짜</S.SubTitleBox>
-                <span>{dayjs(activityDate).format('YYYY년 MM월 DD일')}</span>
+                <span>
+                  {dayjs(data?.activityDate).format('YYYY년 MM월 DD일')}
+                </span>
               </S.NumberBox>
               <S.NumberBox>
                 <S.SubTitleBox>최근 수정일</S.SubTitleBox>
-                <span>{dayjs(modifiedAt).format('YYYY년 MM월 DD일')}</span>
+                <span>
+                  {dayjs(data?.modifiedAt).format('YYYY년 MM월 DD일')}
+                </span>
               </S.NumberBox>
             </S.SubTitle>
           </S.TitleContainer>
-          <S.MainText>{content}</S.MainText>
+          <S.MainText>{data?.content}</S.MainText>
         </S.Document>
       </S.DocumentWrapper>
     </div>

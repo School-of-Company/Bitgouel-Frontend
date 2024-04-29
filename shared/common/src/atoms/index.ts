@@ -3,7 +3,6 @@
 import {
   LectureDate,
   LectureSemesterEnum,
-  LectureTypeEnum,
   SignUpObjTypes,
 } from '@bitgouel/types'
 import { ReactNode } from 'react'
@@ -14,7 +13,7 @@ interface InputLectureDatesTypes extends LectureDate {
   endShowTime: string
 }
 
-export const LectureFilterType = atom<LectureTypeEnum | ''>({
+export const LectureFilterType = atom<string>({
   key: 'LectureFilterType',
   default: '',
 })

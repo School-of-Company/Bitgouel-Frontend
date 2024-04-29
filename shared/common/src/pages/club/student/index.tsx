@@ -19,6 +19,7 @@ import {
   SelectCalendarModal,
   theme,
   useModal,
+  CompleteLectureItem,
 } from '@bitgouel/common'
 import {
   CertificateRequest,
@@ -41,6 +42,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
 }) => {
   const { studentId, clubId } = studentIdProps || {}
   const { push } = useRouter()
+  const tokenManager = new TokenManager()
   const [isAddCertificate, setIsAddCertificate] = useState<boolean>(false)
   const [certificateText, setCertificateText] = useState<string>('')
   const [isCertificateDate, setIsCertificateDate] = useState<boolean>(false)
@@ -49,17 +51,12 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
   const [certificateIndex, setCertificateIndex] = useState<number>(-1)
   const [isRole, setIsRole] = useState<boolean>(false)
   const [isStudent, setIsStudent] = useState<boolean>(false)
-
   const { openModal, closeModal } = useModal()
-
   const { data: clubStudent } = useGetStudentDetail(clubId, studentId)
-  const { data: myPageData } = useGetMy()
-
-  const tokenManager = new TokenManager()
-
   const { data: certificateList, refetch } = isStudent
     ? useGetCertificateList()
     : useGetCertificateListTeacher(studentId)
+
   const onCreate = () => {
     const payload: CertificateRequest = {
       name: certificateText,
@@ -114,12 +111,12 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
       <S.CertificateWrapper>
         <S.CertificateContainer>
           <S.ProfileBox>
-            <h3>{clubStudent?.data.name}</h3>
+            <h3>{clubStudent?.name}</h3>
             <S.ProfileInfoBox>
-              <span>{clubStudent?.data.phoneNumber}</span>
-              <span>{clubStudent?.data.email}</span>
+              <span>{clubStudent?.phoneNumber}</span>
+              <span>{clubStudent?.email}</span>
               <span>
-                총 학점 <b>{clubStudent?.data.credit}</b>
+                총 학점 <b>{clubStudent?.credit}</b>
               </span>
             </S.ProfileInfoBox>
           </S.ProfileBox>
@@ -190,7 +187,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
                   </S.AddCertificateIcon>
                 </S.AddCertificateBox>
               )}
-              {certificateList?.data?.certifications.map((certificate, idx) => (
+              {certificateList?.certifications.map((certificate, idx) => (
                 <div
                   onClick={() => {
                     setCertificateIndex(idx)

@@ -43,20 +43,38 @@ export const SubMenuContainer = styled.div`
   margin-top: 0.5rem;
   padding: 0.5rem 0;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 `
 
-export const From = styled.div`
-  ${({ theme }) => theme.typo.caption.regular};
-  color: ${({ theme }) => theme.color.gray['400']};
-  background-color: ${({ theme }) => theme.color.gray['900']};
+export const LectureInfoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`
+
+export const LectureInfoItem = styled.div`
+  display: flex;
+  align-items: center;
   padding: 0.25rem 0.5rem;
   border-radius: 1.125rem;
-  margin-right: 1rem;
+  background-color: ${({ theme }) => theme.color.gray['900']};
+  gap: 0.5rem;
+  color: ${({ theme }) => theme.color.gray['400']};
+  ${({ theme }) => theme.typo.caption.regular};
+
+  hr {
+    color: ${({ theme }) => theme.color.gray['700']};
+    height: 0.75rem;
+    margin: 0;
+  }
 `
 
 export const MenuNum = styled.div`
   display: flex;
   align-items: center;
+  gap: 1rem;
+
   span {
     ${({ theme }) => theme.typo.caption.regular};
     color: ${({ theme }) => theme.color.gray['700']};

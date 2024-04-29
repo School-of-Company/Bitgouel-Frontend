@@ -12,7 +12,7 @@ const SignUpSuccess = () => {
   const resetPwPage = useResetRecoilState(PwPage)
 
   const finish = () => {
-    push('/auth/login')
+    push(`/auth/login`)
     mutate()
     resetPwPage()
   }
@@ -35,7 +35,7 @@ const SignUpSuccess = () => {
         </S.SignUpContainer>
       </S.SignUpWrapper>
       <S.BackButtonContainer>
-        <S.BackButton onClick={() => finish()}>돌아가기</S.BackButton>
+        <S.BackButton onClick={finish}>돌아가기</S.BackButton>
       </S.BackButtonContainer>
     </S.SignUpSuccessWrapper>
   )

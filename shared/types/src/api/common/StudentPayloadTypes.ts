@@ -1,10 +1,6 @@
-export interface StudentPayloadTypes {
-  email: string
-  name: string
-  phoneNumber: string
-  password: string
-  highSchool: string
-  clubName: string
+import { SignUpCommonPayloadTypes } from './SignUpCommonPayloadTypes'
+
+export interface StudentPayloadTypes extends SignUpCommonPayloadTypes {
   grade: number
   classRoom: number
   number: number

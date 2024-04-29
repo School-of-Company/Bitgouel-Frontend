@@ -12,7 +12,6 @@ const NoticePage = ({ isAdmin }: { isAdmin: boolean }) => {
     size: 10,
   })
   const { push } = useRouter()
-  const { posts } = data?.data || {}
 
   return (
     <div>
@@ -39,7 +38,7 @@ const NoticePage = ({ isAdmin }: { isAdmin: boolean }) => {
       </S.SlideBg>
       <S.NoticeListWrapper>
         <S.NoticeListContainer>
-          {posts?.content.map((notice) => (
+          {data?.posts.content.map((notice) => (
             <PostItem key={notice.id} item={notice} />
           ))}
         </S.NoticeListContainer>

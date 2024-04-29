@@ -2,13 +2,12 @@ import { clubQueryKeys, clubUrl, get } from '@bitgouel/api'
 import { ClubDetailResponseTypes } from '@bitgouel/types'
 import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 import { AxiosError, AxiosResponse } from 'axios'
-import { ApiError } from 'next/dist/server/api-utils'
 
 export const useGetClubDetail = (
   club_id: string,
-  options?: UseQueryOptions<AxiosResponse>
+  options?: UseQueryOptions<ClubDetailResponseTypes>
 ) =>
-  useQuery<AxiosResponse<ClubDetailResponseTypes>, AxiosError<ApiError>>(
+  useQuery<ClubDetailResponseTypes, AxiosError>(
     clubQueryKeys.getClubDetail(),
     () => get(clubUrl.clubDetail(club_id)),
     options

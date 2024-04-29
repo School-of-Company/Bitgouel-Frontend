@@ -19,22 +19,21 @@ const InquiryWritePage = ({ inquiryId }: { inquiryId?: string }) => {
   const { data, isSuccess } = useGetInquiryDetail(inquiryId || '', {
     enabled: !!inquiryId,
   })
-  const { question, questionDetail } = data?.data || {}
   const { mutate: postInquiry } = usePostInquiry()
   const { mutate: patchInquiry } = usePatchMyInquiry(inquiryId || '')
 
   useEffect(() => {
-    if (isSuccess) {
-      setInquiryTitle(question || '')
-      setInquiryContent(questionDetail || '')
+    if (isSuccess && data) {
+      setInquiryTitle(data.question)
+      setInquiryContent(data.questionDetail || '')
     }
   }, [data])
 
-  const isCondition = () => {
-    if (isSuccess) {
+  const isAble = () => {
+    if (isSuccess && data) {
       if (
-        data?.data.question !== inquiryTitle ||
-        data?.data.questionDetail !== inquiryContent
+        data.question !== inquiryTitle ||
+        data.questionDetail !== inquiryContent
       )
         return true
       else return false
@@ -71,14 +70,14 @@ const InquiryWritePage = ({ inquiryId }: { inquiryId?: string }) => {
           />
           <S.ButtonContainer>
             <S.CreateButton
-              isAble={isCondition()}
+              isAble={isAble()}
               onClick={() =>
-                isCondition() && isSuccess
+                isAble() && isSuccess
                   ? openModal(
                       <AppropriationModal
                         isApprove={true}
                         question='문의를 수정하시겠습니까?'
-                        title={inquiryTitle}
+                        title={inquiryTitle || ''}
                         purpose='수정하기'
                         onAppropriation={() =>
                           patchInquiry({
@@ -92,7 +91,7 @@ const InquiryWritePage = ({ inquiryId }: { inquiryId?: string }) => {
                       <AppropriationModal
                         isApprove={true}
                         question='문의하시겠습니까?'
-                        title={inquiryTitle}
+                        title={inquiryTitle || ''}
                         purpose='문의하기'
                         onAppropriation={() =>
                           postInquiry({

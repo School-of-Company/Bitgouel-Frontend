@@ -25,18 +25,17 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
     { text: '전체', item: 'all', checked: true },
     {
       text: '상호학점인정교육과정',
-      item: 'MUTUAL_CREDIT_RECOGNITION_PROGRAM',
+      item: '상호학점인정교육과정',
       checked: false,
     },
     {
       text: '대학탐방프로그램',
-      item: 'UNIVERSITY_EXPLORATION_PROGRAM',
+      item: '대학탐방프로그램',
       checked: false,
     },
   ])
-  const [lectureType, setLectureType] = useRecoilState<LectureTypeEnum | ''>(
-    LectureFilterType
-  )
+  const [lectureType, setLectureType] =
+    useRecoilState<string>(LectureFilterType)
   const [isLectureType, setIsLectureType] = useState<boolean>(false)
   const [isClick, setIsClick] = useState<boolean>(false)
   const { push } = useRouter()
@@ -64,10 +63,11 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
   const { data, refetch, isLoading } = useGetLectureList({
     page: currentPage,
     size: 10,
-    type: lectureType || 'MUTUAL_CREDIT_RECOGNITION_PROGRAM',
+    type: lectureType,
   })
-  const { content, totalPages } = data?.data.lectures || {}
-  const pages = Array.from({ length: totalPages || 0 }).map((_, i) => i)
+  const pages = Array.from({ length: data?.lectures.totalPages || 0 }).map(
+    (_, i) => i
+  )
 
   const onDownload = () => {
     setIsClick(true)
@@ -116,11 +116,13 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
       </S.SlideBg>
       <S.ListWrapper>
         <S.ListContainer>
-          {content?.map((item) => (
-            <LectureItem key={item.id} item={item} />
-          ))}
+          {data?.lectures.content.length
+            ? data.lectures.content.map((item) => (
+                <LectureItem key={item.id} item={item} />
+              ))
+            : '강의 목록이 없습니다.'}
         </S.ListContainer>
-        {content?.length && !isLoading && (
+        {!!data?.lectures.content?.length && !isLoading && (
           <PaginationPages
             pages={pages}
             currentPage={currentPage}
