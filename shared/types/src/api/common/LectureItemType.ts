@@ -1,4 +1,4 @@
-import { LectureSemesterEnum, LectureTypeEnum } from '../admin'
+import { LectureSemesterEnum, LectureTypeEnum } from '../common'
 
 export type LectureStatusEnum = 'OPEN' | 'CLOSED'
 

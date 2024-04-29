@@ -2,7 +2,6 @@
 
 import {
   LectureDate,
-  LectureDivisionEnum,
   LectureSemesterEnum,
   SignUpObjTypes,
 } from '@bitgouel/types'
@@ -86,9 +85,9 @@ export const LectureSemester = atom<LectureSemesterEnum>({
   key: 'LectureSemester',
   default: 'FIRST_YEAR_FALL_SEMESTER',
 })
-export const LectureDivision = atom<LectureDivisionEnum>({
+export const LectureDivision = atom<string>({
   key: 'LectureDivision',
-  default: 'AUTOMOBILE_INDUSTRY',
+  default: '',
 })
 export const LectureLine = atom<string>({
   key: 'LectureLine',
@@ -98,8 +97,8 @@ export const LectureDepartment = atom<string>({
   key: 'LectureDepartment',
   default: '',
 })
-export const LectureProfessor = atom<string>({
-  key: 'LectureProfessor',
+export const LectureInstructor = atom<string>({
+  key: 'LectureInstructor',
   default: '',
 })
 export const LectureStartDate = atom<string>({

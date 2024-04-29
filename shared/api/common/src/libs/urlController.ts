@@ -30,6 +30,7 @@ export const lectureUrl = {
     `/lecture/line?keywrod=${queryString.keyword}&division=${queryString.division}`,
   lectureDepartment: (keyword: string) =>
     `/lecture/department?keyword=${keyword}`,
+  lectureDivision: (keyword: string) => `/lecture/division?keyword=${keyword}`,
   lectureExcel: () => `/lecture/excel`,
 } as const
 

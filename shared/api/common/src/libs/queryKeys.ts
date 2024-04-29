@@ -18,10 +18,11 @@ export const lectureQueryKeys = {
   postLectureApplication: (id: string) => ['lecture', 'application', id],
   patchLectureApprove: (id: string) => ['lecture', 'approve', id],
   deleteLectureReject: (id: string) => ['lecture', 'reject', id],
-  getProfessor: () => ['lecture', 'professor'],
-  getLine: () => ['lecture', 'line'],
-  getDepartment: () => ['lecture', 'department'],
-  getExcel: () => ['lecture', 'listExcel']
+  getInstructors: () => ['lecture', 'instructors'],
+  getLines: () => ['lecture', 'lines'],
+  getDivisions: () => ['lecture', 'divisions'],
+  getDepartments: () => ['lecture', 'departments'],
+  getExcel: () => ['lecture', 'listExcel'],
 } as const
 
 export const activityQueryKeys = {

@@ -1,14 +1,14 @@
 import { get, lectureQueryKeys, lectureUrl } from '@bitgouel/api'
-import { ApiErrorTypes, ProfessorResponseTypes } from '@bitgouel/types'
+import { InstructorsResponseTypes } from '@bitgouel/types'
 import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 
-export const useGetProfessor = (
+export const useGetInstructors = (
   keyword: string,
-  options?: UseQueryOptions<ProfessorResponseTypes>
+  options?: UseQueryOptions<InstructorsResponseTypes>
 ) =>
-  useQuery<ProfessorResponseTypes, AxiosError>(
-    lectureQueryKeys.getProfessor(),
+  useQuery<InstructorsResponseTypes, AxiosError>(
+    lectureQueryKeys.getInstructors(),
     () => get(lectureUrl.lectureInstructor(keyword)),
     options
   )

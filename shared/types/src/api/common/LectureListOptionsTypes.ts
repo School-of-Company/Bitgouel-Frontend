@@ -1,4 +1,4 @@
-import { LectureTypeEnum } from '../admin'
+import { LectureTypeEnum } from './LectureCreatePayloadTypes'
 
 export interface LectureListOptionsTypes {
   page: number
