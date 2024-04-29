@@ -15,13 +15,9 @@ const CompleteLectureItem = () => {
             <S.Line />
           </S.TitleBox>
         </S.TitleContainer>
-        <div>
-          <S.professorName>이태랑 교수님</S.professorName>
-        </div>
+        <S.professorName>이태랑 교수님</S.professorName>
       </S.ItemContentContainer>
-      <div>
-        <S.Date>2023년 4월 18일 이수</S.Date>
-      </div>
+      <S.Date>2023년 4월 18일 이수</S.Date>
     </S.ItemContainer>
   )
 }
