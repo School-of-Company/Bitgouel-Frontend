@@ -58,7 +58,7 @@ export const Line = styled.hr`
   bottom: 0.0625rem;
   height: 1rem;
   width: 0.0625rem;
-  border: 0rem;
+  border: 0;
   background-color: ${({ theme }) => theme.color.gray['700']};
 `
 
