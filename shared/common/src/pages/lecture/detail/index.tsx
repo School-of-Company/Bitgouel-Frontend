@@ -38,16 +38,8 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
         <S.Document>
           <S.TitleContainer>
             <S.LectureStatusContainer>
-              <S.LectureStatusBox>
-                {
-                  lectureTypeToKor[
-                    data?.lectureType || 'MUTUAL_CREDIT_RECOGNITION_PROGRAM'
-                  ]
-                }
-              </S.LectureStatusBox>
-              <S.LectureStatusBox>
-                {lectureDivisionToKor[data?.division || 'AI_CONVERGENCE']}
-              </S.LectureStatusBox>
+              <S.LectureStatusBox>{data?.lectureType}</S.LectureStatusBox>
+              <S.LectureStatusBox>{data?.division}</S.LectureStatusBox>
             </S.LectureStatusContainer>
             <h1>{data?.name}</h1>
             <S.LectureInfoContainer>
@@ -59,18 +51,22 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
           <S.LectureDateWrapper>
             <h2>수강 신청 기간</h2>
             <S.LectureDateText>
-              • {dayjs(data?.startDate).format('YYYY년 MM월 DD일 HH시 mm분')}
-              {'  '}~{'  '}•{' '}
+              • {dayjs(data?.startDate).format('YYYY년 MM월 DD일 HH시 mm분')} ~{' '}
               {dayjs(data?.endDate).format('YYYY년 MM월 DD일 HH시 mm분')}
             </S.LectureDateText>
           </S.LectureDateWrapper>
           <S.LectureDateWrapper>
             <h2>강의 수강 날짜</h2>
-            {data?.lectureDates.map((date) => (
-              <S.LectureDateText>
-                • {dayjs(date.completeDate).format('YYYY년 MM월 DD일')}~
-                {dayjs(date.endTime).format('HH시 mm분')}
-                {dayjs(date.startTime).format('HH시 mm분')}
+            {data?.lectureDates.map((date, idx) => (
+              <S.LectureDateText key={idx}>
+                • {dayjs(date.completeDate).format('YYYY년 MM월 DD일')}{' '}
+                {dayjs(`${date.completeDate}T${date.startTime}`).format(
+                  'HH시 mm분'
+                )}{' '}
+                ~{' '}
+                {dayjs(`${date.completeDate}T${date.endTime}`).format(
+                  'HH시 mm분'
+                )}
               </S.LectureDateText>
             ))}
           </S.LectureDateWrapper>
