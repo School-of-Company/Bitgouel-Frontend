@@ -3,6 +3,8 @@ import { ChangeEvent } from 'react'
 import { useRecoilState } from 'recoil'
 import * as S from './style'
 
+const MaxInputMaxLength: 2 = 2 as const
+
 const LectureMaxInput = () => {
   const [lectureMax, setLectureMax] = useRecoilState(LectureMaxRegistered)
   return (
@@ -15,7 +17,7 @@ const LectureMaxInput = () => {
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setLectureMax(e.target.value)
             }
-            maxLength={2}
+            maxLength={MaxInputMaxLength}
           />
         </S.MaxInputBox>
         <span>명</span>
