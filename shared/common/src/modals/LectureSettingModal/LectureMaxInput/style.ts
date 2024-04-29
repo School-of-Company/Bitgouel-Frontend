@@ -3,8 +3,17 @@ import styled from '@emotion/styled'
 export const LectureMaxInputWrapper = styled.div`
   display: flex;
   align-items: center;
+  gap: 1rem;
+`
+
+export const LectureMaxInputContainer = styled.div`
+  display: flex;
+  align-items: center;
   gap: 0.5rem;
-  ${({ theme }) => theme.typo.text_lg.medium};
+  
+  span {
+    ${({ theme }) => theme.typo.text_lg.medium};
+  }
 `
 
 export const MaxInputBox = styled.div<{ length: number }>`
@@ -16,7 +25,7 @@ export const MaxInputBox = styled.div<{ length: number }>`
   border-radius: 0.5rem;
   padding: 0.5rem;
   border: 0.0625rem solid ${({ theme }) => theme.color.gray['700']};
-  
+
   input {
     ${({ theme }) => theme.typo.text_lg.medium};
     border: none;
@@ -25,6 +34,18 @@ export const MaxInputBox = styled.div<{ length: number }>`
     height: 2rem;
     background: none;
     caret-color: ${({ theme }) => theme.color.main};
-    padding-left: ${({length}) => length === 1 ? '1.2rem' : length === 2 ? '0.8rem' : '2rem'};
+    padding-left: ${({ length }) =>
+      length === 1 ? '1.2rem' : length === 2 ? '0.8rem' : '2rem'};
+  }
+`
+
+export const CautionTextContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: ${({ theme }) => theme.color.gray['700']};
+
+  span {
+    ${({ theme }) => theme.typo.text_sm.regular};
   }
 `

@@ -2,7 +2,7 @@
 
 import { useGetInstructors } from '@bitgouel/api'
 import { InputCancel, LectureInstructor, SearchIcon } from '@bitgouel/common'
-import { ProfessorResponseTypes } from '@bitgouel/types'
+import { InstructorsItemType, InstructorsResponseTypes } from '@bitgouel/types'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import {
@@ -19,9 +19,21 @@ const SearchInstructor = () => {
   const [instructor, setInstructor] = useState<string>('')
   const [showInstructor, setShowInstructor] = useState<string>('')
   const { data, refetch } = useGetInstructors(instructor)
-  const { instructors } = data?.data || ({} as ProfessorResponseTypes)
+  const { instructors } = data?.data || ({} as InstructorsResponseTypes)
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
+    refetch()
+  }
+
+  const onSelectInstructor = (instructorItem: InstructorsItemType) => {
+    setLectureInstructor(instructorItem.id)
+    setShowInstructor(instructorItem.name)
+    setInstructor('')
+  }
+
+  const onDeleteInstructor = () => {
+    setLectureInstructor('')
+    setShowInstructor('')
     refetch()
   }
 
@@ -41,29 +53,20 @@ const SearchInstructor = () => {
           disabled={!!lectureInstructor.length}
         />
         {lectureInstructor.length ? (
-          <InputCancel
-            onClick={() => {
-              setLectureInstructor('')
-              setShowInstructor('')
-            }}
-          />
+          <InputCancel onClick={onDeleteInstructor} />
         ) : (
           <SearchIcon onClick={() => refetch()} />
         )}
       </SearchInputBox>
       {instructors && !lectureInstructor.length && (
         <SearchListContainer>
-          {instructors.map((instructor) => (
+          {instructors.map((instructorItem) => (
             <SearchItem
-              key={instructor.id}
-              onClick={() => {
-                setLectureInstructor(instructor.id)
-                setShowInstructor(instructor.name)
-                setInstructor('')
-              }}
+              key={instructorItem.id}
+              onClick={() => onSelectInstructor(instructorItem)}
             >
-              <span>{instructor.name}</span>
-              <span>{instructor.organization}</span>
+              <span>{instructorItem.name}</span>
+              <small>{instructorItem.organization}</small>
             </SearchItem>
           ))}
         </SearchListContainer>

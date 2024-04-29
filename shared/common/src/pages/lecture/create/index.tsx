@@ -34,7 +34,7 @@ const LectureCreatePage = () => {
   const lectureDivision = useRecoilValue(LectureDivision)
   const lectureDepartment = useRecoilValue(LectureDepartment)
   const lectureLine = useRecoilValue(LectureLine)
-  const lectureProfessor = useRecoilValue(LectureInstructor)
+  const lectureInstructor = useRecoilValue(LectureInstructor)
   const lectureStartDate = useRecoilValue(LectureStartDate)
   const lectureStartTime = useRecoilValue(LectureStartTime)
   const lectureEndDate = useRecoilValue(LectureEndDate)
@@ -46,7 +46,7 @@ const LectureCreatePage = () => {
   const { openModal } = useModal()
   const { mutate } = usePostLecture()
 
-  const isCondition = (): boolean => {
+  const isAble = (): boolean => {
     const dateRegex = /^\d{4}-\d{2}-\d{2}$/
     const timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/
 
@@ -54,7 +54,7 @@ const LectureCreatePage = () => {
       lectureTitle.length &&
       lectureContent.length &&
       lectureLine.length &&
-      lectureProfessor.length &&
+      lectureInstructor.length &&
       dateRegex.test(lectureStartDate) &&
       timeRegex.test(lectureStartTime) &&
       dateRegex.test(lectureEndDate) &&
@@ -69,7 +69,7 @@ const LectureCreatePage = () => {
   }
 
   const openCreateModal = () => {
-    if (!isCondition()) return toast.error('입력 요소들을 다시 확인해주세요')
+    if (!isAble()) return toast.error('입력 요소들을 다시 확인해주세요')
     const filteredDates = lectureDates.map(
       ({ startShowTime, endShowTime, ...filtered }) => filtered
     )
@@ -87,7 +87,7 @@ const LectureCreatePage = () => {
             division: lectureDivision,
             department: lectureDepartment,
             line: lectureLine,
-            userId: lectureProfessor,
+            userId: lectureInstructor,
             startDate: `${lectureStartDate}T${lectureStartTime}:00`,
             endDate: `${lectureEndDate}T${lectureEndTime}:00`,
             lectureDates: filteredDates,
@@ -131,7 +131,7 @@ const LectureCreatePage = () => {
               setLectureContent(e.target.value)
             }
           />
-          <S.CreateButton onClick={openCreateModal} isAble={isCondition()}>
+          <S.CreateButton onClick={openCreateModal} isAble={isAble()}>
             강의 개설하기
           </S.CreateButton>
         </S.DocumentInput>

@@ -8,7 +8,7 @@ import {
   SearchIcon,
 } from '@bitgouel/common'
 import { LineResponseTypes } from '@bitgouel/types'
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import {
   SearchInput,

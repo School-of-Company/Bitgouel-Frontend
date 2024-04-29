@@ -10,8 +10,8 @@ import LectureSemesterSelect from './LectureSemesterSelect'
 import SearchDepartment from './SearchDepartment'
 import SearchDivision from './SearchDivision'
 import SearchInstructor from './SearchInstructor'
+import SearchLectureType from './SearchLectureType'
 import SearchLine from './SearchLine'
-import LectureTypeSelect from './SearchType'
 import * as S from './style'
 
 const LectureSettingModal = () => {
@@ -31,9 +31,9 @@ const LectureSettingModal = () => {
         </S.SettingContainer>
         <S.SettingContainer>
           <span>강의 유형</span>
-          <LectureTypeSelect />
+          <SearchLectureType />
         </S.SettingContainer>
-        {lectureType === 'MUTUAL_CREDIT_RECOGNITION_PROGRAM' && (
+        {lectureType === '상호학점인정교육과정' && (
           <S.SettingContainer>
             <span>학점</span>
             <LectureCreditSelect />

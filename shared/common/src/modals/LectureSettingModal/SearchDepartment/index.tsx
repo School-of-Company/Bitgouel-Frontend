@@ -2,7 +2,7 @@
 
 import { useGetDepartments } from '@bitgouel/api'
 import { InputCancel, LectureDepartment, SearchIcon } from '@bitgouel/common'
-import { DepartmentResponseTypes } from '@bitgouel/types'
+import { DepartmentsResponseTypes } from '@bitgouel/types'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import {
@@ -18,10 +18,20 @@ const SearchDepartment = () => {
     useRecoilState(LectureDepartment)
   const [department, setDepartment] = useState<string>('')
   const { data, refetch } = useGetDepartments(department)
-  const { departments } = data?.data || ({} as DepartmentResponseTypes)
+  const { departments } = data?.data || ({} as DepartmentsResponseTypes)
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
+    refetch()
+  }
+
+  const onSelectDepartment = (departmentItem: string) => {
+    setLectureDepartment(departmentItem)
+    setDepartment('')
+  }
+
+  const onDeleteDepartment = () => {
+    setLectureDepartment('')
     refetch()
   }
 
@@ -41,12 +51,7 @@ const SearchDepartment = () => {
           disabled={!!lectureDepartment.length}
         />
         {lectureDepartment.length ? (
-          <InputCancel
-            onClick={() => {
-              setLectureDepartment('')
-              refetch()
-            }}
-          />
+          <InputCancel onClick={onDeleteDepartment} />
         ) : (
           <SearchIcon onClick={() => refetch()} />
         )}
@@ -56,23 +61,15 @@ const SearchDepartment = () => {
           {departments.map((departmentItem) => (
             <SearchItem
               key={departmentItem}
-              onClick={() => {
-                setLectureDepartment(departmentItem)
-                setDepartment('')
-              }}
+              onClick={() => onSelectDepartment(departmentItem)}
             >
               <span>{departmentItem}</span>
             </SearchItem>
           ))}
           {!departments.length && (
-            <SearchItem
-              onClick={() => {
-                setLectureDepartment(department)
-                setDepartment('')
-              }}
-            >
+            <SearchItem onClick={() => onSelectDepartment(department)}>
               <span>{department}</span>
-              <span>새 학과 추가하기...</span>
+              <small>새 학과 추가하기...</small>
             </SearchItem>
           )}
         </SearchListContainer>

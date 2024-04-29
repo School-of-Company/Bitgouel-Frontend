@@ -20,6 +20,7 @@ export const lectureQueryKeys = {
   deleteLectureReject: (id: string) => ['lecture', 'reject', id],
   getInstructors: () => ['lecture', 'instructors'],
   getLines: () => ['lecture', 'lines'],
+  getDivisions: () => ['lecture', 'divisions'],
   getDepartments: () => ['lecture', 'departments'],
   getExcel: () => ['lecture', 'listExcel'],
 } as const

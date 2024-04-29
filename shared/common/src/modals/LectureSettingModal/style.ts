@@ -40,7 +40,7 @@ export const SettingWrapper = styled.div`
 `
 
 export const SettingContainer = styled.div`
-width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -155,10 +155,11 @@ export const SearchItem = styled.div`
       ${({ theme }) => theme.typo.text_lg.regular};
       color: ${({ theme }) => theme.color.black};
     }
-    &:last-of-type {
-      ${({ theme }) => theme.typo.text_md.regular};
-      color: ${({ theme }) => theme.color.gray['400']};
-    }
+  }
+
+  small {
+    ${({ theme }) => theme.typo.text_md.regular};
+    color: ${({ theme }) => theme.color.gray['400']};
   }
 
   &:hover {
