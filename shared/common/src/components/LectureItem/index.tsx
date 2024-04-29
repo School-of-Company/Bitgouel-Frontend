@@ -28,9 +28,9 @@ const LectureItem = ({ item }: LectureItemProps) => {
           </S.LectureInfoItem>
           <S.LectureInfoItem>
             {item.division}
-            <span>|</span>
+            <hr />
             {item.line}
-            <span>|</span>
+            <hr />
             {item.department}
           </S.LectureInfoItem>
         </S.LectureInfoContainer>

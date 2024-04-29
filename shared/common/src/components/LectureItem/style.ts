@@ -55,6 +55,7 @@ export const LectureInfoContainer = styled.div`
 
 export const LectureInfoItem = styled.div`
   display: flex;
+  align-items: center;
   padding: 0.25rem 0.5rem;
   border-radius: 1.125rem;
   background-color: ${({ theme }) => theme.color.gray['900']};
@@ -62,8 +63,10 @@ export const LectureInfoItem = styled.div`
   color: ${({ theme }) => theme.color.gray['400']};
   ${({ theme }) => theme.typo.caption.regular};
 
-  span {
+  hr {
     color: ${({ theme }) => theme.color.gray['700']};
+    height: 0.75rem;
+    margin: 0;
   }
 `
 
@@ -71,7 +74,7 @@ export const MenuNum = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
-  
+
   span {
     ${({ theme }) => theme.typo.caption.regular};
     color: ${({ theme }) => theme.color.gray['700']};
