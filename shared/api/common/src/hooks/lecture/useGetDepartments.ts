@@ -1,23 +1,14 @@
 import { get, lectureQueryKeys, lectureUrl } from '@bitgouel/api'
-<<<<<<<< HEAD:shared/api/common/src/hooks/lecture/useGetDepartments.ts
-import { ApiErrorTypes, DepartmentsResponseTypes } from '@bitgouel/types'
-========
-import { DepartmentResponseTypes } from '@bitgouel/types'
->>>>>>>> develop:shared/api/admin/src/hooks/admin/useGetDepartment.ts
+import { DepartmentsResponseTypes } from '@bitgouel/types'
 import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 
 export const useGetDepartments = (
   keyword: string,
-  options?: UseQueryOptions<DepartmentResponseTypes>
+  options?: UseQueryOptions<DepartmentsResponseTypes>
 ) =>
-<<<<<<<< HEAD:shared/api/common/src/hooks/lecture/useGetDepartments.ts
-  useQuery<AxiosResponse<DepartmentsResponseTypes>, AxiosError<ApiErrorTypes>>(
+  useQuery<DepartmentsResponseTypes, AxiosError>(
     lectureQueryKeys.getDepartments(),
-========
-  useQuery<DepartmentResponseTypes, AxiosError>(
-    lectureQueryKeys.getDepartment(),
->>>>>>>> develop:shared/api/admin/src/hooks/admin/useGetDepartment.ts
     () => get(lectureUrl.lectureDepartment(keyword)),
     options
   )

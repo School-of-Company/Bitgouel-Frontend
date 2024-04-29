@@ -7,8 +7,7 @@ import {
   LectureLine,
   SearchIcon,
 } from '@bitgouel/common'
-import { LineResponseTypes } from '@bitgouel/types'
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import {
   SearchInput,
@@ -31,8 +30,6 @@ const SearchLine = () => {
     e.preventDefault()
     refetch()
   }
-
-  const { lines } = data?.data || ({} as LineResponseTypes)
 
   return (
     <SearchWrapper>
@@ -57,9 +54,9 @@ const SearchLine = () => {
           <SearchIcon onClick={() => refetch()} />
         )}
       </SearchInputBox>
-      {lines && !lectureLine.length && (
+      {data?.lines && !lectureLine.length && (
         <SearchListContainer>
-          {lines.map((line) => (
+          {data.lines.map((line) => (
             <SearchItem
               key={line}
               onClick={() => {
@@ -70,7 +67,7 @@ const SearchLine = () => {
               <span>{line}</span>
             </SearchItem>
           ))}
-          {!lines?.length && (
+          {!data?.lines?.length && (
             <SearchItem
               onClick={() => {
                 setLectureLine(line)

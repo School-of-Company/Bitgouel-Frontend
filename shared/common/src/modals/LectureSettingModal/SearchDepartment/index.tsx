@@ -18,7 +18,6 @@ const SearchDepartment = () => {
     useRecoilState(LectureDepartment)
   const [department, setDepartment] = useState<string>('')
   const { data, refetch } = useGetDepartments(department)
-  const { departments } = data?.data || ({} as DepartmentsResponseTypes)
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -56,9 +55,9 @@ const SearchDepartment = () => {
           <SearchIcon onClick={() => refetch()} />
         )}
       </SearchInputBox>
-      {departments && !lectureDepartment.length && (
+      {data?.departments && !lectureDepartment.length && (
         <SearchListContainer>
-          {departments.map((departmentItem) => (
+          {data.departments.map((departmentItem) => (
             <SearchItem
               key={departmentItem}
               onClick={() => onSelectDepartment(departmentItem)}
@@ -66,7 +65,7 @@ const SearchDepartment = () => {
               <span>{departmentItem}</span>
             </SearchItem>
           ))}
-          {!departments.length && (
+          {!data.departments.length && (
             <SearchItem onClick={() => onSelectDepartment(department)}>
               <span>{department}</span>
               <small>새 학과 추가하기...</small>

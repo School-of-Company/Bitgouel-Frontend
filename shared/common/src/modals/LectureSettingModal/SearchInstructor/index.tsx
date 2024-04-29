@@ -19,7 +19,6 @@ const SearchInstructor = () => {
   const [instructor, setInstructor] = useState<string>('')
   const [showInstructor, setShowInstructor] = useState<string>('')
   const { data, refetch } = useGetInstructors(instructor)
-  const { instructors } = data?.data || ({} as InstructorsResponseTypes)
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
     refetch()
@@ -58,9 +57,9 @@ const SearchInstructor = () => {
           <SearchIcon onClick={() => refetch()} />
         )}
       </SearchInputBox>
-      {instructors && !lectureInstructor.length && (
+      {data?.instructors && !lectureInstructor.length && (
         <SearchListContainer>
-          {instructors.map((instructorItem) => (
+          {data.instructors.map((instructorItem) => (
             <SearchItem
               key={instructorItem.id}
               onClick={() => onSelectInstructor(instructorItem)}
