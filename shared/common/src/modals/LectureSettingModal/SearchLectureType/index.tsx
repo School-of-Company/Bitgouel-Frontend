@@ -38,9 +38,10 @@ const SearchLectureType = () => {
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
-    const searchTypes = []
-    LectureTypes.forEach((lectureType) => {
-      if (lectureType.includes(type)) searchTypes.push(lectureType)
+    const searchTypes: string[] = []
+    LectureTypes.forEach((lectureTypeItem) => {
+      console.log(lectureTypeItem)
+      if (lectureTypeItem.includes(type)) searchTypes.push(lectureTypeItem)
     })
     setLectureTypeList(searchTypes)
   }

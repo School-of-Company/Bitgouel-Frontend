@@ -3,7 +3,7 @@ import {
   LectureDivisionEnum,
   LectureSemesterEnum,
   LectureTypeEnum,
-} from '../admin'
+} from '../common'
 
 export type LectureStatusEnum = 'OPEN' | 'CLOSED'
 
