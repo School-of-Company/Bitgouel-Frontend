@@ -208,7 +208,6 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
               ))}
             </S.CertificateListBox>
           </S.CertificateBox>
-          <div>asd</div>
         </S.CertificateContainer>
       </S.CertificateWrapper>
     </div>
