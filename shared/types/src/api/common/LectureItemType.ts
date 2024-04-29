@@ -1,9 +1,4 @@
-import {
-  LectureDate,
-  LectureDivisionEnum,
-  LectureSemesterEnum,
-  LectureTypeEnum,
-} from '../admin'
+import { LectureSemesterEnum, LectureTypeEnum } from '../admin'
 
 export type LectureStatusEnum = 'OPEN' | 'CLOSED'
 
@@ -12,12 +7,11 @@ export interface LectureItemType {
   name: string
   content: string
   semester: LectureSemesterEnum
-  division: LectureDivisionEnum
+  division: string
   department: string
   line: string
   startDate: string
   endDate: string
-  lectureDates: LectureDate[]
   lectureType: LectureTypeEnum
   lectureStatus: LectureStatusEnum
   headCount: number
