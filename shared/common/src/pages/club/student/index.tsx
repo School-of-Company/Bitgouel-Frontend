@@ -19,6 +19,7 @@ import {
   SelectCalendarModal,
   theme,
   useModal,
+  CompleteLectureItem,
 } from '@bitgouel/common'
 import {
   CertificateRequest,
