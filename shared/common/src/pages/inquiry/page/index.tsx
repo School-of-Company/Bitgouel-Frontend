@@ -31,7 +31,9 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
     enabled: !isAdmin,
   })
   const [isFilter, setIsFilter] = useState<boolean>(false)
-  const [inquiryStatus, setInquiryStatus] = useState<InquiryStatusFilterListTypes[]>([
+  const [inquiryStatus, setInquiryStatus] = useState<
+    InquiryStatusFilterListTypes[]
+  >([
     { text: '전체', item: 'all', checked: true },
     { text: '답변 대기 중', item: 'UNANSWERED', checked: false },
     { text: '답변 완료됨', item: 'ANSWERED', checked: false },
@@ -115,10 +117,10 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
         <S.ListWrapper>
           <S.ListContainer>
             {isAdmin
-              ? inquiryList?.data.inquiries.map((inquiry) => (
+              ? inquiryList?.inquiries.map((inquiry) => (
                   <InquiryItem item={inquiry} key={inquiry.id} />
                 ))
-              : myInquiryList?.data.inquiries.map((inquiry) => (
+              : myInquiryList?.inquiries.map((inquiry) => (
                   <InquiryItem item={inquiry} key={inquiry.id} />
                 ))}
           </S.ListContainer>

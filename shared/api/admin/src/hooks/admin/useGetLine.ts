@@ -1,17 +1,16 @@
 import { get, lectureQueryKeys, lectureUrl } from '@bitgouel/api'
 import {
-  ApiErrorTypes,
   LinePayloadTypes,
-  LineResponseTypes,
+  LineResponseTypes
 } from '@bitgouel/types'
 import { UseQueryOptions, useQuery } from '@tanstack/react-query'
-import { AxiosError, AxiosResponse } from 'axios'
+import { AxiosError } from 'axios'
 
 export const useGetLine = (
   queryString: LinePayloadTypes,
-  options?: UseQueryOptions<AxiosResponse>
+  options?: UseQueryOptions<LineResponseTypes>
 ) =>
-  useQuery<AxiosResponse<LineResponseTypes>, AxiosError<ApiErrorTypes>>(
+  useQuery<LineResponseTypes, AxiosError>(
     lectureQueryKeys.getLine(),
     () => get(lectureUrl.lectureLine(queryString)),
     options

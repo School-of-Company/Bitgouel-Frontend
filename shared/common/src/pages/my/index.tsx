@@ -8,16 +8,14 @@ import * as S from './style'
 const MyPage = () => {
   const { push } = useRouter()
   const { data } = useGetMy()
-  const { name, organization, email, authority } = data?.data || {}
   const { mutate } = useDeleteWithDraw()
 
   const sliceNumber = (): string => {
-    return `${data?.data.phoneNumber.slice(
-      0,
-      3
-    )}-${data?.data.phoneNumber.slice(3, 7)}-${data?.data.phoneNumber.slice(7)}`
+    return `${data?.phoneNumber.slice(0, 3)}-${data?.phoneNumber.slice(
+      3,
+      7
+    )}-${data?.phoneNumber.slice(7)}`
   }
-
 
   return (
     <S.MyPageWrapper url={Bg4}>
@@ -29,29 +27,27 @@ const MyPage = () => {
           <S.MyIdentify>
             <S.MyIdentifyWrapper>
               <div>
-                <S.Name>{name}</S.Name>
-                <S.Role>
-                  {roleToKor[authority || 'ROLE_ADMIN']}
-                </S.Role>
+                <S.Name>{data?.name}</S.Name>
+                <S.Role>{roleToKor[data?.authority || 'ROLE_ADMIN']}</S.Role>
               </div>
               <div>
                 <S.OrganizationName>
-                  {organization?.split('/')[0]}
+                  {data?.organization.split('/')[0]}
                 </S.OrganizationName>
-                <S.SubEnter>소속</S.SubEnter>
+                <S.SubEnter>소속</S.SubEnter>o
               </div>
               <div>
-                <S.SubId>{organization?.split('/')[1]}</S.SubId>
+                <S.SubId>{data?.organization.split('/')[1]}</S.SubId>
               </div>
               <div>
-                <S.SubId>{organization?.split('/')[2]}</S.SubId>
+                <S.SubId>{data?.organization.split('/')[2]}</S.SubId>
               </div>
             </S.MyIdentifyWrapper>
             <S.AccountWrapper>
               <S.MyTitle>계정 정보</S.MyTitle>
               <S.AccountContainer>
                 <div>
-                  <S.LeftText>{email}</S.LeftText>
+                  <S.LeftText>{data?.email}</S.LeftText>
                   <S.RightText>이메일</S.RightText>
                 </div>
                 <div>

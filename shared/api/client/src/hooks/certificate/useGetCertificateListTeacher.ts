@@ -1,13 +1,13 @@
 import { certificateQueryKeys, certificateUrl, get } from '@bitgouel/api'
 import { CertificateResponseTypes } from '@bitgouel/types'
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
-import { AxiosResponse } from 'axios'
+import { AxiosError, AxiosResponse } from 'axios'
 
 export const useGetCertificateListTeacher = (
   student_id: string,
-  options?: UseQueryOptions<AxiosResponse>
+  options?: UseQueryOptions<CertificateResponseTypes>
 ) =>
-  useQuery<AxiosResponse<CertificateResponseTypes>>(
+  useQuery<CertificateResponseTypes, AxiosError>(
     certificateQueryKeys.getCertificateListTeacher(student_id),
     () => get(certificateUrl.certificateListTeacher(student_id)),
     options

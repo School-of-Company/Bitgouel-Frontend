@@ -10,11 +10,7 @@ import {
   SearchIcon,
   UserItem,
 } from '@bitgouel/common'
-import {
-  JobsFilterListTypes,
-  RoleEnumTypes,
-  UserListResponseTypes,
-} from '@bitgouel/types'
+import { JobsFilterListTypes, RoleEnumTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import * as S from './style'
@@ -53,7 +49,6 @@ const UserListPage = () => {
     authority,
     approveStatus: 'APPROVED',
   })
-  const { users } = data?.data || ({} as UserListResponseTypes)
   const [isFilter, setIsFilter] = useState(false)
 
   const onSubmit = (e: FormEvent) => {
@@ -115,7 +110,7 @@ const UserListPage = () => {
               <span>직업</span>
             </S.DisplayBar>
           </div>
-          {users?.map((user) => (
+          {data?.users.map((user) => (
             <UserItem
               key={user.id}
               id={user.id}

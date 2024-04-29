@@ -29,7 +29,6 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
   const { data, isSuccess } = useGetPostDetail(noticeId, {
     enabled: !!noticeId,
   })
-  const { title, content, links } = data?.data || {}
 
   const { openModal } = useModal()
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -40,13 +39,13 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
   }
 
   useEffect(() => {
-    if (data) {
-      setNoticeTitle(title)
-      setNoticeContent(content)
+    if (isSuccess && data) {
+      setNoticeTitle(data.title)
+      setNoticeContent(data.content)
       setNoticeLinks((prev) =>
         prev.map((link, idx) => {
-          if (idx < data?.data.links.length)
-            return { value: data?.data.links.length, name: link.name }
+          if (idx < data.links.length)
+            return { value: data.links.length, name: link.name }
           else return link
         })
       )
@@ -54,11 +53,11 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
   }, [data])
 
   const isCondition = (): boolean => {
-    if (isSuccess) {
+    if (isSuccess && data) {
       if (
-        title !== noticeTitle ||
-        content !== noticeContent ||
-        links?.some((link, i) => link !== noticeLinks[i]['value'])
+        data.title !== noticeTitle ||
+        data.content !== noticeContent ||
+        data.links?.some((link, i) => link !== noticeLinks[i]['value'])
       )
         return true
       else return false

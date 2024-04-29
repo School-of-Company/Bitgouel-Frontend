@@ -28,7 +28,6 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
     enabled: !!postId,
     refetchOnWindowFocus: false,
   })
-  const { title, content, links } = data?.data || {}
   const { openModal } = useModal()
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target
@@ -38,13 +37,13 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
   }
 
   useEffect(() => {
-    if (isSuccess) {
-      setPostTitle(title || '')
-      setPostContent(content || '')
+    if (isSuccess && data) {
+      setPostTitle(data.title)
+      setPostContent(data.content)
       setPostLinks((prev) =>
         prev.map((link, idx) => {
-          if (idx < data?.data.links.length)
-            return { value: data?.data.links[idx], name: link.name }
+          if (idx < data.links.length)
+            return { value: data.links[idx], name: link.name }
           else return link
         })
       )
@@ -52,11 +51,11 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
   }, [data])
 
   const isCondition = (): boolean => {
-    if (isSuccess) {
+    if (isSuccess && data) {
       if (
-        title !== postTitle ||
-        content !== postContent ||
-        links?.some((link, i) => link !== postLinks[i]['value'])
+        data.title !== postTitle ||
+        data.content !== postContent ||
+        data.links.some((link, i) => link !== postLinks[i]['value'])
       )
         return true
       else return false

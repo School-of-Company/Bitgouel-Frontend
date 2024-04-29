@@ -18,7 +18,6 @@ import {
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState } from 'react'
 import * as S from './style'
-import { UserListResponseTypes } from '@bitgouel/types'
 
 const NewUserListPage = () => {
   const { push } = useRouter()
@@ -28,13 +27,12 @@ const NewUserListPage = () => {
     authority: 'ROLE_USER',
     approveStatus: 'PENDING',
   })
-  const { users } = data?.data || ({} as UserListResponseTypes)
   const { openModal } = useModal()
   const { mutate: approve } = usePatchUserApprove(userIds)
   const { mutate: reject } = useDeleteUserReject(userIds)
 
   const onAll = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked) setUserIds(users?.map((user) => user.id))
+    if (e.target.checked) setUserIds(data?.users.map((user) => user.id))
     else setUserIds([])
   }
 
@@ -112,7 +110,7 @@ const NewUserListPage = () => {
           </S.SelectBoxContainer>
         </S.TopContainer>
         <S.UserListContainer>
-          {users?.map((user) => (
+          {data?.users.map((user) => (
             <UserItem
               key={user.id}
               id={user.id}

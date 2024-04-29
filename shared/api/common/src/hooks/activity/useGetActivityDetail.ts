@@ -1,13 +1,13 @@
 import { activityQueryKeys, activityUrl, get } from '@bitgouel/api'
 import { ActivityDetailTypes } from '@bitgouel/types'
-import { useQuery, UseQueryOptions } from '@tanstack/react-query'
-import { AxiosResponse } from 'axios'
+import { UseQueryOptions, useQuery } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
 
 export const useGetActivityDetail = (
   activityId: string,
-  options?: UseQueryOptions<AxiosResponse<ActivityDetailTypes>>
+  options?: UseQueryOptions<ActivityDetailTypes>
 ) =>
-  useQuery<AxiosResponse<ActivityDetailTypes>>(
+  useQuery<ActivityDetailTypes, AxiosError>(
     activityQueryKeys.getActivityInformationDetail(activityId),
     () => get(activityUrl.activityInformationDetail(activityId)),
     options
