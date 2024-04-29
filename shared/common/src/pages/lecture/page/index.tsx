@@ -25,12 +25,12 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
     { text: '전체', item: 'all', checked: true },
     {
       text: '상호학점인정교육과정',
-      item: 'MUTUAL_CREDIT_RECOGNITION_PROGRAM',
+      item: '상호학점인정교육과정',
       checked: false,
     },
     {
       text: '대학탐방프로그램',
-      item: 'UNIVERSITY_EXPLORATION_PROGRAM',
+      item: '대학탐방프로그램',
       checked: false,
     },
   ])

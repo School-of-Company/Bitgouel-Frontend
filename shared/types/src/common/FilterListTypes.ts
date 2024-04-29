@@ -17,7 +17,7 @@ export interface CohortsFilterListTypes extends FilterListTypes {
 }
 
 export interface LectureTypesFilterListTypes extends FilterListTypes {
-  item: 'all' | LectureTypeEnum
+  item: string
 }
 
 export interface InquiryStatusFilterListTypes extends FilterListTypes {
