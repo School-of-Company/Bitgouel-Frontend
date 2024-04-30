@@ -30,19 +30,23 @@ export const ListWrapper = styled.div`
   height: 100vh;
   gap: 1rem;
 `
-export const ListContainer = styled.div`
-  width: 75rem;
-  margin-top: 2.25rem;
-`
 
 export const ApplyInfoContainer = styled.div`
   display: flex;
   align-items: center;
   padding-left: 2.5rem;
   justify-content: space-between;
+  width: 75rem;
+  margin-top: 2.25rem;
 
   span {
     ${({ theme }) => theme.typo.text_sm.medium};
     color: ${({ theme }) => theme.color.gray['400']};
   }
+`
+
+export const ListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `

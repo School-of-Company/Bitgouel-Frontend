@@ -7,19 +7,6 @@ import { TokenManager } from '@bitgouel/api'
 import { RoleEnumTypes } from '@bitgouel/types'
 import { redirect } from 'next/navigation'
 
-const obj = {
-  id: '1234',
-  cohort: 6,
-  name: '파티피플공명',
-  school: '광주소프트웨어마이스터고등학교',
-  grade: 3,
-  classNumber: 4,
-  number: 19,
-  clubName: '나의 미래는 내가 주인공이다!',
-  phoneNumber: '010-2786-7726',
-  email: 'bitgouel@gmail.com',
-}
-
 const roleArray: RoleEnumTypes[] = [
   'ROLE_ADMIN',
   'ROLE_TEACHER',
