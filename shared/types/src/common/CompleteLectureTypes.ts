@@ -1,4 +1,4 @@
-interface LectureItem {
+export interface LectureItem {
   id: string //UUID
   name: string
   lectureType: string
