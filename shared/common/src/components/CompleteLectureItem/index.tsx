@@ -1,9 +1,8 @@
 'use client'
 
 import { LectureItem } from '@bitgouel/types'
-import * as S from './style'
-import { useEffect, useState } from 'react'
 import dayjs from 'dayjs'
+import * as S from './style'
 
 const CompleteLectureItem = ({ item }: { item: LectureItem }) => {
   return (
