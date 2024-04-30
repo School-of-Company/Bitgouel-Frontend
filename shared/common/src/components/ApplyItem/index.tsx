@@ -1,25 +1,14 @@
 'use client'
 
 import { CommonCheckBox } from '@bitgouel/common'
+import { LectureApplyItemProps } from '@bitgouel/types'
 import * as S from './style'
 
-interface ApplyItemProps {
-  item: {
-    id: string
-    cohort: number
-    name: string
-    school: string
-    grade: number
-    classNum: number
-    clubName: string
-    phoneNumber: string
-    email: string
-  }
-  ids: string[]
-  handleSelectUsers: (checked: boolean, userId: string) => void
-}
-
-const ApplyItem = ({ item, ids, handleSelectUsers }: ApplyItemProps) => {
+const LectureApplyItem = ({
+  item,
+  ids,
+  handleSelectUsers,
+}: LectureApplyItemProps) => {
   return (
     <S.ApplyItemWrapper>
       <S.ApplyInfoContainer>
@@ -30,7 +19,7 @@ const ApplyItem = ({ item, ids, handleSelectUsers }: ApplyItemProps) => {
         <S.SchoolInfoBox>
           <span>{item.school}</span>
           <span>
-            {item.grade}학년 {item.classNum}반
+            {item.grade}학년 {item.classNumber}반 {item.number}번
           </span>
           <span>{item.clubName}</span>
         </S.SchoolInfoBox>
@@ -48,4 +37,4 @@ const ApplyItem = ({ item, ids, handleSelectUsers }: ApplyItemProps) => {
   )
 }
 
-export default ApplyItem
+export default LectureApplyItem

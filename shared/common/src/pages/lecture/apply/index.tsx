@@ -13,19 +13,28 @@ const obj = {
   name: '파티피플공명',
   school: '광주소프트웨어마이스터고등학교',
   grade: 3,
-  classNum: 4,
+  classNumber: 4,
+  number: 19,
   clubName: '나의 미래는 내가 주인공이다!',
   phoneNumber: '010-2786-7726',
   email: 'bitgouel@gmail.com',
 }
 
-const roleArray: RoleEnumTypes[] = ['ROLE_ADMIN', 'ROLE_TEACHER']
+const roleArray: RoleEnumTypes[] = [
+  'ROLE_ADMIN',
+  'ROLE_TEACHER',
+  'ROLE_PROFESSOR',
+  'ROLE_COMPANY_INSTRUCTOR',
+  'ROLE_GOVERNMENT',
+  'ROLE_BBOZZAK',
+]
 
 const LectureApplyListPage = () => {
   const [applyIds, setApplyIds] = useState<string[]>([])
   const handleSelectUsers = (checked: boolean, userId: string) =>
     handleSelect({ checked, id: userId, setIds: setApplyIds })
   const tokenManager = new TokenManager()
+
   useEffect(() => {
     if (tokenManager.authority) {
       if (roleArray.includes(tokenManager.authority)) return
