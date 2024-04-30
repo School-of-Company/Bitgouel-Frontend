@@ -24,6 +24,12 @@ export const lectureQueryKeys = {
   getDepartments: () => ['lecture', 'departments'],
   getExcel: () => ['lecture', 'excel'],
   getLectureApplyList: (id: string) => ['lecture', 'applyList', id],
+  patchLectureApplyComplete: (id: string, otherId: string) => [
+    'lecture',
+    'modifyComplete',
+    id,
+    otherId,
+  ],
 } as const
 
 export const activityQueryKeys = {

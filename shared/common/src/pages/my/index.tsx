@@ -1,7 +1,7 @@
 'use client'
 
 import { useDeleteWithDraw, useGetMy } from '@bitgouel/api'
-import { Bg4, roleToKor } from '@bitgouel/common'
+import { Bg4, roleToKor, slicePhoneNumber } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import * as S from './style'
 
@@ -9,13 +9,6 @@ const MyPage = () => {
   const { push } = useRouter()
   const { data } = useGetMy()
   const { mutate } = useDeleteWithDraw()
-
-  const sliceNumber = (): string => {
-    return `${data?.phoneNumber.slice(0, 3)}-${data?.phoneNumber.slice(
-      3,
-      7
-    )}-${data?.phoneNumber.slice(7)}`
-  }
 
   return (
     <S.MyPageWrapper url={Bg4}>
@@ -51,7 +44,9 @@ const MyPage = () => {
                   <S.RightText>이메일</S.RightText>
                 </div>
                 <div>
-                  <S.LeftText>{sliceNumber()}</S.LeftText>
+                  <S.LeftText>
+                    {slicePhoneNumber(data?.phoneNumber || '')}
+                  </S.LeftText>
                   <S.RightText>전화번호</S.RightText>
                 </div>
               </S.AccountContainer>

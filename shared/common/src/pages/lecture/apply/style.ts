@@ -32,11 +32,11 @@ export const ListWrapper = styled.div`
 `
 
 export const ApplyInfoContainer = styled.div`
+  width: 72.5rem;
   display: flex;
   align-items: center;
-  padding-left: 2.5rem;
+  padding: 0 2.5rem;
   justify-content: space-between;
-  width: 75rem;
   margin-top: 2.25rem;
 
   span {

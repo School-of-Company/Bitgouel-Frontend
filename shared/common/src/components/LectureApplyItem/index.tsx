@@ -1,14 +1,17 @@
 'use client'
 
-import { CommonCheckBox } from '@bitgouel/common'
+import { usePatchApplyComplete } from '@bitgouel/api'
+import {
+  CommonCheckBox,
+  enumToSchoolName,
+  slicePhoneNumber,
+} from '@bitgouel/common'
 import { LectureApplyItemProps } from '@bitgouel/types'
 import * as S from './style'
 
-const LectureApplyItem = ({
-  item,
-  ids,
-  handleSelectUsers,
-}: LectureApplyItemProps) => {
+const LectureApplyItem = ({ item, lectureId }: LectureApplyItemProps) => {
+  const { mutate } = usePatchApplyComplete(lectureId, item.id, item.isComplete)
+
   return (
     <S.ApplyItemWrapper>
       <S.ApplyInfoContainer>
@@ -17,22 +20,18 @@ const LectureApplyItem = ({
           <S.NameText>{item.name}</S.NameText>
         </S.NameBox>
         <S.SchoolInfoBox>
-          <span>{item.school}</span>
+          <span>{enumToSchoolName[item.school]}</span>
           <span>
             {item.grade}학년 {item.classNumber}반 {item.number}번
           </span>
           <span>{item.clubName}</span>
         </S.SchoolInfoBox>
         <S.ContactInfo>
-          <span>{item.phoneNumber}</span>
+          <span>{slicePhoneNumber(item.phoneNumber)}</span>
           <span>{item.email}</span>
         </S.ContactInfo>
       </S.ApplyInfoContainer>
-      <CommonCheckBox
-        id={item.id}
-        ids={ids}
-        onChange={(checked: boolean) => handleSelectUsers(checked, item.id)}
-      />
+      <CommonCheckBox checked={!item.isComplete} onChange={() => mutate()} />
     </S.ApplyItemWrapper>
   )
 }

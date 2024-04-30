@@ -9,8 +9,9 @@ export interface ApplyStudentType {
   clubName: string
   phoneNumber: string
   email: string
+  isComplete: boolean
 }
 
 export interface ApplyListResponseTypes {
-  students: ApplyListResponseTypes[]
+  students: ApplyStudentType[]
 }
