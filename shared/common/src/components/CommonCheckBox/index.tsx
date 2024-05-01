@@ -1,25 +1,23 @@
 'use client'
 
-import { CheckBoxIcon } from '../../assets'
+import { CheckBoxIcon } from '@bitgouel/common'
 import * as S from './style'
 
-const CommonCheckBox = ({
-  id,
-  ids,
+export const CommonCheckBox = ({
+  checked,
   onChange,
 }: {
-  id: string
-  ids: string[]
+  checked: boolean
   onChange: (checked: boolean) => void
 }) => {
   return (
     <S.CommonCheckBoxContainer>
       <S.CommonCheckBoxStyle
         type='checkbox'
-        checked={ids?.includes(id)}
+        checked={checked}
         onChange={(e) => onChange(e.target.checked)}
       />
-      {ids?.includes(id) && <CheckBoxIcon />}
+      {checked && <CheckBoxIcon />}
     </S.CommonCheckBoxContainer>
   )
 }

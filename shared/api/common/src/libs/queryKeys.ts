@@ -22,7 +22,14 @@ export const lectureQueryKeys = {
   getLines: () => ['lecture', 'lines'],
   getDivisions: () => ['lecture', 'divisions'],
   getDepartments: () => ['lecture', 'departments'],
-  getExcel: () => ['lecture', 'listExcel'],
+  getExcel: () => ['lecture', 'excel'],
+  getLectureApplyList: (id: string) => ['lecture', 'applyList', id],
+  patchLectureApplyComplete: (id: string, otherId: string) => [
+    'lecture',
+    'modifyComplete',
+    id,
+    otherId,
+  ],
   getCompleteLecture: (id: string) => ['lecture', 'completeList', id],
 } as const
 
