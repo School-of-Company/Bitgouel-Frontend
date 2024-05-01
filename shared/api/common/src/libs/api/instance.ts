@@ -65,7 +65,7 @@ instance.interceptors.response.use(
           : undefined
         return instance(error.config)
       } catch (err) {
-        window.location.replace('/')
+        window.location.replace(`/`)
       }
     }
     return Promise.reject(error)
