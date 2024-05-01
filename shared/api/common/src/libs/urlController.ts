@@ -32,7 +32,7 @@ export const lectureUrl = {
     `/lecture/department?keyword=${keyword}`,
   lectureDivision: (keyword: string) => `/lecture/division?keyword=${keyword}`,
   lectureExcel: () => `/lecture/excel`,
-  lectureCompleteList: (studentId: string) => `/lecture/${studentId}/signup`,
+  lectureCompleteList: (id: string) => `/lecture/${id}/signup`, // studentId
 } as const
 
 export const activityUrl = {
@@ -41,8 +41,8 @@ export const activityUrl = {
   activityInformationRemove: (id: string) => `/activity/${id}`,
   activityMyselfList: (options: ActivityOptionsTypes) =>
     `/activity/my?page=${options.page}&size=${options.size}&sort=activityDate,desc`,
-  activityList: (studentId: string, options: ActivityOptionsTypes) =>
-    `/activity/${studentId}?page=${options.page}&size=${options.size}&sort=activityDate,asc`,
+  activityList: (id: string, options: ActivityOptionsTypes) =>
+    `/activity/${id}?page=${options.page}&size=${options.size}&sort=activityDate,asc`, // studentId
   activityInformationDetail: (id: string) => `/activity/${id}/detail`,
 }
 
@@ -61,7 +61,7 @@ export const postUrl = {
 
 export const certificateUrl = {
   certificate: () => `/certification`,
-  certificateListTeacher: (studentId: string) => `/certification/${studentId}`,
+  certificateListTeacher: (id: string) => `/certification/${id}`, // studentId
   certificateModify: (id: string) => `/certification/${id}`,
 }
 

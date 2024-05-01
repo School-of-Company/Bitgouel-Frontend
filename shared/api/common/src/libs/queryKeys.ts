@@ -23,11 +23,7 @@ export const lectureQueryKeys = {
   getDivisions: () => ['lecture', 'divisions'],
   getDepartments: () => ['lecture', 'departments'],
   getExcel: () => ['lecture', 'listExcel'],
-  getCompleteLecture: (studentId: string) => [
-    'lecture',
-    'completeList',
-    studentId,
-  ],
+  getCompleteLecture: (id: string) => ['lecture', 'completeList', id], // studentId
 } as const
 
 export const activityQueryKeys = {
@@ -39,7 +35,7 @@ export const activityQueryKeys = {
   ],
   deleteActivityInformationRemove: (id: string) => ['activity', 'remove', id],
   getActivityMyselfList: () => ['activity', 'myselfList'],
-  getActivityList: (studentId: string) => ['activity', 'list', studentId],
+  getActivityList: (id: string) => ['activity', 'list', id], // studentId
   getActivityInformationDetail: (id: string) => ['activity', 'detail', id],
 } as const
 
@@ -57,11 +53,7 @@ export const postQueryKeys = {
 } as const
 
 export const certificateQueryKeys = {
-  getCertificateListTeacher: (studentId: string) => [
-    'get',
-    'listTeacher',
-    studentId,
-  ],
+  getCertificateListTeacher: (id: string) => ['get', 'listTeacher', id], // studentId
   getCertificateListStudent: () => ['get', 'list'],
   postCertificateCreate: () => ['post', 'create'],
   patchCertificateModify: (id: string) => ['patch', 'modify', id],
