@@ -70,7 +70,7 @@ export const CertificateContainer = styled.div`
   height: 100%;
   justify-content: center;
   margin-top: 4rem;
-  gap: 2.6rem;
+  gap: 2.5rem;
 `
 
 export const ProfileBox = styled.div`
@@ -227,4 +227,13 @@ export const ModifyText = styled.span`
   text-decoration: underline;
   color: ${({ theme }) => theme.color.gray['700']};
   cursor: pointer;
+`
+
+export const completeLectureTitle = styled.span`
+  color: ${({ theme }) => theme.color.black};
+  ${({ theme }) => theme.typo.title_sm.semibold};
+`
+
+export const CompleteLectureContainer = styled.div`
+  margin-left: 1rem;
 `

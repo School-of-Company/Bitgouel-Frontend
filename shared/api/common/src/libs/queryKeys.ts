@@ -30,6 +30,7 @@ export const lectureQueryKeys = {
     id,
     otherId,
   ],
+  getCompleteLecture: (id: string) => ['lecture', 'completeList', id],
 } as const
 
 export const activityQueryKeys = {

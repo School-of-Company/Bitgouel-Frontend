@@ -24,7 +24,7 @@ export const TitleContainer = styled.div`
 `
 
 export const TitleTypeBox = styled.div`
-  width: 9.0625rem;
+  min-width: 9.0625rem;
   height: 2.125rem;
   border: 0.125rem solid ${({ theme }) => theme.color.gray['700']};
   border-radius: 6.1875rem;
@@ -36,6 +36,7 @@ export const TitleTypeBox = styled.div`
 export const TitleType = styled.span`
   ${({ theme }) => theme.typo.text_sm.medium};
   color: ${({ theme }) => theme.color.gray['400']};
+  padding: 0.4375rem 0.75rem;
 `
 
 export const TitleBox = styled.div`

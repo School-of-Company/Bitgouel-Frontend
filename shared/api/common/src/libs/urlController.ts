@@ -35,6 +35,7 @@ export const lectureUrl = {
   lectureApplyList: (id: string) => `/lecture/student/${id}`,
   lectureModifyComplete: (id: string, otherId: string, isComplete: boolean) =>
     `/lecture/${id}/${otherId}?isComplete=${isComplete}`,
+  lectureCompleteList: (student_id: string) => `/lecture/${student_id}/signup`,
 } as const
 
 export const activityUrl = {
