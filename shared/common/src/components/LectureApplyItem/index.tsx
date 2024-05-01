@@ -1,6 +1,6 @@
 'use client'
 
-import { usePatchApplyComplete } from '@bitgouel/api'
+import { lectureQueryKeys, usePatchApplyComplete } from '@bitgouel/api'
 import {
   CommonCheckBox,
   enumToSchoolName,
@@ -8,9 +8,15 @@ import {
 } from '@bitgouel/common'
 import { LectureApplyItemProps } from '@bitgouel/types'
 import * as S from './style'
+import { useQueryClient } from '@tanstack/react-query'
 
 const LectureApplyItem = ({ item, lectureId }: LectureApplyItemProps) => {
-  const { mutate } = usePatchApplyComplete(lectureId, item.id, item.isComplete)
+  const queryClient = useQueryClient()
+  const { mutate } = usePatchApplyComplete(lectureId, item.id, !item.isComplete, {
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: lectureQueryKeys.getLectureApplyList(lectureId)})
+    }
+  })
 
   return (
     <S.ApplyItemWrapper>
@@ -31,7 +37,10 @@ const LectureApplyItem = ({ item, lectureId }: LectureApplyItemProps) => {
           <span>{item.email}</span>
         </S.ContactInfo>
       </S.ApplyInfoContainer>
-      <CommonCheckBox checked={!item.isComplete} onChange={() => mutate()} />
+      <CommonCheckBox
+        checked={item.isComplete}
+        onChange={() => mutate()}
+      />
     </S.ApplyItemWrapper>
   )
 }

@@ -18,8 +18,7 @@ const UserItem = ({
       <S.UserItem isCurrent={status === 'current'}>
         {status === 'request' && (
           <CommonCheckBox
-            id={id}
-            ids={userIds || []}
+            checked={userIds?.includes(id)}
             onChange={(checked: boolean) =>
               handleSelectUsers && handleSelectUsers(checked, id)
             }
