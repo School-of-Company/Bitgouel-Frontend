@@ -1,8 +1,8 @@
 export interface LectureItem {
-  id: string //UUID
+  id: string
   name: string
   lectureType: string
-  currentCompletedDate: string // LocalDate
+  currentCompletedDate: string
   lecturer: string
   isComplete: boolean
 }
