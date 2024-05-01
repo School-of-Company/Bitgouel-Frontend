@@ -5,7 +5,7 @@ import {
   usePatchPostModify,
   usePostPost,
 } from '@bitgouel/api'
-import { AppropriationModal, Bg1, Link, useModal } from '@bitgouel/common'
+import { AppropriationModal, Bg1, Link, PrivateRouter, useModal } from '@bitgouel/common'
 import { LinksObjectTypes } from '@bitgouel/types'
 import { ChangeEvent, useEffect, useState } from 'react'
 import * as S from './style'
@@ -109,6 +109,7 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
   }
 
   return (
+    <PrivateRouter>
     <div>
       <S.SlideBg url={Bg1}>
         <S.BgContainer>
@@ -159,6 +160,7 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
         </S.DocumentInput>
       </S.DocumentInputContainer>
     </div>
+    </PrivateRouter>
   )
 }
 
