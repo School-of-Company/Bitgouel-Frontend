@@ -2,8 +2,8 @@
 
 import { TokenManager } from '@bitgouel/api';
 import { RoleEnumTypes } from '@bitgouel/types';
-import { usePathname, useRouter } from 'next/navigation';
-import { ReactElement } from 'react';
+import { redirect, usePathname, useRouter } from 'next/navigation';
+import { ReactElement, useEffect } from 'react';
 
 const activityPageRoles: RoleEnumTypes[] = [
   'ROLE_ADMIN',
@@ -34,16 +34,15 @@ const checkAccessCondition = (pathname: string, authority: RoleEnumTypes) => {
 }
 
 const PrivateRouter = ({ children }: { children: ReactElement }) => {
-    const { push } = useRouter()
     const pathname = usePathname()
     const tokenManager = new TokenManager()
+    useEffect(() => {
+      if (!checkAccessCondition(pathname, tokenManager.authority ?? 'ROLE_ADMIN')) {
+        return redirect(`/not-found`) // 임의로 redirect
+      }
+    }, [])
 
-    if (!checkAccessCondition(pathname, tokenManager.authority ?? 'ROLE_ADMIN')) {
-      push(`/not-found`) // 임의로 redirect
-      return null
-    }
-
-   return { children }
+   return <>{ children }</>
 };
 
 export default PrivateRouter;
