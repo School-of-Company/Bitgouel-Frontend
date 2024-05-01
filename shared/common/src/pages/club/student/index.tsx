@@ -207,16 +207,18 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
               ))}
             </S.CertificateListBox>
           </S.CertificateBox>
-          <S.CompleteLectureContainer>
-            <S.completeLectureTitle>신청한 강의 목록</S.completeLectureTitle>
+          {isRole && (
+            <S.CompleteLectureContainer>
+              <S.completeLectureTitle>신청한 강의 목록</S.completeLectureTitle>
 
-            {completeLectureList?.lectures.map((completeLecture) => (
-              <CompleteLectureItem
-                key={completeLecture.id}
-                item={completeLecture}
-              />
-            ))}
-          </S.CompleteLectureContainer>
+              {completeLectureList?.lectures.map((completeLecture) => (
+                <CompleteLectureItem
+                  key={completeLecture.id}
+                  item={completeLecture}
+                />
+              ))}
+            </S.CompleteLectureContainer>
+          )}
         </S.CertificateContainer>
       </S.CertificateWrapper>
     </div>
