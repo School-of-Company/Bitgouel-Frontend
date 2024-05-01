@@ -1,16 +1,12 @@
 'use client'
 
-import { useGetLines } from '@bitgouel/api'
 import {
   InputCancel,
-  LectureDivision,
-  LectureLine,
   LectureType,
-  SearchIcon,
+  SearchIcon
 } from '@bitgouel/common'
-import { LineResponseTypes } from '@bitgouel/types'
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 import {
   SearchInput,
   SearchInputBox,
