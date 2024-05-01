@@ -38,7 +38,7 @@ const PrivateRouter = (Component) => {
     const pathname = usePathname()
     const tokenManager = new TokenManager()
 
-    if (tokenManager && checkAccessCondition(pathname, tokenManager.authority)) {
+    if (checkAccessCondition(pathname, tokenManager.authority ?? 'ROLE_ADMIN')) {
       push(`/not-found`) // 임의로 redirect
       return null
     }
