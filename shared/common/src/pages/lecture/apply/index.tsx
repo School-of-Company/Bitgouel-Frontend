@@ -1,11 +1,9 @@
 'use client'
 
-import { LectureApplyItem, Bg3, handleSelect } from '@bitgouel/common'
-import { useEffect, useState } from 'react'
-import * as S from './style'
 import { TokenManager, useGetLectureApplyList } from '@bitgouel/api'
+import { Bg3, LectureApplyItem, PrivateRouter } from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
-import { redirect } from 'next/navigation'
+import * as S from './style'
 
 const roleArray: RoleEnumTypes[] = [
   'ROLE_ADMIN',
@@ -17,17 +15,10 @@ const roleArray: RoleEnumTypes[] = [
 ]
 
 const LectureApplyListPage = ({ lectureId }: { lectureId: string }) => {
-  const tokenManager = new TokenManager()
   const { data } = useGetLectureApplyList(lectureId)
 
-  useEffect(() => {
-    if (tokenManager.authority) {
-      if (tokenManager && roleArray.includes(tokenManager.authority)) return
-      else return redirect('/')
-    }
-  }, [])
-
   return (
+    <PrivateRouter>
     <div>
       <S.SlideBg url={Bg3}>
         <S.BgContainer>
@@ -53,6 +44,7 @@ const LectureApplyListPage = ({ lectureId }: { lectureId: string }) => {
         )} */}
       </S.ListWrapper>
     </div>
+    </PrivateRouter>
   )
 }
 

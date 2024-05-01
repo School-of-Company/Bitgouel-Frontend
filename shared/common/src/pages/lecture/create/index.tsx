@@ -20,7 +20,8 @@ import {
   LectureStartDate,
   LectureStartTime,
   LectureType,
-  useModal,
+  PrivateRouter,
+  useModal
 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState } from 'react'
@@ -130,7 +131,8 @@ const LectureCreatePage = () => {
   }
 
   return (
-    <div>
+    <PrivateRouter>
+      <div>
       <S.SlideBg url={Bg3}>
         <S.BgContainer>
           <S.CreateTitle>강의 개설</S.CreateTitle>
@@ -165,7 +167,8 @@ const LectureCreatePage = () => {
           </S.CreateButton>
         </S.DocumentInput>
       </S.DocumentInputContainer>
-    </div>
+      </div>
+    </PrivateRouter>
   )
 }
 

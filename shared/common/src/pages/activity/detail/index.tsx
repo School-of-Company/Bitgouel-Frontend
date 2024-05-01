@@ -9,6 +9,7 @@ import {
   AppropriationModal,
   Bg2,
   Pen,
+  PrivateRouter,
   TrashCan,
   useModal,
 } from '@bitgouel/common'
@@ -36,6 +37,7 @@ const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
   }, [])
 
   return (
+    <PrivateRouter>
     <div>
       <S.SlideBg url={Bg2}>
         <S.BgContainer>
@@ -106,6 +108,7 @@ const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
         </S.Document>
       </S.DocumentWrapper>
     </div>
+    </PrivateRouter>
   )
 }
 

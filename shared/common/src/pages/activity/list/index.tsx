@@ -6,7 +6,7 @@ import {
   useGetActivityMyselfList,
   useGetStudentDetail,
 } from '@bitgouel/api'
-import { ActivityItem, Bg2, Plus } from '@bitgouel/common'
+import { ActivityItem, Bg2, Plus, PrivateRouter } from '@bitgouel/common'
 import { StudentIdProps } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -35,6 +35,7 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
   }, [])
 
   return (
+    <PrivateRouter>
     <div>
       <S.SlideBg url={Bg2}>
         <S.BgContainer>
@@ -68,6 +69,7 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
         </S.ActivityContainer>
       </S.ActivityWrapper>
     </div>
+    </PrivateRouter>
   )
 }
 

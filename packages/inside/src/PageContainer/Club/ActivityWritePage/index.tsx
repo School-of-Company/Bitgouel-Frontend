@@ -9,6 +9,7 @@ import {
   AppropriationModal,
   Bg2,
   Chevron,
+  PrivateRouter,
   SelectCalendarModal,
   SelectScoreModal,
   useModal,
@@ -160,6 +161,7 @@ const ActivityWritePage = ({
   }, [data])
 
   return (
+    <PrivateRouter>
     <div>
       <S.SlideBg url={Bg2}>
         <S.BgContainer>
@@ -239,6 +241,7 @@ const ActivityWritePage = ({
         </S.DocumentInput>
       </S.DocumentInputContainer>
     </div>
+    </PrivateRouter>
   )
 }
 export default ActivityWritePage
