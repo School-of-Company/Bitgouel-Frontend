@@ -5,6 +5,7 @@ import { useRecoilValue } from 'recoil'
 import LectureApplyTime from './LectureApplyTime'
 import LectureCreditSelect from './LectureCreditSelect'
 import LectureEnrollmentDates from './LectureEnrollmentDates'
+import LectureEssentialCompleteSelect from './LectureEssentialCompleteSelect'
 import LectureMaxInput from './LectureMaxInput'
 import LectureSemesterSelect from './LectureSemesterSelect'
 import SearchDepartment from './SearchDepartment'
@@ -25,6 +26,10 @@ const LectureSettingModal = () => {
           <h3>강의 세부 설정</h3>
           <CancelIcon onClick={closeModal} />
         </S.SettingTitleBox>
+         <S.SettingContainer>
+          <span>필수 수강 여부</span>
+          <LectureEssentialCompleteSelect />
+        </S.SettingContainer>
         <S.SettingContainer>
           <span>수강 학기</span>
           <LectureSemesterSelect />

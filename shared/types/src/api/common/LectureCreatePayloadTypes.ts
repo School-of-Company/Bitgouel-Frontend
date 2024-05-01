@@ -50,4 +50,5 @@ export interface LectureCreatePayloadTypes {
   lectureType: string
   credit: number
   maxRegisteredUser: number
+  essentialComplete: boolean
 }

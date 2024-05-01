@@ -24,7 +24,7 @@ const LectureMaxInput = () => {
       </S.LectureMaxInputContainer>
       <S.CautionTextContainer>
         <CautionIcon />
-        <span>최대 인원은 10명입니다</span>
+        <span>최소 인원은 5명이며 최대 인원은 10명입니다</span>
       </S.CautionTextContainer>
     </S.LectureMaxInputWrapper>
   )
