@@ -43,7 +43,7 @@ const PrivateRouter = ({ children }: { children: ReactElement }) => {
       return null
     }
 
-   return {children}
+   return { children }
 };
 
 export default PrivateRouter;
