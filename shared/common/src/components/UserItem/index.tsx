@@ -2,23 +2,22 @@
 
 import { CommonCheckBox, authorityToKor } from '@bitgouel/common'
 import { UserItemProps } from '@bitgouel/types'
-import { ChangeEvent } from 'react'
 import * as S from './style'
 
 const UserItem = ({
   id,
+  userIds,
   name,
   authority,
   status,
   handleSelectUsers,
-  userIds,
 }: UserItemProps) => {
   return (
     <div>
       <S.UserItem isCurrent={status === 'current'}>
         {status === 'request' && (
           <CommonCheckBox
-            checked={userIds?.includes(id)}
+            checked={userIds?.includes(id) || false}
             onChange={(checked: boolean) =>
               handleSelectUsers && handleSelectUsers(checked, id)
             }
