@@ -25,6 +25,34 @@ export const LectureTitle = styled.span`
   ${({ theme }) => theme.typo.title_lg.semibold};
 `
 
+export const ButtonContainer = styled.div`
+  display: flex;
+  align-items: flex-end;
+`
+
+export const LectureButton = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: rgb(255, 255, 255, 0.2);
+  height: 2.5rem;
+  margin-left: 1rem;
+  padding: 0 0.75rem;
+  border-radius: 0.5rem;
+  backdrop-filter: blur(0.25rem);
+  svg {
+    fill: ${({ theme }) => theme.color.white};
+  }
+  span {
+    color: ${({ theme }) => theme.color.white};
+    ${({ theme }) => theme.typo.text_md.regular};
+    margin-left: 0.25rem;
+  }
+  &:hover {
+    background-color: rgb(255, 255, 255, 0.4);
+  }
+`
+
 export const DocumentWrapper = styled.div`
   width: 100%;
   display: flex;

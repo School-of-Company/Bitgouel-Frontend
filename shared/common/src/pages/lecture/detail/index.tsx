@@ -8,11 +8,11 @@ import {
 import {
   AppropriationModal,
   Bg3,
-  lectureDivisionToKor,
-  lectureTypeToKor,
-  useModal,
+  People,
+  useModal
 } from '@bitgouel/common'
 import dayjs from 'dayjs'
+import { useRouter } from 'next/navigation'
 import * as S from './style'
 
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
@@ -26,12 +26,19 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   }
   const { openModal } = useModal()
   const { mutate } = usePostEnrollment(lectureId)
+  const { push } = useRouter()
 
   return (
     <div>
       <S.SlideBg url={Bg3}>
         <S.BgContainer>
           <S.LectureTitle>강의 상세</S.LectureTitle>
+          <S.ButtonContainer>
+            <S.LectureButton onClick={() => push(`/main/lecture/${lectureId}/apply`)}>
+              <People />
+              <span>신청자 명단 조회</span>
+            </S.LectureButton>
+          </S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
       <S.DocumentWrapper>

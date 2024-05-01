@@ -32,8 +32,10 @@ export const lectureUrl = {
   lectureDepartment: (keyword: string) =>
     `/lecture/department?keyword=${keyword}`,
   lectureDivision: (keyword: string) => `/lecture/division?keyword=${keyword}`,
-  lectureExcel: () => `/lecture/excel`,
   lectureCompleteList: (id: string) => `/lecture/${id}/signup`, // studentId
+  lectureApplyList: (id: string) => `/lecture/student/${id}`,
+  lectureModifyComplete: (id: string, otherId: string, isComplete: boolean) =>
+    `/lecture/${id}/${otherId}?isComplete=${isComplete}`,
 } as const
 
 export const activityUrl = {

@@ -1,6 +1,6 @@
 'use client'
 
-import { ChangeEvent, Dispatch } from 'react'
+import { Dispatch } from 'react'
 
 interface handleSelectParameter {
   id: string
@@ -8,12 +8,9 @@ interface handleSelectParameter {
   checked: boolean
 }
 
-export const handleSelect = ({
-  id,
-  setIds,
-  checked,
-}: handleSelectParameter) => {
-  console.log(checked)
+const handleSelect = ({ id, setIds, checked }: handleSelectParameter) => {
   if (checked) setIds((prev) => [...prev, id])
   else setIds((prev) => prev.filter((listId) => listId !== id))
 }
+
+export default handleSelect

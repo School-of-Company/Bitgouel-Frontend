@@ -1,34 +1,28 @@
 'use client'
 
-import { ApplyItem, Bg3, handleSelect } from '@bitgouel/common'
+import { LectureApplyItem, Bg3, handleSelect } from '@bitgouel/common'
 import { useEffect, useState } from 'react'
 import * as S from './style'
-import { TokenManager } from '@bitgouel/api'
+import { TokenManager, useGetLectureApplyList } from '@bitgouel/api'
 import { RoleEnumTypes } from '@bitgouel/types'
 import { redirect } from 'next/navigation'
 
-const obj = {
-  id: '1234',
-  cohort: 6,
-  name: '파티피플공명',
-  school: '광주소프트웨어마이스터고등학교',
-  grade: 3,
-  classNum: 4,
-  clubName: '나의 미래는 내가 주인공이다!',
-  phoneNumber: '010-2786-7726',
-  email: 'bitgouel@gmail.com',
-}
+const roleArray: RoleEnumTypes[] = [
+  'ROLE_ADMIN',
+  'ROLE_TEACHER',
+  'ROLE_PROFESSOR',
+  'ROLE_COMPANY_INSTRUCTOR',
+  'ROLE_GOVERNMENT',
+  'ROLE_BBOZZAK',
+]
 
-const roleArray: RoleEnumTypes[] = ['ROLE_ADMIN', 'ROLE_TEACHER']
-
-const LectureApplyListPage = () => {
-  const [applyIds, setApplyIds] = useState<string[]>([])
-  const handleSelectUsers = (checked: boolean, userId: string) =>
-    handleSelect({ checked, id: userId, setIds: setApplyIds })
+const LectureApplyListPage = ({ lectureId }: { lectureId: string }) => {
   const tokenManager = new TokenManager()
+  const { data } = useGetLectureApplyList(lectureId)
+
   useEffect(() => {
     if (tokenManager.authority) {
-      if (roleArray.includes(tokenManager.authority)) return
+      if (tokenManager && roleArray.includes(tokenManager.authority)) return
       else return redirect('/')
     }
   }, [])
@@ -41,16 +35,14 @@ const LectureApplyListPage = () => {
         </S.BgContainer>
       </S.SlideBg>
       <S.ListWrapper>
+        <S.ApplyInfoContainer>
+          <span>인적사항</span>
+          <span>이수</span>
+        </S.ApplyInfoContainer>
         <S.ListContainer>
-          <S.ApplyInfoContainer>
-            <span>인적사항</span>
-            <span>이수</span>
-          </S.ApplyInfoContainer>
-          <ApplyItem
-            item={obj}
-            ids={applyIds}
-            handleSelectUsers={handleSelectUsers}
-          />
+          {data?.students.map((student) => (
+            <LectureApplyItem key={student.id} item={student} lectureId={lectureId} />
+          ))}
         </S.ListContainer>
         {/* {content?.length && !isLoading && (
           <PaginationPages
