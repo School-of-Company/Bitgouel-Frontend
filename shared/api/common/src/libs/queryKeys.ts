@@ -23,6 +23,7 @@ export const lectureQueryKeys = {
   getDivisions: () => ['lecture', 'divisions'],
   getDepartments: () => ['lecture', 'departments'],
   getExcel: () => ['lecture', 'listExcel'],
+  getCompleteLecture: (id: string) => ['lecture', 'completeList', id],
 } as const
 
 export const activityQueryKeys = {

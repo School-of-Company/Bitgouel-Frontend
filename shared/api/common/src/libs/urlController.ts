@@ -32,6 +32,7 @@ export const lectureUrl = {
     `/lecture/department?keyword=${keyword}`,
   lectureDivision: (keyword: string) => `/lecture/division?keyword=${keyword}`,
   lectureExcel: () => `/lecture/excel`,
+  lectureCompleteList: (student_id: string) => `/lecture/${student_id}/signup`,
 } as const
 
 export const activityUrl = {

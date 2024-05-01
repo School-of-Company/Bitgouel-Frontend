@@ -4,6 +4,7 @@ import {
   TokenManager,
   useGetCertificateList,
   useGetCertificateListTeacher,
+  useGetCompleteLecture,
   useGetMy,
   useGetStudentDetail,
   usePostCertificate,
@@ -56,6 +57,8 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
   const { data: certificateList, refetch } = isStudent
     ? useGetCertificateList()
     : useGetCertificateListTeacher(studentId)
+
+  const { data: completeLectureList } = useGetCompleteLecture(studentId)
 
   const onCreate = () => {
     const payload: CertificateRequest = {
@@ -204,6 +207,16 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
               ))}
             </S.CertificateListBox>
           </S.CertificateBox>
+          <S.CompleteLectureContainer>
+            <S.completeLectureTitle>신청한 강의 목록</S.completeLectureTitle>
+
+            {completeLectureList?.lectures.map((completeLecture) => (
+              <CompleteLectureItem
+                key={completeLecture.id}
+                item={completeLecture}
+              />
+            ))}
+          </S.CompleteLectureContainer>
         </S.CertificateContainer>
       </S.CertificateWrapper>
     </div>

@@ -1,23 +1,31 @@
 'use client'
 
+import { LectureItem } from '@bitgouel/types'
+import dayjs from 'dayjs'
 import * as S from './style'
 
-const CompleteLectureItem = () => {
+const CompleteLectureItem = ({ item }: { item: LectureItem }) => {
   return (
     <S.ItemContainer>
       <S.ItemContentContainer>
         <S.TitleContainer>
           <S.TitleTypeBox>
-            <S.TitleType>상호학점인정교육과정</S.TitleType>
+            <S.TitleType>{item.lectureType}</S.TitleType>
           </S.TitleTypeBox>
           <S.TitleBox>
-            <S.Title>그날 학교는 파괴적인 불꽃으로 타올랐다.</S.Title>
+            <S.Title>{item.name}</S.Title>
             <S.Line />
           </S.TitleBox>
         </S.TitleContainer>
-        <S.professorName>이태랑 교수님</S.professorName>
+        <S.professorName>{item.lecturer}</S.professorName>
       </S.ItemContentContainer>
-      <S.Date>2023년 4월 18일 이수</S.Date>
+      {item.isComplete ? (
+        <S.Date>
+          {dayjs(item.currentCompletedDate).format('YYYY년 MM월 DD일')} 이수
+        </S.Date>
+      ) : (
+        <S.Date>미이수</S.Date>
+      )}
     </S.ItemContainer>
   )
 }
