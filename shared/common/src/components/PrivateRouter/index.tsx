@@ -38,14 +38,9 @@ const PrivateRouter = (Component) => {
     const pathname = usePathname()
     const tokenManager = new TokenManager()
 
-    if (!tokenManager.accessToken) {
-      push(`/auth/login`)
+    if (tokenManager && checkAccessCondition(pathname, tokenManager.authority)) {
+      push(`/not-found`) // 임의로 redirect
       return null
-    } else {
-      if (tokenManager && checkAccessCondition(pathname, tokenManager.authority)) {
-        push(`/not-found`) // 임의로 redirect
-        return null
-      }
     }
     return <Component {...props} />
   }

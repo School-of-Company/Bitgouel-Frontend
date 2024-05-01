@@ -21,7 +21,6 @@ export const useDeleteLogout = () => {
     {
       onSuccess: () => {
         tokenManager.removeTokens()
-        router.push('/auth/login')
         match(pathname)
           .with('/auth/find', () => toast.info('다시 로그인 해주세요'))
           .otherwise(() => toast.success('로그아웃 했습니다'))
