@@ -22,36 +22,28 @@ export const lectureQueryKeys = {
   getLines: () => ['lecture', 'lines'],
   getDivisions: () => ['lecture', 'divisions'],
   getDepartments: () => ['lecture', 'departments'],
+  getCompleteLecture: (id: string) => ['lecture', 'completeList', id], // studentId
   getExcel: () => ['lecture', 'excel'],
   getLectureApplyList: (id: string) => ['lecture', 'applyList', id],
-  patchLectureApplyComplete: (id: string, otherId: string) => [
+  patchLectureApplyComplete: (id: string, stduentId: string) => [
     'lecture',
     'modifyComplete',
     id,
-    otherId,
+    stduentId, // studentId
   ],
-  getCompleteLecture: (id: string) => ['lecture', 'completeList', id],
 } as const
 
 export const activityQueryKeys = {
   postActivityInformation: () => ['activity', 'information'],
-  patchActivityModifyInformation: (activity_id: string) => [
+  patchActivityModifyInformation: (id: string) => [
     'activity',
     'correction',
-    activity_id,
+    id,
   ],
-  deleteActivityInformationRemove: (activity_id: string) => [
-    'activity',
-    'remove',
-    activity_id,
-  ],
+  deleteActivityInformationRemove: (id: string) => ['activity', 'remove', id],
   getActivityMyselfList: () => ['activity', 'myselfList'],
-  getActivityList: (student_id: string) => ['activity', 'list', student_id],
-  getActivityInformationDetail: (activity_id: string) => [
-    'activity',
-    'detail',
-    activity_id,
-  ],
+  getActivityList: (id: string) => ['activity', 'list', id], // studentId
+  getActivityInformationDetail: (id: string) => ['activity', 'detail', id],
 } as const
 
 export const myQueryKeys = {
@@ -68,18 +60,10 @@ export const postQueryKeys = {
 } as const
 
 export const certificateQueryKeys = {
-  getCertificateListTeacher: (student_id: string) => [
-    'get',
-    'listTeacher',
-    student_id,
-  ],
+  getCertificateListTeacher: (id: string) => ['get', 'listTeacher', id], // studentId
   getCertificateListStudent: () => ['get', 'list'],
   postCertificateCreate: () => ['post', 'create'],
-  patchCertificateModify: (certificate_id: string) => [
-    'patch',
-    'modify',
-    certificate_id,
-  ],
+  patchCertificateModify: (id: string) => ['patch', 'modify', id],
 }
 
 export const clubQueryKeys = {
@@ -87,7 +71,12 @@ export const clubQueryKeys = {
   getClub: () => ['club', 'clubList'],
   getClubDetail: () => ['club', 'detail'],
   getMyClub: () => ['club', 'myClub'],
-  getStudentDetail: () => ['club', 'studentDetail'],
+  getStudentDetail: (id: string, studentId: string) => [
+    'club',
+    'studentDetail',
+    id,
+    studentId,
+  ],
 } as const
 
 export const inquiryQueryKeys = {
