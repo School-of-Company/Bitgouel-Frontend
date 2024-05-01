@@ -4,6 +4,7 @@ import {
   InquiryListQueryStringTypes,
   LectureListOptionsTypes,
   UserListOptionsTypes,
+  PostListOptionsTypes,
 } from '@bitgouel/types'
 
 export const authUrl = {
@@ -52,7 +53,7 @@ export const userUrl = {
 
 export const postUrl = {
   postCreate: () => `/post`,
-  postList: (options) =>
+  postList: (options: PostListOptionsTypes) =>
     `/post?type=${options.type}&size=${options.size}&page=${options.page}`,
   postDetail: (id: string) => `/post/${id}`,
   postModify: (id: string) => `/post/${id}`,
