@@ -6,7 +6,7 @@ export const usePatchApplyComplete = (
   id: string,
   studentId: string,
   isComplete: boolean,
-  options?: UseMutationOptions<void>
+  options?: UseMutationOptions
 ) =>
   useMutation<void, AxiosError>(
     lectureQueryKeys.patchLectureApplyComplete(id, studentId),
