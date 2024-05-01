@@ -39,7 +39,6 @@ instance.interceptors.request.use(
       !config?.url?.includes('/auth')
     ) {
       tokenManager.removeTokens()
-      window.location.href = '/'
     }
     config.headers.Authorization = tokenManager.accessToken
       ? `Bearer ${encodeURI(tokenManager.accessToken)}`
@@ -66,7 +65,7 @@ instance.interceptors.response.use(
           : undefined
         return instance(error.config)
       } catch (err) {
-        window.location.replace('/')
+        window.location.replace(`/`)
       }
     }
     return Promise.reject(error)

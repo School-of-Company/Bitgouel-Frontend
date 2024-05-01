@@ -13,7 +13,6 @@ export const useDeleteWithDraw = () => {
     {
       onSuccess: () => {
         tokenManager.removeTokens()
-        router.push('/auth/login')
         toast.success('계정을 탈퇴했습니다')
       },
     }
