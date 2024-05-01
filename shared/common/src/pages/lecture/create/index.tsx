@@ -11,6 +11,7 @@ import {
   LectureDivision,
   LectureEndDate,
   LectureEndTime,
+  LectureEssentialComplete,
   LectureInstructor,
   LectureLine,
   LectureMaxRegistered,
@@ -21,30 +22,57 @@ import {
   LectureType,
   useModal,
 } from '@bitgouel/common'
+import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState } from 'react'
 import { toast } from 'react-toastify'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 import * as S from './style'
 
 const MAXLENGTH: number = 1000 as const
+
 const LectureCreatePage = () => {
   const [lectureTitle, setLectureTitle] = useState<string>('')
   const [lectureContent, setLectureContent] = useState<string>('')
-  const lectureSemester = useRecoilValue(LectureSemester)
-  const lectureDivision = useRecoilValue(LectureDivision)
-  const lectureDepartment = useRecoilValue(LectureDepartment)
-  const lectureLine = useRecoilValue(LectureLine)
-  const lectureInstructor = useRecoilValue(LectureInstructor)
-  const lectureStartDate = useRecoilValue(LectureStartDate)
-  const lectureStartTime = useRecoilValue(LectureStartTime)
-  const lectureEndDate = useRecoilValue(LectureEndDate)
-  const lectureEndTime = useRecoilValue(LectureEndTime)
-  const [lectureDates] = useRecoilState(LectureDates)
-  const lectureType = useRecoilValue(LectureType)
-  const lectureCredit = useRecoilValue(LectureCredit)
-  const lectureMaxRegisteredUser = useRecoilValue(LectureMaxRegistered)
-  const { openModal } = useModal()
-  const { mutate } = usePostLecture()
+  const [lectureEssentialComplete, setLectureEssentialComplete] = useRecoilState(LectureEssentialComplete)
+  const [lectureSemester, setLectureSemester] = useRecoilState(LectureSemester)
+  const [lectureDivision, setLectureDivision] = useRecoilState(LectureDivision)
+  const [lectureDepartment, setLectureDepartment] = useRecoilState(LectureDepartment)
+  const [lectureLine, setLectureLine] = useRecoilState(LectureLine)
+  const [lectureInstructor, setLectureInstructor] = useRecoilState(LectureInstructor)
+  const [lectureStartDate, setLectureStartDate] = useRecoilState(LectureStartDate)
+  const [lectureStartTime, setLectureStartTime] = useRecoilState(LectureStartTime)
+  const [lectureEndDate, setLectureEndDate] = useRecoilState(LectureEndDate)
+  const [lectureEndTime, setLectureEndTime] = useRecoilState(LectureEndTime)
+  const [lectureDates, setLectureDates] = useRecoilState(LectureDates)
+  const [lectureType, setLectureType] = useRecoilState(LectureType)
+  const [lectureCredit, setLectureCredit] = useRecoilState(LectureCredit)
+  const [lectureMaxRegisteredUser, setLectureMaxRegisteredUser] = useRecoilState(LectureMaxRegistered)
+  const { openModal, closeModal } = useModal()
+  const {push} = useRouter()
+
+  const createSuccess = () => {
+    closeModal()
+    toast.success('강의를 개설했습니다')
+    push(`/main/lecture`)
+    setLectureEssentialComplete(true)
+    setLectureSemester('FIRST_YEAR_FALL_SEMESTER')
+    setLectureDivision('')
+    setLectureDepartment('')
+    setLectureLine('')
+    setLectureInstructor('')
+    setLectureStartDate('')
+    setLectureStartTime('')
+    setLectureEndDate('')
+    setLectureEndTime('')
+    setLectureDates([])
+    setLectureType('')
+    setLectureCredit(1)
+    setLectureMaxRegisteredUser('')
+  }
+
+  const { mutate } = usePostLecture({
+    onSuccess: () => createSuccess()
+  })
 
   const isAble = (): boolean => {
     const dateRegex = /^\d{4}-\d{2}-\d{2}$/
@@ -94,6 +122,7 @@ const LectureCreatePage = () => {
             lectureType,
             credit: lectureCredit,
             maxRegisteredUser: +lectureMaxRegisteredUser,
+            essentialComplete: lectureEssentialComplete
           })
         }
       />

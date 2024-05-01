@@ -77,6 +77,11 @@ export const IsValidate = atom<boolean>({
 })
 
 // 강의 생성
+export const LectureEssentialComplete = atom<boolean>({
+  key: 'LectureEssentialComplete',
+  default: true,
+})
+
 export const LectureType = atom<string>({
   key: 'LectureType',
   default: '',
@@ -133,7 +138,7 @@ export const LectureMaxRegistered = atom<string>({
   key: 'LectureMax',
   default: '',
 })
-export const LectureCredit = atom<number>({
+export const LectureCredit = atom<1 | 2>({
   key: 'LectureCredit',
   default: 1,
 })
