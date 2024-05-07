@@ -1,16 +1,10 @@
 'use client'
 
 import { CancelIcon, Portal, useModal } from '@bitgouel/common'
-import { FilterListTypes } from '@bitgouel/types'
+import { FilterListTypes, onSelectedParameter } from '@bitgouel/types'
 import * as S from './style'
 import RadioItem from './RadioItem'
 import InputRadio from './InputRadio'
-
-interface onSelectedParameter {
-  item: string
-  checked: boolean
-  inputValue?: string
-}
 
 interface Props {
   title: string

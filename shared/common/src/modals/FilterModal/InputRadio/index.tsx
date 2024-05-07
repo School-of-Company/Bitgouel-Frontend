@@ -1,15 +1,9 @@
 'use client'
 
-import { FilterListTypes } from '@bitgouel/types'
+import { FilterListTypes, onSelectedParameter } from '@bitgouel/types'
 import { ChangeEvent, useState } from 'react'
 import RadioItem from '../RadioItem'
 import * as S from './style'
-
-interface onSelectedParameter {
-  item: string
-  checked: boolean
-  inputValue?: string
-}
 
 interface Props {
   filter: FilterListTypes
