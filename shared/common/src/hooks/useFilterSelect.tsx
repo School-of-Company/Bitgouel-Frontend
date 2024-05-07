@@ -28,7 +28,7 @@ const useFilterSelect = ({ defaultFilterList, setFilterPayload}: Parameter) => {
     )
 
     if (!parameter.checked && parameter.item === '전체') setFilterPayload('')
-    else if (parameter.checked && parameter.item === '기타') setFilterPayload(parameter.inputValue)
+    else if (parameter.checked && parameter.item === '기타' && parameter.inputValue) setFilterPayload(parameter.inputValue)
     else if (!parameter.checked) setFilterPayload(parameter.item)
 
     openModal(
