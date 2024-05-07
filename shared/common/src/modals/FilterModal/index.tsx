@@ -24,7 +24,7 @@ const FilterComponent = ({ title, filterList, onChecked }: Props) => {
       </S.FilterTitleContainer>
       <S.RadioListContainer>
         {filterList.map((filter) => (
-          <S.RadioItem key={filter.item}  onClick={() => onChange(filter.item, filter.checked)}>
+          <S.RadioItem key={filter.item}  onClick={() => onChecked(filter.item, filter.checked)}>
             <S.RadioBox checked={filter.checked}>
               <S.RadioCircle checked={filter.checked} />
             </S.RadioBox>
