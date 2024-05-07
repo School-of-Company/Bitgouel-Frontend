@@ -4,53 +4,62 @@ import { useGetLectureList } from '@bitgouel/api'
 import {
   Bg3,
   Filter,
-  FilterComponent,
-  LectureFilterType,
+  FilterModal,
   LectureItem,
   PaginationPages,
   Plus,
   PrintIcon,
   useDownload,
+  useModal
 } from '@bitgouel/common'
-import { LectureTypeEnum, LectureTypesFilterListTypes } from '@bitgouel/types'
+import { FilterListTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, useEffect, useState } from 'react'
-import { useRecoilState } from 'recoil'
+import { useEffect, useState } from 'react'
 import * as S from './style'
 
 const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
   const [lectureTypes, setLectureTypes] = useState<
-    LectureTypesFilterListTypes[]
+    FilterListTypes[]
   >([
-    { text: '전체', item: 'all', checked: true },
+    { text: '전체', checked: true },
     {
       text: '상호학점인정교육과정',
-      item: '상호학점인정교육과정',
       checked: false,
     },
     {
       text: '대학탐방프로그램',
-      item: '대학탐방프로그램',
       checked: false,
     },
+     {
+      text: '유관기관프로그램',
+      checked: false,
+    },
+    {
+      text: '기업산학연계직업체험프로그램',
+      checked: false,
+    },
+    {
+      text: '기타',
+      checked: false,
+    }
   ])
-  const [lectureType, setLectureType] =
-    useRecoilState<string>(LectureFilterType)
-  const [isLectureType, setIsLectureType] = useState<boolean>(false)
+  const [lectureTypeFilter, setLectureTypeFilter] = useState<string>()
   const [isClick, setIsClick] = useState<boolean>(false)
   const { push } = useRouter()
+  const { openModal } = useModal()
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChecked = (text: string, checked: boolean, inputValue?: string) => {
     setLectureTypes((prev) =>
       prev.map((type) =>
-        type.item === e.target.id
+        type.text === text
           ? { ...type, checked: true }
           : { ...type, checked: false }
       )
     )
 
-    if (e.target.checked && e.target.id === 'all') setLectureType('')
-    else if (e.target.checked) setLectureType(e.target.id as LectureTypeEnum)
+    if (!checked && text === '전체') setLectureTypeFilter('')
+    else if (checked && text === '기타') setLectureTypeFilter(inputValue)
+    else if (!checked) setLectureTypeFilter(text)
   }
 
   const { excelDown } = useDownload({
@@ -63,7 +72,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
   const { data, refetch, isLoading } = useGetLectureList({
     page: currentPage,
     size: 10,
-    type: lectureType,
+    type: lectureTypeFilter,
   })
   const pages = Array.from({ length: data?.lectures.totalPages || 0 }).map(
     (_, i) => i
@@ -76,7 +85,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
 
   useEffect(() => {
     refetch()
-  }, [lectureType, currentPage])
+  }, [lectureTypeFilter, currentPage])
 
   return (
     <div>
@@ -96,21 +105,18 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
                 </S.LectureButton>
               </>
             )}
-            <S.SelectFilterContainer>
               <S.LectureButton
-                onClick={() => setIsLectureType((prev) => !prev)}
+                onClick={() => openModal(
+                  <FilterModal
+                    title='강의 유형'
+                    filterList={lectureTypes}
+                    onChecked={onChecked}
+                  />
+                )}
               >
                 <Filter />
                 <span>필터</span>
               </S.LectureButton>
-              {isLectureType && (
-                <FilterComponent
-                  title='강의 유형'
-                  filterList={lectureTypes}
-                  onChange={onChange}
-                />
-              )}
-            </S.SelectFilterContainer>
           </S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
