@@ -36,7 +36,6 @@ const SearchLectureType = () => {
     e.preventDefault()
     const searchTypes: string[] = []
     LectureTypes.forEach((lectureTypeItem) => {
-      console.log(lectureTypeItem)
       if (lectureTypeItem.includes(type)) searchTypes.push(lectureTypeItem)
     })
     setLectureTypeList(searchTypes)
