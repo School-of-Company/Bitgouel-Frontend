@@ -8,7 +8,6 @@ import { useRecoilValue } from 'recoil'
 import * as S from './style'
 
 const ClubPage = () => {
-  const { openModal } = useModal()
   const schoolFilterText = useRecoilValue(SchoolFilterText)
   const { data, refetch } = useGetSchoolClubList()
 

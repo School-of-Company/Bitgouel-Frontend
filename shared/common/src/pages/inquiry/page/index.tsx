@@ -3,18 +3,26 @@
 import { useGetInquiryList, useGetMyInquiryList } from '@bitgouel/api'
 import {
   Bg5,
-  FilterComponent,
+  FilterModal,
   FilterOut,
   InquiryItem,
   MegaPhone,
   Message,
   Plus,
   SearchIcon,
+  useFilterSelect,
+  useModal,
 } from '@bitgouel/common'
-import { AnswerStatus, InquiryStatusFilterListTypes } from '@bitgouel/types'
+import { AnswerStatus } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import * as S from './style'
+
+const defaultFilterList = [
+  { text: '전체', item: '전체', checked: true },
+  { text: '답변 대기 중', item: 'UNANSWERED', checked: false },
+  { text: '답변 완료됨', item: 'ANSWERED', checked: false },
+]
 
 const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const [keyword, setKeyword] = useState<string>('')
@@ -30,26 +38,10 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const { data: myInquiryList } = useGetMyInquiryList({
     enabled: !isAdmin,
   })
-  const [isFilter, setIsFilter] = useState<boolean>(false)
-  const [inquiryStatus, setInquiryStatus] = useState<
-    InquiryStatusFilterListTypes[]
-  >([
-    { text: '전체', item: 'all', checked: true },
-    { text: '답변 대기 중', item: 'UNANSWERED', checked: false },
-    { text: '답변 완료됨', item: 'ANSWERED', checked: false },
-  ])
-
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInquiryStatus((prev) =>
-      prev.map((inquiry) =>
-        inquiry.item === e.target.id
-          ? { ...inquiry, checked: true }
-          : { ...inquiry, checked: false }
-      )
-    )
-    if (e.target.checked && e.target.id === 'all') setAnswerStatus('')
-    else if (e.target.checked) setAnswerStatus(e.target.id as AnswerStatus)
-  }
+  const { openModal } = useModal()
+  const { filterList, onSelected } = useFilterSelect({
+    defaultFilterList, setFilterPayload: setAnswerStatus
+  })
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -99,19 +91,16 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
               />
               <SearchIcon onClick={() => refetch()} />
             </S.SearchBox>
-            <S.InquiryFilterBox>
-              <S.Filter onClick={() => setIsFilter((prev) => !prev)}>
+              <S.Filter onClick={() => openModal(
+                <FilterModal
+                  title='문의 상태'
+                  filterList={filterList}
+                  onSelected={onSelected}
+                />
+              )}>
                 <FilterOut />
                 <span>필터</span>
               </S.Filter>
-              {isFilter && (
-                <FilterComponent
-                  title='문의 상태'
-                  filterList={inquiryStatus}
-                  onChange={onChange}
-                />
-              )}
-            </S.InquiryFilterBox>
           </S.SearchContainer>
         )}
         <S.ListWrapper>
