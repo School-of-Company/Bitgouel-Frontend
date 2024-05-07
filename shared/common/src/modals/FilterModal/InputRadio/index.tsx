@@ -6,7 +6,7 @@ import RadioItem from '../RadioItem'
 import * as S from './style'
 
 interface onSelectedParameter {
-  text: string
+  item: string
   checked: boolean
   inputValue?: string
 }
@@ -21,7 +21,7 @@ const InputRadio = ({ filter, onSelected }: Props) => {
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (timerId) clearTimeout(timerId)
     const newTimerId: NodeJS.Timeout = setTimeout(() => {
-      onSelected({text: filter.text, checked: filter.checked, inputValue: e.target.value})
+      onSelected({item: filter.item, checked: filter.checked, inputValue: e.target.value})
     }, 500)
     setTimerId(newTimerId)
   }

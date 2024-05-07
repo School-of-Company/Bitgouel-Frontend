@@ -13,7 +13,6 @@ import {
   useFilterSelect,
   useModal
 } from '@bitgouel/common'
-import { FilterListTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import * as S from './style'
@@ -25,25 +24,30 @@ interface onCheckedArgsTypes {
 }
 
 const defaultFilterList = [
-  { text: '전체', checked: true },
+  { text: '전체', item: '전체',checked: true },
     {
       text: '상호학점인정교육과정',
+      item: '상호학점인정교육과정',
       checked: false,
     },
     {
       text: '대학탐방프로그램',
+      item: '상호학점인정교육과정',
       checked: false,
     },
      {
       text: '유관기관프로그램',
+      item: '유관기관프로그램',
       checked: false,
     },
     {
       text: '기업산학연계직업체험프로그램',
+      item: '기업산학연계직업체험프로그램',
       checked: false,
     },
     {
       text: '기타',
+      item: '기타',
       checked: false,
     }
 ]
@@ -58,7 +62,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
     fileTypes: 'xlsx',
     isClick,
   })
-  const {filterList, onSelected} = useFilterSelect({defaultFilterList, setFilterPayload: setLectureTypeFilter})
+  const {filterList, onSelected} = useFilterSelect({title: '강의 유형', defaultFilterList, setFilterPayload: setLectureTypeFilter})
   const [currentPage, setCurrentPage] = useState(0)
   const { data, refetch, isLoading } = useGetLectureList({
     page: currentPage,
@@ -78,10 +82,10 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
   useEffect(() => {
     refetch()
   }, [lectureTypeFilter, currentPage])
-  
-  useEffect(() => {
+
+   useEffect(() => {
     openModal(
-      <FilterModal
+      <FilterModal 
         title='강의 유형'
         filterList={filterList}
         onSelected={onSelected}

@@ -4,7 +4,7 @@ import { FilterListTypes } from '@bitgouel/types';
 import * as S from './style';
 
 interface onSelectedParameter {
-  text: string
+  item: string
   checked: boolean
   inputValue?: string
 }
@@ -16,7 +16,7 @@ interface Props {
 
 const RadioItem = ({ filter, onSelected }: Props) => {
   return (
-    <S.RadioItemContainer key={filter.text} onClick={() => onSelected({text: filter.text, checked: filter.checked})}>
+    <S.RadioItemContainer onClick={() => onSelected({item: filter.item, checked: filter.checked})}>
       <S.RadioBox checked={filter.checked}>
         <S.RadioCircle checked={filter.checked} />
       </S.RadioBox>

@@ -5,6 +5,7 @@ export type cohortTypes = '1' | '2' | '3' | '4'
 
 export interface FilterListTypes {
   text: string
+  item: string
   checked: boolean
 }
 

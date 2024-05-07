@@ -7,7 +7,7 @@ import RadioItem from './RadioItem'
 import InputRadio from './InputRadio'
 
 interface onSelectedParameter {
-  text: string
+  item: string
   checked: boolean
   inputValue?: string
 }
@@ -29,9 +29,9 @@ const FilterModal = ({ title, filterList, onSelected }: Props) => {
       </S.FilterTitleContainer>
       <S.RadioListContainer>
         {filterList.map((filter) => (
-          filter.text === '기타' ? 
-          <InputRadio key={filter.text} filter={filter} onSelected={onSelected} /> :
-            <RadioItem key={filter.text} filter={filter} onSelected={onSelected} />
+          filter.text === '기타' ?
+          <InputRadio key={filter.item} filter={filter} onSelected={onSelected} /> :
+            <RadioItem key={filter.item} filter={filter} onSelected={onSelected} />
         ))}
       </S.RadioListContainer>
     </S.FilterContainer>
