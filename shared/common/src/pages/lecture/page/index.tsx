@@ -18,7 +18,7 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import * as S from './style'
 
-export interface onCheckedArgsTypes {
+interface onCheckedArgsTypes {
   text: string
   checked: boolean
   inputValue?: string
@@ -78,6 +78,16 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
   useEffect(() => {
     refetch()
   }, [lectureTypeFilter, currentPage])
+  
+  useEffect(() => {
+    openModal(
+      <FilterModal
+        title='강의 유형'
+        filterList={filterList}
+        onSelected={onSelected}
+      />
+    )
+  }, [filterList])
 
   return (
     <div>
@@ -97,23 +107,19 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
                 </S.LectureButton>
               </>
             )}
-              <S.LectureButton
-                onClick={() => openModal(
-                  <FilterModal
-                    title='강의 유형'
-                    filterList={filterList}
-                    onSelected={onSelected}
-                  />
-                )}
-              >
-                <Filter />
-                <span>필터</span>
-              </S.LectureButton>
- <FilterModal
-                    title='강의 유형'
-                    filterList={filterList}
-                    onSelected={onSelected}
-                  />          </S.ButtonContainer>
+            <S.LectureButton
+              onClick={() => openModal(
+                <FilterModal
+                  title='강의 유형'
+                  filterList={filterList}
+                  onSelected={onSelected}
+                />
+              )}
+            >
+              <Filter />
+              <span>필터</span>
+            </S.LectureButton>
+          </S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
       <S.ListWrapper>
