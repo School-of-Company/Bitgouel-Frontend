@@ -6,13 +6,19 @@ import * as S from './style'
 import RadioItem from './RadioItem'
 import InputRadio from './InputRadio'
 
+interface onSelectedParameter {
+  text: string
+  checked: boolean
+  inputValue?: string
+}
+
 interface Props {
   title: string
   filterList: FilterListTypes[]
-  onChecked: (text: string, checked: boolean, inputValue?: string) => void
+  onSelected: (parameter: onSelectedParameter) => void
 }
 
-const FilterComponent = ({ title, filterList, onChecked }: Props) => {
+const FilterModal = ({ title, filterList, onSelected }: Props) => {
   const { closeModal } = useModal()
   return (
     <Portal onClose={closeModal}>
@@ -24,8 +30,8 @@ const FilterComponent = ({ title, filterList, onChecked }: Props) => {
       <S.RadioListContainer>
         {filterList.map((filter) => (
           filter.text === '기타' ? 
-          <InputRadio key={filter.text} filter={filter} onChecked={onChecked}/> :
-            <RadioItem key={filter.text} filter={filter} onChecked={onChecked} />
+          <InputRadio key={filter.text} filter={filter} onSelected={onSelected} /> :
+            <RadioItem key={filter.text} filter={filter} onSelected={onSelected} />
         ))}
       </S.RadioListContainer>
     </S.FilterContainer>
@@ -33,4 +39,4 @@ const FilterComponent = ({ title, filterList, onChecked }: Props) => {
   )
 }
 
-export default FilterComponent
+export default FilterModal

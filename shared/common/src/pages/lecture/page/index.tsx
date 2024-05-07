@@ -10,6 +10,7 @@ import {
   Plus,
   PrintIcon,
   useDownload,
+  useFilterSelect,
   useModal
 } from '@bitgouel/common'
 import { FilterListTypes } from '@bitgouel/types'
@@ -17,11 +18,14 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import * as S from './style'
 
-const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
-  const [lectureTypes, setLectureTypes] = useState<
-    FilterListTypes[]
-  >([
-    { text: '전체', checked: true },
+export interface onCheckedArgsTypes {
+  text: string
+  checked: boolean
+  inputValue?: string
+}
+
+const defaultFilterList = [
+  { text: '전체', checked: true },
     {
       text: '상호학점인정교육과정',
       checked: false,
@@ -42,38 +46,26 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
       text: '기타',
       checked: false,
     }
-  ])
-  const [lectureTypeFilter, setLectureTypeFilter] = useState<string>()
+]
+
+const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
+  const [lectureTypeFilter, setLectureTypeFilter] = useState<string>('')
   const [isClick, setIsClick] = useState<boolean>(false)
   const { push } = useRouter()
   const { openModal } = useModal()
-
-  const onChecked = (text: string, checked: boolean, inputValue?: string) => {
-    setLectureTypes((prev) =>
-      prev.map((type) =>
-        type.text === text
-          ? { ...type, checked: true }
-          : { ...type, checked: false }
-      )
-    )
-
-    if (!checked && text === '전체') setLectureTypeFilter('')
-    else if (checked && text === '기타') setLectureTypeFilter(inputValue)
-    else if (!checked) setLectureTypeFilter(text)
-  }
-
   const { excelDown } = useDownload({
     fileName: '강의 신청 결과',
     fileTypes: 'xlsx',
     isClick,
   })
-
+  const {filterList, onSelected} = useFilterSelect({defaultFilterList, setFilterPayload: setLectureTypeFilter})
   const [currentPage, setCurrentPage] = useState(0)
   const { data, refetch, isLoading } = useGetLectureList({
     page: currentPage,
     size: 10,
     type: lectureTypeFilter,
   })
+
   const pages = Array.from({ length: data?.lectures.totalPages || 0 }).map(
     (_, i) => i
   )
@@ -109,15 +101,19 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
                 onClick={() => openModal(
                   <FilterModal
                     title='강의 유형'
-                    filterList={lectureTypes}
-                    onChecked={onChecked}
+                    filterList={filterList}
+                    onSelected={onSelected}
                   />
                 )}
               >
                 <Filter />
                 <span>필터</span>
               </S.LectureButton>
-          </S.ButtonContainer>
+ <FilterModal
+                    title='강의 유형'
+                    filterList={filterList}
+                    onSelected={onSelected}
+                  />          </S.ButtonContainer>
         </S.BgContainer>
       </S.SlideBg>
       <S.ListWrapper>

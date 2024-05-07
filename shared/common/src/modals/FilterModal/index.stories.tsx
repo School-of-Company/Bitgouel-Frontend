@@ -36,6 +36,6 @@ export const Primary: Story = {
       checked: false,
     }
     ],
-    onChecked: () => {}
+    onSelected: () => {}
   }
 }

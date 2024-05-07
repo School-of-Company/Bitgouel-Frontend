@@ -3,7 +3,6 @@
 import { useGetUserList } from '@bitgouel/api'
 import {
   Bg6,
-  FilterComponent,
   FilterOut,
   Minus,
   Plus,

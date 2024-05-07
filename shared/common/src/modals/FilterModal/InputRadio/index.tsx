@@ -1,29 +1,34 @@
 'use client'
 
-import { useState } from 'react'
 import { FilterListTypes } from '@bitgouel/types'
+import { ChangeEvent, useState } from 'react'
 import RadioItem from '../RadioItem'
 import * as S from './style'
-import { ChangeEvent } from 'react'
+
+interface onSelectedParameter {
+  text: string
+  checked: boolean
+  inputValue?: string
+}
 
 interface Props {
   filter: FilterListTypes
-  onChecked: (id: string, checked: boolean, inputValue?: string) => void
+  onSelected: (parameter: onSelectedParameter) => void
 }
 
-const InputRadio = ({filter, onChecked}: Props) => {
+const InputRadio = ({ filter, onSelected }: Props) => {
   const [timerId, setTimerId] = useState<NodeJS.Timeout | null>(null)
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (timerId) clearTimeout(timerId)
     const newTimerId: NodeJS.Timeout = setTimeout(() => {
-      onChecked(filter.text, filter.checked, e.target.value)
+      onSelected({text: filter.text, checked: filter.checked, inputValue: e.target.value})
     }, 500)
     setTimerId(newTimerId)
   }
 
   return (
     <S.InputRadioContainer>
-      <RadioItem filter={filter} onChecked={onChecked} />
+      <RadioItem filter={filter} onSelected={onSelected} />
       {filter.checked && (
         <S.RadioInputBox>
           <S.RadioInput 
