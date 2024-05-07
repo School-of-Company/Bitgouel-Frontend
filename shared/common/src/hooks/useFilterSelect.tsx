@@ -11,12 +11,11 @@ interface onSelectedParameter {
 }
 
 interface Parameter {
-  title: string
   defaultFilterList: FilterListTypes[]
   setFilterPayload: Dispatch<SetStateAction<string>>
 }
 
-const useFilterSelect = ({title, defaultFilterList, setFilterPayload}: Parameter) => {
+const useFilterSelect = ({ defaultFilterList, setFilterPayload}: Parameter) => {
   const [filterList, setFilterList] = useState<FilterListTypes[]>(defaultFilterList)
   const onSelected = (parameter: onSelectedParameter) => {
     setFilterList((filter) =>

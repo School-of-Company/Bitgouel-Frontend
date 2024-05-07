@@ -12,7 +12,7 @@ import {
   useFilterSelect,
   useModal,
 } from '@bitgouel/common'
-import { JobsFilterListTypes, RoleEnumTypes } from '@bitgouel/types'
+import { RoleEnumTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import * as S from './style'
@@ -33,7 +33,7 @@ const UserListPage = () => {
     'ROLE_USER'
   )
   const {filterList, onSelected } = useFilterSelect({
-    title: '직업', defaultFilterList, setFilterPayload: setAuthority
+    defaultFilterList, setFilterPayload: setAuthority
   })
   const { push } = useRouter()
   const [keyword, setKeyword] = useState('')
@@ -42,7 +42,7 @@ const UserListPage = () => {
     authority,
     approveStatus: 'APPROVED',
   })
-  const { openModal } = useModal()
+  const { openModal, closeModal } = useModal()
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -52,6 +52,10 @@ const UserListPage = () => {
   useEffect(() => {
     refetch()
   }, [authority])
+  
+  useEffect(() => {
+    closeModal()
+  }, [])
 
   useEffect(() => {
     openModal(

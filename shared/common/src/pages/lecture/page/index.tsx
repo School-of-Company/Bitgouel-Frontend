@@ -32,7 +32,7 @@ const defaultFilterList = [
     },
     {
       text: '대학탐방프로그램',
-      item: '상호학점인정교육과정',
+      item: '대학탐방프로그램',
       checked: false,
     },
      {
@@ -62,7 +62,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
     fileTypes: 'xlsx',
     isClick,
   })
-  const {filterList, onSelected} = useFilterSelect({title: '강의 유형', defaultFilterList, setFilterPayload: setLectureTypeFilter})
+  const {filterList, onSelected} = useFilterSelect({ defaultFilterList, setFilterPayload: setLectureTypeFilter})
   const [currentPage, setCurrentPage] = useState(0)
   const { data, refetch, isLoading } = useGetLectureList({
     page: currentPage,

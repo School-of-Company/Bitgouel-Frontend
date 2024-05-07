@@ -5,13 +5,14 @@ import {
   AppropriationModal,
   Bg6,
   Check,
-  FilterComponent,
+  FilterModal,
   FilterOut,
   PeopleCircle,
   Plus,
   UserItem,
   handleSelect,
-  useModal,
+  useFilterSelect,
+  useModal
 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
@@ -20,33 +21,23 @@ import { UserListContainer } from '../UserListPage/style'
 import * as S from './style'
 
 type cohortTypes = '1' | '2' | '3' | '4'
+const defaultFilterList = [
+  { text: '1기', item: '1', checked: true },
+  { text: '2기', item: '2', checked: false },
+  { text: '3기', item: '3', checked: false },
+  { text: '4기', item: '4', checked: false },
+]
 
 const WithdrawUserListPage = () => {
   const { push } = useRouter()
   const [userIds, setUserIds] = useState<string[]>([])
-  const [cohorts, setCohorts] = useState([
-    { text: '1기', item: '1', checked: true },
-    { text: '2기', item: '2', checked: false },
-    { text: '3기', item: '3', checked: false },
-    { text: '4기', item: '4', checked: false },
-  ])
   const [cohort, setCohort] = useState<cohortTypes>('1')
   const { data, refetch } = useGetWithDrawUserList(cohort)
   const { mutate } = useDeleteUserWithdraw(userIds)
-  const [isFilter, setIsFilter] = useState<boolean>(false)
   const { openModal } = useModal()
-
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setCohorts((prev) =>
-      prev.map((cohort) =>
-        cohort.item === e.target.id
-          ? { ...cohort, checked: true }
-          : { ...cohort, checked: false }
-      )
-    )
-    if (e.target.checked) setCohort(e.target.id as cohortTypes)
-  }
-
+  const { filterList, onSelected } = useFilterSelect({
+    defaultFilterList, setFilterPayload: setCohort
+  })
   const handleSelectUsers = (checked: boolean, userId: string) =>
     handleSelect({ checked, id: userId, setIds: setUserIds })
   const onAll = (e: ChangeEvent<HTMLInputElement>) => {
@@ -54,6 +45,7 @@ const WithdrawUserListPage = () => {
       setUserIds(data?.students.map((student) => student.userId))
     else setUserIds([])
   }
+  
   const onWithdrawModal = () => {
     if (userIds.length === 0) return
     openModal(
@@ -70,6 +62,16 @@ const WithdrawUserListPage = () => {
   useEffect(() => {
     refetch()
   }, [cohort])
+
+   useEffect(() => {
+    openModal(
+      <FilterModal
+        title='기수'
+        filterList={filterList}
+        onSelected={onSelected}
+      />
+    )
+  }, [filterList])
 
   return (
     <div>
@@ -95,19 +97,16 @@ const WithdrawUserListPage = () => {
             <span style={{ marginLeft: '1.5rem' }}>이름</span>
           </S.RemarkBox>
           <S.WithdrawButtonContainer>
-            <S.FilterContainer>
-              <S.FilterBox onClick={() => setIsFilter((prev) => !prev)}>
+              <S.FilterBox onClick={() => openModal(
+                <FilterModal 
+                  title='기수'
+                  filterList={filterList}
+                  onSelected={onSelected}
+                />
+              )}>
                 <FilterOut />
                 필터
               </S.FilterBox>
-              {isFilter && (
-                <FilterComponent
-                  title='기수'
-                  filterList={cohorts}
-                  onChange={onChange}
-                />
-              )}
-            </S.FilterContainer>
             <S.AllWithdrawBox htmlFor='allWithdraw'>
               <input type='checkbox' id='allWithdraw' onChange={onAll} />
               <PeopleCircle />
