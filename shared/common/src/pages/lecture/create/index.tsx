@@ -49,7 +49,7 @@ const LectureCreatePage = () => {
   const [lectureCredit, setLectureCredit] = useRecoilState(LectureCredit)
   const [lectureMaxRegisteredUser, setLectureMaxRegisteredUser] = useRecoilState(LectureMaxRegistered)
   const { openModal, closeModal } = useModal()
-  const {push} = useRouter()
+  const { push } = useRouter()
 
   const createSuccess = () => {
     closeModal()

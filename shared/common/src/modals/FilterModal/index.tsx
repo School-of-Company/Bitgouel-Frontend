@@ -1,16 +1,15 @@
 'use client'
 
 import { CancelIcon, Portal, useModal } from '@bitgouel/common'
+import { FilterListTypes } from '@bitgouel/types'
 import * as S from './style'
+import RadioItem from './RadioItem'
+import InputRadio from './InputRadio'
 
 interface Props {
   title: string
-  filterList: {
-    text: string
-    item: string
-    checked: boolean
-  }[]
-  onChecked: (id: string, checked: boolean) => void
+  filterList: FilterListTypes[]
+  onChecked: (text: string, checked: boolean, inputValue?: string) => void
 }
 
 const FilterComponent = ({ title, filterList, onChecked }: Props) => {
@@ -20,16 +19,13 @@ const FilterComponent = ({ title, filterList, onChecked }: Props) => {
     <S.FilterContainer>
       <S.FilterTitleContainer>
         <S.TitleText>{title}</S.TitleText>
-        <CancelIcon />
+        <CancelIcon onClick={closeModal} />
       </S.FilterTitleContainer>
       <S.RadioListContainer>
         {filterList.map((filter) => (
-          <S.RadioItem key={filter.item}  onClick={() => onChecked(filter.item, filter.checked)}>
-            <S.RadioBox checked={filter.checked}>
-              <S.RadioCircle checked={filter.checked} />
-            </S.RadioBox>
-            <S.RadioText>{filter.text}</S.RadioText>
-          </S.RadioItem>
+          filter.text === '기타' ? 
+          <InputRadio key={filter.text} filter={filter} onChecked={onChecked}/> :
+            <RadioItem key={filter.text} filter={filter} onChecked={onChecked} />
         ))}
       </S.RadioListContainer>
     </S.FilterContainer>
