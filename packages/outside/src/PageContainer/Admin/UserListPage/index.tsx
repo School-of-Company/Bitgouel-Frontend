@@ -52,20 +52,6 @@ const UserListPage = () => {
   useEffect(() => {
     refetch()
   }, [authority])
-  
-  useEffect(() => {
-    closeModal()
-  }, [])
-
-  useEffect(() => {
-    openModal(
-      <FilterModal 
-        title='직업'
-        filterList={filterList}
-        onSelected={onSelected}
-      />
-    )
-  }, [filterList])
 
   return (
     <div>

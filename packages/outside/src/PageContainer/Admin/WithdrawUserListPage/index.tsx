@@ -40,12 +40,13 @@ const WithdrawUserListPage = () => {
   })
   const handleSelectUsers = (checked: boolean, userId: string) =>
     handleSelect({ checked, id: userId, setIds: setUserIds })
+
   const onAll = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked)
       setUserIds(data?.students.map((student) => student.userId))
     else setUserIds([])
   }
-  
+
   const onWithdrawModal = () => {
     if (userIds.length === 0) return
     openModal(
@@ -62,16 +63,6 @@ const WithdrawUserListPage = () => {
   useEffect(() => {
     refetch()
   }, [cohort])
-
-   useEffect(() => {
-    openModal(
-      <FilterModal
-        title='기수'
-        filterList={filterList}
-        onSelected={onSelected}
-      />
-    )
-  }, [filterList])
 
   return (
     <div>

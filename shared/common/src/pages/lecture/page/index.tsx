@@ -83,16 +83,6 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
     refetch()
   }, [lectureTypeFilter, currentPage])
 
-   useEffect(() => {
-    openModal(
-      <FilterModal 
-        title='강의 유형'
-        filterList={filterList}
-        onSelected={onSelected}
-      />
-    )
-  }, [filterList])
-
   return (
     <div>
       <S.SlideBg url={Bg3}>

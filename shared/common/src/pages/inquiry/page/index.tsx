@@ -52,16 +52,6 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
     refetch()
   }, [answerStatus])
 
-  useEffect(() => {
-    openModal(
-      <FilterModal
-        title='문의 상태'
-        filterList={filterList}
-        onSelected={onSelected}
-      />
-    )
-  })
-
   return (
     <div style={{ width: '100%', height: '100vh' }}>
       <S.SlideBg url={Bg5}>
