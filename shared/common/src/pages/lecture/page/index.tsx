@@ -1,6 +1,6 @@
 'use client'
 
-import { useGetLectureList } from '@bitgouel/api'
+import { TokenManager, useGetLectureExcel, useGetLectureList } from '@bitgouel/api'
 import {
   Bg3,
   Filter,
@@ -9,6 +9,7 @@ import {
   PaginationPages,
   Plus,
   PrintIcon,
+  excelDownload,
   useDownload,
   useFilterSelect,
   useModal
@@ -55,19 +56,18 @@ const defaultFilterList = [
 const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
   const [lectureTypeFilter, setLectureTypeFilter] = useState<string>('')
   const [isClick, setIsClick] = useState<boolean>(false)
+  const tokenManager = new TokenManager()
   const { push } = useRouter()
   const { openModal } = useModal()
-  const { excelDown } = useDownload({
-    fileName: '강의 신청 결과',
-    fileTypes: 'xlsx',
-    isClick,
-  })
   const {filterList, onSelected} = useFilterSelect({ defaultFilterList, setFilterPayload: setLectureTypeFilter})
   const [currentPage, setCurrentPage] = useState(0)
   const { data, refetch, isLoading } = useGetLectureList({
     page: currentPage,
     size: 10,
     type: lectureTypeFilter,
+  })
+  const { data: applyExcel } = useGetLectureExcel({
+    enabled: tokenManager.authority === 'ROLE_ADMIN' && isClick
   })
 
   const pages = Array.from({ length: data?.lectures.totalPages || 0 }).map(
@@ -76,7 +76,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
 
   const onDownload = () => {
     setIsClick(true)
-    excelDown()
+    excelDownload({data: applyExcel, fileName: '강의 신청 명단', fileExtension: 'xlsx'})
   }
 
   useEffect(() => {
