@@ -4,14 +4,21 @@ import { useDeleteWithDraw, useGetMy, usePostExcelUpload } from '@bitgouel/api'
 import { Bg4, roleToKor } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import * as S from './style'
+import { ChangeEvent, useCallback } from 'react'
 
 const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const { push } = useRouter()
   const { data } = useGetMy()
   const { mutate: withdraw } = useDeleteWithDraw()
   const { mutate: upload } = usePostExcelUpload(data?.id || '')
-  const formData = new FormData()
-  formData.append('userDates', '안녕')
+  
+  const onFileUpload = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    const excelFile: File = e.currentTarget.files[0]
+
+    const formData = new FormData()
+    formData.append('userDatas', excelFile)
+    upload(formData)
+  }, [])
 
   return (
     <S.MyPageWrapper url={Bg4}>
@@ -61,7 +68,13 @@ const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
                 {isAdmin && (
                   <S.AccountSettingLine>
                     <S.LeftText>학생정보 일괄 삽입</S.LeftText>
-                    <S.LineRightText onClick={() => upload(formData)}>
+                    <S.LineRightText htmlFor='excelUpload'>
+                      <input 
+                        id='excelUpload'
+                        type='file'
+                        accept='.xlsx, .xls, .csv'
+                        onChange={onFileUpload}
+                      />
                       엑셀 파일 업로드
                     </S.LineRightText>
                   </S.AccountSettingLine>

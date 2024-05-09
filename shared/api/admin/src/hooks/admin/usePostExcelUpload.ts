@@ -14,6 +14,6 @@ export const usePostExcelUpload = (
 ) =>
   useMutation<void, AxiosError, FormData>(
     adminQueryKeys.postExcelUpload(id),
-    (userDates) => post(adminUrl.excelUpload(id), userDates, formDataHeader),
+    (userDatas) => post(adminUrl.excelUpload(id), userDatas, formDataHeader),
     options
   )

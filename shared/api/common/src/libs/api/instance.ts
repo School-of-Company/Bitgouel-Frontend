@@ -57,18 +57,18 @@ instance.interceptors.response.use(
   },
   async (error) => {
     const tokenManager = new TokenManager()
-    // if (error.response.status === 401) {
-    //   try {
-    //     await tokenManager.reissueToken()
-    //     tokenManager.initToken()
-    //     error.config.headers['Authorization'] = tokenManager.accessToken
-    //       ? `Bearer ${encodeURI(tokenManager.accessToken)}`
-    //       : undefined
-    //     return instance(error.config)
-    //   } catch (err) {
-    //     window.location.replace(`/`)
-    //   }
-    // }
+    if (error.response.status === 401) {
+      try {
+        await tokenManager.reissueToken()
+        tokenManager.initToken()
+        error.config.headers['Authorization'] = tokenManager.accessToken
+          ? `Bearer ${encodeURI(tokenManager.accessToken)}`
+          : undefined
+        return instance(error.config)
+      } catch (err) {
+        window.location.replace(`/`)
+      }
+    }
     return Promise.reject(error)
   }
 )
