@@ -10,7 +10,7 @@ const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const { push } = useRouter()
   const { data } = useGetMy()
   const { mutate: withdraw } = useDeleteWithDraw()
-  const { mutate: upload } = usePostExcelUpload(data?.id || '')
+  const { mutate: upload } = usePostExcelUpload()
   
   const onFileUpload = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const excelFile: File = e.currentTarget.files[0]

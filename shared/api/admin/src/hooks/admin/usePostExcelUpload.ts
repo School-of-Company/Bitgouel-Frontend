@@ -9,11 +9,10 @@ const formDataHeader = {
 }
 
 export const usePostExcelUpload = (
-  id: string,
   options?: UseMutationOptions<void, AxiosError, FormData>
 ) =>
   useMutation<void, AxiosError, FormData>(
-    adminQueryKeys.postExcelUpload(id),
-    (userDatas) => post(adminUrl.excelUpload(id), userDatas, formDataHeader),
+    adminQueryKeys.postExcelUpload(),
+    (userDatas) => post(adminUrl.excelUpload(), userDatas, formDataHeader),
     options
   )
