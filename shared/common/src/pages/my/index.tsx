@@ -1,14 +1,14 @@
 'use client'
 
 import { useDeleteWithDraw, useGetMy } from '@bitgouel/api'
-import { Bg4, roleToKor, slicePhoneNumber } from '@bitgouel/common'
+import { Bg4, roleToKor } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import * as S from './style'
 
 const MyPage = () => {
   const { push } = useRouter()
   const { data } = useGetMy()
-  const { mutate } = useDeleteWithDraw()
+  const { mutate: withdraw } = useDeleteWithDraw()
 
   return (
     <S.MyPageWrapper url={Bg4}>
@@ -27,7 +27,7 @@ const MyPage = () => {
                 <S.OrganizationName>
                   {data?.organization.split('/')[0]}
                 </S.OrganizationName>
-                <S.SubEnter>소속</S.SubEnter>o
+                <S.SubEnter>소속</S.SubEnter>
               </div>
               <div>
                 <S.SubId>{data?.organization.split('/')[1]}</S.SubId>
@@ -45,7 +45,7 @@ const MyPage = () => {
                 </div>
                 <div>
                   <S.LeftText>
-                    {slicePhoneNumber(data?.phoneNumber || '')}
+                    {data?.phoneNumber}
                   </S.LeftText>
                   <S.RightText>전화번호</S.RightText>
                 </div>
@@ -55,19 +55,26 @@ const MyPage = () => {
             <S.AccountSettingWrapper>
               <S.MyTitle>계정 설정</S.MyTitle>
               <S.AccountSettingContainer>
-                <div>
-                  <S.LeftText>회원정보 수정</S.LeftText>
-                  <S.ModifyText onClick={() => push('/auth/find')}>
-                    비밀번호 변경
-                  </S.ModifyText>
-                </div>
+                <S.AccountSettingLine>
+                  <S.LeftText>학생정보 일괄 삽입</S.LeftText>
+                  <S.LineRightText>
+                    엑셀 파일 업로드
+                  </S.LineRightText>
+                </S.AccountSettingLine>
                 <S.SharedLine />
-                <div>
+                <S.AccountSettingLine>
+                  <S.LeftText>회원정보 수정</S.LeftText>
+                  <S.LineRightText onClick={() => push('/auth/find')}>
+                    비밀번호 변경
+                  </S.LineRightText>
+                </S.AccountSettingLine>
+                <S.SharedLine />
+                <S.AccountSettingLine>
                   <S.LeftText>회원 탈퇴</S.LeftText>
-                  <S.WithDrawText onClick={() => mutate()}>
+                  <S.WithDrawText onClick={() => withdraw()}>
                     회원 탈퇴
                   </S.WithDrawText>
-                </div>
+                </S.AccountSettingLine>
               </S.AccountSettingContainer>
             </S.AccountSettingWrapper>
           </S.MyIdentify>

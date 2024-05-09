@@ -4,7 +4,6 @@ import { lectureQueryKeys, usePatchApplyComplete } from '@bitgouel/api'
 import {
   CommonCheckBox,
   enumToSchoolName,
-  slicePhoneNumber,
 } from '@bitgouel/common'
 import { LectureApplyItemProps } from '@bitgouel/types'
 import * as S from './style'
@@ -33,7 +32,7 @@ const LectureApplyItem = ({ item, lectureId }: LectureApplyItemProps) => {
           <span>{item.clubName}</span>
         </S.SchoolInfoBox>
         <S.ContactInfo>
-          <span>{slicePhoneNumber(item.phoneNumber)}</span>
+          <span>{item.phoneNumber}</span>
           <span>{item.email}</span>
         </S.ContactInfo>
       </S.ApplyInfoContainer>

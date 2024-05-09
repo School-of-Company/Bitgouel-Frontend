@@ -3,7 +3,6 @@
 import { useGetListQuestions } from '@bitgouel/api'
 import { FAQAnswerItem, FAQItem } from '@bitgouel/common'
 import * as S from './style'
-import { FAQListQuestionsTypes } from '@bitgouel/types'
 
 const FAQSection = () => {
   const { data, refetch } = useGetListQuestions()
@@ -16,13 +15,15 @@ const FAQSection = () => {
           <S.Title>자주 묻는 질문</S.Title>
         </S.TitleBox>
         <S.FAQList>
-          {data?.faqs.map((item) => (
-            <FAQItem
-              key={item.id}
-              question={item.question}
-              answer={item.answer}
-            />
-          ))}
+          {data?.faqs.length && 
+            data?.faqs.map((item) => (
+              <FAQItem
+                key={item.id}
+                question={item.question}
+                answer={item.answer}
+              />
+            ))
+          }
           <FAQAnswerItem refetchFAQs={refetch} />
         </S.FAQList>
       </S.FAQSectionContainer>

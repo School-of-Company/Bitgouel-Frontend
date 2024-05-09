@@ -10,6 +10,7 @@ export const instance = axios.create({
     'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS,PATCH',
     'Access-Control-Allow-Credentials': true,
     'Content-Type': 'application/json',
+    'ngrok-skip-browser-warning': '69420',
   },
 })
 
