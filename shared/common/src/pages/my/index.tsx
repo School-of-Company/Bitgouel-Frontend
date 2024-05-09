@@ -1,14 +1,17 @@
 'use client'
 
-import { useDeleteWithDraw, useGetMy } from '@bitgouel/api'
+import { useDeleteWithDraw, useGetMy, usePostExcelUpload } from '@bitgouel/api'
 import { Bg4, roleToKor } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import * as S from './style'
 
-const MyPage = () => {
+const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const { push } = useRouter()
   const { data } = useGetMy()
   const { mutate: withdraw } = useDeleteWithDraw()
+  const { mutate: upload } = usePostExcelUpload(data?.id || '')
+  const formData = new FormData()
+  formData.append('userDates', '안녕')
 
   return (
     <S.MyPageWrapper url={Bg4}>
@@ -55,12 +58,14 @@ const MyPage = () => {
             <S.AccountSettingWrapper>
               <S.MyTitle>계정 설정</S.MyTitle>
               <S.AccountSettingContainer>
-                <S.AccountSettingLine>
-                  <S.LeftText>학생정보 일괄 삽입</S.LeftText>
-                  <S.LineRightText>
-                    엑셀 파일 업로드
-                  </S.LineRightText>
-                </S.AccountSettingLine>
+                {isAdmin && (
+                  <S.AccountSettingLine>
+                    <S.LeftText>학생정보 일괄 삽입</S.LeftText>
+                    <S.LineRightText onClick={() => upload(formData)}>
+                      엑셀 파일 업로드
+                    </S.LineRightText>
+                  </S.AccountSettingLine>
+                )}
                 <S.SharedLine />
                 <S.AccountSettingLine>
                   <S.LeftText>회원정보 수정</S.LeftText>
