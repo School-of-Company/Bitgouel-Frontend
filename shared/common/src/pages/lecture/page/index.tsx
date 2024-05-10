@@ -77,7 +77,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
   }, [lectureTypeFilter, currentPage])
 
   return (
-    <div>
+    <S.LecturePageWrapper>
       <S.SlideBg url={Bg3}>
         <S.BgContainer>
           <S.LectureTitle>강의 목록</S.LectureTitle>
@@ -125,7 +125,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
           />
         )}
       </S.ListWrapper>
-    </div>
+    </S.LecturePageWrapper>
   )
 }
 

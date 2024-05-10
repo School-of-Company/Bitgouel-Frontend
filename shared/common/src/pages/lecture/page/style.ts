@@ -1,6 +1,12 @@
 import styled from '@emotion/styled'
 import { StaticImageData } from 'next/image'
 
+export const LecturePageWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`
+
 export const SlideBg = styled.div<{ url: StaticImageData }>`
   height: 15rem;
   width: 100%;
@@ -10,11 +16,12 @@ export const SlideBg = styled.div<{ url: StaticImageData }>`
   background-position: center;
   background-size: cover;
   align-items: flex-end;
-`
+  `
 
 export const BgContainer = styled.div`
   width: 75rem;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   margin-bottom: 1rem;
 `
@@ -56,10 +63,10 @@ export const ListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  width: 75rem;
   gap: 1rem;
 `
 export const ListContainer = styled.div`
-  width: 75rem;
+  width: 100%;
   margin-top: 1.5rem;
 `
