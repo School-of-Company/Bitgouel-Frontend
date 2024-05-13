@@ -14,6 +14,7 @@ import { ChangeEvent, useState } from 'react'
 import { useResetRecoilState } from 'recoil'
 import * as S from './style'
 import { AuthWrapper } from '../style'
+import AuthFormTitle from '../AuthFormTitle'
 
 const LoginPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const [emailValue, setEmailValue] = useState<string>(
@@ -97,15 +98,7 @@ const LoginPage = ({ isAdmin }: { isAdmin: boolean }) => {
 
   return (
     <AuthWrapper>
-      <S.TitleWrapper>
-        <S.TitleContainer>
-          <S.TitleItemWrapper>
-            <S.TitleItem>빛고을</S.TitleItem>
-            <S.TitleItem>직업교육</S.TitleItem>
-            <S.TitleItem>혁신지구</S.TitleItem>
-          </S.TitleItemWrapper>
-        </S.TitleContainer>
-      </S.TitleWrapper>
+      <AuthFormTitle />
       <S.InputWrapper>
         <S.InputContainer>
           <ValueInput
