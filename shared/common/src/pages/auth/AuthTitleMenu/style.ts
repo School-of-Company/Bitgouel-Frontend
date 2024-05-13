@@ -1,13 +1,13 @@
 import styled from '@emotion/styled'
 
-export const SignUpTitleWrapper = styled.div`
+export const AuthTitleMenuWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 `
 
-export const TitleItemWrapper = styled.div`
+export const TitleItemContainer = styled.div`
   padding: 1.5rem 0 0 1.5rem;
   display: flex;
   flex-direction: column;

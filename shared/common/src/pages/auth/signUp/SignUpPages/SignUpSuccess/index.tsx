@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import AuthFormTitle from '../../../AuthFormTitle'
 import { AuthWrapper } from '../../../style'
 import * as S from './style'
 
@@ -9,21 +10,13 @@ const SignUpSuccess = () => {
 
   return (
     <AuthWrapper>
-      <S.TitleWrapper>
-        <S.TitleContainer>
-          <S.TitleItemWrapper>
-            <S.TitleItem>빛고을</S.TitleItem>
-            <S.TitleItem>직업교육</S.TitleItem>
-            <S.TitleItem>혁신지구</S.TitleItem>
-          </S.TitleItemWrapper>
-        </S.TitleContainer>
-      </S.TitleWrapper>
-      <S.SignUpWrapper>
+     <AuthFormTitle />
+      <S.AuthSuccessWrapper>
         <S.SignUpContainer>
           <S.MainTitle>회원가입 완료</S.MainTitle>
           <S.ViceTitle>관리자의 승인을 기다려주세요!</S.ViceTitle>
         </S.SignUpContainer>
-      </S.SignUpWrapper>
+      </S.AuthSuccessWrapper>
       <S.BackButtonContainer>
         <S.BackButton onClick={() => push(`/auth/login`)}>
           돌아가기
