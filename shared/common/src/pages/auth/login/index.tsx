@@ -1,7 +1,8 @@
 'use client'
 
 import {
-  LoginForm
+  LoginForm,
+  LoginBottom
 } from '@bitgouel/common'
 import AuthFormTitle from '../AuthFormTitle'
 import { AuthWrapper } from '../style'

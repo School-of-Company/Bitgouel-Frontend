@@ -1,10 +1,12 @@
+'use client'
+
 import {
   SignUpPage1Obj,
   SignUpPage2Obj,
   SignUpPage3Obj,
   SignUpPageNumber,
 } from '@bitgouel/common'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { useResetRecoilState } from 'recoil'
 import * as S from './style'
 

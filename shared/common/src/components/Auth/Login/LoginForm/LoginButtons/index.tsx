@@ -26,28 +26,28 @@ const LoginButtons = () => {
       push(`/`)
     },
     onError: ({ response }) => {
-      if (response.status === 404) {
+      if (response?.status === 404) {
         setEmailErrorText('등록되지 않은 계정입니다.')
-      } else if (response.status === 403) {
+      } else if (response?.status === 403) {
         setEmailErrorText('아직 회원가입 대기중인 계정입니다')
-      } else if (response.status === 401) {
+      } else if (response?.status === 401) {
         setPasswordErrorText('비밀번호가 일치하지 않습니다')
-      } else if (response.status === 400) {
+      } else if (response?.status === 400) {
         if (
-          Object.keys(response.data.fieldError).includes('email') &&
-          Object.keys(response.data.fieldError).includes('password')
+          Object.keys(response?.data.fieldError).includes('email') &&
+          Object.keys(response?.data.fieldError).includes('password')
         ) {
           setEmailErrorText('잘못된 이메일입니다')
           setPasswordErrorText('잘못된 비밀번호입니다')
         } else if (
-          Object.keys(response.data.fieldError).includes('email') &&
+          Object.keys(response?.data.fieldError).includes('email') &&
           !Object.keys(response.data.fieldError).includes('password')
         ) {
           setEmailErrorText('잘못된 이메일입니다.')
           setPasswordErrorText('')
         } else if (
-          Object.keys(response.data.fieldError).includes('password') &&
-          !Object.keys(response.data.fieldError).includes('email')
+          Object.keys(response?.data.fieldError).includes('password') &&
+          !Object.keys(response?.data.fieldError).includes('email')
         ) {
           setPasswordErrorText('잘못된 비밀번호입니다.')
           setEmailErrorText('')
