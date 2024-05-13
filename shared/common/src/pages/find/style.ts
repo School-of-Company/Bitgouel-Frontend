@@ -1,7 +1,4 @@
 import styled from '@emotion/styled'
-import { LoginWrapper } from '../login/style'
-
-export const ChangePWWrapper = styled(LoginWrapper)``
 
 export const ChangePWTitleWrapper = styled.div`
   display: flex;

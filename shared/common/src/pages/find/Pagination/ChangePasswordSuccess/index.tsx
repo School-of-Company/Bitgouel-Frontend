@@ -1,10 +1,11 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-import * as S from './style'
 import { useDeleteLogout } from '@bitgouel/api'
-import { useResetRecoilState } from 'recoil'
 import { PwPage } from '@bitgouel/common'
+import { useRouter } from 'next/navigation'
+import { useResetRecoilState } from 'recoil'
+import { AuthWrapper } from '../../../auth/style'
+import * as S from './style'
 
 const SignUpSuccess = () => {
   const { push } = useRouter()
@@ -18,7 +19,7 @@ const SignUpSuccess = () => {
   }
 
   return (
-    <S.SignUpSuccessWrapper>
+    <AuthWrapper>
       <S.TitleWrapper>
         <S.TitleContainer>
           <S.TitleItemWrapper>
@@ -37,7 +38,7 @@ const SignUpSuccess = () => {
       <S.BackButtonContainer>
         <S.BackButton onClick={finish}>돌아가기</S.BackButton>
       </S.BackButtonContainer>
-    </S.SignUpSuccessWrapper>
+    </AuthWrapper>
   )
 }
 

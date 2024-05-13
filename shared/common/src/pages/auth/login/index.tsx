@@ -13,6 +13,7 @@ import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState } from 'react'
 import { useResetRecoilState } from 'recoil'
 import * as S from './style'
+import { AuthWrapper } from '../style'
 
 const LoginPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const [emailValue, setEmailValue] = useState<string>(
@@ -95,7 +96,7 @@ const LoginPage = ({ isAdmin }: { isAdmin: boolean }) => {
   }
 
   return (
-    <S.LoginWrapper>
+    <AuthWrapper>
       <S.TitleWrapper>
         <S.TitleContainer>
           <S.TitleItemWrapper>
@@ -162,7 +163,7 @@ const LoginPage = ({ isAdmin }: { isAdmin: boolean }) => {
           </div>
         </S.JoinContainer>
       </S.JoinWrapper>
-    </S.LoginWrapper>
+    </AuthWrapper>
   )
 }
 
