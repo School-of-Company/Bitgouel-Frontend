@@ -19,7 +19,7 @@ export const LectureFilterType = atom<string>({
 })
 
 // Modal
-export const PwPage = atom<1 | 2 | 3 | 4>({
+export const PwPage = atom<number>({
   key: 'PwPage',
   default: 1,
 })
@@ -30,7 +30,7 @@ export const IsModal = atom<ReactNode>({
 })
 
 // Auth
-export const SignUpPageNumber = atom<1 | 2 | 3 | 4>({
+export const SignUpPageNumber = atom<number>({
   key: 'SignUpPageNumber',
   default: 1,
 })

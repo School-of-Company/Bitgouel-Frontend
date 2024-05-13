@@ -4,7 +4,7 @@ import { match } from 'ts-pattern'
 import * as S from './style'
 
 interface Props {
-  matchEl: 1 | 2 | 3 | 4
+  matchEl: number
   mainTitleList: string[]
   subTitleList: string[]
 }
