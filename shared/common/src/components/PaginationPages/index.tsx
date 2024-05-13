@@ -67,7 +67,6 @@ const PaginationPages = ({
           </S.PageNumber>
         ))}
       </S.NumbersContainer>
-
       <S.ArrowContainer isPrev={false}>
         {lastPage[lastPage.length - 1] !== currentPage && (
           <ArrowIcon onClick={() => onNextPage(false)} />
