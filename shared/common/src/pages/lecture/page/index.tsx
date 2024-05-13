@@ -19,7 +19,7 @@ import {
 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import * as MainStyle from '../../style'
+import * as MainStyle from '../../styles'
 
 const defaultFilterList = [
   { text: '전체', item: '전체', checked: true },
