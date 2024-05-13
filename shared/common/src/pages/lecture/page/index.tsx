@@ -19,7 +19,6 @@ import {
 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import * as S from './style'
 import * as MainStyle from '../../style'
 
 const defaultFilterList = [

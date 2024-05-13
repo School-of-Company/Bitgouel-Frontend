@@ -5,6 +5,7 @@ export const PaginationWrapper = styled.div`
   align-items: center;
   padding-left: 3rem;
   gap: 1rem;
+  margin-bottom: 1rem;
 `
 
 export const NumbersContainer = styled.div`
