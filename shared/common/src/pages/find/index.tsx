@@ -1,16 +1,17 @@
 'use client'
 
-import * as S from './style'
-import {
-  ChangePasswordSuccess,
-  EmailValid,
-  EmailCheck,
-  NewPassword,
-} from './Pagination'
-import { useRecoilState } from 'recoil'
 import { PwPage } from '@bitgouel/common'
 import { useState } from 'react'
+import { useRecoilState } from 'recoil'
 import { match } from 'ts-pattern'
+import { AuthWrapper } from '../auth/style'
+import {
+  ChangePasswordSuccess,
+  EmailCheck,
+  EmailValid,
+  NewPassword,
+} from './Pagination'
+import * as S from './style'
 
 const FindPage = () => {
   const [pwPage, setPwPage] = useRecoilState(PwPage)
@@ -21,7 +22,7 @@ const FindPage = () => {
       {pwPage === 4 ? (
         <ChangePasswordSuccess />
       ) : (
-        <S.ChangePWWrapper>
+        <AuthWrapper>
           <S.ChangePWTitleWrapper>
             <S.TitleItemWrapper>
               <S.TitleItem>
@@ -48,7 +49,7 @@ const FindPage = () => {
             {pwPage === 2 && <EmailValid emailValue={emailValue} />}
             {pwPage === 3 && <NewPassword />}
           </S.PaginationContainer>
-        </S.ChangePWWrapper>
+        </AuthWrapper>
       )}
     </>
   )

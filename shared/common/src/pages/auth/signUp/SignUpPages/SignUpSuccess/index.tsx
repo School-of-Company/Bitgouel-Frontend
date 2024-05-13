@@ -1,13 +1,14 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { AuthWrapper } from '../../../style'
 import * as S from './style'
 
 const SignUpSuccess = () => {
   const { push } = useRouter()
 
   return (
-    <S.SignUpSuccessWrapper>
+    <AuthWrapper>
       <S.TitleWrapper>
         <S.TitleContainer>
           <S.TitleItemWrapper>
@@ -28,7 +29,7 @@ const SignUpSuccess = () => {
           돌아가기
         </S.BackButton>
       </S.BackButtonContainer>
-    </S.SignUpSuccessWrapper>
+    </AuthWrapper>
   )
 }
 

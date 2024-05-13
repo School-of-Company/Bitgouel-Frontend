@@ -1,7 +1,4 @@
-import { LoginWrapper } from '../../../auth/login/style'
 import styled from '@emotion/styled'
-
-export const SignUpSuccessWrapper = styled(LoginWrapper)``
 
 export const TitleWrapper = styled.div`
   width: 100%;
