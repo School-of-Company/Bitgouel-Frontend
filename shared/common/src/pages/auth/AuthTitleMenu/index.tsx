@@ -1,5 +1,3 @@
-import { SignUpPageNumber } from '@bitgouel/common'
-import { useRecoilValue } from 'recoil'
 import { match } from 'ts-pattern'
 import * as S from './style'
 
@@ -9,7 +7,7 @@ interface Props {
   subTitleList: string[]
 }
 
-const AuthTitleMenu = ({ matchEl, mainTitleList, subTitleList}: Props) => {
+const AuthTitleMenu = ({ matchEl, mainTitleList, subTitleList }: Props) => {
   return (
     <S.AuthTitleMenuWrapper>
       <S.TitleItemContainer>
