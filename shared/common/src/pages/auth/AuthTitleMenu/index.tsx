@@ -10,7 +10,6 @@ interface Props {
 }
 
 const AuthTitleMenu = ({ matchEl, mainTitleList, subTitleList}: Props) => {
-  const signUpPage = useRecoilValue(SignUpPageNumber)
   return (
     <S.AuthTitleMenuWrapper>
       <S.TitleItemContainer>
@@ -31,7 +30,7 @@ const AuthTitleMenu = ({ matchEl, mainTitleList, subTitleList}: Props) => {
         {Array(3)
           .fill(0)
           .map((_, idx) => (
-            <S.CurrentPage key={idx} current={idx + 1} page={signUpPage} />
+            <S.CurrentPage key={idx} current={idx + 1} page={matchEl} />
           ))}
       </S.ShowCurrentPageBox>
     </S.AuthTitleMenuWrapper>
