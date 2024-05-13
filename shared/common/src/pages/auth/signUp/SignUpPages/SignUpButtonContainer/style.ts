@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { theme } from '../../../../styles'
+import { theme } from '../../../../../styles'
 
 export const SignUpButtonContainer = styled.div<{ page: number }>`
   display: flex;

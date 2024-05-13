@@ -1,7 +1,4 @@
 import styled from '@emotion/styled'
-import { LoginWrapper } from '../login/style'
-
-export const SignUpWrapper = styled(LoginWrapper)``
 
 export const SignUpFormContainer = styled.div`
   display: flex;
