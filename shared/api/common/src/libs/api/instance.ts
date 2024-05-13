@@ -57,7 +57,10 @@ instance.interceptors.response.use(
   },
   async (error) => {
     const tokenManager = new TokenManager()
-    if (error.response.status === 401) {
+    if (
+      !window.location.href.includes('auth') &&
+      error.response.status === 401
+    ) {
       try {
         await tokenManager.reissueToken()
         tokenManager.initToken()
