@@ -96,16 +96,22 @@ export const InputMainText = styled.textarea`
   }
 `
 
+export const CreateButtonWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  bottom: 2.5rem;
+`
+
 export const CreateButton = styled.div<{ isAble: boolean }>`
-  background-color: ${({ theme, isAble }) =>
-    isAble ? theme.color.main : theme.color.gray['700']};
   color: ${({ theme, isAble }) =>
     isAble ? theme.color.white : theme.color.gray['400']};
+  background-color: ${({ theme, isAble }) =>
+    isAble ? theme.color.main : theme.color.gray['700']};
   ${({ theme }) => theme.typo.text_lg.semibold};
-  font-weight: 400;
-  cursor: pointer;
-  bottom: 1.75rem;
-  position: fixed;
-  padding: 0.85rem 2.725rem;
+  padding: 0.75rem 2.5rem;
   border-radius: 0.5rem;
+  cursor: pointer;
 `
