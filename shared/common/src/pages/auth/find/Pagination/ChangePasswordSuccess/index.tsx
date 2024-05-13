@@ -4,9 +4,9 @@ import { useDeleteLogout } from '@bitgouel/api'
 import { PwPage } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { useResetRecoilState } from 'recoil'
-import { AuthWrapper } from '../../../auth/style'
+import { AuthWrapper } from '../../../style'
 import * as S from './style'
-import AuthFormTitle from '../../../auth/AuthFormTitle'
+import AuthFormTitle from '../../../AuthFormTitle'
 
 const SignUpSuccess = () => {
   const { push } = useRouter()
