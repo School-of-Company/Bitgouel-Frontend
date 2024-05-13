@@ -6,78 +6,58 @@ export const LectureItemWrapper = styled.div`
   cursor: pointer;
 `
 
-export const SubTitle = styled.div`
-  padding: 0.5rem 0;
-  span {
-    ${({ theme }) => theme.typo.text_sm.regular};
-  }
+export const TitleBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 `
 
-export const Professor = styled.span`
-  margin-right: 0.5rem;
-  color: ${({ theme }) => theme.color.black};
-`
-
-export const Date = styled.span`
-  color: ${({ theme }) => theme.color.gray['700']};
+export const MainTitleContainer = styled.div`
+  display: flex;
+  align-items: center;
 `
 
 export const Title = styled.span`
-  margin-top: 0.5rem;
   color: ${({ theme }) => theme.color.black};
   ${({ theme }) => theme.typo.text_lg.semibold};
 `
 
-export const MainTextContainer = styled.section`
-  margin: 0.75rem 0;
-  text-overflow: ellipsis;
-  overflow: hidden;
-`
-
-export const MainText = styled.span`
-  ${({ theme }) => theme.typo.text_sm.regular};
+export const Professor = styled.span`
   color: ${({ theme }) => theme.color.gray['400']};
+  ${({ theme }) => theme.typo.text_sm.regular};
+  margin-left: 0.5rem;
 `
 
-export const SubMenuContainer = styled.div`
-  margin-top: 0.5rem;
-  padding: 0.5rem 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`
-
-export const LectureInfoContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-`
-
-export const LectureInfoItem = styled.div`
-  display: flex;
-  align-items: center;
+export const TypeText = styled.div`
   padding: 0.25rem 0.5rem;
   border-radius: 1.125rem;
   background-color: ${({ theme }) => theme.color.gray['900']};
   gap: 0.5rem;
   color: ${({ theme }) => theme.color.gray['400']};
   ${({ theme }) => theme.typo.caption.regular};
-
-  hr {
-    color: ${({ theme }) => theme.color.gray['700']};
-    height: 0.75rem;
-    margin: 0;
+  &:last-child {
+    margin-left: 0.5rem;
   }
 `
 
-export const MenuNum = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+export const MainText = styled.div`
+  color: ${({ theme }) => theme.color.gray['400']};
+  ${({ theme }) => theme.typo.text_sm};
+  margin: 0.5rem 0;
+  height: 2.5rem;
+`
 
-  span {
-    ${({ theme }) => theme.typo.caption.regular};
-    color: ${({ theme }) => theme.color.gray['700']};
-    margin-right: 0.5rem;
+export const LectureMenu = styled.span`
+  color: ${({ theme }) => theme.color.gray['400']};
+  ${({ theme }) => theme.typo.caption.regular};
+  margin-left: 1rem;
+`
+
+export const MenuWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  div {
+    display: flex;
   }
 `

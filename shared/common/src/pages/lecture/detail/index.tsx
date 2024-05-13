@@ -5,15 +5,11 @@ import {
   useGetDetailLecture,
   usePostEnrollment,
 } from '@bitgouel/api'
-import {
-  AppropriationModal,
-  Bg3,
-  People,
-  useModal
-} from '@bitgouel/common'
+import { AppropriationModal, Bg3, People, useModal } from '@bitgouel/common'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import * as S from './style'
+import * as MainStyle from '../../styles'
 
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
@@ -29,20 +25,22 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { push } = useRouter()
 
   return (
-    <div>
-      <S.SlideBg url={Bg3}>
-        <S.BgContainer>
-          <S.LectureTitle>강의 상세</S.LectureTitle>
-          <S.ButtonContainer>
-            <S.LectureButton onClick={() => push(`/main/lecture/${lectureId}/apply`)}>
+    <MainStyle.PageWrapper>
+      <MainStyle.SlideBg url={Bg3}>
+        <MainStyle.BgContainer>
+          <MainStyle.PageTitle>강의 상세</MainStyle.PageTitle>
+          <MainStyle.ButtonContainer>
+            <MainStyle.SlideButton
+              onClick={() => push(`/main/lecture/${lectureId}/apply`)}
+            >
               <People />
               <span>신청자 명단 조회</span>
-            </S.LectureButton>
-          </S.ButtonContainer>
-        </S.BgContainer>
-      </S.SlideBg>
-      <S.DocumentWrapper>
-        <S.Document>
+            </MainStyle.SlideButton>
+          </MainStyle.ButtonContainer>
+        </MainStyle.BgContainer>
+      </MainStyle.SlideBg>
+      <MainStyle.MainWrapper>
+        <MainStyle.MainContainer>
           <S.TitleContainer>
             <S.LectureStatusContainer>
               <S.LectureStatusBox>{data?.lectureType}</S.LectureStatusBox>
@@ -55,17 +53,25 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
             </S.LectureInfoContainer>
           </S.TitleContainer>
           <S.MainText>{data?.content}</S.MainText>
-          <S.LectureDateWrapper>
-            <h2>수강 신청 기간</h2>
-            <S.LectureDateText>
-              • {dayjs(data?.startDate).format('YYYY년 MM월 DD일 HH시 mm분')} ~{' '}
-              {dayjs(data?.endDate).format('YYYY년 MM월 DD일 HH시 mm분')}
-            </S.LectureDateText>
-          </S.LectureDateWrapper>
-          <S.LectureDateWrapper>
-            <h2>강의 수강 날짜</h2>
+          <S.LectureSection>
+            <span>수강 신청 기간</span>
             {data?.lectureDates.map((date, idx) => (
-              <S.LectureDateText key={idx}>
+              <div key={idx}>
+                • {dayjs(date.completeDate).format('YYYY년 MM월 DD일')}{' '}
+                {dayjs(`${date.completeDate}T${date.startTime}`).format(
+                  'HH시 mm분'
+                )}
+                &nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp;
+                {dayjs(`${date.completeDate}T${date.endTime}`).format(
+                  'HH시 mm분'
+                )}
+              </div>
+            ))}
+          </S.LectureSection>
+          <S.LectureSection>
+            <span>수강 수강 날짜</span>
+            {data?.lectureDates.map((date, idx) => (
+              <div key={idx}>
                 • {dayjs(date.completeDate).format('YYYY년 MM월 DD일')}{' '}
                 {dayjs(`${date.completeDate}T${date.startTime}`).format(
                   'HH시 mm분'
@@ -74,33 +80,36 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
                 {dayjs(`${date.completeDate}T${date.endTime}`).format(
                   'HH시 mm분'
                 )}
-              </S.LectureDateText>
+              </div>
             ))}
-          </S.LectureDateWrapper>
-          <S.LectureMaxWrapper>
-            <h2>모집 정원</h2>
-            <S.LectureMaxText>{data?.maxRegisteredUser}명</S.LectureMaxText>
-          </S.LectureMaxWrapper>
-        </S.Document>
-        <S.ApplyButton
-          isAble={isAble()}
-          onClick={() =>
-            isAble() &&
-            openModal(
-              <AppropriationModal
-                isApprove={true}
-                question='수강 신청하시겠습니까?'
-                title={data?.name || ''}
-                purpose='신청하기'
-                onAppropriation={() => mutate()}
-              />
-            )
-          }
-        >
-          수강 신청하기
-        </S.ApplyButton>
-      </S.DocumentWrapper>
-    </div>
+          </S.LectureSection>
+          <S.LectureSection>
+            <span>모집 정원</span>
+            <div>{data?.maxRegisteredUser}명</div>
+          </S.LectureSection>
+          <S.WhiteBox></S.WhiteBox>
+          <S.ApplyButtonWrapper>
+            <S.ApplyButton
+              isAble={isAble()}
+              onClick={() =>
+                isAble() &&
+                openModal(
+                  <AppropriationModal
+                    isApprove={true}
+                    question='수강 신청하시겠습니까?'
+                    title={data?.name || ''}
+                    purpose='신청하기'
+                    onAppropriation={() => mutate()}
+                  />
+                )
+              }
+            >
+              수강 신청하기
+            </S.ApplyButton>
+          </S.ApplyButtonWrapper>
+        </MainStyle.MainContainer>
+      </MainStyle.MainWrapper>
+    </MainStyle.PageWrapper>
   )
 }
 
