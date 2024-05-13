@@ -7,15 +7,20 @@ import {
   LoginResponseTypes,
 } from '@bitgouel/types'
 import { UseMutationOptions, useMutation } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
 
 export const usePostLogin = (
-  options: UseMutationOptions<
+  options?: UseMutationOptions<
     LoginResponseTypes,
-    LoginErrorTypes,
+    AxiosError<LoginErrorTypes>,
     LoginPayloadTypes
   >
 ) =>
-  useMutation<LoginResponseTypes, LoginErrorTypes, LoginPayloadTypes>(
+  useMutation<
+    LoginResponseTypes,
+    AxiosError<LoginErrorTypes>,
+    LoginPayloadTypes
+  >(
     authQueryKeys.postLogin(),
     (loginValues) => post(authUrl.login(), loginValues),
     options
