@@ -11,11 +11,6 @@ export {
   LectureDetailPage,
   LecturePage,
 } from './lecture'
-export { default as ActivityListPage } from './activity/list'
-export { default as ActivityDetailPage } from './activity/detail'
-export { default as ClubDetailPage } from './club/detail'
-export { default as StudentPage } from './club/student'
-export { default as FindPage } from './find'
 export * from './styles'
 export { default as MyPage } from './my'
 export {
