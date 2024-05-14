@@ -1,28 +1,10 @@
 import styled from '@emotion/styled'
-import { StaticImageData } from 'next/image'
-
-export const ClubWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-`
 
 export const ClubContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 75rem;
-  height: 100%;
-  margin-top: 3rem;
-  gap: 3.75rem;
-`
-
-export const ClubGroupBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.5rem;
+  margin-bottom: 3.75rem;
 `
 
 export const ClubSchoolTitle = styled.div`
@@ -30,8 +12,10 @@ export const ClubSchoolTitle = styled.div`
   color: ${({ theme }) => theme.color.black};
 `
 
-export const ClubListBox = styled.div`
-  display: grid;
+export const ClubListWrapper = styled.div`
   grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
+  margin-top: 2rem;
 `

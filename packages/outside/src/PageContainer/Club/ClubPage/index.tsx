@@ -5,6 +5,7 @@ import { useGetSchoolClubList } from '@bitgouel/api'
 import { SchoolFilterText } from '@bitgouel/common'
 import { useEffect } from 'react'
 import { useRecoilValue } from 'recoil'
+import { MainStyle } from '@bitgouel/common'
 import * as S from './style'
 
 const ClubPage = () => {
@@ -16,14 +17,14 @@ const ClubPage = () => {
   }, [schoolFilterText])
 
   return (
-    <>
+    <MainStyle.PageWrapper>
       <SchoolFilter />
-      <S.ClubWrapper>
-        <S.ClubContainer>
+      <MainStyle.MainWrapper>
+        <MainStyle.MainContainer>
           {data?.schools.map((school) => (
-            <S.ClubGroupBox key={school.id}>
+            <S.ClubContainer key={school.id}>
               <S.ClubSchoolTitle>{school.schoolName}</S.ClubSchoolTitle>
-              <S.ClubListBox>
+              <S.ClubListWrapper>
                 {school.clubs.map((club) => (
                   <ClubItem
                     key={club.id}
@@ -31,12 +32,12 @@ const ClubPage = () => {
                     clubName={club.name}
                   />
                 ))}
-              </S.ClubListBox>
-            </S.ClubGroupBox>
+              </S.ClubListWrapper>
+            </S.ClubContainer>
           ))}
-        </S.ClubContainer>
-      </S.ClubWrapper>
-    </>
+        </MainStyle.MainContainer>
+      </MainStyle.MainWrapper>
+    </MainStyle.PageWrapper>
   )
 }
 
