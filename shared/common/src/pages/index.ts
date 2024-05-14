@@ -11,7 +11,6 @@ export {
   LectureDetailPage,
   LecturePage,
 } from './lecture'
-export * from './styles'
 export { default as MyPage } from './my'
 export {
   NoticeDetailPage,

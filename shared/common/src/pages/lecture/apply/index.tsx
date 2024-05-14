@@ -4,7 +4,7 @@ import { useGetLectureApplyList } from '@bitgouel/api'
 import { Bg3, LectureApplyItem, PrivateRouter } from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
 import * as S from './style'
-import * as MainStyle from '../../styles'
+import { MainStyle } from '@bitgouel/common'
 
 const roleArray: RoleEnumTypes[] = [
   'ROLE_ADMIN',

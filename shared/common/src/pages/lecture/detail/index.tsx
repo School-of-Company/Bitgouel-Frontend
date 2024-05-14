@@ -9,7 +9,7 @@ import { AppropriationModal, Bg3, People, useModal } from '@bitgouel/common'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import * as S from './style'
-import * as MainStyle from '../../styles'
+import { MainStyle } from '@bitgouel/common'
 
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)

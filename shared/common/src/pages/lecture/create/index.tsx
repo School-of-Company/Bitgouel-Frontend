@@ -28,7 +28,7 @@ import { ChangeEvent, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useRecoilState } from 'recoil'
 import * as S from './style'
-import * as MainStyle from '../../styles'
+import { MainStyle } from '@bitgouel/common'
 
 const MAXLENGTH: number = 1000 as const
 
