@@ -2,10 +2,9 @@
 // 어드민 페이지
 import { ClubItem, SchoolFilter } from '@/components'
 import { useGetSchoolClubList } from '@bitgouel/api'
-import { SchoolFilterText } from '@bitgouel/common'
+import { SchoolFilterText, MainStyle } from '@bitgouel/common'
 import { useEffect } from 'react'
 import { useRecoilValue } from 'recoil'
-import { MainStyle } from '@bitgouel/common'
 import * as S from './style'
 
 const ClubPage = () => {
