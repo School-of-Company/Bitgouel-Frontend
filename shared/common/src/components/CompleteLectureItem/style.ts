@@ -7,6 +7,10 @@ export const ItemContainer = styled.div`
   justify-content: space-between;
   border-bottom: 0.0625rem solid ${({ theme }) => theme.color.gray['900']};
   padding: 0.75rem 1rem;
+
+  &:last-child {
+    border: none;
+  }
 `
 
 export const ItemContentContainer = styled.div`
