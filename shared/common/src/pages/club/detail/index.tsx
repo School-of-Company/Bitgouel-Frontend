@@ -82,6 +82,7 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
             {clubId
               ? clubDetail?.students.map((student) => (
                   <S.StudentItem
+                    isStudent={isStudent}
                     key={student.id}
                     onClick={() =>
                       push(`/main/club/${clubId}/student/${student.id}`)
@@ -93,6 +94,7 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
                 ))
               : myClub?.students.map((student) => (
                   <S.StudentItem
+                    isStudent={isStudent}
                     key={student.id}
                     onClick={() => {
                       !isStudent &&

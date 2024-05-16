@@ -36,14 +36,14 @@ export const StudentListWrapper = styled.div`
   }
 `
 
-export const StudentItem = styled.div`
+export const StudentItem = styled.div<{ isStudent: boolean }>`
   display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
   border-bottom: 0.0625rem solid ${({ theme }) => theme.color.gray['900']};
-  cursor: pointer;
+  cursor: ${({ isStudent }) => (isStudent ? 'auto' : 'pointer')};
 
   span:first-child {
     color: ${({ theme }) => theme.color.black};
@@ -57,7 +57,8 @@ export const StudentItem = styled.div`
   }
 
   &:hover {
-    background-color: ${({ theme }) => theme.color.gray['900']};
+    background-color: ${({ theme, isStudent }) =>
+      isStudent ? 'none' : theme.color.gray['900']};
   }
 
   &:last-child {

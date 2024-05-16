@@ -8,16 +8,16 @@ const CompleteLectureItem = ({ item }: { item: LectureItem }) => {
   return (
     <S.ItemContainer>
       <S.ItemContentContainer>
+        <S.TitleTypeBox>
+          <S.TitleType>{item.lectureType}</S.TitleType>
+        </S.TitleTypeBox>
         <S.TitleContainer>
-          <S.TitleTypeBox>
-            <S.TitleType>{item.lectureType}</S.TitleType>
-          </S.TitleTypeBox>
           <S.TitleBox>
             <S.Title>{item.name}</S.Title>
             <S.Line />
           </S.TitleBox>
+          <S.professorName>{item.lecturer}</S.professorName>
         </S.TitleContainer>
-        <S.professorName>{item.lecturer}</S.professorName>
       </S.ItemContentContainer>
       {item.isComplete ? (
         <S.Date>
