@@ -21,7 +21,7 @@ const ClubPage = () => {
       <MainStyle.MainWrapper>
         <MainStyle.MainContainer>
           {data?.schools.map((school) => (
-            <S.ClubContainer key={school.id}>
+            <MainStyle.MainContainer key={school.id}>
               <S.ClubSchoolTitle>{school.schoolName}</S.ClubSchoolTitle>
               <S.ClubListWrapper>
                 {school.clubs.map((club) => (
@@ -32,7 +32,7 @@ const ClubPage = () => {
                   />
                 ))}
               </S.ClubListWrapper>
-            </S.ClubContainer>
+            </MainStyle.MainContainer>
           ))}
         </MainStyle.MainContainer>
       </MainStyle.MainWrapper>
