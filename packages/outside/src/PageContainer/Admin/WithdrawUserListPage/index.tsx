@@ -12,7 +12,7 @@ import {
   UserItem,
   handleSelect,
   useFilterSelect,
-  useModal
+  useModal,
 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
@@ -28,6 +28,8 @@ const defaultFilterList = [
   { text: '4기', item: '4', checked: false },
 ]
 
+const filterTitle: string = '기수'
+
 const WithdrawUserListPage = () => {
   const { push } = useRouter()
   const [userIds, setUserIds] = useState<string[]>([])
@@ -36,7 +38,9 @@ const WithdrawUserListPage = () => {
   const { mutate } = useDeleteUserWithdraw(userIds)
   const { openModal } = useModal()
   const { filterList, onSelected } = useFilterSelect({
-    defaultFilterList, setFilterPayload: setCohort
+    title: filterTitle,
+    defaultFilterList,
+    setFilterPayload: setCohort,
   })
   const handleSelectUsers = (checked: boolean, userId: string) =>
     handleSelect({ checked, id: userId, setIds: setUserIds })
@@ -88,16 +92,20 @@ const WithdrawUserListPage = () => {
             <span style={{ marginLeft: '1.5rem' }}>이름</span>
           </S.RemarkBox>
           <S.WithdrawButtonContainer>
-              <S.FilterBox onClick={() => openModal(
-                <FilterModal 
-                  title='기수'
-                  filterList={filterList}
-                  onSelected={onSelected}
-                />
-              )}>
-                <FilterOut />
-                필터
-              </S.FilterBox>
+            <S.FilterBox
+              onClick={() =>
+                openModal(
+                  <FilterModal
+                    title={filterTitle}
+                    filterList={filterList}
+                    onSelected={onSelected}
+                  />
+                )
+              }
+            >
+              <FilterOut />
+              필터
+            </S.FilterBox>
             <S.AllWithdrawBox htmlFor='allWithdraw'>
               <input type='checkbox' id='allWithdraw' onChange={onAll} />
               <PeopleCircle />
