@@ -6,7 +6,7 @@ import {
   useGetMy,
   useGetMyClub,
 } from '@bitgouel/api'
-import { Bg2, PersonOut } from '@bitgouel/common'
+import { Bg2, PersonOut, MainStyle } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import * as S from './style'
@@ -38,13 +38,13 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
   }, [myClub, myData])
 
   return (
-    <div>
-      <S.SlideBg url={Bg2}>
-        <S.BgContainer>
-          <S.Title>취업 동아리</S.Title>
+    <MainStyle.PageWrapper>
+      <MainStyle.SlideBg url={Bg2}>
+        <MainStyle.BgContainer>
+          <MainStyle.PageTitle>취업 동아리</MainStyle.PageTitle>
           {isStudent && (
-            <S.ButtonContainer>
-              <S.ClubButton>
+            <MainStyle.ButtonContainer>
+              <MainStyle.SlideButton>
                 <PersonOut />
                 <span
                   onClick={() =>
@@ -53,51 +53,47 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
                 >
                   내 자격증 및 활동
                 </span>
-              </S.ClubButton>
-            </S.ButtonContainer>
+              </MainStyle.SlideButton>
+            </MainStyle.ButtonContainer>
           )}
-        </S.BgContainer>
-      </S.SlideBg>
-      <S.ClubWrapper>
-        <S.ClubContainer>
-          <S.ClubTitle>
+        </MainStyle.BgContainer>
+      </MainStyle.SlideBg>
+      <MainStyle.MainWrapper>
+        <MainStyle.MainContainer>
+          <S.ClubName>
             {clubId ? clubDetail?.clubName : myClub?.clubName}
-          </S.ClubTitle>
-          <S.ClubInfoContainer>
-            <S.BelongBox>
-              <S.ExpressSchoolBox>소속 학교</S.ExpressSchoolBox>
+          </S.ClubName>
+          <S.InfoContainer>
+            <S.ClubInfoBox>
+              <div>소속 학교</div>
               <span>
                 {clubId ? clubDetail?.highSchoolName : myClub?.highSchoolName}
               </span>
-            </S.BelongBox>
-            <S.BelongBox>
-              <S.ExpressTeacherBox>담당 선생님</S.ExpressTeacherBox>
+            </S.ClubInfoBox>
+            <S.ClubInfoBox>
+              <div>담당 선생님</div>
               <span>
                 {clubId ? clubDetail?.teacher.name : myClub?.teacher.name}
               </span>
-            </S.BelongBox>
-          </S.ClubInfoContainer>
-          <S.ClubPersonnelBox>
-            <S.ClubPersonnelTitle>동아리 인원</S.ClubPersonnelTitle>
-            <span>
-              총 {clubId ? clubDetail?.headCount : myClub?.headCount}명
-            </span>
-          </S.ClubPersonnelBox>
-          <S.ClubMemberListContainer>
+            </S.ClubInfoBox>
+          </S.InfoContainer>
+          <S.StudentListWrapper>
+            <h2>동아리 인원</h2>
             {clubId
               ? clubDetail?.students.map((student) => (
-                  <S.ClubMemberBox
+                  <S.StudentItem
                     isStudent={isStudent}
                     key={student.id}
                     onClick={() =>
                       push(`/main/club/${clubId}/student/${student.id}`)
                     }
                   >
-                    <S.MemberName>{student.name}</S.MemberName>
-                  </S.ClubMemberBox>
+                    <span>{student.name}</span>
+                    <span>학생</span>
+                  </S.StudentItem>
                 ))
               : myClub?.students.map((student) => (
-                  <S.ClubMemberBox
+                  <S.StudentItem
                     isStudent={isStudent}
                     key={student.id}
                     onClick={() => {
@@ -105,13 +101,14 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
                         push(`/main/club/${clubId}/student/${student.id}`)
                     }}
                   >
-                    <S.MemberName>{student.name}</S.MemberName>
-                  </S.ClubMemberBox>
+                    <span>{student.name}</span>
+                    <span>학생</span>
+                  </S.StudentItem>
                 ))}
-          </S.ClubMemberListContainer>
-        </S.ClubContainer>
-      </S.ClubWrapper>
-    </div>
+          </S.StudentListWrapper>
+        </MainStyle.MainContainer>
+      </MainStyle.MainWrapper>
+    </MainStyle.PageWrapper>
   )
 }
 export default ClubDetailPage

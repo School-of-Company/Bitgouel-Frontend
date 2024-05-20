@@ -22,13 +22,13 @@ import {
   LectureType,
   PrivateRouter,
   useModal,
+  MainStyle,
 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useRecoilState } from 'recoil'
 import * as S from './style'
-import * as MainStyle from '../../styles'
 
 const MAXLENGTH: number = 1000 as const
 
