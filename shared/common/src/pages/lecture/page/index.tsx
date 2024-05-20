@@ -51,6 +51,8 @@ const defaultFilterList = [
   },
 ]
 
+const filterTitle: string = '강의 유형'
+
 const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
   const [lectureTypeFilter, setLectureTypeFilter] = useState<string>('')
   const [isClick, setIsClick] = useState<boolean>(false)
@@ -58,6 +60,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
   const { push } = useRouter()
   const { openModal } = useModal()
   const { filterList, onSelected } = useFilterSelect({
+    title: filterTitle,
     defaultFilterList,
     setFilterPayload: setLectureTypeFilter,
   })
@@ -111,7 +114,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
               onClick={() =>
                 openModal(
                   <FilterModal
-                    title='강의 유형'
+                    title={filterTitle}
                     filterList={filterList}
                     onSelected={onSelected}
                   />

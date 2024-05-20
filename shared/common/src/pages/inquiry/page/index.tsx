@@ -24,23 +24,22 @@ const defaultFilterList = [
   { text: '답변 완료됨', item: 'ANSWERED', checked: false },
 ]
 
+const filterTitle: string = '문의 상태'
+
 const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const [keyword, setKeyword] = useState<string>('')
   const [answerStatus, setAnswerStatus] = useState<AnswerStatus | ''>('')
   const { push } = useRouter()
-  const { data: inquiryList, refetch } = useGetInquiryList(
+  const { data: inquiryList, refetch } = isAdmin ? useGetInquiryList(
     {
       keyword,
       answerStatus,
     },
-    { enabled: !!isAdmin }
-  )
-  const { data: myInquiryList } = useGetMyInquiryList({
-    enabled: !isAdmin,
-  })
+    { enabled: isAdmin === true }
+  ) : useGetMyInquiryList()
   const { openModal } = useModal()
   const { filterList, onSelected } = useFilterSelect({
-    defaultFilterList, setFilterPayload: setAnswerStatus
+    title: filterTitle, defaultFilterList, setFilterPayload: setAnswerStatus
   })
 
   const onSubmit = (e: FormEvent) => {
@@ -93,7 +92,7 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
             </S.SearchBox>
               <S.Filter onClick={() => openModal(
                 <FilterModal
-                  title='문의 상태'
+                  title={filterTitle}
                   filterList={filterList}
                   onSelected={onSelected}
                 />
@@ -105,13 +104,9 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
         )}
         <S.ListWrapper>
           <S.ListContainer>
-            {isAdmin
-              ? inquiryList?.inquiries.map((inquiry) => (
-                  <InquiryItem item={inquiry} key={inquiry.id} />
-                ))
-              : myInquiryList?.inquiries.map((inquiry) => (
-                  <InquiryItem item={inquiry} key={inquiry.id} />
-                ))}
+            {inquiryList?.inquiries.map((inquiry) => (
+              <InquiryItem item={inquiry} key={inquiry.id} />
+            ))}
           </S.ListContainer>
         </S.ListWrapper>
       </S.InquiryWrapper>
