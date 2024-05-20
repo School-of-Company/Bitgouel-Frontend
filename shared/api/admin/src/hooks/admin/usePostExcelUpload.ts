@@ -5,6 +5,7 @@ import { AxiosError } from 'axios'
 const formDataHeader = {
   headers: {
     'Content-Type': 'multipart/form-data',
+    'Content-Disposition': 'attachment;filename=file.xlsx',
   },
 }
 
