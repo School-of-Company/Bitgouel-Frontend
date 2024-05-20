@@ -6,7 +6,13 @@ import {
   useGetActivityMyselfList,
   useGetStudentDetail,
 } from '@bitgouel/api'
-import { ActivityItem, Bg2, Plus, PrivateRouter } from '@bitgouel/common'
+import {
+  ActivityItem,
+  Bg2,
+  Plus,
+  PrivateRouter,
+  MainStyle,
+} from '@bitgouel/common'
 import { StudentIdProps } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -36,39 +42,43 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
 
   return (
     <PrivateRouter>
-    <div>
-      <S.SlideBg url={Bg2}>
-        <S.BgContainer>
-          <S.ClubTitle>{userDetail?.name}의 학생 활동</S.ClubTitle>
-          {isStudent && (
-            <S.ButtonContainer>
-              <S.ClubButton
-                onClick={() =>
-                  push(
-                    `/main/club/${clubId}/student/${studentId}/activity/create`
-                  )
-                }
-              >
-                <Plus />
-                <span>활동 추가</span>
-              </S.ClubButton>
-            </S.ButtonContainer>
-          )}
-        </S.BgContainer>
-      </S.SlideBg>
-      <S.ActivityWrapper>
-        <S.ActivityContainer>
-          {activityList?.activities.content.map((activity, index) => (
-            <ActivityItem
-              item={activity}
-              key={index}
-              studentIdProps={studentIdProps}
-              activityId={activity.activityId}
-            />
-          ))}
-        </S.ActivityContainer>
-      </S.ActivityWrapper>
-    </div>
+      <MainStyle.PageWrapper>
+        <MainStyle.SlideBg url={Bg2}>
+          <MainStyle.BgContainer>
+            <MainStyle.PageTitle>
+              {userDetail?.name}의 학생 활동
+            </MainStyle.PageTitle>
+            {isStudent && (
+              <MainStyle.ButtonContainer>
+                <MainStyle.SlideButton
+                  onClick={() =>
+                    push(
+                      `/main/club/${clubId}/student/${studentId}/activity/create`
+                    )
+                  }
+                >
+                  <Plus />
+                  <span>활동 추가</span>
+                </MainStyle.SlideButton>
+              </MainStyle.ButtonContainer>
+            )}
+          </MainStyle.BgContainer>
+        </MainStyle.SlideBg>
+        <MainStyle.MainWrapper>
+          <MainStyle.MainContainer>
+            <S.ClubListWrapper>
+              {activityList?.activities.content.map((activity, index) => (
+                <ActivityItem
+                  item={activity}
+                  key={index}
+                  studentIdProps={studentIdProps}
+                  activityId={activity.activityId}
+                />
+              ))}
+            </S.ClubListWrapper>
+          </MainStyle.MainContainer>
+        </MainStyle.MainWrapper>
+      </MainStyle.PageWrapper>
     </PrivateRouter>
   )
 }

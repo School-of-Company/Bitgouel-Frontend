@@ -13,6 +13,7 @@ import {
   SelectCalendarModal,
   SelectScoreModal,
   useModal,
+  MainStyle,
 } from '@bitgouel/common'
 import { ActivityDetailProps } from '@bitgouel/types'
 import dayjs from 'dayjs'
@@ -162,85 +163,86 @@ const ActivityWritePage = ({
 
   return (
     <PrivateRouter>
-    <div>
-      <S.SlideBg url={Bg2}>
-        <S.BgContainer>
-          <S.CreateTitle>활동 {studentId ? '수정' : '추가'}</S.CreateTitle>
-          <S.ButtonContainer></S.ButtonContainer>
-        </S.BgContainer>
-      </S.SlideBg>
-      <S.DocumentInputContainer>
-        <S.DocumentInput>
-          <S.InputTitle
-            value={activityTitle}
-            placeholder='활동 제목(100자 이내)'
-            maxLength={MAXTITLELENGTH}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setActivityTitle(e.target.value)
-            }
-          />
-          <S.InputMainText
-            value={activityContent}
-            maxLength={MAXCONTENTLENGTH}
-            placeholder='본문 입력 (1000자 이내)'
-            onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-              setActivityContent(e.target.value)
-            }
-          />
-          <S.ActivitySetting>
-            <S.SettingTitle>활동 세부 설정</S.SettingTitle>
-            <S.SettingSelectionContainer>
-              <S.SettingSelection>
-                <S.SelectModalContainer>
-                  {isActivityDate && (
-                    <SelectCalendarModal
-                      date={activityTaskDate}
-                      setDate={setActivityTaskDate}
-                      setText={setActivityDateText}
-                    />
-                  )}
-                  <S.SettingDateBox
-                    onClick={() => openSelectModal('활동 날짜 선택')}
-                  >
-                    <Chevron />
-                    <S.SettingButton>{activityDateText}</S.SettingButton>
-                  </S.SettingDateBox>
-                </S.SelectModalContainer>
-              </S.SettingSelection>
-              <S.SettingSelection>
-                <S.SelectModalContainer>
-                  {isScore && (
-                    <SelectScoreModal
-                      score={
-                        Number.isInteger(Number(scoreText))
-                          ? scoreText + '점'
-                          : scoreText
-                      }
-                      setScore={setScoreText}
-                      setIsScore={setIsScore}
-                    />
-                  )}
-                  <S.SettingScoreBox
-                    onClick={() => openSelectModal('학점 선택')}
-                  >
-                    <Chevron />
-                    <S.SettingButton>{scoreText}</S.SettingButton>
-                  </S.SettingScoreBox>
-                </S.SelectModalContainer>
-              </S.SettingSelection>
-            </S.SettingSelectionContainer>
-          </S.ActivitySetting>
-          <S.ButtonContainer>
-            <S.CreateButton
-              onClick={() => isAble() && onSubmit()}
-              isAble={isAble()}
-            >
-              {activityId ? '수정하기' : '추가하기'}
-            </S.CreateButton>
-          </S.ButtonContainer>
-        </S.DocumentInput>
-      </S.DocumentInputContainer>
-    </div>
+      <MainStyle.PageWrapper>
+        <MainStyle.SlideBg url={Bg2}>
+          <MainStyle.BgContainer>
+            <MainStyle.PageTitle>
+              활동 {studentId ? '수정' : '추가'}
+            </MainStyle.PageTitle>
+          </MainStyle.BgContainer>
+        </MainStyle.SlideBg>
+        <MainStyle.MainWrapper>
+          <MainStyle.MainContainer>
+            <S.InputTitle
+              value={activityTitle}
+              placeholder='활동 제목(100자 이내)'
+              maxLength={MAXTITLELENGTH}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setActivityTitle(e.target.value)
+              }
+            />
+            <S.InputMainText
+              value={activityContent}
+              maxLength={MAXCONTENTLENGTH}
+              placeholder='본문 입력 (1000자 이내)'
+              onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                setActivityContent(e.target.value)
+              }
+            />
+            <S.ActivitySetting>
+              <S.SettingTitle>활동 세부 설정</S.SettingTitle>
+              <S.SettingSelectionContainer>
+                <S.SettingSelection>
+                  <S.SelectModalContainer>
+                    {isActivityDate && (
+                      <SelectCalendarModal
+                        date={activityTaskDate}
+                        setDate={setActivityTaskDate}
+                        setText={setActivityDateText}
+                      />
+                    )}
+                    <S.SettingDateBox
+                      onClick={() => openSelectModal('활동 날짜 선택')}
+                    >
+                      <Chevron />
+                      <S.SettingButton>{activityDateText}</S.SettingButton>
+                    </S.SettingDateBox>
+                  </S.SelectModalContainer>
+                </S.SettingSelection>
+                <S.SettingSelection>
+                  <S.SelectModalContainer>
+                    {isScore && (
+                      <SelectScoreModal
+                        score={
+                          Number.isInteger(Number(scoreText))
+                            ? scoreText + '점'
+                            : scoreText
+                        }
+                        setScore={setScoreText}
+                        setIsScore={setIsScore}
+                      />
+                    )}
+                    <S.SettingScoreBox
+                      onClick={() => openSelectModal('학점 선택')}
+                    >
+                      <Chevron />
+                      <S.SettingButton>{scoreText}</S.SettingButton>
+                    </S.SettingScoreBox>
+                  </S.SelectModalContainer>
+                </S.SettingSelection>
+              </S.SettingSelectionContainer>
+            </S.ActivitySetting>
+            <S.ButtonContainer>
+              <S.CreateButton
+                onClick={() => isAble() && onSubmit()}
+                isAble={isAble()}
+              >
+                {activityId ? '수정하기' : '추가하기'}
+              </S.CreateButton>
+            </S.ButtonContainer>
+          </MainStyle.MainContainer>
+        </MainStyle.MainWrapper>
+      </MainStyle.PageWrapper>
     </PrivateRouter>
   )
 }

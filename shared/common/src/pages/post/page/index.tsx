@@ -1,11 +1,17 @@
 'use client'
 
 import { TokenManager, useGetPostList } from '@bitgouel/api'
-import { Bg1, MegaPhone, Plus, PostItem, Question } from '@bitgouel/common'
+import {
+  Bg1,
+  MegaPhone,
+  Plus,
+  PostItem,
+  Question,
+  MainStyle,
+} from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import * as S from './style'
 
 const roleArray: RoleEnumTypes[] = [
   'ROLE_ADMIN',
@@ -33,36 +39,36 @@ const PostPage = () => {
   }, [])
 
   return (
-    <div>
-      <S.SlideBg url={Bg1}>
-        <S.BgContainer>
-          <S.PostTitle>게시글</S.PostTitle>
-          <S.ButtonContainer>
-            <S.PostButton onClick={() => push('/main/post/notice')}>
+    <MainStyle.PageWrapper>
+      <MainStyle.SlideBg url={Bg1}>
+        <MainStyle.BgContainer>
+          <MainStyle.PageTitle>게시글</MainStyle.PageTitle>
+          <MainStyle.ButtonContainer>
+            <MainStyle.SlideButton onClick={() => push('/main/post/notice')}>
               <MegaPhone />
               <span>공지사항</span>
-            </S.PostButton>
-            <S.PostButton onClick={() => push('/main/post/inquiry')}>
+            </MainStyle.SlideButton>
+            <MainStyle.SlideButton onClick={() => push('/main/post/inquiry')}>
               <Question />
               <span>문의사항</span>
-            </S.PostButton>
+            </MainStyle.SlideButton>
             {isRole && (
-              <S.PostButton onClick={() => push('/main/post/create')}>
+              <MainStyle.SlideButton onClick={() => push('/main/post/create')}>
                 <Plus />
                 <span>게시글 추가</span>
-              </S.PostButton>
+              </MainStyle.SlideButton>
             )}
-          </S.ButtonContainer>
-        </S.BgContainer>
-      </S.SlideBg>
-      <S.PostListWrapper>
-        <S.PostListContainer>
+          </MainStyle.ButtonContainer>
+        </MainStyle.BgContainer>
+      </MainStyle.SlideBg>
+      <MainStyle.MainWrapper>
+        <MainStyle.MainContainer>
           {data?.posts.content.map((post) => (
             <PostItem key={post.id} item={post} />
           ))}
-        </S.PostListContainer>
-      </S.PostListWrapper>
-    </div>
+        </MainStyle.MainContainer>
+      </MainStyle.MainWrapper>
+    </MainStyle.PageWrapper>
   )
 }
 
