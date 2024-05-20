@@ -3,9 +3,9 @@
 import { ClubItem, SchoolFilter } from '@/components'
 import { useGetClubList } from '@bitgouel/api'
 import {
-  MainStyle,
   SchoolFilterText,
   schoolToConstants,
+  MainStyle,
 } from '@bitgouel/common'
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
