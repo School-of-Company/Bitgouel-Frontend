@@ -21,7 +21,6 @@ import {
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
-import * as S from './style'
 
 const defaultFilterList = [
   { text: '전체', item: '전체', checked: true },
