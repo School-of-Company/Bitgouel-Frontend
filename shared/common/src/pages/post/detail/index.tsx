@@ -1,7 +1,7 @@
 'use client'
 
 import { TokenManager, useDeletePost, useGetPostDetail } from '@bitgouel/api'
-import { AppropriationModal, Bg1, useModal } from '@bitgouel/common'
+import { AppropriationModal, Bg1, useModal, MainStyle } from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
 import dayjs from 'dayjs'
 import Link from 'next/link'
@@ -33,14 +33,14 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
   }, [])
 
   return (
-    <div>
-      <S.SlideBg url={Bg1}>
-        <S.BgContainer>
-          <S.CreateTitle>게시글 상세</S.CreateTitle>
-        </S.BgContainer>
-      </S.SlideBg>
-      <S.DocumentWrapper>
-        <S.Document>
+    <MainStyle.PageWrapper>
+      <MainStyle.SlideBg url={Bg1}>
+        <MainStyle.BgContainer>
+          <MainStyle.PageTitle>게시글 상세</MainStyle.PageTitle>
+        </MainStyle.BgContainer>
+      </MainStyle.SlideBg>
+      <MainStyle.MainWrapper>
+        <MainStyle.MainContainer>
           <S.TitleContainer>
             <S.Title>{data?.title}</S.Title>
             <S.SubTitle>
@@ -94,9 +94,9 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
               </S.ModifyPostButton>
             </S.ButtonContainer>
           </S.ButtonWrapper>
-        </S.Document>
-      </S.DocumentWrapper>
-    </div>
+        </MainStyle.MainContainer>
+      </MainStyle.MainWrapper>
+    </MainStyle.PageWrapper>
   )
 }
 

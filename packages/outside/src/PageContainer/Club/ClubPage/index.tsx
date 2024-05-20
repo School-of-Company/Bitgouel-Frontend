@@ -2,7 +2,7 @@
 // 어드민 페이지
 import { ClubItem, SchoolFilter } from '@/components'
 import { useGetSchoolClubList } from '@bitgouel/api'
-import { SchoolFilterText, useModal } from '@bitgouel/common'
+import { SchoolFilterText, MainStyle } from '@bitgouel/common'
 import { useEffect } from 'react'
 import { useRecoilValue } from 'recoil'
 import * as S from './style'
@@ -16,14 +16,14 @@ const ClubPage = () => {
   }, [schoolFilterText])
 
   return (
-    <>
+    <MainStyle.PageWrapper>
       <SchoolFilter />
-      <S.ClubWrapper>
-        <S.ClubContainer>
+      <MainStyle.MainWrapper>
+        <MainStyle.MainContainer>
           {data?.schools.map((school) => (
-            <S.ClubGroupBox key={school.id}>
+            <MainStyle.MainContainer key={school.id}>
               <S.ClubSchoolTitle>{school.schoolName}</S.ClubSchoolTitle>
-              <S.ClubListBox>
+              <S.ClubListWrapper>
                 {school.clubs.map((club) => (
                   <ClubItem
                     key={club.id}
@@ -31,12 +31,12 @@ const ClubPage = () => {
                     clubName={club.name}
                   />
                 ))}
-              </S.ClubListBox>
-            </S.ClubGroupBox>
+              </S.ClubListWrapper>
+            </MainStyle.MainContainer>
           ))}
-        </S.ClubContainer>
-      </S.ClubWrapper>
-    </>
+        </MainStyle.MainContainer>
+      </MainStyle.MainWrapper>
+    </MainStyle.PageWrapper>
   )
 }
 

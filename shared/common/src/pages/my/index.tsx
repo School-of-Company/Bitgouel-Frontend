@@ -18,7 +18,7 @@ const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
     formData.append('file', excelFile)
     upload(formData)
   }, [])
-
+  
   return (
     <S.MyPageWrapper url={Bg4}>
       <S.BlackBox>

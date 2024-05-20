@@ -12,6 +12,7 @@ import {
   PrivateRouter,
   TrashCan,
   useModal,
+  MainStyle,
 } from '@bitgouel/common'
 import { ActivityDetailProps } from '@bitgouel/types'
 import dayjs from 'dayjs'
@@ -38,52 +39,51 @@ const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
 
   return (
     <PrivateRouter>
-    <div>
-      <S.SlideBg url={Bg2}>
-        <S.BgContainer>
-          <S.ActivityTitle>게시글</S.ActivityTitle>
-          {isStudent && (
-            <S.TitleButtonContainer>
-              <S.ActivityButton
-                onClick={() =>
-                  push(
-                    `/main/club/${clubId}/student/${studentId}/activity/${activityId}/modify`
-                  )
-                }
-              >
-                <Pen />
-                <span>활동 수정</span>
-              </S.ActivityButton>
-              <S.ActivityButton
-                onClick={() =>
-                  openModal(
-                    <AppropriationModal
-                      isApprove={true}
-                      title={data?.title || ''}
-                      question='활동을 삭제하시겠습니까?'
-                      purpose='삭제하기'
-                      onAppropriation={() => {
-                        mutate()
-                        closeModal()
-                        push(
-                          `/main/club/${clubId}/student/${studentId}/activity`
-                        )
-                        toast.success('삭제되었습니다.')
-                      }}
-                    />
-                  )
-                }
-              >
-                <TrashCan />
-                <span>활동 삭제</span>
-              </S.ActivityButton>
-            </S.TitleButtonContainer>
-          )}
-        </S.BgContainer>
-      </S.SlideBg>
-      <S.DocumentWrapper>
-        <S.Document>
-          <S.TitleContainer>
+      <MainStyle.PageWrapper>
+        <MainStyle.SlideBg url={Bg2}>
+          <MainStyle.BgContainer>
+            <MainStyle.PageTitle>게시글</MainStyle.PageTitle>
+            {isStudent && (
+              <MainStyle.ButtonContainer>
+                <MainStyle.SlideButton
+                  onClick={() =>
+                    push(
+                      `/main/club/${clubId}/student/${studentId}/activity/${activityId}/modify`
+                    )
+                  }
+                >
+                  <Pen />
+                  <span>활동 수정</span>
+                </MainStyle.SlideButton>
+                <MainStyle.SlideButton
+                  onClick={() =>
+                    openModal(
+                      <AppropriationModal
+                        isApprove={true}
+                        title={data?.title || ''}
+                        question='활동을 삭제하시겠습니까?'
+                        purpose='삭제하기'
+                        onAppropriation={() => {
+                          mutate()
+                          closeModal()
+                          push(
+                            `/main/club/${clubId}/student/${studentId}/activity`
+                          )
+                          toast.success('삭제되었습니다.')
+                        }}
+                      />
+                    )
+                  }
+                >
+                  <TrashCan />
+                  <span>활동 삭제</span>
+                </MainStyle.SlideButton>
+              </MainStyle.ButtonContainer>
+            )}
+          </MainStyle.BgContainer>
+        </MainStyle.SlideBg>
+        <MainStyle.MainWrapper>
+          <MainStyle.MainContainer>
             <S.Title>{data?.title}</S.Title>
             <S.SubTitle>
               <S.NumberBox>
@@ -103,11 +103,10 @@ const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
                 </span>
               </S.NumberBox>
             </S.SubTitle>
-          </S.TitleContainer>
-          <S.MainText>{data?.content}</S.MainText>
-        </S.Document>
-      </S.DocumentWrapper>
-    </div>
+            <S.MainText>{data?.content}</S.MainText>
+          </MainStyle.MainContainer>
+        </MainStyle.MainWrapper>
+      </MainStyle.PageWrapper>
     </PrivateRouter>
   )
 }

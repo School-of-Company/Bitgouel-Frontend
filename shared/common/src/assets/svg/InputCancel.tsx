@@ -3,8 +3,8 @@ import { SVGProps } from 'react'
 const InputCancel = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
-      width='1.25rem'
-      height='1.25rem'
+      width='1.5rem'
+      height='1.5rem'
       viewBox='0 0 20 20'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'

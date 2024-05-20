@@ -5,7 +5,6 @@ import {
   useGetCertificateList,
   useGetCertificateListTeacher,
   useGetCompleteLecture,
-  useGetMy,
   useGetStudentDetail,
   usePostCertificate,
 } from '@bitgouel/api'
@@ -21,6 +20,7 @@ import {
   theme,
   useModal,
   CompleteLectureItem,
+  MainStyle,
 } from '@bitgouel/common'
 import {
   CertificateRequest,
@@ -93,45 +93,45 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
   }, [])
 
   return (
-    <div>
-      <S.SlideBg url={Bg2}>
-        <S.BgContainer>
-          <S.ClubTitle>학생 정보</S.ClubTitle>
+    <MainStyle.PageWrapper>
+      <MainStyle.SlideBg url={Bg2}>
+        <MainStyle.BgContainer>
+          <MainStyle.PageTitle>학생 정보</MainStyle.PageTitle>
           {isRole && (
-            <S.ButtonContainer>
-              <S.ClubButton
+            <MainStyle.ButtonContainer>
+              <MainStyle.SlideButton
                 onClick={() =>
                   push(`/main/club/${clubId}/student/${studentId}/activity`)
                 }
               >
                 <PersonOut />
                 <span>학생 활동</span>
-              </S.ClubButton>
-            </S.ButtonContainer>
+              </MainStyle.SlideButton>
+            </MainStyle.ButtonContainer>
           )}
-        </S.BgContainer>
-      </S.SlideBg>
-      <S.CertificateWrapper>
-        <S.CertificateContainer>
+        </MainStyle.BgContainer>
+      </MainStyle.SlideBg>
+      <MainStyle.MainWrapper>
+        <MainStyle.MainContainer>
           <S.ProfileBox>
-            <h3>{clubStudent?.name}</h3>
-            <S.ProfileInfoBox>
-              <span>{clubStudent?.phoneNumber}</span>
-              <span>{clubStudent?.email}</span>
-              <span>
-                총 학점 <b>{clubStudent?.credit}</b>
-              </span>
-            </S.ProfileInfoBox>
+            <span>{clubStudent?.name}</span>
+            <span>{clubStudent?.email}</span>
+            <span>
+              {clubStudent?.phoneNumber.slice(0, 3)}-
+              {clubStudent?.phoneNumber.slice(3, 7)}-
+              {clubStudent?.phoneNumber.slice(7)}
+            </span>
+            <span>
+              총 학점 <b>{clubStudent?.credit}</b>
+            </span>
           </S.ProfileBox>
           <S.CertificateBox>
-            <S.CertificatePlusBox>
-              <h3>자격증</h3>
-              <S.PlusCertificateIcon
-                onClick={() => setIsAddCertificate((prev) => !prev)}
-              >
+            <span>
+              자격증{' '}
+              <div onClick={() => setIsAddCertificate((prev) => !prev)}>
                 {isStudent && <PlusCertificate />}
-              </S.PlusCertificateIcon>
-            </S.CertificatePlusBox>
+              </div>
+            </span>
             <S.CertificateListBox>
               {isAddCertificate && (
                 <S.AddCertificateBox>
@@ -208,20 +208,21 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
             </S.CertificateListBox>
           </S.CertificateBox>
           {isRole && (
-            <S.CompleteLectureContainer>
-              <S.completeLectureTitle>신청한 강의 목록</S.completeLectureTitle>
-
-              {completeLectureList?.lectures.map((completeLecture) => (
-                <CompleteLectureItem
-                  key={completeLecture.id}
-                  item={completeLecture}
-                />
-              ))}
-            </S.CompleteLectureContainer>
+            <S.LectureListBox>
+              <b>신청한 강의 목록</b>
+              <S.LectureList>
+                {completeLectureList?.lectures.map((completeLecture) => (
+                  <CompleteLectureItem
+                    key={completeLecture.id}
+                    item={completeLecture}
+                  />
+                ))}
+              </S.LectureList>
+            </S.LectureListBox>
           )}
-        </S.CertificateContainer>
-      </S.CertificateWrapper>
-    </div>
+        </MainStyle.MainContainer>
+      </MainStyle.MainWrapper>
+    </MainStyle.PageWrapper>
   )
 }
 

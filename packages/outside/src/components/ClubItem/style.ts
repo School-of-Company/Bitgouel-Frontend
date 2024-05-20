@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
 export const ClubListItemBox = styled.div`
-  width: 17.625rem;
+  width: 16.875rem;
   height: 10rem;
   display: flex;
   flex-direction: column;

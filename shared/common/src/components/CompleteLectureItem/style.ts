@@ -1,19 +1,22 @@
 import styled from '@emotion/styled'
 
 export const ItemContainer = styled.div`
-  width: 73rem;
-  height: 3.625rem;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   justify-content: space-between;
   border-bottom: 0.0625rem solid ${({ theme }) => theme.color.gray['900']};
   padding: 0.75rem 1rem;
+
+  &:last-child {
+    border: none;
+  }
 `
 
 export const ItemContentContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  flex-wrap: wrap;
 `
 
 export const TitleContainer = styled.div`
@@ -24,6 +27,7 @@ export const TitleContainer = styled.div`
 `
 
 export const TitleTypeBox = styled.div`
+  margin-right: 1rem;
   min-width: 9.0625rem;
   height: 2.125rem;
   border: 0.125rem solid ${({ theme }) => theme.color.gray['700']};

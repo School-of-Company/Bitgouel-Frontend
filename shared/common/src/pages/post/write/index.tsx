@@ -5,7 +5,14 @@ import {
   usePatchPostModify,
   usePostPost,
 } from '@bitgouel/api'
-import { AppropriationModal, Bg1, Link, PrivateRouter, useModal } from '@bitgouel/common'
+import {
+  AppropriationModal,
+  Bg1,
+  Link,
+  PrivateRouter,
+  useModal,
+  MainStyle,
+} from '@bitgouel/common'
 import { LinksObjectTypes } from '@bitgouel/types'
 import { ChangeEvent, useEffect, useState } from 'react'
 import * as S from './style'
@@ -110,56 +117,58 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
 
   return (
     <PrivateRouter>
-    <div>
-      <S.SlideBg url={Bg1}>
-        <S.BgContainer>
-          <S.CreateTitle>게시글 {postId ? '수정' : '추가'}</S.CreateTitle>
-        </S.BgContainer>
-      </S.SlideBg>
-      <S.DocumentInputContainer>
-        <S.DocumentInput>
-          <S.InputTitle
-            type='text'
-            value={postTitle}
-            maxLength={TITLEMAXLENGTH}
-            placeholder='게시글 제목 (100자 이내)'
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setPostTitle(e.target.value)
-            }
-          />
-          <S.InputMainText
-            value={postContent}
-            maxLength={MAINMAXLENGTH}
-            placeholder='본문 입력 (1000자 이내)'
-            onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-              setPostContent(e.target.value)
-            }
-          />
-          <S.PostSetting>
-            <S.SettingTitle>게시글 세부 설정</S.SettingTitle>
-            <S.SettingSelectionContainer>
-              {postLinks?.map((link, idx) => (
-                <S.SettingForm key={idx}>
-                  <Link />
-                  <S.SettingInput
-                    type='text'
-                    value={link?.value}
-                    onChange={onChange}
-                    placeholder='링크 입력(선택)'
-                    name={link?.name}
-                  />
-                </S.SettingForm>
-              ))}
-            </S.SettingSelectionContainer>
-          </S.PostSetting>
-          <S.ButtonContainer>
-            <S.PostButton isAble={isCondition()} onClick={onPost}>
-              {postId ? '수정완료' : '공지사항 추가하기'}
-            </S.PostButton>
-          </S.ButtonContainer>
-        </S.DocumentInput>
-      </S.DocumentInputContainer>
-    </div>
+      <MainStyle.PageWrapper>
+        <MainStyle.SlideBg url={Bg1}>
+          <MainStyle.BgContainer>
+            <MainStyle.PageTitle>
+              게시글 {postId ? '수정' : '추가'}
+            </MainStyle.PageTitle>
+          </MainStyle.BgContainer>
+        </MainStyle.SlideBg>
+        <MainStyle.MainWrapper>
+          <MainStyle.MainContainer>
+            <S.InputTitle
+              type='text'
+              value={postTitle}
+              maxLength={TITLEMAXLENGTH}
+              placeholder='게시글 제목 (100자 이내)'
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setPostTitle(e.target.value)
+              }
+            />
+            <S.InputMainText
+              value={postContent}
+              maxLength={MAINMAXLENGTH}
+              placeholder='본문 입력 (1000자 이내)'
+              onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                setPostContent(e.target.value)
+              }
+            />
+            <S.PostSetting>
+              <S.SettingTitle>게시글 세부 설정</S.SettingTitle>
+              <S.SettingSelectionContainer>
+                {postLinks?.map((link, idx) => (
+                  <S.SettingForm key={idx}>
+                    <Link />
+                    <S.SettingInput
+                      type='text'
+                      value={link?.value}
+                      onChange={onChange}
+                      placeholder='링크 입력(선택)'
+                      name={link?.name}
+                    />
+                  </S.SettingForm>
+                ))}
+              </S.SettingSelectionContainer>
+            </S.PostSetting>
+            <S.ButtonContainer>
+              <S.PostButton isAble={isCondition()} onClick={onPost}>
+                {postId ? '수정완료' : '공지사항 추가하기'}
+              </S.PostButton>
+            </S.ButtonContainer>
+          </MainStyle.MainContainer>
+        </MainStyle.MainWrapper>
+      </MainStyle.PageWrapper>
     </PrivateRouter>
   )
 }

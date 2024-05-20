@@ -76,6 +76,26 @@ export const IsValidate = atom<boolean>({
   default: true,
 })
 
+export const EmailValue = atom<string>({
+  key: 'EmailValue',
+  default: '',
+})
+
+export const EmailErrorText = atom<string>({
+  key: 'EmailErrorText',
+  default: '',
+})
+
+export const PasswordValue = atom<string>({
+  key: 'PasswordValue',
+  default: '',
+})
+
+export const PasswordErrorText = atom<string>({
+  key: 'PasswordErrorText',
+  default: '',
+})
+
 // 강의 생성
 export const LectureEssentialComplete = atom<boolean>({
   key: 'LectureEssentialComplete',
