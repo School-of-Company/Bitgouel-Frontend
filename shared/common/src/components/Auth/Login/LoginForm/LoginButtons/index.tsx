@@ -1,6 +1,5 @@
 'use client'
 
-import { TokenManager } from '@bitgouel/api'
 import {
   EmailValue,
   LoadingStateContext,

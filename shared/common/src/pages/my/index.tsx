@@ -9,7 +9,7 @@ const MyPage = () => {
   const { push } = useRouter()
   const { data } = useGetMy()
   const { mutate: withdraw } = useDeleteWithDraw()
-
+  
   return (
     <S.MyPageWrapper url={Bg4}>
       <S.BlackBox>

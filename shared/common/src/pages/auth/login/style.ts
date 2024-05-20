@@ -11,3 +11,4 @@ export const MenuItem = styled.span<{ isError?: boolean }>`
   color: ${({ theme, isError }) =>
     isError ? theme.color.error : theme.color.gray['400']};
 `
+
