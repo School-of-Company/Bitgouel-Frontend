@@ -7,6 +7,12 @@ import {
 } from '@bitgouel/types'
 import { ReactNode } from 'react'
 import { atom } from 'recoil'
+import { recoilPersist } from 'recoil-persist'
+
+const { persistAtom } = recoilPersist({
+  key: 'recoil-persist',
+  storage: sessionStorage,
+})
 
 interface InputLectureDatesTypes extends LectureDate {
   startShowTime: string
@@ -166,4 +172,5 @@ export const LectureCredit = atom<1 | 2>({
 export const SchoolFilterText = atom<string>({
   key: 'SchoolFilterText',
   default: '',
+  effects_UNSTABLE: [persistAtom],
 })

@@ -38,6 +38,9 @@ importers:
       recoil:
         specifier: ^0.7.7
         version: 0.7.7(react-dom@18.2.0)(react@18.2.0)
+      recoil-persist:
+        specifier: ^4.0.0
+        version: 4.2.0(recoil@0.7.7)
       ts-pattern:
         specifier: ^5.0.5
         version: 5.0.5
@@ -3905,6 +3908,8 @@ packages:
       webpack: ^5.0.0
     peerDependenciesMeta:
       '@next/font':
+        optional: true
+      '@storybook/addon-actions':
         optional: true
       typescript:
         optional: true
@@ -9064,6 +9069,14 @@ packages:
       source-map: 0.6.1
       tslib: 2.6.2
     dev: true
+
+  /recoil-persist@4.2.0(recoil@0.7.7):
+    resolution: {integrity: sha512-MHVfML9GxJP3RpkKR4F5rp7DtvzIvjWhowtMao/b7h2k4afMio/4sMAdUtltIrDaeVegH0Iga8Sx5XQ3oD7CzA==}
+    peerDependencies:
+      recoil: ^0.7.2
+    dependencies:
+      recoil: 0.7.7(react-dom@18.2.0)(react@18.2.0)
+    dev: false
 
   /recoil@0.7.7(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-8Og5KPQW9LwC577Vc7Ug2P0vQshkv1y3zG3tSSkWMqkWSwHmE+by06L8JtnGocjW6gcCvfwB3YtrJG6/tWivNQ==}
