@@ -9,6 +9,7 @@ import * as S from './style'
 
 const LoginInput = () => {
   const loadingStateContext = useContext(LoadingStateContext)
+  
   return (
     <S.InputWrapper>
       <S.InputContainer>
