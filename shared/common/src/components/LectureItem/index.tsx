@@ -10,40 +10,39 @@ const LectureItem = ({ item }: LectureItemProps) => {
 
   return (
     <S.LectureItemWrapper onClick={() => push(`/main/lecture/${item.id}`)}>
-      <S.SubTitle>
-        <S.Professor>{item.lecturer}</S.Professor>
-      </S.SubTitle>
-      <S.Title>{item.name}</S.Title>
-      <S.MainTextContainer>
-        <S.MainText>
-          {item.content.length > 230
-            ? `${item.content.slice(0, 230)}...`
-            : item.content}
-        </S.MainText>
-      </S.MainTextContainer>
-      <S.SubMenuContainer>
-        <S.LectureInfoContainer>
-          <S.LectureInfoItem>
-            {LectureSemesterToKor[item.semester]}
-          </S.LectureInfoItem>
-          <S.LectureInfoItem>
+      <S.TitleBox>
+        <S.MainTitleContainer>
+          <S.Title>{item.name}</S.Title>
+          <S.Professor>{item.lecturer}</S.Professor>
+        </S.MainTitleContainer>
+        <S.TypeText>{item.lectureType}</S.TypeText>
+      </S.TitleBox>
+      <S.MainText>
+        {item.content.length > 230
+          ? `${item.content.slice(0, 230)}...`
+          : item.content}
+      </S.MainText>
+      <S.MenuWrapper>
+        <div>
+          <S.TypeText>{LectureSemesterToKor[item.semester]}</S.TypeText>
+          <S.TypeText>
             {item.division}
-            <hr />
+            {' | '}
             {item.line}
-            <hr />
+            {' | '}
             {item.department}
-          </S.LectureInfoItem>
-        </S.LectureInfoContainer>
-        <S.MenuNum>
-          <span>
+          </S.TypeText>
+        </div>
+        <div>
+          <S.LectureMenu>
             {item.headCount}/{item.maxRegisteredUser}명
-          </span>
-          <span>
+          </S.LectureMenu>
+          <S.LectureMenu>
             {dayjs(item.startDate).format('YYYY.MM.DD')} ~{' '}
             {dayjs(item.endDate).format('YYYY.MM.DD')}
-          </span>
-        </S.MenuNum>
-      </S.SubMenuContainer>
+          </S.LectureMenu>
+        </div>
+      </S.MenuWrapper>
     </S.LectureItemWrapper>
   )
 }

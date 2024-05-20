@@ -2,7 +2,7 @@
 
 import { useGetInstructors } from '@bitgouel/api'
 import { InputCancel, LectureInstructor, SearchIcon } from '@bitgouel/common'
-import { InstructorsItemType, InstructorsResponseTypes } from '@bitgouel/types'
+import { InstructorsItemType } from '@bitgouel/types'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import {

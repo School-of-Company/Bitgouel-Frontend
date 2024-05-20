@@ -21,33 +21,40 @@ import {
   LectureStartTime,
   LectureType,
   PrivateRouter,
-  useModal
+  useModal,
 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useRecoilState } from 'recoil'
 import * as S from './style'
+import * as MainStyle from '../../styles'
 
 const MAXLENGTH: number = 1000 as const
 
 const LectureCreatePage = () => {
   const [lectureTitle, setLectureTitle] = useState<string>('')
   const [lectureContent, setLectureContent] = useState<string>('')
-  const [lectureEssentialComplete, setLectureEssentialComplete] = useRecoilState(LectureEssentialComplete)
+  const [lectureEssentialComplete, setLectureEssentialComplete] =
+    useRecoilState(LectureEssentialComplete)
   const [lectureSemester, setLectureSemester] = useRecoilState(LectureSemester)
   const [lectureDivision, setLectureDivision] = useRecoilState(LectureDivision)
-  const [lectureDepartment, setLectureDepartment] = useRecoilState(LectureDepartment)
+  const [lectureDepartment, setLectureDepartment] =
+    useRecoilState(LectureDepartment)
   const [lectureLine, setLectureLine] = useRecoilState(LectureLine)
-  const [lectureInstructor, setLectureInstructor] = useRecoilState(LectureInstructor)
-  const [lectureStartDate, setLectureStartDate] = useRecoilState(LectureStartDate)
-  const [lectureStartTime, setLectureStartTime] = useRecoilState(LectureStartTime)
+  const [lectureInstructor, setLectureInstructor] =
+    useRecoilState(LectureInstructor)
+  const [lectureStartDate, setLectureStartDate] =
+    useRecoilState(LectureStartDate)
+  const [lectureStartTime, setLectureStartTime] =
+    useRecoilState(LectureStartTime)
   const [lectureEndDate, setLectureEndDate] = useRecoilState(LectureEndDate)
   const [lectureEndTime, setLectureEndTime] = useRecoilState(LectureEndTime)
   const [lectureDates, setLectureDates] = useRecoilState(LectureDates)
   const [lectureType, setLectureType] = useRecoilState(LectureType)
   const [lectureCredit, setLectureCredit] = useRecoilState(LectureCredit)
-  const [lectureMaxRegisteredUser, setLectureMaxRegisteredUser] = useRecoilState(LectureMaxRegistered)
+  const [lectureMaxRegisteredUser, setLectureMaxRegisteredUser] =
+    useRecoilState(LectureMaxRegistered)
   const { openModal, closeModal } = useModal()
   const { push } = useRouter()
 
@@ -72,7 +79,7 @@ const LectureCreatePage = () => {
   }
 
   const { mutate } = usePostLecture({
-    onSuccess: () => createSuccess()
+    onSuccess: () => createSuccess(),
   })
 
   const isAble = (): boolean => {
@@ -123,7 +130,7 @@ const LectureCreatePage = () => {
             lectureType,
             credit: lectureCredit,
             maxRegisteredUser: +lectureMaxRegisteredUser,
-            essentialComplete: lectureEssentialComplete
+            essentialComplete: lectureEssentialComplete,
           })
         }
       />
@@ -132,42 +139,46 @@ const LectureCreatePage = () => {
 
   return (
     <PrivateRouter>
-      <div>
-      <S.SlideBg url={Bg3}>
-        <S.BgContainer>
-          <S.CreateTitle>강의 개설</S.CreateTitle>
-          <S.TitleButtonContainer>
-            <S.LectureButton onClick={() => openModal(<LectureSettingModal />)}>
-              <FilterOut />
-              <span>강의 세부 설정</span>
-            </S.LectureButton>
-          </S.TitleButtonContainer>
-        </S.BgContainer>
-      </S.SlideBg>
-      <S.DocumentInputContainer>
-        <S.DocumentInput>
-          <S.InputTitle
-            value={lectureTitle}
-            maxLength={100}
-            placeholder='강의 제목 (100자 이내)'
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setLectureTitle(e.target.value)
-            }
-          />
-          <S.InputMainText
-            value={lectureContent}
-            maxLength={MAXLENGTH}
-            placeholder='강의 설명 작성 (1000자 이내)'
-            onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-              setLectureContent(e.target.value)
-            }
-          />
-          <S.CreateButton onClick={openCreateModal} isAble={isAble()}>
-            강의 개설하기
-          </S.CreateButton>
-        </S.DocumentInput>
-      </S.DocumentInputContainer>
-      </div>
+      <MainStyle.PageWrapper>
+        <MainStyle.SlideBg url={Bg3}>
+          <MainStyle.BgContainer>
+            <MainStyle.PageTitle>강의 개설</MainStyle.PageTitle>
+            <MainStyle.ButtonContainer>
+              <MainStyle.SlideButton
+                onClick={() => openModal(<LectureSettingModal />)}
+              >
+                <FilterOut />
+                <span>강의 세부 설정</span>
+              </MainStyle.SlideButton>
+            </MainStyle.ButtonContainer>
+          </MainStyle.BgContainer>
+        </MainStyle.SlideBg>
+        <MainStyle.MainWrapper>
+          <MainStyle.MainContainer>
+            <S.InputTitle
+              value={lectureTitle}
+              maxLength={100}
+              placeholder='강의 제목 (100자 이내)'
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setLectureTitle(e.target.value)
+              }
+            />
+            <S.InputMainText
+              value={lectureContent}
+              maxLength={MAXLENGTH}
+              placeholder='강의 설명 작성 (1000자 이내)'
+              onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                setLectureContent(e.target.value)
+              }
+            />
+          </MainStyle.MainContainer>
+          <S.CreateButtonWrapper>
+            <S.CreateButton onClick={openCreateModal} isAble={isAble()}>
+              강의 개설하기
+            </S.CreateButton>
+          </S.CreateButtonWrapper>
+        </MainStyle.MainWrapper>
+      </MainStyle.PageWrapper>
     </PrivateRouter>
   )
 }

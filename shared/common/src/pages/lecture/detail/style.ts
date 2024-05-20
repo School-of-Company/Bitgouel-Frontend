@@ -1,94 +1,28 @@
 import styled from '@emotion/styled'
-import { ApproveStatusEnum } from '@bitgouel/types'
-import { StaticImageData } from 'next/image'
-
-export const SlideBg = styled.div<{ url: StaticImageData }>`
-  height: 15rem;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  background-image: url(${({ url }) => url.src});
-  background-position: center;
-  background-size: cover;
-  align-items: flex-end;
-`
-
-export const BgContainer = styled.div`
-  width: 75rem;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-`
-
-export const LectureTitle = styled.span`
-  color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.title_lg.semibold};
-`
-
-export const ButtonContainer = styled.div`
-  display: flex;
-  align-items: flex-end;
-`
-
-export const LectureButton = styled.div`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  background-color: rgb(255, 255, 255, 0.2);
-  height: 2.5rem;
-  margin-left: 1rem;
-  padding: 0 0.75rem;
-  border-radius: 0.5rem;
-  backdrop-filter: blur(0.25rem);
-  svg {
-    fill: ${({ theme }) => theme.color.white};
-  }
-  span {
-    color: ${({ theme }) => theme.color.white};
-    ${({ theme }) => theme.typo.text_md.regular};
-    margin-left: 0.25rem;
-  }
-  &:hover {
-    background-color: rgb(255, 255, 255, 0.4);
-  }
-`
-
-export const DocumentWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2.5rem;
-`
-
-export const Document = styled.div`
-  width: 75rem;
-  padding-bottom: 6.25rem;
-`
 
 export const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.5rem;
+  margin-top: 1.5rem;
 
   h1 {
     ${({ theme }) => theme.typo.title_sm.semibold};
-    margin: 0;
+    margin-top: 0.5rem;
   }
 `
 
 export const LectureStatusContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  flex-wrap: wrap;
 `
 
 export const LectureStatusBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: 1rem;
   ${({ theme }) => theme.typo.text_sm.semibold};
   color: ${({ theme }) => theme.color.main};
   border: 0.0625rem solid ${({ theme }) => theme.color.main};
@@ -101,6 +35,7 @@ export const LectureInfoContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  flex-wrap: wrap;
   span {
     ${({ theme }) => theme.typo.text_lg.regular};
     color: ${({ theme }) => theme.color.gray['400']};
@@ -115,49 +50,45 @@ export const MainText = styled.div`
   padding-bottom: 1.5rem;
 `
 
-export const LectureDateWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
-  padding: 1.5rem 0;
+export const LectureSection = styled.div`
   border-top: 0.0625rem solid ${({ theme }) => theme.color.gray['900']};
-  border-bottom: 0.0625rem solid ${({ theme }) => theme.color.gray['900']};
-
-  h2 {
-    ${({ theme }) => theme.typo.title_sm.semibold};
-    margin: 0;
+  padding: 1.5rem 0;
+  &:last-child {
+    padding-bottom: 50rem;
   }
   span {
-    ${({ theme }) => theme.typo.text_lg.medium};
+    color: ${({ theme }) => theme.color.black};
+    ${({ theme }) => theme.typo.title_sm.semibold};
+  }
+  div {
     color: ${({ theme }) => theme.color.gray['400']};
+    ${({ theme }) => theme.typo.text_lg.regular};
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
   }
 `
 
-export const LectureDateText = styled.span`
-  margin-left: 1rem;
+export const WhiteBox = styled.div`
+  height: 5rem;
 `
 
-export const LectureMaxWrapper = styled(LectureDateWrapper)`
-  border: none;
-`
-export const LectureMaxText = styled.span`
-  margin: 0;
+export const ApplyButtonWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  bottom: 2.5rem;
 `
 
 export const ApplyButton = styled.div<{ isAble: boolean }>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: ${({ theme, isAble }) =>
     isAble ? theme.color.white : theme.color.gray['400']};
   background-color: ${({ theme, isAble }) =>
     isAble ? theme.color.main : theme.color.gray['700']};
   ${({ theme }) => theme.typo.text_lg.semibold};
+  padding: 0.75rem 2.5rem;
   border-radius: 0.5rem;
-  width: 11.25rem;
-  height: 3.25rem;
-  position: fixed;
-  bottom: 3.125rem;
   cursor: pointer;
 `

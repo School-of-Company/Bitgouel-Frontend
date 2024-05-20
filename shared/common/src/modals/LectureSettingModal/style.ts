@@ -54,6 +54,7 @@ export const SettingContainer = styled.div`
 
 export const EnumSelectContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 1rem;
 
@@ -110,6 +111,7 @@ export const SearchInputBox = styled.form<{ isSelected?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: calc(100% - 2.5rem);
 
   svg {
     cursor: pointer;
@@ -121,7 +123,7 @@ export const SearchInput = styled.input`
   color: ${({ theme }) => theme.color.black};
   border: none;
   outline: none;
-  width: 43rem;
+  width: 100%;
 
   &::placeholder {
     color: ${({ theme }) => theme.color.gray['400']};
