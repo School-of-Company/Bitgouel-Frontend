@@ -5,7 +5,7 @@ import {
   usePatchMyInquiry,
   usePostInquiry,
 } from '@bitgouel/api'
-import { AppropriationModal, Bg5, useModal } from '@bitgouel/common'
+import { AppropriationModal, Bg5, useModal, MainStyle } from '@bitgouel/common'
 import { ChangeEvent, useEffect, useState } from 'react'
 import * as S from './style'
 
@@ -44,14 +44,14 @@ const InquiryWritePage = ({ inquiryId }: { inquiryId?: string }) => {
   }
 
   return (
-    <div>
-      <S.SlideBg url={Bg5}>
-        <S.BgContainer>
-          <S.CreateTitle>문의하기</S.CreateTitle>
-        </S.BgContainer>
-      </S.SlideBg>
-      <S.DocumentInputContainer>
-        <S.DocumentInput>
+    <MainStyle.PageWrapper>
+      <MainStyle.SlideBg url={Bg5}>
+        <MainStyle.BgContainer>
+          <MainStyle.PageTitle>문의하기</MainStyle.PageTitle>
+        </MainStyle.BgContainer>
+      </MainStyle.SlideBg>
+      <MainStyle.MainWrapper>
+        <MainStyle.MainContainer>
           <S.InputTitle
             value={inquiryTitle}
             placeholder='문의 제목(100자 이내)'
@@ -106,9 +106,9 @@ const InquiryWritePage = ({ inquiryId }: { inquiryId?: string }) => {
               문의하기
             </S.CreateButton>
           </S.ButtonContainer>
-        </S.DocumentInput>
-      </S.DocumentInputContainer>
-    </div>
+        </MainStyle.MainContainer>
+      </MainStyle.MainWrapper>
+    </MainStyle.PageWrapper>
   )
 }
 
