@@ -1,8 +1,7 @@
 import styled from '@emotion/styled'
 
 export const ApplyItemWrapper = styled.div`
-  width: 72.5rem;
-  height: 6.375rem;
+  width: 100%;
   padding: 1rem 2.5rem;
   display: flex;
   align-items: center;
@@ -33,6 +32,8 @@ export const NameBox = styled.div`
 
 export const CohortText = styled.span`
   color: ${({ theme }) => theme.color.gray['700']};
+  display: flex;
+  flex-wrap: wrap;
 `
 
 export const NameText = styled.span`
@@ -43,6 +44,7 @@ export const SchoolInfoBox = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex-wrap: wrap;
 
   span {
     ${({ theme }) => theme.typo.text_lg.medium};
@@ -53,6 +55,7 @@ export const SchoolInfoBox = styled.div`
 export const ContactInfo = styled.div`
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 1rem;
 
   span {

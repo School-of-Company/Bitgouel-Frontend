@@ -1,5 +1,13 @@
+'use client'
+
 import styled from '@emotion/styled'
 import { StaticImageData } from 'next/image'
+
+export const PageWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`
 
 export const SlideBg = styled.div<{ url: StaticImageData }>`
   height: 15rem;
@@ -15,11 +23,12 @@ export const SlideBg = styled.div<{ url: StaticImageData }>`
 export const BgContainer = styled.div`
   width: 75rem;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   margin-bottom: 1rem;
 `
 
-export const LectureTitle = styled.span`
+export const PageTitle = styled.span`
   color: ${({ theme }) => theme.color.white};
   ${({ theme }) => theme.typo.title_lg.semibold};
 `
@@ -29,7 +38,7 @@ export const ButtonContainer = styled.div`
   align-items: flex-end;
 `
 
-export const LectureButton = styled.div`
+export const SlideButton = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -52,14 +61,15 @@ export const LectureButton = styled.div`
   }
 `
 
-export const ListWrapper = styled.div`
+export const MainWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  width: 75rem;
   gap: 1rem;
 `
-export const ListContainer = styled.div`
-  width: 75rem;
+
+export const MainContainer = styled.div`
+  width: 100%;
   margin-top: 1.5rem;
 `

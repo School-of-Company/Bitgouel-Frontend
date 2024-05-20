@@ -47,7 +47,7 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
           setSpanColor(`${theme.color.white}`)
         }
       } else {
-        if (scrollY >= 240) {
+        if (scrollY >= 160) {
           setBgColor(`${theme.color.white}`)
           setSymbolNum(Symbol2)
           setBtnColor('rgb(209, 209, 209, 1)')

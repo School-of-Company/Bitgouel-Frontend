@@ -102,7 +102,9 @@ const LectureEnrollmentDates = () => {
               style={{ width: '7.625rem' }}
             />
           </DateBox>
-          {idx !== 0 && <InputCancel onClick={() => onDeleteDate(idx)} />}
+
+            {idx !== 0 && <InputCancel onClick={() => onDeleteDate(idx)} />}
+
         </S.EnrollmentDateContainer>
       ))}
       <S.AddDateButton onClick={onAddDates}>+ 날짜 추가하기</S.AddDateButton>
