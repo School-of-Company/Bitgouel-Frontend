@@ -13,7 +13,7 @@ const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const { mutate: upload } = usePostExcelUpload()
   
   const onFileUpload = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const excelFile: File = e.currentTarget.files[0]
+    const excelFile: File | string = e.currentTarget.files ? e.currentTarget.files[0] : '';
     const formData = new FormData()
     formData.append('file', excelFile)
     upload(formData)
