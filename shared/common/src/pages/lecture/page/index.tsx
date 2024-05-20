@@ -16,6 +16,7 @@ import {
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import * as S from './style'
+import { toast } from 'react-toastify'
 
 const defaultFilterList = [
   { text: '전체', item: '전체',checked: true },
@@ -59,7 +60,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
     size: 10,
     type: lectureTypeFilter,
   })
-  const { data: applyExcel } = useGetLectureExcel({
+  const { data: applyExcel, isError } = useGetLectureExcel({
     enabled: tokenManager.authority === 'ROLE_ADMIN' && isClick
   })
 
@@ -69,7 +70,9 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
 
   const onDownload = () => {
     setIsClick(true)
+    if (isError) return toast.error('취업 동아리 선생님이 배정되지 않았습니다')
     excelDownload({data: applyExcel, fileName: '강의 신청 명단', fileExtension: 'xlsx'})
+    setIsClick(false)
   }
 
   useEffect(() => {
