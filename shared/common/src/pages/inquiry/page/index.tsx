@@ -12,6 +12,7 @@ import {
   SearchIcon,
   useFilterSelect,
   useModal,
+  MainStyle,
 } from '@bitgouel/common'
 import { AnswerStatus } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
@@ -40,7 +41,8 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
   })
   const { openModal } = useModal()
   const { filterList, onSelected } = useFilterSelect({
-    defaultFilterList, setFilterPayload: setAnswerStatus
+    defaultFilterList,
+    setFilterPayload: setAnswerStatus,
   })
 
   const onSubmit = (e: FormEvent) => {
@@ -53,69 +55,75 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
   }, [answerStatus])
 
   return (
-    <div style={{ width: '100%', height: '100vh' }}>
-      <S.SlideBg url={Bg5}>
-        <S.BgContainer>
-          <S.InquiryTitle>문의사항</S.InquiryTitle>
-          <S.ButtonContainer>
-            <S.InquiryButton onClick={() => push(`/main/post`)}>
+    <MainStyle.PageWrapper>
+      <MainStyle.SlideBg url={Bg5}>
+        <MainStyle.BgContainer>
+          <MainStyle.PageTitle>문의사항</MainStyle.PageTitle>
+          <MainStyle.ButtonContainer>
+            <MainStyle.SlideButton onClick={() => push(`/main/post`)}>
               <Message />
               <span>게시글</span>
-            </S.InquiryButton>
-            <S.InquiryButton onClick={() => push(`/main/post/notice`)}>
+            </MainStyle.SlideButton>
+            <MainStyle.SlideButton onClick={() => push(`/main/post/notice`)}>
               <MegaPhone />
               <span>공지사항</span>
-            </S.InquiryButton>
+            </MainStyle.SlideButton>
             {!isAdmin && (
-              <S.InquiryButton
+              <MainStyle.SlideButton
                 onClick={() => push('/main/post/inquiry/create')}
               >
                 <Plus />
                 <span>문의사항 추가</span>
-              </S.InquiryButton>
+              </MainStyle.SlideButton>
             )}
-          </S.ButtonContainer>
-        </S.BgContainer>
-      </S.SlideBg>
-      <S.InquiryWrapper>
-        {isAdmin && (
-          <S.SearchContainer>
-            <S.SearchBox onSubmit={onSubmit}>
-              <S.SearchInput
-                type='text'
-                placeholder='키워드로 검색...'
-                value={keyword}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setKeyword(e.target.value)
-                }
-              />
-              <SearchIcon onClick={() => refetch()} />
-            </S.SearchBox>
-              <S.Filter onClick={() => openModal(
-                <FilterModal
-                  title='문의 상태'
-                  filterList={filterList}
-                  onSelected={onSelected}
+          </MainStyle.ButtonContainer>
+        </MainStyle.BgContainer>
+      </MainStyle.SlideBg>
+      <MainStyle.MainWrapper>
+        <MainStyle.MainContainer>
+          {isAdmin && (
+            <S.SearchContainer>
+              <S.SearchBox onSubmit={onSubmit}>
+                <S.SearchInput
+                  type='text'
+                  placeholder='키워드로 검색...'
+                  value={keyword}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    setKeyword(e.target.value)
+                  }
                 />
-              )}>
+                <SearchIcon onClick={() => refetch()} />
+              </S.SearchBox>
+              <S.Filter
+                onClick={() =>
+                  openModal(
+                    <FilterModal
+                      title='문의 상태'
+                      filterList={filterList}
+                      onSelected={onSelected}
+                    />
+                  )
+                }
+              >
                 <FilterOut />
                 <span>필터</span>
               </S.Filter>
-          </S.SearchContainer>
-        )}
-        <S.ListWrapper>
-          <S.ListContainer>
-            {isAdmin
-              ? inquiryList?.inquiries.map((inquiry) => (
-                  <InquiryItem item={inquiry} key={inquiry.id} />
-                ))
-              : myInquiryList?.inquiries.map((inquiry) => (
-                  <InquiryItem item={inquiry} key={inquiry.id} />
-                ))}
-          </S.ListContainer>
-        </S.ListWrapper>
-      </S.InquiryWrapper>
-    </div>
+            </S.SearchContainer>
+          )}
+          <S.ListWrapper>
+            <S.ListContainer>
+              {isAdmin
+                ? inquiryList?.inquiries.map((inquiry) => (
+                    <InquiryItem item={inquiry} key={inquiry.id} />
+                  ))
+                : myInquiryList?.inquiries.map((inquiry) => (
+                    <InquiryItem item={inquiry} key={inquiry.id} />
+                  ))}
+            </S.ListContainer>
+          </S.ListWrapper>
+        </MainStyle.MainContainer>
+      </MainStyle.MainWrapper>
+    </MainStyle.PageWrapper>
   )
 }
 
