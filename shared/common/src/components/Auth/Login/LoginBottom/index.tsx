@@ -12,13 +12,12 @@ import * as S from './style'
 
 const LoginBottom = () => {
   const { push } = useRouter()
+  const resetPage = useResetRecoilState(SignUpPageNumber)
+  const resetPage1Obj = useResetRecoilState(SignUpPage1Obj)
+  const resetPage2Obj = useResetRecoilState(SignUpPage2Obj)
+  const resetPage3Obj = useResetRecoilState(SignUpPage3Obj)
 
   const locationSignUp = () => {
-    const resetPage = useResetRecoilState(SignUpPageNumber)
-    const resetPage1Obj = useResetRecoilState(SignUpPage1Obj)
-    const resetPage2Obj = useResetRecoilState(SignUpPage2Obj)
-    const resetPage3Obj = useResetRecoilState(SignUpPage3Obj)
-
     resetPage()
     resetPage1Obj()
     resetPage2Obj()
