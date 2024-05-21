@@ -16,7 +16,7 @@ import {
 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
-import { TopContainer } from '../NewUserListPage/style'
+import { RequestDisplayBar, TopContainer } from '../NewUserListPage/style'
 import { UserListContainer } from '../UserListPage/style'
 import * as S from './style'
 
@@ -87,10 +87,15 @@ const WithdrawUserListPage = () => {
       </S.SlideBg>
       <S.UserListWrapper>
         <TopContainer>
-          <S.RemarkBox>
-            <span>선택</span>
-            <span style={{ marginLeft: '1.5rem' }}>이름</span>
-          </S.RemarkBox>
+          <RequestDisplayBar>
+            <div>
+              <span>선택</span>
+              <span>이름</span>
+            </div>
+            <span>직업</span>
+            <span>전화번호</span>
+            <span>이메일</span>
+          </RequestDisplayBar>
           <S.WithdrawButtonContainer>
             <S.FilterBox
               onClick={() =>
@@ -123,6 +128,9 @@ const WithdrawUserListPage = () => {
               key={user.withdrawId}
               id={user.userId}
               name={user.studentName}
+              authority={user.authority}
+              phoneNumber={user.phoneNumber}
+              email={user.email}
               status='request'
               handleSelectUsers={handleSelectUsers}
               userIds={userIds}

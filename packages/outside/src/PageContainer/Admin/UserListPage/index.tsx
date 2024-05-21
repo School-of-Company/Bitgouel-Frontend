@@ -101,19 +101,21 @@ const UserListPage = () => {
             <span>필터</span>
           </S.UserSearchFilter>
         </S.UserSearchContainer>
+        <S.DisplayBar>
+          <span>이름</span>
+          <span>직업</span>
+          <span>전화번호</span>
+          <span>이메일</span>
+        </S.DisplayBar>
         <S.UserListContainer>
-          <div>
-            <S.DisplayBar>
-              <span>이름</span>
-              <span>직업</span>
-            </S.DisplayBar>
-          </div>
           {data?.users.map((user) => (
             <UserItem
               key={user.id}
               id={user.id}
               name={user.name}
               authority={user.authority}
+              phoneNumber={user.phoneNumber}
+              email={user.email}
               status='current'
             />
           ))}

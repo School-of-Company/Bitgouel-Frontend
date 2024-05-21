@@ -82,11 +82,15 @@ const NewUserListPage = () => {
       </S.SlideBg>
       <S.UserListWrapper>
         <S.TopContainer>
-          <S.RemarkBox>
-            <span>선택</span>
-            <span style={{ marginLeft: '1.5rem' }}>이름</span>
-            <span style={{ marginLeft: '3.4rem' }}>직업</span>
-          </S.RemarkBox>
+          <S.RequestDisplayBar>
+            <div>
+              <span>선택</span>
+              <span>이름</span>
+            </div>
+            <span>직업</span>
+            <span>전화번호</span>
+            <span>이메일</span>
+          </S.RequestDisplayBar>
           <S.SelectBoxContainer>
             <S.SelectBox type='allNew' htmlFor='allNew'>
               <input type='checkbox' id='allNew' onChange={onAll} />
@@ -116,6 +120,8 @@ const NewUserListPage = () => {
               id={user.id}
               name={user.name}
               authority={user.authority}
+              phoneNumber={user.phoneNumber}
+              email={user.email}
               status='request'
               handleSelectUsers={handleSelectUsers}
               userIds={userIds}

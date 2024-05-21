@@ -16,13 +16,17 @@ export interface UserTypes {
   name: string
   authority: RoleEnumTypes
   approveStatus: ApproveStatusTypes
+  phoneNumber: string
+  email: string
 }
 
 export interface UserListResponseTypes {
   users: UserTypes[]
 }
 
-export interface WithdrawUserTypes {
+type PickUserTypes = Pick<UserTypes, 'authority' | 'phoneNumber' | 'email'>
+
+export interface WithdrawUserTypes extends PickUserTypes {
   withdrawId: number
   userId: string
   studentName: string
