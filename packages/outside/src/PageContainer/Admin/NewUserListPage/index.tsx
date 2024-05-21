@@ -9,6 +9,7 @@ import {
   AppropriationModal,
   Bg6,
   Check,
+  MainStyle,
   Minus,
   PeopleCircle,
   UserItem,
@@ -65,28 +66,32 @@ const NewUserListPage = () => {
 
   return (
     <div>
-      <S.SlideBg url={Bg6}>
-        <S.BgContainer>
-          <S.ClubTitle>신규 가입자 명단</S.ClubTitle>
-          <S.ButtonContainer>
-            <S.ButtonBox onClick={() => push('/main/admin')}>
+      <MainStyle.SlideBg url={Bg6}>
+        <MainStyle.BgContainer>
+          <MainStyle.PageTitle>신규 가입자 명단</MainStyle.PageTitle>
+          <MainStyle.ButtonContainer>
+            <MainStyle.SlideButton onClick={() => push('/main/admin')}>
               <PeopleCircle />
               <span>사용자 명단</span>
-            </S.ButtonBox>
-            <S.ButtonBox onClick={() => push('/main/admin/withdraw')}>
+            </MainStyle.SlideButton>
+            <MainStyle.SlideButton onClick={() => push('/main/admin/withdraw')}>
               <Minus />
               <span>탈퇴 예정자 명단</span>
-            </S.ButtonBox>
-          </S.ButtonContainer>
-        </S.BgContainer>
-      </S.SlideBg>
+            </MainStyle.SlideButton>
+          </MainStyle.ButtonContainer>
+        </MainStyle.BgContainer>
+      </MainStyle.SlideBg>
       <S.UserListWrapper>
         <S.TopContainer>
-          <S.RemarkBox>
-            <span>선택</span>
-            <span style={{ marginLeft: '1.5rem' }}>이름</span>
-            <span style={{ marginLeft: '3.4rem' }}>직업</span>
-          </S.RemarkBox>
+          <S.RequestDisplayBar>
+            <div>
+              <span>선택</span>
+              <span>이름</span>
+            </div>
+            <span>직업</span>
+            <span>전화번호</span>
+            <span>이메일</span>
+          </S.RequestDisplayBar>
           <S.SelectBoxContainer>
             <S.SelectBox type='allNew' htmlFor='allNew'>
               <input type='checkbox' id='allNew' onChange={onAll} />
@@ -116,6 +121,8 @@ const NewUserListPage = () => {
               id={user.id}
               name={user.name}
               authority={user.authority}
+              phoneNumber={user.phoneNumber}
+              email={user.email}
               status='request'
               handleSelectUsers={handleSelectUsers}
               userIds={userIds}
