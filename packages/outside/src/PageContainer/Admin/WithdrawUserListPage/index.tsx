@@ -7,6 +7,7 @@ import {
   Check,
   FilterModal,
   FilterOut,
+  MainStyle,
   PeopleCircle,
   Plus,
   UserItem,
@@ -70,21 +71,21 @@ const WithdrawUserListPage = () => {
 
   return (
     <div>
-      <S.SlideBg url={Bg6}>
-        <S.BgContainer>
-          <S.ClubTitle>탈퇴 예정자 명단</S.ClubTitle>
-          <S.ButtonContainer>
-            <S.ButtonBox onClick={() => push('/main/admin')}>
+      <MainStyle.SlideBg url={Bg6}>
+        <MainStyle.BgContainer>
+          <MainStyle.PageTitle>탈퇴 예정자 명단</MainStyle.PageTitle>
+          <MainStyle.ButtonContainer>
+            <MainStyle.SlideButton onClick={() => push('/main/admin')}>
               <PeopleCircle />
               <span>사용자 명단</span>
-            </S.ButtonBox>
+            </MainStyle.SlideButton>
             <S.ButtonBox onClick={() => push('/main/admin/new')}>
               <Plus />
               <span>신규 가입자 명단</span>
             </S.ButtonBox>
-          </S.ButtonContainer>
-        </S.BgContainer>
-      </S.SlideBg>
+          </MainStyle.ButtonContainer>
+        </MainStyle.BgContainer>
+      </MainStyle.SlideBg>
       <S.UserListWrapper>
         <TopContainer>
           <RequestDisplayBar>

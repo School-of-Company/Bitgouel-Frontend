@@ -9,6 +9,7 @@ import {
   AppropriationModal,
   Bg6,
   Check,
+  MainStyle,
   Minus,
   PeopleCircle,
   UserItem,
@@ -65,21 +66,21 @@ const NewUserListPage = () => {
 
   return (
     <div>
-      <S.SlideBg url={Bg6}>
-        <S.BgContainer>
-          <S.ClubTitle>신규 가입자 명단</S.ClubTitle>
-          <S.ButtonContainer>
-            <S.ButtonBox onClick={() => push('/main/admin')}>
+      <MainStyle.SlideBg url={Bg6}>
+        <MainStyle.BgContainer>
+          <MainStyle.PageTitle>신규 가입자 명단</MainStyle.PageTitle>
+          <MainStyle.ButtonContainer>
+            <MainStyle.SlideButton onClick={() => push('/main/admin')}>
               <PeopleCircle />
               <span>사용자 명단</span>
-            </S.ButtonBox>
-            <S.ButtonBox onClick={() => push('/main/admin/withdraw')}>
+            </MainStyle.SlideButton>
+            <MainStyle.SlideButton onClick={() => push('/main/admin/withdraw')}>
               <Minus />
               <span>탈퇴 예정자 명단</span>
-            </S.ButtonBox>
-          </S.ButtonContainer>
-        </S.BgContainer>
-      </S.SlideBg>
+            </MainStyle.SlideButton>
+          </MainStyle.ButtonContainer>
+        </MainStyle.BgContainer>
+      </MainStyle.SlideBg>
       <S.UserListWrapper>
         <S.TopContainer>
           <S.RequestDisplayBar>
