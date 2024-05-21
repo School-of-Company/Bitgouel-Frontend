@@ -1,14 +1,23 @@
 'use client'
 
-import { useDeleteWithDraw, useGetMy } from '@bitgouel/api'
+import { useDeleteWithDraw, useGetMy, usePostExcelUpload } from '@bitgouel/api'
 import { Bg4, roleToKor } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import * as S from './style'
+import { ChangeEvent, useCallback } from 'react'
 
-const MyPage = () => {
+const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const { push } = useRouter()
   const { data } = useGetMy()
   const { mutate: withdraw } = useDeleteWithDraw()
+  const { mutate: upload } = usePostExcelUpload()
+  
+  const onFileUpload = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    const excelFile: File | string = e.currentTarget.files ? e.currentTarget.files[0] : '';
+    const formData = new FormData()
+    formData.append('file', excelFile)
+    upload(formData)
+  }, [])
   
   return (
     <S.MyPageWrapper url={Bg4}>
@@ -55,12 +64,20 @@ const MyPage = () => {
             <S.AccountSettingWrapper>
               <S.MyTitle>계정 설정</S.MyTitle>
               <S.AccountSettingContainer>
-                <S.AccountSettingLine>
-                  <S.LeftText>학생정보 일괄 삽입</S.LeftText>
-                  <S.LineRightText>
-                    엑셀 파일 업로드
-                  </S.LineRightText>
-                </S.AccountSettingLine>
+                {isAdmin && (
+                  <S.AccountSettingLine>
+                    <S.LeftText>학생정보 일괄 삽입</S.LeftText>
+                    <S.LineRightText htmlFor='excelUpload'>
+                      <input 
+                        id='excelUpload'
+                        type='file'
+                        accept='.xlsx, .xls, .csv'
+                        onChange={onFileUpload}
+                      />
+                      엑셀 파일 업로드
+                    </S.LineRightText>
+                  </S.AccountSettingLine>
+                )}
                 <S.SharedLine />
                 <S.AccountSettingLine>
                   <S.LeftText>회원정보 수정</S.LeftText>

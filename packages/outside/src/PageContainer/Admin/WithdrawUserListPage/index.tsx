@@ -7,6 +7,7 @@ import {
   Check,
   FilterModal,
   FilterOut,
+  MainStyle,
   PeopleCircle,
   Plus,
   UserItem,
@@ -16,7 +17,7 @@ import {
 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
-import { TopContainer } from '../NewUserListPage/style'
+import { RequestDisplayBar, TopContainer } from '../NewUserListPage/style'
 import { UserListContainer } from '../UserListPage/style'
 import * as S from './style'
 
@@ -70,27 +71,32 @@ const WithdrawUserListPage = () => {
 
   return (
     <div>
-      <S.SlideBg url={Bg6}>
-        <S.BgContainer>
-          <S.ClubTitle>탈퇴 예정자 명단</S.ClubTitle>
-          <S.ButtonContainer>
-            <S.ButtonBox onClick={() => push('/main/admin')}>
+      <MainStyle.SlideBg url={Bg6}>
+        <MainStyle.BgContainer>
+          <MainStyle.PageTitle>탈퇴 예정자 명단</MainStyle.PageTitle>
+          <MainStyle.ButtonContainer>
+            <MainStyle.SlideButton onClick={() => push('/main/admin')}>
               <PeopleCircle />
               <span>사용자 명단</span>
-            </S.ButtonBox>
+            </MainStyle.SlideButton>
             <S.ButtonBox onClick={() => push('/main/admin/new')}>
               <Plus />
               <span>신규 가입자 명단</span>
             </S.ButtonBox>
-          </S.ButtonContainer>
-        </S.BgContainer>
-      </S.SlideBg>
+          </MainStyle.ButtonContainer>
+        </MainStyle.BgContainer>
+      </MainStyle.SlideBg>
       <S.UserListWrapper>
         <TopContainer>
-          <S.RemarkBox>
-            <span>선택</span>
-            <span style={{ marginLeft: '1.5rem' }}>이름</span>
-          </S.RemarkBox>
+          <RequestDisplayBar>
+            <div>
+              <span>선택</span>
+              <span>이름</span>
+            </div>
+            <span>직업</span>
+            <span>전화번호</span>
+            <span>이메일</span>
+          </RequestDisplayBar>
           <S.WithdrawButtonContainer>
             <S.FilterBox
               onClick={() =>
@@ -123,6 +129,9 @@ const WithdrawUserListPage = () => {
               key={user.withdrawId}
               id={user.userId}
               name={user.studentName}
+              authority={user.authority}
+              phoneNumber={user.phoneNumber}
+              email={user.email}
               status='request'
               handleSelectUsers={handleSelectUsers}
               userIds={userIds}
