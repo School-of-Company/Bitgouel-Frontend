@@ -136,11 +136,15 @@ export const AccountSettingLine = styled.div`
   margin: 1.5rem 0rem;
 `
 
-export const LineRightText = styled.span`
+export const LineRightText = styled.label`
   ${({ theme }) => theme.typo.text_md.regular};
   color: ${({ theme }) => theme.color.main};
   text-decoration: underline;
   cursor: pointer;
+
+  input {
+    display: none;
+  }
 `
 
 export const WithDrawText = styled(LineRightText)`
