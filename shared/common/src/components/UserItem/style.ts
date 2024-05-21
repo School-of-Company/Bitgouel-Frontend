@@ -16,6 +16,12 @@ export const UserItem = styled.div`
   gap: 4rem;
 `
 
+export const CheckItemContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+`
+
 export const Name = styled.span`
   color: ${({ theme }) => theme.color.black};
   ${({ theme }) => theme.typo.text_lg.medium}

@@ -18,15 +18,15 @@ const UserItem = ({
     <S.ScrollBox>
       <S.UserItem>
         {status === 'request' && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-          <CommonCheckBox
-            checked={userIds?.includes(id) || false}
-            onChange={(checked: boolean) =>
-              handleSelectUsers && handleSelectUsers(checked, id)
-            }
-          />
-          <S.Name>{name}</S.Name>
-          </div>
+          <S.CheckItemContainer>
+            <CommonCheckBox
+              checked={userIds?.includes(id) || false}
+              onChange={(checked: boolean) =>
+                handleSelectUsers && handleSelectUsers(checked, id)
+              }
+            />
+            <S.Name>{name}</S.Name>
+          </S.CheckItemContainer>
         )}
         {status === 'current' && <S.Name>{name}</S.Name>}
         <S.Role>{authorityToKor[authority]}</S.Role>
