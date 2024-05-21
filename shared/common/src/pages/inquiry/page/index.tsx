@@ -114,13 +114,9 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
           )}
           <S.ListWrapper>
             <S.ListContainer>
-              {isAdmin
-                ? inquiryList?.inquiries.map((inquiry) => (
-                    <InquiryItem item={inquiry} key={inquiry.id} />
-                  ))
-                : inquiryList?.inquiries.map((inquiry) => (
-                    <InquiryItem item={inquiry} key={inquiry.id} />
-                  ))}
+              {inquiryList?.inquiries.map((inquiry) => (
+                <InquiryItem item={inquiry} key={inquiry.id} />
+              ))}
             </S.ListContainer>
           </S.ListWrapper>
         </MainStyle.MainContainer>
