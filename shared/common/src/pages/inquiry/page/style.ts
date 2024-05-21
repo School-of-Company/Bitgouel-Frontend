@@ -1,72 +1,4 @@
 import styled from '@emotion/styled'
-import { StaticImageData } from 'next/image'
-
-export const SlideBg = styled.div<{ url: StaticImageData }>`
-  height: 15rem;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  background-image: url(${({ url }) => url.src});
-  background-position: center;
-  background-size: cover;
-  align-items: flex-end;
-`
-
-export const BgContainer = styled.div`
-  width: 75rem;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-`
-
-export const InquiryTitle = styled.span`
-  color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.title_lg.semibold};
-`
-
-export const ButtonContainer = styled.div`
-  display: flex;
-  align-items: flex-end;
-`
-
-export const InquiryButton = styled.div`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  background-color: rgb(255, 255, 255, 0.2);
-  height: 2.5rem;
-  margin-left: 1rem;
-  padding: 0 0.75rem;
-  border-radius: 0.5rem;
-  backdrop-filter: blur(0.25rem);
-  svg {
-    fill: ${({ theme }) => theme.color.white};
-  }
-  span {
-    color: ${({ theme }) => theme.color.white};
-    ${({ theme }) => theme.typo.text_md.regular};
-    margin-left: 0.25rem;
-  }
-  &:hover {
-    background-color: rgb(255, 255, 255, 0.4);
-  }
-`
-
-export const InquiryFilterBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-`
-
-export const InquiryWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 1.5rem;
-`
 
 export const Filter = styled.div`
   width: 5.75rem;
@@ -93,8 +25,7 @@ export const ListWrapper = styled.div`
   justify-content: center;
 `
 export const ListContainer = styled.div`
-  width: 75rem;
-  margin-top: 1.5rem;
+  width: 100%;
 `
 
 export const InquiryFilter = styled.div`
@@ -164,10 +95,10 @@ export const Check = styled.input`
 `
 
 export const SearchContainer = styled.div`
-  width: 75rem;
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex-wrap: wrap;
 
   svg {
     cursor: pointer;
@@ -175,7 +106,7 @@ export const SearchContainer = styled.div`
 `
 
 export const SearchBox = styled.form`
-  width: 100%;
+  width: calc(100% - 9.5rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -185,9 +116,12 @@ export const SearchBox = styled.form`
 `
 
 export const SearchInput = styled.input`
-  width: 64.25rem;
   ${({ theme }) => theme.typo.text_sm.regular};
-  color: ${({ theme }) => theme.color.gray['400']};
+  color: ${({ theme }) => theme.color.black};
   border: none;
   outline: none;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.color.gray['400']};
+  }
 `
