@@ -59,7 +59,7 @@ const UserListPage = () => {
   }, [authority])
 
   return (
-    <div>
+    <MainStyle.PageWrapper>
       <MainStyle.SlideBg url={Bg6}>
         <MainStyle.BgContainer>
           <MainStyle.PageTitle>사용자 명단</MainStyle.PageTitle>
@@ -75,54 +75,56 @@ const UserListPage = () => {
           </MainStyle.ButtonContainer>
         </MainStyle.BgContainer>
       </MainStyle.SlideBg>
-      <S.UserListWrapper>
-        <S.UserSearchContainer>
-          <S.UserSearchBox onSubmit={onSubmit}>
-            <S.UserSearchInput
-              value={keyword}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setKeyword(e.target.value)
+      <MainStyle.MainWrapper>
+        <MainStyle.MainContainer>
+          <S.UserSearchContainer>
+            <S.UserSearchBox onSubmit={onSubmit}>
+              <S.UserSearchInput
+                value={keyword}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setKeyword(e.target.value)
+                }
+                placeholder='이름으로 검색...'
+              />
+              <SearchIcon onClick={() => refetch()} />
+            </S.UserSearchBox>
+            <S.UserSearchFilter
+              onClick={() =>
+                openModal(
+                  <FilterModal
+                    title={filterTitle}
+                    filterList={filterList}
+                    onSelected={onSelected}
+                  />
+                )
               }
-              placeholder='이름으로 검색...'
-            />
-            <SearchIcon onClick={() => refetch()} />
-          </S.UserSearchBox>
-          <S.UserSearchFilter
-            onClick={() =>
-              openModal(
-                <FilterModal
-                  title={filterTitle}
-                  filterList={filterList}
-                  onSelected={onSelected}
-                />
-              )
-            }
-          >
-            <FilterOut />
-            <span>필터</span>
-          </S.UserSearchFilter>
-        </S.UserSearchContainer>
-        <S.DisplayBar>
-          <span>이름</span>
-          <span>직업</span>
-          <span>전화번호</span>
-          <span>이메일</span>
-        </S.DisplayBar>
-        <S.UserListContainer>
-          {data?.users.map((user) => (
-            <UserItem
-              key={user.id}
-              id={user.id}
-              name={user.name}
-              authority={user.authority}
-              phoneNumber={user.phoneNumber}
-              email={user.email}
-              status='current'
-            />
-          ))}
-        </S.UserListContainer>
-      </S.UserListWrapper>
-    </div>
+            >
+              <FilterOut />
+              <span>필터</span>
+            </S.UserSearchFilter>
+          </S.UserSearchContainer>
+          <S.DisplayBar>
+            <span>이름</span>
+            <span>직업</span>
+            <span>전화번호</span>
+            <span>이메일</span>
+          </S.DisplayBar>
+          <S.UserListContainer>
+            {data?.users.map((user) => (
+              <UserItem
+                key={user.id}
+                id={user.id}
+                name={user.name}
+                authority={user.authority}
+                phoneNumber={user.phoneNumber}
+                email={user.email}
+                status='current'
+              />
+            ))}
+          </S.UserListContainer>
+        </MainStyle.MainContainer>
+      </MainStyle.MainWrapper>
+    </MainStyle.PageWrapper>
   )
 }
 
