@@ -25,24 +25,26 @@ const defaultFilterList = [
   { text: '답변 완료됨', item: 'ANSWERED', checked: false },
 ]
 
+const filterTitle: string = '문의 상태'
+
 const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const [keyword, setKeyword] = useState<string>('')
   const [answerStatus, setAnswerStatus] = useState<AnswerStatus | ''>('')
   const { push } = useRouter()
-  const { data: inquiryList, refetch } = useGetInquiryList(
-    {
-      keyword,
-      answerStatus,
-    },
-    { enabled: !!isAdmin }
-  )
-  const { data: myInquiryList } = useGetMyInquiryList({
-    enabled: !isAdmin,
-  })
+  const { data: inquiryList, refetch } = isAdmin
+    ? useGetInquiryList(
+        {
+          keyword,
+          answerStatus,
+        },
+        { enabled: isAdmin === true }
+      )
+    : useGetMyInquiryList()
   const { openModal } = useModal()
   const { filterList, onSelected } = useFilterSelect({
     defaultFilterList,
     setFilterPayload: setAnswerStatus,
+    title: filterTitle,
   })
 
   const onSubmit = (e: FormEvent) => {
@@ -116,7 +118,7 @@ const InquiryPage = ({ isAdmin }: { isAdmin: boolean }) => {
                 ? inquiryList?.inquiries.map((inquiry) => (
                     <InquiryItem item={inquiry} key={inquiry.id} />
                   ))
-                : myInquiryList?.inquiries.map((inquiry) => (
+                : inquiryList?.inquiries.map((inquiry) => (
                     <InquiryItem item={inquiry} key={inquiry.id} />
                   ))}
             </S.ListContainer>

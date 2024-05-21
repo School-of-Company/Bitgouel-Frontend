@@ -28,12 +28,16 @@ const defaultFilterList = [
   { text: '뽀짝 선생님', item: 'ROLE_BBOZZAK', checked: false },
 ]
 
+const filterTitle: string = '직업'
+
 const UserListPage = () => {
   const [authority, setAuthority] = useState<RoleEnumTypes | 'ROLE_USER'>(
     'ROLE_USER'
   )
-  const {filterList, onSelected } = useFilterSelect({
-    defaultFilterList, setFilterPayload: setAuthority
+  const { filterList, onSelected } = useFilterSelect({
+    title: filterTitle,
+    defaultFilterList,
+    setFilterPayload: setAuthority,
   })
   const { push } = useRouter()
   const [keyword, setKeyword] = useState('')
@@ -82,16 +86,20 @@ const UserListPage = () => {
             />
             <SearchIcon onClick={() => refetch()} />
           </S.UserSearchBox>
-            <S.UserSearchFilter onClick={() => openModal(
-              <FilterModal
-                title='직업'
-                filterList={filterList}
-                onSelected={onSelected}
-              />
-            )}>
-              <FilterOut />
-              <span>필터</span>
-            </S.UserSearchFilter>
+          <S.UserSearchFilter
+            onClick={() =>
+              openModal(
+                <FilterModal
+                  title={filterTitle}
+                  filterList={filterList}
+                  onSelected={onSelected}
+                />
+              )
+            }
+          >
+            <FilterOut />
+            <span>필터</span>
+          </S.UserSearchFilter>
         </S.UserSearchContainer>
         <S.UserListContainer>
           <div>
