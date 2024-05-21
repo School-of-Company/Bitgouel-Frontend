@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { StaticImageData } from 'next/image'
+import { DisplayBar } from '../UserListPage/style'
 
 type SelectBoxTypes = 'allNew' | 'approve' | 'reject'
 
@@ -70,19 +71,33 @@ export const TopContainer = styled.div`
   justify-content: space-between;
   align-items: flex-end;
   padding-bottom: 1rem;
-  border-bottom: 0.0625rem solid ${({ theme }) => theme.color.gray['900']};
 `
 
-export const RemarkBox = styled.div`
-  display: flex;
-  align-items: center;
-  ${({ theme }) => theme.typo.text_sm.medium};
-  color: ${({ theme }) => theme.color.gray['400']};
+export const RequestDisplayBar = styled(DisplayBar)`
+  padding-bottom: 0;
+  
+  div {
+    display: flex;
+    align-items: center;
+    gap: 1.1875rem;
+
+    span {
+      &:first-of-type {
+        width: 1.5625rem;
+      }
+      &:last-of-type {
+        width: 6rem;
+      }
+    }
+  }
 
   span {
-    margin-left: 1rem;
-    color: ${({ theme }) => theme.color.gray['400']};
-    ${({ theme }) => theme.typo.text_sm.medium};
+    &:first-of-type {
+      width: 8rem;
+    }
+    &:nth-of-type(2) {
+      width: 9rem;
+    }
   }
 `
 
@@ -150,9 +165,5 @@ export const UserListContainer = styled.div`
 
   &::-webkit-scrollbar {
     display: none;
-  }
-
-  div {
-    width: 100%;
   }
 `
