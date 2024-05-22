@@ -1,86 +1,44 @@
 import styled from '@emotion/styled'
-import { ApproveStatusEnum } from '@bitgouel/types'
-import { StaticImageData } from 'next/image'
-
-export const SlideBg = styled.div<{ url: StaticImageData }>`
-  height: 15rem;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  background-image: url(${({ url }) => url.src});
-  background-position: center;
-  background-size: cover;
-  align-items: flex-end;
-`
-
-export const BgContainer = styled.div`
-  width: 75rem;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-`
-
-export const LectureTitle = styled.span`
-  color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.title_lg.semibold};
-`
-
-export const DocumentWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`
-
-export const Document = styled.div`
-  width: 75rem;
-`
 
 export const TitleContainer = styled.div`
-  margin-top: 2rem;
-`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 1.5rem;
 
-export const SubTitle = styled.div`
-  padding: 0.5rem 0;
-  span {
-    ${({ theme }) => theme.typo.text_md.regular};
+  h1 {
+    ${({ theme }) => theme.typo.title_sm.semibold};
+    margin-top: 0.5rem;
   }
 `
 
-export const Professor = styled.span`
-  margin-right: 0.5rem;
-  color: ${({ theme }) => theme.color.black};
-`
-
-export const Date = styled.span`
-  color: ${({ theme }) => theme.color.gray['700']};
-`
-
-export const Title = styled.span`
-  ${({ theme }) => theme.typo.title_sm.semibold};
-  color: ${({ theme }) => theme.color.black};
-`
-
-export const SubMenuContainer = styled.div`
-  padding: 0.5rem 0;
+export const LectureStatusContainer = styled.div`
   display: flex;
-`
-
-export const From = styled.div`
-  ${({ theme }) => theme.typo.text_sm.regular};
-  color: ${({ theme }) => theme.color.gray['400']};
-  background-color: ${({ theme }) => theme.color.gray['900']};
-  padding: 0.25rem 0.5rem;
-  border-radius: 1.125rem;
-`
-
-export const MenuNum = styled.div`
-  display: flex;
-  margin-left: 1rem;
-  ${({ theme }) => theme.typo.text_sm.regular};
-  color: ${({ theme }) => theme.color.gray['700']};
   align-items: center;
-  div {
-    margin-right: 1rem;
+  flex-wrap: wrap;
+`
+
+export const LectureStatusBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  ${({ theme }) => theme.typo.text_sm.semibold};
+  color: ${({ theme }) => theme.color.main};
+  border: 0.0625rem solid ${({ theme }) => theme.color.main};
+  border-radius: 1rem;
+  padding: 0.375rem 0.75rem;
+`
+
+export const LectureInfoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+  span {
+    ${({ theme }) => theme.typo.text_lg.regular};
+    color: ${({ theme }) => theme.color.gray['400']};
   }
 `
 
@@ -88,6 +46,49 @@ export const MainText = styled.div`
   color: ${({ theme }) => theme.color.gray['400']};
   ${({ theme }) => theme.typo.text_sm.regular};
   line-height: 1.575rem;
-  margin-top: 2.25rem;
-  padding-bottom: 6.25rem;
+  margin-top: 1.5rem;
+  padding-bottom: 1.5rem;
+`
+
+export const LectureSection = styled.div`
+  border-top: 0.0625rem solid ${({ theme }) => theme.color.gray['900']};
+  padding: 1.5rem 0;
+  &:last-child {
+    padding-bottom: 50rem;
+  }
+  span {
+    color: ${({ theme }) => theme.color.black};
+    ${({ theme }) => theme.typo.title_sm.semibold};
+  }
+  div {
+    color: ${({ theme }) => theme.color.gray['400']};
+    ${({ theme }) => theme.typo.text_lg.regular};
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+  }
+`
+
+export const WhiteBox = styled.div`
+  height: 5rem;
+`
+
+export const ApplyButtonWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  bottom: 2.5rem;
+`
+
+export const ApplyButton = styled.div<{ isAble: boolean }>`
+  color: ${({ theme, isAble }) =>
+    isAble ? theme.color.white : theme.color.gray['400']};
+  background-color: ${({ theme, isAble }) =>
+    isAble ? theme.color.main : theme.color.gray['700']};
+  ${({ theme }) => theme.typo.text_lg.semibold};
+  padding: 0.75rem 2.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
 `

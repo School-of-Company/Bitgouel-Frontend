@@ -1,106 +1,120 @@
 'use client'
 
 import {
-  useGetDetailLecture
+  TokenManager,
+  useGetDetailLecture,
+  usePostEnrollment,
 } from '@bitgouel/api'
-import { Bg3 } from '../../../assets'
-import { lectureToKor } from '../../../constants'
+import {
+  AppropriationModal,
+  Bg3,
+  People,
+  useModal,
+  MainStyle,
+} from '@bitgouel/common'
+import dayjs from 'dayjs'
+import { useRouter } from 'next/navigation'
 import * as S from './style'
 
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
+  const tokenManager = new TokenManager()
+  const isAble = () => {
+    if (tokenManager.authority === 'ROLE_STUDENT') {
+      if (!data?.isRegistered || data?.lectureStatus === 'OPEN') return true
+      else return false
+    } else return false
+  }
+  const { openModal } = useModal()
+  const { mutate } = usePostEnrollment(lectureId)
+  const { push } = useRouter()
+
   return (
-    <div>
-      <S.SlideBg url={Bg3}>
-        <S.BgContainer>
-          <S.LectureTitle>강의 상세</S.LectureTitle>
-        </S.BgContainer>
-      </S.SlideBg>
-      <S.DocumentWrapper>
-        <S.Document>
+    <MainStyle.PageWrapper>
+      <MainStyle.SlideBg url={Bg3}>
+        <MainStyle.BgContainer>
+          <MainStyle.PageTitle>강의 상세</MainStyle.PageTitle>
+          <MainStyle.ButtonContainer>
+            <MainStyle.SlideButton
+              onClick={() => push(`/main/lecture/${lectureId}/apply`)}
+            >
+              <People />
+              <span>신청자 명단 조회</span>
+            </MainStyle.SlideButton>
+          </MainStyle.ButtonContainer>
+        </MainStyle.BgContainer>
+      </MainStyle.SlideBg>
+      <MainStyle.MainWrapper>
+        <MainStyle.MainContainer>
           <S.TitleContainer>
-            <S.SubTitle>
-              <S.Professor>{data?.data.lecturer} 교수</S.Professor>
-              <S.Date>{`${data?.data.createAt.slice(
-                0,
-                4
-              )}년 ${data?.data.createAt.slice(
-                5,
-                7
-              )}월 ${data?.data.createAt.slice(
-                8,
-                10
-              )}일 ${data?.data.createAt.slice(11, 16)}`}</S.Date>
-            </S.SubTitle>
-            <S.Title>{data?.data.name}</S.Title>
-            <S.SubMenuContainer>
-              <S.From>
-                {
-                  lectureToKor[
-                    data?.data.lectureType ||
-                      'MUTUAL_CREDIT_RECOGNITION_PROGRAM'
-                  ]
-                }
-              </S.From>
-              <S.MenuNum>
-                <div>
-                  <span>신청기간: </span>
-                  <span>
-                    {`${data?.data.startDate.slice(
-                      0,
-                      4
-                    )}년 ${data?.data.startDate.slice(
-                      5,
-                      7
-                    )}월 ${data?.data.startDate.slice(
-                      8,
-                      10
-                    )}일 ${data?.data.startDate.slice(11, 16)}`}
-                  </span>
-                  <span>~</span>
-                  <span>
-                    {`${data?.data.endDate.slice(
-                      0,
-                      4
-                    )}년 ${data?.data.endDate.slice(
-                      5,
-                      7
-                    )}월 ${data?.data.endDate.slice(
-                      8,
-                      10
-                    )}일 ${data?.data.endDate.slice(11, 16)}`}
-                  </span>
-                </div>
-                <div>
-                  <span>수강정원: </span>
-                  <span>
-                    {data?.data.headCount}/{data?.data.maxRegisteredUser}명
-                  </span>
-                </div>
-                <div>
-                  <span>강의 시작: </span>
-                  <span>{`${data?.data.completeDate.slice(
-                    0,
-                    4
-                  )}년 ${data?.data.completeDate.slice(
-                    5,
-                    7
-                  )}월 ${data?.data.completeDate.slice(
-                    8,
-                    10
-                  )}일 ${data?.data.completeDate.slice(11, 16)}`}</span>
-                </div>
-                <div>
-                  <span>학점: </span>
-                  <span>{data?.data.credit}점</span>
-                </div>
-              </S.MenuNum>
-            </S.SubMenuContainer>
+            <S.LectureStatusContainer>
+              <S.LectureStatusBox>{data?.lectureType}</S.LectureStatusBox>
+              <S.LectureStatusBox>{data?.division}</S.LectureStatusBox>
+            </S.LectureStatusContainer>
+            <h1>{data?.name}</h1>
+            <S.LectureInfoContainer>
+              <span>{data?.lecturer} 교수</span>
+              <span>{dayjs(data?.createAt).format('YYYY.MM.DD')}</span>
+            </S.LectureInfoContainer>
           </S.TitleContainer>
-          <S.MainText>{data?.data.content}</S.MainText>
-        </S.Document>
-      </S.DocumentWrapper>
-    </div>
+          <S.MainText>{data?.content}</S.MainText>
+          <S.LectureSection>
+            <span>수강 신청 기간</span>
+            {data?.lectureDates.map((date, idx) => (
+              <div key={idx}>
+                • {dayjs(date.completeDate).format('YYYY년 MM월 DD일')}{' '}
+                {dayjs(`${date.completeDate}T${date.startTime}`).format(
+                  'HH시 mm분'
+                )}
+                &nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp;
+                {dayjs(`${date.completeDate}T${date.endTime}`).format(
+                  'HH시 mm분'
+                )}
+              </div>
+            ))}
+          </S.LectureSection>
+          <S.LectureSection>
+            <span>수강 수강 날짜</span>
+            {data?.lectureDates.map((date, idx) => (
+              <div key={idx}>
+                • {dayjs(date.completeDate).format('YYYY년 MM월 DD일')}{' '}
+                {dayjs(`${date.completeDate}T${date.startTime}`).format(
+                  'HH시 mm분'
+                )}{' '}
+                ~{' '}
+                {dayjs(`${date.completeDate}T${date.endTime}`).format(
+                  'HH시 mm분'
+                )}
+              </div>
+            ))}
+          </S.LectureSection>
+          <S.LectureSection>
+            <span>모집 정원</span>
+            <div>{data?.maxRegisteredUser}명</div>
+          </S.LectureSection>
+          <S.WhiteBox></S.WhiteBox>
+          <S.ApplyButtonWrapper>
+            <S.ApplyButton
+              isAble={isAble()}
+              onClick={() =>
+                isAble() &&
+                openModal(
+                  <AppropriationModal
+                    isApprove={true}
+                    question='수강 신청하시겠습니까?'
+                    title={data?.name || ''}
+                    purpose='신청하기'
+                    onAppropriation={() => mutate()}
+                  />
+                )
+              }
+            >
+              수강 신청하기
+            </S.ApplyButton>
+          </S.ApplyButtonWrapper>
+        </MainStyle.MainContainer>
+      </MainStyle.MainWrapper>
+    </MainStyle.PageWrapper>
   )
 }
 

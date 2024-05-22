@@ -1,8 +1,10 @@
 import {
   ActivityOptionsTypes,
+  LinePayloadTypes,
   InquiryListQueryStringTypes,
   LectureListOptionsTypes,
-  UserListOptionsTypes
+  UserListOptionsTypes,
+  PostListOptionsTypes,
 } from '@bitgouel/types'
 
 export const authUrl = {
@@ -12,7 +14,7 @@ export const authUrl = {
   signUpStudent: () => `/auth/student`,
   signUpTeacher: () => `/auth/teacher`,
   signUpBbozzak: () => `/auth/bbozzak`,
-  signUpPropessor: () => `/auth/professor`,
+  signUpProfessor: () => `/auth/professor`,
   signUpGovernment: () => `/auth/government`,
   signUpCompanyInstructor: () => `/auth/company-instructor`,
 } as const
@@ -23,23 +25,29 @@ export const lectureUrl = {
     `/lecture?page=${options.page}&size=${options.size}&type=${options.type}`,
   lectureDetail: (id: string) => `/lecture/${id}`,
   lectureEnrolment: (id: string) => `/lecture/${id}`,
+  lectureInstructor: (keyword: string) =>
+    `/lecture/instructor?keyword=${keyword}`,
+  lectureLine: (queryString: LinePayloadTypes) =>
+    `/lecture/line?keywrod=${queryString.keyword}&division=${queryString.division}`,
+  lectureDepartment: (keyword: string) =>
+    `/lecture/department?keyword=${keyword}`,
+  lectureDivision: (keyword: string) => `/lecture/division?keyword=${keyword}`,
+  lectureCompleteList: (id: string) => `/lecture/${id}/signup`, // studentId
+  lectureApplyList: (id: string) => `/lecture/student/${id}`,
+  lectureModifyComplete: (id: string, otherId: string, isComplete: boolean) =>
+    `/lecture/${id}/${otherId}?isComplete=${isComplete}`,
+  lectureExcel: () => `/lecture/excel`,
 } as const
 
 export const activityUrl = {
   activityInformation: () => `/activity`,
-  activityCorrection: (activity_id: string) => `/activity/${activity_id}`,
-  activityApprove: (activity_id: string) => `/activity/${activity_id}/approve`,
-  activityReject: (activity_id: string) => `/activity/${activity_id}/reject`,
-  activityInformationRemove: (activity_id: string) =>
-    `/activity/${activity_id}`,
+  activityModifyInformation: (id: string) => `/activity/${id}`,
+  activityInformationRemove: (id: string) => `/activity/${id}`,
   activityMyselfList: (options: ActivityOptionsTypes) =>
-    `/activity/my?page=${options.page}&size=${options.size}&sort=${options.sort}`,
-  activityList: (student_id: string, options: ActivityOptionsTypes) =>
-    `/activity/${student_id}?page=${options.page}&size=${options.size}&sort=${options.sort}`,
-  activityInformationList: (options: ActivityOptionsTypes) =>
-    `/activity?page=${options.page}&size=${options.size}&sort=${options.sort}`,
-  activityInformationDetail: (activity_id: string) =>
-    `/activity/${activity_id}`,
+    `/activity/my?page=${options.page}&size=${options.size}&sort=activityDate,desc`,
+  activityList: (id: string, options: ActivityOptionsTypes) =>
+    `/activity/${id}?page=${options.page}&size=${options.size}&sort=activityDate,asc`, // studentId
+  activityInformationDetail: (id: string) => `/activity/${id}/detail`,
 }
 
 export const userUrl = {
@@ -48,40 +56,37 @@ export const userUrl = {
 
 export const postUrl = {
   postCreate: () => `/post`,
-  postList: (options) =>
+  postList: (options: PostListOptionsTypes) =>
     `/post?type=${options.type}&size=${options.size}&page=${options.page}`,
-  postDetail: (post_id: string) => `/post/${post_id}`,
-  postModify: (post_id: string) => `/post/${post_id}`,
-  postDelete: (post_id: string) => `/post/${post_id}`,
+  postDetail: (id: string) => `/post/${id}`,
+  postModify: (id: string) => `/post/${id}`,
+  postDelete: (id: string) => `/post/${id}`,
 } as const
 
 export const certificateUrl = {
   certificate: () => `/certification`,
-  certificateListTeacher: (student_id: string) =>
-    `/certification/${student_id}`,
-  certificateModify: (certificate_id: string) =>
-    `/certification/${certificate_id}`,
+  certificateListTeacher: (id: string) => `/certification/${id}`, // studentId
+  certificateModify: (id: string) => `/certification/${id}`,
 }
 
 export const clubUrl = {
   schoolClub: () => `/school`,
   club: (queryString: string) => `/club?highSchool=${queryString}`,
-  clubDetail: (club_id: string) => `/club/${club_id}`,
+  clubDetail: (id: string) => `/club/${id}`,
   myClub: () => `/club/my`,
-  studentDetail: (club_id: string, student_id: string) =>
-    `/club/${club_id}/${student_id}`,
+  studentDetail: (id: string, studentId: string) => `/club/${id}/${studentId}`,
 } as const
 
 export const inquiryUrl = {
   inquiryCreate: () => `/inquiry`,
   myInquiryList: () => `/inquiry`,
-  inquiryDetail: (inquiry_id: string) => `/inquiry/${inquiry_id}`,
-  myInquiryDelete: (inquiry_id: string) => `/inquiry/${inquiry_id}`,
-  myInquiryModify: (inquiry_id: string) => `/inquiry/${inquiry_id}`,
-  inquiryAnswer: (inquiry_id: string) => `/inquiry/${inquiry_id}/answer`,
+  inquiryDetail: (id: string) => `/inquiry/${id}`,
+  myInquiryDelete: (id: string) => `/inquiry/${id}`,
+  myInquiryModify: (id: string) => `/inquiry/${id}`,
+  inquiryAnswer: (id: string) => `/inquiry/${id}/answer`,
   inquiryList: (queryString: InquiryListQueryStringTypes) =>
     `/inquiry/all?answerStatus=${queryString.answerStatus}&keyword=${queryString.keyword}`,
-  inquiryDelete: (inquiry_id: string) => `/inquiry/${inquiry_id}/reject`,
+  inquiryDelete: (id: string) => `/inquiry/${id}/reject`,
 } as const
 
 export const adminUrl = {
@@ -91,4 +96,13 @@ export const adminUrl = {
   approveUser: (userIds: string[]) => `/admin?userIds=${userIds.join(',')}`,
   rejectUser: (userIds: string[]) => `/admin/${userIds.join(',')}/reject`,
   withDrawUser: (userIds: string[]) => `/admin/${userIds.join(',')}`,
+  excelUpload: () => `/admin/excel`,
 } as const
+
+export const emailUrl = {
+  email: () => `/email`,
+}
+
+export const faqUrl = {
+  faq: () => `/faq`,
+}

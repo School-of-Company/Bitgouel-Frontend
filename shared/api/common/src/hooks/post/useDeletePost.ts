@@ -1,7 +1,7 @@
+import { del, postQueryKeys, postUrl } from '@bitgouel/api'
+import { useModal } from '@bitgouel/common'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import { del, postQueryKeys, postUrl } from '../../libs'
-import { useModal } from '@bitgouel/common/src/hooks'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 

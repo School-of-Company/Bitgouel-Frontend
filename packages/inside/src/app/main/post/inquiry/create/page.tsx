@@ -1,7 +1,7 @@
-import { InquiryCreatePage } from '@/PageContainer'
+import { InquiryWritePage } from '@/PageContainer'
 
 const InquiryCreate = () => {
-  return <InquiryCreatePage />
+  return <InquiryWritePage />
 }
 
 export default InquiryCreate

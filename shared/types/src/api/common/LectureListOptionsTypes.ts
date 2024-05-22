@@ -1,9 +1,7 @@
-import { ApproveStatusEnum } from './ApproveStatusEnum'
-import { LectureTypeEnum } from './LectureItemType'
+import { LectureTypeEnum } from './LectureCreatePayloadTypes'
 
 export interface LectureListOptionsTypes {
   page: number
   size: number
-  status: ApproveStatusEnum
-  type: LectureTypeEnum
+  type: string
 }

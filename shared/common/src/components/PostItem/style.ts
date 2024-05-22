@@ -4,6 +4,7 @@ export const PostItem = styled.div`
   width: 100%;
   height: 3.625rem;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;

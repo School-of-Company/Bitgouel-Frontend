@@ -1,22 +1,11 @@
 'use client'
 
 import { TokenManager, useDeleteLogout } from '@bitgouel/api'
+import { Message, Question, Symbol1, Symbol2, theme } from '@bitgouel/common'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
-import { useRecoilState } from 'recoil'
 import { match } from 'ts-pattern'
-import {
-  Filter,
-  Message,
-  Plus,
-  Question,
-  Symbol1,
-  Symbol2
-} from '../../assets'
-import { LectureTypeText } from '../../atoms'
-import { LectureTypeModal } from '../../modals'
-import { theme } from '../../styles'
 import * as S from './style'
 
 const menuList = [
@@ -37,14 +26,11 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
   const [borderColor, setBorderColor] = useState<string>('')
   const [spanColor, setSpanColor] = useState<string>(`${theme.color.white}`)
   const [svgView, setSvgView] = useState<string>('none')
-  const [isLectureType, setIsLectureType] = useState<boolean>(false)
-  const [lectureTypeText, setLectureTypeText] =
-    useRecoilState<string>(LectureTypeText)
   const [text, setText] = useState<string>('로그인')
   const { mutate } = useDeleteLogout()
 
   useEffect(() => {
-    const onScroll = () => {
+    const throttledScrollHandler = () => {
       const { scrollY } = window
       if (pathname === '/') {
         if (scrollY >= 700) {
@@ -61,7 +47,7 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
           setSpanColor(`${theme.color.white}`)
         }
       } else {
-        if (scrollY >= 240) {
+        if (scrollY >= 160) {
           setBgColor(`${theme.color.white}`)
           setSymbolNum(Symbol2)
           setBtnColor('rgb(209, 209, 209, 1)')
@@ -78,9 +64,28 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
         }
       }
     }
-    window.addEventListener('scroll', onScroll)
+
+    const throttle = (callback: () => void, delay: number) => {
+      let timerId: NodeJS.Timeout | null = null
+      return (...args: any[]) => {
+        if (!timerId) {
+          timerId = setTimeout(() => {
+            callback.apply(null, args)
+            timerId = null
+          }, delay)
+        }
+      }
+    }
+
+    const throttledScrollHandlerWithThrottle = throttle(
+      throttledScrollHandler,
+      200
+    )
+
+    const intervalId = setInterval(throttledScrollHandlerWithThrottle, 200)
+
     return () => {
-      window.removeEventListener('scroll', onScroll)
+      clearInterval(intervalId)
     }
   }, [])
 
@@ -98,6 +103,7 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
       isAuth={match(pathname)
         .with('/auth/login', () => true)
         .with('/auth/signUp', () => true)
+        .with('/auth/find', () => true)
         .otherwise(() => false)}
     >
       <S.HeaderContainer>
@@ -124,30 +130,6 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
         </S.MenuWrapper>
         <S.ButtonWrapper view={svgView}>
           {match(pathname)
-            .with('/main/lecture', () => (
-              <>
-                <S.SelectFilterContainer>
-                  <Filter onClick={() => setIsLectureType((prev) => !prev)} />
-                  {isLectureType && (
-                    <LectureTypeModal
-                      location='헤더'
-                      text={lectureTypeText}
-                      setText={setLectureTypeText}
-                      setIsLectureType={setIsLectureType}
-                    />
-                  )}
-                </S.SelectFilterContainer>
-                {(tokenManager.authority === 'ROLE_PROFESSOR' ||
-                  tokenManager.authority === 'ROLE_GOVERNMENT' ||
-                  tokenManager.authority === 'ROLE_COMPANY_INSTRUCTOR') && (
-                  <Plus
-                    onClick={() => {
-                      push('/main/lecture/create')
-                    }}
-                  />
-                )}
-              </>
-            ))
             .with('/main/post', () => (
               <>
                 <Message onClick={() => push('/main/post/notice')} />

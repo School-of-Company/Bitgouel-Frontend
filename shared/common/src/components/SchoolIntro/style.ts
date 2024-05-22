@@ -10,6 +10,7 @@ export const SchoolIntroWrapper = styled.button`
   outline: none;
   cursor: pointer;
   background: none;
+  transform: perspective(50rem) rotateY(0deg);
 
   &:focus,
   &:active {

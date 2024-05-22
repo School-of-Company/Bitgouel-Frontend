@@ -1,17 +1,23 @@
 'use client'
 
-import { ActivityItemProps } from '@bitgouel/types'
+import { ActivityItemTypes } from '@bitgouel/types'
+import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
-import { match } from 'ts-pattern'
-import { lectureStatusToKor } from '../../constants'
 import * as S from './style'
 
-const ActivityItem = ({ item }: ActivityItemProps) => {
-  const router = useRouter()
+const ActivityItem: React.FC<ActivityItemTypes> = ({
+  item,
+  studentIdProps,
+  activityId,
+}) => {
+  const { push } = useRouter()
+  const { studentId, clubId } = studentIdProps || {}
 
   return (
     <S.ActivityItemWrapper
-      onClick={() => router.push('/main/club/student/activity/detail')}
+      onClick={() =>
+        push(`/main/club/${clubId}/student/${studentId}/activity/${activityId}`)
+      }
     >
       <div>
         <div>
@@ -22,27 +28,14 @@ const ActivityItem = ({ item }: ActivityItemProps) => {
           </S.ActivityTitle>
         </div>
         <div>
-          <S.Date>{`${item.activityDate.slice(
-            0,
-            4
-          )}년 ${item.activityDate.slice(5, 7)}월 ${item.activityDate.slice(
-            8,
-            10
-          )}일 ${item.activityDate.slice(11, 16)}`}</S.Date>
+          <S.Date>
+            {dayjs(item.activityDate).format('YYYY년 MM월 DD일 HH:mm')}
+          </S.Date>
         </div>
         <div>
-          <S.Uploader>{item.userName}</S.Uploader>
+          <S.Uploader>{item.username}</S.Uploader>
         </div>
       </div>
-      <S.StatusContainer>
-        <S.ApproveStatus
-          approveColor={match(item.approveStatus)
-            .with('APPROVED', () => true)
-            .otherwise(() => false)}
-        >
-          {lectureStatusToKor[item.approveStatus]}
-        </S.ApproveStatus>
-      </S.StatusContainer>
     </S.ActivityItemWrapper>
   )
 }

@@ -1,9 +1,10 @@
-import { AnswerStatus } from "../../common/AnswerStatus"
+import { AnswerStatus } from '../../common/AnswerStatus'
 
 export interface InquiryDetailResponseTypes {
   id: string
   question: string
   questionDetail: string
+  questionerId: string
   questioner: string
   questionDate: string
   answerStatus: AnswerStatus

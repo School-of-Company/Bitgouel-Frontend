@@ -1,9 +1,35 @@
-import { LectureItemType, RoleEnumTypes } from '@bitgouel/types'
+'use client'
+
+import {
+  LectureDate,
+  LectureSemesterEnum,
+  SignUpObjTypes,
+} from '@bitgouel/types'
 import { ReactNode } from 'react'
 import { atom } from 'recoil'
+import { recoilPersist } from 'recoil-persist'
 
-export const Page = atom<number>({
-  key: 'Page',
+const sessionStorage =
+  typeof window !== 'undefined' ? window.sessionStorage : undefined
+
+const { persistAtom } = recoilPersist({
+  key: 'recoil-states',
+  storage: sessionStorage,
+})
+
+interface InputLectureDatesTypes extends LectureDate {
+  startShowTime: string
+  endShowTime: string
+}
+
+export const LectureFilterType = atom<string>({
+  key: 'LectureFilterType',
+  default: '',
+})
+
+// Modal
+export const PwPage = atom<number>({
+  key: 'PwPage',
   default: 1,
 })
 
@@ -12,27 +38,28 @@ export const IsModal = atom<ReactNode>({
   default: null,
 })
 
-export const Page1Obj = atom<
-  { value: string; placeholder: string; type: string }[]
->({
-  key: 'Page1Obj',
+// Auth
+export const SignUpPageNumber = atom<number>({
+  key: 'SignUpPageNumber',
+  default: 1,
+})
+export const SignUpPage1Obj = atom<SignUpObjTypes[]>({
+  key: 'SignUpPage1Obj',
   default: [
     { value: '', placeholder: '소속', type: 'text' },
     { value: '', placeholder: '직업', type: 'text' },
   ],
 })
-
-export const Page2Obj = atom({
-  key: 'Page2Obj',
+export const SignUpPage2Obj = atom<SignUpObjTypes[]>({
+  key: 'SignUpPage2Obj',
   default: [
     { value: '', placeholder: '학교 이름 선택', type: 'text' },
     { value: '', placeholder: '동아리 이름 선택', type: 'text' },
-    { value: '', placeholder: '이름 입력', type: 'text', maxLength: 6 },
+    { value: '', placeholder: '이름 입력', type: 'text', maxLength: 4 },
   ],
 })
-
-export const Page3Obj = atom({
-  key: 'Page3Obj',
+export const SignUpPage3Obj = atom<SignUpObjTypes[]>({
+  key: 'SignUpPage3Obj',
   default: [
     {
       value: '',
@@ -49,62 +76,17 @@ export const Page3Obj = atom({
     { value: '', placeholder: '비밀번호 확인', type: 'password' },
   ],
 })
-
-export const PhoneCertificate = atom<boolean>({
-  key: 'PhoneCertificate',
-  default: false,
-})
-
-export const PhoneCertificateText = atom<string>({
-  key: 'PhoneCertificateText',
-  default: '인증',
-})
-
-export const EmailCertificate = atom<boolean>({
-  key: 'EmailCertificate',
-  default: false,
-})
-
-export const EmailCertificateText = atom<string>({
-  key: 'EmailCertificateText',
-  default: '인증',
-})
-
 export const IsPasswordRgx = atom<boolean>({
   key: 'IsPasswordRgx',
   default: true,
 })
-
 export const IsValidate = atom<boolean>({
   key: 'IsValidate',
   default: true,
 })
 
-export const LectureTypeText = atom<string>({
-  key: 'LectureTypeText',
-  default: '상호학점인정교육과정',
-})
-
-export const LectureType = atom<'상호학점인정교육과정' | '대학탐방프로그램'>({
-  key: 'LectureType',
-  default: '상호학점인정교육과정',
-})
-
-export const LectureLine = atom<
-  | '기계'
-  | '자동차'
-  | '전기•전자'
-  | '생명화학공학'
-  | '뷰티'
-  | '의료•헬스'
-  | '드론'
->({
-  key: 'LectureLine',
-  default: '기계',
-})
-
-export const SchoolFilterText = atom<string>({
-  key: 'SchoolFilterText',
+export const EmailValue = atom<string>({
+  key: 'EmailValue',
   default: '',
 })
 
@@ -113,7 +95,85 @@ export const EmailErrorText = atom<string>({
   default: '',
 })
 
+export const PasswordValue = atom<string>({
+  key: 'PasswordValue',
+  default: '',
+})
+
 export const PasswordErrorText = atom<string>({
   key: 'PasswordErrorText',
   default: '',
+})
+
+// 강의 생성
+export const LectureEssentialComplete = atom<boolean>({
+  key: 'LectureEssentialComplete',
+  default: true,
+})
+
+export const LectureType = atom<string>({
+  key: 'LectureType',
+  default: '',
+})
+export const LectureSemester = atom<LectureSemesterEnum>({
+  key: 'LectureSemester',
+  default: 'FIRST_YEAR_FALL_SEMESTER',
+})
+export const LectureDivision = atom<string>({
+  key: 'LectureDivision',
+  default: '',
+})
+export const LectureLine = atom<string>({
+  key: 'LectureLine',
+  default: '',
+})
+export const LectureDepartment = atom<string>({
+  key: 'LectureDepartment',
+  default: '',
+})
+export const LectureInstructor = atom<string>({
+  key: 'LectureInstructor',
+  default: '',
+})
+export const LectureStartDate = atom<string>({
+  key: 'LectureStartDate',
+  default: '',
+})
+export const LectureStartTime = atom<string>({
+  key: 'LectureStartTime',
+  default: '',
+})
+export const LectureEndDate = atom<string>({
+  key: 'LectureEndDate',
+  default: '',
+})
+export const LectureEndTime = atom<string>({
+  key: 'LectureEndTime',
+  default: '',
+})
+export const LectureDates = atom<InputLectureDatesTypes[]>({
+  key: 'LectureDates',
+  default: [
+    {
+      completeDate: '',
+      startShowTime: '',
+      startTime: '',
+      endShowTime: '',
+      endTime: '',
+    },
+  ],
+})
+export const LectureMaxRegistered = atom<string>({
+  key: 'LectureMax',
+  default: '',
+})
+export const LectureCredit = atom<1 | 2>({
+  key: 'LectureCredit',
+  default: 1,
+})
+
+export const SchoolFilterText = atom<string>({
+  key: 'SchoolFilterText',
+  default: '',
+  effects_UNSTABLE: [persistAtom],
 })

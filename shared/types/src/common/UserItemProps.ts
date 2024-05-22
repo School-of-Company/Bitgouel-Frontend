@@ -1,12 +1,14 @@
-import { ChangeEvent } from 'react'
+import { RoleEnumTypes } from '../api'
 
 type StatusTypes = 'current' | 'request'
 
 export interface UserItemProps {
   id: string
-  name: string
-  authority?: string
-  status: StatusTypes
-  handleSelectUsers?: (e: ChangeEvent<HTMLInputElement>, userId: string) => void
   userIds?: string[]
+  name: string
+  authority: RoleEnumTypes
+  phoneNumber: string
+  email: string
+  status: StatusTypes
+  handleSelectUsers?: (checked: boolean, userId: string) => void
 }

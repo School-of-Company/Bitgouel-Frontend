@@ -1,83 +1,114 @@
 'use client'
 
-import { useGetClubDetail, useGetMyClub } from '@bitgouel/api'
-import * as S from './style'
-import { Bg2 } from '../../../assets'
+import {
+  TokenManager,
+  useGetClubDetail,
+  useGetMy,
+  useGetMyClub,
+} from '@bitgouel/api'
+import { Bg2, PersonOut, MainStyle } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
-import { roleToKor } from '../../../constants'
+import { useEffect, useState } from 'react'
+import * as S from './style'
 
 const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
   const { push } = useRouter()
+  const tokenManager = new TokenManager()
 
-  const { data: clubDetail } = useGetClubDetail(clubId || '')
-  const { data: myClub } = useGetMyClub()
+  const { data: clubDetail } = useGetClubDetail(clubId || '', {
+    enabled: !!clubId,
+  })
+  const { data: myClub } = useGetMyClub({ enabled: !clubId })
+  const { data: myData } = useGetMy()
+
+  const [userId, setUserId] = useState<string>('')
+  const [isStudent, setIsStudent] = useState<boolean>(false)
+
+  useEffect(() => {
+    setIsStudent(tokenManager.authority === 'ROLE_STUDENT')
+
+    if (myClub && myData) {
+      const foundStudent = myClub.students.find(
+        (student) => student.userId === myData.id
+      )
+      if (foundStudent) {
+        setUserId(foundStudent.id)
+      }
+    }
+  }, [myClub, myData])
 
   return (
-    <div>
-      <S.SlideBg url={Bg2}>
-        <S.BgContainer>
-          <S.Title>취업 동아리</S.Title>
-        </S.BgContainer>
-      </S.SlideBg>
-      <S.ClubWrapper>
-        <S.ClubContainer>
-          <S.ClubTitle>
-            {clubId ? clubDetail?.data.clubName : myClub?.data.clubName}
-          </S.ClubTitle>
-          <S.ClubInfoContainer>
-            <S.BelongBox>
-              <S.ExpressSchoolBox>소속 학교</S.ExpressSchoolBox>
+    <MainStyle.PageWrapper>
+      <MainStyle.SlideBg url={Bg2}>
+        <MainStyle.BgContainer>
+          <MainStyle.PageTitle>취업 동아리</MainStyle.PageTitle>
+          {isStudent && (
+            <MainStyle.ButtonContainer>
+              <MainStyle.SlideButton>
+                <PersonOut />
+                <span
+                  onClick={() =>
+                    push(`/main/club/${myClub?.clubId}/student/${userId}`)
+                  }
+                >
+                  내 자격증 및 활동
+                </span>
+              </MainStyle.SlideButton>
+            </MainStyle.ButtonContainer>
+          )}
+        </MainStyle.BgContainer>
+      </MainStyle.SlideBg>
+      <MainStyle.MainWrapper>
+        <MainStyle.MainContainer>
+          <S.ClubName>
+            {clubId ? clubDetail?.clubName : myClub?.clubName}
+          </S.ClubName>
+          <S.InfoContainer>
+            <S.ClubInfoBox>
+              <div>소속 학교</div>
               <span>
-                {clubId
-                  ? clubDetail?.data.highSchoolName
-                  : myClub?.data.highSchoolName}
+                {clubId ? clubDetail?.highSchoolName : myClub?.highSchoolName}
               </span>
-            </S.BelongBox>
-            <S.BelongBox>
-              <S.ExpressTeacherBox>담당 선생님</S.ExpressTeacherBox>
+            </S.ClubInfoBox>
+            <S.ClubInfoBox>
+              <div>담당 선생님</div>
               <span>
-                {clubId
-                  ? clubDetail?.data.teacher.name
-                  : myClub?.data.teacher.name}
+                {clubId ? clubDetail?.teacher.name : myClub?.teacher.name}
               </span>
-            </S.BelongBox>
-          </S.ClubInfoContainer>
-          <S.ClubPersonnelBox>
-            <S.ClubPersonnelTitle>동아리 인원</S.ClubPersonnelTitle>
-            <span>
-              총 {clubId ? clubDetail?.data.headCount : myClub?.data.headCount}
-              명
-            </span>
-          </S.ClubPersonnelBox>
-          <S.ClubMemberListContainer>
+            </S.ClubInfoBox>
+          </S.InfoContainer>
+          <S.StudentListWrapper>
+            <h2>동아리 인원</h2>
             {clubId
-              ? clubDetail?.data.students.map((student) => (
-                  <S.ClubMemberBox
+              ? clubDetail?.students.map((student) => (
+                  <S.StudentItem
+                    isStudent={isStudent}
                     key={student.id}
                     onClick={() =>
                       push(`/main/club/${clubId}/student/${student.id}`)
                     }
                   >
-                    <S.MemberName>{student.name}</S.MemberName>
-                    <S.MemberRole>{roleToKor[student.authority]}</S.MemberRole>
-                  </S.ClubMemberBox>
+                    <span>{student.name}</span>
+                    <span>학생</span>
+                  </S.StudentItem>
                 ))
-              : myClub?.data.students.map((student) => (
-                  <S.ClubMemberBox
+              : myClub?.students.map((student) => (
+                  <S.StudentItem
+                    isStudent={isStudent}
                     key={student.id}
-                    onClick={() =>
-                      push(`/main/club/${myClub?.data.clubId}/student/${student.id}`)
-                    }
+                    onClick={() => {
+                      !isStudent &&
+                        push(`/main/club/${clubId}/student/${student.id}`)
+                    }}
                   >
-                    <S.MemberName>{student.name}</S.MemberName>
-                    <S.MemberRole>{roleToKor[student.authority]}</S.MemberRole>
-                  </S.ClubMemberBox>
+                    <span>{student.name}</span>
+                    <span>학생</span>
+                  </S.StudentItem>
                 ))}
-          </S.ClubMemberListContainer>
-        </S.ClubContainer>
-      </S.ClubWrapper>
-    </div>
+          </S.StudentListWrapper>
+        </MainStyle.MainContainer>
+      </MainStyle.MainWrapper>
+    </MainStyle.PageWrapper>
   )
 }
-
 export default ClubDetailPage

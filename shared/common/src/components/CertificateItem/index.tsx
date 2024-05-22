@@ -1,27 +1,41 @@
-import { usePatchModifyCertificate } from '@bitgouel/api'
-import { Certificate, CertificateRequest } from '@bitgouel/types'
-import { ChangeEvent, useState } from 'react'
-import { AddCertificate, CalendarIcon } from '../../assets'
-import { useModal } from '../../hooks'
+'use client'
+
+import { TokenManager, usePatchModifyCertificate } from '@bitgouel/api'
 import {
+  AddCertificate,
   AppropriationModal,
-  SelectCalendarModal
-} from '../../modals'
-import { theme } from '../../styles'
+  CalendarIcon,
+  SelectCalendarModal,
+  theme,
+  useModal,
+} from '@bitgouel/common'
+import {
+  CertificateProps,
+  CertificateRequest,
+  RoleEnumTypes,
+} from '@bitgouel/types'
+import { ChangeEvent, useEffect, useState } from 'react'
+
 import * as S from './style'
 
-interface CertificateProps {
-  certificateItems: Certificate
-  isOpenCalendar: boolean
-}
+const roleArray: RoleEnumTypes[] = ['ROLE_STUDENT', 'ROLE_TEACHER']
 
 const CertificateItem: React.FC<CertificateProps> = ({
   certificateItems,
   isOpenCalendar,
+  refetchModify,
 }) => {
   const { id, name, acquisitionDate } = certificateItems
-  const { mutate } = usePatchModifyCertificate(id)
 
+  const tokenManager = new TokenManager()
+
+  const { mutate } = usePatchModifyCertificate(id, {
+    onSuccess: () => {
+      closeModal()
+      refetchModify()
+      setIsModify(false)
+    },
+  })
   const [isCertificateDate, setIsCertificateDate] = useState<boolean>(false)
   const [modifyText, setModifyText] = useState<string>(certificateItems.name)
   const [modifyDateText, setModifyDateText] = useState<string>(
@@ -31,6 +45,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
   const { openModal, closeModal } = useModal()
 
   const [isModify, setIsModify] = useState<boolean>(false)
+  const [isRole, setIsRole] = useState<boolean>(false)
 
   const onModify = () => {
     const payload: CertificateRequest = {
@@ -44,11 +59,16 @@ const CertificateItem: React.FC<CertificateProps> = ({
         .toString()
         .padStart(2, '0')}`,
     }
-
     mutate(payload)
-    closeModal()
-    window.location.reload()
   }
+
+  useEffect(() => {
+    setIsRole(
+      tokenManager.authority
+        ? roleArray.includes(tokenManager.authority)
+        : false
+    )
+  }, [])
 
   return (
     <>
@@ -92,9 +112,9 @@ const CertificateItem: React.FC<CertificateProps> = ({
                     <AppropriationModal
                       isApprove={true}
                       question='자격증 정보를 수정하시겠습니까?'
-                      title={modifyText as ''}
+                      title={modifyText || ''}
                       purpose='수정하기'
-                      onAppropriation={() => onModify}
+                      onAppropriation={onModify}
                     />
                   )
                 : name === modifyText &&
@@ -129,9 +149,11 @@ const CertificateItem: React.FC<CertificateProps> = ({
               .map((v) => (v === '-' ? '.' : v))
               .join('')}
           </span>
-          <S.ModifyText onClick={() => setIsModify(true)}>
-            수정하기
-          </S.ModifyText>
+          {isRole && (
+            <S.ModifyText onClick={() => setIsModify(true)}>
+              수정하기
+            </S.ModifyText>
+          )}
         </S.CertificateItemBox>
       )}
     </>

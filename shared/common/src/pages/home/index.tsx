@@ -15,14 +15,16 @@ import {
   Agency4,
   Gwangju,
   OfficeGwangju,
-} from '../../assets'
+  FAQSection,
+} from '@bitgouel/common'
+
 import {
   ClubListSlider,
   CompanyListSlider,
   SchoolIntro,
   Sequence,
-} from '../../components'
-import { SchoolIntroObjects } from '../../constants'
+} from '@bitgouel/common'
+import { SchoolIntroObjects } from '@bitgouel/common'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
 
@@ -42,22 +44,24 @@ const HomePage = () => {
 
   return (
     <S.HomeWrapper>
-      <S.SlideBg url={imageArr[bgNum]}>
-        <S.BgContainer>
-          <S.HomeTitle>
-            빛고을 직업교육 혁신지구
-            <br />
-            사업 소개
-          </S.HomeTitle>
-          <Sequence />
-        </S.BgContainer>
-        <S.ViewContainer>
-          <S.View>
-            <Arrow />
-            둘러보기
-          </S.View>
-        </S.ViewContainer>
-      </S.SlideBg>
+      <picture>
+        <S.SlideBg url={imageArr[bgNum]}>
+          <S.BgContainer>
+            <S.HomeTitle>
+              빛고을 직업교육 혁신지구
+              <br />
+              사업 소개
+            </S.HomeTitle>
+            <Sequence />
+          </S.BgContainer>
+          <S.ViewContainer>
+            <S.View>
+              <Arrow />
+              둘러보기
+            </S.View>
+          </S.ViewContainer>
+        </S.SlideBg>
+      </picture>
       <S.SubTitleContainer>
         <S.SubTitleWrapper>
           <S.SemiTitleBox>
@@ -382,6 +386,7 @@ const HomePage = () => {
           </S.AgencyIntroItem>
         </S.AgencyIntroList>
       </S.AgencyIntroContainer>
+      <FAQSection />
       <S.Footer>
         <S.FooterTextContainer>
           <S.CopyRightsContainer>

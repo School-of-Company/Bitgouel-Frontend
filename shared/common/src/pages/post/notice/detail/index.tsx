@@ -1,12 +1,21 @@
 'use client'
 
 import { TokenManager, useDeletePost, useGetPostDetail } from '@bitgouel/api'
+import { AppropriationModal, Bg1, useModal, MainStyle } from '@bitgouel/common'
+import { RoleEnumTypes } from '@bitgouel/types'
+import dayjs from 'dayjs'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Bg1 } from '../../../../assets'
-import { useModal } from '../../../../hooks'
-import { AppropriationModal } from '../../../../modals'
+import { useEffect, useState } from 'react'
+import { LinkTextBox, LinkTitle, LinkWrapper } from '../../detail/style'
 import * as S from './style'
+
+const roleArray: RoleEnumTypes[] = [
+  'ROLE_ADMIN',
+  'ROLE_COMPANY_INSTRUCTOR',
+  'ROLE_PROFESSOR',
+  'ROLE_GOVERNMENT',
+]
 
 const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
   const { data } = useGetPostDetail(noticeId)
@@ -14,73 +23,79 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
   const { openModal } = useModal()
   const { push } = useRouter()
   const tokenManager = new TokenManager()
+  const [isRole, setIsRole] = useState<boolean>(false)
+
+  useEffect(() => {
+    setIsRole(
+      tokenManager.authority
+        ? roleArray.includes(tokenManager.authority)
+        : false
+    )
+  }, [])
 
   return (
-    <div>
-      <S.SlideBg url={Bg1}>
-        <S.BgContainer>
-          <S.ClubTitle>공지사항 상세</S.ClubTitle>
-        </S.BgContainer>
-      </S.SlideBg>
-      <S.DocumentWrapper>
-        <S.Document>
-          <S.TitleContainer>
-            <S.Title>{data?.data.title}</S.Title>
-            <S.SubTitle>
-              <S.NumberBox>
-                <S.SubTitleBox>게시일</S.SubTitleBox>
-                <span>{data?.data.modifiedAt}</span>
-              </S.NumberBox>
-            </S.SubTitle>
-          </S.TitleContainer>
-          <S.MainText>{data?.data.content}</S.MainText>
+    <MainStyle.PageWrapper>
+      <MainStyle.SlideBg url={Bg1}>
+        <MainStyle.BgContainer>
+          <MainStyle.PageTitle>공지사항 상세</MainStyle.PageTitle>
+        </MainStyle.BgContainer>
+      </MainStyle.SlideBg>
+      <MainStyle.MainWrapper>
+        <MainStyle.MainContainer>
+          <S.Title>{data?.title}</S.Title>
+          <S.SubTitle>
+            <S.NumberBox>
+              <S.SubTitleBox>게시일</S.SubTitleBox>
+              <span>
+                {dayjs(data?.modifiedAt).format('YYYY년 MM월 DD일 HH:mm')}
+              </span>
+            </S.NumberBox>
+          </S.SubTitle>
+          <S.MainText>{data?.content}</S.MainText>
           <S.SharedLine />
-          <S.LinkTextBox>
+          <LinkTextBox>
             <div>
-              <S.LinkTitle>관련 링크 보기</S.LinkTitle>
+              <LinkTitle>관련 링크 보기</LinkTitle>
             </div>
-            <S.LinkWrapper>
-              {data?.data.links.map((link) => (
+            <LinkWrapper>
+              {data?.links.map((link) => (
                 <Link href={link} passHref legacyBehavior>
                   <a target='_blank' rel='noopener noreferrer'>
                     {link}
                   </a>
                 </Link>
               ))}
-            </S.LinkWrapper>
-          </S.LinkTextBox>
+            </LinkWrapper>
+          </LinkTextBox>
           <S.ButtonWrapper>
             <S.ButtonContainer>
-              {tokenManager.authority === 'ROLE_ADMIN' ||
-                tokenManager.authority === 'ROLE_COMPANY_INSTRUCTOR' ||
-                tokenManager.authority === 'ROLE_PROFESSOR' ||
-                (tokenManager.authority === 'ROLE_GOVERNMENT' && (
-                  <S.DeleteNoticeButton
-                    onClick={() =>
-                      openModal(
-                        <AppropriationModal
-                          isApprove={false}
-                          question='공지사항을 삭제하시겠습니까?'
-                          purpose='삭제하기'
-                          title={data?.data.title as ''}
-                          onAppropriation={() => mutate()}
-                        />
-                      )
-                    }
-                  >
-                    삭제하기
-                  </S.DeleteNoticeButton>
-                ))}
+              {isRole && (
+                <S.DeleteNoticeButton
+                  onClick={() =>
+                    openModal(
+                      <AppropriationModal
+                        isApprove={false}
+                        question='공지사항을 삭제하시겠습니까?'
+                        purpose='삭제하기'
+                        title={data?.title || ''}
+                        onAppropriation={() => mutate()}
+                      />
+                    )
+                  }
+                >
+                  삭제하기
+                </S.DeleteNoticeButton>
+              )}
               <S.ModifyNoticeButton
-                onClick={() => push(`/main/post/notice/modify/${noticeId}`)}
+                onClick={() => push(`/main/post/notice/${noticeId}/modify`)}
               >
                 수정하기
               </S.ModifyNoticeButton>
             </S.ButtonContainer>
           </S.ButtonWrapper>
-        </S.Document>
-      </S.DocumentWrapper>
-    </div>
+        </MainStyle.MainContainer>
+      </MainStyle.MainWrapper>
+    </MainStyle.PageWrapper>
   )
 }
 

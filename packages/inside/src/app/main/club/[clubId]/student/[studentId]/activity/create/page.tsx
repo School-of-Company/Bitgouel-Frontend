@@ -1,8 +1,7 @@
-import React from 'react'
-import { ActivityCreatePage } from '@/PageContainer'
+import { ActivityWritePage } from '@/PageContainer'
 
 const ActivityCreate = () => {
-  return <ActivityCreatePage />
+  return <ActivityWritePage />
 }
 
 export default ActivityCreate

@@ -35,6 +35,7 @@ export const SlideBg = styled.div<{ url: StaticImageData }>`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
   background-image: url(${({ url }) => url.src});
   background-size: cover;
   justify-content: center;
@@ -89,8 +90,8 @@ export const SubTitleContainer = styled.div`
 
 export const SubTitleWrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 50%;
 `
 
@@ -279,7 +280,7 @@ export const ClubIntro = styled.div`
 export const ClubIntroSubTitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0 24px;
+  margin: 0 1.5rem;
 `
 
 export const ClubIntroTitle = styled.span`

@@ -1,7 +1,7 @@
-import { MyPage } from '@bitgouel/common/src/pages'
+import { MyPage } from '@bitgouel/common'
 
 const My = () => {
-  return <MyPage />
+  return <MyPage isAdmin={false} />
 }
 
 export default My

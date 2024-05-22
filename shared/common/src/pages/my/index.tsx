@@ -1,24 +1,24 @@
 'use client'
 
-import { Bg4 } from '../../assets'
+import { useDeleteWithDraw, useGetMy, usePostExcelUpload } from '@bitgouel/api'
+import { Bg4, roleToKor } from '@bitgouel/common'
+import { useRouter } from 'next/navigation'
 import * as S from './style'
-import { useGetMy, useDeleteWithDraw } from '@bitgouel/api'
-import { roleToKor } from '../../constants'
-import { useModal } from '../../hooks'
-import {ChangePwModal} from '../../modals'
+import { ChangeEvent, useCallback } from 'react'
 
-const MyPage = () => {
+const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
+  const { push } = useRouter()
   const { data } = useGetMy()
-  const { mutate } = useDeleteWithDraw()
-  const { openModal } = useModal()
-
-  const sliceNumber = (): string => {
-    return `${data?.data.phoneNumber.slice(
-      0,
-      3
-    )}-${data?.data.phoneNumber.slice(3, 7)}-${data?.data.phoneNumber.slice(7)}`
-  }
-
+  const { mutate: withdraw } = useDeleteWithDraw()
+  const { mutate: upload } = usePostExcelUpload()
+  
+  const onFileUpload = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    const excelFile: File | string = e.currentTarget.files ? e.currentTarget.files[0] : '';
+    const formData = new FormData()
+    formData.append('file', excelFile)
+    upload(formData)
+  }, [])
+  
   return (
     <S.MyPageWrapper url={Bg4}>
       <S.BlackBox>
@@ -29,33 +29,33 @@ const MyPage = () => {
           <S.MyIdentify>
             <S.MyIdentifyWrapper>
               <div>
-                <S.Name>{data?.data.name}</S.Name>
-                <S.Role>
-                  {roleToKor[data?.data.authority || 'ROLE_ADMIN']}
-                </S.Role>
+                <S.Name>{data?.name}</S.Name>
+                <S.Role>{roleToKor[data?.authority || 'ROLE_ADMIN']}</S.Role>
               </div>
               <div>
                 <S.OrganizationName>
-                  {data?.data.organization.split('/')[0]}
+                  {data?.organization.split('/')[0]}
                 </S.OrganizationName>
                 <S.SubEnter>소속</S.SubEnter>
               </div>
               <div>
-                <S.SubId>{data?.data.organization.split('/')[1]}</S.SubId>
+                <S.SubId>{data?.organization.split('/')[1]}</S.SubId>
               </div>
               <div>
-                <S.SubId>{data?.data.organization.split('/')[2]}</S.SubId>
+                <S.SubId>{data?.organization.split('/')[2]}</S.SubId>
               </div>
             </S.MyIdentifyWrapper>
             <S.AccountWrapper>
               <S.MyTitle>계정 정보</S.MyTitle>
               <S.AccountContainer>
                 <div>
-                  <S.LeftText>{data?.data.email}</S.LeftText>
+                  <S.LeftText>{data?.email}</S.LeftText>
                   <S.RightText>이메일</S.RightText>
                 </div>
                 <div>
-                  <S.LeftText>{sliceNumber()}</S.LeftText>
+                  <S.LeftText>
+                    {data?.phoneNumber}
+                  </S.LeftText>
                   <S.RightText>전화번호</S.RightText>
                 </div>
               </S.AccountContainer>
@@ -64,17 +64,34 @@ const MyPage = () => {
             <S.AccountSettingWrapper>
               <S.MyTitle>계정 설정</S.MyTitle>
               <S.AccountSettingContainer>
-                <div>
-                  <S.LeftText>회원정보 수정</S.LeftText>
-                  <S.ModifyText onClick={() => openModal(<ChangePwModal />)}>비밀번호 수정</S.ModifyText>
-                </div>
+                {isAdmin && (
+                  <S.AccountSettingLine>
+                    <S.LeftText>학생정보 일괄 삽입</S.LeftText>
+                    <S.LineRightText htmlFor='excelUpload'>
+                      <input 
+                        id='excelUpload'
+                        type='file'
+                        accept='.xlsx, .xls, .csv'
+                        onChange={onFileUpload}
+                      />
+                      엑셀 파일 업로드
+                    </S.LineRightText>
+                  </S.AccountSettingLine>
+                )}
                 <S.SharedLine />
-                <div>
+                <S.AccountSettingLine>
+                  <S.LeftText>회원정보 수정</S.LeftText>
+                  <S.LineRightText onClick={() => push('/auth/find')}>
+                    비밀번호 변경
+                  </S.LineRightText>
+                </S.AccountSettingLine>
+                <S.SharedLine />
+                <S.AccountSettingLine>
                   <S.LeftText>회원 탈퇴</S.LeftText>
-                  <S.WithDrawText onClick={() => mutate()}>
+                  <S.WithDrawText onClick={() => withdraw()}>
                     회원 탈퇴
                   </S.WithDrawText>
-                </div>
+                </S.AccountSettingLine>
               </S.AccountSettingContainer>
             </S.AccountSettingWrapper>
           </S.MyIdentify>

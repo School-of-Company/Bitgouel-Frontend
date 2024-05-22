@@ -1,6 +1,7 @@
 'use client'
+
+import { Circle } from '@bitgouel/common'
 import * as S from './style'
-import { Circle } from '../../assets/index'
 
 const sequenceList = [
   { name: '사업소개', scroll: 722 },
@@ -10,6 +11,7 @@ const sequenceList = [
   { name: '연계 대학 소개', scroll: 4000 },
   { name: '참여 기업 소개', scroll: 4900 },
   { name: '유관 기관 소개', scroll: 5800 },
+  { name: '자주 묻는 질문', scroll: 6800 },
 ]
 
 const Sequence = () => {

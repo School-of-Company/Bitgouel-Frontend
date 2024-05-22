@@ -1,34 +1,39 @@
 'use client'
 
+import { CommonCheckBox, authorityToKor, insertHyphen } from '@bitgouel/common'
 import { UserItemProps } from '@bitgouel/types'
-import { authorityToKor } from '../../constants'
 import * as S from './style'
-import { ChangeEvent } from 'react'
 
 const UserItem = ({
   id,
+  userIds,
   name,
   authority,
+  phoneNumber,
+  email,
   status,
   handleSelectUsers,
-  userIds,
 }: UserItemProps) => {
   return (
-    <div>
-      <S.UserItem isCurrent={status === 'current'}>
+    <S.ScrollBox>
+      <S.UserItem>
         {status === 'request' && (
-          <S.UserCheckBox
-            type='checkbox'
-            checked={userIds?.includes(id)}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              handleSelectUsers && handleSelectUsers(e, id)
-            }
-          />
+          <S.CheckItemContainer>
+            <CommonCheckBox
+              checked={userIds?.includes(id) || false}
+              onChange={(checked: boolean) =>
+                handleSelectUsers && handleSelectUsers(checked, id)
+              }
+            />
+            <S.Name>{name}</S.Name>
+          </S.CheckItemContainer>
         )}
-        <S.Name>{name}</S.Name>
-        {authority && <S.Role>{authorityToKor[authority]}</S.Role>}
+        {status === 'current' && <S.Name>{name}</S.Name>}
+        <S.Role>{authorityToKor[authority]}</S.Role>
+        <S.PhoneNumber>{insertHyphen(phoneNumber)}</S.PhoneNumber>
+        <S.Email>{email}</S.Email>
       </S.UserItem>
-    </div>
+    </S.ScrollBox>
   )
 }
 

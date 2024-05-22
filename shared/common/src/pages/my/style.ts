@@ -127,22 +127,26 @@ export const AccountSettingWrapper = styled.div`
 
 export const AccountSettingContainer = styled.div`
   margin-top: 2rem;
-  div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 1.5rem 0rem;
-  }
 `
 
-export const ModifyText = styled.span`
+export const AccountSettingLine = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1.5rem 0rem;
+`
+
+export const LineRightText = styled.label`
+  ${({ theme }) => theme.typo.text_md.regular};
   color: ${({ theme }) => theme.color.main};
   text-decoration: underline;
   cursor: pointer;
+
+  input {
+    display: none;
+  }
 `
 
-export const WithDrawText = styled.span`
+export const WithDrawText = styled(LineRightText)`
   color: ${({ theme }) => theme.color.error};
-  text-decoration: underline;
-  cursor: pointer;
 `

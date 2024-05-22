@@ -4,52 +4,61 @@ import {
   TokenManager,
   useGetCertificateList,
   useGetCertificateListTeacher,
+  useGetCompleteLecture,
   useGetStudentDetail,
   usePostCertificate,
 } from '@bitgouel/api'
-import { CertificateRequest, StudentIdProps } from '@bitgouel/types'
-import { useRouter } from 'next/navigation'
-import { ChangeEvent, useState } from 'react'
-import { toast } from 'react-toastify'
 import {
   AddCertificate,
+  AppropriationModal,
   Bg2,
   CalendarIcon,
+  CertificateItem,
   PersonOut,
   PlusCertificate,
-} from '../../../assets'
-import CertificateItem from '../../../components/CertificateItem'
-import { useModal } from '../../../hooks'
-import { AppropriationModal, SelectCalendarModal } from '../../../modals'
-import { theme } from '../../../styles'
+  SelectCalendarModal,
+  theme,
+  useModal,
+  CompleteLectureItem,
+  MainStyle,
+} from '@bitgouel/common'
+import {
+  CertificateRequest,
+  RoleEnumTypes,
+  StudentIdProps,
+} from '@bitgouel/types'
+import { useRouter } from 'next/navigation'
+import { ChangeEvent, useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 import * as S from './style'
 
-interface StudentProps {
-  studentIdProps: StudentIdProps
-}
+const roleArray: RoleEnumTypes[] = [
+  'ROLE_STUDENT',
+  'ROLE_TEACHER',
+  'ROLE_ADMIN',
+]
 
-const StudentPage: React.FC<StudentProps> = ({ studentIdProps }) => {
-  const { studentId, clubId } = studentIdProps
+const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
+  studentIdProps,
+}) => {
+  const { studentId, clubId } = studentIdProps || {}
   const { push } = useRouter()
-
+  const tokenManager = new TokenManager()
   const [isAddCertificate, setIsAddCertificate] = useState<boolean>(false)
   const [certificateText, setCertificateText] = useState<string>('')
   const [isCertificateDate, setIsCertificateDate] = useState<boolean>(false)
   const [certificateDate, setCertificateDate] = useState<Date>(new Date())
   const [certificateDateText, setCertificateDateText] = useState<string>('')
   const [certificateIndex, setCertificateIndex] = useState<number>(-1)
+  const [isRole, setIsRole] = useState<boolean>(false)
+  const [isStudent, setIsStudent] = useState<boolean>(false)
   const { openModal, closeModal } = useModal()
+  const { data: clubStudent } = useGetStudentDetail(clubId, studentId)
+  const { data: certificateList, refetch } = isStudent
+    ? useGetCertificateList()
+    : useGetCertificateListTeacher(studentId)
 
-  const { data: myData } = useGetStudentDetail(clubId, studentId)
-
-  const { mutate } = usePostCertificate()
-
-  const tokenManager = new TokenManager()
-
-  const { data: certificateList } =
-    tokenManager.authority === 'ROLE_STUDENT'
-      ? useGetCertificateList()
-      : useGetCertificateListTeacher(studentId)
+  const { data: completeLectureList } = useGetCompleteLecture(studentId)
 
   const onCreate = () => {
     const payload: CertificateRequest = {
@@ -64,46 +73,65 @@ const StudentPage: React.FC<StudentProps> = ({ studentIdProps }) => {
         .padStart(2, '0')}`,
     }
     mutate(payload)
-    closeModal()
-    window.location.reload()
   }
 
+  const { mutate } = usePostCertificate({
+    onSuccess: () => {
+      refetch()
+      closeModal()
+      setIsAddCertificate(false)
+      toast.success('자격증을 추가하였습니다.')
+    },
+  })
+  useEffect(() => {
+    setIsRole(
+      tokenManager.authority
+        ? roleArray.includes(tokenManager.authority)
+        : false
+    )
+    setIsStudent(tokenManager.authority === 'ROLE_STUDENT')
+  }, [])
+
   return (
-    <div>
-      <S.SlideBg url={Bg2}>
-        <S.BgContainer>
-          <S.ClubTitle>학생 정보</S.ClubTitle>
-          {['ROLE_ADMIN', 'ROLE_TEACHER', 'ROLE_STUDENT'].includes(
-            tokenManager.authority || ''
-          ) && (
-            <S.ClubButton onClick={() => push('/main/club/student/activity')}>
-              <PersonOut />
-              <span>학생 활동</span>
-            </S.ClubButton>
+    <MainStyle.PageWrapper>
+      <MainStyle.SlideBg url={Bg2}>
+        <MainStyle.BgContainer>
+          <MainStyle.PageTitle>학생 정보</MainStyle.PageTitle>
+          {isRole && (
+            <MainStyle.ButtonContainer>
+              <MainStyle.SlideButton
+                onClick={() =>
+                  push(`/main/club/${clubId}/student/${studentId}/activity`)
+                }
+              >
+                <PersonOut />
+                <span>학생 활동</span>
+              </MainStyle.SlideButton>
+            </MainStyle.ButtonContainer>
           )}
-        </S.BgContainer>
-      </S.SlideBg>
-      <S.CertificateWrapper>
-        <S.CertificateContainer>
+        </MainStyle.BgContainer>
+      </MainStyle.SlideBg>
+      <MainStyle.MainWrapper>
+        <MainStyle.MainContainer>
           <S.ProfileBox>
-            <h3>{myData?.data.name}</h3>
-            <S.ProfileInfoBox>
-              <span>{myData?.data.phoneNumber}</span>
-              <span>{myData?.data.email}</span>
-              <span>
-                총 학점 <b>{myData?.data.credit}</b>
-              </span>
-            </S.ProfileInfoBox>
+            <span>{clubStudent?.name}</span>
+            <span>{clubStudent?.email}</span>
+            <span>
+              {clubStudent?.phoneNumber.slice(0, 3)}-
+              {clubStudent?.phoneNumber.slice(3, 7)}-
+              {clubStudent?.phoneNumber.slice(7)}
+            </span>
+            <span>
+              총 학점 <b>{clubStudent?.credit}</b>
+            </span>
           </S.ProfileBox>
           <S.CertificateBox>
-            <S.CertificatePlusBox>
-              <h3>자격증</h3>
-              <S.PlusCertificateIcon
-                onClick={() => setIsAddCertificate((prev) => !prev)}
-              >
-                <PlusCertificate />
-              </S.PlusCertificateIcon>
-            </S.CertificatePlusBox>
+            <span>
+              자격증{' '}
+              <div onClick={() => setIsAddCertificate((prev) => !prev)}>
+                {isStudent && <PlusCertificate />}
+              </div>
+            </span>
             <S.CertificateListBox>
               {isAddCertificate && (
                 <S.AddCertificateBox>
@@ -145,7 +173,7 @@ const StudentPage: React.FC<StudentProps> = ({ studentIdProps }) => {
                               question='자격증 정보를 추가하시겠습니까?'
                               title={certificateText}
                               purpose='추가하기'
-                              onAppropriation={() => onCreate()}
+                              onAppropriation={onCreate}
                             />
                           )
                         : toast.info('자격증 정보를 입력해주세요')
@@ -162,11 +190,10 @@ const StudentPage: React.FC<StudentProps> = ({ studentIdProps }) => {
                   </S.AddCertificateIcon>
                 </S.AddCertificateBox>
               )}
-              {certificateList?.data?.certifications.map((certificate, idx) => (
+              {certificateList?.certifications.map((certificate, idx) => (
                 <div
                   onClick={() => {
                     setCertificateIndex(idx)
-                    console.log(certificateIndex)
                   }}
                   key={idx}
                 >
@@ -174,14 +201,28 @@ const StudentPage: React.FC<StudentProps> = ({ studentIdProps }) => {
                     key={idx}
                     certificateItems={certificate}
                     isOpenCalendar={idx === certificateIndex}
+                    refetchModify={refetch}
                   />
                 </div>
               ))}
             </S.CertificateListBox>
           </S.CertificateBox>
-        </S.CertificateContainer>
-      </S.CertificateWrapper>
-    </div>
+          {isRole && (
+            <S.LectureListBox>
+              <b>신청한 강의 목록</b>
+              <S.LectureList>
+                {completeLectureList?.lectures.map((completeLecture) => (
+                  <CompleteLectureItem
+                    key={completeLecture.id}
+                    item={completeLecture}
+                  />
+                ))}
+              </S.LectureList>
+            </S.LectureListBox>
+          )}
+        </MainStyle.MainContainer>
+      </MainStyle.MainWrapper>
+    </MainStyle.PageWrapper>
   )
 }
 

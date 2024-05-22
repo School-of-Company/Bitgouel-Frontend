@@ -1,35 +1,29 @@
 'use client'
 
-import RejectModal from '.'
+import AppropriationModal from '.'
 import type { Meta, StoryObj } from '@storybook/react'
 
 export default {
-  title: 'common/modals/RejectModal',
-  component: RejectModal,
-} as Meta<typeof RejectModal>
+  title: 'common/modals/AppropriationModal',
+  component: AppropriationModal,
+} as Meta<typeof AppropriationModal>
 
-type Story = StoryObj<typeof RejectModal>
+type Story = StoryObj<typeof AppropriationModal>
 
-export const LectureRejectModal: Story = {
+export const BlueAppropriationModal: Story = {
   args: {
-    type: '강의 개설',
+    isApprove: true,
+    question: '게시글을 추가하시겠습니까?',
     title: '유저 리서치 - 사용자 경험 개선하기',
-    purpose: '거절'
+    purpose: '추가하기',
   },
 }
 
-export const ActivityRejectModal: Story = {
+export const RedppropriationModal: Story = {
   args: {
-    type: '활동 추가',
-    title: '우리는 퍼블리셔입니다.',
-    purpose: '거절'
-  },
-}
-
-export const InquiryRejectModal: Story = {
-  args: {
-    type: '문의',
-    title: '문의가 문의문의해요..',
-    purpose: '삭제'
+    isApprove: false,
+    question: '게시글을 삭제하시겠습니까?',
+    title: '유저 리서치 - 사용자 경험 개선하기',
+    purpose: '삭제하기',
   },
 }

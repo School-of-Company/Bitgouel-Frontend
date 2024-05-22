@@ -1,11 +1,12 @@
 'use client'
 
-import { PostItemProps } from '@bitgouel/types'
-import * as S from './style'
+import { PostItemTypes } from '@bitgouel/types'
+import dayjs from 'dayjs'
 import { usePathname, useRouter } from 'next/navigation'
 import { match } from 'ts-pattern'
+import * as S from './style'
 
-const PostItem = ({ item }: PostItemProps) => {
+const PostItem = ({ item }: { item: PostItemTypes }) => {
   const { push } = useRouter()
   const pathname = usePathname()
 
@@ -23,13 +24,9 @@ const PostItem = ({ item }: PostItemProps) => {
         <S.PostTitle>{item.title}</S.PostTitle>
       </div>
       <div>
-        <S.PostDate>{`${item.modifiedAt.slice(0, 4)}년 ${item.modifiedAt.slice(
-          5,
-          7
-        )}월 ${item.modifiedAt.slice(8, 10)}일 ${item.modifiedAt.slice(
-          11,
-          16
-        )}`}</S.PostDate>
+        <S.PostDate>
+          {dayjs(item.modifiedAt).format('YYYY년 MM월 DD일 HH:mm')}
+        </S.PostDate>
       </div>
     </S.PostItem>
   )

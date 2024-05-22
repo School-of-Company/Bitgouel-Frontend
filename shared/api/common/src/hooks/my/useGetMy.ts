@@ -1,10 +1,10 @@
+import { get, myQueryKeys, userUrl } from '@bitgouel/api'
 import { MyPageResponseTypes } from '@bitgouel/types'
-import { useQuery, UseQueryOptions } from '@tanstack/react-query'
-import { AxiosResponse } from 'axios'
-import { userUrl, myQueryKeys, get } from '../../libs'
+import { UseQueryOptions, useQuery } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
 
-export const useGetMy = (options?: UseQueryOptions<AxiosResponse>) =>
-  useQuery<AxiosResponse<MyPageResponseTypes>>(
+export const useGetMy = (options?: UseQueryOptions<MyPageResponseTypes>) =>
+  useQuery<MyPageResponseTypes, AxiosError>(
     myQueryKeys.getMy(),
     () => get(userUrl.user()),
     options

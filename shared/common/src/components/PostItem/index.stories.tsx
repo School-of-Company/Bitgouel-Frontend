@@ -10,4 +10,12 @@ export default {
 
 type Story = StoryObj<typeof PostItem>
 
-export const Primary: Story = {}
+export const Primary: Story = {
+  args: {
+    item: {
+      id: '1234',
+      title: '테스트',
+      modifiedAt: '2023-09-09T10:00:00'
+    }
+  }
+}

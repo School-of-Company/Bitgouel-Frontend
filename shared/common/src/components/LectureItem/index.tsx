@@ -1,60 +1,48 @@
 'use client'
 
-import { lectureToKor, lectureStatusToKor } from '../../constants'
-import * as S from './style'
-import { useRouter } from 'next/navigation'
+import { LectureSemesterToKor } from '@bitgouel/common'
 import { LectureItemProps } from '@bitgouel/types'
-
-const LectureItem = ({ item, role }: LectureItemProps) => {
-  const router = useRouter()
+import dayjs from 'dayjs'
+import { useRouter } from 'next/navigation'
+import * as S from './style'
+const LectureItem = ({ item }: LectureItemProps) => {
+  const { push } = useRouter()
 
   return (
-    <S.LectureItemWrapper
-      onClick={() => router.push(`/main/lecture/${item.id}`)}
-    >
-      <S.SubTitle>
-        <S.Professor>{item.lecturer}</S.Professor>
-        <S.Date>
-          {`${item.completeDate.slice(0, 4)}년 ${item.completeDate.slice(
-            5,
-            7
-          )}월 ${item.completeDate.slice(8, 10)}일 ${item.completeDate.slice(
-            11,
-            16
-          )}`}
-        </S.Date>
-      </S.SubTitle>
-      <S.Title>{item.name}</S.Title>
-      <S.MainTextContainer>
-        <S.MainText>
-          {item.content.length > 230
-            ? `${item.content.slice(0, 230)}...`
-            : item.content}
-        </S.MainText>
-      </S.MainTextContainer>
-      <S.SubMenuContainer>
-        <S.From>{lectureToKor[item.lectureType]}</S.From>
-        <S.MenuNum>
-          <span>
-            {`${item.startDate.slice(0, 4)}년 ${item.startDate.slice(
-              5,
-              7
-            )}월 ${item.startDate.slice(8, 10)}일 ${item.startDate.slice(
-              11,
-              16
-            )}`}{' '}
-            ~{' '}
-            {`${item.endDate.slice(0, 4)}년 ${item.endDate.slice(
-              5,
-              7
-            )}월 ${item.endDate.slice(8, 10)}일 ${item.endDate.slice(11, 16)}`}
-          </span>
-          <span>•</span>
-          <span>
+    <S.LectureItemWrapper onClick={() => push(`/main/lecture/${item.id}`)}>
+      <S.TitleBox>
+        <S.MainTitleContainer>
+          <S.Title>{item.name}</S.Title>
+          <S.Professor>{item.lecturer}</S.Professor>
+        </S.MainTitleContainer>
+        <S.TypeText>{item.lectureType}</S.TypeText>
+      </S.TitleBox>
+      <S.MainText>
+        {item.content.length > 230
+          ? `${item.content.slice(0, 230)}...`
+          : item.content}
+      </S.MainText>
+      <S.MenuWrapper>
+        <div>
+          <S.TypeText>{LectureSemesterToKor[item.semester]}</S.TypeText>
+          <S.TypeText>
+            {item.division}
+            {' | '}
+            {item.line}
+            {' | '}
+            {item.department}
+          </S.TypeText>
+        </div>
+        <div>
+          <S.LectureMenu>
             {item.headCount}/{item.maxRegisteredUser}명
-          </span>
-        </S.MenuNum>
-      </S.SubMenuContainer>
+          </S.LectureMenu>
+          <S.LectureMenu>
+            {dayjs(item.startDate).format('YYYY.MM.DD')} ~{' '}
+            {dayjs(item.endDate).format('YYYY.MM.DD')}
+          </S.LectureMenu>
+        </div>
+      </S.MenuWrapper>
     </S.LectureItemWrapper>
   )
 }
