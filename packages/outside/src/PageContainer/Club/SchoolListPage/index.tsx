@@ -7,32 +7,36 @@ import {
   schoolToConstants,
   MainStyle,
 } from '@bitgouel/common'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import * as S from '../ClubPage/style'
 
 const SchoolListPage = () => {
+  const [isClient, setIsClient] = useState<boolean>(false)
   const schoolFilterText = useRecoilValue(SchoolFilterText)
   const { data, refetch } = useGetClubList(schoolToConstants[schoolFilterText])
 
   useEffect(() => {
     refetch()
+    setIsClient(true)
   }, [schoolFilterText])
 
   return (
-    <MainStyle.PageWrapper>
-      <SchoolFilter />
-      <MainStyle.MainWrapper>
-        <MainStyle.MainContainer>
-          <S.ClubSchoolTitle>{schoolFilterText}</S.ClubSchoolTitle>
-          <S.ClubListWrapper>
-            {data?.clubs.map((club) => (
-              <ClubItem key={club.id} clubId={club.id} clubName={club.name} />
-            ))}
-          </S.ClubListWrapper>
-        </MainStyle.MainContainer>
-      </MainStyle.MainWrapper>
-    </MainStyle.PageWrapper>
+    isClient && (
+      <MainStyle.PageWrapper>
+        <SchoolFilter />
+        <MainStyle.MainWrapper>
+          <MainStyle.MainContainer>
+            <S.ClubSchoolTitle>{schoolFilterText}</S.ClubSchoolTitle>
+            <S.ClubListWrapper>
+              {data?.clubs.map((club) => (
+                <ClubItem key={club.id} clubId={club.id} clubName={club.name} />
+              ))}
+            </S.ClubListWrapper>
+          </MainStyle.MainContainer>
+        </MainStyle.MainWrapper>
+      </MainStyle.PageWrapper>
+    )
   )
 }
 
