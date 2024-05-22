@@ -5,7 +5,13 @@ import {
   usePatchPostModify,
   usePostPost,
 } from '@bitgouel/api'
-import { AppropriationModal, Bg1, Link, useModal } from '@bitgouel/common'
+import {
+  AppropriationModal,
+  Bg1,
+  Link,
+  useModal,
+  MainStyle,
+} from '@bitgouel/common'
 import { LinksObjectTypes } from '@bitgouel/types'
 import { ChangeEvent, useEffect, useState } from 'react'
 import * as S from './style'
@@ -111,14 +117,16 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
   }
 
   return (
-    <div>
-      <S.SlideBg url={Bg1}>
-        <S.BgContainer>
-          <S.CreateTitle>공지사항 {noticeId ? '수정' : '추가'}</S.CreateTitle>
-        </S.BgContainer>
-      </S.SlideBg>
-      <S.DocumentInputContainer>
-        <S.DocumentInput>
+    <MainStyle.PageWrapper>
+      <MainStyle.SlideBg url={Bg1}>
+        <MainStyle.BgContainer>
+          <MainStyle.PageTitle>
+            공지사항 {noticeId ? '수정' : '추가'}
+          </MainStyle.PageTitle>
+        </MainStyle.BgContainer>
+      </MainStyle.SlideBg>
+      <MainStyle.MainWrapper>
+        <MainStyle.MainContainer>
           <S.InputTitle
             value={noticeTitle}
             maxLength={TITLEMAXLENGTH}
@@ -157,9 +165,9 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
               {noticeId ? '수정완료' : '공지사항 추가하기'}
             </S.NoticeButton>
           </S.ButtonContainer>
-        </S.DocumentInput>
-      </S.DocumentInputContainer>
-    </div>
+        </MainStyle.MainContainer>
+      </MainStyle.MainWrapper>
+    </MainStyle.PageWrapper>
   )
 }
 

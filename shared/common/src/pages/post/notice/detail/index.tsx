@@ -1,7 +1,7 @@
 'use client'
 
 import { TokenManager, useDeletePost, useGetPostDetail } from '@bitgouel/api'
-import { AppropriationModal, Bg1, useModal } from '@bitgouel/common'
+import { AppropriationModal, Bg1, useModal, MainStyle } from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
 import dayjs from 'dayjs'
 import Link from 'next/link'
@@ -34,25 +34,23 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
   }, [])
 
   return (
-    <div>
-      <S.SlideBg url={Bg1}>
-        <S.BgContainer>
-          <S.ClubTitle>공지사항 상세</S.ClubTitle>
-        </S.BgContainer>
-      </S.SlideBg>
-      <S.DocumentWrapper>
-        <S.Document>
-          <S.TitleContainer>
-            <S.Title>{data?.title}</S.Title>
-            <S.SubTitle>
-              <S.NumberBox>
-                <S.SubTitleBox>게시일</S.SubTitleBox>
-                <span>
-                  {dayjs(data?.modifiedAt).format('YYYY년 MM월 DD일 HH:mm')}
-                </span>
-              </S.NumberBox>
-            </S.SubTitle>
-          </S.TitleContainer>
+    <MainStyle.PageWrapper>
+      <MainStyle.SlideBg url={Bg1}>
+        <MainStyle.BgContainer>
+          <MainStyle.PageTitle>공지사항 상세</MainStyle.PageTitle>
+        </MainStyle.BgContainer>
+      </MainStyle.SlideBg>
+      <MainStyle.MainWrapper>
+        <MainStyle.MainContainer>
+          <S.Title>{data?.title}</S.Title>
+          <S.SubTitle>
+            <S.NumberBox>
+              <S.SubTitleBox>게시일</S.SubTitleBox>
+              <span>
+                {dayjs(data?.modifiedAt).format('YYYY년 MM월 DD일 HH:mm')}
+              </span>
+            </S.NumberBox>
+          </S.SubTitle>
           <S.MainText>{data?.content}</S.MainText>
           <S.SharedLine />
           <LinkTextBox>
@@ -95,9 +93,9 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
               </S.ModifyNoticeButton>
             </S.ButtonContainer>
           </S.ButtonWrapper>
-        </S.Document>
-      </S.DocumentWrapper>
-    </div>
+        </MainStyle.MainContainer>
+      </MainStyle.MainWrapper>
+    </MainStyle.PageWrapper>
   )
 }
 

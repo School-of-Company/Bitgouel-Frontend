@@ -70,7 +70,7 @@ const WithdrawUserListPage = () => {
   }, [cohort])
 
   return (
-    <div>
+    <MainStyle.PageWrapper>
       <MainStyle.SlideBg url={Bg6}>
         <MainStyle.BgContainer>
           <MainStyle.PageTitle>탈퇴 예정자 명단</MainStyle.PageTitle>
@@ -79,67 +79,69 @@ const WithdrawUserListPage = () => {
               <PeopleCircle />
               <span>사용자 명단</span>
             </MainStyle.SlideButton>
-            <S.ButtonBox onClick={() => push('/main/admin/new')}>
+            <MainStyle.SlideButton onClick={() => push('/main/admin/new')}>
               <Plus />
               <span>신규 가입자 명단</span>
-            </S.ButtonBox>
+            </MainStyle.SlideButton>
           </MainStyle.ButtonContainer>
         </MainStyle.BgContainer>
       </MainStyle.SlideBg>
-      <S.UserListWrapper>
-        <TopContainer>
-          <RequestDisplayBar>
-            <div>
-              <span>선택</span>
-              <span>이름</span>
-            </div>
-            <span>직업</span>
-            <span>전화번호</span>
-            <span>이메일</span>
-          </RequestDisplayBar>
-          <S.WithdrawButtonContainer>
-            <S.FilterBox
-              onClick={() =>
-                openModal(
-                  <FilterModal
-                    title={filterTitle}
-                    filterList={filterList}
-                    onSelected={onSelected}
-                  />
-                )
-              }
-            >
-              <FilterOut />
-              필터
-            </S.FilterBox>
-            <S.AllWithdrawBox htmlFor='allWithdraw'>
-              <input type='checkbox' id='allWithdraw' onChange={onAll} />
-              <PeopleCircle />
-              전체 선택
-            </S.AllWithdrawBox>
-            <S.SelectWithdrawBox onClick={onWithdrawModal}>
-              <Check />
-              선택 탈퇴
-            </S.SelectWithdrawBox>
-          </S.WithdrawButtonContainer>
-        </TopContainer>
-        <UserListContainer>
-          {data?.students.map((user) => (
-            <UserItem
-              key={user.withdrawId}
-              id={user.userId}
-              name={user.studentName}
-              authority={user.authority}
-              phoneNumber={user.phoneNumber}
-              email={user.email}
-              status='request'
-              handleSelectUsers={handleSelectUsers}
-              userIds={userIds}
-            />
-          ))}
-        </UserListContainer>
-      </S.UserListWrapper>
-    </div>
+      <MainStyle.MainWrapper>
+        <MainStyle.MainContainer>
+          <TopContainer>
+            <RequestDisplayBar>
+              <div>
+                <span>선택</span>
+                <span>이름</span>
+              </div>
+              <span>직업</span>
+              <span>전화번호</span>
+              <span>이메일</span>
+            </RequestDisplayBar>
+            <S.WithdrawButtonContainer>
+              <S.FilterBox
+                onClick={() =>
+                  openModal(
+                    <FilterModal
+                      title={filterTitle}
+                      filterList={filterList}
+                      onSelected={onSelected}
+                    />
+                  )
+                }
+              >
+                <FilterOut />
+                필터
+              </S.FilterBox>
+              <S.AllWithdrawBox htmlFor='allWithdraw'>
+                <input type='checkbox' id='allWithdraw' onChange={onAll} />
+                <PeopleCircle />
+                전체 선택
+              </S.AllWithdrawBox>
+              <S.SelectWithdrawBox onClick={onWithdrawModal}>
+                <Check />
+                선택 탈퇴
+              </S.SelectWithdrawBox>
+            </S.WithdrawButtonContainer>
+          </TopContainer>
+          <UserListContainer>
+            {data?.students.map((user) => (
+              <UserItem
+                key={user.withdrawId}
+                id={user.userId}
+                name={user.studentName}
+                authority={user.authority}
+                phoneNumber={user.phoneNumber}
+                email={user.email}
+                status='request'
+                handleSelectUsers={handleSelectUsers}
+                userIds={userIds}
+              />
+            ))}
+          </UserListContainer>
+        </MainStyle.MainContainer>
+      </MainStyle.MainWrapper>
+    </MainStyle.PageWrapper>
   )
 }
 
