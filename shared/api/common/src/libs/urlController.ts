@@ -57,10 +57,12 @@ export const userUrl = {
 export const postUrl = {
   postCreate: () => `/post`,
   postList: (options: PostListOptionsTypes) =>
-    `/post?type=${options.type}&size=${options.size}&page=${options.page}`,
-  postDetail: (id: string) => `/post/${id}`,
-  postModify: (id: string) => `/post/${id}`,
-  postDelete: (id: string) => `/post/${id}`,
+    `/post/all?type=${options.type}${
+      options.postSequence ? `&postSequence=${options.postSequence}` : null
+    }&size=${options.size}`,
+  postDetail: (post_id: string) => `/post/${post_id}`,
+  postModify: (post_id: string) => `/post/${post_id}`,
+  postDelete: (post_id: string) => `/post/${post_id}`,
 } as const
 
 export const certificateUrl = {
