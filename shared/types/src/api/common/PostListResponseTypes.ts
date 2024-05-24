@@ -1,5 +1,3 @@
-import { PageTypes } from './PageTypes'
-
 export interface PostItemTypes {
   id: string
   title: string
@@ -8,7 +6,5 @@ export interface PostItemTypes {
 }
 
 export interface PostListResponseTypes {
-  posts: {
-    content: PostItemTypes[]
-  }
+  posts: PostItemTypes[]
 }
