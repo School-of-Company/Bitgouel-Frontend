@@ -1,10 +1,10 @@
 import {
   ActivityOptionsTypes,
-  LinePayloadTypes,
   InquiryListQueryStringTypes,
   LectureListOptionsTypes,
-  UserListOptionsTypes,
+  LinePayloadTypes,
   PostListOptionsTypes,
+  UserListOptionsTypes,
 } from '@bitgouel/types'
 
 export const authUrl = {
@@ -58,7 +58,7 @@ export const postUrl = {
   postCreate: () => `/post`,
   postList: (options: PostListOptionsTypes) =>
     `/post/all?type=${options.type}${
-      options.postSequence ? `&postSequence=${options.postSequence}` : null
+      options.postSequence ? `&postSequence=${options.postSequence}` : ''
     }&size=${options.size}`,
   postDetail: (post_id: string) => `/post/${post_id}`,
   postModify: (post_id: string) => `/post/${post_id}`,
