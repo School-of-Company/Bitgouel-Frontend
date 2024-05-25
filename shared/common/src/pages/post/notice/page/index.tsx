@@ -3,18 +3,20 @@
 import { useGetPostList } from '@bitgouel/api'
 import {
   Bg1,
+  MainStyle,
   Message,
   Plus,
   PostItem,
   Question,
-  MainStyle,
 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 const NoticePage = ({ isAdmin }: { isAdmin: boolean }) => {
+  const [noticeSequence, setNoticeSequence] = useState<number | null>(null)
   const { data } = useGetPostList({
     type: 'NOTICE',
-    page: 0,
+    postSequence: noticeSequence,
     size: 10,
   })
   const { push } = useRouter()
@@ -44,7 +46,7 @@ const NoticePage = ({ isAdmin }: { isAdmin: boolean }) => {
       </MainStyle.SlideBg>
       <MainStyle.MainWrapper>
         <MainStyle.MainContainer>
-          {data?.posts.content.map((notice) => (
+          {data?.posts.map((notice) => (
             <PostItem key={notice.id} item={notice} />
           ))}
         </MainStyle.MainContainer>

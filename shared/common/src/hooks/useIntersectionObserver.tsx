@@ -4,20 +4,19 @@ import { PostItemTypes } from '@bitgouel/types';
 import { Dispatch, LegacyRef, SetStateAction, useEffect, useRef, useState } from 'react';
 
 interface ParameterTypes {
-  length: number
-  listData: PostItemTypes[]
+  listData: PostItemTypes[] | undefined
   setSequence: Dispatch<SetStateAction<number>>
 }
 
-export default function useIntersectionObserver({ length, listData, setSequence }: ParameterTypes) {
+export default function useIntersectionObserver({ listData, setSequence }: ParameterTypes) {
   const scrollTarget = useRef<HTMLDivElement | null>(null)
-  const [last, setLast] = useState<number>(null)
+  const [last, setLast] = useState<number>(0)
   const [list, setList] = useState<PostItemTypes[]>([])
 
   useEffect(() => {
-    if (length) {
+    if (listData?.length) {
       setList((prev) => [...prev, ...listData])
-      setLast(listData.at(-1).postSequence)
+      if (listData) setLast(listData.at(-1)?.postSequence || 0)
     }
   }, [listData])
 

@@ -8,11 +8,12 @@ import {
   Plus,
   PostItem,
   Question,
+  useIntersectionObserver,
 } from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import useIntersectionObserver from '../../../hooks/useIntersectionObserver'
+import * as S from './style'
 
 const roleArray: RoleEnumTypes[] = [
   'ROLE_ADMIN',
@@ -26,13 +27,13 @@ const PostPage = () => {
   const tokenManager = new TokenManager()
   const { push } = useRouter()
 
-  const [postSequence, setPostSequence] = useState<number>(0)
+  const [postSequence, setPostSequence] = useState<number | null>(null)
   const { data, refetch } = useGetPostList({
     type: 'EMPLOYMENT',
     postSequence,
     size: 10,
   })
-  const {scrollTarget, list: postList } = useIntersectionObserver({length: data?.posts.length, listData: data?.posts, setSequence: setPostSequence})
+  const {scrollTarget, list: postList } = useIntersectionObserver({ listData: data?.posts || [], setSequence: setPostSequence})
 
   useEffect(() => {
     refetch()
@@ -75,15 +76,7 @@ const PostPage = () => {
             <PostItem key={post.id} item={post} />
           ))}
         </MainStyle.MainContainer>
-        <div
-          ref={scrollTarget}
-          style={{
-            width: '100%',
-            height: 30,
-            background: 'red',
-            marginTop: '5rem',
-          }}
-        />
+        <S.ObserverLine ref={scrollTarget} />
       </MainStyle.MainWrapper>
     </MainStyle.PageWrapper>
   )
