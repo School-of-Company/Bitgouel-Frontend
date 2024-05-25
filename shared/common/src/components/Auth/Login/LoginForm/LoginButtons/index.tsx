@@ -18,15 +18,13 @@ const LoginButtons = ({ onLogin }: Props) => {
   const emailValue = useRecoilValue(EmailValue)
   const passwordValue = useRecoilValue(PasswordValue)
 
-  const disabled = (): boolean =>
-    isLoading || !emailValue.length || !passwordValue.length
   const isAble = (): boolean =>
     !isLoading && emailValue !== '' && passwordValue !== ''
 
   return (
     <S.LoginButtonWrapper>
       <S.LoginButton
-        disabled={disabled()}
+        disabled={!isAble()}
         isAble={isAble()}
         onClick={onLogin}
       >
