@@ -7,13 +7,14 @@ import {
   LoadingStateContext,
   PasswordErrorText,
   PasswordValue,
+  SECRET_CRYPTO_KEY,
 } from '@bitgouel/common'
+import { LoginPayloadTypes } from '@bitgouel/types'
+import CryptoJS from 'crypto-js'
 import { useRouter } from 'next/navigation'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import LoginButtons from './LoginButtons'
 import LoginInput from './LoginInput'
-import CryptoJS from 'crypto-js'
-import { LoginPayloadTypes } from '@bitgouel/types'
 
 const LoginForm = () => {
   const emailValue = useRecoilValue(EmailValue)
@@ -59,9 +60,16 @@ const LoginForm = () => {
   })
 
   const onLogin = () => {
+    const iv = CryptoJS.lib.WordArray.random(128 / 8)
+    const hashKey = CryptoJS.enc.Hex.parse(
+      CryptoJS.SHA1(SECRET_CRYPTO_KEY).toString().substring(0, 32)
+    )
+    const cipherStr = CryptoJS.AES.encrypt(passwordValue, hashKey, { iv })
+    const encrypt = iv.concat(cipherStr.ciphertext).toString()
+
     const loginValues: LoginPayloadTypes = {
       email: emailValue,
-      password: CryptoJS.AES.encrypt(passwordValue, process.env.NEXT_PUBLIC_CRYPTO_SECRET_KEY).toString(),
+      password: encrypt,
     }
     mutate(loginValues)
   }
