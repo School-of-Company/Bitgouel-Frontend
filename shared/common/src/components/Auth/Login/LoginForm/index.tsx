@@ -2,12 +2,12 @@
 
 import { TokenManager, usePostLogin } from '@bitgouel/api'
 import {
+  encryptAES,
   EmailErrorText,
   EmailValue,
   LoadingStateContext,
   PasswordErrorText,
   PasswordValue,
-  encryptAES
 } from '@bitgouel/common'
 import { LoginPayloadTypes } from '@bitgouel/types'
 import CryptoJS from 'crypto-js'

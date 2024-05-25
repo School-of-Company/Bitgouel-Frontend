@@ -8,7 +8,7 @@ const encryptAES = (encryptValue: string) => {
       .substring(0, 32)
   )
   const cipherStr = CryptoJS.AES.encrypt(encryptValue, hashKey, { iv })
-  return iv.concat(cipherStr.cipherText).toString()
+  return iv.concat(cipherStr.ciphertext).toString()
 }
 
 export default encryptAES
