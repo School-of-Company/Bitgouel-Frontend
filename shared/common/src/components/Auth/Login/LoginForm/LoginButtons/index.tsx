@@ -10,10 +10,10 @@ import { useRecoilValue } from 'recoil'
 import * as S from './style'
 
 interface Props {
-  mutate: () => void
+  onLogin: () => void
 }
 
-const LoginButtons = ({ mutate }: Props) => {
+const LoginButtons = ({ onLogin }: Props) => {
   const isLoading = useContext(LoadingStateContext)
   const emailValue = useRecoilValue(EmailValue)
   const passwordValue = useRecoilValue(PasswordValue)
@@ -28,7 +28,7 @@ const LoginButtons = ({ mutate }: Props) => {
       <S.LoginButton
         disabled={disabled()}
         isAble={isAble()}
-        onClick={mutate}
+        onClick={onLogin}
       >
         로그인
       </S.LoginButton>
