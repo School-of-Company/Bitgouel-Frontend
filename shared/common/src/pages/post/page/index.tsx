@@ -3,15 +3,17 @@
 import { TokenManager, useGetPostList } from '@bitgouel/api'
 import {
   Bg1,
+  MainStyle,
   MegaPhone,
   Plus,
   PostItem,
   Question,
-  MainStyle,
+  useIntersectionObserver,
 } from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import * as S from './style'
 
 const roleArray: RoleEnumTypes[] = [
   'ROLE_ADMIN',
@@ -21,14 +23,21 @@ const roleArray: RoleEnumTypes[] = [
 ]
 
 const PostPage = () => {
-  const { data } = useGetPostList({
-    type: 'EMPLOYMENT',
-    page: 0,
-    size: 15,
-  })
-  const { push } = useRouter()
-  const tokenManager = new TokenManager()
   const [isRole, setIsRole] = useState<boolean>(false)
+  const tokenManager = new TokenManager()
+  const { push } = useRouter()
+
+  const [postSequence, setPostSequence] = useState<number | null>(null)
+  const { data, refetch } = useGetPostList({
+    type: 'EMPLOYMENT',
+    postSequence,
+    size: 10,
+  })
+  const {scrollTarget, list: postList } = useIntersectionObserver({ listData: data?.posts || [], setSequence: setPostSequence})
+
+  useEffect(() => {
+    refetch()
+  }, [postSequence])
 
   useEffect(() => {
     setIsRole(
@@ -63,10 +72,11 @@ const PostPage = () => {
       </MainStyle.SlideBg>
       <MainStyle.MainWrapper>
         <MainStyle.MainContainer>
-          {data?.posts.content.map((post) => (
+          {postList.map((post) => (
             <PostItem key={post.id} item={post} />
           ))}
         </MainStyle.MainContainer>
+        <S.ObserverLine ref={scrollTarget} />
       </MainStyle.MainWrapper>
     </MainStyle.PageWrapper>
   )
