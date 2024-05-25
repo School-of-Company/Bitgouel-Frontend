@@ -6,8 +6,7 @@ import {
   EmailValue,
   LoadingStateContext,
   PasswordErrorText,
-  PasswordValue,
-  SECRET_CRYPTO_KEY,
+  PasswordValue
 } from '@bitgouel/common'
 import { LoginPayloadTypes } from '@bitgouel/types'
 import CryptoJS from 'crypto-js'
@@ -62,7 +61,7 @@ const LoginForm = () => {
   const onLogin = () => {
     const iv = CryptoJS.lib.WordArray.random(128 / 8)
     const hashKey = CryptoJS.enc.Hex.parse(
-      CryptoJS.SHA1(SECRET_CRYPTO_KEY).toString().substring(0, 32)
+      CryptoJS.SHA1(process.env.REACT_APP_SECRET_CRYPTO_KEY).toString().substring(0, 32)
     )
     const cipherStr = CryptoJS.AES.encrypt(passwordValue, hashKey, { iv })
     const encryptPassword = iv.concat(cipherStr.ciphertext).toString()
