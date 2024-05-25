@@ -65,11 +65,11 @@ const LoginForm = () => {
       CryptoJS.SHA1(SECRET_CRYPTO_KEY).toString().substring(0, 32)
     )
     const cipherStr = CryptoJS.AES.encrypt(passwordValue, hashKey, { iv })
-    const encrypt = iv.concat(cipherStr.ciphertext).toString()
+    const encryptPassword = iv.concat(cipherStr.ciphertext).toString()
 
     const loginValues: LoginPayloadTypes = {
       email: emailValue,
-      password: encrypt,
+      password: encryptPassword,
     }
     mutate(loginValues)
   }
