@@ -1,22 +1,25 @@
 'use client'
 
+import { LegacyRef } from 'react'
 import { PostItemTypes } from '@bitgouel/types';
-import { Dispatch, LegacyRef, SetStateAction, useEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 
 interface ParameterTypes {
-  listData: PostItemTypes[] | undefined
+  listData: PostItemTypes[]
   setSequence: Dispatch<SetStateAction<number>>
 }
 
-export default function useIntersectionObserver({ listData, setSequence }: ParameterTypes) {
+type ReturnTypes = [LegacyRef<HTMLDivElement> | null, PostItemTypes[]]
+
+export default function useIntersectionObserver({ listData, setSequence }: ParameterTypes): ReturnTypes {
   const scrollTarget = useRef<HTMLDivElement | null>(null)
-  const [last, setLast] = useState<number>(0)
+  const [last, setLast] = useState<number>(null)
   const [list, setList] = useState<PostItemTypes[]>([])
 
   useEffect(() => {
-    if (listData?.length) {
-      setList((prev) => [...prev, ...listData])
-      if (listData) setLast(listData.at(-1)?.postSequence || 0)
+    if (listData) {
+      if (listData?.length)setList((prev) => [...prev, ...listData])
+      setLast(listData.at(-1)?.postSequence)
     }
   }, [listData])
 
@@ -28,7 +31,7 @@ export default function useIntersectionObserver({ listData, setSequence }: Param
     }, { threshold: 1 });
 
     if (scrollTarget.current) {
-      if (length) observer.observe(scrollTarget.current);
+      if (listData.length) observer.observe(scrollTarget.current);
       else observer.unobserve(scrollTarget.current)
     }
 
@@ -39,5 +42,5 @@ export default function useIntersectionObserver({ listData, setSequence }: Param
     };
   }, [last]);
 
-  return { scrollTarget, list };
+  return [scrollTarget, list];
 }
