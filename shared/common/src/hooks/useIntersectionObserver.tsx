@@ -13,7 +13,7 @@ type ReturnTypes = [LegacyRef<HTMLDivElement> | null, PostItemTypes[]]
 
 export default function useIntersectionObserver({ listData, setSequence }: ParameterTypes): ReturnTypes {
   const scrollTarget = useRef<HTMLDivElement | null>(null)
-  const [last, setLast] = useState<number>(null)
+  const [last, setLast] = useState<number>(0)
   const [list, setList] = useState<PostItemTypes[]>([])
 
   useEffect(() => {
