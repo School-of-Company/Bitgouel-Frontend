@@ -26,14 +26,16 @@ const PostPage = () => {
   const [isRole, setIsRole] = useState<boolean>(false)
   const tokenManager = new TokenManager()
   const { push } = useRouter()
-
   const [postSequence, setPostSequence] = useState<number | null>(null)
   const { data, refetch } = useGetPostList({
     type: 'EMPLOYMENT',
     postSequence,
     size: 10,
   })
-  const {scrollTarget, list: postList } = useIntersectionObserver({ listData: data?.posts || [], setSequence: setPostSequence})
+  const [scrollTarget, list] = useIntersectionObserver({
+    listData: data?.posts || [],
+    setSequence: setPostSequence,
+  })
 
   useEffect(() => {
     refetch()
@@ -72,7 +74,7 @@ const PostPage = () => {
       </MainStyle.SlideBg>
       <MainStyle.MainWrapper>
         <MainStyle.MainContainer>
-          {postList.map((post) => (
+          {list.map((post) => (
             <PostItem key={post.id} item={post} />
           ))}
         </MainStyle.MainContainer>
