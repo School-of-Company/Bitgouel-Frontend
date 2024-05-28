@@ -19,7 +19,7 @@ export default function useIntersectionObserver({ listData, setSequence }: Param
   useEffect(() => {
     if (listData) {
       if (listData?.length)setList((prev) => [...prev, ...listData])
-      setLast(listData.at(-1)?.postSequence)
+      setLast(listData.at(-1)?.postSequence || 0)
     }
   }, [listData])
 
