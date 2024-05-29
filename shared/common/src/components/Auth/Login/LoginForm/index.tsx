@@ -2,7 +2,6 @@
 
 import { TokenManager, usePostLogin } from '@bitgouel/api'
 import {
-  encryptAES,
   EmailErrorText,
   EmailValue,
   LoadingStateContext,
@@ -10,7 +9,6 @@ import {
   PasswordValue,
 } from '@bitgouel/common'
 import { LoginPayloadTypes } from '@bitgouel/types'
-import CryptoJS from 'crypto-js'
 import { useRouter } from 'next/navigation'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import LoginButtons from './LoginButtons'
@@ -62,8 +60,9 @@ const LoginForm = () => {
   const onLogin = () => {
     const loginValues: LoginPayloadTypes = {
       email: emailValue,
-      password: encryptAES(passwordValue),
+      password: passwordValue,
     }
+    
     mutate(loginValues)
   }
 
