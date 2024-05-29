@@ -4,15 +4,15 @@ import { LegacyRef } from 'react'
 import { PostItemTypes } from '@bitgouel/types';
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 
-interface ParameterTypes<T> {
-  listData: T[]
+interface ParameterTypes {
+  listData: PostItemTypes[]
   setSequence: Dispatch<SetStateAction<number>>
-  setList: Dispatch<SetStateAction<T[]>>
+  setList: Dispatch<SetStateAction<PostItemTypes[]>>
 }
 
 type ReturnTypes = [LegacyRef<HTMLDivElement> | null]
 
-export default function useIntersectionObserver<T>({ listData, setSequence, setList }: ParameterTypes<T>): ReturnTypes {
+export default function useIntersectionObserver({ listData, setSequence, setList }: ParameterTypes): ReturnTypes {
   const scrollTarget = useRef<HTMLDivElement | null>(null)
   const [last, setLast] = useState<number>(0)
 

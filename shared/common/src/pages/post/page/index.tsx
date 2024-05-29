@@ -33,7 +33,7 @@ const PostPage = () => {
     size: 10,
   })
   const [postList, setPostList] = useState<PostItemTypes[]>([])
-  const [scrollTarget] = useIntersectionObserver<PostItemTypes>({
+  const [scrollTarget] = useIntersectionObserver({
     listData: data?.posts || [],
     setSequence: setPostSequence,
     setList: setPostList,
