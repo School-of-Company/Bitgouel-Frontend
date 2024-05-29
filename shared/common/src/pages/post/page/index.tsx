@@ -10,7 +10,7 @@ import {
   Question,
   useIntersectionObserver,
 } from '@bitgouel/common'
-import { RoleEnumTypes } from '@bitgouel/types'
+import { PostItemTypes, RoleEnumTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import * as S from './style'
@@ -32,9 +32,11 @@ const PostPage = () => {
     postSequence,
     size: 10,
   })
-  const [scrollTarget, list] = useIntersectionObserver({
+  const [postList, setPostList] = useState<PostItemTypes[]>([])
+  const [scrollTarget] = useIntersectionObserver<PostItemTypes>({
     listData: data?.posts || [],
     setSequence: setPostSequence,
+    setList: setPostList,
   })
 
   useEffect(() => {
@@ -74,7 +76,7 @@ const PostPage = () => {
       </MainStyle.SlideBg>
       <MainStyle.MainWrapper>
         <MainStyle.MainContainer>
-          {list.map((post) => (
+          {postList.map((post) => (
             <PostItem key={post.id} item={post} />
           ))}
         </MainStyle.MainContainer>

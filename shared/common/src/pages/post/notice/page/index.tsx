@@ -10,9 +10,11 @@ import {
   Question,
   useIntersectionObserver,
 } from '@bitgouel/common'
+import { PostItemTypes } from '@bitgouel/types' 
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { ObserverLine } from '../../page/style'
+
 
 const NoticePage = ({ isAdmin }: { isAdmin: boolean }) => {
   const [noticeSequence, setNoticeSequence] = useState<number | null>(null)
@@ -21,12 +23,14 @@ const NoticePage = ({ isAdmin }: { isAdmin: boolean }) => {
     postSequence: noticeSequence,
     size: 10,
   })
-  const [ scrollTarget, list ] = useIntersectionObserver({
+  const [noticeList, setNoticeList] = useState<PostItemTypes[]>([])
+  const [ scrollTarget ] = useIntersectionObserver({
     listData: data?.posts || [],
     setSequence: setNoticeSequence,
+    setList: setNoticeList,
   })
   const { push } = useRouter()
-
+  
   useEffect(() => {
     refetch()
   }, [noticeSequence])
@@ -58,7 +62,7 @@ const NoticePage = ({ isAdmin }: { isAdmin: boolean }) => {
       </MainStyle.SlideBg>
       <MainStyle.MainWrapper>
         <MainStyle.MainContainer>
-          {list.map((notice) => (
+          {noticeList.map((notice) => (
             <PostItem key={notice.id} item={notice} />
           ))}
         </MainStyle.MainContainer>

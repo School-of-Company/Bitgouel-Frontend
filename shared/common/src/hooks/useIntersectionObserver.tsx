@@ -4,17 +4,17 @@ import { LegacyRef } from 'react'
 import { PostItemTypes } from '@bitgouel/types';
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 
-interface ParameterTypes {
-  listData: PostItemTypes[]
+interface ParameterTypes<T> {
+  listData: T[]
   setSequence: Dispatch<SetStateAction<number>>
+  setList: Dispatch<SetStateAction<T[]>>
 }
 
-type ReturnTypes = [LegacyRef<HTMLDivElement> | null, PostItemTypes[]]
+type ReturnTypes = [LegacyRef<HTMLDivElement> | null]
 
-export default function useIntersectionObserver({ listData, setSequence }: ParameterTypes): ReturnTypes {
+export default function useIntersectionObserver<T>({ listData, setSequence, setList }: ParameterTypes<T>): ReturnTypes {
   const scrollTarget = useRef<HTMLDivElement | null>(null)
   const [last, setLast] = useState<number>(0)
-  const [list, setList] = useState<PostItemTypes[]>([])
 
   useEffect(() => {
     if (listData) {
@@ -42,5 +42,5 @@ export default function useIntersectionObserver({ listData, setSequence }: Param
     };
   }, [last]);
 
-  return [scrollTarget, list];
+  return [scrollTarget];
 }
