@@ -10,7 +10,7 @@ import {
   Question,
   useIntersectionObserver,
 } from '@bitgouel/common'
-import { RoleEnumTypes } from '@bitgouel/types'
+import { PostItemTypes, RoleEnumTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import * as S from './style'
@@ -26,14 +26,18 @@ const PostPage = () => {
   const [isRole, setIsRole] = useState<boolean>(false)
   const tokenManager = new TokenManager()
   const { push } = useRouter()
-
   const [postSequence, setPostSequence] = useState<number | null>(null)
   const { data, refetch } = useGetPostList({
     type: 'EMPLOYMENT',
     postSequence,
     size: 10,
   })
-  const {scrollTarget, list: postList } = useIntersectionObserver({ listData: data?.posts || [], setSequence: setPostSequence})
+  const [postList, setPostList] = useState<PostItemTypes[]>([])
+  const [scrollTarget] = useIntersectionObserver({
+    listData: data?.posts || [],
+    setSequence: setPostSequence,
+    setList: setPostList,
+  })
 
   useEffect(() => {
     refetch()

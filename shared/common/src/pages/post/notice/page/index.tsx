@@ -8,18 +8,32 @@ import {
   Plus,
   PostItem,
   Question,
+  useIntersectionObserver,
 } from '@bitgouel/common'
+import { PostItemTypes } from '@bitgouel/types' 
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { ObserverLine } from '../../page/style'
+
 
 const NoticePage = ({ isAdmin }: { isAdmin: boolean }) => {
   const [noticeSequence, setNoticeSequence] = useState<number | null>(null)
-  const { data } = useGetPostList({
+  const { data, refetch } = useGetPostList({
     type: 'NOTICE',
     postSequence: noticeSequence,
     size: 10,
   })
+  const [noticeList, setNoticeList] = useState<PostItemTypes[]>([])
+  const [ scrollTarget ] = useIntersectionObserver({
+    listData: data?.posts || [],
+    setSequence: setNoticeSequence,
+    setList: setNoticeList,
+  })
   const { push } = useRouter()
+  
+  useEffect(() => {
+    refetch()
+  }, [noticeSequence])
 
   return (
     <MainStyle.PageWrapper>
@@ -36,7 +50,9 @@ const NoticePage = ({ isAdmin }: { isAdmin: boolean }) => {
               <span>문의사항</span>
             </MainStyle.SlideButton>
             {isAdmin && (
-              <MainStyle.SlideButton onClick={() => push('/main/post/notice/create')}>
+              <MainStyle.SlideButton
+                onClick={() => push('/main/post/notice/create')}
+              >
                 <Plus />
                 <span>공지 추가</span>
               </MainStyle.SlideButton>
@@ -46,10 +62,11 @@ const NoticePage = ({ isAdmin }: { isAdmin: boolean }) => {
       </MainStyle.SlideBg>
       <MainStyle.MainWrapper>
         <MainStyle.MainContainer>
-          {data?.posts.map((notice) => (
+          {noticeList.map((notice) => (
             <PostItem key={notice.id} item={notice} />
           ))}
         </MainStyle.MainContainer>
+        <ObserverLine ref={scrollTarget} />
       </MainStyle.MainWrapper>
     </MainStyle.PageWrapper>
   )
