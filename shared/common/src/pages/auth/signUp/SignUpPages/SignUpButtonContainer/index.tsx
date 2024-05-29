@@ -13,7 +13,6 @@ import {
   SignUpPage2Obj,
   SignUpPage3Obj,
   SignUpPageNumber,
-  encryptAES,
   schoolToConstants,
 } from '@bitgouel/common'
 import { SignUpCommonPayloadTypes } from '@bitgouel/types'
@@ -35,7 +34,7 @@ const SignUpButtonContainer = ({ isNext }: { isNext: boolean }) => {
     email: signUpPage3Obj[1].value,
     name: signUpPage2Obj[2].value,
     phoneNumber: signUpPage3Obj[0].value,
-    password: encryptAES(signUpPage3Obj[2].value),
+    password: signUpPage3Obj[2].value,
     highSchool: schoolToConstants[signUpPage2Obj[0].value],
     clubName: signUpPage2Obj[1].value,
   }
