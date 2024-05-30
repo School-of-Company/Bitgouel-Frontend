@@ -7,7 +7,6 @@ import Portal from '../../portal'
 import * as S from './style'
 import { usePatchPassword } from '@bitgouel/api'
 import { toast } from 'react-toastify'
-import { match } from 'ts-pattern'
 
 const ChangePwModal = () => {
   const [currentPw, setCurrentPw] = useState<string>('')
@@ -35,45 +34,54 @@ const ChangePwModal = () => {
   }
 
   useEffect(() => {
-    match(error?.response?.status).with(401, () =>
+    if (error?.response?.status === 401)
       toast.error('기존 비밀번호가 일치하지 않습니다')
-    )
   }, [error])
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setCurrentPw(e.target.value)
+    const { name, value } = e.target
+    if (name === 'currentPw') {
+      setCurrentPw(value)
+    } else if (name === 'newPw') {
+      setNewPw(value)
+    } else if (name === 'newConfirmPw') {
+      setNewConfirmPw(value)
+    }
   }
 
   const onBlur = (e: FocusEvent<HTMLInputElement>) => {
     const passwordRegex = new RegExp(
       /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,24}$/
     )
+    const { name, value } = e.target
 
-    if (e.target.name === 'currentPw') {
-      if (e.target.value === '') {
+    if (name === 'currentPw') {
+      if (value === '') {
         setCurrentErrorMessage('')
-      } else if (!passwordRegex.test(e.target.value)) {
+      } else if (!passwordRegex.test(value)) {
         setCurrentErrorMessage('잘못된 비밀번호입니다.')
       } else {
         setCurrentErrorMessage('')
       }
-    } else if (e.target.name === 'newPw') {
-      if (e.target.value === '') {
+    } else if (name === 'newPw') {
+      if (value === '') {
         setNewErrorMessage('')
-      } else if (currentPw === e.target.value) {
+      } else if (currentPw === value) {
         setNewErrorMessage('새로운 비밀번호를 입력해주세요.')
-      } else if (!passwordRegex.test(e.target.value)) {
+      } else if (!passwordRegex.test(value)) {
         setNewErrorMessage('잘못된 비밀번호입니다.')
       } else {
         setNewErrorMessage('')
       }
-    } else {
-      if (e.target.value === '') {
+    } else if (name === 'newConfirmPw') {
+      if (value === '') {
         setNewConfirmErrorMessage('')
-      } else if (!passwordRegex.test(e.target.value)) {
+      } else if (!passwordRegex.test(value)) {
         setNewConfirmErrorMessage('잘못된 비밀번호입니다.')
-      } else if (newPw !== e.target.value) {
+      } else if (newPw !== value) {
         setNewConfirmErrorMessage('비밀번호가 일치하지 않습니다.')
+      } else if (currentPw === value) {
+        setNewErrorMessage('새로운 비밀번호를 입력해주세요.')
       } else {
         setNewConfirmErrorMessage('')
       }
@@ -123,7 +131,7 @@ const ChangePwModal = () => {
           />
         </S.InputsContainer>
         <S.ChangePwButtonContainer>
-          <S.CancelButton>취소</S.CancelButton>
+          <S.CancelButton onClick={closeModal}>취소</S.CancelButton>
           <S.CompleteButton
             isAble={
               currentPw !== '' &&
