@@ -1,20 +1,27 @@
 'use client'
 
-import { TokenManager, usePostLogin } from "@bitgouel/api"
-import { EmailErrorText, EmailValue, LoadingStateContext, PasswordErrorText, PasswordValue } from '@bitgouel/common'
-import { useRouter } from "next/navigation"
-import { useRecoilValue, useSetRecoilState } from "recoil"
-import LoginButtons from "./LoginButtons"
-import LoginInput from "./LoginInput"
+import { TokenManager, usePostLogin } from '@bitgouel/api'
+import {
+  EmailErrorText,
+  EmailValue,
+  LoadingStateContext,
+  PasswordErrorText,
+  PasswordValue,
+} from '@bitgouel/common'
+import { LoginPayloadTypes } from '@bitgouel/types'
+import { useRouter } from 'next/navigation'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import LoginButtons from './LoginButtons'
+import LoginInput from './LoginInput'
 
 const LoginForm = () => {
   const emailValue = useRecoilValue(EmailValue)
   const passwordValue = useRecoilValue(PasswordValue)
   const setEmailErrorText = useSetRecoilState(EmailErrorText)
   const setPasswordErrorText = useSetRecoilState(PasswordErrorText)
-    const { push } = useRouter()
-    const tokenManager = new TokenManager()
-    const { mutate, isLoading } = usePostLogin({
+  const { push } = useRouter()
+  const tokenManager = new TokenManager()
+  const { mutate, isLoading } = usePostLogin({
     onSuccess: (data) => {
       tokenManager.setTokens(data)
       push(`/`)
@@ -50,10 +57,19 @@ const LoginForm = () => {
     },
   })
 
+  const onLogin = () => {
+    const loginValues: LoginPayloadTypes = {
+      email: emailValue,
+      password: passwordValue,
+    }
+    
+    mutate(loginValues)
+  }
+
   return (
     <LoadingStateContext.Provider value={isLoading}>
       <LoginInput />
-      <LoginButtons mutate={() => mutate({ email: emailValue, password: passwordValue })} />
+      <LoginButtons onLogin={onLogin} />
     </LoadingStateContext.Provider>
   )
 }
