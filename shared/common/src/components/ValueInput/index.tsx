@@ -30,7 +30,7 @@ const ValueInput = (
         <S.ValueInput
           ref={ref}
           {...rest}
-          isError={errorText ? true : false}
+          isError={!!errorText}
           isLoading={isLoading}
         />
         {length > 0 && focus === true && onClear && (
