@@ -13,7 +13,7 @@ const Email = ({ isLoading }: Props) => {
   const [emailErrorText, setEmailErrorText] = useRecoilState(EmailErrorText)
 
   const onEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+          const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/
           setEmailValue(e.target.value)
           if (e.target.value === '') setEmailErrorText('')
           else if (!emailRegex.test(e.target.value))
