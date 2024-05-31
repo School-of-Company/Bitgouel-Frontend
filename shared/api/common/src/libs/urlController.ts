@@ -96,7 +96,7 @@ export const adminUrl = {
     `/admin?keyword=${queryString.keyword}&authority=${queryString.authority}&approveStatus=${queryString.approveStatus}`,
   withDrawUserList: (cohort: string) => `/withdraw?cohort=${cohort}`,
   approveUser: (userIds: string[]) => `/admin?userIds=${userIds.join(',')}`,
-  rejectUser: (userIds: string[]) => `/admin/${userIds.join(',')}/reject`,
+  rejectUser: (userIds: string[]) => `/admin/reject?userIds=${userIds.join(',')}`,
   withDrawUser: (userIds: string[]) => `/admin/${userIds.join(',')}`,
   excelUpload: () => `/admin/excel`,
 } as const

@@ -18,19 +18,32 @@ import {
 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState } from 'react'
+import { toast } from 'react-toastify'
 import * as S from './style'
 
 const NewUserListPage = () => {
   const { push } = useRouter()
   const [userIds, setUserIds] = useState<string[]>([])
-  const { data } = useGetUserList({
+  const { data, refetch } = useGetUserList({
     keyword: '',
     authority: 'ROLE_USER',
     approveStatus: 'PENDING',
   })
-  const { openModal } = useModal()
-  const { mutate: approve } = usePatchUserApprove(userIds)
-  const { mutate: reject } = useDeleteUserReject(userIds)
+  const { openModal, closeModal } = useModal()
+  const { mutate: approve } = usePatchUserApprove(userIds, {
+    onSuccess: () => {
+      closeModal()
+      refetch()
+      toast.success('가입을 수락하였습니다')
+    }
+  })
+  const { mutate: reject } = useDeleteUserReject(userIds,{
+    onSuccess: () => {
+      closeModal()
+      refetch()
+      toast.success('가입을 거절하였습니다')
+    }
+  })
 
   const onAll = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) setUserIds(data?.users.map((user) => user.id))
@@ -41,7 +54,7 @@ const NewUserListPage = () => {
     handleSelect({ checked, id: userId, setIds: setUserIds })
 
   const handleOpenModal = (type: 'approve' | 'reject') => {
-    if (userIds.length === 0) return
+    if (userIds.length === 0) return toast.info('사용자를 선택해주세요')
     if (type === 'approve') {
       openModal(
         <AppropriationModal

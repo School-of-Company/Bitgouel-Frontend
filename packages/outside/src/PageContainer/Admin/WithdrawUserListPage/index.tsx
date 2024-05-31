@@ -29,14 +29,16 @@ const defaultFilterList = [
   { text: '4기', item: '4', checked: false },
 ]
 
-const filterTitle: string = '기수'
+const filterTitle: string = '기수' as const
 
 const WithdrawUserListPage = () => {
   const { push } = useRouter()
   const [userIds, setUserIds] = useState<string[]>([])
   const [cohort, setCohort] = useState<cohortTypes>('1')
   const { data, refetch } = useGetWithDrawUserList(cohort)
-  const { mutate } = useDeleteUserWithdraw(userIds)
+  const { mutate } = useDeleteUserWithdraw(userIds, {
+    onSuccess: () => refetch(),
+  })
   const { openModal } = useModal()
   const { filterList, onSelected } = useFilterSelect({
     title: filterTitle,
