@@ -62,7 +62,10 @@ instance.interceptors.response.use(
   },
   async (error: AxiosError) => {
     const tokenManager = new TokenManager()
-    if (!error.config.url.includes('auth') && error.response.status === 401) {
+    if (
+      !window.location.href.includes('auth') &&
+      error.response.status === 401
+    ) {
       try {
         await tokenManager.reissueToken()
         tokenManager.initToken()
