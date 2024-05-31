@@ -58,12 +58,12 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
     }
   }, [data])
 
-  const isCondition = (): boolean => {
+  const isAble = (): boolean => {
     if (isSuccess && data) {
       if (
         data.title !== noticeTitle ||
         data.content !== noticeContent ||
-        data.links?.some((link, i) => link !== noticeLinks[i]['value'])
+        JSON.stringify(data?.links) !== JSON.stringify(noticeLinks.map((link) => link.value).filter((link) => link.length))
       )
         return true
       else return false
@@ -74,7 +74,7 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
   }
 
   const onPost = () => {
-    if (isCondition()) {
+    if (isAble()) {
       if (noticeId) {
         openModal(
           <AppropriationModal
@@ -161,7 +161,7 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
             </S.SettingSelectionContainer>
           </S.NoticeSetting>
           <S.ButtonContainer>
-            <S.NoticeButton isAble={isCondition()} onClick={onPost}>
+            <S.NoticeButton isAble={isAble()} onClick={onPost}>
               {noticeId ? '수정완료' : '공지사항 추가하기'}
             </S.NoticeButton>
           </S.ButtonContainer>
