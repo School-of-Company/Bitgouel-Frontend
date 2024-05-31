@@ -74,28 +74,31 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
           )}
           <S.ButtonWrapper>
             <S.ButtonContainer>
-              {isRole && (
-                <S.DeletePostButton
-                  onClick={() =>
-                    openModal(
-                      <AppropriationModal
-                        isApprove={false}
-                        question='게시글을 삭제하시겠습니까?'
-                        purpose='삭제하기'
-                        title={data?.title || ''}
-                        onAppropriation={() => mutate()}
-                      />
-                    )
-                  }
-                >
-                  삭제하기
-                </S.DeletePostButton>
+               {isRole && (
+                <>
+                  <S.DeletePostButton
+                    onClick={() =>
+                      openModal(
+                        <AppropriationModal
+                          isApprove={false}
+                          question='게시글을 삭제하시겠습니까?'
+                          purpose='삭제하기'
+                          title={data?.title || ''}
+                          onAppropriation={() => mutate()}
+                        />
+                      )
+                    }
+                  >
+                    삭제하기
+                  </S.DeletePostButton>
+
+                  <S.ModifyPostButton
+                    onClick={() => push(`/main/post/${postId}/modify`)}
+                  >
+                    수정하기
+                  </S.ModifyPostButton>
+                </>
               )}
-              <S.ModifyPostButton
-                onClick={() => push(`/main/post/${postId}/modify`)}
-              >
-                수정하기
-              </S.ModifyPostButton>
             </S.ButtonContainer>
           </S.ButtonWrapper>
         </MainStyle.MainContainer>
