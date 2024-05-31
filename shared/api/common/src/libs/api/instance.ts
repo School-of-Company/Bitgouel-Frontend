@@ -46,6 +46,7 @@ instance.interceptors.request.use(
       tokenManager.removeTokens()
     }
 
+    if (config?.url.includes('login')) return config
     config.headers.Authorization = tokenManager.accessToken
       ? `Bearer ${encodeURI(tokenManager.accessToken)}`
       : undefined
@@ -62,17 +63,20 @@ instance.interceptors.response.use(
   },
   async (error) => {
     const tokenManager = new TokenManager()
-    if (!window.location.href.includes('auth') && error.status === 401) {
-        try {
-          await tokenManager.reissueToken()
-          tokenManager.initToken()
-          error.config.headers['Authorization'] = tokenManager.accessToken
-            ? `Bearer ${encodeURI(tokenManager.accessToken)}`
-            : undefined
-          return instance(error.config)
-        } catch (err) {
-          window.location.replace(`/`)
-        }
+    if (
+      !window.location.href.includes('auth') &&
+      error?.response.status === 401
+    ) {
+      try {
+        await tokenManager.reissueToken()
+        tokenManager.initToken()
+        error.config.headers['Authorization'] = tokenManager.accessToken
+          ? `Bearer ${encodeURI(tokenManager.accessToken)}`
+          : undefined
+        return instance(error.config)
+      } catch (err) {
+        window.location.replace(`/`)
+      }
     }
     return Promise.reject(error)
   }
