@@ -47,7 +47,7 @@ const EmailCheck = ({ emailValue, setEmailValue }: EmailProps) => {
         </S.EmailBox>
       </S.EmailInputContainer>
       <S.ButtonContainer>
-        <S.PreButton onClick={() => push('/main/my')}>이전으로</S.PreButton>
+        <S.PreButton onClick={() => push('/auth/login')}>이전으로</S.PreButton>
         <S.NextButton
           statusColor={emailStatus}
           onClick={() => emailValue && mutate({ email: emailValue })}
