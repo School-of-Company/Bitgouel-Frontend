@@ -29,7 +29,7 @@ const defaultFilterList = [
   { text: '뽀짝 선생님', item: 'ROLE_BBOZZAK', checked: false },
 ]
 
-const filterTitle: string = '직업'
+const filterTitle: string = '직업' as const
 
 const UserListPage = () => {
   const [authority, setAuthority] = useState<RoleEnumTypes | 'ROLE_USER'>(

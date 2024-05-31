@@ -16,9 +16,9 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
   const tokenManager = new TokenManager()
 
   const { data: clubDetail } = useGetClubDetail(clubId || '', {
-    enabled: !!clubId,
+    enabled: tokenManager.authority === 'ROLE_ADMIN',
   })
-  const { data: myClub } = useGetMyClub({ enabled: !clubId })
+  const { data: myClub } = useGetMyClub({ enabled: tokenManager.authority !== 'ROLE_ADMIN' })
   const { data: myData } = useGetMy()
 
   const [userId, setUserId] = useState<string>('')
