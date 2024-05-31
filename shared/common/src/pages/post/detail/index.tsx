@@ -53,21 +53,25 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
             </S.SubTitle>
           </S.TitleContainer>
           <S.MainText>{data?.content}</S.MainText>
-          <S.SharedLine />
-          <S.LinkTextBox>
-            <div>
-              <S.LinkTitle>관련 링크 보기</S.LinkTitle>
-            </div>
-            <S.LinkWrapper>
-              {data?.links.map((link) => (
-                <Link href={link} passHref legacyBehavior>
-                  <a target='_blank' rel='noopener noreferrer'>
-                    {link}
-                  </a>
-                </Link>
-              ))}
-            </S.LinkWrapper>
-          </S.LinkTextBox>
+          {data?.links.length > 0 && (
+            <>
+              <S.SharedLine />
+              <S.LinkTextBox>
+                <div>
+                  <S.LinkTitle>관련 링크 보기</S.LinkTitle>
+                </div>
+                <S.LinkWrapper>
+                  {data?.links.map((link) => (
+                    <Link href={link} passHref legacyBehavior>
+                      <a target='_blank' rel='noopener noreferrer'>
+                        {link}
+                      </a>
+                    </Link>
+                  ))}
+                </S.LinkWrapper>
+              </S.LinkTextBox>
+            </>
+          )}
           <S.ButtonWrapper>
             <S.ButtonContainer>
               {isRole && (

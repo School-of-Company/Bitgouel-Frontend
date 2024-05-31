@@ -52,21 +52,25 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
             </S.NumberBox>
           </S.SubTitle>
           <S.MainText>{data?.content}</S.MainText>
-          <S.SharedLine />
-          <LinkTextBox>
-            <div>
-              <LinkTitle>관련 링크 보기</LinkTitle>
-            </div>
-            <LinkWrapper>
-              {data?.links.map((link) => (
-                <Link href={link} passHref legacyBehavior>
-                  <a target='_blank' rel='noopener noreferrer'>
-                    {link}
-                  </a>
-                </Link>
-              ))}
-            </LinkWrapper>
-          </LinkTextBox>
+          {data?.links.length > 0 && (
+            <>
+              <S.SharedLine />
+              <LinkTextBox>
+                <div>
+                  <LinkTitle>관련 링크 보기</LinkTitle>
+                </div>
+                <LinkWrapper>
+                  {data?.links.map((link) => (
+                    <Link href={link} passHref legacyBehavior>
+                      <a target='_blank' rel='noopener noreferrer'>
+                        {link}
+                      </a>
+                    </Link>
+                  ))}
+                </LinkWrapper>
+              </LinkTextBox>
+            </>
+          )}
           <S.ButtonWrapper>
             <S.ButtonContainer>
               {isRole && (
