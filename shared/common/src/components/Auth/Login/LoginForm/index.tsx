@@ -8,7 +8,7 @@ import {
   PasswordErrorText,
   PasswordValue,
 } from '@bitgouel/common'
-import { LoginErrorTypes, LoginPayloadTypes } from '@bitgouel/types'
+import { LoginPayloadTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
