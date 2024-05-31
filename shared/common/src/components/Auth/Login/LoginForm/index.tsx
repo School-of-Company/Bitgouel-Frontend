@@ -52,7 +52,7 @@ const LoginForm = ({ isAdmin }: { isAdmin: boolean }) => {
       }
       push(`/`)
     },
-    onError: ({ response }) => handleLoginError(response.status),
+    onError: ({ response }) => response && handleLoginError(response.status),
   })
 
   const onLogin = () => {
