@@ -36,7 +36,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
           <MainStyle.PageTitle>강의 상세</MainStyle.PageTitle>
           <MainStyle.ButtonContainer>
             <MainStyle.SlideButton
-              onClick={() => push(`/main/lecture/${lectureId}/apply`)}
+              onClick={() => push(`/main/lecture/detail/${lectureId}/apply`)}
             >
               <People />
               <span>신청자 명단 조회</span>

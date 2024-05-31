@@ -16,7 +16,7 @@ const ActivityItem: React.FC<ActivityItemTypes> = ({
   return (
     <S.ActivityItemWrapper
       onClick={() =>
-        push(`/main/club/${clubId}/student/${studentId}/activity/${activityId}`)
+        push(`/main/club/detail/${clubId}/student/detail/${studentId}/activity/${activityId}`)
       }
     >
       <div>

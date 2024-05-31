@@ -9,7 +9,7 @@ const LectureItem = ({ item }: LectureItemProps) => {
   const { push } = useRouter()
 
   return (
-    <S.LectureItemWrapper onClick={() => push(`/main/lecture/${item.id}`)}>
+    <S.LectureItemWrapper onClick={() => push(`/main/lecture/detail/${item.id}`)}>
       <S.TitleBox>
         <S.MainTitleContainer>
           <S.Title>{item.name}</S.Title>
