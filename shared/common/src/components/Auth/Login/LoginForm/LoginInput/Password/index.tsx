@@ -19,8 +19,7 @@ const Password = ({ isLoading }: Props) => {
     useRecoilState(PasswordErrorText)
 
   const onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const passwordRegex =
-      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,24}$/
+    const passwordRegex = /^(?=.[A-Za-z0-9])[A-Za-z0-9!@#\\$%^&]{8,24}$/
 
     setPasswordValue(e.target.value)
     if (e.target.value === '') setPasswordErrorText('')
