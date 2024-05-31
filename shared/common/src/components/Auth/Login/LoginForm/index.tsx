@@ -10,11 +10,12 @@ import {
 } from '@bitgouel/common'
 import { LoginPayloadTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
+import { toast } from 'react-toastify'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import LoginButtons from './LoginButtons'
 import LoginInput from './LoginInput'
 
-const LoginForm = () => {
+const LoginForm = ({ isAdmin }: { isAdmin: boolean }) => {
   const emailValue = useRecoilValue(EmailValue)
   const passwordValue = useRecoilValue(PasswordValue)
   const setEmailErrorText = useSetRecoilState(EmailErrorText)
@@ -24,6 +25,14 @@ const LoginForm = () => {
   const { mutate, isLoading } = usePostLogin({
     onSuccess: (data) => {
       tokenManager.setTokens(data)
+      if (!isAdmin && tokenManager.authority === 'ROLE_ADMIN') {
+          toast.warning('사용자 계정으로 로그인 해주세요')
+          return tokenManager.removeTokens()
+        }
+      else if (isAdmin && tokenManager.authority !== 'ROLE_ADMIN') {
+        toast.warning('관리자 계정으로 로그인 해주세요')
+        return tokenManager.removeTokens()
+      }
       push(`/`)
     },
     onError: ({ response }) => {
@@ -53,7 +62,7 @@ const LoginForm = () => {
           setPasswordErrorText('잘못된 비밀번호입니다.')
           setEmailErrorText('')
         }
-      }
+      } else if (response?.status >= 500) return toast.error('서버 에러가 발생했습니다')
     },
   })
 
@@ -62,7 +71,7 @@ const LoginForm = () => {
       email: emailValue,
       password: passwordValue,
     }
-    
+
     mutate(loginValues)
   }
 
