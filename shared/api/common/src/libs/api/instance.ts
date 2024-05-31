@@ -46,7 +46,7 @@ instance.interceptors.request.use(
       tokenManager.removeTokens()
     }
 
-    if (config?.url.includes('login')) return config
+    if (config.url && config.url.includes('login')) return config
     config.headers.Authorization = tokenManager.accessToken
       ? `Bearer ${encodeURI(tokenManager.accessToken)}`
       : undefined
@@ -61,11 +61,13 @@ instance.interceptors.response.use(
       return response.data
     }
   },
-  async (error) => {
+  async (error: AxiosError) => {
     const tokenManager = new TokenManager()
     if (
       !window.location.href.includes('auth') &&
-      error?.response.status === 401
+      error.response &&
+      error.config &&
+      error.response.status === 401
     ) {
       try {
         await tokenManager.reissueToken()
