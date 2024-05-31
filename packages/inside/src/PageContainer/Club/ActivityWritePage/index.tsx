@@ -77,7 +77,6 @@ const ActivityWritePage = ({
 
   const { data, refetch, isSuccess } = useGetActivityDetail(activityId || '', {
     enabled: !!studentId,
-    refetchOnWindowFocus: false,
   })
 
   const { mutate: createActivity } = usePostActivityInformation({
