@@ -52,7 +52,7 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
             </S.NumberBox>
           </S.SubTitle>
           <S.MainText>{data?.content}</S.MainText>
-          {data?.links.length > 0 && (
+          {data?.links && data.links.length > 0 && (
             <>
               <S.SharedLine />
               <LinkTextBox>
@@ -60,7 +60,7 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
                   <LinkTitle>관련 링크 보기</LinkTitle>
                 </div>
                 <LinkWrapper>
-                  {data?.links.map((link) => (
+                  {data.links.map((link) => (
                     <Link href={link} passHref legacyBehavior>
                       <a target='_blank' rel='noopener noreferrer'>
                         {link}

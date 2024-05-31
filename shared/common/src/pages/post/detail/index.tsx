@@ -53,7 +53,7 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
             </S.SubTitle>
           </S.TitleContainer>
           <S.MainText>{data?.content}</S.MainText>
-          {data?.links.length > 0 && (
+          {data?.links && data.links.length > 0 && (
             <>
               <S.SharedLine />
               <S.LinkTextBox>
@@ -61,7 +61,7 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
                   <S.LinkTitle>관련 링크 보기</S.LinkTitle>
                 </div>
                 <S.LinkWrapper>
-                  {data?.links.map((link) => (
+                  {data.links.map((link) => (
                     <Link href={link} passHref legacyBehavior>
                       <a target='_blank' rel='noopener noreferrer'>
                         {link}
