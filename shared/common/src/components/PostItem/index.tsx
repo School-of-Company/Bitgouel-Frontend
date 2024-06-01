@@ -15,8 +15,8 @@ const PostItem = ({ item }: { item: PostItemTypes }) => {
       onClick={() =>
         push(
           match(pathname)
-            .with('/main/post', () => `/main/post/${item.id}`)
-            .otherwise(() => `/main/post/notice/${item.id}`)
+            .with('/main/post', () => `/main/post/detail/${item.id}`)
+            .otherwise(() => `/main/post/notice/detail/${item.id}`)
         )
       }
     >

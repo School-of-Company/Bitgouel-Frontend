@@ -91,7 +91,7 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
                 </S.DeleteNoticeButton>
               )}
               <S.ModifyNoticeButton
-                onClick={() => push(`/main/post/notice/${noticeId}/modify`)}
+                onClick={() => push(`/main/post/notice/detail/${noticeId}/modify`)}
               >
                 수정하기
               </S.ModifyNoticeButton>
