@@ -1,9 +1,7 @@
 'use client'
 
 import { ChangeEvent, FocusEvent, useEffect, useState } from 'react'
-import { ValueInput } from '../../components'
-import { useModal } from '../../hooks'
-import Portal from '../../portal'
+import { ValueInput, useModal, Portal } from '@bitgouel/common'
 import * as S from './style'
 import { usePatchPassword } from '@bitgouel/api'
 import { toast } from 'react-toastify'
