@@ -56,7 +56,7 @@ const LoginForm = ({ isAdmin }: { isAdmin: boolean }) => {
   })
 
   const onLogin = (e?: FormEvent) => {
-    e.preventDefault()
+    e?.preventDefault()
     const loginValues: LoginPayloadTypes = {
       email: emailValue,
       password: passwordValue,
