@@ -68,8 +68,6 @@ class TokenManager {
     localStorage.removeItem(accessExpiredAt)
     localStorage.removeItem(refreshExpiredAt)
     localStorage.removeItem(Authority)
-
-    window.location.replace(`/`)
   }
 
   async reissueToken() {
