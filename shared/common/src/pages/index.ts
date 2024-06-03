@@ -4,6 +4,7 @@ export { LoginPage, SignUpPage, FindPage } from './auth'
 export { default as ClubDetailPage } from './club/detail'
 export { default as StudentPage } from './club/student'
 export { default as HomePage } from './home'
+export { default as ErrorPage } from './error'
 export { InquiryDetailPage, InquiryPage } from './inquiry'
 export {
   LectureApplyListPage,

@@ -16,15 +16,12 @@ import {
   Gwangju,
   OfficeGwangju,
   FAQSection,
-} from '@bitgouel/common'
-
-import {
   ClubListSlider,
   CompanyListSlider,
   SchoolIntro,
   Sequence,
+  SchoolIntroObjects,
 } from '@bitgouel/common'
-import { SchoolIntroObjects } from '@bitgouel/common'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
 
