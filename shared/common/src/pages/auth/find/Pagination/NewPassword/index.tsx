@@ -19,7 +19,7 @@ const NewPassword = () => {
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const passwordRegex =
-      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,24}$/
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/
 
     if (e.target.name === 'newPw') {
       setNewPw(e.target.value)

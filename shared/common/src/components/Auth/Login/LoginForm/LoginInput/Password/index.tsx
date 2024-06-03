@@ -25,7 +25,7 @@ const Password = ({ isLoading }: Props) => {
   }
 
   const onPasswordBlur = (e: FocusEvent<HTMLInputElement>) => {
-    const passwordRegex = /^(?=.[A-Za-z0-9])[A-Za-z0-9!@#\\$%^&]{8,24}$/
+    const passwordRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/
 
     match(e.target.value.length)
       .with(0, () => setPasswordErrorText(''))

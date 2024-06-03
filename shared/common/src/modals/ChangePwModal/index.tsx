@@ -51,7 +51,7 @@ const ChangePwModal = () => {
 
   const onBlur = (e: FocusEvent<HTMLInputElement>) => {
     const passwordRegex = new RegExp(
-      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,24}$/
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/
     )
     const { name, value } = e.target
 

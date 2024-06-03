@@ -11,7 +11,7 @@ import { match } from 'ts-pattern'
 const SignUpPage3 = () => {
   const emailRegex = /^(?=.[A-Za-z0-9])[A-Za-z0-9!@#\$%^&]{8,24}$/
   const passwordRegex =
-    /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,24}$/
+    /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/
   const phoneRegex = /^010[0-9]{8}$/
 
   const [signUpPage3Obj, setSignUpPage3Obj] = useRecoilState(SignUpPage3Obj)
