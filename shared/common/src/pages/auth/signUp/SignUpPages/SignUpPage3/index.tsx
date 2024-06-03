@@ -6,6 +6,7 @@ import SignUpButtonContainer from '../SignUpButtonContainer'
 import { PaginationInputsContainer } from '../SignUpPage1/style'
 import * as S from './style'
 import { SignUpPage3Obj, ValueInput } from '@bitgouel/common'
+import { match } from 'ts-pattern'
 
 const SignUpPage3 = () => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -37,15 +38,21 @@ const SignUpPage3 = () => {
   const onBlur = (e: FocusEvent<HTMLInputElement>, idx: number) => {
     const value = e.target.value
 
-    if (idx === 0) {
-      setIsPhoneRgx(phoneRegex.test(value))
-    } else if (idx === 1) {
-      setIsEmailRgx(emailRegex.test(value))
-    } else if (idx === 2) {
-      setIsPasswordRgx(passwordRegex.test(value))
-    } else if (idx === 3) {
-      setIsPwValidate(value === signUpPage3Obj[idx - 1].value)
-    }
+    match(value.length)
+      .with(0, () => {
+        setIsPhoneRgx(true)
+        setIsEmailRgx(true)
+        setIsPasswordRgx(true)
+        setIsPwValidate(true)
+      })
+      .otherwise(() => {
+        match(idx).with(0, () => setIsPhoneRgx(phoneRegex.test(value)))
+        match(idx).with(1, () => setIsEmailRgx(emailRegex.test(value)))
+        match(idx).with(2, () => setIsPasswordRgx(passwordRegex.test(value)))
+        match(idx).with(3, () =>
+          setIsPwValidate(value === signUpPage3Obj[idx - 1].value)
+        )
+      })
   }
 
   return (
