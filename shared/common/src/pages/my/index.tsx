@@ -2,12 +2,10 @@
 
 import { useDeleteWithDraw, useGetMy, usePostExcelUpload } from '@bitgouel/api'
 import { Bg4, ChangePwModal, roleToKor, useModal } from '@bitgouel/common'
-import { useRouter } from 'next/navigation'
 import * as S from './style'
 import { ChangeEvent, useCallback } from 'react'
 
 const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
-  const { push } = useRouter()
   const { openModal } = useModal()
   const { data } = useGetMy()
   const { mutate: withdraw } = useDeleteWithDraw()
