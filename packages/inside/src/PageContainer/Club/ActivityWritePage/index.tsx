@@ -82,7 +82,7 @@ const ActivityWritePage = ({
   const { mutate: createActivity } = usePostActivityInformation({
     onSuccess: () => {
       closeModal()
-      push(`/main/club/${clubId}/student/${studentId}/activity`)
+      push(`/main/club/detail/${clubId}/student/detail/${studentId}/activity`)
       toast.success('활동을 추가하였습니다.')
     },
   })
@@ -92,7 +92,7 @@ const ActivityWritePage = ({
     {
       onSuccess: () => {
         closeModal()
-        push(`/main/club/${clubId}/student/${studentId}/activity`)
+        push(`/main/club/detail/${clubId}/student/detail/${studentId}/activity`)
         toast.success('수정하였습니다.')
         refetch()
       },

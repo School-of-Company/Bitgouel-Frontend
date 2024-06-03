@@ -57,12 +57,12 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
     }
   }, [data])
 
-  const isCondition = (): boolean => {
+  const isAble = (): boolean => {
     if (isSuccess && data) {
       if (
         data.title !== postTitle ||
         data.content !== postContent ||
-        data.links.some((link, i) => link !== postLinks[i]['value'])
+        JSON.stringify(data?.links) !== JSON.stringify(postLinks.map((link) => link.value).filter((link) => link.length))
       )
         return true
       else return false
@@ -73,7 +73,7 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
   }
 
   const onPost = () => {
-    if (isCondition()) {
+    if (isAble()) {
       if (postId) {
         openModal(
           <AppropriationModal
@@ -162,7 +162,7 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
               </S.SettingSelectionContainer>
             </S.PostSetting>
             <S.ButtonContainer>
-              <S.PostButton isAble={isCondition()} onClick={onPost}>
+              <S.PostButton isAble={isAble()} onClick={onPost}>
                 {postId ? '수정완료' : '공지사항 추가하기'}
               </S.PostButton>
             </S.ButtonContainer>
