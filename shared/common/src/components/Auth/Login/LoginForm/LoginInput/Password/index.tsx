@@ -6,8 +6,9 @@ import {
   theme,
   ValueInput,
 } from '@bitgouel/common'
-import { ChangeEvent } from 'react'
+import { ChangeEvent, FocusEvent } from 'react'
 import { useRecoilState } from 'recoil'
+import { match } from 'ts-pattern'
 
 interface Props {
   isLoading: boolean
@@ -19,19 +20,28 @@ const Password = ({ isLoading }: Props) => {
     useRecoilState(PasswordErrorText)
 
   const onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const passwordRegex = /^(?=.[A-Za-z0-9])[A-Za-z0-9!@#\\$%^&]{8,24}$/
-
     setPasswordValue(e.target.value)
-    if (e.target.value === '') setPasswordErrorText('')
-    else if (!passwordRegex.test(e.target.value))
-      setPasswordErrorText('잘못된 비밀번호입니다.')
-    else setPasswordErrorText('')
+    match(e.target.value).with('', () => setPasswordErrorText(''))
   }
+
+  const onPasswordBlur = (e: FocusEvent<HTMLInputElement>) => {
+    const passwordRegex = /^(?=.[A-Za-z0-9])[A-Za-z0-9!@#\$%^&]{8,24}$/
+
+    match(e.target.value.length)
+      .with(0, () => setPasswordErrorText(''))
+      .otherwise(() =>
+        match(!passwordRegex.test(e.target.value))
+          .with(true, () => setPasswordErrorText('잘못된 비밀번호입니다.'))
+          .otherwise(() => setPasswordErrorText(''))
+      )
+  }
+
   return (
     <ValueInput
       type='password'
       value={passwordValue}
       onChange={onPasswordChange}
+      onBlur={onPasswordBlur}
       placeholder='비밀번호'
       length={passwordValue.length}
       onClear={() => setPasswordValue('')}

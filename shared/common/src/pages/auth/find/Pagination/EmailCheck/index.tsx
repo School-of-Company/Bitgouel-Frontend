@@ -14,7 +14,7 @@ const EmailCheck = ({ emailValue, setEmailValue }: EmailProps) => {
   const { mutate } = usePostEmail()
 
   const checkEmail = (e: ChangeEvent<HTMLInputElement>) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/
     setEmailValue(e.target.value)
     if (e.target.value === '') {
       setEmailErrorText('')
@@ -47,7 +47,7 @@ const EmailCheck = ({ emailValue, setEmailValue }: EmailProps) => {
         </S.EmailBox>
       </S.EmailInputContainer>
       <S.ButtonContainer>
-        <S.PreButton onClick={() => push('/main/my')}>이전으로</S.PreButton>
+        <S.PreButton onClick={() => push('/auth/login')}>이전으로</S.PreButton>
         <S.NextButton
           statusColor={emailStatus}
           onClick={() => emailValue && mutate({ email: emailValue })}
