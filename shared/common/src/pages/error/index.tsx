@@ -24,7 +24,7 @@ const ErrorPage = () => {
           <span>요청하신 페이지를 찾을 수 없습니다</span>
           <span>입력하신 주소를 확인해 주세요</span>
         </S.ErrorTextContainer>
-        <S.BackButton>이전 페이지로</S.BackButton>
+        <S.BackButton onClick={() => history.back()}>이전 페이지로</S.BackButton>
       </S.ErrorContainer>
     </S.ErrorPageWrapper>
   )
