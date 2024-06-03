@@ -1,10 +1,10 @@
 import {
   ActivityOptionsTypes,
-  LinePayloadTypes,
   InquiryListQueryStringTypes,
   LectureListOptionsTypes,
-  UserListOptionsTypes,
+  LinePayloadTypes,
   PostListOptionsTypes,
+  UserListOptionsTypes,
 } from '@bitgouel/types'
 
 export const authUrl = {
@@ -57,10 +57,12 @@ export const userUrl = {
 export const postUrl = {
   postCreate: () => `/post`,
   postList: (options: PostListOptionsTypes) =>
-    `/post?type=${options.type}&size=${options.size}&page=${options.page}`,
-  postDetail: (id: string) => `/post/${id}`,
-  postModify: (id: string) => `/post/${id}`,
-  postDelete: (id: string) => `/post/${id}`,
+    `/post/all?type=${options.type}${
+      options.postSequence ? `&postSequence=${options.postSequence}` : ''
+    }&size=${options.size}`,
+  postDetail: (post_id: string) => `/post/${post_id}`,
+  postModify: (post_id: string) => `/post/${post_id}`,
+  postDelete: (post_id: string) => `/post/${post_id}`,
 } as const
 
 export const certificateUrl = {
@@ -94,8 +96,9 @@ export const adminUrl = {
     `/admin?keyword=${queryString.keyword}&authority=${queryString.authority}&approveStatus=${queryString.approveStatus}`,
   withDrawUserList: (cohort: string) => `/withdraw?cohort=${cohort}`,
   approveUser: (userIds: string[]) => `/admin?userIds=${userIds.join(',')}`,
-  rejectUser: (userIds: string[]) => `/admin/${userIds.join(',')}/reject`,
+  rejectUser: (userIds: string[]) => `/admin/reject?userIds=${userIds.join(',')}`,
   withDrawUser: (userIds: string[]) => `/admin/${userIds.join(',')}`,
+  excelUpload: () => `/admin/excel`,
 } as const
 
 export const emailUrl = {

@@ -38,6 +38,9 @@ importers:
       recoil:
         specifier: ^0.7.7
         version: 0.7.7(react-dom@18.2.0)(react@18.2.0)
+      recoil-persist:
+        specifier: ^5.1.0
+        version: 5.1.0(recoil@0.7.7)
       ts-pattern:
         specifier: ^5.0.5
         version: 5.0.5
@@ -200,6 +203,9 @@ importers:
       '@types/react-slick':
         specifier: ^0.23.12
         version: 0.23.12
+      crypto-js:
+        specifier: ^4.2.0
+        version: 4.2.0
       file-saver:
         specifier: ^2.0.5
         version: 2.0.5
@@ -5859,6 +5865,10 @@ packages:
       randomfill: 1.0.4
     dev: true
 
+  /crypto-js@4.2.0:
+    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+    dev: false
+
   /crypto-random-string@2.0.0:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}
     engines: {node: '>=8'}
@@ -9064,6 +9074,14 @@ packages:
       source-map: 0.6.1
       tslib: 2.6.2
     dev: true
+
+  /recoil-persist@5.1.0(recoil@0.7.7):
+    resolution: {integrity: sha512-sew4k3uBVJjRWKCSFuBw07Y1p1pBOb0UxLJPxn4G2bX/9xNj+r2xlqYy/BRfyofR/ANfqBU04MIvulppU4ZC0w==}
+    peerDependencies:
+      recoil: ^0.7.2
+    dependencies:
+      recoil: 0.7.7(react-dom@18.2.0)(react@18.2.0)
+    dev: false
 
   /recoil@0.7.7(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-8Og5KPQW9LwC577Vc7Ug2P0vQshkv1y3zG3tSSkWMqkWSwHmE+by06L8JtnGocjW6gcCvfwB3YtrJG6/tWivNQ==}

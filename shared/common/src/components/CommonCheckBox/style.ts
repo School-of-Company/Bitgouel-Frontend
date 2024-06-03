@@ -1,10 +1,10 @@
 import styled from '@emotion/styled'
 
 export const CommonCheckBoxContainer = styled.div`
-  position: relative;
-  cursor: pointer;
   width: 1.25rem;
   height: 1.25rem;
+  position: relative;
+  cursor: pointer;
 
   svg {
     position: absolute;
@@ -18,12 +18,12 @@ export const CommonCheckBoxContainer = styled.div`
 export const CommonCheckBoxStyle = styled.input`
   width: 1.25rem;
   height: 1.25rem;
-  margin-left: 1.2rem;
   border: 0.0625rem solid ${({ theme }) => theme.color.gray['400']};
   border-radius: 0.25rem;
   background-color: ${({ theme }) => theme.color.white};
   appearance: none;
   cursor: pointer;
+  margin: 0;
 
   &:checked {
     background-color: ${({ theme }) => theme.color.main};

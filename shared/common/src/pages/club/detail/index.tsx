@@ -16,9 +16,9 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
   const tokenManager = new TokenManager()
 
   const { data: clubDetail } = useGetClubDetail(clubId || '', {
-    enabled: !!clubId,
+    enabled: tokenManager.authority === 'ROLE_ADMIN',
   })
-  const { data: myClub } = useGetMyClub({ enabled: !clubId })
+  const { data: myClub } = useGetMyClub({ enabled: tokenManager.authority !== 'ROLE_ADMIN' })
   const { data: myData } = useGetMy()
 
   const [userId, setUserId] = useState<string>('')
@@ -48,7 +48,7 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
                 <PersonOut />
                 <span
                   onClick={() =>
-                    push(`/main/club/${myClub?.clubId}/student/${userId}`)
+                    push(`/main/club/detail/${myClub?.clubId}/student/detail/${userId}`)
                   }
                 >
                   내 자격증 및 활동
@@ -85,7 +85,7 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
                     isStudent={isStudent}
                     key={student.id}
                     onClick={() =>
-                      push(`/main/club/${clubId}/student/${student.id}`)
+                      push(`/main/club/detail/${clubId}/student/detail/${student.id}`)
                     }
                   >
                     <span>{student.name}</span>
@@ -98,7 +98,7 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
                     key={student.id}
                     onClick={() => {
                       !isStudent &&
-                        push(`/main/club/${clubId}/student/${student.id}`)
+                        push(`/main/club/detail/${clubId}/student/detail/${student.id}`)
                     }}
                   >
                     <span>{student.name}</span>

@@ -9,7 +9,7 @@ const InquiryItem = ({ item }: { item: InquiryTypes }) => {
   const { push } = useRouter()
 
   return (
-    <S.InquiryItemWrapper onClick={() => push(`/main/post/inquiry/${item.id}`)}>
+    <S.InquiryItemWrapper onClick={() => push(`/main/post/inquiry/detail/${item.id}`)}>
       <S.SubTitle>
         <S.Name>{item.username}</S.Name>
         <S.Date>{dayjs(item.createdAt).format('YYYY.MM.DD')}</S.Date>

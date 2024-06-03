@@ -5,7 +5,13 @@ import {
   usePatchPostModify,
   usePostPost,
 } from '@bitgouel/api'
-import { AppropriationModal, Bg1, Link, useModal } from '@bitgouel/common'
+import {
+  AppropriationModal,
+  Bg1,
+  Link,
+  useModal,
+  MainStyle,
+} from '@bitgouel/common'
 import { LinksObjectTypes } from '@bitgouel/types'
 import { ChangeEvent, useEffect, useState } from 'react'
 import * as S from './style'
@@ -52,12 +58,12 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
     }
   }, [data])
 
-  const isCondition = (): boolean => {
+  const isAble = (): boolean => {
     if (isSuccess && data) {
       if (
         data.title !== noticeTitle ||
         data.content !== noticeContent ||
-        data.links?.some((link, i) => link !== noticeLinks[i]['value'])
+        JSON.stringify(data?.links) !== JSON.stringify(noticeLinks.map((link) => link.value).filter((link) => link.length))
       )
         return true
       else return false
@@ -68,7 +74,7 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
   }
 
   const onPost = () => {
-    if (isCondition()) {
+    if (isAble()) {
       if (noticeId) {
         openModal(
           <AppropriationModal
@@ -111,14 +117,16 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
   }
 
   return (
-    <div>
-      <S.SlideBg url={Bg1}>
-        <S.BgContainer>
-          <S.CreateTitle>공지사항 {noticeId ? '수정' : '추가'}</S.CreateTitle>
-        </S.BgContainer>
-      </S.SlideBg>
-      <S.DocumentInputContainer>
-        <S.DocumentInput>
+    <MainStyle.PageWrapper>
+      <MainStyle.SlideBg url={Bg1}>
+        <MainStyle.BgContainer>
+          <MainStyle.PageTitle>
+            공지사항 {noticeId ? '수정' : '추가'}
+          </MainStyle.PageTitle>
+        </MainStyle.BgContainer>
+      </MainStyle.SlideBg>
+      <MainStyle.MainWrapper>
+        <MainStyle.MainContainer>
           <S.InputTitle
             value={noticeTitle}
             maxLength={TITLEMAXLENGTH}
@@ -153,13 +161,13 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
             </S.SettingSelectionContainer>
           </S.NoticeSetting>
           <S.ButtonContainer>
-            <S.NoticeButton isAble={isCondition()} onClick={onPost}>
+            <S.NoticeButton isAble={isAble()} onClick={onPost}>
               {noticeId ? '수정완료' : '공지사항 추가하기'}
             </S.NoticeButton>
           </S.ButtonContainer>
-        </S.DocumentInput>
-      </S.DocumentInputContainer>
-    </div>
+        </MainStyle.MainContainer>
+      </MainStyle.MainWrapper>
+    </MainStyle.PageWrapper>
   )
 }
 

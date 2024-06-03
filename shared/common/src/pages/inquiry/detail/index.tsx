@@ -12,6 +12,7 @@ import {
   Pen,
   TrashCan,
   useModal,
+  MainStyle,
 } from '@bitgouel/common'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
@@ -32,19 +33,19 @@ const InquiryDetailPage = ({
   const { data } = useGetInquiryDetail(inquiryId)
 
   return (
-    <div>
-      <S.SlideBg url={Bg5}>
-        <S.BgContainer>
-          <S.InquiryTitle>문의 상세</S.InquiryTitle>
+    <MainStyle.PageWrapper>
+      <MainStyle.SlideBg url={Bg5}>
+        <MainStyle.BgContainer>
+          <MainStyle.PageTitle>문의 상세</MainStyle.PageTitle>
           {!isAdmin && (
-            <S.TitleButtonContainer>
-              <S.InquiryButton
-                onClick={() => push(`/main/post/inquiry/${inquiryId}/modify`)}
+            <MainStyle.ButtonContainer>
+              <MainStyle.SlideButton
+                onClick={() => push(`/main/post/inquiry/detail/${inquiryId}/modify`)}
               >
                 <Pen />
                 <span>문의 수정</span>
-              </S.InquiryButton>
-              <S.InquiryButton
+              </MainStyle.SlideButton>
+              <MainStyle.SlideButton
                 onClick={() =>
                   openModal(
                     <AppropriationModal
@@ -59,13 +60,13 @@ const InquiryDetailPage = ({
               >
                 <TrashCan />
                 <span>문의 삭제</span>
-              </S.InquiryButton>
-            </S.TitleButtonContainer>
+              </MainStyle.SlideButton>
+            </MainStyle.ButtonContainer>
           )}
-        </S.BgContainer>
-      </S.SlideBg>
-      <S.DocumentWrapper>
-        <S.Document>
+        </MainStyle.BgContainer>
+      </MainStyle.SlideBg>
+      <MainStyle.MainWrapper>
+        <MainStyle.MainContainer>
           <S.TitleContainer>
             <S.Title>{data?.question}</S.Title>
             <S.SubTitle>
@@ -134,9 +135,9 @@ const InquiryDetailPage = ({
               </S.ButtonContainer>
             </S.ButtonWrapper>
           )}
-        </S.Document>
-      </S.DocumentWrapper>
-    </div>
+        </MainStyle.MainContainer>
+      </MainStyle.MainWrapper>
+    </MainStyle.PageWrapper>
   )
 }
 

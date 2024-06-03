@@ -54,7 +54,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
   const [isStudent, setIsStudent] = useState<boolean>(false)
   const { openModal, closeModal } = useModal()
   const { data: clubStudent } = useGetStudentDetail(clubId, studentId)
-  const { data: certificateList, refetch } = isStudent
+  const { data: certificateList, refetch } = tokenManager.authority === 'ROLE_STUDENT'
     ? useGetCertificateList()
     : useGetCertificateListTeacher(studentId)
 
@@ -89,8 +89,10 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
         ? roleArray.includes(tokenManager.authority)
         : false
     )
-    setIsStudent(tokenManager.authority === 'ROLE_STUDENT')
+    setIsStudent(tokenManager.authority ? tokenManager.authority === 'ROLE_STUDENT' : false)
   }, [])
+
+  console.log(isStudent)
 
   return (
     <MainStyle.PageWrapper>
@@ -101,7 +103,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
             <MainStyle.ButtonContainer>
               <MainStyle.SlideButton
                 onClick={() =>
-                  push(`/main/club/${clubId}/student/${studentId}/activity`)
+                  push(`/main/club/detail/${clubId}/student/detail/${studentId}/activity`)
                 }
               >
                 <PersonOut />

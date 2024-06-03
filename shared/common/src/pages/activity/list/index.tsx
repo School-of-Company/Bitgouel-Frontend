@@ -53,7 +53,7 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
                 <MainStyle.SlideButton
                   onClick={() =>
                     push(
-                      `/main/club/${clubId}/student/${studentId}/activity/create`
+                      `/main/club/detail/${clubId}/student/detail/${studentId}/activity/create`
                     )
                   }
                 >
