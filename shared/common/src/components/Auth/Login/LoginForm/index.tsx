@@ -10,6 +10,7 @@ import {
 } from '@bitgouel/common'
 import { LoginPayloadTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
+import { FormEvent } from 'react'
 import { toast } from 'react-toastify'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import LoginButtons from './LoginButtons'
@@ -54,7 +55,8 @@ const LoginForm = ({ isAdmin }: { isAdmin: boolean }) => {
     onError: ({ response }) => response && handleLoginError(response.status),
   })
 
-  const onLogin = () => {
+  const onLogin = (e?: FormEvent) => {
+    e.preventDefault()
     const loginValues: LoginPayloadTypes = {
       email: emailValue,
       password: passwordValue,
@@ -65,8 +67,10 @@ const LoginForm = ({ isAdmin }: { isAdmin: boolean }) => {
 
   return (
     <LoadingStateContext.Provider value={isLoading}>
-      <LoginInput />
-      <LoginButtons onLogin={onLogin} />
+      <form onSubmit={onLogin}>
+        <LoginInput />
+        <LoginButtons onLogin={onLogin} />
+      </form>
     </LoadingStateContext.Provider>
   )
 }
