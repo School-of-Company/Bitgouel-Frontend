@@ -43,17 +43,13 @@ const LoginForm = ({ isAdmin }: { isAdmin: boolean }) => {
   const { mutate, isLoading } = usePostLogin({
     onSuccess: (data) => {
       const tokenManager = new TokenManager()
-      if (!isAdmin && data.authority === 'ROLE_ADMIN') {
-        toast.warning('사용자 계정으로 로그인 해주세요')
-        return tokenManager.removeTokens()
-      } else if (isAdmin && data.authority !== 'ROLE_ADMIN') {
-        toast.warning('관리자 계정으로 로그인 해주세요')
-        return tokenManager.removeTokens()
-      } else {
-        tokenManager.setTokens(data)
-        toast.success('로그인 되었습니다')
-        push(`/`)
-      }
+      if (!isAdmin && data.authority === 'ROLE_ADMIN')
+        return toast.warning('사용자 계정으로 로그인 해주세요')
+      else if (isAdmin && data.authority !== 'ROLE_ADMIN')
+        return toast.warning('관리자 계정으로 로그인 해주세요')
+      tokenManager.setTokens(data)
+      toast.success('로그인 되었습니다')
+      push(`/`)
     },
     onError: ({ response }) => response && handleLoginError(response.status),
   })
