@@ -9,7 +9,7 @@ import { SignUpPage3Obj, ValueInput } from '@bitgouel/common'
 import { match } from 'ts-pattern'
 
 const SignUpPage3 = () => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  const emailRegex = /^(?=.[A-Za-z0-9])[A-Za-z0-9!@#\$%^&]{8,24}$/
   const passwordRegex =
     /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{8,24}$/
   const phoneRegex = /^010[0-9]{8}$/

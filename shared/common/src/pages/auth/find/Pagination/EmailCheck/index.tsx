@@ -14,7 +14,7 @@ const EmailCheck = ({ emailValue, setEmailValue }: EmailProps) => {
   const { mutate } = usePostEmail()
 
   const checkEmail = (e: ChangeEvent<HTMLInputElement>) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const emailRegex = /^(?=.[A-Za-z0-9])[A-Za-z0-9!@#\$%^&]{8,24}$/
     setEmailValue(e.target.value)
     if (e.target.value === '') {
       setEmailErrorText('')
