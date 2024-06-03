@@ -9,9 +9,8 @@ import { SignUpPage3Obj, ValueInput } from '@bitgouel/common'
 import { match } from 'ts-pattern'
 
 const SignUpPage3 = () => {
-  const emailRegex = /^(?=.[A-Za-z0-9])[A-Za-z0-9!@#\$%^&]{8,24}$/
-  const passwordRegex =
-    /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/
+  const passwordRegex = /^(?=.[A-Za-z0-9])[A-Za-z0-9!@#\$%^&]{8,24}$/
   const phoneRegex = /^010[0-9]{8}$/
 
   const [signUpPage3Obj, setSignUpPage3Obj] = useRecoilState(SignUpPage3Obj)

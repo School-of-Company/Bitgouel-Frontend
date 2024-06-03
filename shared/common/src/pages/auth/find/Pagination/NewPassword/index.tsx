@@ -18,8 +18,7 @@ const NewPassword = () => {
   const { mutate } = usePatchPassword()
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const passwordRegex =
-      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/
+    const passwordRegex = /^(?=.[A-Za-z0-9])[A-Za-z0-9!@#\$%^&]{8,24}$/
 
     if (e.target.name === 'newPw') {
       setNewPw(e.target.value)

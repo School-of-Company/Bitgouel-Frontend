@@ -18,7 +18,7 @@ const Email = ({ isLoading }: Props) => {
   }
 
   const onEmailBlur = (e: FocusEvent<HTMLInputElement>) => {
-    const emailRegex = /^(?=.[A-Za-z0-9])[A-Za-z0-9!@#\$%^&]{8,24}$/
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/
 
     match(e.target.value.length)
       .with(0, () => setEmailErrorText(''))
