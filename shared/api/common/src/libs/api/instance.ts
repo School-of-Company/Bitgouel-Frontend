@@ -62,7 +62,7 @@ instance.interceptors.response.use(
     }
   },
   async (error: AxiosError) => {
-    // const tokenManager = new TokenManager()
+    const tokenManager = new TokenManager()
     // if (
     //   !window.location.href.includes('auth') &&
     //   error.response &&

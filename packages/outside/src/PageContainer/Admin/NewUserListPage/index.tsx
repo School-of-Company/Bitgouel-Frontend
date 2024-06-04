@@ -20,6 +20,7 @@ import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
+import { AdminDisplayInfo } from '@/components'
 
 const NewUserListPage = () => {
   const { push } = useRouter()
@@ -96,38 +97,7 @@ const NewUserListPage = () => {
       </MainStyle.SlideBg>
       <MainStyle.MainWrapper>
         <MainStyle.MainContainer>
-          <S.TopContainer>
-            <S.RequestDisplayBar>
-              <div>
-                <span>선택</span>
-                <span>이름</span>
-              </div>
-              <span>직업</span>
-              <span>전화번호</span>
-              <span>이메일</span>
-            </S.RequestDisplayBar>
-            <S.SelectBoxContainer>
-              <S.SelectBox type='allNew' htmlFor='allNew'>
-                <input type='checkbox' id='allNew' onChange={onAll} />
-                <PeopleCircle />
-                전체 선택
-              </S.SelectBox>
-              <S.SelectBox
-                type='approve'
-                onClick={() => handleOpenModal('approve')}
-              >
-                <Check />
-                선택 수락
-              </S.SelectBox>
-              <S.SelectBox
-                type='reject'
-                onClick={() => handleOpenModal('reject')}
-              >
-                <Check />
-                선택 거절
-              </S.SelectBox>
-            </S.SelectBoxContainer>
-          </S.TopContainer>
+          <AdminDisplayInfo.NewDisplayTop onAll={onAll} handleOpenModal={handleOpenModal} />
           <S.UserListContainer>
             {data?.users.map((user) => (
               <UserItem

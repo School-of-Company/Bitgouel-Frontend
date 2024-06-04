@@ -15,6 +15,9 @@ import {
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import * as S from './style'
+import { useEffect, useState } from 'react'
+
+const roleArray = ['ROLE_STUDENT']
 
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
@@ -28,20 +31,27 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { openModal } = useModal()
   const { mutate } = usePostEnrollment(lectureId)
   const { push } = useRouter()
+  const [isStudent, setIsStudent] = useState<boolean>(false)
+
+  useEffect(() => {
+    setIsStudent(tokenManager.authority === 'ROLE_STUDENT')
+  }, [])
 
   return (
     <MainStyle.PageWrapper>
       <MainStyle.SlideBg url={Bg3}>
         <MainStyle.BgContainer>
           <MainStyle.PageTitle>강의 상세</MainStyle.PageTitle>
-          <MainStyle.ButtonContainer>
-            <MainStyle.SlideButton
-              onClick={() => push(`/main/lecture/detail/${lectureId}/apply`)}
-            >
-              <People />
-              <span>신청자 명단 조회</span>
-            </MainStyle.SlideButton>
-          </MainStyle.ButtonContainer>
+          {isStudent && (
+            <MainStyle.ButtonContainer>
+              <MainStyle.SlideButton
+                onClick={() => push(`/main/lecture/detail/${lectureId}/apply`)}
+              >
+                <People />
+                <span>신청자 명단 조회</span>
+              </MainStyle.SlideButton>
+            </MainStyle.ButtonContainer>
+          )}
         </MainStyle.BgContainer>
       </MainStyle.SlideBg>
       <MainStyle.MainWrapper>

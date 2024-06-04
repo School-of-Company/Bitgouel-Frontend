@@ -10,4 +10,28 @@ export default {
 
 type Story = StoryObj<typeof CompleteLectureItem>
 
-export const Primary: Story = {}
+export const Complete: Story = {
+  args: {
+    item: {
+      id: '1234',
+      name: '강의 멋있게 하는 법',
+      lectureType: '상호학점인정교육과정',
+      currentCompletedDate: '2024-01-01',
+      lecturer: '이운린',
+      isComplete: true
+    }
+  }
+}
+
+export const NotComplete: Story = {
+  args: {
+    item: {
+      id: '1234',
+      name: '강의 멋있게 하는 법',
+      lectureType: '상호학점인정교육과정',
+      currentCompletedDate: '2024-01-01',
+      lecturer: '이운린',
+      isComplete: false
+    }
+  }
+}

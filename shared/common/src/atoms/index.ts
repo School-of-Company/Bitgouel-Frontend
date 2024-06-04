@@ -42,6 +42,7 @@ export const IsModal = atom<ReactNode>({
 export const SignUpPageNumber = atom<number>({
   key: 'SignUpPageNumber',
   default: 1,
+  effects_UNSTABLE: [persistAtom],
 })
 export const SignUpPage1Obj = atom<SignUpObjTypes[]>({
   key: 'SignUpPage1Obj',

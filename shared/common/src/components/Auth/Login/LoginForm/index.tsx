@@ -50,6 +50,7 @@ const LoginForm = ({ isAdmin }: { isAdmin: boolean }) => {
         return toast.warning('관리자 계정으로 로그인 해주세요')
       tokenManager.setTokens(data)
       toast.success('로그인 되었습니다')
+      if (isAdmin && data.authority === 'ROLE_ADMIN') return push(`/main/admin`)
       push(`/`)
     },
     onError: ({ response }) => response && handleLoginError(response.status),
