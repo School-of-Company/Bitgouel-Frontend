@@ -3,6 +3,9 @@
 import { SignUpPage1Obj, SignUpPage2Obj, SignUpPage3Obj, SignUpPageNumber, useSignUp } from '@bitgouel/common'
 import { FormEvent } from 'react'
 import { useRecoilValue } from 'recoil'
+import AuthTitleMenu from '../AuthTitleMenu'
+import { AuthWrapper } from '../style'
+import { SignUpPage1, SignUpPage2, SignUpPage3, SignUpSuccess } from './SignUpPages'
 import * as S from './style'
 
 const mainTitleList = ['만나서 반가워요!', '회원가입을 진행합니다', '얼마 안 남았어요!']
