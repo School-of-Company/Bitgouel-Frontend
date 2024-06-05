@@ -49,6 +49,15 @@ const useSignUp = ({ isNext }: { isNext: boolean }) => {
   const { mutate: postGovernment } = signUpMutate.government
   const { mutate: postCompanyInstructor } = signUpMutate.companyInstructor
 
+  const commonPayload: SignUpCommonPayloadTypes = {
+    email: signUpPage3Obj[1].value,
+    name: signUpPage2Obj[2].value,
+    phoneNumber: signUpPage3Obj[0].value,
+    password: signUpPage3Obj[2].value,
+    highSchool: schoolToConstants[signUpPage2Obj[0].value],
+    clubName: signUpPage2Obj[1].value,
+  }
+
   const onNext = () => {
     if (isNext) {
       if (signUpPageNumber === 1) {
@@ -128,15 +137,6 @@ const useSignUp = ({ isNext }: { isNext: boolean }) => {
         }
       }
     }
-  }
-
-  const commonPayload: SignUpCommonPayloadTypes = {
-    email: signUpPage3Obj[1].value,
-    name: signUpPage2Obj[2].value,
-    phoneNumber: signUpPage3Obj[0].value,
-    password: signUpPage3Obj[2].value,
-    highSchool: schoolToConstants[signUpPage2Obj[0].value],
-    clubName: signUpPage2Obj[1].value,
   }
 
   return [onNext]
