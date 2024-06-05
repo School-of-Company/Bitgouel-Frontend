@@ -45,6 +45,7 @@ const Password = ({ isLoading }: Props) => {
       placeholder='비밀번호'
       length={passwordValue.length}
       onClear={() => setPasswordValue('')}
+      maxLength={24}
       style={{
         border: passwordErrorText
           ? `0.0625rem solid ${theme.color.error}`

@@ -24,7 +24,7 @@ const Email = ({ isLoading }: Props) => {
       .with(0, () => setEmailErrorText(''))
       .otherwise(() =>
         match(!emailRegex.test(e.target.value))
-          .with(true, () => setEmailErrorText('잘못된 이메일입니다.'))
+          .with(true, () => setEmailErrorText('잘못된 이메일 형식입니다.'))
           .otherwise(() => setEmailErrorText(''))
       )
   }

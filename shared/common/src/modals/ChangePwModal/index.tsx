@@ -104,6 +104,7 @@ const ChangePwModal = () => {
             length={currentPw.length}
             onClear={() => setCurrentPw('')}
             errorText={currentErrorMessage}
+            maxLength={24}
           />
           <ValueInput
             type='password'
@@ -115,6 +116,7 @@ const ChangePwModal = () => {
             length={newPw.length}
             onClear={() => setNewPw('')}
             errorText={newErrorMessage}
+            maxLength={24}
           />
           <ValueInput
             type='password'
@@ -126,6 +128,7 @@ const ChangePwModal = () => {
             length={newConfirmPw.length}
             onClear={() => setNewConfirmPw('')}
             errorText={newConfirmErrorMessage}
+            maxLength={24}
           />
         </S.InputsContainer>
         <S.ChangePwButtonContainer>

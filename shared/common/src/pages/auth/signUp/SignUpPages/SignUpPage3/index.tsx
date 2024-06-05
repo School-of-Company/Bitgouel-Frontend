@@ -27,9 +27,14 @@ const SignUpPage3 = () => {
 
   const onChange = (e: ChangeEvent<HTMLInputElement>, idx: number) => {
     const updatedObj = [...signUpPage3Obj]
+    const { value } = e.target
+    if (updatedObj[idx].type === 'number' && updatedObj[idx].max) {
+      if (value.length > updatedObj[idx].max) return
+    }
+
     updatedObj[idx] = {
       ...updatedObj[idx],
-      value: e.target.value,
+      value: value,
     }
     setSignUpPage3Obj(updatedObj)
   }
@@ -65,6 +70,7 @@ const SignUpPage3 = () => {
               placeholder={item.placeholder}
               length={item.value.length}
               maxLength={item.maxLength}
+              max={item.max}
               onClear={() => onClear(idx)}
               onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e, idx)}
               onBlur={(e: FocusEvent<HTMLInputElement>) => onBlur(e, idx)}
@@ -72,7 +78,7 @@ const SignUpPage3 = () => {
                 idx === 0 && !isPhoneRgx
                   ? '전화번호 오류'
                   : idx === 1 && !isEmailRgx
-                  ? '잘못된 이메일입니다'
+                  ? '잘못된 이메일 형식입니다'
                   : idx === 2 && !isPasswordRgx
                   ? '비밀번호는 정규식에 맞게 입력해주세요'
                   : idx === 3 && !isPwValidate
