@@ -65,7 +65,7 @@ export const SignUpPage3Obj = atom<SignUpObjTypes[]>({
       value: '',
       placeholder: '전화번호 (- 제외)',
       type: 'number',
-      max: 11,
+      maxLength: 11,
     },
     { value: '', placeholder: '이메일', type: 'email' },
     {

@@ -28,8 +28,8 @@ const SignUpPage3 = () => {
   const onChange = (e: ChangeEvent<HTMLInputElement>, idx: number) => {
     const updatedObj: any = [...signUpPage3Obj]
     const { value } = e.target
-    if (updatedObj[idx].type === 'number' && updatedObj[idx].max) {
-      if (value.length > updatedObj[idx].max) return
+    if (updatedObj[idx].type === 'number' && updatedObj[idx].maxLength) {
+      if (value.length > updatedObj[idx].maxLength) return
     }
 
     updatedObj[idx] = {
