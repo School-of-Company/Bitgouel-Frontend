@@ -18,7 +18,7 @@ const Password = ({ isLoading }: Props) => {
   const [passwordValue, setPasswordValue] = useRecoilState(PasswordValue)
   const [passwordErrorText, setPasswordErrorText] =
     useRecoilState(PasswordErrorText)
-  const PwMaxLength: number = 24 as const
+  const MAXLENGTH: number = 24 as const
 
   const onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPasswordValue(e.target.value)
@@ -46,7 +46,7 @@ const Password = ({ isLoading }: Props) => {
       placeholder='비밀번호'
       length={passwordValue.length}
       onClear={() => setPasswordValue('')}
-      maxLength={PwMaxLength}
+      maxLength={MAXLENGTH}
       style={{
         border: passwordErrorText
           ? `0.0625rem solid ${theme.color.error}`
