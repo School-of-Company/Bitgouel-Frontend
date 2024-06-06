@@ -16,6 +16,7 @@ const ChangePwModal = () => {
     useState<string>('')
   const { closeModal } = useModal()
   const { mutate, error } = usePatchPassword()
+  const PwMaxLength: number = 24 as const
 
   const onChangePw = () => {
     if (
@@ -104,7 +105,7 @@ const ChangePwModal = () => {
             length={currentPw.length}
             onClear={() => setCurrentPw('')}
             errorText={currentErrorMessage}
-            maxLength={24}
+            maxLength={PwMaxLength}
           />
           <ValueInput
             type='password'
@@ -116,7 +117,7 @@ const ChangePwModal = () => {
             length={newPw.length}
             onClear={() => setNewPw('')}
             errorText={newErrorMessage}
-            maxLength={24}
+            maxLength={PwMaxLength}
           />
           <ValueInput
             type='password'
@@ -128,7 +129,7 @@ const ChangePwModal = () => {
             length={newConfirmPw.length}
             onClear={() => setNewConfirmPw('')}
             errorText={newConfirmErrorMessage}
-            maxLength={24}
+            maxLength={PwMaxLength}
           />
         </S.InputsContainer>
         <S.ChangePwButtonContainer>
