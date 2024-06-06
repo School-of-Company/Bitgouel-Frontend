@@ -7,6 +7,7 @@ import { PaginationInputsContainer } from '../SignUpPage1/style'
 import * as S from './style'
 import { SignUpPage3Obj, ValueInput } from '@bitgouel/common'
 import { match } from 'ts-pattern'
+import { SignUpObjTypes } from '@bitgouel/types'
 
 const SignUpPage3 = () => {
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/
@@ -26,7 +27,7 @@ const SignUpPage3 = () => {
   }
 
   const onChange = (e: ChangeEvent<HTMLInputElement>, idx: number) => {
-    const updatedObj: any = [...signUpPage3Obj]
+    const updatedObj: SignUpObjTypes[] = [...signUpPage3Obj]
     if (updatedObj[idx].type === 'number' && updatedObj[idx].maxLength) {
       if (e.target.value.length > updatedObj[idx].maxLength) return
     }
