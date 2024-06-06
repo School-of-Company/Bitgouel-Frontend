@@ -14,11 +14,12 @@ interface Props {
   isLoading: boolean
 }
 
+const MAXLENGTH: number = 24 as const
+
 const Password = ({ isLoading }: Props) => {
   const [passwordValue, setPasswordValue] = useRecoilState(PasswordValue)
   const [passwordErrorText, setPasswordErrorText] =
     useRecoilState(PasswordErrorText)
-  const MAXLENGTH: number = 24 as const
 
   const onPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPasswordValue(e.target.value)

@@ -6,6 +6,8 @@ import * as S from './style'
 import { usePatchPassword } from '@bitgouel/api'
 import { toast } from 'react-toastify'
 
+const MAXLENGTH: number = 24 as const
+
 const ChangePwModal = () => {
   const [currentPw, setCurrentPw] = useState<string>('')
   const [currentErrorMessage, setCurrentErrorMessage] = useState<string>('')
@@ -16,7 +18,6 @@ const ChangePwModal = () => {
     useState<string>('')
   const { closeModal } = useModal()
   const { mutate, error } = usePatchPassword()
-  const MAXLENGTH: number = 24 as const
 
   const onChangePw = () => {
     if (
