@@ -1,7 +1,7 @@
 import { UserSearchFilter } from '@/PageContainer/Admin/UserListPage/style'
 import styled from '@emotion/styled'
 
-export const WithdrawTopContainer = styled.div`
+export const WithdrawInfoContainer = styled.div`
   margin-top: 3.5rem;
   width: 100%;
   height: 3.625rem;
