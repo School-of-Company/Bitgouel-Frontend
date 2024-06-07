@@ -13,7 +13,7 @@ interface Props {
   onLogin: (e?: FormEvent) => void
 }
 
-const LoginButtons = ({ onLogin }: Props) => {
+const LoginButton = ({ onLogin }: Props) => {
   const isLoading = useContext(LoadingStateContext)
   const emailValue = useRecoilValue(EmailValue)
   const passwordValue = useRecoilValue(PasswordValue)
@@ -34,4 +34,4 @@ const LoginButtons = ({ onLogin }: Props) => {
   )
 }
 
-export default LoginButtons
+export default LoginButton

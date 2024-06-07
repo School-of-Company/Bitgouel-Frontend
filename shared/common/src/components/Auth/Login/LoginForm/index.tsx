@@ -13,7 +13,7 @@ import { useRouter } from 'next/navigation'
 import { FormEvent } from 'react'
 import { toast } from 'react-toastify'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-import LoginButtons from './LoginButtons'
+import LoginButton from './LoginButton'
 import LoginInput from './LoginInput'
 
 const LoginForm = ({ isAdmin }: { isAdmin: boolean }) => {
@@ -70,7 +70,7 @@ const LoginForm = ({ isAdmin }: { isAdmin: boolean }) => {
     <LoadingStateContext.Provider value={isLoading}>
       <form onSubmit={onLogin}>
         <LoginInput />
-        <LoginButtons onLogin={onLogin} />
+        <LoginButton onLogin={onLogin} />
       </form>
     </LoadingStateContext.Provider>
   )
