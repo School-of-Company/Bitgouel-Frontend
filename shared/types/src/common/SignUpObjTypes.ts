@@ -3,4 +3,5 @@ export interface SignUpObjTypes {
   placeholder: string
   type: 'text' | 'password' | 'number' | 'email'
   maxLength?: number
+  max?: number
 }

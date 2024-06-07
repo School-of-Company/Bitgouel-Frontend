@@ -72,6 +72,7 @@ export const SignUpPage3Obj = atom<SignUpObjTypes[]>({
       value: '',
       placeholder: '비밀번호 (8~24자 이내의 영문 / 숫자, 특수문자 1개 이상)',
       type: 'password',
+      maxLength: 24,
     },
     { value: '', placeholder: '비밀번호 확인', type: 'password' },
   ],

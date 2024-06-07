@@ -1,6 +1,6 @@
 'use client'
 
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, FocusEvent, useState } from 'react'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
 import { ValueInput } from '@bitgouel/common'
@@ -13,14 +13,21 @@ const EmailCheck = ({ emailValue, setEmailValue }: EmailProps) => {
   const [emailErrorText, setEmailErrorText] = useState<string>('')
   const { mutate } = usePostEmail()
 
-  const checkEmail = (e: ChangeEvent<HTMLInputElement>) => {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmailValue(e.target.value)
     if (e.target.value === '') {
       setEmailErrorText('')
       setEmailStatus(false)
+    }
+  }
+
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+    if (e.target.value === '') {
+      setEmailErrorText('')
+      setEmailStatus(false)
     } else if (!emailRegex.test(e.target.value)) {
-      setEmailErrorText('잘못된 이메일입니다.')
+      setEmailErrorText('잘못된 이메일 형식입니다.')
       setEmailStatus(false)
     } else {
       setEmailErrorText('')
@@ -37,9 +44,10 @@ const EmailCheck = ({ emailValue, setEmailValue }: EmailProps) => {
               type='text'
               value={emailValue}
               placeholder='이메일'
-              name='newPw'
+              name='email'
               length={emailValue.length}
-              onChange={checkEmail}
+              onChange={handleChange}
+              onBlur={handleBlur}
               onClear={() => setEmailValue('')}
               errorText={emailErrorText}
             />
