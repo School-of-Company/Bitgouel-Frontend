@@ -1,5 +1,6 @@
 'use client'
 
+import { NewDisplayInfo } from '@/components'
 import {
   useDeleteUserReject,
   useGetUserList,
@@ -8,19 +9,17 @@ import {
 import {
   AppropriationModal,
   Bg6,
-  Check,
   MainStyle,
   Minus,
   PeopleCircle,
   UserItem,
   handleSelect,
-  useModal,
+  useModal
 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
-import { AdminDisplayInfo } from '@/components'
 
 const NewUserListPage = () => {
   const { push } = useRouter()
@@ -97,7 +96,7 @@ const NewUserListPage = () => {
       </MainStyle.SlideBg>
       <MainStyle.MainWrapper>
         <MainStyle.MainContainer>
-          <AdminDisplayInfo.NewDisplayTop onAll={onAll} handleOpenModal={handleOpenModal} />
+          <NewDisplayInfo onAll={onAll} handleOpenModal={handleOpenModal} />
           <S.UserListContainer>
             {data?.users.map((user) => (
               <UserItem

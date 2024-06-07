@@ -8,11 +8,13 @@ import {
 import * as S from './style'
 import { useSetRecoilState } from 'recoil'
 import { useRouter } from 'next/navigation'
+import { useQuery } from '@tanstack/react-query'
 
 const SchoolFilterModal = () => {
   const { push } = useRouter()
   const { closeModal } = useModal()
   const setSchoolFilterText = useSetRecoilState(SchoolFilterText)
+
   return (
     <Portal onClose={closeModal}>
       <S.SchoolFilterModalWrapper>
