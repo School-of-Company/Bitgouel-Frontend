@@ -6,6 +6,8 @@ import * as S from './style'
 import { usePatchPassword } from '@bitgouel/api'
 import { toast } from 'react-toastify'
 
+const MAXLENGTH: number = 24 as const
+
 const ChangePwModal = () => {
   const [currentPw, setCurrentPw] = useState<string>('')
   const [currentErrorMessage, setCurrentErrorMessage] = useState<string>('')
@@ -104,6 +106,7 @@ const ChangePwModal = () => {
             length={currentPw.length}
             onClear={() => setCurrentPw('')}
             errorText={currentErrorMessage}
+            maxLength={MAXLENGTH}
           />
           <ValueInput
             type='password'
@@ -115,6 +118,7 @@ const ChangePwModal = () => {
             length={newPw.length}
             onClear={() => setNewPw('')}
             errorText={newErrorMessage}
+            maxLength={MAXLENGTH}
           />
           <ValueInput
             type='password'
@@ -126,6 +130,7 @@ const ChangePwModal = () => {
             length={newConfirmPw.length}
             onClear={() => setNewConfirmPw('')}
             errorText={newConfirmErrorMessage}
+            maxLength={MAXLENGTH}
           />
         </S.InputsContainer>
         <S.ChangePwButtonContainer>

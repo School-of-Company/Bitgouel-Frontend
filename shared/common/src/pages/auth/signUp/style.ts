@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-export const SignUpFormContainer = styled.div`
+export const SignUpFormContainer = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;

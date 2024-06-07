@@ -14,6 +14,8 @@ interface Props {
   isLoading: boolean
 }
 
+const MAXLENGTH: number = 24 as const
+
 const Password = ({ isLoading }: Props) => {
   const [passwordValue, setPasswordValue] = useRecoilState(PasswordValue)
   const [passwordErrorText, setPasswordErrorText] =
@@ -45,6 +47,7 @@ const Password = ({ isLoading }: Props) => {
       placeholder='비밀번호'
       length={passwordValue.length}
       onClear={() => setPasswordValue('')}
+      maxLength={MAXLENGTH}
       style={{
         border: passwordErrorText
           ? `0.0625rem solid ${theme.color.error}`

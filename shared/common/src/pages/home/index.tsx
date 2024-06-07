@@ -16,15 +16,12 @@ import {
   Gwangju,
   OfficeGwangju,
   FAQSection,
-} from '@bitgouel/common'
-
-import {
   ClubListSlider,
   CompanyListSlider,
   SchoolIntro,
   Sequence,
+  SchoolIntroObjects,
 } from '@bitgouel/common'
-import { SchoolIntroObjects } from '@bitgouel/common'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
 
@@ -69,13 +66,13 @@ const HomePage = () => {
             <S.SubTitleMain>빛고을 직업교육 혁신지구</S.SubTitleMain>
           </S.SemiTitleBox>
           <S.FromTextContainer>
-            본 사업은
+            본 사업은{' '}
             <Link href={`https://www.gwangju.go.kr/`} passHref legacyBehavior>
               <a target='_blank' rel='noopener noreferrer'>
                 광주광역시
               </a>
             </Link>
-            와
+            와{' '}
             <Link href={`http://www.gen.go.kr/`} passHref legacyBehavior>
               <a target='_blank' rel='noopener noreferrer'>
                 광주광역시교육청
@@ -98,17 +95,17 @@ const HomePage = () => {
           <S.UnionItem>
             <S.UnionTitle>🎓 지역대학</S.UnionTitle>
             <div>
-              <li>현장 맞춤형 교육</li>
-              <li>현장실습</li>
-              <li>고졸 채용</li>
+              <li>기업 연계 교육</li>
+              <li>심화교육</li>
+              <li>후학습지원</li>
             </div>
           </S.UnionItem>
           <S.UnionItem>
             <S.UnionTitle>🏢 지역기업</S.UnionTitle>
             <div>
-              <li>기업 연계 교육</li>
-              <li>심화교육</li>
-              <li>후학습지원</li>
+              <li>현장 맞춤형 교육</li>
+              <li>현장실습</li>
+              <li>고졸 채용</li>
             </div>
           </S.UnionItem>
           <S.UnionItem>
