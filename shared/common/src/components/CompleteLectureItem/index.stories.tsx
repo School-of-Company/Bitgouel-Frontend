@@ -23,7 +23,7 @@ export const Complete: Story = {
   }
 }
 
-export const NotComplete: Story = {
+export const UnComplete: Story = {
   args: {
     item: {
       id: '1234',

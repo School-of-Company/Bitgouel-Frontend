@@ -72,6 +72,7 @@ const WithdrawDisplayTop = ({
   onWithdrawModal,
 }: WithdrawDisplayBarProps) => {
   const { openModal } = useModal()
+  
   return (
     <S.WithdrawTopContainer>
       <S.RequestDisplayBar>
