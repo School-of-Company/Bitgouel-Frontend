@@ -40,7 +40,7 @@ const InquiryDetailPage = ({
           {!isAdmin && (
             <MainStyle.ButtonContainer>
               <MainStyle.SlideButton
-                onClick={() => push(`/main/post/inquiry/${inquiryId}/modify`)}
+                onClick={() => push(`/main/post/inquiry/detail/${inquiryId}/modify`)}
               >
                 <Pen />
                 <span>문의 수정</span>

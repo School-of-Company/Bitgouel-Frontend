@@ -48,7 +48,7 @@ const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
                 <MainStyle.SlideButton
                   onClick={() =>
                     push(
-                      `/main/club/${clubId}/student/${studentId}/activity/${activityId}/modify`
+                      `/main/club/detail/${clubId}/student/detail/${studentId}/activity/${activityId}/modify`
                     )
                   }
                 >
@@ -67,7 +67,7 @@ const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
                           mutate()
                           closeModal()
                           push(
-                            `/main/club/${clubId}/student/${studentId}/activity`
+                            `/main/club/detail/${clubId}/student/detail/${studentId}/activity`
                           )
                           toast.success('삭제되었습니다.')
                         }}

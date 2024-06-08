@@ -5,15 +5,15 @@ import {
   LoadingStateContext,
   PasswordValue
 } from '@bitgouel/common'
-import { useContext } from 'react'
+import { FormEvent, useContext } from 'react'
 import { useRecoilValue } from 'recoil'
 import * as S from './style'
 
 interface Props {
-  onLogin: () => void
+  onLogin: (e?: FormEvent) => void
 }
 
-const LoginButtons = ({ onLogin }: Props) => {
+const LoginButton = ({ onLogin }: Props) => {
   const isLoading = useContext(LoadingStateContext)
   const emailValue = useRecoilValue(EmailValue)
   const passwordValue = useRecoilValue(PasswordValue)
@@ -34,4 +34,4 @@ const LoginButtons = ({ onLogin }: Props) => {
   )
 }
 
-export default LoginButtons
+export default LoginButton

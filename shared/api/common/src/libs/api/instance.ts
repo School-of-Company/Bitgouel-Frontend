@@ -1,4 +1,8 @@
-import axios, { InternalAxiosRequestConfig } from 'axios'
+import axios, {
+  AxiosError,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from 'axios'
 import TokenManager from './TokenManager'
 
 export const instance = axios.create({
@@ -41,6 +45,8 @@ instance.interceptors.request.use(
     ) {
       tokenManager.removeTokens()
     }
+
+    if (config.url && config.url.includes('login')) return config
     config.headers.Authorization = tokenManager.accessToken
       ? `Bearer ${encodeURI(tokenManager.accessToken)}`
       : undefined
@@ -50,15 +56,17 @@ instance.interceptors.request.use(
 )
 
 instance.interceptors.response.use(
-  (response) => {
+  (response: AxiosResponse) => {
     if (response.status >= 200 && response.status < 300) {
       return response.data
     }
   },
-  async (error) => {
+  async (error: AxiosError) => {
     const tokenManager = new TokenManager()
     if (
       !window.location.href.includes('auth') &&
+      error.response &&
+      error.config &&
       error.response.status === 401
     ) {
       try {

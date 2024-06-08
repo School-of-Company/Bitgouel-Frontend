@@ -13,31 +13,38 @@ type Story = StoryObj<typeof UserItem>
 export const CurrentUser: Story = {
   args: {
     id: '1234',
+    userIds: ['123', '456'],
     name: '홍길동',
     authority: 'ROLE_STUDENT',
+    phoneNumber: '01012345678',
+    email: 'test@gamil.com',
     status: 'current',
     handleSelectUsers: () => {},
-    userIds: ['123', '456']
   }
 }
 
 export const RequestUser: Story = {
   args: {
     id: '1234',
+    userIds: ['123', '456'],
     name: '홍길동',
     authority: 'ROLE_STUDENT',
+    phoneNumber: '01012345678',
+    email: 'test@gamil.com',
     status: 'request',
     handleSelectUsers: () => {},
-    userIds: ['123', '456']
   }
 }
 
 export const NoAuthorityUser: Story = {
   args: {
     id: '1234',
+    userIds: ['123', '456'],
     name: '홍길동',
+    authority: 'ROLE_STUDENT',
+    phoneNumber: '01012345678',
+    email: 'test@gamil.com',
     status: 'request',
     handleSelectUsers: () => {},
-    userIds: ['123', '456']
   }
 }

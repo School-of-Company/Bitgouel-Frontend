@@ -20,20 +20,16 @@ const ValueInput = (
   return (
     <>
       <S.ValueWrapper
-        onMouseOver={() => {
-          setFocus(true)
-        }}
-        onMouseOut={() => {
-          setFocus(false)
-        }}
+        onMouseOver={() => setFocus(true)}
+        onMouseOut={() => setFocus(false)}
       >
         <S.ValueInput
           ref={ref}
           {...rest}
-          isError={errorText ? true : false}
+          isError={!!errorText}
           isLoading={isLoading}
         />
-        {length > 0 && focus === true && onClear && (
+        {length > 0 && focus && onClear && (
           <S.XIconWrapper onClick={onClear}>
             <XIcon />
           </S.XIconWrapper>

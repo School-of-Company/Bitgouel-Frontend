@@ -7,11 +7,11 @@ import {
 import AuthFormTitle from '../AuthFormTitle'
 import { AuthWrapper } from '../style'
 
-const LoginPage = () => {
+const LoginPage = ({ isAdmin }: { isAdmin: boolean }) => {
   return (
     <AuthWrapper>
       <AuthFormTitle />
-      <LoginForm />
+      <LoginForm isAdmin={isAdmin} />
       <LoginBottom />
     </AuthWrapper>
   )

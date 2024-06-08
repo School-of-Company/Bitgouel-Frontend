@@ -1,8 +1,8 @@
 'use client'
 // 어드민 페이지
-import { ClubItem, SchoolFilter } from '@/components'
+import { ClubBanner, ClubItem } from '@/components'
 import { useGetSchoolClubList } from '@bitgouel/api'
-import { SchoolFilterText, MainStyle } from '@bitgouel/common'
+import { MainStyle, SchoolFilterText } from '@bitgouel/common'
 import { useEffect } from 'react'
 import { useRecoilValue } from 'recoil'
 import * as S from './style'
@@ -17,7 +17,7 @@ const ClubPage = () => {
 
   return (
     <MainStyle.PageWrapper>
-      <SchoolFilter />
+      <ClubBanner />
       <MainStyle.MainWrapper>
         <MainStyle.MainContainer>
           {data?.schools.map((school) => (

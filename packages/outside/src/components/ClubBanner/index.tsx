@@ -3,8 +3,9 @@
 import { Bg2, SettingOut, useModal, MainStyle } from '@bitgouel/common'
 import { SchoolFilterModal } from '@/modals'
 
-const SchoolFilter = () => {
+const ClubBanner = () => {
   const { openModal } = useModal()
+  
   return (
     <MainStyle.SlideBg url={Bg2}>
       <MainStyle.BgContainer>
@@ -22,4 +23,4 @@ const SchoolFilter = () => {
   )
 }
 
-export default SchoolFilter
+export default ClubBanner

@@ -1,24 +1,25 @@
 'use client'
 
 import { useDeleteWithDraw, useGetMy, usePostExcelUpload } from '@bitgouel/api'
-import { Bg4, roleToKor } from '@bitgouel/common'
-import { useRouter } from 'next/navigation'
+import { Bg4, ChangePwModal, roleToKor, useModal } from '@bitgouel/common'
 import * as S from './style'
 import { ChangeEvent, useCallback } from 'react'
 
 const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
-  const { push } = useRouter()
+  const { openModal } = useModal()
   const { data } = useGetMy()
   const { mutate: withdraw } = useDeleteWithDraw()
   const { mutate: upload } = usePostExcelUpload()
-  
+
   const onFileUpload = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const excelFile: File | string = e.currentTarget.files ? e.currentTarget.files[0] : '';
+    const excelFile: File | string = e.currentTarget.files
+      ? e.currentTarget.files[0]
+      : ''
     const formData = new FormData()
     formData.append('file', excelFile)
     upload(formData)
   }, [])
-  
+
   return (
     <S.MyPageWrapper url={Bg4}>
       <S.BlackBox>
@@ -53,9 +54,7 @@ const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
                   <S.RightText>이메일</S.RightText>
                 </div>
                 <div>
-                  <S.LeftText>
-                    {data?.phoneNumber}
-                  </S.LeftText>
+                  <S.LeftText>{data?.phoneNumber}</S.LeftText>
                   <S.RightText>전화번호</S.RightText>
                 </div>
               </S.AccountContainer>
@@ -68,7 +67,7 @@ const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
                   <S.AccountSettingLine>
                     <S.LeftText>학생정보 일괄 삽입</S.LeftText>
                     <S.LineRightText htmlFor='excelUpload'>
-                      <input 
+                      <input
                         id='excelUpload'
                         type='file'
                         accept='.xlsx, .xls, .csv'
@@ -81,7 +80,7 @@ const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
                 <S.SharedLine />
                 <S.AccountSettingLine>
                   <S.LeftText>회원정보 수정</S.LeftText>
-                  <S.LineRightText onClick={() => push('/auth/find')}>
+                  <S.LineRightText onClick={() => openModal(<ChangePwModal />)}>
                     비밀번호 변경
                   </S.LineRightText>
                 </S.AccountSettingLine>

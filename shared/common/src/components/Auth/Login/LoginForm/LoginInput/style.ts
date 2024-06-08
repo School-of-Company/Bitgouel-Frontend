@@ -16,7 +16,6 @@ export const InputContainer = styled.div`
 
   span {
     width: 100%;
-    margin-left: 3.2rem;
     margin-top: -1rem;
   }
 `

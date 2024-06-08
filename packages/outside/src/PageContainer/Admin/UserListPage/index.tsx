@@ -17,6 +17,7 @@ import { RoleEnumTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import * as S from './style'
+import { AdminDisplayInfo } from '@/components'
 
 const defaultFilterList = [
   { text: '전체', item: '전체', checked: true },
@@ -29,7 +30,7 @@ const defaultFilterList = [
   { text: '뽀짝 선생님', item: 'ROLE_BBOZZAK', checked: false },
 ]
 
-const filterTitle: string = '직업'
+const filterTitle: string = '직업' as const
 
 const UserListPage = () => {
   const [authority, setAuthority] = useState<RoleEnumTypes | 'ROLE_USER'>(
@@ -103,12 +104,7 @@ const UserListPage = () => {
               <span>필터</span>
             </S.UserSearchFilter>
           </S.UserSearchContainer>
-          <S.DisplayBar>
-            <span>이름</span>
-            <span>직업</span>
-            <span>전화번호</span>
-            <span>이메일</span>
-          </S.DisplayBar>
+          <AdminDisplayInfo />
           <S.UserListContainer>
             {data?.users.map((user) => (
               <UserItem

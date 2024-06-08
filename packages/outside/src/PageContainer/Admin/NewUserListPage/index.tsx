@@ -18,19 +18,33 @@ import {
 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState } from 'react'
+import { toast } from 'react-toastify'
 import * as S from './style'
+import { AdminDisplayInfo } from '@/components'
 
 const NewUserListPage = () => {
   const { push } = useRouter()
   const [userIds, setUserIds] = useState<string[]>([])
-  const { data } = useGetUserList({
+  const { data, refetch } = useGetUserList({
     keyword: '',
     authority: 'ROLE_USER',
     approveStatus: 'PENDING',
   })
-  const { openModal } = useModal()
-  const { mutate: approve } = usePatchUserApprove(userIds)
-  const { mutate: reject } = useDeleteUserReject(userIds)
+  const { openModal, closeModal } = useModal()
+  const { mutate: approve } = usePatchUserApprove(userIds, {
+    onSuccess: () => {
+      closeModal()
+      refetch()
+      toast.success('가입을 수락하였습니다')
+    }
+  })
+  const { mutate: reject } = useDeleteUserReject(userIds,{
+    onSuccess: () => {
+      closeModal()
+      refetch()
+      toast.success('가입을 거절하였습니다')
+    }
+  })
 
   const onAll = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) setUserIds(data?.users.map((user) => user.id))
@@ -41,7 +55,7 @@ const NewUserListPage = () => {
     handleSelect({ checked, id: userId, setIds: setUserIds })
 
   const handleOpenModal = (type: 'approve' | 'reject') => {
-    if (userIds.length === 0) return
+    if (userIds.length === 0) return toast.info('사용자를 선택해주세요')
     if (type === 'approve') {
       openModal(
         <AppropriationModal
@@ -83,38 +97,7 @@ const NewUserListPage = () => {
       </MainStyle.SlideBg>
       <MainStyle.MainWrapper>
         <MainStyle.MainContainer>
-          <S.TopContainer>
-            <S.RequestDisplayBar>
-              <div>
-                <span>선택</span>
-                <span>이름</span>
-              </div>
-              <span>직업</span>
-              <span>전화번호</span>
-              <span>이메일</span>
-            </S.RequestDisplayBar>
-            <S.SelectBoxContainer>
-              <S.SelectBox type='allNew' htmlFor='allNew'>
-                <input type='checkbox' id='allNew' onChange={onAll} />
-                <PeopleCircle />
-                전체 선택
-              </S.SelectBox>
-              <S.SelectBox
-                type='approve'
-                onClick={() => handleOpenModal('approve')}
-              >
-                <Check />
-                선택 수락
-              </S.SelectBox>
-              <S.SelectBox
-                type='reject'
-                onClick={() => handleOpenModal('reject')}
-              >
-                <Check />
-                선택 거절
-              </S.SelectBox>
-            </S.SelectBoxContainer>
-          </S.TopContainer>
+          <AdminDisplayInfo.NewDisplayTop onAll={onAll} handleOpenModal={handleOpenModal} />
           <S.UserListContainer>
             {data?.users.map((user) => (
               <UserItem

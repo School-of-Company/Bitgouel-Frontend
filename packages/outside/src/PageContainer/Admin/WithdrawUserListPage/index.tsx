@@ -17,9 +17,9 @@ import {
 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
-import { RequestDisplayBar, TopContainer } from '../NewUserListPage/style'
 import { UserListContainer } from '../UserListPage/style'
 import * as S from './style'
+import { AdminDisplayInfo } from '@/components'
 
 type cohortTypes = '1' | '2' | '3' | '4'
 const defaultFilterList = [
@@ -29,14 +29,16 @@ const defaultFilterList = [
   { text: '4기', item: '4', checked: false },
 ]
 
-const filterTitle: string = '기수'
+const filterTitle: string = '기수' as const
 
 const WithdrawUserListPage = () => {
   const { push } = useRouter()
   const [userIds, setUserIds] = useState<string[]>([])
   const [cohort, setCohort] = useState<cohortTypes>('1')
   const { data, refetch } = useGetWithDrawUserList(cohort)
-  const { mutate } = useDeleteUserWithdraw(userIds)
+  const { mutate } = useDeleteUserWithdraw(userIds, {
+    onSuccess: () => refetch(),
+  })
   const { openModal } = useModal()
   const { filterList, onSelected } = useFilterSelect({
     title: filterTitle,
@@ -88,42 +90,13 @@ const WithdrawUserListPage = () => {
       </MainStyle.SlideBg>
       <MainStyle.MainWrapper>
         <MainStyle.MainContainer>
-          <TopContainer>
-            <RequestDisplayBar>
-              <div>
-                <span>선택</span>
-                <span>이름</span>
-              </div>
-              <span>직업</span>
-              <span>전화번호</span>
-              <span>이메일</span>
-            </RequestDisplayBar>
-            <S.WithdrawButtonContainer>
-              <S.FilterBox
-                onClick={() =>
-                  openModal(
-                    <FilterModal
-                      title={filterTitle}
-                      filterList={filterList}
-                      onSelected={onSelected}
-                    />
-                  )
-                }
-              >
-                <FilterOut />
-                필터
-              </S.FilterBox>
-              <S.AllWithdrawBox htmlFor='allWithdraw'>
-                <input type='checkbox' id='allWithdraw' onChange={onAll} />
-                <PeopleCircle />
-                전체 선택
-              </S.AllWithdrawBox>
-              <S.SelectWithdrawBox onClick={onWithdrawModal}>
-                <Check />
-                선택 탈퇴
-              </S.SelectWithdrawBox>
-            </S.WithdrawButtonContainer>
-          </TopContainer>
+          <AdminDisplayInfo.WithdrawDisplayTop
+            filterTitle={filterTitle}
+            filterList={filterList}
+            onSelected={onSelected}
+            onAll={onAll}
+            onWithdrawModal={onWithdrawModal}
+          />
           <UserListContainer>
             {data?.students.map((user) => (
               <UserItem
