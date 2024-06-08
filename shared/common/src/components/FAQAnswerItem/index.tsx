@@ -1,6 +1,5 @@
 'use client'
 
-import { useModal } from '@bitgouel/common'
 import { TokenManager, usePostQuestion } from '@bitgouel/api'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
@@ -8,13 +7,10 @@ import * as S from './style'
 
 const FAQAnswerItem = ({ refetchFAQs }: { refetchFAQs: () => void }) => {
   const tokenManager = new TokenManager()
-
   const [answerStatus, setAnswerStatus] = useState<boolean>(false)
   const [question, setQuestion] = useState<string>('')
   const [answer, setAnswer] = useState<string>('')
   const [isAdmin, setIsAdmin] = useState<boolean>(false)
-
-  const { openModal, closeModal } = useModal()
 
   const { mutate } = usePostQuestion({
     onSuccess: () => {

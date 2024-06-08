@@ -121,7 +121,7 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
                 }
                 isSameRoute={match(idx)
                   .with(0, () => pathname === menu.link)
-                  .otherwise(() => pathname.includes(menu.link))}
+                  .otherwise(() => pathname ? pathname.includes(menu.link) : false)}
                 color={spanColor}
               >
                 {menu.kor}

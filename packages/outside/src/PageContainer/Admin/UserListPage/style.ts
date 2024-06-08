@@ -54,29 +54,6 @@ export const UserSearchFilter = styled.div`
   }
 `
 
-export const DisplayBar = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  height: 1.25rem;
-  color: ${({ theme }) => theme.color.gray['400']};
-  ${({ theme }) => theme.typo.text_sm.medium};
-  gap: 4rem;
-  padding: 0 0 1rem 1rem;
-
-  span {
-    &:first-of-type {
-      width: 6rem;
-    }
-    &:nth-of-type(2) {
-      width: 8rem;
-    }
-    &:nth-of-type(3) {
-      width: 9rem;
-    }
-  }
-`
-
 export const UserListContainer = styled.div`
   display: flex;
   flex-direction: column;

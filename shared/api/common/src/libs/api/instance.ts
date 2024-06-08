@@ -62,24 +62,24 @@ instance.interceptors.response.use(
     }
   },
   async (error: AxiosError) => {
-    // const tokenManager = new TokenManager()
-    // if (
-    //   !window.location.href.includes('auth') &&
-    //   error.response &&
-    //   error.config &&
-    //   error.response.status === 401
-    // ) {
-    //   try {
-    //     await tokenManager.reissueToken()
-    //     tokenManager.initToken()
-    //     error.config.headers['Authorization'] = tokenManager.accessToken
-    //       ? `Bearer ${encodeURI(tokenManager.accessToken)}`
-    //       : undefined
-    //     return instance(error.config)
-    //   } catch (err) {
-    //     window.location.replace(`/`)
-    //   }
-    // }
+    const tokenManager = new TokenManager()
+    if (
+      !window.location.href.includes('auth') &&
+      error.response &&
+      error.config &&
+      error.response.status === 401
+    ) {
+      try {
+        await tokenManager.reissueToken()
+        tokenManager.initToken()
+        error.config.headers['Authorization'] = tokenManager.accessToken
+          ? `Bearer ${encodeURI(tokenManager.accessToken)}`
+          : undefined
+        return instance(error.config)
+      } catch (err) {
+        window.location.replace(`/`)
+      }
+    }
     return Promise.reject(error)
   }
 )
