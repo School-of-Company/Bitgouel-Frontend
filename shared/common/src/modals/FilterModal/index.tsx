@@ -1,16 +1,10 @@
 'use client'
 
 import { CancelIcon, Portal, useModal } from '@bitgouel/common'
-import { FilterListTypes, onSelectedParameter } from '@bitgouel/types'
-import * as S from './style'
-import RadioItem from './RadioItem'
+import { FilterModalProps } from '@bitgouel/types'
 import InputRadio from './InputRadio'
-
-export interface FilterModalProps {
-  title: string
-  filterList: FilterListTypes[]
-  onSelected: (parameter: onSelectedParameter) => void
-}
+import RadioItem from './RadioItem'
+import * as S from './style'
 
 const FilterModal = ({ title, filterList, onSelected }: FilterModalProps) => {
   const { closeModal } = useModal()

@@ -1,9 +1,9 @@
 'use client'
 
 import { FilterModal, FilterOut, SearchIcon, useModal } from '@bitgouel/common'
+import { FilterModalProps } from '@bitgouel/types'
 import { QueryObserverResult } from '@tanstack/react-query'
 import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react'
-import { FilterModalProps } from '../../modals/FilterModal'
 import * as S from './style'
 
 interface Props {
