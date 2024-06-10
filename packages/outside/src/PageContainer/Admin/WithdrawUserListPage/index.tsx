@@ -1,27 +1,24 @@
 'use client'
 
+import { WithdrawDisplayInfo } from '@/components'
 import { useDeleteUserWithdraw, useGetWithDrawUserList } from '@bitgouel/api'
 import {
   AppropriationModal,
   Bg6,
-  Check,
-  FilterModal,
-  FilterOut,
   MainStyle,
   PeopleCircle,
   Plus,
   UserItem,
   handleSelect,
   useFilterSelect,
-  useModal,
+  useModal
 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { UserListContainer } from '../UserListPage/style'
-import * as S from './style'
-import { AdminDisplayInfo } from '@/components'
 
 type cohortTypes = '1' | '2' | '3' | '4'
+
 const defaultFilterList = [
   { text: '1기', item: '1', checked: true },
   { text: '2기', item: '2', checked: false },
@@ -90,7 +87,7 @@ const WithdrawUserListPage = () => {
       </MainStyle.SlideBg>
       <MainStyle.MainWrapper>
         <MainStyle.MainContainer>
-          <AdminDisplayInfo.WithdrawDisplayTop
+          <WithdrawDisplayInfo
             filterTitle={filterTitle}
             filterList={filterList}
             onSelected={onSelected}
