@@ -34,8 +34,6 @@ const ValueInput = (
     }
   }, [])
 
-  console.log(viewSvg)
-
   return (
     <>
       <S.ValueWrapper
