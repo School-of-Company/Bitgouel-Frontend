@@ -5,4 +5,5 @@ export interface ValueInputProps extends InputHTMLAttributes<HTMLInputElement> {
   onClear: (() => void) | null
   errorText?: string
   isLoading?: boolean
+  isPassword: boolean
 }
