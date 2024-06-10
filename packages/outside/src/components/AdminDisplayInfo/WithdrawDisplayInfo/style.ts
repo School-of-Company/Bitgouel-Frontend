@@ -2,14 +2,13 @@ import { UserSearchFilter } from '@/PageContainer/Admin/UserListPage/style'
 import styled from '@emotion/styled'
 
 export const WithdrawInfoContainer = styled.div`
-  margin-top: 3.5rem;
+  margin-top: 2.5rem;
   width: 100%;
-  height: 3.625rem;
+  height: 2.5rem;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   padding-bottom: 1rem;
-  border-bottom: 0.0625rem solid ${({ theme }) => theme.color.gray['900']};
 `
 
 export const WithdrawButtonContainer = styled.div`

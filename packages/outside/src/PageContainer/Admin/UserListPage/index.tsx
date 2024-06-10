@@ -8,6 +8,7 @@ import {
   MainStyle,
   Minus,
   Plus,
+  SearchComponent,
   SearchIcon,
   UserItem,
   useFilterSelect,
@@ -48,7 +49,6 @@ const UserListPage = () => {
     authority,
     approveStatus: 'APPROVED',
   })
-  const { openModal } = useModal()
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -78,32 +78,14 @@ const UserListPage = () => {
       </MainStyle.SlideBg>
       <MainStyle.MainWrapper>
         <MainStyle.MainContainer>
-          <S.UserSearchContainer>
-            <S.UserSearchBox onSubmit={onSubmit}>
-              <S.UserSearchInput
-                value={keyword}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setKeyword(e.target.value)
-                }
-                placeholder='이름으로 검색...'
-              />
-              <SearchIcon onClick={() => refetch()} />
-            </S.UserSearchBox>
-            <S.UserSearchFilter
-              onClick={() =>
-                openModal(
-                  <FilterModal
-                    title={filterTitle}
-                    filterList={filterList}
-                    onSelected={onSelected}
-                  />
-                )
-              }
-            >
-              <FilterOut />
-              <span>필터</span>
-            </S.UserSearchFilter>
-          </S.UserSearchContainer>
+           <SearchComponent
+      keywordPlaceholder='이름'
+      onSubmit={onSubmit}
+      keyword={keyword}
+      setKeyword={setKeyword}
+      refetch={refetch}
+      filterProps={{ title: '기수', filterList, onSelected }}
+    />
           <UserDisplayInfo />
           <S.UserListContainer>
             {data?.users.map((user) => (
