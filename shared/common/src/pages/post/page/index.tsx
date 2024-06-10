@@ -20,7 +20,7 @@ const roleArray: RoleEnumTypes[] = [
   'ROLE_GOVERNMENT',
 ]
 
-const PostList = dynamic(() => import('../../../components/PostList'))
+const PostList = dynamic(() => import('../../../components/ListComponents/PostList'))
 
 const PostPage = () => {
   const [isRole, setIsRole] = useState<boolean>(false)

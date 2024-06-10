@@ -10,7 +10,7 @@ import {
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
 
-const NoticeList = dynamic(() => import('../../../../components/NoticeList'))
+const NoticeList = dynamic(() => import('../../../../components/ListComponents/NoticeList'))
 
 const NoticePage = ({ isAdmin }: { isAdmin: boolean }) => {
   const { push } = useRouter()

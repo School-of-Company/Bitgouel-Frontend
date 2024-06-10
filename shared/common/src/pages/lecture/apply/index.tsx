@@ -8,7 +8,7 @@ import {
 import dynamic from 'next/dynamic'
 import * as S from './style'
 
-const LectureApplyList = dynamic(() => import('../../../components/LectureApplyList'))
+const LectureApplyList = dynamic(() => import('../../../components/ListComponents/LectureApplyList'))
 
 const LectureApplyListPage = ({ lectureId }: { lectureId: string }) => {
   return (

@@ -2,8 +2,8 @@ import { useGetPostList } from '@bitgouel/api'
 import { MainStyle } from '@bitgouel/common'
 import { PostItemTypes } from '@bitgouel/types'
 import { useEffect, useState } from 'react'
-import { useIntersectionObserver } from '../../hooks'
-import PostItem from '../PostItem'
+import { useIntersectionObserver } from '../../../hooks'
+import PostItem from '../../PostItem'
 import * as S from './style'
 
 const PostList = () => {

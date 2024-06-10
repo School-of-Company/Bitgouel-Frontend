@@ -48,7 +48,7 @@ const defaultFilterList = [
 
 const filterTitle: string = '강의 유형'
 
-const LectureList = dynamic(() => import('../../../components/LectureList'))
+const LectureList = dynamic(() => import('../../../components/ListComponents/LectureList'))
 
 const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
   const [lectureTypeFilter, setLectureTypeFilter] = useState<string>('')

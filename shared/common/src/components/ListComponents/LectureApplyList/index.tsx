@@ -1,12 +1,12 @@
 'use client'
 
 import { useGetLectureApplyList } from '@bitgouel/api'
-import LectureApplyItem from '../LectureApplyItem'
+import LectureApplyItem from '../../LectureApplyItem'
 import * as S from './style'
 
 const LectureApplyList = ({ lectureId }: { lectureId: string }) => {
   const { data, isLoading } = useGetLectureApplyList(lectureId)
-
+  
   return (
     <S.ListContainer>
       {isLoading && <div>이수 목록을 불러오는 중...</div>}
