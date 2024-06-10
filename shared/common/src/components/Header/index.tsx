@@ -1,8 +1,16 @@
 'use client'
 
 import { TokenManager, useDeleteLogout } from '@bitgouel/api'
-import { AppropriationModal, Message, Question, Symbol1, Symbol2, theme, useModal } from '@bitgouel/common'
-import { usePathname, useRouter } from 'next/navigation'
+import {
+  AppropriationModal,
+  Message,
+  Question,
+  Symbol1,
+  Symbol2,
+  theme,
+  useModal,
+} from '@bitgouel/common'
+import { redirect, usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { match } from 'ts-pattern'
@@ -27,12 +35,22 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
   const [spanColor, setSpanColor] = useState<string>(`${theme.color.white}`)
   const [svgView, setSvgView] = useState<string>('none')
   const [text, setText] = useState<string>('로그인')
-  const { mutate } = useDeleteLogout()
+  const { mutate } = useDeleteLogout({
+    onSuccess: () => {
+      tokenManager.removeTokens()
+      match(pathname)
+        .with('/auth/find', () => toast.info('다시 로그인 해주세요'))
+        .otherwise(() => {
+          toast.success('로그아웃 했습니다')
+          window.location.replace(`/`)
+        })
+    },
+  })
   const { openModal } = useModal()
 
   const onLogoutModal = () => {
     openModal(
-      <AppropriationModal 
+      <AppropriationModal
         isApprove={false}
         question='로그아웃 하시겠습니까?'
         purpose='로그아웃'
@@ -134,7 +152,9 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
                 }
                 isSameRoute={match(idx)
                   .with(0, () => pathname === menu.link)
-                  .otherwise(() => pathname ? pathname.includes(menu.link) : false)}
+                  .otherwise(() =>
+                    pathname ? pathname.includes(menu.link) : false
+                  )}
                 color={spanColor}
               >
                 {menu.kor}

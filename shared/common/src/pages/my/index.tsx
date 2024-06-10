@@ -1,14 +1,20 @@
 'use client'
 
-import { useDeleteWithDraw, useGetMy, usePostExcelUpload } from '@bitgouel/api'
+import { TokenManager, useDeleteWithDraw, useGetMy, usePostExcelUpload } from '@bitgouel/api'
 import { AppropriationModal, Bg4, ChangePwModal, roleToKor, useModal } from '@bitgouel/common'
-import * as S from './style'
 import { ChangeEvent, useCallback } from 'react'
+import { toast } from 'react-toastify'
+import * as S from './style'
 
 const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const { openModal } = useModal()
+  const tokenManager = new TokenManager()
   const { data } = useGetMy()
-  const { mutate: withdraw } = useDeleteWithDraw()
+  const { mutate: withdraw } = useDeleteWithDraw({ onSuccess: () => {
+    tokenManager.removeTokens()
+    toast.success('계정을 탈퇴했습니다')
+    window.location.replace(`/`)
+  }})
   const { mutate: upload } = usePostExcelUpload()
 
   const onFileUpload = useCallback((e: ChangeEvent<HTMLInputElement>) => {

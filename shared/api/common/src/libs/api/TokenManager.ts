@@ -89,8 +89,9 @@ class TokenManager {
       this.setTokens(data)
       window.location.replace(window.location.href)
     } catch (error) {
+      console.log('안녕')
       this.removeTokens()
-      return false
+      return window.location.replace(`/`)
     }
   }
 
