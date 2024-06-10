@@ -22,6 +22,7 @@ type questionTypes =
   | '탈퇴를 승인하시겠습니까?'
   | '활동을 수정하시겠습니까?'
   | '로그아웃 하시겠습니까?'
+  | '회원탈퇴 하시겠습니까?'
 
 type purposeTypes =
   | '신청하기'
@@ -35,6 +36,7 @@ type purposeTypes =
   | '개설하기'
   | '답변하기'
   | '로그아웃'
+  | '탈퇴하기'
 
 export interface AppropriationModalProps {
   isApprove: boolean

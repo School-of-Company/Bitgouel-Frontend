@@ -1,7 +1,7 @@
 'use client'
 
 import { useDeleteWithDraw, useGetMy, usePostExcelUpload } from '@bitgouel/api'
-import { Bg4, ChangePwModal, roleToKor, useModal } from '@bitgouel/common'
+import { AppropriationModal, Bg4, ChangePwModal, roleToKor, useModal } from '@bitgouel/common'
 import * as S from './style'
 import { ChangeEvent, useCallback } from 'react'
 
@@ -19,6 +19,18 @@ const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
     formData.append('file', excelFile)
     upload(formData)
   }, [])
+  
+  const onWithdraw = () => {
+    openModal(
+      <AppropriationModal 
+        isApprove={false}
+        question='회원탈퇴 하시겠습니까?'
+        purpose='탈퇴하기'
+        title=''
+        onAppropriation={() => withdraw()}
+      />
+    )
+  }
 
   return (
     <S.MyPageWrapper url={Bg4}>
@@ -87,7 +99,7 @@ const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
                 <S.SharedLine />
                 <S.AccountSettingLine>
                   <S.LeftText>회원 탈퇴</S.LeftText>
-                  <S.WithDrawText onClick={() => withdraw()}>
+                  <S.WithDrawText onClick={() => onWithdraw()}>
                     회원 탈퇴
                   </S.WithDrawText>
                 </S.AccountSettingLine>
