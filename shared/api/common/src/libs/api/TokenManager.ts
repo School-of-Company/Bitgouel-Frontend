@@ -90,7 +90,7 @@ class TokenManager {
       window.location.replace(window.location.href)
     } catch (error) {
       this.removeTokens()
-      return false
+      return window.location.replace(`/`)
     }
   }
 

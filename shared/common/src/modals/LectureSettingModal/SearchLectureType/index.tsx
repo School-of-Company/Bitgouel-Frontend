@@ -69,7 +69,7 @@ const SearchLectureType = () => {
           <SearchIcon onClick={onSubmit} />
         )}
       </SearchInputBox>
-      {lectureTypeList && !lectureType.length && (
+      {lectureTypeList && lectureType.length <= 0 && (
         <SearchListContainer>
           {lectureTypeList.map((lectureTypeItem) => (
             <SearchItem
@@ -79,7 +79,7 @@ const SearchLectureType = () => {
               <span>{lectureTypeItem}</span>
             </SearchItem>
           ))}
-          {!lectureTypeList?.length && (
+          {lectureTypeList.length <= 0 && (
             <SearchItem onClick={() => onSelectLectureType(type)}>
               <span>{type}</span>
               <small>새 유형 추가하기...</small>

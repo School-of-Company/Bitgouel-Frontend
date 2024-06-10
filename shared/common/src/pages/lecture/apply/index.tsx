@@ -4,20 +4,10 @@ import { useGetLectureApplyList } from '@bitgouel/api'
 import {
   Bg3,
   LectureApplyItem,
-  PrivateRouter,
   MainStyle,
+  PrivateRouter,
 } from '@bitgouel/common'
-import { RoleEnumTypes } from '@bitgouel/types'
 import * as S from './style'
-
-const roleArray: RoleEnumTypes[] = [
-  'ROLE_ADMIN',
-  'ROLE_TEACHER',
-  'ROLE_PROFESSOR',
-  'ROLE_COMPANY_INSTRUCTOR',
-  'ROLE_GOVERNMENT',
-  'ROLE_BBOZZAK',
-]
 
 const LectureApplyListPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetLectureApplyList(lectureId)
@@ -46,13 +36,6 @@ const LectureApplyListPage = ({ lectureId }: { lectureId: string }) => {
               ))}
             </S.ListContainer>
           </MainStyle.MainContainer>
-          {/* {content?.length && !isLoading && (
-          <PaginationPages
-            pages={pages}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
-        )} */}
         </MainStyle.MainWrapper>
       </MainStyle.PageWrapper>
     </PrivateRouter>

@@ -1,20 +1,9 @@
-import { TokenManager, authQueryKeys, authUrl, del } from '@bitgouel/api'
-import { useMutation } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
-import { toast } from 'react-toastify'
+import { authQueryKeys, authUrl, del } from '@bitgouel/api'
+import { UseMutationOptions, useMutation } from '@tanstack/react-query'
 
-export const useDeleteWithDraw = () => {
-  const tokenManager = new TokenManager()
-  const router = useRouter()
-
-  return useMutation(
+export const useDeleteWithDraw = (options?: UseMutationOptions) =>
+  useMutation(
     authQueryKeys.deleteWithDraw(),
     () => del(authUrl.withdraw()),
-    {
-      onSuccess: () => {
-        tokenManager.removeTokens()
-        toast.success('계정을 탈퇴했습니다')
-      },
-    }
+    options
   )
-}
