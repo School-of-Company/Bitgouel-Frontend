@@ -1,7 +1,7 @@
 'use client'
 
 import { TokenManager, useDeleteLogout } from '@bitgouel/api'
-import { Message, Question, Symbol1, Symbol2, theme } from '@bitgouel/common'
+import { AppropriationModal, Message, Question, Symbol1, Symbol2, theme, useModal } from '@bitgouel/common'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
@@ -28,6 +28,19 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
   const [svgView, setSvgView] = useState<string>('none')
   const [text, setText] = useState<string>('로그인')
   const { mutate } = useDeleteLogout()
+  const { openModal } = useModal()
+
+  const onLogoutModal = () => {
+    openModal(
+      <AppropriationModal 
+        isApprove={false}
+        question='로그아웃 하시겠습니까?'
+        purpose='로그아웃'
+        title=''
+        onAppropriation={() => mutate()}
+      />
+    )
+  }
 
   useEffect(() => {
     const throttledScrollHandler = () => {
@@ -142,7 +155,7 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
           onClick={() =>
             tokenManager.accessToken
               ? match(pathname)
-                  .with('/main/my', () => mutate())
+                  .with('/main/my', () => onLogoutModal())
                   .otherwise(() => push('/main/my'))
               : push('/auth/login')
           }
