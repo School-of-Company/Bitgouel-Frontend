@@ -17,7 +17,7 @@ import { RoleEnumTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import * as S from './style'
-import { AdminDisplayInfo } from '@/components'
+import { UserDisplayInfo } from '@/components'
 
 const defaultFilterList = [
   { text: '전체', item: '전체', checked: true },
@@ -104,7 +104,7 @@ const UserListPage = () => {
               <span>필터</span>
             </S.UserSearchFilter>
           </S.UserSearchContainer>
-          <AdminDisplayInfo />
+          <UserDisplayInfo />
           <S.UserListContainer>
             {data?.users.map((user) => (
               <UserItem

@@ -58,6 +58,7 @@ const SignUpPage2 = () => {
               }}
               onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e, idx)}
               style={{ cursor: 'pointer' }}
+              isPassword={false}
             />
           </div>
         ))}

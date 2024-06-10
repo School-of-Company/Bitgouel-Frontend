@@ -45,6 +45,7 @@ const Password = ({ isLoading }: Props) => {
       onChange={onPasswordChange}
       onBlur={onPasswordBlur}
       placeholder='비밀번호'
+      isPassword={true}
       length={passwordValue.length}
       onClear={() => setPasswordValue('')}
       maxLength={MAXLENGTH}
