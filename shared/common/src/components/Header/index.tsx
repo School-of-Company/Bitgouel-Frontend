@@ -52,7 +52,7 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
     openModal(
       <AppropriationModal
         isApprove={false}
-        question='로그아웃 하시겠습니까?'
+        question='로그아웃을 하시겠습니까?'
         purpose='로그아웃'
         title=''
         onAppropriation={() => mutate()}
