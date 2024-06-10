@@ -41,8 +41,8 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
       match(pathname)
         .with('/auth/find', () => toast.info('다시 로그인 해주세요'))
         .otherwise(() => {
-          window.location.replace(`/`)
           toast.success('로그아웃 했습니다')
+          window.location.replace(`/`)
         })
     },
   })
