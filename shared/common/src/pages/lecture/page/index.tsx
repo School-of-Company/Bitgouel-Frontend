@@ -1,25 +1,20 @@
 'use client'
 
-import {
-  TokenManager,
-  useGetLectureExcel,
-  useGetLectureList,
-} from '@bitgouel/api'
+import { TokenManager, useGetLectureExcel } from '@bitgouel/api'
 import {
   Bg3,
   Filter,
   FilterModal,
-  LectureItem,
-  PaginationPages,
+  MainStyle,
   Plus,
   PrintIcon,
   excelDownload,
   useFilterSelect,
   useModal,
-  MainStyle,
 } from '@bitgouel/common'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { toast } from 'react-toastify'
 
 const defaultFilterList = [
@@ -53,6 +48,8 @@ const defaultFilterList = [
 
 const filterTitle: string = '강의 유형'
 
+const LectureList = dynamic(() => import('../../../components/ListComponents/LectureList'))
+
 const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
   const [lectureTypeFilter, setLectureTypeFilter] = useState<string>('')
   const [isClick, setIsClick] = useState<boolean>(false)
@@ -64,20 +61,10 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
     defaultFilterList,
     setFilterPayload: setLectureTypeFilter,
   })
-  const [currentPage, setCurrentPage] = useState(0)
-  const { data, refetch, isLoading } = useGetLectureList({
-    page: currentPage,
-    size: 10,
-    type: lectureTypeFilter,
-  })
 
   const { data: applyExcel, isError } = useGetLectureExcel({
     enabled: tokenManager.authority === 'ROLE_ADMIN' && isClick,
   })
-
-  const pages = Array.from({ length: data?.lectures.totalPages || 0 }).map(
-    (_, i) => i
-  )
 
   const onDownload = () => {
     setIsClick(true)
@@ -89,10 +76,6 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
     })
     setIsClick(false)
   }
-
-  useEffect(() => {
-    refetch()
-  }, [lectureTypeFilter, currentPage])
 
   return (
     <MainStyle.PageWrapper>
@@ -107,7 +90,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
                   <span>신청 명단 출력</span>
                 </MainStyle.SlideButton>
                 <MainStyle.SlideButton
-                  onClick={() => push('/main/lecture/create')}
+                  onClick={() => push(`/main/lecture/create`)}
                 >
                   <Plus />
                   <span>강의 개설하기</span>
@@ -132,20 +115,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
         </MainStyle.BgContainer>
       </MainStyle.SlideBg>
       <MainStyle.MainWrapper>
-        <MainStyle.MainContainer>
-          {data?.lectures && data.lectures.content.length > 0
-            ? data.lectures.content.map((item) => (
-                <LectureItem key={item.id} item={item} />
-              ))
-            : '강의 목록이 없습니다.'}
-        </MainStyle.MainContainer>
-        {data?.lectures && data.lectures.content.length > 0 && !isLoading && (
-          <PaginationPages
-            pages={pages}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
-        )}
+        <LectureList lectureTypeFilter={lectureTypeFilter} />
       </MainStyle.MainWrapper>
     </MainStyle.PageWrapper>
   )

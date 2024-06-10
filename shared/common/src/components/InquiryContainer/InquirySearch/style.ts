@@ -1,33 +1,5 @@
 import styled from '@emotion/styled'
 
-export const Filter = styled.div`
-  width: 5.75rem;
-  height: 3.375rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border: 0.0625rem solid ${({ theme }) => theme.color.gray['400']};
-  border-radius: 0.5rem;
-  cursor: pointer;
-  color: ${({ theme }) => theme.color.gray['400']};
-  ${({ theme }) => theme.typo.text_md.medium};
-
-  &:hover {
-    border: 0.0625rem solid ${({ theme }) => theme.color.main};
-    fill: ${({ theme }) => theme.color.main};
-    color: ${({ theme }) => theme.color.main};
-  }
-`
-
-export const ListWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-`
-export const ListContainer = styled.div`
-  width: 100%;
-`
-
 export const InquiryFilter = styled.div`
   width: 11.375rem;
   height: auto;
@@ -113,6 +85,26 @@ export const SearchBox = styled.form`
   border: 0.0625rem solid ${({ theme }) => theme.color.gray['400']};
   border-radius: 0.5rem;
   padding: 1.0625rem 1.25rem;
+`
+
+export const Filter = styled.div`
+  width: 5.75rem;
+  height: 3.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 0.0625rem solid ${({ theme }) => theme.color.gray['400']};
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: ${({ theme }) => theme.color.gray['400']};
+  ${({ theme }) => theme.typo.text_md.medium};
+
+  &:hover {
+    border: 0.0625rem solid ${({ theme }) => theme.color.main};
+    fill: ${({ theme }) => theme.color.main};
+    color: ${({ theme }) => theme.color.main};
+  }
 `
 
 export const SearchInput = styled.input`

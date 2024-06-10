@@ -43,6 +43,7 @@ export const SignUpPageNumber = atom<number>({
   key: 'SignUpPageNumber',
   default: 1,
 })
+
 export const SignUpPage1Obj = atom<SignUpObjTypes[]>({
   key: 'SignUpPage1Obj',
   default: [

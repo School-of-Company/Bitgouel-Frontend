@@ -20,4 +20,3 @@ export { default as Sequence } from './Sequence'
 export * from './Sliders'
 export { default as UserItem } from './UserItem'
 export { default as ValueInput } from './ValueInput'
-

@@ -1,4 +1,4 @@
-type questionTypes =
+export type questionTypes =
   | '수강 신청하시겠습니까?'
   | '강의를 개설하시겠습니까?'
   | '자격증 정보를 수정하시겠습니까?'
@@ -24,7 +24,7 @@ type questionTypes =
   | '로그아웃을 하시겠습니까?'
   | '회원탈퇴를 하시겠습니까?'
 
-type purposeTypes =
+export type purposeTypes =
   | '신청하기'
   | '추가하기'
   | '수정하기'
