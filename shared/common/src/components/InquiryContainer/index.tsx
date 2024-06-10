@@ -4,11 +4,7 @@ import { useEffect, useState } from 'react'
 import InquiryList from './InquiryList'
 import InquirySearch from './InquirySearch'
 
-interface Props {
-  isAdmin: boolean
-}
-
-const InquiryContainer = ({ isAdmin }: Props) => {
+const InquiryContainer = ({ isAdmin }: { isAdmin: boolean }) => {
   const [keyword, setKeyword] = useState<string>('')
   const [answerStatus, setAnswerStatus] = useState<AnswerStatus | ''>('')
   const { data: inquiryList, refetch } = isAdmin
