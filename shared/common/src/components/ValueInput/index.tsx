@@ -52,7 +52,7 @@ const ValueInput = (
           (isPassword === true ? (
             <S.IconWrapper
               onClick={() =>
-                match(isPassword).with(true, () => setViewSvg(!viewSvg))
+                match(isPassword).with(true, () => setViewSvg((prev) => !prev))
               }
             >
               {viewSvg ? <NotView /> : <CanView />}
