@@ -1,19 +1,17 @@
 'use client'
 
-import { TokenManager, useGetPostList } from '@bitgouel/api'
+import { TokenManager } from '@bitgouel/api'
 import {
   Bg1,
   MainStyle,
   MegaPhone,
   Plus,
-  PostItem,
-  Question,
-  useIntersectionObserver,
+  Question
 } from '@bitgouel/common'
-import { PostItemTypes, RoleEnumTypes } from '@bitgouel/types'
+import { RoleEnumTypes } from '@bitgouel/types'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import * as S from './style'
 
 const roleArray: RoleEnumTypes[] = [
   'ROLE_ADMIN',
@@ -22,26 +20,12 @@ const roleArray: RoleEnumTypes[] = [
   'ROLE_GOVERNMENT',
 ]
 
+const PostList = dynamic(() => import('../../../components/PostList'))
+
 const PostPage = () => {
   const [isRole, setIsRole] = useState<boolean>(false)
   const tokenManager = new TokenManager()
   const { push } = useRouter()
-  const [postSequence, setPostSequence] = useState<number | null>(null)
-  const { data, refetch } = useGetPostList({
-    type: 'EMPLOYMENT',
-    postSequence,
-    size: 10,
-  })
-  const [postList, setPostList] = useState<PostItemTypes[]>([])
-  const [scrollTarget] = useIntersectionObserver({
-    listData: data?.posts || [],
-    setSequence: setPostSequence,
-    setList: setPostList,
-  })
-
-  useEffect(() => {
-    refetch()
-  }, [postSequence])
 
   useEffect(() => {
     setIsRole(
@@ -75,12 +59,7 @@ const PostPage = () => {
         </MainStyle.BgContainer>
       </MainStyle.SlideBg>
       <MainStyle.MainWrapper>
-        <MainStyle.MainContainer>
-          {postList.map((post) => (
-            <PostItem key={post.id} item={post} />
-          ))}
-        </MainStyle.MainContainer>
-        <S.ObserverLine ref={scrollTarget} />
+        <PostList />
       </MainStyle.MainWrapper>
     </MainStyle.PageWrapper>
   )
