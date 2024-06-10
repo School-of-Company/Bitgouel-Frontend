@@ -5,7 +5,7 @@ import * as S from './style'
 const InquiryList = ({
   inquiryList,
 }: {
-  inquiryList: InquiryListResponseTypes
+  inquiryList: InquiryListResponseTypes | undefined
 }) => {
   return (
     <S.ListWrapper>
