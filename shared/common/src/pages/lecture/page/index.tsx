@@ -72,7 +72,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
   })
 
   const { data: applyExcel, isError } = useGetLectureExcel({
-    enabled: tokenManager.authority === 'ROLE_ADMIN' && isClick
+    enabled: tokenManager.authority === 'ROLE_ADMIN' && isClick,
   })
 
   const pages = Array.from({ length: data?.lectures.totalPages || 0 }).map(
@@ -82,7 +82,11 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
   const onDownload = () => {
     setIsClick(true)
     if (isError) return toast.error('취업 동아리 선생님이 배정되지 않았습니다')
-    excelDownload({data: applyExcel, fileName: '강의 신청 명단', fileExtension: 'xlsx'})
+    excelDownload({
+      data: applyExcel,
+      fileName: '강의 신청 명단',
+      fileExtension: 'xlsx',
+    })
     setIsClick(false)
   }
 
@@ -129,13 +133,13 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
       </MainStyle.SlideBg>
       <MainStyle.MainWrapper>
         <MainStyle.MainContainer>
-          {data?.lectures.content.length
+          {data?.lectures && data.lectures.content.length > 0
             ? data.lectures.content.map((item) => (
                 <LectureItem key={item.id} item={item} />
               ))
             : '강의 목록이 없습니다.'}
         </MainStyle.MainContainer>
-        {!!data?.lectures.content?.length && !isLoading && (
+        {data?.lectures && data.lectures.content.length > 0 && !isLoading && (
           <PaginationPages
             pages={pages}
             currentPage={currentPage}

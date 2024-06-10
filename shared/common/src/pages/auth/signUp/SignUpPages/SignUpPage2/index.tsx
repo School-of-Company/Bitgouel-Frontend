@@ -63,7 +63,7 @@ const SignUpPage2 = () => {
         ))}
 
         {placeholder === '학교 이름 선택' &&
-          !value.length &&
+          value.length <= 0 &&
           isScrollContainer && (
             <SignUpScrollContainer
               idx={idx}
@@ -76,7 +76,7 @@ const SignUpPage2 = () => {
 
         {placeholder === '동아리 이름 선택' &&
           signUpPage2Obj[0].value &&
-          !value.length &&
+          value.length <= 0 &&
           isScrollContainer && (
             <SignUpScrollContainer
               idx={idx}
@@ -87,7 +87,7 @@ const SignUpPage2 = () => {
             />
           )}
         {placeholder === '입학년도 선택' &&
-          !value.length &&
+          value.length <= 0 &&
           isScrollContainer && (
             <SignUpScrollContainer
               idx={idx}

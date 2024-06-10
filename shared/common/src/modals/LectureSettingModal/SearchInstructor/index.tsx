@@ -57,7 +57,7 @@ const SearchInstructor = () => {
           <SearchIcon onClick={() => refetch()} />
         )}
       </SearchInputBox>
-      {data?.instructors && !lectureInstructor.length && (
+      {data?.instructors && lectureInstructor.length <= 0 && (
         <SearchListContainer>
           {data.instructors.map((instructorItem) => (
             <SearchItem

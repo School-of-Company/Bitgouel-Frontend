@@ -55,7 +55,7 @@ const SearchDepartment = () => {
           <SearchIcon onClick={() => refetch()} />
         )}
       </SearchInputBox>
-      {data?.departments && !lectureDepartment.length && (
+      {data?.departments && lectureDepartment.length <= 0 && (
         <SearchListContainer>
           {data.departments.map((departmentItem) => (
             <SearchItem
@@ -65,7 +65,7 @@ const SearchDepartment = () => {
               <span>{departmentItem}</span>
             </SearchItem>
           ))}
-          {!data.departments.length && (
+          {data.departments.length <= 0 && (
             <SearchItem onClick={() => onSelectDepartment(department)}>
               <span>{department}</span>
               <small>새 학과 추가하기...</small>

@@ -50,7 +50,7 @@ const SignUpPage1 = () => {
         ))}
 
         {idx === 0
-          ? !value.length &&
+          ? value.length <= 0 &&
             isScrollContainer && (
               <SignUpScrollContainer
                 idx={idx}
@@ -61,7 +61,7 @@ const SignUpPage1 = () => {
               />
             )
           : signUpPage1Obj[0].value &&
-            !value.length &&
+            value.length <= 0 &&
             isScrollContainer && (
               <SignUpScrollContainer
                 idx={idx}
