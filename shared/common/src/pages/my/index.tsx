@@ -12,8 +12,8 @@ const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const { data } = useGetMy()
   const { mutate: withdraw } = useDeleteWithDraw({ onSuccess: () => {
     tokenManager.removeTokens()
-    toast.success('계정을 탈퇴했습니다')
     window.location.replace(`/`)
+    toast.success('계정을 탈퇴하셨습니다')
   }})
   const { mutate: upload } = usePostExcelUpload()
 
