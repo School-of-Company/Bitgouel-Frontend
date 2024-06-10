@@ -86,7 +86,10 @@ const SignUpPage3 = () => {
                   ? '비밀번호가 일치하지 않습니다'
                   : ''
               }
-              isPassword={idx === 0 ? false : idx === 1 ? false : true}
+              isPassword={match(idx)
+                .with(0, () => false)
+                .with(1, () => false)
+                .otherwise(() => true)}
             />
           </S.CertificationInputBox>
         ))}
