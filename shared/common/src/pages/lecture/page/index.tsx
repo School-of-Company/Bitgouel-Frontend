@@ -90,7 +90,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
                   <span>신청 명단 출력</span>
                 </MainStyle.SlideButton>
                 <MainStyle.SlideButton
-                  onClick={() => push('/main/lecture/create')}
+                  onClick={() => push(`/main/lecture/create`)}
                 >
                   <Plus />
                   <span>강의 개설하기</span>

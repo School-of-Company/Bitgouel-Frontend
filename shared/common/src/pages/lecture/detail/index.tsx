@@ -17,8 +17,6 @@ import { useRouter } from 'next/navigation'
 import * as S from './style'
 import { useEffect, useState } from 'react'
 
-const roleArray = ['ROLE_STUDENT']
-
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
   const tokenManager = new TokenManager()
@@ -42,7 +40,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
       <MainStyle.SlideBg url={Bg3}>
         <MainStyle.BgContainer>
           <MainStyle.PageTitle>강의 상세</MainStyle.PageTitle>
-          {isStudent && (
+          {!isStudent && (
             <MainStyle.ButtonContainer>
               <MainStyle.SlideButton
                 onClick={() => push(`/main/lecture/detail/${lectureId}/apply`)}

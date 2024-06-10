@@ -1,17 +1,16 @@
 'use client'
 
-import { useGetLectureApplyList } from '@bitgouel/api'
 import {
   Bg3,
-  LectureApplyItem,
   MainStyle,
-  PrivateRouter,
+  PrivateRouter
 } from '@bitgouel/common'
+import dynamic from 'next/dynamic'
 import * as S from './style'
 
-const LectureApplyListPage = ({ lectureId }: { lectureId: string }) => {
-  const { data } = useGetLectureApplyList(lectureId)
+const LectureApplyList = dynamic(() => import('../../../components/LectureApplyList'))
 
+const LectureApplyListPage = ({ lectureId }: { lectureId: string }) => {
   return (
     <PrivateRouter>
       <MainStyle.PageWrapper>
@@ -26,15 +25,7 @@ const LectureApplyListPage = ({ lectureId }: { lectureId: string }) => {
               <span>인적사항</span>
               <span>이수</span>
             </S.ApplyInfoContainer>
-            <S.ListContainer>
-              {data?.students.map((student) => (
-                <LectureApplyItem
-                  key={student.id}
-                  item={student}
-                  lectureId={lectureId}
-                />
-              ))}
-            </S.ListContainer>
+            <LectureApplyList lectureId={lectureId} />
           </MainStyle.MainContainer>
         </MainStyle.MainWrapper>
       </MainStyle.PageWrapper>
