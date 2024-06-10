@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 type SelectBoxTypes = 'allNew' | 'approve' | 'reject'
 
 export const NewInfoContainer = styled.div`
-  margin-top: 3.5rem;
+  margin-top: 3rem;
   width: 100%;
   display: flex;
   justify-content: space-between;

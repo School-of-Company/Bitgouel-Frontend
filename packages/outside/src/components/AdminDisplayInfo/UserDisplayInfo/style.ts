@@ -9,6 +9,7 @@ export const DisplayBar = styled.div`
   ${({ theme }) => theme.typo.text_sm.medium};
   gap: 4rem;
   padding: 0 0 1rem 1rem;
+  margin-top: 3.75rem;
 
   span {
     &:first-of-type {

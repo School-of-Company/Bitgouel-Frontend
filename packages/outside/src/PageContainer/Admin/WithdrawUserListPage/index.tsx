@@ -86,7 +86,7 @@ const WithdrawUserListPage = () => {
         </MainStyle.BgContainer>
       </MainStyle.SlideBg>
       <MainStyle.MainWrapper>
-        <MainStyle.MainContainer>
+        <MainStyle.MainContainer style={{ marginTop: 0 }}>
           <WithdrawDisplayInfo
             filterTitle={filterTitle}
             filterList={filterList}

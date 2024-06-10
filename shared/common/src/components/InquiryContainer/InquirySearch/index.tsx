@@ -1,22 +1,12 @@
 import {
-  FilterModal,
-  FilterOut,
-  SearchIcon,
-  useFilterSelect,
-  useModal,
+  SearchComponent,
+  useFilterSelect
 } from '@bitgouel/common'
 import { AnswerStatus } from '@bitgouel/types'
 import { QueryObserverResult } from '@tanstack/react-query'
-import {
-  ChangeEvent,
-  Dispatch,
-  FormEvent,
-  SetStateAction
-} from 'react'
-import * as S from './style'
+import { Dispatch, FormEvent, SetStateAction } from 'react'
 
 interface Props {
-  isAdmin: boolean
   refetch: () => Promise<QueryObserverResult>
   keyword: string
   setKeyword: Dispatch<SetStateAction<string>>
@@ -32,7 +22,6 @@ const defaultFilterList = [
 const filterTitle: string = '문의 상태'
 
 const InquirySearch = ({
-  isAdmin,
   refetch,
   keyword,
   setKeyword,
@@ -43,44 +32,21 @@ const InquirySearch = ({
     setFilterPayload: setAnswerStatus,
     title: filterTitle,
   })
-  const { openModal } = useModal()
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
     refetch()
   }
+
   return (
-    <>
-      {isAdmin && (
-        <S.SearchContainer>
-          <S.SearchBox onSubmit={onSubmit}>
-            <S.SearchInput
-              type='text'
-              placeholder='키워드로 검색...'
-              value={keyword}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setKeyword(e.target.value)
-              }
-            />
-            <SearchIcon onClick={() => refetch()} />
-          </S.SearchBox>
-          <S.Filter
-            onClick={() =>
-              openModal(
-                <FilterModal
-                  title='문의 상태'
-                  filterList={filterList}
-                  onSelected={onSelected}
-                />
-              )
-            }
-          >
-            <FilterOut />
-            <span>필터</span>
-          </S.Filter>
-        </S.SearchContainer>
-      )}
-    </>
+    <SearchComponent
+      keywordPlaceholder='키워드'
+      onSubmit={onSubmit}
+      keyword={keyword}
+      setKeyword={setKeyword}
+      refetch={refetch}
+      filterProps={{ title: '문의 상태', filterList, onSelected }}
+    />
   )
 }
 

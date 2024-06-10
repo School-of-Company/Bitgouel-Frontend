@@ -6,13 +6,13 @@ import * as S from './style'
 import RadioItem from './RadioItem'
 import InputRadio from './InputRadio'
 
-interface Props {
+export interface FilterModalProps {
   title: string
   filterList: FilterListTypes[]
   onSelected: (parameter: onSelectedParameter) => void
 }
 
-const FilterModal = ({ title, filterList, onSelected }: Props) => {
+const FilterModal = ({ title, filterList, onSelected }: FilterModalProps) => {
   const { closeModal } = useModal()
   return (
     <Portal onClose={closeModal}>
