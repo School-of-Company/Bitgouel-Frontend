@@ -50,6 +50,7 @@ const EmailCheck = ({ emailValue, setEmailValue }: EmailProps) => {
               onBlur={handleBlur}
               onClear={() => setEmailValue('')}
               errorText={emailErrorText}
+              isPassword={false}
             />
           </S.FirstNumberInput>
         </S.EmailBox>

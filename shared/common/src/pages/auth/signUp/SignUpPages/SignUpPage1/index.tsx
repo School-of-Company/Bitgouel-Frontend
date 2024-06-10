@@ -45,6 +45,7 @@ const SignUpPage1 = () => {
               }}
               onChange={() => {}}
               style={{ cursor: 'pointer' }}
+              isPassword={false}
             />
           </div>
         ))}

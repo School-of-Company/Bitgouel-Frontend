@@ -65,6 +65,7 @@ const NewPassword = () => {
             length={newPw.length}
             onClear={() => setNewPw('')}
             errorText={newErrorMessage}
+            isPassword={true}
           />
           <ValueInput
             type='password'
@@ -75,6 +76,7 @@ const NewPassword = () => {
             length={newConfirmPw.length}
             onClear={() => setNewConfirmPw('')}
             errorText={newConfirmErrorMessage}
+            isPassword={true}
           />
         </S.PasswordInputContainer>
       </S.NewPasswordContainer>
