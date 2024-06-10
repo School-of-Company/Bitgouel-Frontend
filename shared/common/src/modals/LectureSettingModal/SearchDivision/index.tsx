@@ -57,7 +57,7 @@ const SearchDivision = () => {
           <SearchIcon onClick={() => refetch()} />
         )}
       </SearchInputBox>
-      {data?.divisions && !lectureDivision.length && (
+      {data?.divisions && lectureDivision.length <= 0 && (
         <SearchListContainer>
           {data.divisions.map((divisionItem) => (
             <SearchItem
@@ -67,7 +67,7 @@ const SearchDivision = () => {
               <span>{divisionItem}</span>
             </SearchItem>
           ))}
-          {!data.divisions.length && (
+          {data.divisions.length <= 0 && (
             <SearchItem onClick={() => onSelectDivision(division)}>
               <span>{division}</span>
               <small>새 구분 추가하기...</small>
