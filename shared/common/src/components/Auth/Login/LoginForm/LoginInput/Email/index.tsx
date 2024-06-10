@@ -35,6 +35,7 @@ const Email = ({ isLoading }: Props) => {
       value={emailValue}
       onChange={onEmailChange}
       onBlur={onEmailBlur}
+      isPassword={false}
       placeholder='이메일'
       onClear={() => setEmailValue('')}
       length={emailValue.length}
