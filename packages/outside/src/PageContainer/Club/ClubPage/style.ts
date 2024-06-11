@@ -11,3 +11,11 @@ export const ClubListWrapper = styled.div`
   gap: 1rem;
   margin-top: 2rem;
 `
+
+export const NoneClubMessage = styled.span`
+  color: black;
+  ${({ theme }) => theme.typo.title_sm.semibold};
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+`
