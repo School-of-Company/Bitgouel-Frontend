@@ -7,17 +7,18 @@ import {
 } from '@bitgouel/api'
 import {
   AppropriationModal,
+  AuthorityContext,
   Bg2,
+  MainStyle,
   Pen,
   PrivateRouter,
   TrashCan,
   useModal,
-  MainStyle,
 } from '@bitgouel/common'
 import { ActivityDetailProps } from '@bitgouel/types'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
 
@@ -32,9 +33,10 @@ const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
   const { data } = useGetActivityDetail(activityId || '')
   const { mutate } = useDeleteInformationRemove(activityId || '')
   const [isStudent, setIsStudent] = useState<boolean>(false)
+  const authority = useContext(AuthorityContext)
 
   useEffect(() => {
-    setIsStudent(tokenManager.authority === 'ROLE_STUDENT')
+    setIsStudent(authority === 'ROLE_STUDENT')
   }, [])
 
   return (

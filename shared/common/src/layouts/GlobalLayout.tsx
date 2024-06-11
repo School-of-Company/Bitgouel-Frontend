@@ -3,7 +3,7 @@
 import React from 'react'
 import { ThemeProvider } from '@emotion/react'
 import { theme } from '../styles/theme'
-import { useRecoilValue } from 'recoil'
+import { RecoilRoot, useRecoilValue } from 'recoil'
 import { IsModal } from '../atoms'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'

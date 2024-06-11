@@ -1,9 +1,10 @@
 'use client'
 
-import { TokenManager, usePatchModifyCertificate } from '@bitgouel/api'
+import { usePatchModifyCertificate } from '@bitgouel/api'
 import {
   AddCertificate,
   AppropriationModal,
+  AuthorityContext,
   CalendarIcon,
   SelectCalendarModal,
   theme,
@@ -14,7 +15,7 @@ import {
   CertificateRequest,
   RoleEnumTypes,
 } from '@bitgouel/types'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useContext, useEffect, useState } from 'react'
 
 import * as S from './style'
 
@@ -26,8 +27,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
   refetchModify,
 }) => {
   const { id, name, acquisitionDate } = certificateItems
-
-  const tokenManager = new TokenManager()
+  const authority = useContext(AuthorityContext)
 
   const { mutate } = usePatchModifyCertificate(id, {
     onSuccess: () => {
@@ -64,9 +64,8 @@ const CertificateItem: React.FC<CertificateProps> = ({
 
   useEffect(() => {
     setIsRole(
-      tokenManager.authority
-        ? roleArray.includes(tokenManager.authority)
-        : false
+        roleArray.includes(authority)
+      
     )
   }, [])
 

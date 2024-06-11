@@ -8,14 +8,15 @@ import {
 } from '@bitgouel/api'
 import {
   ActivityItem,
+  AuthorityContext,
   Bg2,
+  MainStyle,
   Plus,
   PrivateRouter,
-  MainStyle,
 } from '@bitgouel/common'
 import { StudentIdProps } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import * as S from './style'
 
 interface Props {
@@ -27,9 +28,10 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
   const { push } = useRouter()
   const tokenManager = new TokenManager()
   const [isStudent, setIsStudent] = useState<boolean>(false)
+  const authority = useContext(AuthorityContext)
   const { data: userDetail } = useGetStudentDetail(clubId, studentId)
   const { data: activityList } =
-    tokenManager.authority === 'ROLE_STUDENT'
+    authority === 'ROLE_STUDENT'
       ? useGetActivityMyselfList({
           page: 0,
           size: 10,
@@ -37,7 +39,7 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
       : useGetActivityList(studentId, { page: 0, size: 10 })
 
   useEffect(() => {
-    setIsStudent(tokenManager.authority === 'ROLE_STUDENT')
+    setIsStudent(authority === 'ROLE_STUDENT')
   }, [])
 
   return (

@@ -6,26 +6,27 @@ import {
   useGetMy,
   useGetMyClub,
 } from '@bitgouel/api'
-import { Bg2, PersonOut, MainStyle } from '@bitgouel/common'
+import { AuthorityContext, Bg2, MainStyle, PersonOut } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import * as S from './style'
 
 const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
   const { push } = useRouter()
   const tokenManager = new TokenManager()
+  const authority = useContext(AuthorityContext)
 
   const { data: clubDetail } = useGetClubDetail(clubId || '', {
-    enabled: tokenManager.authority === 'ROLE_ADMIN',
+    enabled: authority === 'ROLE_ADMIN',
   })
-  const { data: myClub } = useGetMyClub({ enabled: tokenManager.authority !== 'ROLE_ADMIN' })
+  const { data: myClub } = useGetMyClub({ enabled: authority !== 'ROLE_ADMIN' })
   const { data: myData } = useGetMy()
 
   const [userId, setUserId] = useState<string>('')
   const [isStudent, setIsStudent] = useState<boolean>(false)
 
   useEffect(() => {
-    setIsStudent(tokenManager.authority === 'ROLE_STUDENT')
+    setIsStudent(authority === 'ROLE_STUDENT')
 
     if (myClub && myData) {
       const foundStudent = myClub.students.find(

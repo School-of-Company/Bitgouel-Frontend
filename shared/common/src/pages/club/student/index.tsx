@@ -21,6 +21,7 @@ import {
   useModal,
   CompleteLectureItem,
   MainStyle,
+  AuthorityContext,
 } from '@bitgouel/common'
 import {
   CertificateRequest,
@@ -28,7 +29,7 @@ import {
   StudentIdProps,
 } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
 
@@ -53,13 +54,14 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
   const [isRole, setIsRole] = useState<boolean>(false)
   const [isStudent, setIsStudent] = useState<boolean>(false)
   const { openModal, closeModal } = useModal()
+  const authority = useContext(AuthorityContext)
+
   const { data: clubStudent } = useGetStudentDetail(clubId, studentId)
-  const { data: certificateList, refetch } = tokenManager.authority === 'ROLE_STUDENT'
+  const { data: certificateList, refetch } = authority === 'ROLE_STUDENT'
     ? useGetCertificateList()
     : useGetCertificateListTeacher(studentId)
 
   const { data: completeLectureList } = useGetCompleteLecture(studentId)
-
   const onCreate = () => {
     const payload: CertificateRequest = {
       name: certificateText,
@@ -84,12 +86,8 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
     },
   })
   useEffect(() => {
-    setIsRole(
-      tokenManager.authority
-        ? roleArray.includes(tokenManager.authority)
-        : false
-    )
-    setIsStudent(tokenManager.authority ? tokenManager.authority === 'ROLE_STUDENT' : false)
+    setIsRole(roleArray.includes(authority))
+    setIsStudent(authority ? authority === 'ROLE_STUDENT' : false)
   }, [])
 
   console.log(isStudent)

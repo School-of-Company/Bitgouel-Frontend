@@ -1,9 +1,10 @@
 'use client'
 
 import { TokenManager } from '@bitgouel/api';
+import { AuthorityContext } from '@bitgouel/common';
 import { RoleEnumTypes } from '@bitgouel/types';
-import { redirect, usePathname, useRouter } from 'next/navigation';
-import { ReactElement, useEffect } from 'react';
+import { redirect, usePathname } from 'next/navigation';
+import { ReactElement, useContext, useEffect } from 'react';
 
 const activityPageRoles: RoleEnumTypes[] = [
   'ROLE_ADMIN',
@@ -35,9 +36,9 @@ const checkAccessCondition = (pathname: string, authority: RoleEnumTypes) => {
 
 const PrivateRouter = ({ children }: { children: ReactElement }) => {
     const pathname = usePathname()
-    const tokenManager = new TokenManager()
+    const authority = useContext(AuthorityContext)
     useEffect(() => {
-      if (!checkAccessCondition(pathname, tokenManager.authority ?? 'ROLE_ADMIN')) {
+      if (!checkAccessCondition(pathname, authority)) {
         return redirect(`/not-found`) // 임의로 redirect
       }
     }, [])
