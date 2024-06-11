@@ -4,9 +4,15 @@ import * as S from './style'
 import { HomeStyle, Agency1, Agency2, Agency3, Agency4 } from '@bitgouel/common'
 import Image from 'next/image'
 
-const Section7 = () => {
-  const blueArr = ['500', '400', '300', '200', '100']
+const blueArr: ['500', '400', '300', '200', '100'] = [
+  '500',
+  '400',
+  '300',
+  '200',
+  '100',
+]
 
+const Section7 = () => {
   return (
     <S.AgencyIntroContainer>
       <HomeStyle.SemiTitleBox>
