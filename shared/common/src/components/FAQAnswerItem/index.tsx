@@ -1,10 +1,10 @@
 'use client'
 
-import { TokenManager, usePostQuestion } from '@bitgouel/api'
-import { useContext, useEffect, useState } from 'react'
+import { usePostQuestion } from '@bitgouel/api'
+import { AuthorityContext } from '@bitgouel/common'
+import { useContext, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
-import { AuthorityContext } from '../../contexts'
 
 const QUESTIONMXLENGTH: number = 100 as const
 const ANSWERMAXLENGTH: number = 3000 as const
