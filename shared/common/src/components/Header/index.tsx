@@ -13,8 +13,8 @@ import {
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
-import * as S from './style'
 import { match } from 'ts-pattern'
+import * as S from './style'
 
 const menuList = [
   { kor: '사업소개', link: '/' },
@@ -34,6 +34,7 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
   const [borderColor, setBorderColor] = useState<string>('')
   const [spanColor, setSpanColor] = useState<string>(`${theme.color.white}`)
   const [svgView, setSvgView] = useState<string>('none')
+  const [text, setText] = useState<string>('로그인')
   const { mutate } = useDeleteLogout({
     onSuccess: () => {
       tokenManager.removeTokens()
@@ -119,6 +120,15 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
     }
   }, [])
 
+  useEffect(() => {
+    if (tokenManager.accessToken) {
+      if (pathname === '/main/my') setText('로그아웃')
+      else setText('내 정보')
+    } else {
+      setText('로그인')
+    }
+  }, [pathname])
+
   return (
     <S.HeaderWrapper
       bgColor={bgColor}
@@ -165,21 +175,17 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
         </S.ButtonWrapper>
         <S.LoginButton
           onClick={() =>
-            tokenManager.accessToken
-              ? match(pathname)
+            match(text)
+              .with('로그인', () => push('/auth/login'))
+              .otherwise(() =>
+                match(pathname)
                   .with('/main/my', () => onLogoutModal())
                   .otherwise(() => push('/main/my'))
-              : push('/auth/login')
+              )
           }
           color={btnColor}
         >
-          <span>
-            {tokenManager.accessToken
-              ? pathname === '/main/my'
-                ? '로그아웃'
-                : '내 정보'
-              : '로그인'}
-          </span>
+          <span>{text}</span>
         </S.LoginButton>
       </S.HeaderContainer>
     </S.HeaderWrapper>
