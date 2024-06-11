@@ -1,9 +1,10 @@
 'use client'
 
-import { TokenManager, usePatchModifyCertificate } from '@bitgouel/api'
+import { usePatchModifyCertificate } from '@bitgouel/api'
 import {
   AddCertificate,
   AppropriationModal,
+  AuthorityContext,
   CalendarIcon,
   SelectCalendarModal,
   theme,
@@ -14,7 +15,7 @@ import {
   CertificateRequest,
   RoleEnumTypes,
 } from '@bitgouel/types'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useContext, useEffect, useState } from 'react'
 
 import * as S from './style'
 
@@ -26,9 +27,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
   refetchModify,
 }) => {
   const { id, name, acquisitionDate } = certificateItems
-
-  const tokenManager = new TokenManager()
-
+  const authority = useContext(AuthorityContext)
   const { mutate } = usePatchModifyCertificate(id, {
     onSuccess: () => {
       closeModal()
@@ -45,8 +44,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
   const { openModal, closeModal } = useModal()
 
   const [isModify, setIsModify] = useState<boolean>(false)
-  const [isRole, setIsRole] = useState<boolean>(false)
-
+  
   const onModify = () => {
     const payload: CertificateRequest = {
       name: modifyText,
@@ -61,14 +59,6 @@ const CertificateItem: React.FC<CertificateProps> = ({
     }
     mutate(payload)
   }
-
-  useEffect(() => {
-    setIsRole(
-      tokenManager.authority
-        ? roleArray.includes(tokenManager.authority)
-        : false
-    )
-  }, [])
 
   return (
     <>
@@ -149,7 +139,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
               .map((v) => (v === '-' ? '.' : v))
               .join('')}
           </span>
-          {isRole && (
+          {roleArray.includes(authority) && (
             <S.ModifyText onClick={() => setIsModify(true)}>
               수정하기
             </S.ModifyText>

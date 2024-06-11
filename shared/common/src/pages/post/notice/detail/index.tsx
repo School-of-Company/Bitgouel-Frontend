@@ -1,12 +1,12 @@
 'use client'
 
-import { TokenManager, useDeletePost, useGetPostDetail } from '@bitgouel/api'
-import { AppropriationModal, Bg1, useModal, MainStyle } from '@bitgouel/common'
+import { useDeletePost, useGetPostDetail } from '@bitgouel/api'
+import { AppropriationModal, AuthorityContext, Bg1, MainStyle, useModal } from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
 import dayjs from 'dayjs'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { LinkTextBox, LinkTitle, LinkWrapper } from '../../detail/style'
 import * as S from './style'
 
@@ -22,17 +22,8 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
   const { mutate } = useDeletePost(noticeId, '공지사항')
   const { openModal } = useModal()
   const { push } = useRouter()
-  const tokenManager = new TokenManager()
-  const [isRole, setIsRole] = useState<boolean>(false)
-
-  useEffect(() => {
-    setIsRole(
-      tokenManager.authority
-        ? roleArray.includes(tokenManager.authority)
-        : false
-    )
-  }, [])
-
+  const authority = useContext(AuthorityContext)
+  
   return (
     <MainStyle.PageWrapper>
       <MainStyle.SlideBg url={Bg1}>
@@ -73,7 +64,7 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
           )}
           <S.ButtonWrapper>
             <S.ButtonContainer>
-              {isRole && (
+              {roleArray.includes(authority) && (
                 <S.DeleteNoticeButton
                   onClick={() =>
                     openModal(

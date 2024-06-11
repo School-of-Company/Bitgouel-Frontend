@@ -180,7 +180,7 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
           </S.NoticeSetting>
           <S.ButtonContainer>
             <S.NoticeButton isAble={isAble()} onClick={onPost}>
-              {noticeId ? '수정완료' : '공지사항 추가하기'}
+              {noticeId ? '수정하기' : '추가하기'}
             </S.NoticeButton>
           </S.ButtonContainer>
         </MainStyle.MainContainer>

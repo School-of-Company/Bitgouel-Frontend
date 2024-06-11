@@ -1,7 +1,7 @@
 'use client'
 
-import { TokenManager } from '@bitgouel/api'
 import {
+  AuthorityContext,
   Bg1,
   MainStyle,
   MegaPhone,
@@ -11,7 +11,7 @@ import {
 import { RoleEnumTypes } from '@bitgouel/types'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 const roleArray: RoleEnumTypes[] = [
   'ROLE_ADMIN',
@@ -23,17 +23,8 @@ const roleArray: RoleEnumTypes[] = [
 const PostList = dynamic(() => import('../../../components/ListComponents/PostList'))
 
 const PostPage = () => {
-  const [isRole, setIsRole] = useState<boolean>(false)
-  const tokenManager = new TokenManager()
+  const authority = useContext(AuthorityContext)
   const { push } = useRouter()
-
-  useEffect(() => {
-    setIsRole(
-      tokenManager.authority
-        ? roleArray.includes(tokenManager.authority)
-        : false
-    )
-  }, [])
 
   return (
     <MainStyle.PageWrapper>
@@ -49,7 +40,7 @@ const PostPage = () => {
               <Question />
               <span>문의사항</span>
             </MainStyle.SlideButton>
-            {isRole && (
+            {roleArray.includes(authority) && (
               <MainStyle.SlideButton onClick={() => push('/main/post/create')}>
                 <Plus />
                 <span>게시글 추가</span>

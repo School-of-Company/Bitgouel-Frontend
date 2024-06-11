@@ -1,12 +1,12 @@
 'use client'
 
-import { TokenManager, useDeletePost, useGetPostDetail } from '@bitgouel/api'
-import { AppropriationModal, Bg1, useModal, MainStyle } from '@bitgouel/common'
+import { useDeletePost, useGetPostDetail } from '@bitgouel/api'
+import { AppropriationModal, AuthorityContext, Bg1, MainStyle, useModal } from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
 import dayjs from 'dayjs'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useContext } from 'react'
 import * as S from './style'
 
 const roleArray: RoleEnumTypes[] = [
@@ -21,16 +21,7 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
   const { openModal } = useModal()
   const { push } = useRouter()
   const { data } = useGetPostDetail(postId)
-  const tokenManager = new TokenManager()
-  const [isRole, setIsRole] = useState<boolean>(false)
-
-  useEffect(() => {
-    setIsRole(
-      tokenManager.authority
-        ? roleArray.includes(tokenManager.authority)
-        : false
-    )
-  }, [])
+  const authority = useContext(AuthorityContext)
 
   return (
     <MainStyle.PageWrapper>
@@ -74,7 +65,7 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
           )}
           <S.ButtonWrapper>
             <S.ButtonContainer>
-               {isRole && (
+               {roleArray.includes(authority) && (
                 <>
                   <S.DeletePostButton
                     onClick={() =>

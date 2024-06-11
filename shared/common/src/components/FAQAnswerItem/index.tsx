@@ -1,7 +1,8 @@
 'use client'
 
-import { TokenManager, usePostQuestion } from '@bitgouel/api'
-import { useEffect, useState } from 'react'
+import { usePostQuestion } from '@bitgouel/api'
+import { AuthorityContext } from '@bitgouel/common'
+import { useContext, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
 
@@ -9,11 +10,10 @@ const QUESTIONMXLENGTH: number = 100 as const
 const ANSWERMAXLENGTH: number = 3000 as const
 
 const FAQAnswerItem = ({ refetchFAQs }: { refetchFAQs: () => void }) => {
-  const tokenManager = new TokenManager()
   const [answerStatus, setAnswerStatus] = useState<boolean>(false)
   const [question, setQuestion] = useState<string>('')
   const [answer, setAnswer] = useState<string>('')
-  const [isAdmin, setIsAdmin] = useState<boolean>(false)
+  const authority = useContext(AuthorityContext)
 
   const { mutate } = usePostQuestion({
     onSuccess: () => {
@@ -45,12 +45,8 @@ const FAQAnswerItem = ({ refetchFAQs }: { refetchFAQs: () => void }) => {
     }
   }
 
-  useEffect(() => {
-    setIsAdmin(tokenManager.authority === 'ROLE_ADMIN')
-  }, [])
-
   return (
-    <S.FAQAnswerItemWrapper isAdmin={isAdmin}>
+    <S.FAQAnswerItemWrapper isAdmin={authority === 'ROLE_ADMIN'}>
       <S.Title
         onClick={() => setAnswerStatus(!answerStatus)}
         answerView={answerStatus}
