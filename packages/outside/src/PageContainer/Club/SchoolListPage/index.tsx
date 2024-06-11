@@ -29,9 +29,15 @@ const SchoolListPage = () => {
           <MainStyle.MainContainer>
             <S.ClubSchoolTitle>{schoolFilterText}</S.ClubSchoolTitle>
             <S.ClubListWrapper>
-              {data?.clubs.map((club) => (
-                <ClubItem key={club.id} clubId={club.id} clubName={club.name} />
-              ))}
+              {data?.clubs && data.clubs.length <= 0
+                ? '동아리가 존재하지 않습니다.'
+                : data?.clubs.map((club) => (
+                    <ClubItem
+                      key={club.id}
+                      clubId={club.id}
+                      clubName={club.name}
+                    />
+                  ))}
             </S.ClubListWrapper>
           </MainStyle.MainContainer>
         </MainStyle.MainWrapper>

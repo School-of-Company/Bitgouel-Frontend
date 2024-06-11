@@ -9,20 +9,43 @@ import {
   AppropriationModal,
   Bg1,
   Link,
+  MainStyle,
   PrivateRouter,
   useModal,
-  MainStyle,
 } from '@bitgouel/common'
 import { LinksObjectTypes } from '@bitgouel/types'
+import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 import * as S from './style'
 
 const MAINMAXLENGTH: number = 1000 as const
 const TITLEMAXLENGTH: number = 100 as const
 
 const PostWritePage = ({ postId }: { postId?: string }) => {
-  const { mutate: createPost } = usePostPost('게시')
-  const { mutate: modifyPost } = usePatchPostModify(postId || '', '게시글')
+  const { openModal, closeModal } = useModal()
+  const { push } = useRouter()
+
+  const onSuccess = (type: 'write' | 'modify') => {
+    closeModal()
+    push('/main/post')
+    if (type === 'write') toast.success('게시글을 추가했습니다')
+    else toast.success('게시글을 수정했습니다')
+  }
+  const onError = (status: number | undefined) =>
+    status === 400 && toast.error('유효하지 않은 링크입니다')
+
+  const { mutate: createPost } = usePostPost({
+    onSuccess: () => onSuccess('write'),
+    onError: ({ response }) => onError(response?.status)
+  })
+  const { mutate: modifyPost } = usePatchPostModify(
+    postId || '',
+    {
+      onSuccess: () => onSuccess('modify'),
+      onError: ({ response }) => onError(response?.status)
+    }
+  )
   const [postTitle, setPostTitle] = useState<string>('')
   const [postContent, setPostContent] = useState<string>('')
   const [postLinks, setPostLinks] = useState<LinksObjectTypes[] | string[]>([
@@ -35,7 +58,6 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
     enabled: !!postId,
     refetchOnWindowFocus: false,
   })
-  const { openModal } = useModal()
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target
     setPostLinks((prevLinks) =>

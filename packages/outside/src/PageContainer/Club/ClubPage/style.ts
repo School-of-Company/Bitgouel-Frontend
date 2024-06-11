@@ -11,3 +11,9 @@ export const ClubListWrapper = styled.div`
   gap: 1rem;
   margin-top: 2rem;
 `
+
+export const NoneClubMessage = styled.span`
+  color: ${({ theme }) => theme.color.gray['500']};
+  ${({ theme }) => theme.typo.text_md.regular};
+  margin-bottom: 1.5rem;
+`

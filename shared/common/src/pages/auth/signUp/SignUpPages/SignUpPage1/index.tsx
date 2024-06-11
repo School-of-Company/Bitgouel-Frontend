@@ -45,12 +45,13 @@ const SignUpPage1 = () => {
               }}
               onChange={() => {}}
               style={{ cursor: 'pointer' }}
+              isPassword={false}
             />
           </div>
         ))}
 
         {idx === 0
-          ? !value.length &&
+          ? value.length <= 0 &&
             isScrollContainer && (
               <SignUpScrollContainer
                 idx={idx}
@@ -61,7 +62,7 @@ const SignUpPage1 = () => {
               />
             )
           : signUpPage1Obj[0].value &&
-            !value.length &&
+            value.length <= 0 &&
             isScrollContainer && (
               <SignUpScrollContainer
                 idx={idx}
