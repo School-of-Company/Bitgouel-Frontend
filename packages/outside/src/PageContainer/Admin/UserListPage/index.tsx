@@ -1,24 +1,21 @@
 'use client'
 
+import { UserDisplayInfo } from '@/components'
 import { useGetUserList } from '@bitgouel/api'
 import {
   Bg6,
-  FilterModal,
-  FilterOut,
   MainStyle,
   Minus,
   Plus,
   SearchComponent,
-  SearchIcon,
   UserItem,
-  useFilterSelect,
-  useModal,
+  useFilterSelect
 } from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 import * as S from './style'
-import { UserDisplayInfo } from '@/components'
 
 const defaultFilterList = [
   { text: '전체', item: '전체', checked: true },
@@ -52,6 +49,7 @@ const UserListPage = () => {
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
+    if (keyword.includes(' ')) return toast.warning('공백을 제거해주세요')
     refetch()
   }
 
@@ -78,14 +76,14 @@ const UserListPage = () => {
       </MainStyle.SlideBg>
       <MainStyle.MainWrapper>
         <MainStyle.MainContainer>
-           <SearchComponent
-      keywordPlaceholder='이름'
-      onSubmit={onSubmit}
-      keyword={keyword}
-      setKeyword={setKeyword}
-      refetch={refetch}
-      filterProps={{ title: '기수', filterList, onSelected }}
-    />
+          <SearchComponent
+            keywordPlaceholder='이름'
+            onSubmit={onSubmit}
+            keyword={keyword}
+            setKeyword={setKeyword}
+            refetch={refetch}
+            filterProps={{ title: '권한', filterList, onSelected }}
+          />
           <UserDisplayInfo />
           <S.UserListContainer>
             {data?.users.map((user) => (
