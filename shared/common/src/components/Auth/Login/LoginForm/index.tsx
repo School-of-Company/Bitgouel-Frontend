@@ -31,7 +31,7 @@ const LoginForm = ({ isAdmin }: { isAdmin: boolean }) => {
     const statusMap = {
       404: () => setErrorText('등록되지 않은 계정입니다'),
       403: () => setErrorText('아직 회원가입 대기중인 계정입니다'),
-      401: () => setErrorText('', '비밀번호가 일치하지 않습니다'),
+      400: () => setErrorText('', '잘못된 비밀번호입니다'),
     }
 
     if (status >= 500) return toast.error('서버 오류가 발생했습니다')
