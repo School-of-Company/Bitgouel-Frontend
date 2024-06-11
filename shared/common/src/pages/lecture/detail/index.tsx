@@ -11,17 +11,18 @@ import {
   People,
   useModal,
   MainStyle,
+  AuthorityContext,
 } from '@bitgouel/common'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import * as S from './style'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
-  const tokenManager = new TokenManager()
+  const authority = useContext(AuthorityContext)
   const isAble = () => {
-    if (tokenManager.authority === 'ROLE_STUDENT') {
+    if (authority === 'ROLE_STUDENT') {
       if (!data?.isRegistered || data?.lectureStatus === 'OPEN') return true
       else return false
     } else return false
@@ -32,7 +33,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const [isStudent, setIsStudent] = useState<boolean>(false)
 
   useEffect(() => {
-    setIsStudent(tokenManager.authority === 'ROLE_STUDENT')
+    setIsStudent(authority === 'ROLE_STUDENT')
   }, [])
 
   return (

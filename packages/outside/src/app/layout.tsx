@@ -2,6 +2,7 @@ import { GlobalLayout, Header } from '@bitgouel/common'
 import '@bitgouel/common/src/styles/globals.css'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
+import CustomProvider from './customProvider'
 import RecoilRootProvider from './recoilRootProvider'
 
 export const metadata: Metadata = {
@@ -57,9 +58,11 @@ export default function RootLayout({
       <body>
         <RecoilRootProvider>
           <GlobalLayout>
-            <Header is_admin={true} />
-            {children}
-            <div id='modal' />
+            <CustomProvider>
+              <Header is_admin={true} />
+              {children}
+              <div id='modal' />
+            </CustomProvider>
           </GlobalLayout>
         </RecoilRootProvider>
       </body>

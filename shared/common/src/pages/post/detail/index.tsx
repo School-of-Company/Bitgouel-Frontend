@@ -1,12 +1,12 @@
 'use client'
 
 import { TokenManager, useDeletePost, useGetPostDetail } from '@bitgouel/api'
-import { AppropriationModal, Bg1, useModal, MainStyle } from '@bitgouel/common'
+import { AppropriationModal, Bg1, useModal, MainStyle, AuthorityContext } from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
 import dayjs from 'dayjs'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import * as S from './style'
 
 const roleArray: RoleEnumTypes[] = [
@@ -21,15 +21,11 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
   const { openModal } = useModal()
   const { push } = useRouter()
   const { data } = useGetPostDetail(postId)
-  const tokenManager = new TokenManager()
   const [isRole, setIsRole] = useState<boolean>(false)
+  const authority = useContext(AuthorityContext)
 
   useEffect(() => {
-    setIsRole(
-      tokenManager.authority
-        ? roleArray.includes(tokenManager.authority)
-        : false
-    )
+    setIsRole(roleArray.includes(authority))
   }, [])
 
   return (
