@@ -28,7 +28,6 @@ const CertificateItem: React.FC<CertificateProps> = ({
 }) => {
   const { id, name, acquisitionDate } = certificateItems
   const authority = useContext(AuthorityContext)
-
   const { mutate } = usePatchModifyCertificate(id, {
     onSuccess: () => {
       closeModal()
@@ -45,8 +44,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
   const { openModal, closeModal } = useModal()
 
   const [isModify, setIsModify] = useState<boolean>(false)
-  const [isRole, setIsRole] = useState<boolean>(false)
-
+  
   const onModify = () => {
     const payload: CertificateRequest = {
       name: modifyText,
@@ -61,13 +59,6 @@ const CertificateItem: React.FC<CertificateProps> = ({
     }
     mutate(payload)
   }
-
-  useEffect(() => {
-    setIsRole(
-        roleArray.includes(authority)
-      
-    )
-  }, [])
 
   return (
     <>
@@ -148,7 +139,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
               .map((v) => (v === '-' ? '.' : v))
               .join('')}
           </span>
-          {isRole && (
+          {roleArray.includes(authority) && (
             <S.ModifyText onClick={() => setIsModify(true)}>
               수정하기
             </S.ModifyText>

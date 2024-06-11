@@ -26,8 +26,6 @@ interface Props {
 const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
   const { studentId, clubId } = studentIdProps || {}
   const { push } = useRouter()
-  const tokenManager = new TokenManager()
-  const [isStudent, setIsStudent] = useState<boolean>(false)
   const authority = useContext(AuthorityContext)
   const { data: userDetail } = useGetStudentDetail(clubId, studentId)
   const { data: activityList } =
@@ -38,10 +36,6 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
         })
       : useGetActivityList(studentId, { page: 0, size: 10 })
 
-  useEffect(() => {
-    setIsStudent(authority === 'ROLE_STUDENT')
-  }, [])
-
   return (
     <PrivateRouter>
       <MainStyle.PageWrapper>
@@ -50,7 +44,7 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
             <MainStyle.PageTitle>
               {userDetail?.name}의 학생 활동
             </MainStyle.PageTitle>
-            {isStudent && (
+            {authority === 'ROLE_STUDENT' && (
               <MainStyle.ButtonContainer>
                 <MainStyle.SlideButton
                   onClick={() =>

@@ -23,13 +23,8 @@ const roleArray: RoleEnumTypes[] = [
 const PostList = dynamic(() => import('../../../components/ListComponents/PostList'))
 
 const PostPage = () => {
-  const [isRole, setIsRole] = useState<boolean>(false)
   const authority = useContext(AuthorityContext)
   const { push } = useRouter()
-
-  useEffect(() => {
-    setIsRole(roleArray.includes(authority))
-  }, [])
 
   return (
     <MainStyle.PageWrapper>
@@ -45,7 +40,7 @@ const PostPage = () => {
               <Question />
               <span>문의사항</span>
             </MainStyle.SlideButton>
-            {isRole && (
+            {roleArray.includes(authority) && (
               <MainStyle.SlideButton onClick={() => push('/main/post/create')}>
                 <Plus />
                 <span>게시글 추가</span>

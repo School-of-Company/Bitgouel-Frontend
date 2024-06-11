@@ -1,22 +1,21 @@
 'use client'
 
 import {
-  TokenManager,
   useGetDetailLecture,
-  usePostEnrollment,
+  usePostEnrollment
 } from '@bitgouel/api'
 import {
   AppropriationModal,
+  AuthorityContext,
   Bg3,
+  MainStyle,
   People,
   useModal,
-  MainStyle,
-  AuthorityContext,
 } from '@bitgouel/common'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
+import { useContext } from 'react'
 import * as S from './style'
-import { useContext, useEffect, useState } from 'react'
 
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
@@ -30,18 +29,13 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { openModal } = useModal()
   const { mutate } = usePostEnrollment(lectureId)
   const { push } = useRouter()
-  const [isStudent, setIsStudent] = useState<boolean>(false)
-
-  useEffect(() => {
-    setIsStudent(authority === 'ROLE_STUDENT')
-  }, [])
 
   return (
     <MainStyle.PageWrapper>
       <MainStyle.SlideBg url={Bg3}>
         <MainStyle.BgContainer>
           <MainStyle.PageTitle>강의 상세</MainStyle.PageTitle>
-          {!isStudent && (
+          {authority !== 'ROLE_STUDENT' && (
             <MainStyle.ButtonContainer>
               <MainStyle.SlideButton
                 onClick={() => push(`/main/lecture/detail/${lectureId}/apply`)}

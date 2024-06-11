@@ -6,7 +6,7 @@ import { RoleEnumTypes } from '@bitgouel/types'
 import dayjs from 'dayjs'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { LinkTextBox, LinkTitle, LinkWrapper } from '../../detail/style'
 import * as S from './style'
 
@@ -23,14 +23,7 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
   const { openModal } = useModal()
   const { push } = useRouter()
   const authority = useContext(AuthorityContext)
-  const [isRole, setIsRole] = useState<boolean>(false)
-
-  useEffect(() => {
-    setIsRole(
-        roleArray.includes(authority)
-    )
-  }, [])
-
+  
   return (
     <MainStyle.PageWrapper>
       <MainStyle.SlideBg url={Bg1}>
@@ -71,7 +64,7 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
           )}
           <S.ButtonWrapper>
             <S.ButtonContainer>
-              {isRole && (
+              {roleArray.includes(authority) && (
                 <S.DeleteNoticeButton
                   onClick={() =>
                     openModal(

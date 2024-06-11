@@ -13,7 +13,6 @@ const FAQAnswerItem = ({ refetchFAQs }: { refetchFAQs: () => void }) => {
   const [answerStatus, setAnswerStatus] = useState<boolean>(false)
   const [question, setQuestion] = useState<string>('')
   const [answer, setAnswer] = useState<string>('')
-  const [isAdmin, setIsAdmin] = useState<boolean>(false)
   const authority = useContext(AuthorityContext)
 
   const { mutate } = usePostQuestion({
@@ -46,12 +45,8 @@ const FAQAnswerItem = ({ refetchFAQs }: { refetchFAQs: () => void }) => {
     }
   }
 
-  useEffect(() => {
-    setIsAdmin(authority === 'ROLE_ADMIN')
-  }, [])
-
   return (
-    <S.FAQAnswerItemWrapper isAdmin={isAdmin}>
+    <S.FAQAnswerItemWrapper isAdmin={authority === 'ROLE_ADMIN'}>
       <S.Title
         onClick={() => setAnswerStatus(!answerStatus)}
         answerView={answerStatus}

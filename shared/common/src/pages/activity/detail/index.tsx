@@ -1,9 +1,8 @@
 'use client'
 
 import {
-  TokenManager,
   useDeleteInformationRemove,
-  useGetActivityDetail,
+  useGetActivityDetail
 } from '@bitgouel/api'
 import {
   AppropriationModal,
@@ -18,7 +17,7 @@ import {
 import { ActivityDetailProps } from '@bitgouel/types'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
 
@@ -28,16 +27,10 @@ const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
 }) => {
   const { push } = useRouter()
   const { openModal, closeModal } = useModal()
-  const tokenManager = new TokenManager()
   const { studentId, clubId } = studentIdProps || {}
   const { data } = useGetActivityDetail(activityId || '')
   const { mutate } = useDeleteInformationRemove(activityId || '')
-  const [isStudent, setIsStudent] = useState<boolean>(false)
   const authority = useContext(AuthorityContext)
-
-  useEffect(() => {
-    setIsStudent(authority === 'ROLE_STUDENT')
-  }, [])
 
   return (
     <PrivateRouter>
@@ -45,7 +38,7 @@ const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
         <MainStyle.SlideBg url={Bg2}>
           <MainStyle.BgContainer>
             <MainStyle.PageTitle>게시글</MainStyle.PageTitle>
-            {isStudent && (
+            {authority === 'ROLE_STUDENT' && (
               <MainStyle.ButtonContainer>
                 <MainStyle.SlideButton
                   onClick={() =>

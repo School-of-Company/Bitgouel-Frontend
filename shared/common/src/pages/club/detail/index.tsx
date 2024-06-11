@@ -1,10 +1,9 @@
 'use client'
 
 import {
-  TokenManager,
   useGetClubDetail,
   useGetMy,
-  useGetMyClub,
+  useGetMyClub
 } from '@bitgouel/api'
 import { AuthorityContext, Bg2, MainStyle, PersonOut } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
@@ -13,7 +12,6 @@ import * as S from './style'
 
 const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
   const { push } = useRouter()
-  const tokenManager = new TokenManager()
   const authority = useContext(AuthorityContext)
 
   const { data: clubDetail } = useGetClubDetail(clubId || '', {
@@ -23,11 +21,8 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
   const { data: myData } = useGetMy()
 
   const [userId, setUserId] = useState<string>('')
-  const [isStudent, setIsStudent] = useState<boolean>(false)
 
   useEffect(() => {
-    setIsStudent(authority === 'ROLE_STUDENT')
-
     if (myClub && myData) {
       const foundStudent = myClub.students.find(
         (student) => student.userId === myData.id
@@ -43,7 +38,7 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
       <MainStyle.SlideBg url={Bg2}>
         <MainStyle.BgContainer>
           <MainStyle.PageTitle>취업 동아리</MainStyle.PageTitle>
-          {isStudent && (
+          {authority === 'ROLE_STUDENT' && (
             <MainStyle.ButtonContainer>
               <MainStyle.SlideButton>
                 <PersonOut />
@@ -83,7 +78,7 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
             {clubId
               ? clubDetail?.students.map((student) => (
                   <S.StudentItem
-                    isStudent={isStudent}
+                    isStudent={authority === 'ROLE_STUDENT'}
                     key={student.id}
                     onClick={() =>
                       push(`/main/club/detail/${clubId}/student/detail/${student.id}`)
@@ -95,10 +90,10 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
                 ))
               : myClub?.students.map((student) => (
                   <S.StudentItem
-                    isStudent={isStudent}
+                    isStudent={authority === 'ROLE_STUDENT'}
                     key={student.id}
                     onClick={() => {
-                      !isStudent &&
+                      authority !== 'ROLE_STUDENT' &&
                         push(`/main/club/detail/${clubId}/student/detail/${student.id}`)
                     }}
                   >
