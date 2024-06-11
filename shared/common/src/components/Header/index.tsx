@@ -10,11 +10,11 @@ import {
   theme,
   useModal,
 } from '@bitgouel/common'
-import { redirect, usePathname, useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
-import { match } from 'ts-pattern'
 import * as S from './style'
+import { match } from 'ts-pattern'
 
 const menuList = [
   { kor: '사업소개', link: '/' },
@@ -34,7 +34,6 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
   const [borderColor, setBorderColor] = useState<string>('')
   const [spanColor, setSpanColor] = useState<string>(`${theme.color.white}`)
   const [svgView, setSvgView] = useState<string>('none')
-  const [text, setText] = useState<string>('로그인')
   const { mutate } = useDeleteLogout({
     onSuccess: () => {
       tokenManager.removeTokens()
@@ -120,13 +119,6 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
     }
   }, [])
 
-  useEffect(() => {
-    if (tokenManager.accessToken) {
-      if (pathname === '/main/my') setText('로그아웃')
-      else if (pathname !== '/main/my') setText('내 정보')
-    }
-  }, [pathname])
-
   return (
     <S.HeaderWrapper
       bgColor={bgColor}
@@ -181,7 +173,13 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
           }
           color={btnColor}
         >
-          <span>{text}</span>
+          <span>
+            {tokenManager.accessToken
+              ? pathname === '/main/my'
+                ? '로그아웃'
+                : '내 정보'
+              : '로그인'}
+          </span>
         </S.LoginButton>
       </S.HeaderContainer>
     </S.HeaderWrapper>
