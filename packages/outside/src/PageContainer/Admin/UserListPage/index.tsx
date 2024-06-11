@@ -9,7 +9,7 @@ import {
   Plus,
   SearchComponent,
   UserItem,
-  useFilterSelect
+  useFilterSelect,
 } from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
@@ -46,7 +46,6 @@ const UserListPage = () => {
     authority,
     approveStatus: 'APPROVED',
   })
-  const { openModal } = useModal()
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
