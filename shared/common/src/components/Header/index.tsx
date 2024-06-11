@@ -10,7 +10,7 @@ import {
   theme,
   useModal,
 } from '@bitgouel/common'
-import { redirect, usePathname, useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { match } from 'ts-pattern'
@@ -123,7 +123,9 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
   useEffect(() => {
     if (tokenManager.accessToken) {
       if (pathname === '/main/my') setText('로그아웃')
-      else if (pathname !== '/main/my') setText('내 정보')
+      else setText('내 정보')
+    } else {
+      setText('로그인')
     }
   }, [pathname])
 
@@ -173,11 +175,13 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
         </S.ButtonWrapper>
         <S.LoginButton
           onClick={() =>
-            tokenManager.accessToken
-              ? match(pathname)
+            match(text)
+              .with('로그인', () => push('/auth/login'))
+              .otherwise(() =>
+                match(pathname)
                   .with('/main/my', () => onLogoutModal())
                   .otherwise(() => push('/main/my'))
-              : push('/auth/login')
+              )
           }
           color={btnColor}
         >
