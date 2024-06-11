@@ -5,6 +5,9 @@ import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
 
+const QUESTIONMXLENGTH: number = 100 as const
+const ANSWERMAXLENGTH: number = 3000 as const
+
 const FAQAnswerItem = ({ refetchFAQs }: { refetchFAQs: () => void }) => {
   const tokenManager = new TokenManager()
   const [answerStatus, setAnswerStatus] = useState<boolean>(false)
@@ -15,6 +18,8 @@ const FAQAnswerItem = ({ refetchFAQs }: { refetchFAQs: () => void }) => {
   const { mutate } = usePostQuestion({
     onSuccess: () => {
       toast.success('작성되었습니다.')
+      setQuestion('')
+      setAnswer('')
       refetchFAQs()
     },
     onError: () => {
@@ -59,6 +64,7 @@ const FAQAnswerItem = ({ refetchFAQs }: { refetchFAQs: () => void }) => {
             placeholder='질문 작성하기'
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
+            maxLength={QUESTIONMXLENGTH}
           />
         </S.InputWrapper>
         <S.InputWrapper>
@@ -67,6 +73,7 @@ const FAQAnswerItem = ({ refetchFAQs }: { refetchFAQs: () => void }) => {
             placeholder='답변 작성하기'
             value={answer}
             onChange={(e) => setAnswer(e.target.value)}
+            maxLength={ANSWERMAXLENGTH}
           />
         </S.InputWrapper>
         <S.ButtonWrapper>
