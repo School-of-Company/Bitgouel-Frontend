@@ -46,6 +46,7 @@ const UserListPage = () => {
     authority,
     approveStatus: 'APPROVED',
   })
+  const { openModal } = useModal()
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
