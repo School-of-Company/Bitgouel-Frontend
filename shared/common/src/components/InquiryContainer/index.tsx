@@ -20,12 +20,13 @@ const InquiryContainer = ({ isAdmin }: { isAdmin: boolean }) => {
 
   return (
     <>
-      {isAdmin && <InquirySearch
+      {isAdmin && (
+      <InquirySearch
         refetch={() => refetch()}
         keyword={keyword}
         setKeyword={setKeyword}
         setAnswerStatus={setAnswerStatus}
-      />}
+      />)}
       <InquiryList inquiryList={inquiryList} />
     </>
   )

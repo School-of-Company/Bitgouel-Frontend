@@ -15,7 +15,11 @@ import {
   useModal,
   MainStyle,
 } from '@bitgouel/common'
-import { ActivityDetailProps } from '@bitgouel/types'
+import {
+  ActivityDetailProps,
+  ActivityPayloadTypes,
+  AppropriationModalProps,
+} from '@bitgouel/types'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
@@ -100,55 +104,42 @@ const ActivityWritePage = ({
   )
 
   const onSubmit = () => {
-    if (studentId && clubId && activityId) {
-      openModal(
-        <AppropriationModal
-          isApprove={true}
-          question='활동을 수정하시겠습니까?'
-          title={activityTitle || ''}
-          purpose='수정하기'
-          onAppropriation={() =>
-            modifyActivity({
-              title: activityTitle,
-              content: activityContent,
-              credit: Number(scoreText?.slice(0, 1)),
-              activityDate: `${activityTaskDate.getFullYear()}-${(
-                activityTaskDate.getMonth() + 1
-              )
-                .toString()
-                .padStart(2, '0')}-${activityTaskDate
-                .getDate()
-                .toString()
-                .padStart(2, '0')}`,
-            })
-          }
-        />
+    const condition = studentId && clubId && activityId
+    const activityPayload: ActivityPayloadTypes = {
+      title: activityTitle,
+      content: activityContent,
+      credit: Number(scoreText?.slice(0, 1)),
+      activityDate: `${activityTaskDate.getFullYear()}-${(
+        activityTaskDate.getMonth() + 1
       )
-    } else {
-      openModal(
-        <AppropriationModal
-          isApprove={true}
-          question='활동을 추가하시겠습니까?'
-          title={activityTitle || ''}
-          purpose='추가하기'
-          onAppropriation={() =>
-            createActivity({
-              title: activityTitle,
-              content: activityContent,
-              credit: +scoreText.slice(0, 1),
-              activityDate: `${activityTaskDate.getFullYear()}-${(
-                activityTaskDate.getMonth() + 1
-              )
-                .toString()
-                .padStart(2, '0')}-${activityTaskDate
-                .getDate()
-                .toString()
-                .padStart(2, '0')}`,
-            })
-          }
-        />
-      )
+        .toString()
+        .padStart(2, '0')}-${activityTaskDate
+        .getDate()
+        .toString()
+        .padStart(2, '0')}`,
     }
+    const ModalParameter: AppropriationModalProps = {
+      isApprove: condition ? true : false,
+      question: condition
+        ? '활동을 수정하시겠습니까?'
+        : '활동을 추가하시겠습니까?',
+      title: activityTitle || '',
+      purpose: condition ? '수정하기' : '추가하기',
+      onAppropriation: () =>
+        condition
+          ? createActivity(activityPayload)
+          : modifyActivity(activityPayload),
+    }
+
+    openModal(
+      <AppropriationModal
+        isApprove={ModalParameter.isApprove}
+        question={ModalParameter.question}
+        title={ModalParameter.title}
+        purpose={ModalParameter.purpose}
+        onAppropriation={ModalParameter.onAppropriation}
+      />
+    )
   }
 
   useEffect(() => {

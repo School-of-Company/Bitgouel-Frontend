@@ -49,6 +49,7 @@ const UserListPage = () => {
     authority,
     approveStatus: 'APPROVED',
   })
+  const { openModal } = useModal()
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -84,7 +85,7 @@ const UserListPage = () => {
       keyword={keyword}
       setKeyword={setKeyword}
       refetch={refetch}
-      filterProps={{ title: '기수', filterList, onSelected }}
+      filterProps={{ title: '권한', filterList, onSelected }}
     />
           <UserDisplayInfo />
           <S.UserListContainer>
