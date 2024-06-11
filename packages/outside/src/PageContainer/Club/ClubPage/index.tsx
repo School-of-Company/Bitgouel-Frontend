@@ -24,13 +24,19 @@ const ClubPage = () => {
             <MainStyle.MainContainer key={school.id}>
               <S.ClubSchoolTitle>{school.schoolName}</S.ClubSchoolTitle>
               <S.ClubListWrapper>
-                {school.clubs.map((club) => (
-                  <ClubItem
-                    key={club.id}
-                    clubId={club.id}
-                    clubName={club.name}
-                  />
-                ))}
+                {school?.clubs && school.clubs.length <= 0 ? (
+                  <S.NoneClubMessage>
+                    동아리가 존재하지 않는 학교입니다.
+                  </S.NoneClubMessage>
+                ) : (
+                  school.clubs.map((club) => (
+                    <ClubItem
+                      key={club.id}
+                      clubId={club.id}
+                      clubName={club.name}
+                    />
+                  ))
+                )}
               </S.ClubListWrapper>
             </MainStyle.MainContainer>
           ))}
