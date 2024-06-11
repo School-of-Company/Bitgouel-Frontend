@@ -1,5 +1,12 @@
 {
   "extends": "@bitgouel/tsconfig/react.json",
-  "include": ["**/*.ts", "**/*.tsx", "src", "src/custom.d.ts"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "src",
+    "src/custom.d.ts",
+    "../../packages/inside/public/agencySymbols",
+    "../../packages/inside/public/schoolSymbols"
+  ],
   "exclude": ["node_modules"]
 }
