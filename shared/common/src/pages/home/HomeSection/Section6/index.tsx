@@ -1,12 +1,11 @@
 'use client'
 
-import * as S from './style'
 import { HomeStyle, CompanyListSlider } from '@bitgouel/common'
 
 const Section6 = () => {
   return (
     <>
-      <S.CompanyIntroContainer>
+      <div style={{ marginTop: '10rem' }}>
         <HomeStyle.SemiTitleBox>
           <HomeStyle.SubTitleSub>
             직업계고 계열별 학교현황 및 진로
@@ -14,7 +13,7 @@ const Section6 = () => {
           <HomeStyle.SubTitleMain>참여 기업 소개</HomeStyle.SubTitleMain>
         </HomeStyle.SemiTitleBox>
         <CompanyListSlider />
-      </S.CompanyIntroContainer>
+      </div>
     </>
   )
 }
