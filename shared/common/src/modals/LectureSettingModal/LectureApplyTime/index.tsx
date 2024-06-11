@@ -30,7 +30,7 @@ const LectureApplyTime = () => {
               setLectureStartDate(e.target.value)
             }
             maxLength={MaxDateLength}
-            css={{ width: '20.75rem' }}
+            style={{ width: '20.75rem' }}
           />
         </S.DateBox>
         <S.DateBox>
