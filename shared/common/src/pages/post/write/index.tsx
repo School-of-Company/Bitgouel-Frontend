@@ -32,18 +32,18 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
     if (type === 'write') toast.success('게시글을 추가했습니다')
     else toast.success('게시글을 수정했습니다')
   }
-  const onError = (status: number) =>
+  const onError = (status: number | undefined) =>
     status === 400 && toast.error('유효하지 않은 링크입니다')
 
   const { mutate: createPost } = usePostPost({
     onSuccess: () => onSuccess('write'),
-    onError: ({ response }) => onError(response.status)
+    onError: ({ response }) => onError(response?.status)
   })
   const { mutate: modifyPost } = usePatchPostModify(
     postId || '',
     {
       onSuccess: () => onSuccess('modify'),
-      onError: ({ response }) => onError(response.status)
+      onError: ({ response }) => onError(response?.status)
     }
   )
   const [postTitle, setPostTitle] = useState<string>('')
