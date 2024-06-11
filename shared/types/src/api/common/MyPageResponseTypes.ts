@@ -1,18 +1,10 @@
-type AuthorityTypes =
-  | 'ROLE_USER'
-  | 'ROLE_ADMIN'
-  | 'ROLE_STUDENT'
-  | 'ROLE_TEACHER'
-  | 'ROLE_BBOZZAK'
-  | 'ROLE_PROFESSOR'
-  | 'ROLE_COMPANY_INSTRUCTOR'
-  | 'ROLE_GOVERNMENT'
+import { RoleEnumTypes } from './LoginResponseTypes'
 
 export interface MyPageResponseTypes {
   id: string
   name: string
   email: string
   phoneNumber: string
-  authority: AuthorityTypes
+  authority: RoleEnumTypes
   organization: string
 }

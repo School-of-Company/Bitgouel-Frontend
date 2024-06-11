@@ -185,7 +185,7 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
             </S.PostSetting>
             <S.ButtonContainer>
               <S.PostButton isAble={isAble()} onClick={onPost}>
-                {postId ? '수정완료' : '공지사항 추가하기'}
+                {postId ? '수정하기' : '추가하기'}
               </S.PostButton>
             </S.ButtonContainer>
           </MainStyle.MainContainer>

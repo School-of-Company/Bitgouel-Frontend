@@ -21,6 +21,7 @@ import {
   useModal,
   CompleteLectureItem,
   MainStyle,
+  AuthorityContext,
 } from '@bitgouel/common'
 import {
   CertificateRequest,
@@ -28,7 +29,7 @@ import {
   StudentIdProps,
 } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
 
@@ -50,16 +51,15 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
   const [certificateDate, setCertificateDate] = useState<Date>(new Date())
   const [certificateDateText, setCertificateDateText] = useState<string>('')
   const [certificateIndex, setCertificateIndex] = useState<number>(-1)
-  const [isRole, setIsRole] = useState<boolean>(false)
-  const [isStudent, setIsStudent] = useState<boolean>(false)
   const { openModal, closeModal } = useModal()
+  const authority = useContext(AuthorityContext)
+
   const { data: clubStudent } = useGetStudentDetail(clubId, studentId)
-  const { data: certificateList, refetch } = tokenManager.authority === 'ROLE_STUDENT'
+  const { data: certificateList, refetch } = authority === 'ROLE_STUDENT'
     ? useGetCertificateList()
     : useGetCertificateListTeacher(studentId)
 
   const { data: completeLectureList } = useGetCompleteLecture(studentId)
-
   const onCreate = () => {
     const payload: CertificateRequest = {
       name: certificateText,
@@ -83,23 +83,13 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
       toast.success('자격증을 추가하였습니다.')
     },
   })
-  useEffect(() => {
-    setIsRole(
-      tokenManager.authority
-        ? roleArray.includes(tokenManager.authority)
-        : false
-    )
-    setIsStudent(tokenManager.authority ? tokenManager.authority === 'ROLE_STUDENT' : false)
-  }, [])
-
-  console.log(isStudent)
 
   return (
     <MainStyle.PageWrapper>
       <MainStyle.SlideBg url={Bg2}>
         <MainStyle.BgContainer>
           <MainStyle.PageTitle>학생 정보</MainStyle.PageTitle>
-          {isRole && (
+          {roleArray.includes(authority) && (
             <MainStyle.ButtonContainer>
               <MainStyle.SlideButton
                 onClick={() =>
@@ -131,7 +121,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
             <span>
               자격증{' '}
               <div onClick={() => setIsAddCertificate((prev) => !prev)}>
-                {isStudent && <PlusCertificate />}
+                {authority === 'ROLE_STUDENT' && <PlusCertificate />}
               </div>
             </span>
             <S.CertificateListBox>
@@ -209,7 +199,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
               ))}
             </S.CertificateListBox>
           </S.CertificateBox>
-          {isRole && (
+          {roleArray.includes(authority) && (
             <S.LectureListBox>
               <b>신청한 강의 목록</b>
               <S.LectureList>
