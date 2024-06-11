@@ -15,13 +15,32 @@ import {
 import { LinksObjectTypes } from '@bitgouel/types'
 import { ChangeEvent, useEffect, useState } from 'react'
 import * as S from './style'
+import { useRouter } from 'next/navigation'
+import { toast } from 'react-toastify'
 
 const MAINMAXLENGTH: number = 1000 as const
 const TITLEMAXLENGTH: number = 100 as const
 
 const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
-  const { mutate: createNotice } = usePostPost('공지')
-  const { mutate: modifyNotice } = usePatchPostModify(noticeId || '', '공지')
+    const { openModal, closeModal } = useModal()
+    const { push } = useRouter()
+    const onSuccess = (type: 'write' | 'modify') => {
+    closeModal()
+    push('/main/post')
+    if (type === 'write') toast.success('공지사항을 추가했습니다')
+    else toast.success('공지사항을 수정했습니다')
+  }
+  const onError = (status: number | undefined) =>
+    status === 400 && toast.error('유효하지 않은 링크입니다')
+
+  const { mutate: createNotice } = usePostPost({
+    onSuccess: () => onSuccess('write'),
+    onError: ({ response }) => onError(response?.status)
+  })
+  const { mutate: modifyNotice } = usePatchPostModify(noticeId || '', {
+    onSuccess: () => onSuccess('modify'),
+    onError: ({ response }) => onError(response?.status)
+  })
   const [noticeTitle, setNoticeTitle] = useState<string>('')
   const [noticeContent, setNoticeContent] = useState<string>('')
   const [noticeLinks, setNoticeLinks] = useState<LinksObjectTypes[] | string[]>(
@@ -36,7 +55,6 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
     enabled: !!noticeId,
   })
 
-  const { openModal } = useModal()
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target
     setNoticeLinks((prevLinks) =>
