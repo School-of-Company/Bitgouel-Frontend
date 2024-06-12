@@ -13,7 +13,7 @@ import {
   PrivateRouter,
   useModal,
 } from '@bitgouel/common'
-import { LinksObjectTypes } from '@bitgouel/types'
+import { AppropriationModalProps, LinksObjectTypes, PostCreatePayloadTypes, PostModifyPayloadTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
@@ -35,11 +35,11 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
   const onError = (status: number | undefined) =>
     status === 400 && toast.error('유효하지 않은 링크입니다')
 
-  const { mutate: createPost } = usePostPost({
+  const { mutate: createPost, isLoading: createPending } = usePostPost({
     onSuccess: () => onSuccess('write'),
     onError: ({ response }) => onError(response?.status)
   })
-  const { mutate: modifyPost } = usePatchPostModify(
+  const { mutate: modifyPost, isLoading: modifyPending } = usePatchPostModify(
     postId || '',
     {
       onSuccess: () => onSuccess('modify'),
@@ -94,46 +94,34 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
     }
   }
 
-  const onPost = () => {
+ const onPost = () => {
     if (isAble()) {
-      if (postId) {
-        openModal(
-          <AppropriationModal
-            isApprove={true}
-            question='게시글을 수정하시겠습니까?'
-            title={postTitle || ''}
-            purpose='수정하기'
-            onAppropriation={() =>
-              modifyPost({
-                title: postTitle,
-                content: postContent,
-                links: postLinks
-                  .map((link) => link.value)
-                  .filter((link) => link !== ''),
-              })
-            }
-          />
-        )
-      } else {
-        openModal(
-          <AppropriationModal
-            isApprove={true}
-            question='게시글을 추가하시겠습니까?'
-            title={postTitle || ''}
-            purpose='추가하기'
-            onAppropriation={() =>
-              createPost({
-                title: postTitle,
-                content: postContent,
-                links: postLinks
-                  .map((link) => link.value)
-                  .filter((link) => link !== ''),
-                feedType: 'EMPLOYMENT',
-              })
-            }
-          />
-        )
+      const postPayload: PostCreatePayloadTypes | PostModifyPayloadTypes = {
+        title: postTitle,
+        content: postContent,
+        links: postLinks
+          .map((link) => link.value)
+          .filter((link) => link !== ''),
       }
+      const ModalParameter: AppropriationModalProps = {
+        isPending: postId ? modifyPending : createPending,
+        isApprove: true,
+        question: postId ? '게시글을 수정하시겠습니까?' : '게시글을 추가하시겠습니까?',
+        title: postId || '',
+        purpose: postId ? '수정하기' : '추가하기',
+        onAppropriation: () => postId ? modifyPost(postPayload) : createPost({...postPayload, feedType: 'EMPLOYMENT'})
+      }
+
+      openModal(
+        <AppropriationModal
+          isPending={ModalParameter.isPending}
+          isApprove={ModalParameter.isApprove}
+          question={ModalParameter.question}
+          title={ModalParameter.title}
+          purpose={ModalParameter.purpose}
+          onAppropriation={ModalParameter.onAppropriation}
+        />
+      )
     } else return
   }
 

@@ -1,7 +1,18 @@
 'use client'
 
-import { TokenManager, useDeleteWithDraw, useGetMy, usePostExcelUpload } from '@bitgouel/api'
-import { AppropriationModal, Bg4, ChangePwModal, roleToKor, useModal } from '@bitgouel/common'
+import {
+  TokenManager,
+  useDeleteWithDraw,
+  useGetMy,
+  usePostExcelUpload,
+} from '@bitgouel/api'
+import {
+  AppropriationModal,
+  Bg4,
+  ChangePwModal,
+  roleToKor,
+  useModal,
+} from '@bitgouel/common'
 import { ChangeEvent, useCallback } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
@@ -10,11 +21,13 @@ const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const { openModal } = useModal()
   const tokenManager = new TokenManager()
   const { data } = useGetMy()
-  const { mutate: withdraw } = useDeleteWithDraw({ onSuccess: () => {
-    tokenManager.removeTokens()
-    window.location.replace(`/`)
-    toast.success('계정을 탈퇴하셨습니다')
-  }})
+  const { mutate: withdraw, isLoading: deletePending } = useDeleteWithDraw({
+    onSuccess: () => {
+      tokenManager.removeTokens()
+      window.location.replace(`/`)
+      toast.success('계정을 탈퇴하셨습니다')
+    },
+  })
   const { mutate: upload } = usePostExcelUpload()
 
   const onFileUpload = useCallback((e: ChangeEvent<HTMLInputElement>) => {
@@ -25,10 +38,11 @@ const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
     formData.append('file', excelFile)
     upload(formData)
   }, [])
-  
-  const onWithdraw = () => {
+
+  const onWithdraw = () =>
     openModal(
-      <AppropriationModal 
+      <AppropriationModal
+        isPending={deletePending}
         isApprove={false}
         question='회원탈퇴를 하시겠습니까?'
         purpose='탈퇴하기'
@@ -36,7 +50,6 @@ const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
         onAppropriation={() => withdraw()}
       />
     )
-  }
 
   return (
     <S.MyPageWrapper url={Bg4}>

@@ -28,7 +28,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
 }) => {
   const { id, name, acquisitionDate } = certificateItems
   const authority = useContext(AuthorityContext)
-  const { mutate } = usePatchModifyCertificate(id, {
+  const { mutate, isLoading: modifyPending } = usePatchModifyCertificate(id, {
     onSuccess: () => {
       closeModal()
       refetchModify()
@@ -60,6 +60,31 @@ const CertificateItem: React.FC<CertificateProps> = ({
     mutate(payload)
   }
 
+  const addCertificate = () => {
+    const isTextModified =
+      modifyText.trim() !== '' &&
+      modifyDateText.trim() !== '' &&
+      name !== modifyText
+    const isDateModified =
+      acquisitionDate
+        .split('')
+        .map((v) => (v === '-' ? '.' : v))
+        .join('') !== modifyDateText
+
+    if (isTextModified || isDateModified) {
+      openModal(
+        <AppropriationModal
+          isPending={modifyPending}
+          isApprove={true}
+          question='자격증 정보를 수정하시겠습니까?'
+          title={modifyText || ''}
+          purpose='수정하기'
+          onAppropriation={onModify}
+        />
+      )
+    }
+  }
+
   return (
     <>
       {isModify ? (
@@ -89,31 +114,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
             </S.SelectDateContainer>
             <S.ShowDateText>{modifyDateText}</S.ShowDateText>
           </S.AddCertificateDateBox>
-          <S.AddCertificateIcon
-            onClick={() =>
-              (modifyText.trim() !== '' &&
-                modifyDateText.trim() !== '' &&
-                name !== modifyText) ||
-              acquisitionDate
-                .split('')
-                .map((v) => (v === '-' ? '.' : v))
-                .join('') !== modifyDateText
-                ? openModal(
-                    <AppropriationModal
-                      isApprove={true}
-                      question='자격증 정보를 수정하시겠습니까?'
-                      title={modifyText || ''}
-                      purpose='수정하기'
-                      onAppropriation={onModify}
-                    />
-                  )
-                : name === modifyText &&
-                  acquisitionDate
-                    .split('')
-                    .map((v) => (v === '-' ? '.' : v))
-                    .join('') === modifyDateText
-            }
-          >
+          <S.AddCertificateIcon onClick={addCertificate}>
             <AddCertificate
               color={
                 (modifyText.trim() !== '' &&

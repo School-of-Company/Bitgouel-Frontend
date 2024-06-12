@@ -39,6 +39,7 @@ export type purposeTypes =
   | '탈퇴하기'
 
 export interface AppropriationModalProps {
+  isPending: boolean
   isApprove: boolean
   question: questionTypes
   title: string

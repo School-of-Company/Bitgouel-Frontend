@@ -35,7 +35,7 @@ const Header = ({ isAdmin }: { isAdmin: boolean }) => {
   const [spanColor, setSpanColor] = useState<string>(`${theme.color.white}`)
   const [svgView, setSvgView] = useState<string>('none')
   const [text, setText] = useState<string>('로그인')
-  const { mutate } = useDeleteLogout({
+  const { mutate, isLoading: logoutPending } = useDeleteLogout({
     onSuccess: () => {
       tokenManager.removeTokens()
       match(pathname)
@@ -48,9 +48,10 @@ const Header = ({ isAdmin }: { isAdmin: boolean }) => {
   })
   const { openModal } = useModal()
 
-  const onLogoutModal = () => {
+  const onLogoutModal = () =>
     openModal(
       <AppropriationModal
+        isPending={logoutPending}
         isApprove={false}
         question='로그아웃을 하시겠습니까?'
         purpose='로그아웃'
@@ -58,7 +59,6 @@ const Header = ({ isAdmin }: { isAdmin: boolean }) => {
         onAppropriation={() => mutate()}
       />
     )
-  }
 
   useEffect(() => {
     const throttledScrollHandler = () => {

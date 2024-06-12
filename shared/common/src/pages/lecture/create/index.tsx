@@ -58,7 +58,7 @@ const LectureCreatePage = () => {
   const { openModal, closeModal } = useModal()
   const { push } = useRouter()
 
-  const createSuccess = () => {
+  const onSuccess = () => {
     closeModal()
     toast.success('강의를 개설했습니다')
     push(`/main/lecture`)
@@ -78,8 +78,8 @@ const LectureCreatePage = () => {
     setLectureMaxRegisteredUser('')
   }
 
-  const { mutate } = usePostLecture({
-    onSuccess: () => createSuccess(),
+  const { mutate, isLoading: createPending } = usePostLecture({
+    onSuccess,
   })
 
   const isAble = (): boolean => {
@@ -111,6 +111,7 @@ const LectureCreatePage = () => {
     )
     openModal(
       <AppropriationModal
+        isPending={createPending}
         isApprove={true}
         question='강의를 개설하시겠습니까?'
         title={lectureTitle}

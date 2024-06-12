@@ -5,6 +5,7 @@ import * as S from './style'
 import { useModal, Portal } from '@bitgouel/common'
 
 const AppropriationModal = ({
+  isPending,
   isApprove,
   question,
   purpose,
@@ -27,6 +28,7 @@ const AppropriationModal = ({
           <S.AppropriationButton
             isApprove={isApprove}
             onClick={onAppropriation}
+            disabled={isPending}
           >
             {purpose}
           </S.AppropriationButton>

@@ -83,7 +83,7 @@ const ActivityWritePage = ({
     enabled: !!studentId,
   })
 
-  const { mutate: createActivity } = usePostActivityInformation({
+  const { mutate: createActivity, isLoading: createPending } = usePostActivityInformation({
     onSuccess: () => {
       closeModal()
       push(`/main/club/detail/${clubId}/student/detail/${studentId}/activity`)
@@ -91,7 +91,7 @@ const ActivityWritePage = ({
     },
   })
 
-  const { mutate: modifyActivity } = usePatchActivityModifyInformation(
+  const { mutate: modifyActivity, isLoading: modifyPending } = usePatchActivityModifyInformation(
     activityId || '',
     {
       onSuccess: () => {
@@ -104,7 +104,7 @@ const ActivityWritePage = ({
   )
 
   const onSubmit = () => {
-    const condition = studentId && clubId && activityId
+    const condition: boolean = !!(studentId && clubId && activityId)
     const activityPayload: ActivityPayloadTypes = {
       title: activityTitle,
       content: activityContent,
@@ -119,6 +119,7 @@ const ActivityWritePage = ({
         .padStart(2, '0')}`,
     }
     const ModalParameter: AppropriationModalProps = {
+      isPending: condition ? createPending : modifyPending,
       isApprove: condition ? true : false,
       question: condition
         ? '활동을 수정하시겠습니까?'
@@ -133,6 +134,7 @@ const ActivityWritePage = ({
 
     openModal(
       <AppropriationModal
+        isPending={ModalParameter.isPending}
         isApprove={ModalParameter.isApprove}
         question={ModalParameter.question}
         title={ModalParameter.title}

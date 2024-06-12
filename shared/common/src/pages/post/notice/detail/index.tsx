@@ -1,7 +1,13 @@
 'use client'
 
-import { useDeletePost, useGetPostDetail } from '@bitgouel/api'
-import { AppropriationModal, AuthorityContext, Bg1, MainStyle, useModal } from '@bitgouel/common'
+import { del, useDeletePost, useGetPostDetail } from '@bitgouel/api'
+import {
+  AppropriationModal,
+  AuthorityContext,
+  Bg1,
+  MainStyle,
+  useModal,
+} from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
 import dayjs from 'dayjs'
 import Link from 'next/link'
@@ -19,11 +25,26 @@ const roleArray: RoleEnumTypes[] = [
 
 const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
   const { data } = useGetPostDetail(noticeId)
-  const { mutate } = useDeletePost(noticeId, '공지사항')
+  const { mutate, isLoading: deletePending } = useDeletePost(
+    noticeId,
+    '공지사항'
+  )
   const { openModal } = useModal()
   const { push } = useRouter()
   const authority = useContext(AuthorityContext)
-  
+
+  const onDelete = () =>
+    openModal(
+      <AppropriationModal
+        isPending={deletePending}
+        isApprove={false}
+        question='공지사항을 삭제하시겠습니까?'
+        purpose='삭제하기'
+        title={data?.title || ''}
+        onAppropriation={() => mutate()}
+      />
+    )
+
   return (
     <MainStyle.PageWrapper>
       <MainStyle.SlideBg url={Bg1}>
@@ -65,24 +86,14 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
           <S.ButtonWrapper>
             <S.ButtonContainer>
               {roleArray.includes(authority) && (
-                <S.DeleteNoticeButton
-                  onClick={() =>
-                    openModal(
-                      <AppropriationModal
-                        isApprove={false}
-                        question='공지사항을 삭제하시겠습니까?'
-                        purpose='삭제하기'
-                        title={data?.title || ''}
-                        onAppropriation={() => mutate()}
-                      />
-                    )
-                  }
-                >
+                <S.DeleteNoticeButton onClick={onDelete}>
                   삭제하기
                 </S.DeleteNoticeButton>
               )}
               <S.ModifyNoticeButton
-                onClick={() => push(`/main/post/notice/detail/${noticeId}/modify`)}
+                onClick={() =>
+                  push(`/main/post/notice/detail/${noticeId}/modify`)
+                }
               >
                 수정하기
               </S.ModifyNoticeButton>

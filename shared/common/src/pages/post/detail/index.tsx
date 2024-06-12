@@ -1,7 +1,13 @@
 'use client'
 
 import { useDeletePost, useGetPostDetail } from '@bitgouel/api'
-import { AppropriationModal, AuthorityContext, Bg1, MainStyle, useModal } from '@bitgouel/common'
+import {
+  AppropriationModal,
+  AuthorityContext,
+  Bg1,
+  MainStyle,
+  useModal,
+} from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
 import dayjs from 'dayjs'
 import Link from 'next/link'
@@ -17,11 +23,23 @@ const roleArray: RoleEnumTypes[] = [
 ]
 
 const PostDetailPage = ({ postId }: { postId: string }) => {
-  const { mutate } = useDeletePost(postId, '게시글')
+  const { data } = useGetPostDetail(postId)
+  const { mutate, isLoading: deletePending } = useDeletePost(postId, '게시글')
   const { openModal } = useModal()
   const { push } = useRouter()
-  const { data } = useGetPostDetail(postId)
   const authority = useContext(AuthorityContext)
+
+  const onDelete = () =>
+    openModal(
+      <AppropriationModal
+        isPending={deletePending}
+        isApprove={false}
+        question='게시글을 삭제하시겠습니까?'
+        purpose='삭제하기'
+        title={data?.title || ''}
+        onAppropriation={() => mutate()}
+      />
+    )
 
   return (
     <MainStyle.PageWrapper>
@@ -65,21 +83,9 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
           )}
           <S.ButtonWrapper>
             <S.ButtonContainer>
-               {roleArray.includes(authority) && (
+              {roleArray.includes(authority) && (
                 <>
-                  <S.DeletePostButton
-                    onClick={() =>
-                      openModal(
-                        <AppropriationModal
-                          isApprove={false}
-                          question='게시글을 삭제하시겠습니까?'
-                          purpose='삭제하기'
-                          title={data?.title || ''}
-                          onAppropriation={() => mutate()}
-                        />
-                      )
-                    }
-                  >
+                  <S.DeletePostButton onClick={onDelete}>
                     삭제하기
                   </S.DeletePostButton>
 

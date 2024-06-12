@@ -1,9 +1,6 @@
 'use client'
 
-import {
-  useGetDetailLecture,
-  usePostEnrollment
-} from '@bitgouel/api'
+import { useGetDetailLecture, usePostEnrollment } from '@bitgouel/api'
 import {
   AppropriationModal,
   AuthorityContext,
@@ -27,8 +24,22 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
     } else return false
   }
   const { openModal } = useModal()
-  const { mutate } = usePostEnrollment(lectureId)
+  const { mutate, isLoading: enrollmentPending } = usePostEnrollment(lectureId)
   const { push } = useRouter()
+
+  const onEnrollment = () => {
+    if (!isAble) return
+    openModal(
+      <AppropriationModal
+        isPending={enrollmentPending}
+        isApprove={true}
+        question='수강 신청하시겠습니까?'
+        title={data?.name || ''}
+        purpose='신청하기'
+        onAppropriation={() => mutate()}
+      />
+    )
+  }
 
   return (
     <MainStyle.PageWrapper>
@@ -97,21 +108,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
           </S.LectureSection>
           <S.WhiteBox></S.WhiteBox>
           <S.ApplyButtonWrapper>
-            <S.ApplyButton
-              isAble={isAble()}
-              onClick={() =>
-                isAble() &&
-                openModal(
-                  <AppropriationModal
-                    isApprove={true}
-                    question='수강 신청하시겠습니까?'
-                    title={data?.name || ''}
-                    purpose='신청하기'
-                    onAppropriation={() => mutate()}
-                  />
-                )
-              }
-            >
+            <S.ApplyButton isAble={isAble()} onClick={onEnrollment}>
               수강 신청하기
             </S.ApplyButton>
           </S.ApplyButtonWrapper>

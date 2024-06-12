@@ -62,11 +62,17 @@ export const CancelButton = styled.div`
   color: ${({ theme }) => theme.color.gray['700']};
 `
 
-export const AppropriationButton = styled.div<{ isApprove: boolean }>`
+export const AppropriationButton = styled.button<{ isApprove: boolean }>`
   color: ${({ theme }) => theme.color.white};
   background: ${({ theme, isApprove }) =>
     isApprove ? theme.color.main : theme.color.error};
   border: 0.0625rem solid
     ${({ theme, isApprove }) =>
       isApprove ? theme.color.main : theme.color.error};
+
+  &:disabled {
+    background-color: ${({ theme }) => theme.color.gray['700']};
+    color: ${({ theme }) => theme.color.gray['400']};
+    cursor: default;
+  }
 `

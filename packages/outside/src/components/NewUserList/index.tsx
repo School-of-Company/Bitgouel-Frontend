@@ -13,7 +13,7 @@ import { ChangeEvent, useState } from 'react'
 import { toast } from 'react-toastify'
 import { NewDisplayInfo } from '../AdminDisplayInfo'
 import * as S from './style'
-import { purposeTypes, questionTypes } from '@bitgouel/types'
+import { AppropriationModalProps, purposeTypes, questionTypes } from '@bitgouel/types'
 
 type messageType = '가입을 수락하였습니다' | '가입을 거절하였습니다'
 
@@ -32,33 +32,35 @@ const NewUserList = () => {
     toast.success(message)
   }
 
-  const { mutate: approve } = usePatchUserApprove(userIds, {
+  const { mutate: approve, isLoading: approvePending } = usePatchUserApprove(userIds, {
     onSuccess: () => onSuccess('가입을 수락하였습니다'),
   })
-  const { mutate: reject } = useDeleteUserReject(userIds, {
+  const { mutate: reject, isLoading: rejectPending } = useDeleteUserReject(userIds, {
     onSuccess: () => onSuccess('가입을 거절하였습니다'),
   })
 
   const handleOpenModal = (type: 'approve' | 'reject') => {
     if (userIds.length === 0) return toast.info('사용자를 선택해주세요')
-    const question: Extract<
-      questionTypes,
-      '가입을 수락하시겠습니까?' | '가입을 거부하시겠습니까?'
-    > =
-      type === 'approve'
+
+    const ModalParameter: AppropriationModalProps = {
+      isPending: type === 'approve' ? approvePending : rejectPending,
+      isApprove: type === 'approve' ? true : false,
+      question: type === 'approve'
         ? '가입을 수락하시겠습니까?'
-        : '가입을 거부하시겠습니까?'
-    const purpose: Extract<purposeTypes, '수락하기' | '거부하기'> =
-      type === 'approve' ? '수락하기' : '거부하기'
-    const onAppropriation = () => (type === 'approve' ? approve() : reject())
-    
+        : '가입을 거부하시겠습니까?',
+      title: '',
+      purpose: type === 'approve' ? '수락하기' : '거부하기',
+      onAppropriation: () => type === 'approve' ? approve() : reject()
+    }
+
     openModal(
       <AppropriationModal
-        isApprove={type === 'approve' ? true : false}
-        question={question}
-        title=''
-        purpose={purpose}
-        onAppropriation={onAppropriation}
+        isPending={ModalParameter.isPending}
+        isApprove={ModalParameter.isApprove}
+        question={ModalParameter.question}
+        title={ModalParameter.title}
+        purpose={ModalParameter.purpose}
+        onAppropriation={ModalParameter.onAppropriation}
       />
     )
   }
