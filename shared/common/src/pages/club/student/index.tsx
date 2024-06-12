@@ -67,7 +67,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
       refetch()
       closeModal()
       setIsAddCertificate(false)
-      toast.success('자격증을 추가하였습니다.')
+      toast.success('자격증을 추가하였습니다')
     },
   })
 

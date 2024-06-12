@@ -150,7 +150,7 @@ const Header = ({ isAdmin }: { isAdmin: boolean }) => {
                 onClick={() =>
                   tokenManager.accessToken
                     ? push(menu.link)
-                    : toast.info('로그인 후 이용해 주세요.')
+                    : toast.info('로그인 후 이용해 주세요')
                 }
                 isSameRoute={match(idx)
                   .with(0, () => pathname === menu.link)
