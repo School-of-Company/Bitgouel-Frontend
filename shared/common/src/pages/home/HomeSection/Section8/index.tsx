@@ -15,7 +15,7 @@ const Section8 = () => {
   const ToInquiry = () => {
     match(!!tokenManager.accessToken)
       .with(true, () => push('/main/post/inquiry'))
-      .otherwise(() => toast.info('로그인 후 이용해주세요.'))
+      .otherwise(() => toast.info('로그인 후 이용해주세요'))
   }
 
   return (

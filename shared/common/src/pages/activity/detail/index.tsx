@@ -1,9 +1,6 @@
 'use client'
 
-import {
-  useDeleteInformationRemove,
-  useGetActivityDetail
-} from '@bitgouel/api'
+import { useDeleteInformationRemove, useGetActivityDetail } from '@bitgouel/api'
 import {
   AppropriationModal,
   AuthorityContext,
@@ -29,8 +26,25 @@ const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
   const { openModal, closeModal } = useModal()
   const { studentId, clubId } = studentIdProps || {}
   const { data } = useGetActivityDetail(activityId || '')
-  const { mutate } = useDeleteInformationRemove(activityId || '')
   const authority = useContext(AuthorityContext)
+  const { mutate } = useDeleteInformationRemove(activityId || '', {
+    onSuccess: () => {
+      closeModal()
+      push(`/main/club/detail/${clubId}/student/detail/${studentId}/activity`)
+      toast.success('삭제되었습니다')
+    },
+  })
+
+  const onDeleteActivity = () =>
+    openModal(
+      <AppropriationModal
+        isApprove={true}
+        title={data?.title || ''}
+        question='활동을 삭제하시겠습니까?'
+        purpose='삭제하기'
+        onAppropriation={(callbacks) => mutate(undefined, callbacks)}
+      />
+    )
 
   return (
     <PrivateRouter>
@@ -50,26 +64,7 @@ const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
                   <Pen />
                   <span>활동 수정</span>
                 </MainStyle.SlideButton>
-                <MainStyle.SlideButton
-                  onClick={() =>
-                    openModal(
-                      <AppropriationModal
-                        isApprove={true}
-                        title={data?.title || ''}
-                        question='활동을 삭제하시겠습니까?'
-                        purpose='삭제하기'
-                        onAppropriation={() => {
-                          mutate()
-                          closeModal()
-                          push(
-                            `/main/club/detail/${clubId}/student/detail/${studentId}/activity`
-                          )
-                          toast.success('삭제되었습니다.')
-                        }}
-                      />
-                    )
-                  }
-                >
+                <MainStyle.SlideButton onClick={onDeleteActivity}>
                   <TrashCan />
                   <span>활동 삭제</span>
                 </MainStyle.SlideButton>

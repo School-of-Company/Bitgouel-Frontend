@@ -27,10 +27,23 @@ const InquiryDetailPage = ({
   isAdmin: boolean
 }) => {
   const { push } = useRouter()
-  const { mutate: inquiryReject } = useDeleteInquiryReject(inquiryId)
-  const { mutate: myInquiryReject } = useDeleteMyInquiry(inquiryId)
-  const { openModal } = useModal()
   const { data } = useGetInquiryDetail(inquiryId)
+  const { mutate: inquiryReject } =
+    useDeleteInquiryReject(inquiryId)
+  const { mutate: myInquiryReject } =
+    useDeleteMyInquiry(inquiryId)
+  const { openModal } = useModal()
+
+  const onDelete = () =>
+    openModal(
+      <AppropriationModal
+        isApprove={false}
+        question='문의를 삭제하시겠습니까?'
+        purpose='삭제하기'
+        title={data?.question || ''}
+        onAppropriation={(callbacks) => (isAdmin ? inquiryReject(undefined, callbacks) : myInquiryReject(undefined, callbacks))}
+      />
+    )
 
   return (
     <MainStyle.PageWrapper>
@@ -40,24 +53,14 @@ const InquiryDetailPage = ({
           {!isAdmin && (
             <MainStyle.ButtonContainer>
               <MainStyle.SlideButton
-                onClick={() => push(`/main/post/inquiry/detail/${inquiryId}/modify`)}
+                onClick={() =>
+                  push(`/main/post/inquiry/detail/${inquiryId}/modify`)
+                }
               >
                 <Pen />
                 <span>문의 수정</span>
               </MainStyle.SlideButton>
-              <MainStyle.SlideButton
-                onClick={() =>
-                  openModal(
-                    <AppropriationModal
-                      isApprove={false}
-                      question='문의를 삭제하시겠습니까?'
-                      purpose='삭제하기'
-                      title={data?.question || ''}
-                      onAppropriation={() => myInquiryReject()}
-                    />
-                  )
-                }
-              >
+              <MainStyle.SlideButton onClick={onDelete}>
                 <TrashCan />
                 <span>문의 삭제</span>
               </MainStyle.SlideButton>
@@ -110,19 +113,7 @@ const InquiryDetailPage = ({
           {isAdmin && (
             <S.ButtonWrapper>
               <S.ButtonContainer>
-                <S.DeleteInquiryButton
-                  onClick={() =>
-                    openModal(
-                      <AppropriationModal
-                        isApprove={false}
-                        question='문의를 삭제하시겠습니까?'
-                        purpose='삭제하기'
-                        title={data?.question || ''}
-                        onAppropriation={() => inquiryReject()}
-                      />
-                    )
-                  }
-                >
+                <S.DeleteInquiryButton onClick={onDelete}>
                   삭제하기
                 </S.DeleteInquiryButton>
                 <S.AnswerInquiryButton

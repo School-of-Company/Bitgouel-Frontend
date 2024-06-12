@@ -11,6 +11,17 @@ const InquiryAnswerModal = ({ inquiryId }: { inquiryId: string }) => {
   const [answer, setAnswer] = useState('')
   const { mutate } = usePostAnswer(inquiryId)
 
+  const onAnswer = () =>
+    openModal(
+      <AppropriationModal
+        isApprove={true}
+        question='문의를 답변하시겠습니까?'
+        purpose='답변하기'
+        title={answer}
+        onAppropriation={(callbacks) => mutate({ answer }, callbacks)}
+      />
+    )
+
   return (
     <Portal onClose={closeModal}>
       <S.InquiryAnswerModalWrapper>
@@ -26,21 +37,7 @@ const InquiryAnswerModal = ({ inquiryId }: { inquiryId: string }) => {
           placeholder='답변 내용 작성(최대 500자)'
           maxLength={500}
         />
-        <S.AnswerButton
-          onClick={() =>
-            openModal(
-              <AppropriationModal
-                isApprove={true}
-                question='문의를 답변하시겠습니까?'
-                purpose='답변하기'
-                title={answer}
-                onAppropriation={() => mutate({ answer })}
-              />
-            )
-          }
-        >
-          답변하기
-        </S.AnswerButton>
+        <S.AnswerButton onClick={onAnswer}>답변하기</S.AnswerButton>
       </S.InquiryAnswerModalWrapper>
     </Portal>
   )

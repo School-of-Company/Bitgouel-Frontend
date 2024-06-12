@@ -1,17 +1,13 @@
 import { activityQueryKeys, activityUrl, del } from '@bitgouel/api'
-import { useMutation } from '@tanstack/react-query'
-import { AxiosResponse } from 'axios'
+import { UseMutationOptions, useMutation } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
 
-export const useDeleteInformationRemove = (activity_id: string) =>
-  useMutation<AxiosResponse, Error>(
+export const useDeleteInformationRemove = (
+  activity_id: string,
+  options?: UseMutationOptions
+) =>
+  useMutation<void, AxiosError>(
     activityQueryKeys.deleteActivityInformationRemove(activity_id),
     () => del(activityUrl.activityInformationRemove(activity_id)),
-    {
-      onSuccess: ({ data }) => {
-        console.log(data)
-      },
-      onError: (error) => {
-        console.log(error)
-      },
-    }
+    options
   )

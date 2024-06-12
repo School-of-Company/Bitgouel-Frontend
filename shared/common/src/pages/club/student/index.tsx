@@ -11,17 +11,17 @@ import {
 import {
   AddCertificate,
   AppropriationModal,
+  AuthorityContext,
   Bg2,
   CalendarIcon,
   CertificateItem,
+  CompleteLectureItem,
+  MainStyle,
   PersonOut,
   PlusCertificate,
   SelectCalendarModal,
   theme,
   useModal,
-  CompleteLectureItem,
-  MainStyle,
-  AuthorityContext,
 } from '@bitgouel/common'
 import {
   CertificateRequest,
@@ -29,7 +29,7 @@ import {
   StudentIdProps,
 } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, useContext, useEffect, useState } from 'react'
+import { ChangeEvent, useContext, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
 
@@ -55,12 +55,23 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
   const authority = useContext(AuthorityContext)
 
   const { data: clubStudent } = useGetStudentDetail(clubId, studentId)
-  const { data: certificateList, refetch } = authority === 'ROLE_STUDENT'
-    ? useGetCertificateList()
-    : useGetCertificateListTeacher(studentId)
+  const { data: certificateList, refetch } =
+    authority === 'ROLE_STUDENT'
+      ? useGetCertificateList()
+      : useGetCertificateListTeacher(studentId)
 
   const { data: completeLectureList } = useGetCompleteLecture(studentId)
-  const onCreate = () => {
+
+  const { mutate } = usePostCertificate({
+    onSuccess: () => {
+      refetch()
+      closeModal()
+      setIsAddCertificate(false)
+      toast.success('자격증을 추가하였습니다')
+    },
+  })
+
+  const onAddCertificate = () => {
     const payload: CertificateRequest = {
       name: certificateText,
       acquisitionDate: `${certificateDate.getFullYear()}-${(
@@ -72,17 +83,19 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
         .toString()
         .padStart(2, '0')}`,
     }
-    mutate(payload)
-  }
 
-  const { mutate } = usePostCertificate({
-    onSuccess: () => {
-      refetch()
-      closeModal()
-      setIsAddCertificate(false)
-      toast.success('자격증을 추가하였습니다.')
-    },
-  })
+    if (certificateText.trim() !== '' && certificateDateText.trim() !== '')
+      return openModal(
+        <AppropriationModal
+          isApprove={true}
+          question='자격증 정보를 추가하시겠습니까?'
+          title={certificateText}
+          purpose='추가하기'
+          onAppropriation={(callbacks) => mutate(payload, callbacks)}
+        />
+      )
+    toast.info('자격증 정보를 입력해주세요')
+  }
 
   return (
     <MainStyle.PageWrapper>
@@ -93,7 +106,9 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
             <MainStyle.ButtonContainer>
               <MainStyle.SlideButton
                 onClick={() =>
-                  push(`/main/club/detail/${clubId}/student/detail/${studentId}/activity`)
+                  push(
+                    `/main/club/detail/${clubId}/student/detail/${studentId}/activity`
+                  )
                 }
               >
                 <PersonOut />
@@ -155,22 +170,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
                     </S.SelectDateContainer>
                     <S.ShowDateText>{certificateDateText}</S.ShowDateText>
                   </S.AddCertificateDateBox>
-                  <S.AddCertificateIcon
-                    onClick={() =>
-                      certificateText.trim() !== '' &&
-                      certificateDateText.trim() !== ''
-                        ? openModal(
-                            <AppropriationModal
-                              isApprove={true}
-                              question='자격증 정보를 추가하시겠습니까?'
-                              title={certificateText}
-                              purpose='추가하기'
-                              onAppropriation={onCreate}
-                            />
-                          )
-                        : toast.info('자격증 정보를 입력해주세요')
-                    }
-                  >
+                  <S.AddCertificateIcon onClick={onAddCertificate}>
                     <AddCertificate
                       color={
                         certificateText.trim() !== '' &&

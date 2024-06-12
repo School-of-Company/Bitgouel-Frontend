@@ -5,11 +5,7 @@ import { ChangeEvent, FocusEvent } from 'react'
 import { useRecoilState } from 'recoil'
 import { match } from 'ts-pattern'
 
-interface Props {
-  isLoading: boolean
-}
-
-const Email = ({ isLoading }: Props) => {
+const Email = ({ isLoading }: { isLoading: boolean }) => {
   const [emailValue, setEmailValue] = useRecoilState(EmailValue)
   const [emailErrorText, setEmailErrorText] = useRecoilState(EmailErrorText)
 

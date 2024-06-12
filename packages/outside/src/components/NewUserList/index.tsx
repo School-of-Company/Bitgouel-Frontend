@@ -13,7 +13,7 @@ import { ChangeEvent, useState } from 'react'
 import { toast } from 'react-toastify'
 import { NewDisplayInfo } from '../AdminDisplayInfo'
 import * as S from './style'
-import { purposeTypes, questionTypes } from '@bitgouel/types'
+import { AppropriationModalProps, purposeTypes, questionTypes } from '@bitgouel/types'
 
 type messageType = '가입을 수락하였습니다' | '가입을 거절하였습니다'
 
@@ -41,24 +41,24 @@ const NewUserList = () => {
 
   const handleOpenModal = (type: 'approve' | 'reject') => {
     if (userIds.length === 0) return toast.info('사용자를 선택해주세요')
-    const question: Extract<
-      questionTypes,
-      '가입을 수락하시겠습니까?' | '가입을 거부하시겠습니까?'
-    > =
-      type === 'approve'
+
+    const ModalParameter: AppropriationModalProps = {
+      isApprove: type === 'approve' ? true : false,
+      question: type === 'approve'
         ? '가입을 수락하시겠습니까?'
-        : '가입을 거부하시겠습니까?'
-    const purpose: Extract<purposeTypes, '수락하기' | '거부하기'> =
-      type === 'approve' ? '수락하기' : '거부하기'
-    const onAppropriation = () => (type === 'approve' ? approve() : reject())
-    
+        : '가입을 거부하시겠습니까?',
+      title: '',
+      purpose: type === 'approve' ? '수락하기' : '거부하기',
+      onAppropriation: (callbacks) => type === 'approve' ? approve(undefined, callbacks) : reject(undefined, callbacks)
+    }
+
     openModal(
       <AppropriationModal
-        isApprove={type === 'approve' ? true : false}
-        question={question}
-        title=''
-        purpose={purpose}
-        onAppropriation={onAppropriation}
+        isApprove={ModalParameter.isApprove}
+        question={ModalParameter.question}
+        title={ModalParameter.title}
+        purpose={ModalParameter.purpose}
+        onAppropriation={ModalParameter.onAppropriation}
       />
     )
   }

@@ -29,6 +29,7 @@ import { ChangeEvent, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useRecoilState } from 'recoil'
 import * as S from './style'
+import { LectureCreatePayloadTypes } from '@bitgouel/types'
 
 const MAXLENGTH: number = 1000 as const
 
@@ -58,7 +59,7 @@ const LectureCreatePage = () => {
   const { openModal, closeModal } = useModal()
   const { push } = useRouter()
 
-  const createSuccess = () => {
+  const onSuccess = () => {
     closeModal()
     toast.success('강의를 개설했습니다')
     push(`/main/lecture`)
@@ -79,7 +80,7 @@ const LectureCreatePage = () => {
   }
 
   const { mutate } = usePostLecture({
-    onSuccess: () => createSuccess(),
+    onSuccess,
   })
 
   const isAble = (): boolean => {
@@ -109,30 +110,31 @@ const LectureCreatePage = () => {
     const filteredDates = lectureDates.map(
       ({ startShowTime, endShowTime, ...filtered }) => filtered
     )
+
+    const payload: LectureCreatePayloadTypes = {
+      name: lectureTitle,
+      content: lectureContent,
+      semester: lectureSemester,
+      division: lectureDivision,
+      department: lectureDepartment,
+      line: lectureLine,
+      userId: lectureInstructor,
+      startDate: `${lectureStartDate}T${lectureStartTime}:00`,
+      endDate: `${lectureEndDate}T${lectureEndTime}:00`,
+      lectureDates: filteredDates,
+      lectureType,
+      credit: lectureCredit,
+      maxRegisteredUser: +lectureMaxRegisteredUser,
+      essentialComplete: lectureEssentialComplete,
+    }
+    
     openModal(
       <AppropriationModal
         isApprove={true}
         question='강의를 개설하시겠습니까?'
         title={lectureTitle}
         purpose='개설하기'
-        onAppropriation={() =>
-          mutate({
-            name: lectureTitle,
-            content: lectureContent,
-            semester: lectureSemester,
-            division: lectureDivision,
-            department: lectureDepartment,
-            line: lectureLine,
-            userId: lectureInstructor,
-            startDate: `${lectureStartDate}T${lectureStartTime}:00`,
-            endDate: `${lectureEndDate}T${lectureEndTime}:00`,
-            lectureDates: filteredDates,
-            lectureType,
-            credit: lectureCredit,
-            maxRegisteredUser: +lectureMaxRegisteredUser,
-            essentialComplete: lectureEssentialComplete,
-          })
-        }
+        onAppropriation={(callbacks) => mutate(payload, callbacks)}
       />
     )
   }
