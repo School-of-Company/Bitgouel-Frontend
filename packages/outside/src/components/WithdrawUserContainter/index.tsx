@@ -53,7 +53,7 @@ const WithdrawUserContainer = () => {
         question='탈퇴를 승인하시겠습니까?'
         purpose='승인하기'
         title=''
-        onAppropriation={() => mutate()}
+        onAppropriation={(callbacks) => mutate(undefined, callbacks)}
       />
     )
   }

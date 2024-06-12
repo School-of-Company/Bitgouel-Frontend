@@ -13,7 +13,7 @@ import {
   PrivateRouter,
   useModal,
 } from '@bitgouel/common'
-import { LinksObjectTypes } from '@bitgouel/types'
+import { AppropriationModalProps, LinksObjectTypes, PostPayloadTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
@@ -94,46 +94,32 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
     }
   }
 
-  const onPost = () => {
+ const onPost = () => {
     if (isAble()) {
-      if (postId) {
-        openModal(
-          <AppropriationModal
-            isApprove={true}
-            question='게시글을 수정하시겠습니까?'
-            title={postTitle || ''}
-            purpose='수정하기'
-            onAppropriation={() =>
-              modifyPost({
-                title: postTitle,
-                content: postContent,
-                links: postLinks
-                  .map((link) => link.value)
-                  .filter((link) => link !== ''),
-              })
-            }
-          />
-        )
-      } else {
-        openModal(
-          <AppropriationModal
-            isApprove={true}
-            question='게시글을 추가하시겠습니까?'
-            title={postTitle || ''}
-            purpose='추가하기'
-            onAppropriation={() =>
-              createPost({
-                title: postTitle,
-                content: postContent,
-                links: postLinks
-                  .map((link) => link.value)
-                  .filter((link) => link !== ''),
-                feedType: 'EMPLOYMENT',
-              })
-            }
-          />
-        )
+      const postPayload: Omit<PostPayloadTypes,'feedType'>  = {
+        title: postTitle,
+        content: postContent,
+        links: postLinks
+          .map((link) => link.value)
+          .filter((link) => link !== ''),
       }
+      const ModalParameter: AppropriationModalProps = {
+        isApprove: true,
+        question: postId ? '게시글을 수정하시겠습니까?' : '게시글을 추가하시겠습니까?',
+        title: postId || '',
+        purpose: postId ? '수정하기' : '추가하기',
+        onAppropriation: (callbacks) => postId ? modifyPost(postPayload, callbacks) : createPost({...postPayload, feedType: 'EMPLOYMENT'}, callbacks)
+      }
+
+      openModal(
+        <AppropriationModal
+          isApprove={ModalParameter.isApprove}
+          question={ModalParameter.question}
+          title={ModalParameter.title}
+          purpose={ModalParameter.purpose}
+          onAppropriation={ModalParameter.onAppropriation}
+        />
+      )
     } else return
   }
 

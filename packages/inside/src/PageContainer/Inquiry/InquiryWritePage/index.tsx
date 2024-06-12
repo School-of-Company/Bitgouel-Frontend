@@ -8,6 +8,7 @@ import {
 import { AppropriationModal, Bg5, useModal, MainStyle } from '@bitgouel/common'
 import { ChangeEvent, useEffect, useState } from 'react'
 import * as S from './style'
+import { AppropriationModalProps, InquiryPayloadTypes } from '@bitgouel/types'
 
 const TITLEMAXLENGTH: number = 100 as const
 const MAINMAXLENGTH: number = 1000 as const
@@ -19,8 +20,8 @@ const InquiryWritePage = ({ inquiryId }: { inquiryId?: string }) => {
   const { data, isSuccess } = useGetInquiryDetail(inquiryId || '', {
     enabled: !!inquiryId,
   })
-  const { mutate: postInquiry } = usePostInquiry()
-  const { mutate: patchInquiry } = usePatchMyInquiry(inquiryId || '')
+  const { mutate: createInquiry } = usePostInquiry()
+  const { mutate: modifyInquiry } = usePatchMyInquiry(inquiryId || '')
 
   useEffect(() => {
     if (isSuccess && data) {
@@ -41,6 +42,36 @@ const InquiryWritePage = ({ inquiryId }: { inquiryId?: string }) => {
       if (inquiryTitle !== '' && inquiryContent !== '') return true
       else return false
     }
+  }
+
+  const onInquiry = () => {
+    const condition: boolean = isAble() && isSuccess
+    const inquiryPayload: InquiryPayloadTypes = {
+      question: inquiryTitle,
+      questionDetail: inquiryContent,
+    }
+    const ModalParameter: AppropriationModalProps = {
+      isApprove: true,
+      question: condition
+        ? '문의하시겠습니까?'
+        : '문의를 수정하시겠습니까?',
+      title: inquiryTitle || '',
+      purpose: condition ? '문의하기' : '수정하기',
+      onAppropriation: (callbacks) =>
+        condition
+          ? createInquiry(inquiryPayload, callbacks)
+          : modifyInquiry(inquiryPayload, callbacks),
+    }
+
+    openModal(
+      <AppropriationModal
+        isApprove={ModalParameter.isApprove}
+        question={ModalParameter.question}
+        title={ModalParameter.title}
+        purpose={ModalParameter.purpose}
+        onAppropriation={ModalParameter.onAppropriation}
+      />
+    )
   }
 
   return (
@@ -71,37 +102,7 @@ const InquiryWritePage = ({ inquiryId }: { inquiryId?: string }) => {
           <S.ButtonContainer>
             <S.CreateButton
               isAble={isAble()}
-              onClick={() =>
-                isAble() && isSuccess
-                  ? openModal(
-                      <AppropriationModal
-                        isApprove={true}
-                        question='문의를 수정하시겠습니까?'
-                        title={inquiryTitle || ''}
-                        purpose='수정하기'
-                        onAppropriation={() =>
-                          patchInquiry({
-                            question: inquiryTitle,
-                            questionDetail: inquiryContent,
-                          })
-                        }
-                      />
-                    )
-                  : openModal(
-                      <AppropriationModal
-                        isApprove={true}
-                        question='문의하시겠습니까?'
-                        title={inquiryTitle || ''}
-                        purpose='문의하기'
-                        onAppropriation={() =>
-                          postInquiry({
-                            question: inquiryTitle,
-                            questionDetail: inquiryContent,
-                          })
-                        }
-                      />
-                    )
-              }
+              onClick={onInquiry}
             >
               문의하기
             </S.CreateButton>

@@ -48,17 +48,16 @@ const Header = ({ isAdmin }: { isAdmin: boolean }) => {
   })
   const { openModal } = useModal()
 
-  const onLogoutModal = () => {
+  const onLogoutModal = () =>
     openModal(
       <AppropriationModal
         isApprove={false}
         question='로그아웃을 하시겠습니까?'
         purpose='로그아웃'
         title=''
-        onAppropriation={() => mutate()}
+        onAppropriation={(callbacks) => mutate(undefined, callbacks)}
       />
     )
-  }
 
   useEffect(() => {
     const throttledScrollHandler = () => {
@@ -151,7 +150,7 @@ const Header = ({ isAdmin }: { isAdmin: boolean }) => {
                 onClick={() =>
                   tokenManager.accessToken
                     ? push(menu.link)
-                    : toast.info('로그인 후 이용해 주세요.')
+                    : toast.info('로그인 후 이용해 주세요')
                 }
                 isSameRoute={match(idx)
                   .with(0, () => pathname === menu.link)

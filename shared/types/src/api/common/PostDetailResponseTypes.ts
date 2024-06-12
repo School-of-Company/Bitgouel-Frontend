@@ -1,6 +1,6 @@
-import { PostCreatePayloadTypes } from './PostCreatePayloadTypes'
+import { PostPayloadTypes } from './PostPayloadTypes'
 
-export interface PostDetailResponseTypes extends PostCreatePayloadTypes {
+export interface PostDetailResponseTypes extends PostPayloadTypes {
   writer: string
   modifiedAt: string
 }
