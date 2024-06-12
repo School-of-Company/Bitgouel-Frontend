@@ -17,9 +17,16 @@ const AppropriationModal = ({
 
   const awaitAppropriation = async () => {
     setIsDisabled(true)
-    await new Promise((resolve) => setTimeout(() => {
-      resolve(onAppropriation())
-    }, 2000))
+    try {
+      await new Promise((resolve, reject) => setTimeout(() => {
+        onAppropriation({
+          onSuccess: resolve,
+          onError: reject,
+        })
+      }, 2000))
+    } catch {
+      setIsDisabled(false)
+    }
   }
 
   return (

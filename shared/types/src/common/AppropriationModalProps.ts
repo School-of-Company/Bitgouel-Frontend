@@ -38,10 +38,14 @@ export type purposeTypes =
   | '로그아웃'
   | '탈퇴하기'
 
+interface CallbacksType {
+  onSuccess: (data?: any) => void
+  onError: (error: any) => void
+}
 export interface AppropriationModalProps {
   isApprove: boolean
   question: questionTypes
   title: string
   purpose: purposeTypes
-  onAppropriation: () => void
+  onAppropriation: (callbacks: CallbacksType) => void
 }
