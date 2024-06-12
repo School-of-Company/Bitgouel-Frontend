@@ -6,6 +6,7 @@ import {
   Bg6,
   MainStyle,
   Minus,
+  NoneResult,
   Plus,
   SearchComponent,
   UserItem,
@@ -41,7 +42,7 @@ const UserListPage = () => {
   })
   const { push } = useRouter()
   const [keyword, setKeyword] = useState('')
-  const { data, refetch } = useGetUserList({
+  const { data, refetch, isLoading } = useGetUserList({
     keyword,
     authority,
     approveStatus: 'APPROVED',
@@ -86,17 +87,22 @@ const UserListPage = () => {
           />
           <UserDisplayInfo />
           <S.UserListContainer>
-            {data?.users.map((user) => (
-              <UserItem
-                key={user.id}
-                id={user.id}
-                name={user.name}
-                authority={user.authority}
-                phoneNumber={user.phoneNumber}
-                email={user.email}
-                status='current'
-              />
-            ))}
+            {isLoading && <div>사용자 명단을 불러오는 중...</div>}
+            {data?.users.length <= 0 ? (
+              <NoneResult notDataTitle={'사용자 목록이'} />
+            ) : (
+              data?.users.map((user) => (
+                <UserItem
+                  key={user.id}
+                  id={user.id}
+                  name={user.name}
+                  authority={user.authority}
+                  phoneNumber={user.phoneNumber}
+                  email={user.email}
+                  status='current'
+                />
+              ))
+            )}
           </S.UserListContainer>
         </MainStyle.MainContainer>
       </MainStyle.MainWrapper>
