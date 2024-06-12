@@ -44,7 +44,7 @@ export const AppropriationButtonWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
-  
+
   button {
     width: 10.25rem;
     height: 3.25rem;
@@ -72,6 +72,7 @@ export const AppropriationButton = styled.button<{ isApprove: boolean }>`
       isApprove ? theme.color.main : theme.color.error};
 
   &:disabled {
+    border: 0.0625rem solid ${({theme}) => theme.color.gray['700']};
     background-color: ${({ theme }) => theme.color.gray['700']};
     color: ${({ theme }) => theme.color.gray['400']};
     cursor: default;
