@@ -13,7 +13,7 @@ import {
   PrivateRouter,
   useModal,
 } from '@bitgouel/common'
-import { AppropriationModalProps, LinksObjectTypes, PostCreatePayloadTypes, PostModifyPayloadTypes } from '@bitgouel/types'
+import { AppropriationModalProps, LinksObjectTypes, PostPayloadTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
@@ -96,7 +96,7 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
 
  const onPost = () => {
     if (isAble()) {
-      const postPayload: PostCreatePayloadTypes | PostModifyPayloadTypes = {
+      const postPayload: Omit<PostPayloadTypes,'feedType'>  = {
         title: postTitle,
         content: postContent,
         links: postLinks

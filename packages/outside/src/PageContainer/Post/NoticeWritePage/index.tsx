@@ -12,7 +12,7 @@ import {
   useModal,
   MainStyle,
 } from '@bitgouel/common'
-import { AppropriationModalProps, LinksObjectTypes, PostCreatePayloadTypes, PostModifyPayloadTypes } from '@bitgouel/types'
+import { AppropriationModalProps, LinksObjectTypes, PostPayloadTypes,  } from '@bitgouel/types'
 import { ChangeEvent, useEffect, useState } from 'react'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
@@ -94,7 +94,7 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
 
   const onNotice = () => {
     if (isAble()) {
-      const noticePayload: PostCreatePayloadTypes | PostModifyPayloadTypes = {
+      const noticePayload: Omit<PostPayloadTypes, 'feedType'> = {
         title: noticeTitle,
         content: noticeContent,
         links: noticeLinks
