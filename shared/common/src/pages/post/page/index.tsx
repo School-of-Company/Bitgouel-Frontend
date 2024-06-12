@@ -6,12 +6,12 @@ import {
   MainStyle,
   MegaPhone,
   Plus,
-  Question
+  Question,
 } from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 
 const roleArray: RoleEnumTypes[] = [
   'ROLE_ADMIN',
@@ -20,7 +20,9 @@ const roleArray: RoleEnumTypes[] = [
   'ROLE_GOVERNMENT',
 ]
 
-const PostList = dynamic(() => import('../../../components/ListComponents/PostList'))
+const PostList = dynamic(
+  () => import('../../../components/ListComponents/PostList')
+)
 
 const PostPage = () => {
   const authority = useContext(AuthorityContext)
