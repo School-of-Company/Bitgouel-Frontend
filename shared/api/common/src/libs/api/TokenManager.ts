@@ -87,7 +87,7 @@ class TokenManager {
     } catch (error) {
       this.removeTokens()
       window.location.replace(`/`)
-      toast.info('다시 로그인 해주세요.')
+      toast.info('다시 로그인 해주세요')
     }
   }
 
