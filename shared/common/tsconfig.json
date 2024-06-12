@@ -5,8 +5,7 @@
     "**/*.tsx",
     "src",
     "src/custom.d.ts",
-    "../../packages/inside/public/agencySymbols",
-    "../../packages/inside/public/schoolSymbols"
+    "../../packages/inside/public"
   ],
   "exclude": ["node_modules"]
 }
