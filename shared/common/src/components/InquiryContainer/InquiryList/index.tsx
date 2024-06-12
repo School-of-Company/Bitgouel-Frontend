@@ -14,7 +14,7 @@ const InquiryList = ({
     <S.ListWrapper>
       <S.ListContainer>
         {isLoading && <div>강의 목록을 불러오는 중...</div>}
-        {inquiryList?.inquiries.length <= 0 ? (
+        {inquiryList?.inquiries && inquiryList.inquiries.length <= 0 ? (
           <NoneResult notDataTitle={'문의 목록이'} />
         ) : (
           inquiryList?.inquiries.map((inquiry) => (

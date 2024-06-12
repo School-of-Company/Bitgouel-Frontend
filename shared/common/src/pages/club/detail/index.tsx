@@ -79,7 +79,7 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
           </S.InfoContainer>
           <S.StudentListWrapper>
             <h2>동아리 인원</h2>
-            {clubDetail?.headCount <= 0 ? (
+            {clubDetail?.headCount && clubDetail.headCount <= 0 ? (
               <NoneResult notDataTitle={'동아리에 학생이'} />
             ) : clubId ? (
               clubDetail?.students.map((student) => (

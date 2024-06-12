@@ -63,7 +63,8 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
         <MainStyle.MainWrapper>
           <MainStyle.MainContainer>
             <S.ClubListWrapper>
-              {activityList?.activities.content.length <= 0 ? (
+              {activityList?.activities &&
+              activityList.activities.content.length <= 0 ? (
                 <NoneResult notDataTitle={'학생 활동이'} />
               ) : (
                 activityList?.activities.content.map((activity, index) => (
