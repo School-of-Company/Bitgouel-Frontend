@@ -40,7 +40,7 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
         question='공지사항을 삭제하시겠습니까?'
         purpose='삭제하기'
         title={data?.title || ''}
-        onAppropriation={() => mutate()}
+        onAppropriation={(callbacks) => mutate(undefined, callbacks)}
       />
     )
 

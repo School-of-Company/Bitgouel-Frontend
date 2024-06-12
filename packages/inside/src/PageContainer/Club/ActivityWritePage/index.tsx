@@ -125,10 +125,10 @@ const ActivityWritePage = ({
         : '활동을 추가하시겠습니까?',
       title: activityTitle || '',
       purpose: condition ? '수정하기' : '추가하기',
-      onAppropriation: () =>
+      onAppropriation: (callbacks) =>
         condition
-          ? createActivity(activityPayload)
-          : modifyActivity(activityPayload),
+          ? createActivity(activityPayload, callbacks)
+          : modifyActivity(activityPayload, callbacks),
     }
 
     openModal(

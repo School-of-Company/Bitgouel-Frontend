@@ -41,7 +41,7 @@ const InquiryDetailPage = ({
         question='문의를 삭제하시겠습니까?'
         purpose='삭제하기'
         title={data?.question || ''}
-        onAppropriation={() => (isAdmin ? inquiryReject() : myInquiryReject())}
+        onAppropriation={(callbacks) => (isAdmin ? inquiryReject(undefined, callbacks) : myInquiryReject(undefined, callbacks))}
       />
     )
 

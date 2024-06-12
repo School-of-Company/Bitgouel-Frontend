@@ -49,7 +49,7 @@ const NewUserList = () => {
         : '가입을 거부하시겠습니까?',
       title: '',
       purpose: type === 'approve' ? '수락하기' : '거부하기',
-      onAppropriation: () => type === 'approve' ? approve() : reject()
+      onAppropriation: (callbacks) => type === 'approve' ? approve(undefined, callbacks) : reject(undefined, callbacks)
     }
 
     openModal(

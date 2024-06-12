@@ -55,7 +55,7 @@ const Header = ({ isAdmin }: { isAdmin: boolean }) => {
         question='로그아웃을 하시겠습니까?'
         purpose='로그아웃'
         title=''
-        onAppropriation={() => mutate()}
+        onAppropriation={(callbacks) => mutate(undefined, callbacks)}
       />
     )
 

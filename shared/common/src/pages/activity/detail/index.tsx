@@ -1,9 +1,6 @@
 'use client'
 
-import {
-  useDeleteInformationRemove,
-  useGetActivityDetail
-} from '@bitgouel/api'
+import { useDeleteInformationRemove, useGetActivityDetail } from '@bitgouel/api'
 import {
   AppropriationModal,
   AuthorityContext,
@@ -30,27 +27,24 @@ const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
   const { studentId, clubId } = studentIdProps || {}
   const { data } = useGetActivityDetail(activityId || '')
   const authority = useContext(AuthorityContext)
-  const { mutate } = useDeleteInformationRemove(
-    activityId || ''
-  )
-
-  const onDeleteActivity = () => {
-    const onAppropriation = () => {
-      mutate()
+  const { mutate } = useDeleteInformationRemove(activityId || '', {
+    onSuccess: () => {
       closeModal()
       push(`/main/club/detail/${clubId}/student/detail/${studentId}/activity`)
       toast.success('삭제되었습니다')
-    }
+    },
+  })
+
+  const onDeleteActivity = () =>
     openModal(
       <AppropriationModal
         isApprove={true}
         title={data?.title || ''}
         question='활동을 삭제하시겠습니까?'
         purpose='삭제하기'
-        onAppropriation={onAppropriation}
+        onAppropriation={(callbacks) => mutate(undefined, callbacks)}
       />
     )
-  }
 
   return (
     <PrivateRouter>

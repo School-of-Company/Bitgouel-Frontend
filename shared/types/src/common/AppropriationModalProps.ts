@@ -38,9 +38,9 @@ export type purposeTypes =
   | '로그아웃'
   | '탈퇴하기'
 
-interface CallbacksType {
-  onSuccess: (data?: any) => void
-  onError: (error: any) => void
+export interface CallbacksType {
+  onSuccess: (data?: any) => any
+  onError: (error: any) => any
 }
 export interface AppropriationModalProps {
   isApprove: boolean

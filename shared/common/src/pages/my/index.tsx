@@ -46,7 +46,7 @@ const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
         question='회원탈퇴를 하시겠습니까?'
         purpose='탈퇴하기'
         title=''
-        onAppropriation={() => withdraw()}
+        onAppropriation={(callbacks) => withdraw(undefined, callbacks)}
       />
     )
 

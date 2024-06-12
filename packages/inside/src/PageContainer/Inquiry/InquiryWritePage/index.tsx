@@ -57,10 +57,10 @@ const InquiryWritePage = ({ inquiryId }: { inquiryId?: string }) => {
         : '문의를 수정하시겠습니까?',
       title: inquiryTitle || '',
       purpose: condition ? '문의하기' : '수정하기',
-      onAppropriation: () =>
+      onAppropriation: (callbacks) =>
         condition
-          ? createInquiry(inquiryPayload)
-          : modifyInquiry(inquiryPayload),
+          ? createInquiry(inquiryPayload, callbacks)
+          : modifyInquiry(inquiryPayload, callbacks),
     }
 
     openModal(

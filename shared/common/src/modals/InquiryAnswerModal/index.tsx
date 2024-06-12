@@ -18,7 +18,7 @@ const InquiryAnswerModal = ({ inquiryId }: { inquiryId: string }) => {
         question='문의를 답변하시겠습니까?'
         purpose='답변하기'
         title={answer}
-        onAppropriation={() => mutate({ answer })}
+        onAppropriation={(callbacks) => mutate({ answer }, callbacks)}
       />
     )
 

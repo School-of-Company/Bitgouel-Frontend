@@ -36,7 +36,7 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
         question='게시글을 삭제하시겠습니까?'
         purpose='삭제하기'
         title={data?.title || ''}
-        onAppropriation={() => mutate()}
+        onAppropriation={(callbacks) => mutate(undefined, callbacks)}
       />
     )
 

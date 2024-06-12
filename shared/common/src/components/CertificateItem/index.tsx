@@ -44,21 +44,6 @@ const CertificateItem: React.FC<CertificateProps> = ({
   const { openModal, closeModal } = useModal()
 
   const [isModify, setIsModify] = useState<boolean>(false)
-  
-  const onModify = () => {
-    const payload: CertificateRequest = {
-      name: modifyText,
-      acquisitionDate: `${certificateDate.getFullYear()}-${(
-        certificateDate.getMonth() + 1
-      )
-        .toString()
-        .padStart(2, '0')}-${certificateDate
-        .getDate()
-        .toString()
-        .padStart(2, '0')}`,
-    }
-    mutate(payload)
-  }
 
   const addCertificate = () => {
     const isTextModified =
@@ -71,6 +56,18 @@ const CertificateItem: React.FC<CertificateProps> = ({
         .map((v) => (v === '-' ? '.' : v))
         .join('') !== modifyDateText
 
+      const payload: CertificateRequest = {
+        name: modifyText,
+        acquisitionDate: `${certificateDate.getFullYear()}-${(
+          certificateDate.getMonth() + 1
+        )
+          .toString()
+          .padStart(2, '0')}-${certificateDate
+          .getDate()
+          .toString()
+          .padStart(2, '0')}`,
+      }
+
     if (isTextModified || isDateModified) {
       openModal(
         <AppropriationModal
@@ -78,7 +75,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
           question='자격증 정보를 수정하시겠습니까?'
           title={modifyText || ''}
           purpose='수정하기'
-          onAppropriation={onModify}
+          onAppropriation={(callbacks) => mutate(payload, callbacks)}
         />
       )
     }

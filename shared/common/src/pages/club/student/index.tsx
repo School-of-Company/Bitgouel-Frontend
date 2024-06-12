@@ -11,17 +11,17 @@ import {
 import {
   AddCertificate,
   AppropriationModal,
+  AuthorityContext,
   Bg2,
   CalendarIcon,
   CertificateItem,
+  CompleteLectureItem,
+  MainStyle,
   PersonOut,
   PlusCertificate,
   SelectCalendarModal,
   theme,
   useModal,
-  CompleteLectureItem,
-  MainStyle,
-  AuthorityContext,
 } from '@bitgouel/common'
 import {
   CertificateRequest,
@@ -29,7 +29,7 @@ import {
   StudentIdProps,
 } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, useContext, useEffect, useState } from 'react'
+import { ChangeEvent, useContext, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
 
@@ -61,20 +61,6 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
       : useGetCertificateListTeacher(studentId)
 
   const { data: completeLectureList } = useGetCompleteLecture(studentId)
-  const onCreate = () => {
-    const payload: CertificateRequest = {
-      name: certificateText,
-      acquisitionDate: `${certificateDate.getFullYear()}-${(
-        certificateDate.getMonth() + 1
-      )
-        .toString()
-        .padStart(2, '0')}-${certificateDate
-        .getDate()
-        .toString()
-        .padStart(2, '0')}`,
-    }
-    mutate(payload)
-  }
 
   const { mutate } = usePostCertificate({
     onSuccess: () => {
@@ -86,6 +72,18 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
   })
 
   const onAddCertificate = () => {
+    const payload: CertificateRequest = {
+      name: certificateText,
+      acquisitionDate: `${certificateDate.getFullYear()}-${(
+        certificateDate.getMonth() + 1
+      )
+        .toString()
+        .padStart(2, '0')}-${certificateDate
+        .getDate()
+        .toString()
+        .padStart(2, '0')}`,
+    }
+
     if (certificateText.trim() !== '' && certificateDateText.trim() !== '')
       return openModal(
         <AppropriationModal
@@ -93,7 +91,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
           question='자격증 정보를 추가하시겠습니까?'
           title={certificateText}
           purpose='추가하기'
-          onAppropriation={onCreate}
+          onAppropriation={(callbacks) => mutate(payload, callbacks)}
         />
       )
     toast.info('자격증 정보를 입력해주세요')

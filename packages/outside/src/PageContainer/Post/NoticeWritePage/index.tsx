@@ -106,7 +106,7 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
         question: noticeId ? '공지사항을 수정하시겠습니까?' : '공지사항을 추가하시겠습니까?',
         title: noticeTitle || '',
         purpose: noticeId ? '수정하기' : '추가하기',
-        onAppropriation: () => noticeId ? modifyNotice(noticePayload) : createNotice({...noticePayload, feedType: 'NOTICE'})
+        onAppropriation: (callbacks) => noticeId ? modifyNotice(noticePayload, callbacks) : createNotice({...noticePayload, feedType: 'NOTICE'}, callbacks)
       }
 
       openModal(

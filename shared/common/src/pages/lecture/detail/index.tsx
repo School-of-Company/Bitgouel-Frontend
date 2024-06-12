@@ -35,7 +35,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
         question='수강 신청하시겠습니까?'
         title={data?.name || ''}
         purpose='신청하기'
-        onAppropriation={() => mutate()}
+        onAppropriation={(callbacks) => mutate(undefined, callbacks)}
       />
     )
   }
