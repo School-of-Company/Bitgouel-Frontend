@@ -14,8 +14,6 @@ import {
   광주여상,
 } from '../assets'
 
-console.log(광주공고)
-
 export const schoolToConstants: Record<string, string> = {
   광주공업고: 'GWANGJU_TECHNICAL_HIGH_SCHOOL',
   금파공업고: 'KUMPA_TECHNICAL_HIGH_SCHOOL',
