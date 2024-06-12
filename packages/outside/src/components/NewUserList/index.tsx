@@ -71,7 +71,7 @@ const NewUserList = () => {
 
   const handleSelectUsers = (checked: boolean, userId: string) =>
     handleSelect({ checked, id: userId, setIds: setUserIds })
-  console.log(data?.users.length)
+
   return (
     <>
       <NewDisplayInfo onAll={onAll} handleOpenModal={handleOpenModal} />
