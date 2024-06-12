@@ -5,6 +5,7 @@ import {
 } from '@bitgouel/api'
 import {
   AppropriationModal,
+  NoneResult,
   UserItem,
   handleSelect,
   useModal,
@@ -19,7 +20,7 @@ type messageType = '가입을 수락하였습니다' | '가입을 거절하였�
 
 const NewUserList = () => {
   const [userIds, setUserIds] = useState<string[]>([])
-  const { data, refetch } = useGetUserList({
+  const { data, refetch, isLoading } = useGetUserList({
     keyword: '',
     authority: 'ROLE_USER',
     approveStatus: 'PENDING',
@@ -51,7 +52,7 @@ const NewUserList = () => {
     const purpose: Extract<purposeTypes, '수락하기' | '거부하기'> =
       type === 'approve' ? '수락하기' : '거부하기'
     const onAppropriation = () => (type === 'approve' ? approve() : reject())
-    
+
     openModal(
       <AppropriationModal
         isApprove={type === 'approve' ? true : false}
@@ -70,25 +71,29 @@ const NewUserList = () => {
 
   const handleSelectUsers = (checked: boolean, userId: string) =>
     handleSelect({ checked, id: userId, setIds: setUserIds })
-
-
+  console.log(data?.users.length)
   return (
     <>
       <NewDisplayInfo onAll={onAll} handleOpenModal={handleOpenModal} />
       <S.UserListContainer>
-        {data?.users.map((user) => (
-          <UserItem
-            key={user.id}
-            id={user.id}
-            name={user.name}
-            authority={user.authority}
-            phoneNumber={user.phoneNumber}
-            email={user.email}
-            status='request'
-            handleSelectUsers={handleSelectUsers}
-            userIds={userIds}
-          />
-        ))}
+        {isLoading && <div>신규 가입자 명단을 불러오는 중...</div>}
+        {data?.users.length <= 0 ? (
+          <NoneResult notDataTitle={'신규 가입자 명단이'} />
+        ) : (
+          data?.users.map((user) => (
+            <UserItem
+              key={user.id}
+              id={user.id}
+              name={user.name}
+              authority={user.authority}
+              phoneNumber={user.phoneNumber}
+              email={user.email}
+              status='request'
+              handleSelectUsers={handleSelectUsers}
+              userIds={userIds}
+            />
+          ))
+        )}
       </S.UserListContainer>
     </>
   )
