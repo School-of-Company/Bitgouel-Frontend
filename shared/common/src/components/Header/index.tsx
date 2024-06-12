@@ -24,7 +24,7 @@ const menuList = [
   { kor: '관리자', link: '/main/admin' },
 ]
 
-const Header = ({ is_admin }: { is_admin: boolean }) => {
+const Header = ({ isAdmin }: { isAdmin: boolean }) => {
   const tokenManager = new TokenManager()
   const { push } = useRouter()
   const pathname = usePathname()
@@ -142,9 +142,9 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
     >
       <S.HeaderContainer>
         <S.SymbolContainer url={symbolNum} onClick={() => push('/')} />
-        <S.MenuWrapper is_admin={is_admin}>
+        <S.MenuWrapper isAdmin={isAdmin}>
           {menuList
-            .filter((menu, idx) => (is_admin ? menu : idx !== 4))
+            .filter((menu, idx) => (isAdmin ? menu : idx !== 4))
             .map((menu, idx) => (
               <S.MenuItem
                 key={idx}

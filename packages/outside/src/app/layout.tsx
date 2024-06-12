@@ -60,7 +60,7 @@ export default function RootLayout({
           <RecoilRootProvider>
             <GlobalLayout>
               <CustomProvider>
-                <Header is_admin={true} />
+                <Header isAdmin={true} />
                 {children}
                 <div id='modal' />
               </CustomProvider>
