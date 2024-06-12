@@ -1,12 +1,22 @@
 'use client'
 
+import { TokenManager } from '@bitgouel/api'
 import * as S from './style'
 import { Gwangju, OfficeGwangju } from '@bitgouel/common'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { toast } from 'react-toastify'
+import { match } from 'ts-pattern'
 
 const Section8 = () => {
   const { push } = useRouter()
+  const tokenManager = new TokenManager()
+
+  const ToInquiry = () => {
+    match(!!tokenManager.accessToken)
+      .with(true, () => push('/main/post/inquiry'))
+      .otherwise(() => toast.info('로그인 후 이용해주세요.'))
+  }
 
   return (
     <S.Footer>
@@ -18,7 +28,7 @@ const Section8 = () => {
           <S.CopyRightLinkList>
             <span>개인정보처리방침</span>
             <span>저작권신고 및 보호규정</span>
-            <span onClick={() => push('/main/post/inquiry')}>문의하기</span>
+            <span onClick={() => ToInquiry()}>문의하기</span>
           </S.CopyRightLinkList>
         </S.CopyRightsContainer>
         <S.FromLogoContainer>
