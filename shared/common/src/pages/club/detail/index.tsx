@@ -1,11 +1,13 @@
 'use client'
 
+import { useGetClubDetail, useGetMy, useGetMyClub } from '@bitgouel/api'
 import {
-  useGetClubDetail,
-  useGetMy,
-  useGetMyClub
-} from '@bitgouel/api'
-import { AuthorityContext, Bg2, MainStyle, PersonOut } from '@bitgouel/common'
+  AuthorityContext,
+  Bg2,
+  MainStyle,
+  NoneResult,
+  PersonOut,
+} from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { useContext, useEffect, useState } from 'react'
 import * as S from './style'
@@ -14,7 +16,7 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
   const { push } = useRouter()
   const authority = useContext(AuthorityContext)
 
-  const { data: clubDetail } = useGetClubDetail(clubId || '', {
+  const { data: clubDetail, isLoading } = useGetClubDetail(clubId || '', {
     enabled: authority === 'ROLE_ADMIN',
   })
   const { data: myClub } = useGetMyClub({ enabled: authority !== 'ROLE_ADMIN' })
@@ -44,7 +46,9 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
                 <PersonOut />
                 <span
                   onClick={() =>
-                    push(`/main/club/detail/${myClub?.clubId}/student/detail/${userId}`)
+                    push(
+                      `/main/club/detail/${myClub?.clubId}/student/detail/${userId}`
+                    )
                   }
                 >
                   내 자격증 및 활동
@@ -75,32 +79,41 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
           </S.InfoContainer>
           <S.StudentListWrapper>
             <h2>동아리 인원</h2>
-            {clubId
-              ? clubDetail?.students.map((student) => (
-                  <S.StudentItem
-                    isStudent={authority === 'ROLE_STUDENT'}
-                    key={student.id}
-                    onClick={() =>
-                      push(`/main/club/detail/${clubId}/student/detail/${student.id}`)
-                    }
-                  >
-                    <span>{student.name}</span>
-                    <span>학생</span>
-                  </S.StudentItem>
-                ))
-              : myClub?.students.map((student) => (
-                  <S.StudentItem
-                    isStudent={authority === 'ROLE_STUDENT'}
-                    key={student.id}
-                    onClick={() => {
-                      authority !== 'ROLE_STUDENT' &&
-                        push(`/main/club/detail/${clubId}/student/detail/${student.id}`)
-                    }}
-                  >
-                    <span>{student.name}</span>
-                    <span>학생</span>
-                  </S.StudentItem>
-                ))}
+            {isLoading && <div>동아리 인원을 불러오는 중..</div>}
+            {clubDetail?.students && clubDetail.students.length <= 0 ? (
+              <NoneResult notDataTitle={'동아리 인원이'} />
+            ) : clubId ? (
+              clubDetail?.students.map((student) => (
+                <S.StudentItem
+                  isStudent={authority === 'ROLE_STUDENT'}
+                  key={student.id}
+                  onClick={() =>
+                    push(
+                      `/main/club/detail/${clubId}/student/detail/${student.id}`
+                    )
+                  }
+                >
+                  <span>{student.name}</span>
+                  <span>학생</span>
+                </S.StudentItem>
+              ))
+            ) : (
+              myClub?.students.map((student) => (
+                <S.StudentItem
+                  isStudent={authority === 'ROLE_STUDENT'}
+                  key={student.id}
+                  onClick={() => {
+                    authority !== 'ROLE_STUDENT' &&
+                      push(
+                        `/main/club/detail/${clubId}/student/detail/${student.id}`
+                      )
+                  }}
+                >
+                  <span>{student.name}</span>
+                  <span>학생</span>
+                </S.StudentItem>
+              ))
+            )}
           </S.StudentListWrapper>
         </MainStyle.MainContainer>
       </MainStyle.MainWrapper>

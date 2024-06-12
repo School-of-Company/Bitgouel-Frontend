@@ -1,7 +1,6 @@
 'use client'
 
 import {
-  TokenManager,
   useGetActivityList,
   useGetActivityMyselfList,
   useGetStudentDetail,
@@ -11,12 +10,13 @@ import {
   AuthorityContext,
   Bg2,
   MainStyle,
+  NoneResult,
   Plus,
   PrivateRouter,
 } from '@bitgouel/common'
 import { StudentIdProps } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import * as S from './style'
 
 interface Props {
@@ -28,7 +28,7 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
   const { push } = useRouter()
   const authority = useContext(AuthorityContext)
   const { data: userDetail } = useGetStudentDetail(clubId, studentId)
-  const { data: activityList } =
+  const { data: activityList, isLoading } =
     authority === 'ROLE_STUDENT'
       ? useGetActivityMyselfList({
           page: 0,
@@ -63,14 +63,20 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
         <MainStyle.MainWrapper>
           <MainStyle.MainContainer>
             <S.ClubListWrapper>
-              {activityList?.activities.content.map((activity, index) => (
-                <ActivityItem
-                  item={activity}
-                  key={index}
-                  studentIdProps={studentIdProps}
-                  activityId={activity.activityId}
-                />
-              ))}
+              {isLoading && <div>학생 활동을 불러오는 중...</div>}
+              {activityList?.activities.content &&
+              activityList.activities.content.length <= 0 ? (
+                <NoneResult notDataTitle={'학생 활동이'} />
+              ) : (
+                activityList?.activities.content.map((activity, index) => (
+                  <ActivityItem
+                    item={activity}
+                    key={index}
+                    studentIdProps={studentIdProps}
+                    activityId={activity.activityId}
+                  />
+                ))
+              )}
             </S.ClubListWrapper>
           </MainStyle.MainContainer>
         </MainStyle.MainWrapper>

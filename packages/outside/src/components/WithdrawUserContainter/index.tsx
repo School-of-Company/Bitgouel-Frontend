@@ -2,6 +2,7 @@ import { UserListContainer } from '@/PageContainer/Admin/UserListPage/style'
 import { useDeleteUserWithdraw, useGetWithDrawUserList } from '@bitgouel/api'
 import {
   AppropriationModal,
+  NoneResult,
   UserItem,
   handleSelect,
   useFilterSelect,
@@ -24,7 +25,7 @@ type cohortTypes = '1' | '2' | '3' | '4'
 const WithdrawUserContainer = () => {
   const [userIds, setUserIds] = useState<string[]>([])
   const [cohort, setCohort] = useState<cohortTypes>('1')
-  const { data, refetch } = useGetWithDrawUserList(cohort)
+  const { data, refetch, isLoading } = useGetWithDrawUserList(cohort)
   const { mutate } = useDeleteUserWithdraw(userIds, {
     onSuccess: () => refetch(),
   })
@@ -71,19 +72,24 @@ const WithdrawUserContainer = () => {
         onWithdrawModal={onWithdrawModal}
       />
       <UserListContainer>
-        {data?.students.map((user) => (
-          <UserItem
-            key={user.withdrawId}
-            id={user.userId}
-            name={user.studentName}
-            authority={user.authority}
-            phoneNumber={user.phoneNumber}
-            email={user.email}
-            status='request'
-            handleSelectUsers={handleSelectUsers}
-            userIds={userIds}
-          />
-        ))}
+        {isLoading && <div>탈퇴 예정자 명단을 불러오는 중...</div>}
+        {data?.students.length <= 0 ? (
+          <NoneResult notDataTitle={'탈퇴 예정자 명단이'} />
+        ) : (
+          data?.students.map((user) => (
+            <UserItem
+              key={user.withdrawId}
+              id={user.userId}
+              name={user.studentName}
+              authority={user.authority}
+              phoneNumber={user.phoneNumber}
+              email={user.email}
+              status='request'
+              handleSelectUsers={handleSelectUsers}
+              userIds={userIds}
+            />
+          ))
+        )}
       </UserListContainer>
     </>
   )
