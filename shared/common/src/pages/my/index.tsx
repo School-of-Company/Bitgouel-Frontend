@@ -21,7 +21,7 @@ const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const { openModal } = useModal()
   const tokenManager = new TokenManager()
   const { data } = useGetMy()
-  const { mutate: withdraw, isLoading: deletePending } = useDeleteWithDraw({
+  const { mutate: withdraw } = useDeleteWithDraw({
     onSuccess: () => {
       tokenManager.removeTokens()
       window.location.replace(`/`)
@@ -42,7 +42,6 @@ const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const onWithdraw = () =>
     openModal(
       <AppropriationModal
-        isPending={deletePending}
         isApprove={false}
         question='회원탈퇴를 하시겠습니까?'
         purpose='탈퇴하기'

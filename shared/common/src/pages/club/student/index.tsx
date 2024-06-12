@@ -76,7 +76,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
     mutate(payload)
   }
 
-  const { mutate, isLoading: createPending } = usePostCertificate({
+  const { mutate } = usePostCertificate({
     onSuccess: () => {
       refetch()
       closeModal()
@@ -89,7 +89,6 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
     if (certificateText.trim() !== '' && certificateDateText.trim() !== '')
       return openModal(
         <AppropriationModal
-          isPending={createPending}
           isApprove={true}
           question='자격증 정보를 추가하시겠습니까?'
           title={certificateText}

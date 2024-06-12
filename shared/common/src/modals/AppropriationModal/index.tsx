@@ -1,12 +1,11 @@
 'use client'
 
+import { Portal, useModal } from '@bitgouel/common'
 import { AppropriationModalProps } from '@bitgouel/types'
-import * as S from './style'
-import { useModal, Portal } from '@bitgouel/common'
 import { useState } from 'react'
+import * as S from './style'
 
 const AppropriationModal = ({
-  isPending,
   isApprove,
   question,
   purpose,

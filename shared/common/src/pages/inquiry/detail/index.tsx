@@ -28,16 +28,15 @@ const InquiryDetailPage = ({
 }) => {
   const { push } = useRouter()
   const { data } = useGetInquiryDetail(inquiryId)
-  const { mutate: inquiryReject, isLoading: rejectPending } =
+  const { mutate: inquiryReject } =
     useDeleteInquiryReject(inquiryId)
-  const { mutate: myInquiryReject, isLoading: myRejectPending } =
+  const { mutate: myInquiryReject } =
     useDeleteMyInquiry(inquiryId)
   const { openModal } = useModal()
 
   const onDelete = () =>
     openModal(
       <AppropriationModal
-        isPending={isAdmin ? rejectPending : myRejectPending}
         isApprove={false}
         question='문의를 삭제하시겠습니까?'
         purpose='삭제하기'

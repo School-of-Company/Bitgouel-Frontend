@@ -9,12 +9,11 @@ import * as S from './style'
 const InquiryAnswerModal = ({ inquiryId }: { inquiryId: string }) => {
   const { openModal, closeModal } = useModal()
   const [answer, setAnswer] = useState('')
-  const { mutate, isLoading: answerLoading } = usePostAnswer(inquiryId)
+  const { mutate } = usePostAnswer(inquiryId)
 
   const onAnswer = () =>
     openModal(
       <AppropriationModal
-        isPending={answerLoading}
         isApprove={true}
         question='문의를 답변하시겠습니까?'
         purpose='답변하기'

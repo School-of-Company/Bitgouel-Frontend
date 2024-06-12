@@ -20,8 +20,8 @@ const InquiryWritePage = ({ inquiryId }: { inquiryId?: string }) => {
   const { data, isSuccess } = useGetInquiryDetail(inquiryId || '', {
     enabled: !!inquiryId,
   })
-  const { mutate: createInquiry, isLoading: createPending } = usePostInquiry()
-  const { mutate: modifyInquiry, isLoading: modifyPending } = usePatchMyInquiry(inquiryId || '')
+  const { mutate: createInquiry } = usePostInquiry()
+  const { mutate: modifyInquiry } = usePatchMyInquiry(inquiryId || '')
 
   useEffect(() => {
     if (isSuccess && data) {
@@ -51,7 +51,6 @@ const InquiryWritePage = ({ inquiryId }: { inquiryId?: string }) => {
       questionDetail: inquiryContent,
     }
     const ModalParameter: AppropriationModalProps = {
-      isPending: condition ? createPending : modifyPending,
       isApprove: true,
       question: condition
         ? '문의하시겠습니까?'
@@ -66,7 +65,6 @@ const InquiryWritePage = ({ inquiryId }: { inquiryId?: string }) => {
 
     openModal(
       <AppropriationModal
-        isPending={ModalParameter.isPending}
         isApprove={ModalParameter.isApprove}
         question={ModalParameter.question}
         title={ModalParameter.title}

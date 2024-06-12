@@ -35,11 +35,11 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
   const onError = (status: number | undefined) =>
     status === 400 && toast.error('유효하지 않은 링크입니다')
 
-  const { mutate: createPost, isLoading: createPending } = usePostPost({
+  const { mutate: createPost } = usePostPost({
     onSuccess: () => onSuccess('write'),
     onError: ({ response }) => onError(response?.status)
   })
-  const { mutate: modifyPost, isLoading: modifyPending } = usePatchPostModify(
+  const { mutate: modifyPost } = usePatchPostModify(
     postId || '',
     {
       onSuccess: () => onSuccess('modify'),
@@ -104,7 +104,6 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
           .filter((link) => link !== ''),
       }
       const ModalParameter: AppropriationModalProps = {
-        isPending: postId ? modifyPending : createPending,
         isApprove: true,
         question: postId ? '게시글을 수정하시겠습니까?' : '게시글을 추가하시겠습니까?',
         title: postId || '',
@@ -114,7 +113,6 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
 
       openModal(
         <AppropriationModal
-          isPending={ModalParameter.isPending ? true : false}
           isApprove={ModalParameter.isApprove}
           question={ModalParameter.question}
           title={ModalParameter.title}

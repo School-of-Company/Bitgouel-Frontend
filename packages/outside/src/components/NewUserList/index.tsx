@@ -32,10 +32,10 @@ const NewUserList = () => {
     toast.success(message)
   }
 
-  const { mutate: approve, isLoading: approvePending } = usePatchUserApprove(userIds, {
+  const { mutate: approve } = usePatchUserApprove(userIds, {
     onSuccess: () => onSuccess('가입을 수락하였습니다'),
   })
-  const { mutate: reject, isLoading: rejectPending } = useDeleteUserReject(userIds, {
+  const { mutate: reject } = useDeleteUserReject(userIds, {
     onSuccess: () => onSuccess('가입을 거절하였습니다'),
   })
 
@@ -43,7 +43,6 @@ const NewUserList = () => {
     if (userIds.length === 0) return toast.info('사용자를 선택해주세요')
 
     const ModalParameter: AppropriationModalProps = {
-      isPending: type === 'approve' ? approvePending : rejectPending,
       isApprove: type === 'approve' ? true : false,
       question: type === 'approve'
         ? '가입을 수락하시겠습니까?'
@@ -55,7 +54,6 @@ const NewUserList = () => {
 
     openModal(
       <AppropriationModal
-        isPending={ModalParameter.isPending}
         isApprove={ModalParameter.isApprove}
         question={ModalParameter.question}
         title={ModalParameter.title}

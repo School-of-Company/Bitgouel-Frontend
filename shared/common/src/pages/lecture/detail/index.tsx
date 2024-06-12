@@ -24,14 +24,13 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
     } else return false
   }
   const { openModal } = useModal()
-  const { mutate, isLoading: enrollmentPending } = usePostEnrollment(lectureId)
+  const { mutate } = usePostEnrollment(lectureId)
   const { push } = useRouter()
 
   const onEnrollment = () => {
     if (!isAble) return
     openModal(
       <AppropriationModal
-        isPending={enrollmentPending}
         isApprove={true}
         question='수강 신청하시겠습니까?'
         title={data?.name || ''}

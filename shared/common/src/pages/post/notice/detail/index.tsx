@@ -25,7 +25,7 @@ const roleArray: RoleEnumTypes[] = [
 
 const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
   const { data } = useGetPostDetail(noticeId)
-  const { mutate, isLoading: deletePending } = useDeletePost(
+  const { mutate } = useDeletePost(
     noticeId,
     '공지사항'
   )
@@ -36,7 +36,6 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
   const onDelete = () =>
     openModal(
       <AppropriationModal
-        isPending={deletePending}
         isApprove={false}
         question='공지사항을 삭제하시겠습니까?'
         purpose='삭제하기'

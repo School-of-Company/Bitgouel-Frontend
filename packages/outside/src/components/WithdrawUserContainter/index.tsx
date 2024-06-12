@@ -25,7 +25,7 @@ const WithdrawUserContainer = () => {
   const [userIds, setUserIds] = useState<string[]>([])
   const [cohort, setCohort] = useState<cohortTypes>('1')
   const { data, refetch } = useGetWithDrawUserList(cohort)
-  const { mutate, isLoading: withdrawPending } = useDeleteUserWithdraw(userIds, {
+  const { mutate } = useDeleteUserWithdraw(userIds, {
     onSuccess: () => refetch(),
   })
   const { filterList, onSelected } = useFilterSelect({
@@ -48,7 +48,6 @@ const WithdrawUserContainer = () => {
     if (userIds.length === 0) return
     openModal(
       <AppropriationModal
-        isPending={withdrawPending}
         isApprove={false}
         question='탈퇴를 승인하시겠습니까?'
         purpose='승인하기'

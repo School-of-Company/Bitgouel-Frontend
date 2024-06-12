@@ -24,7 +24,7 @@ const roleArray: RoleEnumTypes[] = [
 
 const PostDetailPage = ({ postId }: { postId: string }) => {
   const { data } = useGetPostDetail(postId)
-  const { mutate, isLoading: deletePending } = useDeletePost(postId, '게시글')
+  const { mutate } = useDeletePost(postId, '게시글')
   const { openModal } = useModal()
   const { push } = useRouter()
   const authority = useContext(AuthorityContext)
@@ -32,7 +32,6 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
   const onDelete = () =>
     openModal(
       <AppropriationModal
-        isPending={deletePending}
         isApprove={false}
         question='게시글을 삭제하시겠습니까?'
         purpose='삭제하기'

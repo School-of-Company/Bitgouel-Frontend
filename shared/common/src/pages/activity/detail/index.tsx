@@ -30,7 +30,7 @@ const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
   const { studentId, clubId } = studentIdProps || {}
   const { data } = useGetActivityDetail(activityId || '')
   const authority = useContext(AuthorityContext)
-  const { mutate, isLoading: deletePending } = useDeleteInformationRemove(
+  const { mutate } = useDeleteInformationRemove(
     activityId || ''
   )
 
@@ -43,7 +43,6 @@ const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
     }
     openModal(
       <AppropriationModal
-        isPending={deletePending}
         isApprove={true}
         title={data?.title || ''}
         question='활동을 삭제하시겠습니까?'

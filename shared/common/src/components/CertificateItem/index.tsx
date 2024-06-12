@@ -28,7 +28,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
 }) => {
   const { id, name, acquisitionDate } = certificateItems
   const authority = useContext(AuthorityContext)
-  const { mutate, isLoading: modifyPending } = usePatchModifyCertificate(id, {
+  const { mutate } = usePatchModifyCertificate(id, {
     onSuccess: () => {
       closeModal()
       refetchModify()
@@ -74,7 +74,6 @@ const CertificateItem: React.FC<CertificateProps> = ({
     if (isTextModified || isDateModified) {
       openModal(
         <AppropriationModal
-          isPending={modifyPending}
           isApprove={true}
           question='자격증 정보를 수정하시겠습니까?'
           title={modifyText || ''}

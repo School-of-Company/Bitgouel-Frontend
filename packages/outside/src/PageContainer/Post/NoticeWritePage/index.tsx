@@ -33,11 +33,11 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
   const onError = (status: number | undefined) =>
     status === 400 && toast.error('유효하지 않은 링크입니다')
 
-  const { mutate: createNotice, isLoading: createPending } = usePostPost({
+  const { mutate: createNotice } = usePostPost({
     onSuccess: () => onSuccess('write'),
     onError: ({ response }) => onError(response?.status)
   })
-  const { mutate: modifyNotice, isLoading: modifyPending } = usePatchPostModify(noticeId || '', {
+  const { mutate: modifyNotice } = usePatchPostModify(noticeId || '', {
     onSuccess: () => onSuccess('modify'),
     onError: ({ response }) => onError(response?.status)
   })
@@ -102,7 +102,6 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
           .filter((link) => link !== ''),
       }
       const ModalParameter: AppropriationModalProps = {
-        isPending: noticeId ? modifyPending : createPending,
         isApprove: true,
         question: noticeId ? '공지사항을 수정하시겠습니까?' : '공지사항을 추가하시겠습니까?',
         title: noticeTitle || '',
@@ -112,7 +111,6 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
 
       openModal(
         <AppropriationModal
-          isPending={ModalParameter.isPending}
           isApprove={ModalParameter.isApprove}
           question={ModalParameter.question}
           title={ModalParameter.title}

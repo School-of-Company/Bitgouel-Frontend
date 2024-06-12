@@ -78,7 +78,7 @@ const LectureCreatePage = () => {
     setLectureMaxRegisteredUser('')
   }
 
-  const { mutate, isLoading: createPending } = usePostLecture({
+  const { mutate } = usePostLecture({
     onSuccess,
   })
 
@@ -111,7 +111,6 @@ const LectureCreatePage = () => {
     )
     openModal(
       <AppropriationModal
-        isPending={createPending}
         isApprove={true}
         question='강의를 개설하시겠습니까?'
         title={lectureTitle}
