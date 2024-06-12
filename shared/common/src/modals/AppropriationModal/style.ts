@@ -44,7 +44,8 @@ export const AppropriationButtonWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
-  div {
+  
+  button {
     width: 10.25rem;
     height: 3.25rem;
     display: flex;
@@ -56,7 +57,7 @@ export const AppropriationButtonWrapper = styled.div`
   }
 `
 
-export const CancelButton = styled.div`
+export const CancelButton = styled.button`
   background: none;
   border: 0.0625rem solid ${({ theme }) => theme.color.gray['700']};
   color: ${({ theme }) => theme.color.gray['700']};

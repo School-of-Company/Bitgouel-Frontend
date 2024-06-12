@@ -114,7 +114,7 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
 
       openModal(
         <AppropriationModal
-          isPending={ModalParameter.isPending}
+          isPending={ModalParameter.isPending ? true : false}
           isApprove={ModalParameter.isApprove}
           question={ModalParameter.question}
           title={ModalParameter.title}

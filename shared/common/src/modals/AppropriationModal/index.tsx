@@ -3,6 +3,7 @@
 import { AppropriationModalProps } from '@bitgouel/types'
 import * as S from './style'
 import { useModal, Portal } from '@bitgouel/common'
+import { useState } from 'react'
 
 const AppropriationModal = ({
   isPending,
@@ -13,6 +14,14 @@ const AppropriationModal = ({
   onAppropriation,
 }: AppropriationModalProps) => {
   const { closeModal } = useModal()
+  const [isDisabled, setIsDisabled] = useState<boolean>(false)
+
+  const awaitAppropriation = async () => {
+    setIsDisabled(true)
+    await new Promise((resolve) => setTimeout(() => {
+      resolve(onAppropriation())
+    }, 2000))
+  }
 
   return (
     <Portal onClose={closeModal}>
@@ -27,8 +36,8 @@ const AppropriationModal = ({
           <S.CancelButton onClick={closeModal}>취소</S.CancelButton>
           <S.AppropriationButton
             isApprove={isApprove}
-            onClick={onAppropriation}
-            disabled={isPending}
+            onClick={awaitAppropriation}
+            disabled={isDisabled}
           >
             {purpose}
           </S.AppropriationButton>
