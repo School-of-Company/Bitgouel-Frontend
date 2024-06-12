@@ -1,7 +1,6 @@
 'use client'
 
 import {
-  TokenManager,
   useGetActivityList,
   useGetActivityMyselfList,
   useGetStudentDetail,
@@ -11,12 +10,13 @@ import {
   AuthorityContext,
   Bg2,
   MainStyle,
+  NoneResult,
   Plus,
   PrivateRouter,
 } from '@bitgouel/common'
 import { StudentIdProps } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import * as S from './style'
 
 interface Props {
@@ -63,14 +63,18 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
         <MainStyle.MainWrapper>
           <MainStyle.MainContainer>
             <S.ClubListWrapper>
-              {activityList?.activities.content.map((activity, index) => (
-                <ActivityItem
-                  item={activity}
-                  key={index}
-                  studentIdProps={studentIdProps}
-                  activityId={activity.activityId}
-                />
-              ))}
+              {activityList?.activities.content.length <= 0 ? (
+                <NoneResult />
+              ) : (
+                activityList?.activities.content.map((activity, index) => (
+                  <ActivityItem
+                    item={activity}
+                    key={index}
+                    studentIdProps={studentIdProps}
+                    activityId={activity.activityId}
+                  />
+                ))
+              )}
             </S.ClubListWrapper>
           </MainStyle.MainContainer>
         </MainStyle.MainWrapper>

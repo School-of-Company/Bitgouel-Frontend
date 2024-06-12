@@ -15,7 +15,7 @@ export const Primary: Story = {
     item: {
       id: '1234',
       title: '테스트',
-      modifiedAt: '2023-09-09T10:00:00'
-    }
-  }
+      modifiedAt: '2023-09-09T10:00:00',
+    },
+  },
 }
