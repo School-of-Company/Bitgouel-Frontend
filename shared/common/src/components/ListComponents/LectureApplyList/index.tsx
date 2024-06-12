@@ -11,7 +11,7 @@ const LectureApplyList = ({ lectureId }: { lectureId: string }) => {
   return (
     <S.ListContainer>
       {isLoading && <div>이수 목록을 불러오는 중...</div>}
-      {data?.students && data.students.length <= 0 && (
+      {!isLoading && data?.students && data.students.length <= 0 && (
         <NoneResult notDataTitle={'강의 신청자가'} />
       )}
       {data?.students.map((student) => (
