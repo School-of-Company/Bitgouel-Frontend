@@ -28,7 +28,7 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
   const { push } = useRouter()
   const authority = useContext(AuthorityContext)
   const { data: userDetail } = useGetStudentDetail(clubId, studentId)
-  const { data: activityList } =
+  const { data: activityList, isLoading } =
     authority === 'ROLE_STUDENT'
       ? useGetActivityMyselfList({
           page: 0,
@@ -63,7 +63,8 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
         <MainStyle.MainWrapper>
           <MainStyle.MainContainer>
             <S.ClubListWrapper>
-              {activityList?.activities &&
+              {isLoading && <div>학생 활동을 불러오는 중...</div>}
+              {activityList?.activities.content &&
               activityList.activities.content.length <= 0 ? (
                 <NoneResult notDataTitle={'학생 활동이'} />
               ) : (

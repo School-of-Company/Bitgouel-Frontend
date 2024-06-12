@@ -16,7 +16,7 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
   const { push } = useRouter()
   const authority = useContext(AuthorityContext)
 
-  const { data: clubDetail } = useGetClubDetail(clubId || '', {
+  const { data: clubDetail, isLoading } = useGetClubDetail(clubId || '', {
     enabled: authority === 'ROLE_ADMIN',
   })
   const { data: myClub } = useGetMyClub({ enabled: authority !== 'ROLE_ADMIN' })
@@ -79,8 +79,9 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
           </S.InfoContainer>
           <S.StudentListWrapper>
             <h2>동아리 인원</h2>
-            {clubDetail?.headCount && clubDetail.headCount <= 0 ? (
-              <NoneResult notDataTitle={'동아리에 학생이'} />
+            {isLoading && <div>동아리 인원을 불러오는 중..</div>}
+            {clubDetail?.students && clubDetail.students.length <= 0 ? (
+              <NoneResult notDataTitle={'동아리 인원이'} />
             ) : clubId ? (
               clubDetail?.students.map((student) => (
                 <S.StudentItem
