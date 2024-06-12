@@ -7,6 +7,7 @@ import {
   refreshExpiredAt,
   refreshToken,
 } from '../'
+import { toast } from 'react-toastify'
 
 class TokenManager {
   private _accessToken: string | null = null
@@ -85,7 +86,8 @@ class TokenManager {
       window.location.replace(window.location.href)
     } catch (error) {
       this.removeTokens()
-      return window.location.replace(`/`)
+      window.location.replace(`/`)
+      toast.info('다시 로그인 해주세요.')
     }
   }
 
