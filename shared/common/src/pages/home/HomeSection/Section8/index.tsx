@@ -28,7 +28,7 @@ const Section8 = () => {
           <S.CopyRightLinkList>
             <span>개인정보처리방침</span>
             <span>저작권신고 및 보호규정</span>
-            <span onClick={() => ToInquiry()}>문의하기</span>
+            <span onClick={ToInquiry}>문의하기</span>
           </S.CopyRightLinkList>
         </S.CopyRightsContainer>
         <S.FromLogoContainer>
