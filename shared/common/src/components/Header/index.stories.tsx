@@ -12,12 +12,12 @@ type Story = StoryObj<typeof Header>
 
 export const Client: Story = {
   args: {
-    is_admin: false
-  }
+    isAdmin: false,
+  },
 }
 
 export const Admin: Story = {
   args: {
-    is_admin: true
-  }
+    isAdmin: true,
+  },
 }

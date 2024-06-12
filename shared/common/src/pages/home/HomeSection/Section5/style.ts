@@ -34,6 +34,7 @@ export const UniversityIntro = styled.div`
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
+  width: 33.75rem;
 `
 
 export const WhiteSpace = styled.div`

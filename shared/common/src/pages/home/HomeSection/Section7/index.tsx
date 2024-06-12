@@ -51,7 +51,7 @@ const Section7 = () => {
             헬스케어
           </S.AgencyValueName>
           <S.AgencyNameBox>
-            <Image src={Agency3} alt='Agency3' />
+            <Image src={Agency3} alt='Agency3' priority />
             <S.AgencyName>(사)한국평생교육연합회</S.AgencyName>
           </S.AgencyNameBox>
         </S.AgencyIntroItem>
@@ -62,7 +62,7 @@ const Section7 = () => {
             융복합
           </S.AgencyValueName>
           <S.AgencyNameBox>
-            <Image src={Agency4} alt='Agency4' />
+            <Image src={Agency4} alt='Agency4' priority />
             <S.AgencyName>(사)스마트인재개발원</S.AgencyName>
           </S.AgencyNameBox>
         </S.AgencyIntroItem>

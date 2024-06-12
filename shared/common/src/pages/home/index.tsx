@@ -15,17 +15,15 @@ import {
 const HomePage = () => {
   return (
     <div style={{ backgroundColor: '#f6f6f6' }}>
-      <picture>
-        <Section1 />
-        <Section2 />
-        <Section3 />
-        <Section4 />
-        <Section5 />
-        <Section6 />
-        <Section7 />
-        <FAQSection />
-        <Section8 />
-      </picture>
+      <Section1 />
+      <Section2 />
+      <Section3 />
+      <Section4 />
+      <Section5 />
+      <Section6 />
+      <Section7 />
+      <FAQSection />
+      <Section8 />
     </div>
   )
 }

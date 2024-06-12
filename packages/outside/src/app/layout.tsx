@@ -56,15 +56,17 @@ export default function RootLayout({
   return (
     <html className={pretendard.className}>
       <body>
-        <RecoilRootProvider>
-          <GlobalLayout>
-            <CustomProvider>
-              <Header is_admin={true} />
-              {children}
-              <div id='modal' />
-            </CustomProvider>
-          </GlobalLayout>
-        </RecoilRootProvider>
+        <picture>
+          <RecoilRootProvider>
+            <GlobalLayout>
+              <CustomProvider>
+                <Header isAdmin={true} />
+                {children}
+                <div id='modal' />
+              </CustomProvider>
+            </GlobalLayout>
+          </RecoilRootProvider>
+        </picture>
       </body>
     </html>
   )
