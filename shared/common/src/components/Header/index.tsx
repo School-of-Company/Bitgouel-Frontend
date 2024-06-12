@@ -121,12 +121,13 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
   }, [])
 
   useEffect(() => {
-    if (tokenManager.accessToken) {
-      if (pathname === '/main/my') setText('로그아웃')
-      else setText('내 정보')
-    } else {
-      setText('로그인')
-    }
+    match(!!tokenManager.accessToken)
+      .with(true, () =>
+        match(pathname)
+          .with('/main/my', () => setText('로그아웃'))
+          .otherwise(() => setText('내 정보'))
+      )
+      .otherwise(() => setText('로그인'))
   }, [pathname])
 
   return (
