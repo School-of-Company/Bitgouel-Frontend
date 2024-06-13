@@ -7,7 +7,7 @@ import {
   LectureLine,
   SearchIcon,
 } from '@bitgouel/common'
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useState, useEffect } from 'react'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import {
   SearchInput,
@@ -34,7 +34,7 @@ const SearchDivision = () => {
   }
 
   const onDeleteDivision = () => {
-    setLectureDivision(division)
+    setLectureDivision('')
     setLectureLine('')
     setDivision('')
   }
