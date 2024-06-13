@@ -2,14 +2,14 @@
 // 어드민 페이지
 import { ClubBanner, ClubItem } from '@/components'
 import { useGetSchoolClubList } from '@bitgouel/api'
-import { MainStyle, SchoolFilterText } from '@bitgouel/common'
+import { MainStyle, SchoolFilterText, WaitingAnimation } from '@bitgouel/common'
 import { useEffect } from 'react'
 import { useRecoilValue } from 'recoil'
 import * as S from './style'
 
 const ClubPage = () => {
   const schoolFilterText = useRecoilValue(SchoolFilterText)
-  const { data, refetch } = useGetSchoolClubList()
+  const { data, refetch, isLoading } = useGetSchoolClubList()
 
   useEffect(() => {
     refetch()
@@ -20,6 +20,7 @@ const ClubPage = () => {
       <ClubBanner />
       <MainStyle.MainWrapper>
         <MainStyle.MainContainer>
+          {isLoading && <WaitingAnimation isLoadingTitle={'취업 동아리 목록을'} />}
           {data?.schools.map((school) => (
             <MainStyle.MainContainer key={school.id}>
               <S.ClubSchoolTitle>{school.schoolName}</S.ClubSchoolTitle>
