@@ -15,11 +15,7 @@ import { ChangeEvent, useState } from 'react'
 import { toast } from 'react-toastify'
 import { NewDisplayInfo } from '../AdminDisplayInfo'
 import * as S from './style'
-import {
-  AppropriationModalProps,
-  purposeTypes,
-  questionTypes,
-} from '@bitgouel/types'
+import { AppropriationModalProps } from '@bitgouel/types'
 
 type messageType = '가입을 수락하였습니다' | '가입을 거절하였습니다'
 
@@ -85,9 +81,11 @@ const NewUserList = () => {
     <>
       <NewDisplayInfo onAll={onAll} handleOpenModal={handleOpenModal} />
       <S.UserListContainer>
-        {isLoading && <WaitingAnimation isLoadingTitle={'신규 가입자 명단을'} />}
+        {isLoading && (
+          <WaitingAnimation title={'신규 가입자 명단을'} />
+        )}
         {data?.users.length <= 0 ? (
-          <NoneResult notDataTitle={'신규 가입자 명단이'} />
+          <NoneResult title={'신규 가입자 명단이'} />
         ) : (
           data?.users.map((user) => (
             <UserItem

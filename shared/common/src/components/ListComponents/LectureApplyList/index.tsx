@@ -10,9 +10,9 @@ const LectureApplyList = ({ lectureId }: { lectureId: string }) => {
 
   return (
     <S.ListContainer>
-      {isLoading && <WaitingAnimation isLoadingTitle={'강의 신청자를'} />}
+      {isLoading && <WaitingAnimation title={'강의 신청자를'} />}
       {!isLoading && data?.students && data.students.length <= 0 && (
-        <NoneResult notDataTitle={'강의 신청자가'} />
+        <NoneResult title={'강의 신청자가'} />
       )}
       {data?.students.map((student) => (
         <LectureApplyItem

@@ -31,9 +31,9 @@ const PostList = () => {
   return (
     <>
       <MainStyle.MainContainer>
-        {isLoading && <WaitingAnimation isLoadingTitle={'게시글 목록을'} />}
+        {isLoading && <WaitingAnimation title={'게시글 목록을'} />}
         {!isLoading && postList.length <= 0 ? (
-          <NoneResult notDataTitle={'게시글 목록이'} />
+          <NoneResult title={'게시글 목록이'} />
         ) : (
           postList.map((post) => <PostItem key={post.id} item={post} />)
         )}

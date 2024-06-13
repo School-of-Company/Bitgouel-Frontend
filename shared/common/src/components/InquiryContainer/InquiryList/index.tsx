@@ -14,9 +14,9 @@ const InquiryList = ({
   return (
     <S.ListWrapper>
       <S.ListContainer>
-        {isLoading && <WaitingAnimation isLoadingTitle={'문의 목록을'} />}
+        {isLoading && <WaitingAnimation title={'문의 목록을'} />}
         {inquiryList?.inquiries && inquiryList.inquiries.length <= 0 ? (
-          <NoneResult notDataTitle={'문의 목록이'} />
+          <NoneResult title={'문의 목록이'} />
         ) : (
           inquiryList?.inquiries.map((inquiry) => (
             <InquiryItem item={inquiry} key={inquiry.id} />

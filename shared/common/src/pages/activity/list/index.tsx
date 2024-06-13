@@ -64,10 +64,10 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
         <MainStyle.MainWrapper>
           <MainStyle.MainContainer>
             <S.ClubListWrapper>
-              {isLoading && <WaitingAnimation isLoadingTitle={'학생 활동을'} />}
+              {isLoading && <WaitingAnimation title={'학생 활동을'} />}
               {activityList?.activities.content &&
               activityList.activities.content.length <= 0 ? (
-                <NoneResult notDataTitle={'학생 활동이'} />
+                <NoneResult title={'학생 활동이'} />
               ) : (
                 activityList?.activities.content.map((activity, index) => (
                   <ActivityItem

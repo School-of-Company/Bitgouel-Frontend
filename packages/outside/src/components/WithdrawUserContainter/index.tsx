@@ -74,10 +74,10 @@ const WithdrawUserContainer = () => {
       />
       <UserListContainer>
         {isLoading && (
-          <WaitingAnimation isLoadingTitle={'탈퇴 예정자 명단을'} />
+          <WaitingAnimation title={'탈퇴 예정자 명단을'} />
         )}
         {data?.students.length <= 0 ? (
-          <NoneResult notDataTitle={'탈퇴 예정자 명단이'} />
+          <NoneResult title={'탈퇴 예정자 명단이'} />
         ) : (
           data?.students.map((user) => (
             <UserItem

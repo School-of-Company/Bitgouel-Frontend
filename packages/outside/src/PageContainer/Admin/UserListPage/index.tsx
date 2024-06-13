@@ -88,9 +88,9 @@ const UserListPage = () => {
           />
           <UserDisplayInfo />
           <S.UserListContainer>
-            {isLoading && <WaitingAnimation isLoadingTitle={'사용자 목록을'} />}
+            {isLoading && <WaitingAnimation title={'사용자 목록을'} />}
             {data?.users.length <= 0 ? (
-              <NoneResult notDataTitle={'사용자 목록이'} />
+              <NoneResult title={'사용자 목록이'} />
             ) : (
               data?.users.map((user) => (
                 <UserItem

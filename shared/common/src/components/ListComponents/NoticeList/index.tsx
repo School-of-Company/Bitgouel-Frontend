@@ -31,9 +31,9 @@ const NoticeList = () => {
   return (
     <>
       <MainStyle.MainContainer>
-        {isLoading && <WaitingAnimation isLoadingTitle={'공지사항을'} />}
+        {isLoading && <WaitingAnimation title={'공지사항을'} />}
         {!isLoading && noticeList.length <= 0 ? (
-          <NoneResult notDataTitle={'공지사항이'} />
+          <NoneResult title={'공지사항이'} />
         ) : (
           noticeList.map((notice) => <PostItem key={notice.id} item={notice} />)
         )}
