@@ -1,8 +1,12 @@
 import { useGetPostList } from '@bitgouel/api'
-import { MainStyle, NoneResult, WaitingAnimation } from '@bitgouel/common'
+import {
+  MainStyle,
+  NoneResult,
+  WaitingAnimation,
+  useIntersectionObserver,
+} from '@bitgouel/common'
 import { PostItemTypes } from '@bitgouel/types'
 import { useEffect, useState } from 'react'
-import { useIntersectionObserver } from '../../../hooks'
 import PostItem from '../../PostItem'
 import * as S from './style'
 
