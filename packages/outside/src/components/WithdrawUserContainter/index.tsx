@@ -1,4 +1,4 @@
-import { UserListContainer } from '@/PageContainer/Admin/UserListPage/style'
+import { UserListContainer } from '@outside/PageContainer/Admin/UserListPage/style'
 import { useDeleteUserWithdraw, useGetWithDrawUserList } from '@bitgouel/api'
 import {
   AppropriationModal,

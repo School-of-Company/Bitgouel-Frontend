@@ -1,6 +1,6 @@
 'use client'
 // 어드민 페이지
-import { ClubBanner, ClubItem } from '@/components'
+import { ClubBanner, ClubItem } from '@outside/components'
 import { useGetSchoolClubList } from '@bitgouel/api'
 import { MainStyle, SchoolFilterText } from '@bitgouel/common'
 import { useEffect } from 'react'

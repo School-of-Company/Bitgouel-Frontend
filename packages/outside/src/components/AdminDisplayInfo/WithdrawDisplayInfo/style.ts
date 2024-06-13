@@ -1,4 +1,4 @@
-import { UserSearchFilter } from '@/PageContainer/Admin/UserListPage/style'
+import { UserSearchFilter } from '@outside/PageContainer/Admin/UserListPage/style'
 import styled from '@emotion/styled'
 
 export const WithdrawInfoContainer = styled.div`

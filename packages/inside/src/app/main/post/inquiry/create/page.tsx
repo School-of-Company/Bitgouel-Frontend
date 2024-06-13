@@ -1,4 +1,4 @@
-import { InquiryWritePage } from '@/PageContainer'
+import { InquiryWritePage } from '@inside/PageContainer'
 
 const InquiryCreate = () => {
   return <InquiryWritePage />

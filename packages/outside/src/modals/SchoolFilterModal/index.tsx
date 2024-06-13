@@ -1,14 +1,13 @@
 import {
   CancelIcon,
-  SchoolFilterText,
   Portal,
+  SchoolFilterText,
   schools,
   useModal,
 } from '@bitgouel/common'
-import * as S from './style'
-import { useSetRecoilState } from 'recoil'
 import { useRouter } from 'next/navigation'
-import { useQuery } from '@tanstack/react-query'
+import { useSetRecoilState } from 'recoil'
+import * as S from './style'
 
 const SchoolFilterModal = () => {
   const { push } = useRouter()

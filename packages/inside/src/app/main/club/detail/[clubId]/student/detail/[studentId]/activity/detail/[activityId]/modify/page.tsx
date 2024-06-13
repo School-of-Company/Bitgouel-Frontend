@@ -1,4 +1,4 @@
-import { ActivityWritePage } from '@/PageContainer'
+import { ActivityWritePage } from '@inside/PageContainer'
 import { StudentIdProps } from '@bitgouel/types'
 
 const ActivityModify = ({

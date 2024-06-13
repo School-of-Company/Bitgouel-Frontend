@@ -1,4 +1,4 @@
-import { NoticeWritePage } from '@/PageContainer'
+import { NoticeWritePage } from '@outside/PageContainer'
 
 const NoticeCreate = () => {
   return <NoticeWritePage />

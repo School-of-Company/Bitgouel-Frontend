@@ -1,4 +1,4 @@
-import { SchoolListPage } from '@/PageContainer'
+import { SchoolListPage } from '@outside/PageContainer'
 
 const School = () => {
   return <SchoolListPage />
