@@ -9,7 +9,7 @@ import { useRecoilState } from 'recoil'
 import { SearchInput } from '../style'
 import * as S from './style'
 
-const MaxDateLength: number = 10 as const
+const MaxDateLength: number = 8 as const
 const MaxTimeLength: number = 5 as const
 
 const LectureApplyTime = () => {
@@ -25,7 +25,7 @@ const LectureApplyTime = () => {
         <S.DateBox>
           <SearchInput
             value={lectureStartDate}
-            placeholder='신청 시작일 입력 (ex: 2000-11-11)'
+            placeholder='신청 시작일 입력 (ex: 20240615)'
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setLectureStartDate(e.target.value)
             }
@@ -36,7 +36,7 @@ const LectureApplyTime = () => {
         <S.DateBox>
           <SearchInput
             value={lectureStartTime}
-            placeholder='신청 시작 시간 입력 (ex: 12:34)'
+            placeholder='신청 시작 시간 입력 (ex: 14:30)'
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setLectureStartTime(e.target.value)
             }
@@ -49,7 +49,7 @@ const LectureApplyTime = () => {
         <S.DateBox>
           <SearchInput
             value={lectureEndDate}
-            placeholder='신청 마감일 입력 (ex: 2000-11-11)'
+            placeholder='신청 시작일 입력 (ex: 20240615)'
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setLectureEndDate(e.target.value)
             }
