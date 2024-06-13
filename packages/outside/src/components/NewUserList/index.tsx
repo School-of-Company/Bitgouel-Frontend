@@ -7,6 +7,7 @@ import {
   AppropriationModal,
   NoneResult,
   UserItem,
+  WaitingAnimation,
   handleSelect,
   useModal,
 } from '@bitgouel/common'
@@ -84,7 +85,7 @@ const NewUserList = () => {
     <>
       <NewDisplayInfo onAll={onAll} handleOpenModal={handleOpenModal} />
       <S.UserListContainer>
-        {isLoading && <div>신규 가입자 명단을 불러오는 중...</div>}
+        {isLoading && <WaitingAnimation isLoadingTitle={'신규 가입자 명단을'} />}
         {data?.users.length <= 0 ? (
           <NoneResult notDataTitle={'신규 가입자 명단이'} />
         ) : (
