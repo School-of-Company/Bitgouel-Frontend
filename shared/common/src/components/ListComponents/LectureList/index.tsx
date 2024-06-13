@@ -6,6 +6,7 @@ import {
   MainStyle,
   NoneResult,
   PaginationPages,
+  WaitingAnimation,
 } from '@bitgouel/common'
 import { useEffect, useState } from 'react'
 
@@ -31,13 +32,13 @@ const LectureList = ({ lectureTypeFilter }: { lectureTypeFilter: string }) => {
         <>
           <MainStyle.MainContainer>
             {data?.lectures.content.length <= 0 ? (
-              <NoneResult notDataTitle={'강의 목록이'} />
+              <NoneResult title={'강의 목록이'} />
             ) : data.lectures.content.length ? (
               data.lectures.content.map((item) => (
                 <LectureItem key={item.id} item={item} />
               ))
             ) : (
-              isLoading && <div>강의 목록 불러오는 중...</div>
+              isLoading && <WaitingAnimation title={'강의 목록을'} />
             )}
           </MainStyle.MainContainer>
           {data?.lectures && data.lectures.content.length > 0 && !isLoading && (

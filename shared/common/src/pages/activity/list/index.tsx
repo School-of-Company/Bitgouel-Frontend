@@ -13,6 +13,7 @@ import {
   NoneResult,
   Plus,
   PrivateRouter,
+  WaitingAnimation,
 } from '@bitgouel/common'
 import { StudentIdProps } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
@@ -63,10 +64,10 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
         <MainStyle.MainWrapper>
           <MainStyle.MainContainer>
             <S.ClubListWrapper>
-              {isLoading && <div>학생 활동을 불러오는 중...</div>}
+              {isLoading && <WaitingAnimation title={'학생 활동을'} />}
               {activityList?.activities.content &&
               activityList.activities.content.length <= 0 ? (
-                <NoneResult notDataTitle={'학생 활동이'} />
+                <NoneResult title={'학생 활동이'} />
               ) : (
                 activityList?.activities.content.map((activity, index) => (
                   <ActivityItem
