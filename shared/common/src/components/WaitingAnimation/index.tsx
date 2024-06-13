@@ -3,7 +3,11 @@ import { Loading } from '@bitgouel/common'
 import Image from 'next/image'
 import * as S from './style'
 
-const WaitingAnimation = ({ isLoadingTitle }: { isLoadingTitle: string }) => {
+type WaitingAnimationProps = {
+  isLoadingTitle: string | number
+}
+
+const WaitingAnimation = ({ isLoadingTitle }: WaitingAnimationProps) => {
   return (
     <S.WaitingAnimationWrapper>
       <span>{isLoadingTitle} 불러오는 중</span>
