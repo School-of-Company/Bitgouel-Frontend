@@ -34,17 +34,17 @@ const LectureSettingModal = () => {
           <span>강의 유형</span>
           <SearchLectureType />
         </S.SettingContainer>
+        {lectureType !== '대학탐방프로그램' && (
+          <S.SettingContainer>
+            <span>수강 학기</span>
+            <LectureSemesterSelect />
+          </S.SettingContainer>
+        )}
         {lectureType === '상호학점인정교육과정' && (
-          <>
-            <S.SettingContainer>
-              <span>수강 학기</span>
-              <LectureSemesterSelect />
-            </S.SettingContainer>
-            <S.SettingContainer>
-              <span>학점</span>
-              <LectureCreditSelect />
-            </S.SettingContainer>
-          </>
+          <S.SettingContainer>
+            <span>학점</span>
+            <LectureCreditSelect />
+          </S.SettingContainer>
         )}
         <S.SettingContainer>
           <span>강의 구분</span>
