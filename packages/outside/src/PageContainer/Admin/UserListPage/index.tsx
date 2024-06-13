@@ -10,6 +10,7 @@ import {
   Plus,
   SearchComponent,
   UserItem,
+  WaitingAnimation,
   useFilterSelect,
 } from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
@@ -87,9 +88,9 @@ const UserListPage = () => {
           />
           <UserDisplayInfo />
           <S.UserListContainer>
-            {isLoading && <div>사용자 명단을 불러오는 중...</div>}
+            {isLoading && <WaitingAnimation title={'사용자 목록을'} />}
             {data?.users.length <= 0 ? (
-              <NoneResult notDataTitle={'사용자 목록이'} />
+              <NoneResult title={'사용자 목록이'} />
             ) : (
               data?.users.map((user) => (
                 <UserItem

@@ -30,7 +30,7 @@ const setting = {
     <S.NextArrow>
       <SlideRightArrow />
     </S.NextArrow>
-  )
+  ),
 }
 
 const ClubListSlider = () => {
@@ -46,10 +46,7 @@ const ClubListSlider = () => {
 
   return (
     <S.SliderContainer>
-      <Slider
-        ref={sliderRef}
-        {...setting}
-      >
+      <Slider ref={sliderRef} {...setting}>
         <ClubListContents1 />
         <ClubListContents2 />
         <ClubListContents3 />

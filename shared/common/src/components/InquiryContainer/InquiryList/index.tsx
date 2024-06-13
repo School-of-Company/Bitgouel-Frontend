@@ -2,6 +2,7 @@ import { InquiryListResponseTypes } from '@bitgouel/types'
 import InquiryItem from '../../InquiryItem'
 import * as S from './style'
 import NoneResult from '../../NoneResult'
+import WaitingAnimation from '../../WaitingAnimation'
 
 const InquiryList = ({
   inquiryList,
@@ -13,9 +14,9 @@ const InquiryList = ({
   return (
     <S.ListWrapper>
       <S.ListContainer>
-        {isLoading && <div>강의 목록을 불러오는 중...</div>}
+        {isLoading && <WaitingAnimation title={'문의 목록을'} />}
         {inquiryList?.inquiries && inquiryList.inquiries.length <= 0 ? (
-          <NoneResult notDataTitle={'문의 목록이'} />
+          <NoneResult title={'문의 목록이'} />
         ) : (
           inquiryList?.inquiries.map((inquiry) => (
             <InquiryItem item={inquiry} key={inquiry.id} />

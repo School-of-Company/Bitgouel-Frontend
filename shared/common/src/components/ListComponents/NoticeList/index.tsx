@@ -3,6 +3,7 @@ import {
   MainStyle,
   NoneResult,
   PostItem,
+  WaitingAnimation,
   useIntersectionObserver,
 } from '@bitgouel/common'
 import { ObserverLine } from '../PostList/style'
@@ -30,9 +31,9 @@ const NoticeList = () => {
   return (
     <>
       <MainStyle.MainContainer>
-        {isLoading && <div>공지사항을 불러오는 중...</div>}
+        {isLoading && <WaitingAnimation title={'공지사항을'} />}
         {!isLoading && noticeList.length <= 0 ? (
-          <NoneResult notDataTitle={'공지사항이'} />
+          <NoneResult title={'공지사항이'} />
         ) : (
           noticeList.map((notice) => <PostItem key={notice.id} item={notice} />)
         )}
