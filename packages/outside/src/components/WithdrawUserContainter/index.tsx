@@ -4,6 +4,7 @@ import {
   AppropriationModal,
   NoneResult,
   UserItem,
+  WaitingAnimation,
   handleSelect,
   useFilterSelect,
   useModal,
@@ -72,7 +73,9 @@ const WithdrawUserContainer = () => {
         onWithdrawModal={onWithdrawModal}
       />
       <UserListContainer>
-        {isLoading && <div>탈퇴 예정자 명단을 불러오는 중...</div>}
+        {isLoading && (
+          <WaitingAnimation isLoadingTitle={'탈퇴 예정자 명단을'} />
+        )}
         {data?.students.length <= 0 ? (
           <NoneResult notDataTitle={'탈퇴 예정자 명단이'} />
         ) : (
