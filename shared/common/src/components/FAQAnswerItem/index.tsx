@@ -65,7 +65,7 @@ const FAQAnswerItem = ({ refetchFAQs }: { refetchFAQs: () => void }) => {
       })
       setAnswerStatus(false)
     } else {
-      toast.error('빈 공백을 입력해주세요.')
+      toast.error('빈 공백을 입력해주세요')
     }
   }
 
