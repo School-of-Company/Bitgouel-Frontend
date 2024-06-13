@@ -70,7 +70,7 @@ const LectureEnrollmentDates = () => {
             <SearchInput
               value={value.completeDate}
               type='text'
-              placeholder='강의 수강일 입력(ex: 2000-11-11)'
+              placeholder='강의 수강일 입력(ex: 20001111)'
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 onCompleteDateChange(idx, e.target.value)
               }

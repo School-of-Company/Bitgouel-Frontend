@@ -1,8 +1,12 @@
 import { useGetPostList } from '@bitgouel/api'
-import { MainStyle, NoneResult } from '@bitgouel/common'
+import {
+  MainStyle,
+  NoneResult,
+  WaitingAnimation,
+  useIntersectionObserver,
+} from '@bitgouel/common'
 import { PostItemTypes } from '@bitgouel/types'
 import { useEffect, useState } from 'react'
-import { useIntersectionObserver } from '../../../hooks'
 import PostItem from '../../PostItem'
 import * as S from './style'
 
@@ -24,14 +28,12 @@ const PostList = () => {
     refetch()
   }, [postSequence])
 
-  console.log(postList.length)
-
   return (
     <>
       <MainStyle.MainContainer>
-        {isLoading && <div>게시글 목록을 불러오는 중...</div>}
+        {isLoading && <WaitingAnimation title={'게시글 목록을'} />}
         {!isLoading && postList.length <= 0 ? (
-          <NoneResult notDataTitle={'게시글 목록이'} />
+          <NoneResult title={'게시글 목록이'} />
         ) : (
           postList.map((post) => <PostItem key={post.id} item={post} />)
         )}

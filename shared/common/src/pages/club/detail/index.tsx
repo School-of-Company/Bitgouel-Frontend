@@ -7,6 +7,7 @@ import {
   MainStyle,
   NoneResult,
   PersonOut,
+  WaitingAnimation,
 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { useContext, useEffect, useState } from 'react'
@@ -79,9 +80,9 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
           </S.InfoContainer>
           <S.StudentListWrapper>
             <h2>동아리 인원</h2>
-            {isLoading && <div>동아리 인원을 불러오는 중..</div>}
+            {isLoading && <WaitingAnimation title={'동아리 인원을'} />}
             {clubDetail?.students && clubDetail.students.length <= 0 ? (
-              <NoneResult notDataTitle={'동아리 인원이'} />
+              <NoneResult title={'동아리 인원이'} />
             ) : clubId ? (
               clubDetail?.students.map((student) => (
                 <S.StudentItem

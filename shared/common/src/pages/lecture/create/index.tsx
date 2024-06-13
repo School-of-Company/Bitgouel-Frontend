@@ -29,7 +29,8 @@ import { ChangeEvent, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useRecoilState } from 'recoil'
 import * as S from './style'
-import { LectureCreatePayloadTypes } from '@bitgouel/types'
+import { LectureCreatePayloadTypes, LectureDate } from '@bitgouel/types'
+import dayjs from 'dayjs'
 
 const MAXLENGTH: number = 1000 as const
 
@@ -84,21 +85,18 @@ const LectureCreatePage = () => {
   })
 
   const isAble = (): boolean => {
-    const dateRegex = /^\d{4}-\d{2}-\d{2}$/
-    const timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/
-
     if (
       lectureTitle.length &&
       lectureContent.length &&
       lectureLine.length &&
       lectureInstructor.length &&
-      dateRegex.test(lectureStartDate) &&
-      timeRegex.test(lectureStartTime) &&
-      dateRegex.test(lectureEndDate) &&
-      timeRegex.test(lectureEndTime) &&
-      lectureDates.every((date) => dateRegex.test(date.completeDate)) &&
-      lectureDates.every((date) => timeRegex.test(date.startShowTime)) &&
-      lectureDates.every((date) => timeRegex.test(date.endShowTime)) &&
+      lectureStartDate.length &&
+      lectureStartTime.length &&
+      lectureEndDate.length &&
+      lectureEndTime.length &&
+      lectureDates.every((date) => date.completeDate.length) &&
+      lectureDates.every((date) => date.startShowTime) &&
+      lectureDates.every((date) => date.endShowTime.length) &&
       lectureMaxRegisteredUser.length
     )
       return true
@@ -107,10 +105,16 @@ const LectureCreatePage = () => {
 
   const openCreateModal = () => {
     if (!isAble()) return toast.error('입력 요소들을 다시 확인해주세요')
-    const filteredDates = lectureDates.map(
-      ({ startShowTime, endShowTime, ...filtered }) => filtered
+    const filteredDates: LectureDate[] = lectureDates.map(
+      ({ startShowTime, endShowTime, ...filtered }) => ({
+        ...filtered,
+        completeDate: dayjs(filtered.completeDate).format('YYYY-MM-DD')
+      })
     )
-
+    
+    const formatLectureStateDate = dayjs(lectureStartDate)
+    const formatLectureEndDate = dayjs(lectureStartDate)
+    
     const payload: LectureCreatePayloadTypes = {
       name: lectureTitle,
       content: lectureContent,
@@ -119,8 +123,8 @@ const LectureCreatePage = () => {
       department: lectureDepartment,
       line: lectureLine,
       userId: lectureInstructor,
-      startDate: `${lectureStartDate}T${lectureStartTime}:00`,
-      endDate: `${lectureEndDate}T${lectureEndTime}:00`,
+      startDate: `${formatLectureStateDate.format('YYYY-MM-DD')}T${lectureStartTime}:00`,
+      endDate: `${formatLectureEndDate.format('YYYY-MM-DD')}T${lectureEndTime}:00`,
       lectureDates: filteredDates,
       lectureType,
       credit: lectureCredit,
