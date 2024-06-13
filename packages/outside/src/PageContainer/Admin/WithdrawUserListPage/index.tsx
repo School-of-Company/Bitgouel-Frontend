@@ -4,8 +4,7 @@ import {
   Bg6,
   MainStyle,
   PeopleCircle,
-  Plus,
-  useModal
+  Plus
 } from '@bitgouel/common'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
