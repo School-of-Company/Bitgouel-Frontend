@@ -1,8 +1,7 @@
-import { GlobalLayout, Header } from '@bitgouel/common'
+import { GlobalLayout, Header, CustomProvider } from '@bitgouel/common'
 import '@bitgouel/common/src/styles/globals.css'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
-import CustomProvider from './customProvider'
 import RecoilRootProvider from './recoilRootProvider'
 
 export const metadata: Metadata = {

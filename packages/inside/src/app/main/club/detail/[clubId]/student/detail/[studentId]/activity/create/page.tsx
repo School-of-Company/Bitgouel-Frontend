@@ -1,4 +1,4 @@
-import { ActivityWritePage } from '@/PageContainer'
+import { ActivityWritePage } from '@inside/PageContainer'
 
 const ActivityCreate = () => {
   return <ActivityWritePage />

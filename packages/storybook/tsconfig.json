@@ -1,0 +1,13 @@
+{
+  "extends": "@bitgouel/tsconfig/",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@inside/*": ["../../packages/inside/src/*"],
+      "@outside/*": ["../../packages/outside/src/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}

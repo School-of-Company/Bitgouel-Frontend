@@ -1,9 +1,8 @@
-import { GlobalLayout, Header } from '@bitgouel/common'
+import { CustomProvider, GlobalLayout, Header } from '@bitgouel/common'
 import '@bitgouel/common/src/styles/globals.css'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import RecoilRootProvider from './recoilRootProvider'
-import CustomProvider from './customProvider'
 
 export const metadata: Metadata = {
   title: '빛고을직업교육혁신지구',

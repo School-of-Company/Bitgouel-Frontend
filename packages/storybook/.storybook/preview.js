@@ -1,5 +1,8 @@
 import { AppRouterContext } from 'next/dist/shared/lib/app-router-context.shared-runtime'
-import { GlobalLayout } from '../../../shared/common/src/layouts'
+import {
+  GlobalLayout,
+  CustomProvider,
+} from '../../../shared/common/src/layouts'
 import { RecoilRoot } from 'recoil'
 
 /** @type { import('@storybook/react').Preview } */
@@ -20,8 +23,10 @@ const preview = {
     (Story) => (
       <RecoilRoot>
         <GlobalLayout>
-          <Story />
-          <div id='modal' />
+          <CustomProvider>
+            <Story />
+            <div id='modal' />
+          </CustomProvider>
         </GlobalLayout>
       </RecoilRoot>
     ),

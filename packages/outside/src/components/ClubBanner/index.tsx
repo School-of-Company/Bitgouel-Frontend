@@ -1,7 +1,7 @@
 'use client'
 
-import { Bg2, SettingOut, useModal, MainStyle } from '@bitgouel/common'
-import { SchoolFilterModal } from '@/modals'
+import { Bg2, MainStyle, SettingOut, useModal } from '@bitgouel/common'
+import { SchoolFilterModal } from '@outside/modals'
 
 const ClubBanner = () => {
   const { openModal } = useModal()

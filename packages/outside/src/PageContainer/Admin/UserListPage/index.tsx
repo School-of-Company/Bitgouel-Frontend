@@ -1,6 +1,6 @@
 'use client'
 
-import { UserDisplayInfo } from '@/components'
+import { UserDisplayInfo } from '@outside/components'
 import { useGetUserList } from '@bitgouel/api'
 import {
   Bg6,
