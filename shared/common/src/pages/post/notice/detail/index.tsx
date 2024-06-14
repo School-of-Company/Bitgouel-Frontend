@@ -25,10 +25,7 @@ const roleArray: RoleEnumTypes[] = [
 
 const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
   const { data } = useGetPostDetail(noticeId)
-  const { mutate } = useDeletePost(
-    noticeId,
-    '공지사항'
-  )
+  const { mutate } = useDeletePost(noticeId, '공지사항')
   const { openModal } = useModal()
   const { push } = useRouter()
   const authority = useContext(AuthorityContext)
@@ -44,6 +41,8 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
       />
     )
 
+  console.log(data)
+
   return (
     <MainStyle.PageWrapper>
       <MainStyle.SlideBg url={Bg1}>
@@ -55,12 +54,16 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
         <MainStyle.MainContainer>
           <S.Title>{data?.title}</S.Title>
           <S.SubTitle>
-            <S.NumberBox>
+            <S.InfoBox>
               <S.SubTitleBox>게시일</S.SubTitleBox>
               <span>
                 {dayjs(data?.modifiedAt).format('YYYY년 MM월 DD일 HH:mm')}
               </span>
-            </S.NumberBox>
+            </S.InfoBox>
+            <S.InfoBox>
+              <S.SubTitleBox>게시자</S.SubTitleBox>
+              <span>{data?.writer}</span>
+            </S.InfoBox>
           </S.SubTitle>
           <S.MainText>{data?.content}</S.MainText>
           {data?.links && data.links.length > 0 && (

@@ -59,7 +59,7 @@ export const ApproveStatus = styled.div<{ approveColor: boolean }>`
   margin-right: 2.5rem;
 `
 
-export const NumberBox = styled.div`
+export const InfoBox = styled.div`
   display: flex;
   align-items: center;
   margin-right: 2.5rem;
