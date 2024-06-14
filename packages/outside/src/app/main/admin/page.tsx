@@ -1,4 +1,4 @@
-import { UserListPage } from '@/PageContainer'
+import { UserListPage } from '@outside/PageContainer'
 import React from 'react'
 
 const UserList = () => {

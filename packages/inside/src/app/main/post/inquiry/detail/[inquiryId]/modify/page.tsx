@@ -1,4 +1,4 @@
-import { InquiryWritePage } from '@/PageContainer'
+import { InquiryWritePage } from '@inside/PageContainer'
 
 const InquiryModifyPage = ({ params }: { params: { inquiryId: string } }) => {
   return <InquiryWritePage inquiryId={params.inquiryId} />
