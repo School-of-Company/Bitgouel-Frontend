@@ -32,7 +32,7 @@ import * as S from './style'
 import { LectureCreatePayloadTypes, LectureDate } from '@bitgouel/types'
 import dayjs from 'dayjs'
 
-const MAXLENGTH: number = 1000 as const
+const MAX_LENGTH: number = 1000 as const
 
 const LectureCreatePage = () => {
   const [lectureTitle, setLectureTitle] = useState<string>('')
@@ -171,7 +171,7 @@ const LectureCreatePage = () => {
             />
             <S.InputMainText
               value={lectureContent}
-              maxLength={MAXLENGTH}
+              maxLength={MAX_LENGTH}
               placeholder='강의 설명 작성 (1000자 이내)'
               onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
                 setLectureContent(e.target.value)

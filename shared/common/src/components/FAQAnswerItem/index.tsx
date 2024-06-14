@@ -6,8 +6,8 @@ import { useContext, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
 
-const QUESTIONMXLENGTH: number = 100 as const
-const ANSWERMAXLENGTH: number = 3000 as const
+const QUESTION_MAX_LENGTH: number = 100 as const
+const ANSWER_MAX_LENGTH: number = 3000 as const
 
 const FAQAnswerItem = ({ refetchFAQs }: { refetchFAQs: () => void }) => {
   const [answerStatus, setAnswerStatus] = useState<boolean>(false)
@@ -60,7 +60,7 @@ const FAQAnswerItem = ({ refetchFAQs }: { refetchFAQs: () => void }) => {
             placeholder='질문 작성하기'
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
-            maxLength={QUESTIONMXLENGTH}
+            maxLength={QUESTION_MAX_LENGTH}
           />
         </S.InputWrapper>
         <S.InputWrapper>
@@ -69,7 +69,7 @@ const FAQAnswerItem = ({ refetchFAQs }: { refetchFAQs: () => void }) => {
             placeholder='답변 작성하기'
             value={answer}
             onChange={(e) => setAnswer(e.target.value)}
-            maxLength={ANSWERMAXLENGTH}
+            maxLength={ANSWER_MAX_LENGTH}
           />
         </S.InputWrapper>
         <S.ButtonWrapper>

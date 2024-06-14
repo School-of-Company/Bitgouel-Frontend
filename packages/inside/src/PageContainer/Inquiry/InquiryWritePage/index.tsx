@@ -10,8 +10,8 @@ import { ChangeEvent, useEffect, useState } from 'react'
 import * as S from './style'
 import { AppropriationModalProps, InquiryPayloadTypes } from '@bitgouel/types'
 
-const TITLEMAXLENGTH: number = 100 as const
-const MAINMAXLENGTH: number = 1000 as const
+const TITLE_MAX_LENGTH: number = 100 as const
+const MAIN_MAX_LENGTH: number = 1000 as const
 
 const InquiryWritePage = ({ inquiryId }: { inquiryId?: string }) => {
   const [inquiryTitle, setInquiryTitle] = useState<string>('')
@@ -86,14 +86,14 @@ const InquiryWritePage = ({ inquiryId }: { inquiryId?: string }) => {
           <S.InputTitle
             value={inquiryTitle}
             placeholder='문의 제목(100자 이내)'
-            maxLength={TITLEMAXLENGTH}
+            maxLength={TITLE_MAX_LENGTH}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setInquiryTitle(e.target.value)
             }
           />
           <S.InputMainText
             value={inquiryContent}
-            maxLength={MAINMAXLENGTH}
+            maxLength={MAIN_MAX_LENGTH}
             placeholder='본문 입력 (1000자 이내)'
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
               setInquiryContent(e.target.value)
