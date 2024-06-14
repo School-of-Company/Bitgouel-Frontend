@@ -138,7 +138,7 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
             <S.InputTitle
               type='text'
               value={postTitle}
-              maxLength={MAIN_MAX_LENGTH}
+              maxLength={TITLE_MAX_LENGTH}
               placeholder='게시글 제목 (100자 이내)'
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setPostTitle(e.target.value)
