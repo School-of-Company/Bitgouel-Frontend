@@ -18,8 +18,8 @@ import * as S from './style'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 
-const MAINMAXLENGTH: number = 1000 as const
-const TITLEMAXLENGTH: number = 100 as const
+const MAIN_MAX_LENGTH: number = 1000 as const
+const TITLE_MAX_LENGTH: number = 100 as const
 
 const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
     const { openModal, closeModal } = useModal()
@@ -134,7 +134,7 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
         <MainStyle.MainContainer>
           <S.InputTitle
             value={noticeTitle}
-            maxLength={TITLEMAXLENGTH}
+            maxLength={TITLE_MAX_LENGTH}
             placeholder='공지사항 제목 (100자 이내)'
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setNoticeTitle(e.target.value)
@@ -142,7 +142,7 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
           />
           <S.InputMainText
             value={noticeContent}
-            maxLength={MAINMAXLENGTH}
+            maxLength={MAIN_MAX_LENGTH}
             placeholder='본문 입력 (1000자 이내)'
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
               setNoticeContent(e.target.value)

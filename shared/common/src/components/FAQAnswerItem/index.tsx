@@ -6,8 +6,8 @@ import { ChangeEvent, useContext, useReducer, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
 
-const QUESTIONMXLENGTH: number = 100 as const
-const ANSWERMAXLENGTH: number = 3000 as const
+const QUESTION_MAX_LENGTH: number = 100 as const
+const ANSWER_MAX_LENGTH: number = 3000 as const
 
 const initialState = {
   question: '',
@@ -86,7 +86,7 @@ const FAQAnswerItem = ({ refetchFAQs }: { refetchFAQs: () => void }) => {
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               dispatch({ type: SET_QUESTION, payload: e.target.value })
             }
-            maxLength={QUESTIONMXLENGTH}
+            maxLength={QUESTION_MAX_LENGTH}
           />
         </S.InputWrapper>
         <S.InputWrapper>
@@ -97,7 +97,7 @@ const FAQAnswerItem = ({ refetchFAQs }: { refetchFAQs: () => void }) => {
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               dispatch({ type: SET_ANSWER, payload: e.target.value })
             }
-            maxLength={ANSWERMAXLENGTH}
+            maxLength={ANSWER_MAX_LENGTH}
           />
         </S.InputWrapper>
         <S.ButtonWrapper>
