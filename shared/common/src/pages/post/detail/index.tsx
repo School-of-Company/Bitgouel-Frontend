@@ -52,12 +52,18 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
           <S.TitleContainer>
             <S.Title>{data?.title}</S.Title>
             <S.SubTitle>
-              <S.NumberBox>
+              <S.InfoBox>
                 <S.SubTitleBox>게시일</S.SubTitleBox>
                 <span>
                   {dayjs(data?.modifiedAt).format('YYYY년 MM월 DD일')}
                 </span>
-              </S.NumberBox>
+              </S.InfoBox>
+              <S.InfoBox>
+                <S.SubTitleBox>게시자</S.SubTitleBox>
+                <span>
+                  {data?.writer}
+                </span>
+              </S.InfoBox>
             </S.SubTitle>
           </S.TitleContainer>
           <S.MainText>{data?.content}</S.MainText>
