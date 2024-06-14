@@ -41,8 +41,6 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
       />
     )
 
-  console.log(data)
-
   return (
     <MainStyle.PageWrapper>
       <MainStyle.SlideBg url={Bg1}>
