@@ -1,4 +1,4 @@
-import { RoleEnumTypes, TokensTypes } from '@bitgouel/types'
+import { TokensTypes } from '@bitgouel/types'
 import axios from 'axios'
 import {
   Authority,
@@ -7,13 +7,13 @@ import {
   refreshExpiredAt,
   refreshToken,
 } from '../'
+import { toast } from 'react-toastify'
 
 class TokenManager {
   private _accessToken: string | null = null
   private _refreshToken: string | null = null
   private _accessExpiredAt: string | null = null
   private _refreshExpiredAt: string | null = null
-  private _authority: RoleEnumTypes | null = null
 
   constructor() {
     this.initToken()
@@ -38,7 +38,6 @@ class TokenManager {
     this._refreshToken = localStorage.getItem(refreshToken)
     this._accessExpiredAt = localStorage.getItem(accessExpiredAt)
     this._refreshExpiredAt = localStorage.getItem(refreshExpiredAt)
-    this._authority = localStorage.getItem(Authority) as RoleEnumTypes
   }
 
   setTokens(tokens: TokensTypes) {
@@ -46,13 +45,11 @@ class TokenManager {
     this._refreshToken = tokens.refreshToken
     this._accessExpiredAt = tokens.accessExpiredAt
     this._refreshExpiredAt = tokens.refreshExpiredAt
-    this._authority = tokens.authority
 
     localStorage.setItem(accessToken, tokens.accessToken)
     localStorage.setItem(refreshToken, tokens.refreshToken)
     localStorage.setItem(accessExpiredAt, tokens.accessExpiredAt)
     localStorage.setItem(refreshExpiredAt, tokens.refreshExpiredAt)
-    localStorage.setItem(Authority, tokens.authority)
   }
 
   removeTokens() {
@@ -61,7 +58,6 @@ class TokenManager {
     this._refreshToken = null
     this._accessExpiredAt = null
     this._refreshExpiredAt = null
-    this._authority = null
 
     localStorage.removeItem(accessToken)
     localStorage.removeItem(refreshToken)
@@ -90,7 +86,8 @@ class TokenManager {
       window.location.replace(window.location.href)
     } catch (error) {
       this.removeTokens()
-      return window.location.replace(`/`)
+      window.location.replace(`/`)
+      toast.info('다시 로그인 해주세요')
     }
   }
 
@@ -108,10 +105,6 @@ class TokenManager {
 
   get refreshExpired() {
     return this._refreshExpiredAt
-  }
-
-  get authority() {
-    return this._authority
   }
 }
 

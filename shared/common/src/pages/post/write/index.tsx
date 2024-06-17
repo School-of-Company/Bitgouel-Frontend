@@ -13,14 +13,14 @@ import {
   PrivateRouter,
   useModal,
 } from '@bitgouel/common'
-import { LinksObjectTypes } from '@bitgouel/types'
+import { AppropriationModalProps, LinksObjectTypes, PostPayloadTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
 
-const MAINMAXLENGTH: number = 1000 as const
-const TITLEMAXLENGTH: number = 100 as const
+const MAIN_MAX_LENGTH: number = 1000 as const
+const TITLE_MAX_LENGTH: number = 100 as const
 
 const PostWritePage = ({ postId }: { postId?: string }) => {
   const { openModal, closeModal } = useModal()
@@ -94,46 +94,32 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
     }
   }
 
-  const onPost = () => {
+ const onPost = () => {
     if (isAble()) {
-      if (postId) {
-        openModal(
-          <AppropriationModal
-            isApprove={true}
-            question='게시글을 수정하시겠습니까?'
-            title={postTitle || ''}
-            purpose='수정하기'
-            onAppropriation={() =>
-              modifyPost({
-                title: postTitle,
-                content: postContent,
-                links: postLinks
-                  .map((link) => link.value)
-                  .filter((link) => link !== ''),
-              })
-            }
-          />
-        )
-      } else {
-        openModal(
-          <AppropriationModal
-            isApprove={true}
-            question='게시글을 추가하시겠습니까?'
-            title={postTitle || ''}
-            purpose='추가하기'
-            onAppropriation={() =>
-              createPost({
-                title: postTitle,
-                content: postContent,
-                links: postLinks
-                  .map((link) => link.value)
-                  .filter((link) => link !== ''),
-                feedType: 'EMPLOYMENT',
-              })
-            }
-          />
-        )
+      const postPayload: Omit<PostPayloadTypes,'feedType'>  = {
+        title: postTitle,
+        content: postContent,
+        links: postLinks
+          .map((link) => link.value)
+          .filter((link) => link !== ''),
       }
+      const ModalParameter: AppropriationModalProps = {
+        isApprove: true,
+        question: postId ? '게시글을 수정하시겠습니까?' : '게시글을 추가하시겠습니까?',
+        title: postId || '',
+        purpose: postId ? '수정하기' : '추가하기',
+        onAppropriation: (callbacks) => postId ? modifyPost(postPayload, callbacks) : createPost({...postPayload, feedType: 'EMPLOYMENT'}, callbacks)
+      }
+
+      openModal(
+        <AppropriationModal
+          isApprove={ModalParameter.isApprove}
+          question={ModalParameter.question}
+          title={ModalParameter.title}
+          purpose={ModalParameter.purpose}
+          onAppropriation={ModalParameter.onAppropriation}
+        />
+      )
     } else return
   }
 
@@ -152,7 +138,7 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
             <S.InputTitle
               type='text'
               value={postTitle}
-              maxLength={TITLEMAXLENGTH}
+              maxLength={TITLE_MAX_LENGTH}
               placeholder='게시글 제목 (100자 이내)'
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setPostTitle(e.target.value)
@@ -160,7 +146,7 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
             />
             <S.InputMainText
               value={postContent}
-              maxLength={MAINMAXLENGTH}
+              maxLength={MAIN_MAX_LENGTH}
               placeholder='본문 입력 (1000자 이내)'
               onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
                 setPostContent(e.target.value)
@@ -185,7 +171,7 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
             </S.PostSetting>
             <S.ButtonContainer>
               <S.PostButton isAble={isAble()} onClick={onPost}>
-                {postId ? '수정완료' : '공지사항 추가하기'}
+                {postId ? '수정하기' : '추가하기'}
               </S.PostButton>
             </S.ButtonContainer>
           </MainStyle.MainContainer>

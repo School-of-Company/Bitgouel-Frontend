@@ -37,10 +37,10 @@ export const SymbolContainer = styled.div<{ url: StaticImageData }>`
   cursor: pointer;
 `
 
-export const MenuWrapper = styled.div<{ is_admin: boolean }>`
+export const MenuWrapper = styled.div<{ isAdmin: boolean }>`
   display: flex;
   justify-content: space-between;
-  width: ${({ is_admin }) => (is_admin ? '25rem' : '20rem')};
+  width: ${({ isAdmin }) => (isAdmin ? '25rem' : '20rem')};
 `
 
 export const MenuItem = styled.span<{ isSameRoute: boolean; color: string }>`

@@ -1,7 +1,13 @@
 'use client'
 
 import { useGetLectureList } from '@bitgouel/api'
-import { LectureItem, MainStyle, PaginationPages } from '@bitgouel/common'
+import {
+  LectureItem,
+  MainStyle,
+  NoneResult,
+  PaginationPages,
+  WaitingAnimation,
+} from '@bitgouel/common'
 import { useEffect, useState } from 'react'
 
 const LectureList = ({ lectureTypeFilter }: { lectureTypeFilter: string }) => {
@@ -25,12 +31,14 @@ const LectureList = ({ lectureTypeFilter }: { lectureTypeFilter: string }) => {
       {data?.lectures && (
         <>
           <MainStyle.MainContainer>
-            {data.lectures.content.length ? (
+            {data?.lectures.content.length <= 0 ? (
+              <NoneResult title={'강의 목록이'} />
+            ) : data.lectures.content.length ? (
               data.lectures.content.map((item) => (
                 <LectureItem key={item.id} item={item} />
               ))
             ) : (
-              <div>강의 목록 불러오는 중...</div>
+              isLoading && <WaitingAnimation title={'강의 목록을'} />
             )}
           </MainStyle.MainContainer>
           {data?.lectures && data.lectures.content.length > 0 && !isLoading && (

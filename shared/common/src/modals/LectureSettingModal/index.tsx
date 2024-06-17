@@ -26,18 +26,20 @@ const LectureSettingModal = () => {
           <h3>강의 세부 설정</h3>
           <CancelIcon onClick={closeModal} />
         </S.SettingTitleBox>
-         <S.SettingContainer>
+        <S.SettingContainer>
           <span>필수 수강 여부</span>
           <LectureEssentialCompleteSelect />
-        </S.SettingContainer>
-        <S.SettingContainer>
-          <span>수강 학기</span>
-          <LectureSemesterSelect />
         </S.SettingContainer>
         <S.SettingContainer>
           <span>강의 유형</span>
           <SearchLectureType />
         </S.SettingContainer>
+        {lectureType !== '대학탐방프로그램' && (
+          <S.SettingContainer>
+            <span>수강 학기</span>
+            <LectureSemesterSelect />
+          </S.SettingContainer>
+        )}
         {lectureType === '상호학점인정교육과정' && (
           <S.SettingContainer>
             <span>학점</span>

@@ -3,8 +3,8 @@
 import { useGetInstructors } from '@bitgouel/api'
 import { InputCancel, LectureInstructor, SearchIcon } from '@bitgouel/common'
 import { InstructorsItemType } from '@bitgouel/types'
-import { ChangeEvent, FormEvent, useState } from 'react'
-import { useRecoilState } from 'recoil'
+import { ChangeEvent, FormEvent, useState, useEffect } from 'react'
+import { useRecoilState, atom } from 'recoil'
 import {
   SearchInput,
   SearchInputBox,
@@ -13,11 +13,16 @@ import {
   SearchWrapper,
 } from '../style'
 
+const ShowInstructor = atom<string>({
+  key: 'ShowInstructor',
+  default: '',
+})
+
 const SearchInstructor = () => {
   const [lectureInstructor, setLectureInstructor] =
     useRecoilState(LectureInstructor)
   const [instructor, setInstructor] = useState<string>('')
-  const [showInstructor, setShowInstructor] = useState<string>('')
+  const [showInstructor, setShowInstructor] = useRecoilState(ShowInstructor)
   const { data, refetch } = useGetInstructors(instructor)
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -33,6 +38,7 @@ const SearchInstructor = () => {
   const onDeleteInstructor = () => {
     setLectureInstructor('')
     setShowInstructor('')
+    setInstructor('')
     refetch()
   }
 
@@ -44,7 +50,7 @@ const SearchInstructor = () => {
       >
         <SearchInput
           type='text'
-          value={lectureInstructor.length ? showInstructor : instructor}
+          value={showInstructor.length ? showInstructor : instructor}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setInstructor(e.target.value)
           }

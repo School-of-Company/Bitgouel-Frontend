@@ -1,14 +1,16 @@
 'use client'
 
-import { UserDisplayInfo } from '@/components'
+import { UserDisplayInfo } from '@outside/components'
 import { useGetUserList } from '@bitgouel/api'
 import {
   Bg6,
   MainStyle,
   Minus,
+  NoneResult,
   Plus,
   SearchComponent,
   UserItem,
+  WaitingAnimation,
   useFilterSelect,
 } from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
@@ -41,7 +43,7 @@ const UserListPage = () => {
   })
   const { push } = useRouter()
   const [keyword, setKeyword] = useState('')
-  const { data, refetch } = useGetUserList({
+  const { data, refetch, isLoading } = useGetUserList({
     keyword,
     authority,
     approveStatus: 'APPROVED',
@@ -86,17 +88,22 @@ const UserListPage = () => {
           />
           <UserDisplayInfo />
           <S.UserListContainer>
-            {data?.users.map((user) => (
-              <UserItem
-                key={user.id}
-                id={user.id}
-                name={user.name}
-                authority={user.authority}
-                phoneNumber={user.phoneNumber}
-                email={user.email}
-                status='current'
-              />
-            ))}
+            {isLoading && <WaitingAnimation title={'사용자 목록을'} />}
+            {data?.users.length <= 0 ? (
+              <NoneResult title={'사용자 목록이'} />
+            ) : (
+              data?.users.map((user) => (
+                <UserItem
+                  key={user.id}
+                  id={user.id}
+                  name={user.name}
+                  authority={user.authority}
+                  phoneNumber={user.phoneNumber}
+                  email={user.email}
+                  status='current'
+                />
+              ))
+            )}
           </S.UserListContainer>
         </MainStyle.MainContainer>
       </MainStyle.MainWrapper>

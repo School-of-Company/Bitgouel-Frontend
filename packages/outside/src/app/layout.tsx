@@ -1,4 +1,4 @@
-import { GlobalLayout, Header } from '@bitgouel/common'
+import { GlobalLayout, Header, CustomProvider } from '@bitgouel/common'
 import '@bitgouel/common/src/styles/globals.css'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
@@ -55,13 +55,17 @@ export default function RootLayout({
   return (
     <html className={pretendard.className}>
       <body>
-        <RecoilRootProvider>
-          <GlobalLayout>
-            <Header is_admin={true} />
-            {children}
-            <div id='modal' />
-          </GlobalLayout>
-        </RecoilRootProvider>
+        <picture>
+          <RecoilRootProvider>
+            <GlobalLayout>
+              <CustomProvider>
+                <Header isAdmin={true} />
+                {children}
+                <div id='modal' />
+              </CustomProvider>
+            </GlobalLayout>
+          </RecoilRootProvider>
+        </picture>
       </body>
     </html>
   )

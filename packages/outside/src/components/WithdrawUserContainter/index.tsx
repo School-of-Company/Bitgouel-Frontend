@@ -1,8 +1,10 @@
-import { UserListContainer } from '@/PageContainer/Admin/UserListPage/style'
+import { UserListContainer } from '@outside/PageContainer/Admin/UserListPage/style'
 import { useDeleteUserWithdraw, useGetWithDrawUserList } from '@bitgouel/api'
 import {
   AppropriationModal,
+  NoneResult,
   UserItem,
+  WaitingAnimation,
   handleSelect,
   useFilterSelect,
   useModal,
@@ -24,7 +26,7 @@ type cohortTypes = '1' | '2' | '3' | '4'
 const WithdrawUserContainer = () => {
   const [userIds, setUserIds] = useState<string[]>([])
   const [cohort, setCohort] = useState<cohortTypes>('1')
-  const { data, refetch } = useGetWithDrawUserList(cohort)
+  const { data, refetch, isLoading } = useGetWithDrawUserList(cohort)
   const { mutate } = useDeleteUserWithdraw(userIds, {
     onSuccess: () => refetch(),
   })
@@ -52,7 +54,7 @@ const WithdrawUserContainer = () => {
         question='탈퇴를 승인하시겠습니까?'
         purpose='승인하기'
         title=''
-        onAppropriation={() => mutate()}
+        onAppropriation={(callbacks) => mutate(undefined, callbacks)}
       />
     )
   }
@@ -71,19 +73,26 @@ const WithdrawUserContainer = () => {
         onWithdrawModal={onWithdrawModal}
       />
       <UserListContainer>
-        {data?.students.map((user) => (
-          <UserItem
-            key={user.withdrawId}
-            id={user.userId}
-            name={user.studentName}
-            authority={user.authority}
-            phoneNumber={user.phoneNumber}
-            email={user.email}
-            status='request'
-            handleSelectUsers={handleSelectUsers}
-            userIds={userIds}
-          />
-        ))}
+        {isLoading && (
+          <WaitingAnimation title={'탈퇴 예정자 명단을'} />
+        )}
+        {data?.students.length <= 0 ? (
+          <NoneResult title={'탈퇴 예정자 명단이'} />
+        ) : (
+          data?.students.map((user) => (
+            <UserItem
+              key={user.withdrawId}
+              id={user.userId}
+              name={user.studentName}
+              authority={user.authority}
+              phoneNumber={user.phoneNumber}
+              email={user.email}
+              status='request'
+              handleSelectUsers={handleSelectUsers}
+              userIds={userIds}
+            />
+          ))
+        )}
       </UserListContainer>
     </>
   )

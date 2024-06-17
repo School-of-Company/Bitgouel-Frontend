@@ -1,21 +1,23 @@
 'use client'
 
 import {
-  TokenManager,
   useGetActivityList,
   useGetActivityMyselfList,
   useGetStudentDetail,
 } from '@bitgouel/api'
 import {
   ActivityItem,
+  AuthorityContext,
   Bg2,
+  MainStyle,
+  NoneResult,
   Plus,
   PrivateRouter,
-  MainStyle,
+  WaitingAnimation,
 } from '@bitgouel/common'
 import { StudentIdProps } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useContext } from 'react'
 import * as S from './style'
 
 interface Props {
@@ -25,20 +27,15 @@ interface Props {
 const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
   const { studentId, clubId } = studentIdProps || {}
   const { push } = useRouter()
-  const tokenManager = new TokenManager()
-  const [isStudent, setIsStudent] = useState<boolean>(false)
+  const authority = useContext(AuthorityContext)
   const { data: userDetail } = useGetStudentDetail(clubId, studentId)
-  const { data: activityList } =
-    tokenManager.authority === 'ROLE_STUDENT'
+  const { data: activityList, isLoading } =
+    authority === 'ROLE_STUDENT'
       ? useGetActivityMyselfList({
           page: 0,
           size: 10,
         })
       : useGetActivityList(studentId, { page: 0, size: 10 })
-
-  useEffect(() => {
-    setIsStudent(tokenManager.authority === 'ROLE_STUDENT')
-  }, [])
 
   return (
     <PrivateRouter>
@@ -48,7 +45,7 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
             <MainStyle.PageTitle>
               {userDetail?.name}의 학생 활동
             </MainStyle.PageTitle>
-            {isStudent && (
+            {authority === 'ROLE_STUDENT' && (
               <MainStyle.ButtonContainer>
                 <MainStyle.SlideButton
                   onClick={() =>
@@ -67,14 +64,20 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
         <MainStyle.MainWrapper>
           <MainStyle.MainContainer>
             <S.ClubListWrapper>
-              {activityList?.activities.content.map((activity, index) => (
-                <ActivityItem
-                  item={activity}
-                  key={index}
-                  studentIdProps={studentIdProps}
-                  activityId={activity.activityId}
-                />
-              ))}
+              {isLoading && <WaitingAnimation title={'학생 활동을'} />}
+              {activityList?.activities.content &&
+              activityList.activities.content.length <= 0 ? (
+                <NoneResult title={'학생 활동이'} />
+              ) : (
+                activityList?.activities.content.map((activity, index) => (
+                  <ActivityItem
+                    item={activity}
+                    key={index}
+                    studentIdProps={studentIdProps}
+                    activityId={activity.activityId}
+                  />
+                ))
+              )}
             </S.ClubListWrapper>
           </MainStyle.MainContainer>
         </MainStyle.MainWrapper>

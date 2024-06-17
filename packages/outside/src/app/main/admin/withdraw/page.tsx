@@ -1,4 +1,4 @@
-import { WithdrawUserListPage } from '@/PageContainer'
+import { WithdrawUserListPage } from '@outside/PageContainer'
 import React from 'react'
 
 const WithdrawList = () => {

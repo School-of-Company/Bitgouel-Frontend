@@ -24,7 +24,7 @@ const menuList = [
   { kor: '관리자', link: '/main/admin' },
 ]
 
-const Header = ({ is_admin }: { is_admin: boolean }) => {
+const Header = ({ isAdmin }: { isAdmin: boolean }) => {
   const tokenManager = new TokenManager()
   const { push } = useRouter()
   const pathname = usePathname()
@@ -48,17 +48,16 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
   })
   const { openModal } = useModal()
 
-  const onLogoutModal = () => {
+  const onLogoutModal = () =>
     openModal(
       <AppropriationModal
         isApprove={false}
         question='로그아웃을 하시겠습니까?'
         purpose='로그아웃'
         title=''
-        onAppropriation={() => mutate()}
+        onAppropriation={(callbacks) => mutate(undefined, callbacks)}
       />
     )
-  }
 
   useEffect(() => {
     const throttledScrollHandler = () => {
@@ -121,12 +120,13 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
   }, [])
 
   useEffect(() => {
-    if (tokenManager.accessToken) {
-      if (pathname === '/main/my') setText('로그아웃')
-      else setText('내 정보')
-    } else {
-      setText('로그인')
-    }
+    match(!!tokenManager.accessToken)
+      .with(true, () =>
+        match(pathname)
+          .with('/main/my', () => setText('로그아웃'))
+          .otherwise(() => setText('내 정보'))
+      )
+      .otherwise(() => setText('로그인'))
   }, [pathname])
 
   return (
@@ -141,16 +141,16 @@ const Header = ({ is_admin }: { is_admin: boolean }) => {
     >
       <S.HeaderContainer>
         <S.SymbolContainer url={symbolNum} onClick={() => push('/')} />
-        <S.MenuWrapper is_admin={is_admin}>
+        <S.MenuWrapper isAdmin={isAdmin}>
           {menuList
-            .filter((menu, idx) => (is_admin ? menu : idx !== 4))
+            .filter((menu, idx) => (isAdmin ? menu : idx !== 4))
             .map((menu, idx) => (
               <S.MenuItem
                 key={idx}
                 onClick={() =>
                   tokenManager.accessToken
                     ? push(menu.link)
-                    : toast.info('로그인 후 이용해 주세요.')
+                    : toast.info('로그인 후 이용해 주세요')
                 }
                 isSameRoute={match(idx)
                   .with(0, () => pathname === menu.link)

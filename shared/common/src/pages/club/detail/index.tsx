@@ -1,32 +1,31 @@
 'use client'
 
+import { useGetClubDetail, useGetMy, useGetMyClub } from '@bitgouel/api'
 import {
-  TokenManager,
-  useGetClubDetail,
-  useGetMy,
-  useGetMyClub,
-} from '@bitgouel/api'
-import { Bg2, PersonOut, MainStyle } from '@bitgouel/common'
+  AuthorityContext,
+  Bg2,
+  MainStyle,
+  NoneResult,
+  PersonOut,
+  WaitingAnimation,
+} from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import * as S from './style'
 
 const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
   const { push } = useRouter()
-  const tokenManager = new TokenManager()
+  const authority = useContext(AuthorityContext)
 
-  const { data: clubDetail } = useGetClubDetail(clubId || '', {
-    enabled: tokenManager.authority === 'ROLE_ADMIN',
+  const { data: clubDetail, isLoading } = useGetClubDetail(clubId || '', {
+    enabled: authority === 'ROLE_ADMIN',
   })
-  const { data: myClub } = useGetMyClub({ enabled: tokenManager.authority !== 'ROLE_ADMIN' })
+  const { data: myClub } = useGetMyClub({ enabled: authority !== 'ROLE_ADMIN' })
   const { data: myData } = useGetMy()
 
   const [userId, setUserId] = useState<string>('')
-  const [isStudent, setIsStudent] = useState<boolean>(false)
 
   useEffect(() => {
-    setIsStudent(tokenManager.authority === 'ROLE_STUDENT')
-
     if (myClub && myData) {
       const foundStudent = myClub.students.find(
         (student) => student.userId === myData.id
@@ -42,13 +41,15 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
       <MainStyle.SlideBg url={Bg2}>
         <MainStyle.BgContainer>
           <MainStyle.PageTitle>취업 동아리</MainStyle.PageTitle>
-          {isStudent && (
+          {authority === 'ROLE_STUDENT' && (
             <MainStyle.ButtonContainer>
               <MainStyle.SlideButton>
                 <PersonOut />
                 <span
                   onClick={() =>
-                    push(`/main/club/detail/${myClub?.clubId}/student/detail/${userId}`)
+                    push(
+                      `/main/club/detail/${myClub?.clubId}/student/detail/${userId}`
+                    )
                   }
                 >
                   내 자격증 및 활동
@@ -79,32 +80,41 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
           </S.InfoContainer>
           <S.StudentListWrapper>
             <h2>동아리 인원</h2>
-            {clubId
-              ? clubDetail?.students.map((student) => (
-                  <S.StudentItem
-                    isStudent={isStudent}
-                    key={student.id}
-                    onClick={() =>
-                      push(`/main/club/detail/${clubId}/student/detail/${student.id}`)
-                    }
-                  >
-                    <span>{student.name}</span>
-                    <span>학생</span>
-                  </S.StudentItem>
-                ))
-              : myClub?.students.map((student) => (
-                  <S.StudentItem
-                    isStudent={isStudent}
-                    key={student.id}
-                    onClick={() => {
-                      !isStudent &&
-                        push(`/main/club/detail/${clubId}/student/detail/${student.id}`)
-                    }}
-                  >
-                    <span>{student.name}</span>
-                    <span>학생</span>
-                  </S.StudentItem>
-                ))}
+            {isLoading && <WaitingAnimation title={'동아리 인원을'} />}
+            {clubDetail?.students && clubDetail.students.length <= 0 ? (
+              <NoneResult title={'동아리 인원이'} />
+            ) : clubId ? (
+              clubDetail?.students.map((student) => (
+                <S.StudentItem
+                  isStudent={authority === 'ROLE_STUDENT'}
+                  key={student.id}
+                  onClick={() =>
+                    push(
+                      `/main/club/detail/${clubId}/student/detail/${student.id}`
+                    )
+                  }
+                >
+                  <span>{student.name}</span>
+                  <span>학생</span>
+                </S.StudentItem>
+              ))
+            ) : (
+              myClub?.students.map((student) => (
+                <S.StudentItem
+                  isStudent={authority === 'ROLE_STUDENT'}
+                  key={student.id}
+                  onClick={() => {
+                    authority !== 'ROLE_STUDENT' &&
+                      push(
+                        `/main/club/detail/${clubId}/student/detail/${student.id}`
+                      )
+                  }}
+                >
+                  <span>{student.name}</span>
+                  <span>학생</span>
+                </S.StudentItem>
+              ))
+            )}
           </S.StudentListWrapper>
         </MainStyle.MainContainer>
       </MainStyle.MainWrapper>

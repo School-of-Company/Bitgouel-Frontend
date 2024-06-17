@@ -7,7 +7,11 @@ import InquirySearch from './InquirySearch'
 const InquiryContainer = ({ isAdmin }: { isAdmin: boolean }) => {
   const [keyword, setKeyword] = useState<string>('')
   const [answerStatus, setAnswerStatus] = useState<AnswerStatus | ''>('')
-  const { data: inquiryList, refetch } = isAdmin
+  const {
+    data: inquiryList,
+    refetch,
+    isLoading,
+  } = isAdmin
     ? useGetInquiryList({
         keyword,
         answerStatus,
@@ -21,13 +25,14 @@ const InquiryContainer = ({ isAdmin }: { isAdmin: boolean }) => {
   return (
     <>
       {isAdmin && (
-      <InquirySearch
-        refetch={() => refetch()}
-        keyword={keyword}
-        setKeyword={setKeyword}
-        setAnswerStatus={setAnswerStatus}
-      />)}
-      <InquiryList inquiryList={inquiryList} />
+        <InquirySearch
+          refetch={() => refetch()}
+          keyword={keyword}
+          setKeyword={setKeyword}
+          setAnswerStatus={setAnswerStatus}
+        />
+      )}
+      <InquiryList inquiryList={inquiryList} isLoading={isLoading} />
     </>
   )
 }

@@ -1,14 +1,18 @@
 import { useGetPostList } from '@bitgouel/api'
-import { MainStyle } from '@bitgouel/common'
+import {
+  MainStyle,
+  NoneResult,
+  WaitingAnimation,
+  useIntersectionObserver,
+} from '@bitgouel/common'
 import { PostItemTypes } from '@bitgouel/types'
 import { useEffect, useState } from 'react'
-import { useIntersectionObserver } from '../../../hooks'
 import PostItem from '../../PostItem'
 import * as S from './style'
 
 const PostList = () => {
   const [postSequence, setPostSequence] = useState<number | null>(null)
-  const { data, refetch } = useGetPostList({
+  const { data, refetch, isLoading } = useGetPostList({
     type: 'EMPLOYMENT',
     postSequence,
     size: 10,
@@ -27,9 +31,12 @@ const PostList = () => {
   return (
     <>
       <MainStyle.MainContainer>
-        {postList.map((post) => (
-          <PostItem key={post.id} item={post} />
-        ))}
+        {isLoading && <WaitingAnimation title={'게시글 목록을'} />}
+        {!isLoading && postList.length <= 0 ? (
+          <NoneResult title={'게시글 목록이'} />
+        ) : (
+          postList.map((post) => <PostItem key={post.id} item={post} />)
+        )}
       </MainStyle.MainContainer>
       <S.ObserverLine ref={scrollTarget} />
     </>

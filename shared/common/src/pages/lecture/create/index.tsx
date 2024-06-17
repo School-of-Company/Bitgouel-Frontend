@@ -29,8 +29,10 @@ import { ChangeEvent, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useRecoilState } from 'recoil'
 import * as S from './style'
+import { LectureCreatePayloadTypes, LectureDate } from '@bitgouel/types'
+import dayjs from 'dayjs'
 
-const MAXLENGTH: number = 1000 as const
+const MAX_LENGTH: number = 1000 as const
 
 const LectureCreatePage = () => {
   const [lectureTitle, setLectureTitle] = useState<string>('')
@@ -58,7 +60,7 @@ const LectureCreatePage = () => {
   const { openModal, closeModal } = useModal()
   const { push } = useRouter()
 
-  const createSuccess = () => {
+  const onSuccess = () => {
     closeModal()
     toast.success('강의를 개설했습니다')
     push(`/main/lecture`)
@@ -79,25 +81,22 @@ const LectureCreatePage = () => {
   }
 
   const { mutate } = usePostLecture({
-    onSuccess: () => createSuccess(),
+    onSuccess,
   })
 
   const isAble = (): boolean => {
-    const dateRegex = /^\d{4}-\d{2}-\d{2}$/
-    const timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/
-
     if (
       lectureTitle.length &&
       lectureContent.length &&
       lectureLine.length &&
       lectureInstructor.length &&
-      dateRegex.test(lectureStartDate) &&
-      timeRegex.test(lectureStartTime) &&
-      dateRegex.test(lectureEndDate) &&
-      timeRegex.test(lectureEndTime) &&
-      lectureDates.every((date) => dateRegex.test(date.completeDate)) &&
-      lectureDates.every((date) => timeRegex.test(date.startShowTime)) &&
-      lectureDates.every((date) => timeRegex.test(date.endShowTime)) &&
+      lectureStartDate.length &&
+      lectureStartTime.length &&
+      lectureEndDate.length &&
+      lectureEndTime.length &&
+      lectureDates.every((date) => date.completeDate.length) &&
+      lectureDates.every((date) => date.startShowTime) &&
+      lectureDates.every((date) => date.endShowTime.length) &&
       lectureMaxRegisteredUser.length
     )
       return true
@@ -106,33 +105,40 @@ const LectureCreatePage = () => {
 
   const openCreateModal = () => {
     if (!isAble()) return toast.error('입력 요소들을 다시 확인해주세요')
-    const filteredDates = lectureDates.map(
-      ({ startShowTime, endShowTime, ...filtered }) => filtered
+    const filteredDates: LectureDate[] = lectureDates.map(
+      ({ startShowTime, endShowTime, ...filtered }) => ({
+        ...filtered,
+        completeDate: dayjs(filtered.completeDate).format('YYYY-MM-DD')
+      })
     )
+    
+    const formatLectureStateDate = dayjs(lectureStartDate)
+    const formatLectureEndDate = dayjs(lectureStartDate)
+    
+    const payload: LectureCreatePayloadTypes = {
+      name: lectureTitle,
+      content: lectureContent,
+      semester: lectureSemester,
+      division: lectureDivision,
+      department: lectureDepartment,
+      line: lectureLine,
+      userId: lectureInstructor,
+      startDate: `${formatLectureStateDate.format('YYYY-MM-DD')}T${lectureStartTime}:00`,
+      endDate: `${formatLectureEndDate.format('YYYY-MM-DD')}T${lectureEndTime}:00`,
+      lectureDates: filteredDates,
+      lectureType,
+      credit: lectureCredit,
+      maxRegisteredUser: +lectureMaxRegisteredUser,
+      essentialComplete: lectureEssentialComplete,
+    }
+    
     openModal(
       <AppropriationModal
         isApprove={true}
         question='강의를 개설하시겠습니까?'
         title={lectureTitle}
         purpose='개설하기'
-        onAppropriation={() =>
-          mutate({
-            name: lectureTitle,
-            content: lectureContent,
-            semester: lectureSemester,
-            division: lectureDivision,
-            department: lectureDepartment,
-            line: lectureLine,
-            userId: lectureInstructor,
-            startDate: `${lectureStartDate}T${lectureStartTime}:00`,
-            endDate: `${lectureEndDate}T${lectureEndTime}:00`,
-            lectureDates: filteredDates,
-            lectureType,
-            credit: lectureCredit,
-            maxRegisteredUser: +lectureMaxRegisteredUser,
-            essentialComplete: lectureEssentialComplete,
-          })
-        }
+        onAppropriation={(callbacks) => mutate(payload, callbacks)}
       />
     )
   }
@@ -165,7 +171,7 @@ const LectureCreatePage = () => {
             />
             <S.InputMainText
               value={lectureContent}
-              maxLength={MAXLENGTH}
+              maxLength={MAX_LENGTH}
               placeholder='강의 설명 작성 (1000자 이내)'
               onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
                 setLectureContent(e.target.value)

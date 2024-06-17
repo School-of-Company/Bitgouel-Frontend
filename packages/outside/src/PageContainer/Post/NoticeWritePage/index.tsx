@@ -12,14 +12,14 @@ import {
   useModal,
   MainStyle,
 } from '@bitgouel/common'
-import { LinksObjectTypes } from '@bitgouel/types'
+import { AppropriationModalProps, LinksObjectTypes, PostPayloadTypes,  } from '@bitgouel/types'
 import { ChangeEvent, useEffect, useState } from 'react'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 
-const MAINMAXLENGTH: number = 1000 as const
-const TITLEMAXLENGTH: number = 100 as const
+const MAIN_MAX_LENGTH: number = 1000 as const
+const TITLE_MAX_LENGTH: number = 100 as const
 
 const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
     const { openModal, closeModal } = useModal()
@@ -41,6 +41,7 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
     onSuccess: () => onSuccess('modify'),
     onError: ({ response }) => onError(response?.status)
   })
+
   const [noticeTitle, setNoticeTitle] = useState<string>('')
   const [noticeContent, setNoticeContent] = useState<string>('')
   const [noticeLinks, setNoticeLinks] = useState<LinksObjectTypes[] | string[]>(
@@ -91,46 +92,32 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
     }
   }
 
-  const onPost = () => {
+  const onNotice = () => {
     if (isAble()) {
-      if (noticeId) {
-        openModal(
-          <AppropriationModal
-            isApprove={true}
-            question='공지사항을 수정하시겠습니까?'
-            title={noticeTitle || ''}
-            purpose='수정하기'
-            onAppropriation={() =>
-              modifyNotice({
-                title: noticeTitle,
-                content: noticeContent,
-                links: noticeLinks
-                  .map((link) => link.value)
-                  .filter((link) => link !== ''),
-              })
-            }
-          />
-        )
-      } else {
-        openModal(
-          <AppropriationModal
-            isApprove={true}
-            question='공지사항을 추가하시겠습니까?'
-            title={noticeTitle || ''}
-            purpose='추가하기'
-            onAppropriation={() =>
-              createNotice({
-                title: noticeTitle,
-                content: noticeContent,
-                links: noticeLinks
-                  .map((link) => link.value)
-                  .filter((link) => link !== ''),
-                feedType: 'NOTICE',
-              })
-            }
-          />
-        )
+      const noticePayload: Omit<PostPayloadTypes, 'feedType'> = {
+        title: noticeTitle,
+        content: noticeContent,
+        links: noticeLinks
+          .map((link) => link.value)
+          .filter((link) => link !== ''),
       }
+      const ModalParameter: AppropriationModalProps = {
+        isApprove: true,
+        question: noticeId ? '공지사항을 수정하시겠습니까?' : '공지사항을 추가하시겠습니까?',
+        title: noticeTitle || '',
+        purpose: noticeId ? '수정하기' : '추가하기',
+        onAppropriation: (callbacks) => noticeId ? modifyNotice(noticePayload, callbacks) : createNotice({...noticePayload, feedType: 'NOTICE'}, callbacks)
+      }
+
+      openModal(
+        <AppropriationModal
+          isApprove={ModalParameter.isApprove}
+          question={ModalParameter.question}
+          title={ModalParameter.title}
+          purpose={ModalParameter.purpose}
+          onAppropriation={ModalParameter.onAppropriation}
+        />
+      )
     } else return
   }
 
@@ -147,7 +134,7 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
         <MainStyle.MainContainer>
           <S.InputTitle
             value={noticeTitle}
-            maxLength={TITLEMAXLENGTH}
+            maxLength={TITLE_MAX_LENGTH}
             placeholder='공지사항 제목 (100자 이내)'
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setNoticeTitle(e.target.value)
@@ -155,7 +142,7 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
           />
           <S.InputMainText
             value={noticeContent}
-            maxLength={MAINMAXLENGTH}
+            maxLength={MAIN_MAX_LENGTH}
             placeholder='본문 입력 (1000자 이내)'
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
               setNoticeContent(e.target.value)
@@ -179,8 +166,8 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
             </S.SettingSelectionContainer>
           </S.NoticeSetting>
           <S.ButtonContainer>
-            <S.NoticeButton isAble={isAble()} onClick={onPost}>
-              {noticeId ? '수정완료' : '공지사항 추가하기'}
+            <S.NoticeButton isAble={isAble()} onClick={onNotice}>
+              {noticeId ? '수정하기' : '추가하기'}
             </S.NoticeButton>
           </S.ButtonContainer>
         </MainStyle.MainContainer>

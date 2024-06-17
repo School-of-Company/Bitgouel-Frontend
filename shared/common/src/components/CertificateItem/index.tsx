@@ -1,9 +1,10 @@
 'use client'
 
-import { TokenManager, usePatchModifyCertificate } from '@bitgouel/api'
+import { usePatchModifyCertificate } from '@bitgouel/api'
 import {
   AddCertificate,
   AppropriationModal,
+  AuthorityContext,
   CalendarIcon,
   SelectCalendarModal,
   theme,
@@ -14,7 +15,7 @@ import {
   CertificateRequest,
   RoleEnumTypes,
 } from '@bitgouel/types'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useContext, useEffect, useState } from 'react'
 
 import * as S from './style'
 
@@ -26,9 +27,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
   refetchModify,
 }) => {
   const { id, name, acquisitionDate } = certificateItems
-
-  const tokenManager = new TokenManager()
-
+  const authority = useContext(AuthorityContext)
   const { mutate } = usePatchModifyCertificate(id, {
     onSuccess: () => {
       closeModal()
@@ -45,30 +44,42 @@ const CertificateItem: React.FC<CertificateProps> = ({
   const { openModal, closeModal } = useModal()
 
   const [isModify, setIsModify] = useState<boolean>(false)
-  const [isRole, setIsRole] = useState<boolean>(false)
 
-  const onModify = () => {
-    const payload: CertificateRequest = {
-      name: modifyText,
-      acquisitionDate: `${certificateDate.getFullYear()}-${(
-        certificateDate.getMonth() + 1
+  const addCertificate = () => {
+    const isTextModified =
+      modifyText.trim() !== '' &&
+      modifyDateText.trim() !== '' &&
+      name !== modifyText
+    const isDateModified =
+      acquisitionDate
+        .split('')
+        .map((v) => (v === '-' ? '.' : v))
+        .join('') !== modifyDateText
+
+      const payload: CertificateRequest = {
+        name: modifyText,
+        acquisitionDate: `${certificateDate.getFullYear()}-${(
+          certificateDate.getMonth() + 1
+        )
+          .toString()
+          .padStart(2, '0')}-${certificateDate
+          .getDate()
+          .toString()
+          .padStart(2, '0')}`,
+      }
+
+    if (isTextModified || isDateModified) {
+      openModal(
+        <AppropriationModal
+          isApprove={true}
+          question='자격증 정보를 수정하시겠습니까?'
+          title={modifyText || ''}
+          purpose='수정하기'
+          onAppropriation={(callbacks) => mutate(payload, callbacks)}
+        />
       )
-        .toString()
-        .padStart(2, '0')}-${certificateDate
-        .getDate()
-        .toString()
-        .padStart(2, '0')}`,
     }
-    mutate(payload)
   }
-
-  useEffect(() => {
-    setIsRole(
-      tokenManager.authority
-        ? roleArray.includes(tokenManager.authority)
-        : false
-    )
-  }, [])
 
   return (
     <>
@@ -99,31 +110,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
             </S.SelectDateContainer>
             <S.ShowDateText>{modifyDateText}</S.ShowDateText>
           </S.AddCertificateDateBox>
-          <S.AddCertificateIcon
-            onClick={() =>
-              (modifyText.trim() !== '' &&
-                modifyDateText.trim() !== '' &&
-                name !== modifyText) ||
-              acquisitionDate
-                .split('')
-                .map((v) => (v === '-' ? '.' : v))
-                .join('') !== modifyDateText
-                ? openModal(
-                    <AppropriationModal
-                      isApprove={true}
-                      question='자격증 정보를 수정하시겠습니까?'
-                      title={modifyText || ''}
-                      purpose='수정하기'
-                      onAppropriation={onModify}
-                    />
-                  )
-                : name === modifyText &&
-                  acquisitionDate
-                    .split('')
-                    .map((v) => (v === '-' ? '.' : v))
-                    .join('') === modifyDateText
-            }
-          >
+          <S.AddCertificateIcon onClick={addCertificate}>
             <AddCertificate
               color={
                 (modifyText.trim() !== '' &&
@@ -149,7 +136,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
               .map((v) => (v === '-' ? '.' : v))
               .join('')}
           </span>
-          {isRole && (
+          {roleArray.includes(authority) && (
             <S.ModifyText onClick={() => setIsModify(true)}>
               수정하기
             </S.ModifyText>

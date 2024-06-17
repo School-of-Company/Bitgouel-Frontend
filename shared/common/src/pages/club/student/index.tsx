@@ -11,16 +11,17 @@ import {
 import {
   AddCertificate,
   AppropriationModal,
+  AuthorityContext,
   Bg2,
   CalendarIcon,
   CertificateItem,
+  CompleteLectureItem,
+  MainStyle,
   PersonOut,
   PlusCertificate,
   SelectCalendarModal,
   theme,
   useModal,
-  CompleteLectureItem,
-  MainStyle,
 } from '@bitgouel/common'
 import {
   CertificateRequest,
@@ -28,7 +29,7 @@ import {
   StudentIdProps,
 } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useContext, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
 
@@ -50,17 +51,27 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
   const [certificateDate, setCertificateDate] = useState<Date>(new Date())
   const [certificateDateText, setCertificateDateText] = useState<string>('')
   const [certificateIndex, setCertificateIndex] = useState<number>(-1)
-  const [isRole, setIsRole] = useState<boolean>(false)
-  const [isStudent, setIsStudent] = useState<boolean>(false)
   const { openModal, closeModal } = useModal()
+  const authority = useContext(AuthorityContext)
+
   const { data: clubStudent } = useGetStudentDetail(clubId, studentId)
-  const { data: certificateList, refetch } = tokenManager.authority === 'ROLE_STUDENT'
-    ? useGetCertificateList()
-    : useGetCertificateListTeacher(studentId)
+  const { data: certificateList, refetch } =
+    authority === 'ROLE_STUDENT'
+      ? useGetCertificateList()
+      : useGetCertificateListTeacher(studentId)
 
   const { data: completeLectureList } = useGetCompleteLecture(studentId)
 
-  const onCreate = () => {
+  const { mutate } = usePostCertificate({
+    onSuccess: () => {
+      refetch()
+      closeModal()
+      setIsAddCertificate(false)
+      toast.success('자격증을 추가하였습니다')
+    },
+  })
+
+  const onAddCertificate = () => {
     const payload: CertificateRequest = {
       name: certificateText,
       acquisitionDate: `${certificateDate.getFullYear()}-${(
@@ -72,38 +83,32 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
         .toString()
         .padStart(2, '0')}`,
     }
-    mutate(payload)
+
+    if (certificateText.trim() !== '' && certificateDateText.trim() !== '')
+      return openModal(
+        <AppropriationModal
+          isApprove={true}
+          question='자격증 정보를 추가하시겠습니까?'
+          title={certificateText}
+          purpose='추가하기'
+          onAppropriation={(callbacks) => mutate(payload, callbacks)}
+        />
+      )
+    toast.info('자격증 정보를 입력해주세요')
   }
-
-  const { mutate } = usePostCertificate({
-    onSuccess: () => {
-      refetch()
-      closeModal()
-      setIsAddCertificate(false)
-      toast.success('자격증을 추가하였습니다.')
-    },
-  })
-  useEffect(() => {
-    setIsRole(
-      tokenManager.authority
-        ? roleArray.includes(tokenManager.authority)
-        : false
-    )
-    setIsStudent(tokenManager.authority ? tokenManager.authority === 'ROLE_STUDENT' : false)
-  }, [])
-
-  console.log(isStudent)
 
   return (
     <MainStyle.PageWrapper>
       <MainStyle.SlideBg url={Bg2}>
         <MainStyle.BgContainer>
           <MainStyle.PageTitle>학생 정보</MainStyle.PageTitle>
-          {isRole && (
+          {roleArray.includes(authority) && (
             <MainStyle.ButtonContainer>
               <MainStyle.SlideButton
                 onClick={() =>
-                  push(`/main/club/detail/${clubId}/student/detail/${studentId}/activity`)
+                  push(
+                    `/main/club/detail/${clubId}/student/detail/${studentId}/activity`
+                  )
                 }
               >
                 <PersonOut />
@@ -131,7 +136,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
             <span>
               자격증{' '}
               <div onClick={() => setIsAddCertificate((prev) => !prev)}>
-                {isStudent && <PlusCertificate />}
+                {authority === 'ROLE_STUDENT' && <PlusCertificate />}
               </div>
             </span>
             <S.CertificateListBox>
@@ -165,22 +170,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
                     </S.SelectDateContainer>
                     <S.ShowDateText>{certificateDateText}</S.ShowDateText>
                   </S.AddCertificateDateBox>
-                  <S.AddCertificateIcon
-                    onClick={() =>
-                      certificateText.trim() !== '' &&
-                      certificateDateText.trim() !== ''
-                        ? openModal(
-                            <AppropriationModal
-                              isApprove={true}
-                              question='자격증 정보를 추가하시겠습니까?'
-                              title={certificateText}
-                              purpose='추가하기'
-                              onAppropriation={onCreate}
-                            />
-                          )
-                        : toast.info('자격증 정보를 입력해주세요')
-                    }
-                  >
+                  <S.AddCertificateIcon onClick={onAddCertificate}>
                     <AddCertificate
                       color={
                         certificateText.trim() !== '' &&
@@ -209,7 +199,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
               ))}
             </S.CertificateListBox>
           </S.CertificateBox>
-          {isRole && (
+          {roleArray.includes(authority) && (
             <S.LectureListBox>
               <b>신청한 강의 목록</b>
               <S.LectureList>

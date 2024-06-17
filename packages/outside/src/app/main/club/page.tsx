@@ -1,4 +1,4 @@
-import { ClubPage } from '@/PageContainer'
+import { ClubPage } from '@outside/PageContainer'
 
 const Club = () => {
   return <ClubPage />

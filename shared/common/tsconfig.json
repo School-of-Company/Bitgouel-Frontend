@@ -1,5 +1,11 @@
 {
   "extends": "@bitgouel/tsconfig/react.json",
-  "include": ["**/*.ts", "**/*.tsx", "src", "src/custom.d.ts"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "src",
+    "src/custom.d.ts",
+    "../../packages/inside/public"
+  ],
   "exclude": ["node_modules"]
 }

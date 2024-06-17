@@ -1,27 +1,24 @@
 'use client'
 
-import {
-  TokenManager,
-  useGetDetailLecture,
-  usePostEnrollment,
-} from '@bitgouel/api'
+import { useGetDetailLecture, usePostEnrollment } from '@bitgouel/api'
 import {
   AppropriationModal,
+  AuthorityContext,
   Bg3,
+  MainStyle,
   People,
   useModal,
-  MainStyle,
 } from '@bitgouel/common'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
+import { useContext } from 'react'
 import * as S from './style'
-import { useEffect, useState } from 'react'
 
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
-  const tokenManager = new TokenManager()
+  const authority = useContext(AuthorityContext)
   const isAble = () => {
-    if (tokenManager.authority === 'ROLE_STUDENT') {
+    if (authority === 'ROLE_STUDENT') {
       if (!data?.isRegistered || data?.lectureStatus === 'OPEN') return true
       else return false
     } else return false
@@ -29,18 +26,26 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { openModal } = useModal()
   const { mutate } = usePostEnrollment(lectureId)
   const { push } = useRouter()
-  const [isStudent, setIsStudent] = useState<boolean>(false)
 
-  useEffect(() => {
-    setIsStudent(tokenManager.authority === 'ROLE_STUDENT')
-  }, [])
+  const onEnrollment = () => {
+    if (!isAble) return
+    openModal(
+      <AppropriationModal
+        isApprove={true}
+        question='수강 신청하시겠습니까?'
+        title={data?.name || ''}
+        purpose='신청하기'
+        onAppropriation={(callbacks) => mutate(undefined, callbacks)}
+      />
+    )
+  }
 
   return (
     <MainStyle.PageWrapper>
       <MainStyle.SlideBg url={Bg3}>
         <MainStyle.BgContainer>
           <MainStyle.PageTitle>강의 상세</MainStyle.PageTitle>
-          {!isStudent && (
+          {authority !== 'ROLE_STUDENT' && (
             <MainStyle.ButtonContainer>
               <MainStyle.SlideButton
                 onClick={() => push(`/main/lecture/detail/${lectureId}/apply`)}
@@ -102,21 +107,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
           </S.LectureSection>
           <S.WhiteBox></S.WhiteBox>
           <S.ApplyButtonWrapper>
-            <S.ApplyButton
-              isAble={isAble()}
-              onClick={() =>
-                isAble() &&
-                openModal(
-                  <AppropriationModal
-                    isApprove={true}
-                    question='수강 신청하시겠습니까?'
-                    title={data?.name || ''}
-                    purpose='신청하기'
-                    onAppropriation={() => mutate()}
-                  />
-                )
-              }
-            >
+            <S.ApplyButton isAble={isAble()} onClick={onEnrollment}>
               수강 신청하기
             </S.ApplyButton>
           </S.ApplyButtonWrapper>

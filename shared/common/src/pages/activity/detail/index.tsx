@@ -1,23 +1,20 @@
 'use client'
 
-import {
-  TokenManager,
-  useDeleteInformationRemove,
-  useGetActivityDetail,
-} from '@bitgouel/api'
+import { useDeleteInformationRemove, useGetActivityDetail } from '@bitgouel/api'
 import {
   AppropriationModal,
+  AuthorityContext,
   Bg2,
+  MainStyle,
   Pen,
   PrivateRouter,
   TrashCan,
   useModal,
-  MainStyle,
 } from '@bitgouel/common'
 import { ActivityDetailProps } from '@bitgouel/types'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
 
@@ -27,15 +24,27 @@ const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
 }) => {
   const { push } = useRouter()
   const { openModal, closeModal } = useModal()
-  const tokenManager = new TokenManager()
   const { studentId, clubId } = studentIdProps || {}
   const { data } = useGetActivityDetail(activityId || '')
-  const { mutate } = useDeleteInformationRemove(activityId || '')
-  const [isStudent, setIsStudent] = useState<boolean>(false)
+  const authority = useContext(AuthorityContext)
+  const { mutate } = useDeleteInformationRemove(activityId || '', {
+    onSuccess: () => {
+      closeModal()
+      push(`/main/club/detail/${clubId}/student/detail/${studentId}/activity`)
+      toast.success('삭제되었습니다')
+    },
+  })
 
-  useEffect(() => {
-    setIsStudent(tokenManager.authority === 'ROLE_STUDENT')
-  }, [])
+  const onDeleteActivity = () =>
+    openModal(
+      <AppropriationModal
+        isApprove={true}
+        title={data?.title || ''}
+        question='활동을 삭제하시겠습니까?'
+        purpose='삭제하기'
+        onAppropriation={(callbacks) => mutate(undefined, callbacks)}
+      />
+    )
 
   return (
     <PrivateRouter>
@@ -43,7 +52,7 @@ const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
         <MainStyle.SlideBg url={Bg2}>
           <MainStyle.BgContainer>
             <MainStyle.PageTitle>게시글</MainStyle.PageTitle>
-            {isStudent && (
+            {authority === 'ROLE_STUDENT' && (
               <MainStyle.ButtonContainer>
                 <MainStyle.SlideButton
                   onClick={() =>
@@ -55,26 +64,7 @@ const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
                   <Pen />
                   <span>활동 수정</span>
                 </MainStyle.SlideButton>
-                <MainStyle.SlideButton
-                  onClick={() =>
-                    openModal(
-                      <AppropriationModal
-                        isApprove={true}
-                        title={data?.title || ''}
-                        question='활동을 삭제하시겠습니까?'
-                        purpose='삭제하기'
-                        onAppropriation={() => {
-                          mutate()
-                          closeModal()
-                          push(
-                            `/main/club/detail/${clubId}/student/detail/${studentId}/activity`
-                          )
-                          toast.success('삭제되었습니다.')
-                        }}
-                      />
-                    )
-                  }
-                >
+                <MainStyle.SlideButton onClick={onDeleteActivity}>
                   <TrashCan />
                   <span>활동 삭제</span>
                 </MainStyle.SlideButton>
