@@ -22,8 +22,8 @@ const SearchLectureType = () => {
   const [type, setType] = useState<string>('')
   const [lectureTypeList, setLectureTypeList] = useState<string[]>(LectureTypes)
 
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault()
+  const onSubmit = (e?: FormEvent) => {
+    if (e) e.preventDefault()
     const searchTypes: string[] = []
     LectureTypes.forEach((lectureTypeItem) => {
       if (lectureTypeItem.includes(type)) searchTypes.push(lectureTypeItem)

@@ -26,8 +26,8 @@ const SearchLine = () => {
     division: lectureDivision,
   })
 
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault()
+  const onSubmit = (e?: FormEvent) => {
+    if(e) e.preventDefault()
     refetch()
   }
 

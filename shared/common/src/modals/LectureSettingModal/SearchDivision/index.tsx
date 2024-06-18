@@ -16,7 +16,7 @@ const SearchDivision = () => {
   const { data, refetch } = useGetDivisions(division)
 
   const onSubmit = (e?: FormEvent) => {
-    e.preventDefault()
+    if (e) e.preventDefault()
     refetch()
   }
 

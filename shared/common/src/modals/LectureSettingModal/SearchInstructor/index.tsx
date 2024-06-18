@@ -24,8 +24,8 @@ const SearchInstructor = () => {
   const [instructor, setInstructor] = useState<string>('')
   const [showInstructor, setShowInstructor] = useRecoilState(ShowInstructor)
   const { data, refetch } = useGetInstructors(instructor)
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault()
+  const onSubmit = (e?: FormEvent) => {
+    if (e) e.preventDefault()
     refetch()
   }
 

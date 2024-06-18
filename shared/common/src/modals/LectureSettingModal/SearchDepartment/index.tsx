@@ -12,8 +12,8 @@ const SearchDepartment = () => {
   const [department, setDepartment] = useState<string>('')
   const { data, refetch } = useGetDepartments(department)
 
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault()
+  const onSubmit = (e?: FormEvent) => {
+    if(e) e.preventDefault()
     refetch()
   }
 
