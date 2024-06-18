@@ -51,7 +51,7 @@ const LectureSettingModal = () => {
           <SearchDivision />
         </S.SettingContainer>
         <S.SettingContainer>
-          <span>강의 계열</span>
+          <span>핵심분야</span>
           <SearchLine />
         </S.SettingContainer>
         <S.SettingContainer>
@@ -59,7 +59,7 @@ const LectureSettingModal = () => {
           <SearchDepartment />
         </S.SettingContainer>
         <S.SettingContainer>
-          <span>담당 교수</span>
+          <span>담당 교육자</span>
           <SearchInstructor />
         </S.SettingContainer>
         <S.SettingContainer>
