@@ -1,10 +1,15 @@
 'use client'
 
 import { useGetInstructors } from '@bitgouel/api'
-import { InputCancel, LectureInstructor, SearchIcon, ShowInstructor } from '@bitgouel/common'
+import {
+  InputCancel,
+  LectureInstructor,
+  SearchIcon,
+  ShowInstructor,
+} from '@bitgouel/common'
 import { InstructorsItemType } from '@bitgouel/types'
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { useRecoilState } from 'recoil'
+import { atom, useRecoilState } from 'recoil'
 import {
   SearchInput,
   SearchInputBox,
@@ -60,15 +65,19 @@ const SearchInstructor = () => {
       </SearchInputBox>
       {lectureInstructor.length <= 0 && (
         <SearchListContainer>
-          {data?.instructors.map((instructorItem) => (
-            <SearchItem
-              key={instructorItem.id}
-              onClick={() => onSelectInstructor(instructorItem)}
-            >
-              <span>{instructorItem.name}</span>
-              <small>{instructorItem.organization}</small>
-            </SearchItem>
-          ))}
+          {data?.instructors && data.instructors.length <= 0 ? (
+            <div>일치하는 교육자가 없습니다.</div>
+          ) : (
+            data?.instructors.map((instructorItem) => (
+              <SearchItem
+                key={instructorItem.id}
+                onClick={() => onSelectInstructor(instructorItem)}
+              >
+                <span>{instructorItem.name}</span>
+                <small>{instructorItem.organization}</small>
+              </SearchItem>
+            ))
+          )}
         </SearchListContainer>
       )}
     </SearchWrapper>
@@ -76,4 +85,3 @@ const SearchInstructor = () => {
 }
 
 export default SearchInstructor
-
