@@ -40,18 +40,19 @@ const LectureSettingModal = () => {
             <LectureSemesterSelect />
           </S.SettingContainer>
         )}
-        {lectureType === '상호학점인정교육과정' && (
-          <S.SettingContainer>
-            <span>학점</span>
-            <LectureCreditSelect />
-          </S.SettingContainer>
-        )}
+        {lectureType === '상호학점인정교육과정' ||
+          (lectureType === '대학탐방프로그램' && (
+            <S.SettingContainer>
+              <span>학점</span>
+              <LectureCreditSelect />
+            </S.SettingContainer>
+          ))}
         <S.SettingContainer>
           <span>강의 구분</span>
           <SearchDivision />
         </S.SettingContainer>
         <S.SettingContainer>
-          <span>강의 계열</span>
+          <span>핵심분야</span>
           <SearchLine />
         </S.SettingContainer>
         <S.SettingContainer>
@@ -59,7 +60,7 @@ const LectureSettingModal = () => {
           <SearchDepartment />
         </S.SettingContainer>
         <S.SettingContainer>
-          <span>담당 교수</span>
+          <span>담당 교육자</span>
           <SearchInstructor />
         </S.SettingContainer>
         <S.SettingContainer>

@@ -15,7 +15,7 @@ import {
   SearchItem,
   SearchListContainer,
   SearchWrapper,
-} from '../style'
+} from '../LectureSearchComponent/style'
 
 const SearchLine = () => {
   const [lectureLine, setLectureLine] = useRecoilState(LectureLine)
@@ -26,8 +26,8 @@ const SearchLine = () => {
     division: lectureDivision,
   })
 
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault()
+  const onSubmit = (e?: FormEvent) => {
+    if(e) e.preventDefault()
     refetch()
   }
 

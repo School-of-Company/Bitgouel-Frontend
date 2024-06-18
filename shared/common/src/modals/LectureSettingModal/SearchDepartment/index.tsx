@@ -1,17 +1,10 @@
 'use client'
 
 import { useGetDepartments } from '@bitgouel/api'
-import { InputCancel, LectureDepartment, SearchIcon } from '@bitgouel/common'
-import { DepartmentsResponseTypes } from '@bitgouel/types'
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { LectureDepartment } from '@bitgouel/common'
+import { FormEvent, useState } from 'react'
 import { useRecoilState } from 'recoil'
-import {
-  SearchInput,
-  SearchInputBox,
-  SearchItem,
-  SearchListContainer,
-  SearchWrapper,
-} from '../style'
+import LectureSearchComponent from '../LectureSearchComponent'
 
 const SearchDepartment = () => {
   const [lectureDepartment, setLectureDepartment] =
@@ -19,8 +12,8 @@ const SearchDepartment = () => {
   const [department, setDepartment] = useState<string>('')
   const { data, refetch } = useGetDepartments(department)
 
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault()
+  const onSubmit = (e?: FormEvent) => {
+    if(e) e.preventDefault()
     refetch()
   }
 
@@ -35,45 +28,24 @@ const SearchDepartment = () => {
   }
 
   return (
-    <SearchWrapper>
-      <SearchInputBox
+    <LectureSearchComponent>
+      <LectureSearchComponent.SearchInputBox
+        inputValue={department}
+        setInputValue={setDepartment}
+        recoilValue={lectureDepartment}
         onSubmit={onSubmit}
-        isSelected={!!lectureDepartment.length}
-      >
-        <SearchInput
-          type='text'
-          value={lectureDepartment.length ? lectureDepartment : department}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setDepartment(e.target.value)
-          }
-          placeholder='학과 검색'
-          disabled={!!lectureDepartment.length}
-        />
-        {lectureDepartment.length ? (
-          <InputCancel onClick={onDeleteDepartment} />
-        ) : (
-          <SearchIcon onClick={() => refetch()} />
-        )}
-      </SearchInputBox>
-      {data?.departments && lectureDepartment.length <= 0 && (
-        <SearchListContainer>
-          {data.departments.map((departmentItem) => (
-            <SearchItem
-              key={departmentItem}
-              onClick={() => onSelectDepartment(departmentItem)}
-            >
-              <span>{departmentItem}</span>
-            </SearchItem>
-          ))}
-          {data.departments.length <= 0 && (
-            <SearchItem onClick={() => onSelectDepartment(department)}>
-              <span>{department}</span>
-              <small>새 학과 추가하기...</small>
-            </SearchItem>
-          )}
-        </SearchListContainer>
+        onDeleteInputValue={onDeleteDepartment}
+        inputPlaceholder='학과'
+      />
+      {lectureDepartment.length <= 0 && (
+      <LectureSearchComponent.SearchItemList
+        searchList={data?.departments || []}
+        inputValue={department}
+        onSelectInputValue={onSelectDepartment}
+        addText='학과'
+      />
       )}
-    </SearchWrapper>
+    </LectureSearchComponent>
   )
 }
 

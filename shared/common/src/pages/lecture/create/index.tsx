@@ -23,11 +23,12 @@ import {
   PrivateRouter,
   useModal,
   MainStyle,
+  ShowInstructor,
 } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState } from 'react'
 import { toast } from 'react-toastify'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 import * as S from './style'
 import { LectureCreatePayloadTypes, LectureDate } from '@bitgouel/types'
 import dayjs from 'dayjs'
@@ -57,6 +58,7 @@ const LectureCreatePage = () => {
   const [lectureCredit, setLectureCredit] = useRecoilState(LectureCredit)
   const [lectureMaxRegisteredUser, setLectureMaxRegisteredUser] =
     useRecoilState(LectureMaxRegistered)
+  const setShowInstructor = useSetRecoilState(ShowInstructor)
   const { openModal, closeModal } = useModal()
   const { push } = useRouter()
 
@@ -78,6 +80,7 @@ const LectureCreatePage = () => {
     setLectureType('')
     setLectureCredit(1)
     setLectureMaxRegisteredUser('')
+    setShowInstructor('')
   }
 
   const { mutate } = usePostLecture({
@@ -113,7 +116,7 @@ const LectureCreatePage = () => {
     )
     
     const formatLectureStateDate = dayjs(lectureStartDate)
-    const formatLectureEndDate = dayjs(lectureStartDate)
+    const formatLectureEndDate = dayjs(lectureEndDate)
     
     const payload: LectureCreatePayloadTypes = {
       name: lectureTitle,
