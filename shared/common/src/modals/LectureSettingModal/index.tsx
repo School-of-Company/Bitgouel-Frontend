@@ -40,12 +40,13 @@ const LectureSettingModal = () => {
             <LectureSemesterSelect />
           </S.SettingContainer>
         )}
-        {lectureType === '상호학점인정교육과정' && (
-          <S.SettingContainer>
-            <span>학점</span>
-            <LectureCreditSelect />
-          </S.SettingContainer>
-        )}
+        {lectureType === '상호학점인정교육과정' ||
+          (lectureType === '대학탐방프로그램' && (
+            <S.SettingContainer>
+              <span>학점</span>
+              <LectureCreditSelect />
+            </S.SettingContainer>
+          ))}
         <S.SettingContainer>
           <span>강의 구분</span>
           <SearchDivision />
