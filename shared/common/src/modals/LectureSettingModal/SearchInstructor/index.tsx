@@ -3,15 +3,15 @@
 import { useGetInstructors } from '@bitgouel/api'
 import { InputCancel, LectureInstructor, SearchIcon } from '@bitgouel/common'
 import { InstructorsItemType } from '@bitgouel/types'
-import { ChangeEvent, FormEvent, useState, useEffect } from 'react'
-import { useRecoilState, atom } from 'recoil'
+import { ChangeEvent, FormEvent, useState } from 'react'
+import { atom, useRecoilState } from 'recoil'
 import {
   SearchInput,
   SearchInputBox,
   SearchItem,
   SearchListContainer,
   SearchWrapper,
-} from '../style'
+} from '../LectureSearchComponent/style'
 
 const ShowInstructor = atom<string>({
   key: 'ShowInstructor',
@@ -63,9 +63,9 @@ const SearchInstructor = () => {
           <SearchIcon onClick={() => refetch()} />
         )}
       </SearchInputBox>
-      {data?.instructors && lectureInstructor.length <= 0 && (
+      {lectureInstructor.length <= 0 && (
         <SearchListContainer>
-          {data.instructors.map((instructorItem) => (
+          {data?.instructors.map((instructorItem) => (
             <SearchItem
               key={instructorItem.id}
               onClick={() => onSelectInstructor(instructorItem)}
@@ -81,3 +81,4 @@ const SearchInstructor = () => {
 }
 
 export default SearchInstructor
+

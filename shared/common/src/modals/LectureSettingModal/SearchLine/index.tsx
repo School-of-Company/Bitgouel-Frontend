@@ -15,7 +15,7 @@ import {
   SearchItem,
   SearchListContainer,
   SearchWrapper,
-} from '../style'
+} from '../LectureSearchComponent/style'
 
 const SearchLine = () => {
   const [lectureLine, setLectureLine] = useRecoilState(LectureLine)

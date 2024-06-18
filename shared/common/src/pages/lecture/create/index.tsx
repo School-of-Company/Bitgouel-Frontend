@@ -113,7 +113,7 @@ const LectureCreatePage = () => {
     )
     
     const formatLectureStateDate = dayjs(lectureStartDate)
-    const formatLectureEndDate = dayjs(lectureStartDate)
+    const formatLectureEndDate = dayjs(lectureEndDate)
     
     const payload: LectureCreatePayloadTypes = {
       name: lectureTitle,

@@ -2,10 +2,10 @@ import { InputCancel, LectureDates } from '@bitgouel/common'
 import { ChangeEvent } from 'react'
 import { useRecoilState } from 'recoil'
 import { DateBox } from '../LectureApplyTime/style'
-import { SearchInput } from '../style'
+import { SearchInput } from '../LectureSearchComponent/style'
 import * as S from './style'
 
-const MaxDateLength: number = 10 as const
+const MaxDateLength: number = 8 as const
 const MaxTimeLength: number = 5 as const
 type timeTypes = 'start' | 'end'
 

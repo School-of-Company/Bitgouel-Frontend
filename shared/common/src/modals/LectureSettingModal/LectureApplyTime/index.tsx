@@ -6,7 +6,7 @@ import {
 } from '@bitgouel/common'
 import { ChangeEvent } from 'react'
 import { useRecoilState } from 'recoil'
-import { SearchInput } from '../style'
+import { SearchInput } from '../LectureSearchComponent/style'
 import * as S from './style'
 
 const MaxDateLength: number = 8 as const
@@ -49,7 +49,7 @@ const LectureApplyTime = () => {
         <S.DateBox>
           <SearchInput
             value={lectureEndDate}
-            placeholder='신청 시작일 입력 (ex: 20240615)'
+            placeholder='신청 마감일 입력 (ex: 20240615)'
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setLectureEndDate(e.target.value)
             }
