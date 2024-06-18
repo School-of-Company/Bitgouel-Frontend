@@ -52,12 +52,12 @@ const SearchLectureType = () => {
         inputPlaceholder='유형'
       />
       {lectureType.length <= 0 && (
-      <LectureSearchComponent.SearchItemList
-        searchList={lectureTypeList || []}
-        inputValue={type}
-        onSelectInputValue={onSelectLectureType}
-        addText='유형'
-      />
+        <LectureSearchComponent.SearchItemList
+          searchList={lectureTypeList || []}
+          inputValue={type}
+          onSelectInputValue={onSelectLectureType}
+          addText='유형'
+        />
       )}
     </LectureSearchComponent>
   )

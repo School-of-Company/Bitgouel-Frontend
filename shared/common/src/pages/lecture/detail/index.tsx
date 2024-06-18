@@ -74,7 +74,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
           <S.LectureSection>
             <span>수강 신청 기간</span>
             <div>
-              • {dayjs(data?.startDate).format('YYYY년 MM월 DD일 HH시 mm분')}{' '}
+              • {dayjs(data?.startDate).format('YYYY년 MM월 DD일 HH시 mm분')}
               &nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp;
               {dayjs(data?.endDate).format('YYYY년 MM월 DD일 HH시 mm분')}
             </div>
