@@ -41,6 +41,7 @@ const SearchDepartment = () => {
         searchList={data?.departments || []}
         inputValue={department}
         onSelectInputValue={onSelectDepartment}
+        addText='학과'
       />
       )}
     </LectureSearchComponent>
