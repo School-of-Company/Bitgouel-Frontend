@@ -40,6 +40,13 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
     )
   }
 
+  const formatStartDate = dayjs(data?.startDate).format(
+    'YYYY년 MM월 DD일 HH시 mm분'
+  )
+  const formatEndDate = dayjs(data?.endDate).format(
+    'YYYY년 MM월 DD일 HH시 mm분'
+  )
+
   return (
     <MainStyle.PageWrapper>
       <MainStyle.SlideBg url={Bg3}>
@@ -73,21 +80,10 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
           <S.MainText>{data?.content}</S.MainText>
           <S.LectureSection>
             <span>수강 신청 기간</span>
-            {data?.lectureDates.map((date, idx) => (
-              <div key={idx}>
-                • {dayjs(date.completeDate).format('YYYY년 MM월 DD일')}{' '}
-                {dayjs(`${date.completeDate}T${date.startTime}`).format(
-                  'HH시 mm분'
-                )}
-                &nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp;
-                {dayjs(`${date.completeDate}T${date.endTime}`).format(
-                  'HH시 mm분'
-                )}
-              </div>
-            ))}
+            <div>{`• ${formatStartDate}    ~    ${formatEndDate}`}</div>
           </S.LectureSection>
           <S.LectureSection>
-            <span>수강 수강 날짜</span>
+            <span>강의 수강 날짜</span>
             {data?.lectureDates.map((date, idx) => (
               <div key={idx}>
                 • {dayjs(date.completeDate).format('YYYY년 MM월 DD일')}{' '}
