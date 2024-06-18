@@ -55,7 +55,6 @@ const SearchItemList = ({
   inputValue,
   onSelectInputValue,
   addText,
-  recoilValue
 }: SearchItemListProps) => {
   return (
     <S.SearchListContainer>
