@@ -1,10 +1,10 @@
 'use client'
 
 import { useGetInstructors } from '@bitgouel/api'
-import { InputCancel, LectureInstructor, SearchIcon } from '@bitgouel/common'
+import { InputCancel, LectureInstructor, SearchIcon, ShowInstructor } from '@bitgouel/common'
 import { InstructorsItemType } from '@bitgouel/types'
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { atom, useRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import {
   SearchInput,
   SearchInputBox,
@@ -12,11 +12,6 @@ import {
   SearchListContainer,
   SearchWrapper,
 } from '../LectureSearchComponent/style'
-
-const ShowInstructor = atom<string>({
-  key: 'ShowInstructor',
-  default: '',
-})
 
 const SearchInstructor = () => {
   const [lectureInstructor, setLectureInstructor] =
