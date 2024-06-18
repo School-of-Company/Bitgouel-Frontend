@@ -19,8 +19,8 @@ import { ChangeEvent, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
 
-const MAINMAXLENGTH: number = 1000 as const
-const TITLEMAXLENGTH: number = 100 as const
+const MAIN_MAX_LENGTH: number = 1000 as const
+const TITLE_MAX_LENGTH: number = 100 as const
 
 const PostWritePage = ({ postId }: { postId?: string }) => {
   const { openModal, closeModal } = useModal()
@@ -138,7 +138,7 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
             <S.InputTitle
               type='text'
               value={postTitle}
-              maxLength={TITLEMAXLENGTH}
+              maxLength={TITLE_MAX_LENGTH}
               placeholder='게시글 제목 (100자 이내)'
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setPostTitle(e.target.value)
@@ -146,7 +146,7 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
             />
             <S.InputMainText
               value={postContent}
-              maxLength={MAINMAXLENGTH}
+              maxLength={MAIN_MAX_LENGTH}
               placeholder='본문 입력 (1000자 이내)'
               onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
                 setPostContent(e.target.value)
