@@ -6,10 +6,35 @@ import RecoilRootProvider from './recoilRootProvider'
 
 export const metadata: Metadata = {
   title: '빛고을직업교육혁신지구',
-  description:
-    '광주의 16개 특성화고등학교의 취업동아리의 취업 활동을 지원하는 서비스입니다.',
   icons: {
     icon: '/favicon.ico',
+  },
+  description:
+    '광주의 16개 특성화고등학교의 취업동아리의 취업 활동을 지원하는 서비스입니다.',
+  openGraph: {
+    type: 'website',
+    url: 'https://빛고을직업교육혁신지구.com/',
+    title: '빛고을직업교육혁신지구',
+    description:
+      '광주의 16개 특성화고등학교의 취업동아리의 취업 활동을 지원하는 서비스입니다.',
+    siteName: '빛고을직업교육혁신지구',
+    images: {
+      url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8id9APyQsslHrq-tqJR5hl-8mwUPvi4XHRA&s',
+    },
+  },
+  verification: {
+    google: '빛고을직업교육혁신지구',
+    other: {
+      'naver-site-verification': '빛고을직업교육혁신지구',
+    },
+  },
+  twitter: {
+    title: '빛고을직업교육혁신지구',
+    description:
+      '광주의 16개 특성화고등학교의 취업동아리의 취업 활동을 지원하는 서비스입니다.',
+    images: {
+      url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8id9APyQsslHrq-tqJR5hl-8mwUPvi4XHRA&s',
+    },
   },
 }
 
