@@ -35,6 +35,7 @@ const SearchDepartment = () => {
         recoilValue={lectureDepartment}
         onSubmit={onSubmit}
         onDeleteInputValue={onDeleteDepartment}
+        inputPlaceholder='학과'
       />
       {lectureDepartment.length <= 0 && (
       <LectureSearchComponent.SearchItemList

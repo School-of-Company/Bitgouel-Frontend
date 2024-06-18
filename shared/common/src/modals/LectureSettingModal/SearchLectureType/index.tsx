@@ -49,6 +49,7 @@ const SearchLectureType = () => {
         recoilValue={lectureType}
         onSubmit={onSubmit}
         onDeleteInputValue={onDeleteLectureType}
+        inputPlaceholder='유형'
       />
       {lectureType.length <= 0 && (
       <LectureSearchComponent.SearchItemList

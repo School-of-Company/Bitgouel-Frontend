@@ -13,6 +13,7 @@ interface SearchInputBoxProps {
   recoilValue: string
   onSubmit: (e?: FormEvent) => void
   onDeleteInputValue: () => void
+  inputPlaceholder: '유형' | '학과' | '핵심분야'
 }
 
 const SearchInputBox = ({
@@ -21,6 +22,7 @@ const SearchInputBox = ({
   recoilValue,
   onSubmit,
   onDeleteInputValue,
+  inputPlaceholder,
 }: SearchInputBoxProps) => {
   
   return (
@@ -31,7 +33,7 @@ const SearchInputBox = ({
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
           setInputValue(e.target.value)
         }
-        placeholder='유형 검색 또는 임의로 추가...'
+        placeholder={`${inputPlaceholder} 검색 또는 임의로 추가...`}
         disabled={!!recoilValue.length}
       />
       {recoilValue.length ? (
