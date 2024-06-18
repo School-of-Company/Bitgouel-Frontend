@@ -74,7 +74,7 @@ const useSignUp = ({ isNext }: { isNext: boolean }) => {
             },
             {
               value: '',
-              placeholder: '학번 입력 (ex:1101)',
+              placeholder: '학번 입력 (ex:30415)',
               type: 'number',
               maxLength: 5,
             },
