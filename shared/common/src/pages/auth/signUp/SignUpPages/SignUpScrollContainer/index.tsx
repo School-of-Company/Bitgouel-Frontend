@@ -39,14 +39,8 @@ const SignUpScrollContainer = ({
     <S.SignUpScrollContainer
       idx={idx}
       placeholder={placeholder}
-      style={{
-        display:
-          (placeholder === '동아리 이름 선택' &&
-            obj[0].value === '서진여자고') ||
-          obj[0].value === '전남여자상업고'
-            ? 'none'
-            : 'flex',
-      }}
+      isNone={placeholder === '동아리 이름 선택' && (obj[0].value === '서진여자고' ||
+          obj[0].value === '전남여자상업고')}
     >
       {placeholder === '소속' &&
         belongs.map((item, idx) => (

@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 export const SignUpScrollContainer = styled.div<{
   idx: number
   placeholder: string
+  isNone: boolean
 }>`
   position: absolute;
   top: ${({ idx, placeholder }) =>
@@ -10,7 +11,9 @@ export const SignUpScrollContainer = styled.div<{
       ? placeholder === '소속'
         ? '36.5%'
         : '43%'
-      : idx === 3 ? '76.5%' : placeholder === '직업'
+      : idx === 3
+      ? '76.5%'
+      : placeholder === '직업'
       ? '47.5%'
       : '54.2%'};
   left: 50%;
@@ -21,7 +24,7 @@ export const SignUpScrollContainer = styled.div<{
   overflow-y: scroll;
   background-color: #ffffff;
   border: 0.0625rem solid ${({ theme }) => theme.color.gray['700']};
-  display: flex;
+  display: ${({ isNone }) => (isNone ? 'none' : 'flex')};
   flex-direction: column;
   align-items: flex-start;
   border-radius: 0.5rem;
