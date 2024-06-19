@@ -17,4 +17,6 @@ export interface LectureItemType {
   headCount: number
   maxRegisteredUser: number
   lecturer: string
+  userId: string
+  essentialComplete: boolean
 }
