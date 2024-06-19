@@ -1,6 +1,6 @@
 'use client'
 
-import { usePostLecture } from '@bitgouel/api'
+import { useGetDetailLecture, usePostLecture } from '@bitgouel/api'
 import {
   AppropriationModal,
   Bg3,
@@ -20,22 +20,23 @@ import {
   LectureStartDate,
   LectureStartTime,
   LectureType,
-  PrivateRouter,
-  useModal,
   MainStyle,
+  PrivateRouter,
   ShowInstructor,
+  useModal,
 } from '@bitgouel/common'
+import { LectureCreatePayloadTypes, LectureDate } from '@bitgouel/types'
+import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import * as S from './style'
-import { LectureCreatePayloadTypes, LectureDate } from '@bitgouel/types'
-import dayjs from 'dayjs'
 
-const MAX_LENGTH: number = 1000 as const
+const TITLE_MAX_LENGTH: number = 1000 as const
+const MAIN_MAX_LENGTH: number = 1000 as const
 
-const LectureCreatePage = () => {
+const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
   const [lectureTitle, setLectureTitle] = useState<string>('')
   const [lectureContent, setLectureContent] = useState<string>('')
   const [lectureEssentialComplete, setLectureEssentialComplete] =
@@ -111,13 +112,13 @@ const LectureCreatePage = () => {
     const filteredDates: LectureDate[] = lectureDates.map(
       ({ startShowTime, endShowTime, ...filtered }) => ({
         ...filtered,
-        completeDate: dayjs(filtered.completeDate).format('YYYY-MM-DD')
+        completeDate: dayjs(filtered.completeDate).format('YYYY-MM-DD'),
       })
     )
-    
+
     const formatLectureStateDate = dayjs(lectureStartDate)
     const formatLectureEndDate = dayjs(lectureEndDate)
-    
+
     const payload: LectureCreatePayloadTypes = {
       name: lectureTitle,
       content: lectureContent,
@@ -126,15 +127,19 @@ const LectureCreatePage = () => {
       department: lectureDepartment,
       line: lectureLine,
       userId: lectureInstructor,
-      startDate: `${formatLectureStateDate.format('YYYY-MM-DD')}T${lectureStartTime}:00`,
-      endDate: `${formatLectureEndDate.format('YYYY-MM-DD')}T${lectureEndTime}:00`,
+      startDate: `${formatLectureStateDate.format(
+        'YYYY-MM-DD'
+      )}T${lectureStartTime}:00`,
+      endDate: `${formatLectureEndDate.format(
+        'YYYY-MM-DD'
+      )}T${lectureEndTime}:00`,
       lectureDates: filteredDates,
       lectureType,
       credit: lectureCredit,
       maxRegisteredUser: +lectureMaxRegisteredUser,
       essentialComplete: lectureEssentialComplete,
     }
-    
+
     openModal(
       <AppropriationModal
         isApprove={true}
@@ -145,6 +150,40 @@ const LectureCreatePage = () => {
       />
     )
   }
+
+  const { data } = useGetDetailLecture(lectureId, {
+    enabled: !!lectureId
+  })
+
+  useEffect(() => {
+    if (lectureId && data) {
+      setLectureTitle(data.name)
+      setLectureContent(data.content)
+      setLectureEssentialComplete(data.essentialComplete)
+      setLectureSemester(data.semester)
+      setLectureDivision(data.division)
+      setLectureDepartment(data.department)
+      setLectureLine(data.line)
+      setLectureInstructor(data.userId)
+      setLectureStartDate(dayjs(data.startDate).format('YYYYMMDD'))
+      setLectureStartTime(dayjs(data.startDate).format('HH:mm'))
+      setLectureEndDate(dayjs(data.endDate).format('YYYYMMDD'))
+      setLectureEndTime(dayjs(data.endDate).format('HH:mm'))
+      setLectureDates(
+        data.lectureDates.map((date) => {
+          return {
+            ...date,
+            startShowTime: date.startTime + ':00',
+            endShowTime: date.endTime + ':00',
+          }
+        })
+      )
+      setLectureType(data.lectureType)
+      setLectureCredit(data.credit as 1 | 2)
+      setLectureMaxRegisteredUser(data.maxRegisteredUser.toString())
+      setShowInstructor(data.lecturer)
+    }
+  }, [data])
 
   return (
     <PrivateRouter>
@@ -166,7 +205,7 @@ const LectureCreatePage = () => {
           <MainStyle.MainContainer>
             <S.InputTitle
               value={lectureTitle}
-              maxLength={100}
+              maxLength={TITLE_MAX_LENGTH}
               placeholder='강의 제목 (100자 이내)'
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setLectureTitle(e.target.value)
@@ -174,7 +213,7 @@ const LectureCreatePage = () => {
             />
             <S.InputMainText
               value={lectureContent}
-              maxLength={MAX_LENGTH}
+              maxLength={MAIN_MAX_LENGTH}
               placeholder='강의 설명 작성 (1000자 이내)'
               onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
                 setLectureContent(e.target.value)
@@ -192,4 +231,4 @@ const LectureCreatePage = () => {
   )
 }
 
-export default LectureCreatePage
+export default LectureWritePage
