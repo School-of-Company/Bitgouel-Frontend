@@ -85,7 +85,7 @@ const NoticeDetailPage = ({ noticeId }: { noticeId: string }) => {
           )}
           <S.ButtonWrapper>
             <S.ButtonContainer>
-              {roleArray.includes(authority) && (
+              {roleArray.includes(authority as RoleEnumTypes) && (
                 <S.DeleteNoticeButton onClick={onDelete}>
                   삭제하기
                 </S.DeleteNoticeButton>

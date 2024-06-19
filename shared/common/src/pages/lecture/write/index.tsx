@@ -3,6 +3,7 @@
 import { useGetDetailLecture, usePostLecture } from '@bitgouel/api'
 import {
   AppropriationModal,
+  AuthorityContext,
   Bg3,
   FilterOut,
   LectureCredit,
@@ -25,16 +26,23 @@ import {
   ShowInstructor,
   useModal,
 } from '@bitgouel/common'
-import { LectureCreatePayloadTypes, LectureDate } from '@bitgouel/types'
+import { LectureCreatePayloadTypes, LectureDate, RoleEnumTypes } from '@bitgouel/types'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import * as S from './style'
 
 const TITLE_MAX_LENGTH: number = 1000 as const
 const MAIN_MAX_LENGTH: number = 1000 as const
+
+const roleArray: RoleEnumTypes[] = [
+  'ROLE_ADMIN',
+  'ROLE_PROFESSOR',
+  'ROLE_COMPANY_INSTRUCTOR',
+  'ROLE_GOVERNMENT'
+]
 
 const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
   const [lectureTitle, setLectureTitle] = useState<string>('')
@@ -62,6 +70,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
   const setShowInstructor = useSetRecoilState(ShowInstructor)
   const { openModal, closeModal } = useModal()
   const { push } = useRouter()
+  const authority = useContext(AuthorityContext)
 
   const onSuccess = () => {
     closeModal()
@@ -151,7 +160,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
     )
   }
 
-  const { data } = useGetDetailLecture(lectureId, {
+  const { data } = useGetDetailLecture(lectureId || '', {
     enabled: !!lectureId
   })
 
@@ -164,7 +173,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
       setLectureDivision(data.division)
       setLectureDepartment(data.department)
       setLectureLine(data.line)
-      setLectureInstructor(data.userId)
+      // setLectureInstructor(data.userId)
       setLectureStartDate(dayjs(data.startDate).format('YYYYMMDD'))
       setLectureStartTime(dayjs(data.startDate).format('HH:mm'))
       setLectureEndDate(dayjs(data.endDate).format('YYYYMMDD'))
@@ -186,7 +195,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
   }, [data])
 
   return (
-    <PrivateRouter>
+    <PrivateRouter isRedirect={!roleArray.includes(authority as RoleEnumTypes)}>
       <MainStyle.PageWrapper>
         <MainStyle.SlideBg url={Bg3}>
           <MainStyle.BgContainer>

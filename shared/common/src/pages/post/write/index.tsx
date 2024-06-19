@@ -7,20 +7,28 @@ import {
 } from '@bitgouel/api'
 import {
   AppropriationModal,
+  AuthorityContext,
   Bg1,
   Link,
   MainStyle,
   PrivateRouter,
   useModal,
 } from '@bitgouel/common'
-import { AppropriationModalProps, LinksObjectTypes, PostPayloadTypes } from '@bitgouel/types'
+import { AppropriationModalProps, LinksObjectTypes, PostPayloadTypes, RoleEnumTypes } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
 
 const MAIN_MAX_LENGTH: number = 1000 as const
 const TITLE_MAX_LENGTH: number = 100 as const
+
+const roleArray: RoleEnumTypes[] = [
+  'ROLE_ADMIN',
+  'ROLE_PROFESSOR',
+  'ROLE_COMPANY_INSTRUCTOR',
+  'ROLE_GOVERNMENT'
+]
 
 const PostWritePage = ({ postId }: { postId?: string }) => {
   const { openModal, closeModal } = useModal()
@@ -123,8 +131,10 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
     } else return
   }
 
+  const authority = useContext(AuthorityContext)
+
   return (
-    <PrivateRouter>
+    <PrivateRouter isRedirect={!roleArray.includes(authority as RoleEnumTypes)}>
       <MainStyle.PageWrapper>
         <MainStyle.SlideBg url={Bg1}>
           <MainStyle.BgContainer>

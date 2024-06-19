@@ -11,9 +11,11 @@ import {
   Link,
   useModal,
   MainStyle,
+  AuthorityContext,
+  PrivateRouter,
 } from '@bitgouel/common'
 import { AppropriationModalProps, LinksObjectTypes, PostPayloadTypes,  } from '@bitgouel/types'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useContext, useEffect, useState } from 'react'
 import * as S from './style'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
@@ -121,7 +123,10 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
     } else return
   }
 
+  const authority = useContext(AuthorityContext)
+
   return (
+    <PrivateRouter isRedirect={authority !== 'ROLE_ADMIN'}>
     <MainStyle.PageWrapper>
       <MainStyle.SlideBg url={Bg1}>
         <MainStyle.BgContainer>
@@ -173,6 +178,7 @@ const NoticeWritePage = ({ noticeId }: { noticeId?: string }) => {
         </MainStyle.MainContainer>
       </MainStyle.MainWrapper>
     </MainStyle.PageWrapper>
+    </PrivateRouter>
   )
 }
 

@@ -11,12 +11,18 @@ import {
   TrashCan,
   useModal,
 } from '@bitgouel/common'
-import { ActivityDetailProps } from '@bitgouel/types'
+import { ActivityDetailProps, RoleEnumTypes } from '@bitgouel/types'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import { useContext } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
+
+const roleArray: RoleEnumTypes[] = [
+  'ROLE_ADMIN',
+  'ROLE_TEACHER',
+  'ROLE_STUDENT'
+]
 
 const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
   studentIdProps,
@@ -47,11 +53,11 @@ const ActivityDetailPage: React.FC<ActivityDetailProps> = ({
     )
 
   return (
-    <PrivateRouter>
+    <PrivateRouter isRedirect={!roleArray.includes(authority as RoleEnumTypes)}>
       <MainStyle.PageWrapper>
         <MainStyle.SlideBg url={Bg2}>
           <MainStyle.BgContainer>
-            <MainStyle.PageTitle>게시글</MainStyle.PageTitle>
+            <MainStyle.PageTitle>활동 상세</MainStyle.PageTitle>
             {authority === 'ROLE_STUDENT' && (
               <MainStyle.ButtonContainer>
                 <MainStyle.SlideButton

@@ -7,22 +7,23 @@ import {
 } from '@bitgouel/api'
 import {
   AppropriationModal,
+  AuthorityContext,
   Bg2,
   Chevron,
+  MainStyle,
   PrivateRouter,
   SelectCalendarModal,
   SelectScoreModal,
   useModal,
-  MainStyle,
 } from '@bitgouel/common'
 import {
   ActivityDetailProps,
   ActivityPayloadTypes,
-  AppropriationModalProps,
+  AppropriationModalProps
 } from '@bitgouel/types'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
 
@@ -151,8 +152,10 @@ const ActivityWritePage = ({
     }
   }, [data])
 
+  const authority = useContext(AuthorityContext)
+
   return (
-    <PrivateRouter>
+    <PrivateRouter isRedirect={authority !== 'ROLE_STUDENT'}>
       <MainStyle.PageWrapper>
         <MainStyle.SlideBg url={Bg2}>
           <MainStyle.BgContainer>
