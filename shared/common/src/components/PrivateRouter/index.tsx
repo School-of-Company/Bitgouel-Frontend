@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { ReactElement, useContext, useEffect } from 'react';
 
 const PrivateRouter = ({ children, isRedirect }: { children: ReactElement, isRedirect: boolean }) => {
-  const { push } = useRouter()
   const authority = useContext(AuthorityContext)
   
   useEffect(() => {
