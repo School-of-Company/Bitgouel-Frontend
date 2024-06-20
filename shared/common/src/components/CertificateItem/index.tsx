@@ -136,7 +136,7 @@ const CertificateItem: React.FC<CertificateProps> = ({
               .map((v) => (v === '-' ? '.' : v))
               .join('')}
           </span>
-          {roleArray.includes(authority) && (
+          {roleArray.includes(authority as RoleEnumTypes) && (
             <S.ModifyText onClick={() => setIsModify(true)}>
               수정하기
             </S.ModifyText>

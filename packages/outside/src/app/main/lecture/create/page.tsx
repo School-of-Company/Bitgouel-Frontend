@@ -1,5 +1,5 @@
-import { LectureCreatePage } from '@bitgouel/common'
+import { LectureWritePage } from '@bitgouel/common'
 
 export default function LectureCreate() {
-  return <LectureCreatePage />
+  return <LectureWritePage />
 }

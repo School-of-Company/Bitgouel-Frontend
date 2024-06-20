@@ -13,7 +13,7 @@ const CustomProvider = ({ children }: { children: React.ReactNode }) => {
   })
 
   return (
-    <AuthorityContext.Provider value={data?.authority || 'ROLE_STUDENT'}>
+    <AuthorityContext.Provider value={data?.authority || ''}>
       {children}
     </AuthorityContext.Provider>
   )
