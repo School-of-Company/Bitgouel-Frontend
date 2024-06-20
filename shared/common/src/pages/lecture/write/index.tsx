@@ -173,7 +173,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
       setLectureDivision(data.division)
       setLectureDepartment(data.department)
       setLectureLine(data.line)
-      // setLectureInstructor(data.userId)
+      setLectureInstructor(data.userId)
       setLectureStartDate(dayjs(data.startDate).format('YYYYMMDD'))
       setLectureStartTime(dayjs(data.startDate).format('HH:mm'))
       setLectureEndDate(dayjs(data.endDate).format('YYYYMMDD'))
