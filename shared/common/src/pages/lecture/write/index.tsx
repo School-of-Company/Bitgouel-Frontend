@@ -96,7 +96,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
   const { mutate: createLecture } = usePostLecture({
     onSuccess,
   })
-  const { mutate: modifyLecture } = usePatchLecture(lectureId, {
+  const { mutate: modifyLecture } = usePatchLecture(lectureId || '', {
     onSuccess,
   })
 
