@@ -31,6 +31,7 @@ export const lectureQueryKeys = {
     id,
     stduentId, // studentId
   ],
+  patchLecture: (id: string) => [`lectureModify`, id],
 } as const
 
 export const activityQueryKeys = {
