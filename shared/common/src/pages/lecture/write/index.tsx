@@ -1,6 +1,6 @@
 'use client'
 
-import { useGetDetailLecture, usePostLecture } from '@bitgouel/api'
+import { useGetDetailLecture, usePatchLecture, usePostLecture } from '@bitgouel/api'
 import {
   AppropriationModal,
   AuthorityContext,
@@ -26,7 +26,7 @@ import {
   ShowInstructor,
   useModal,
 } from '@bitgouel/common'
-import { LectureCreatePayloadTypes, LectureDate, RoleEnumTypes } from '@bitgouel/types'
+import { AppropriationModalProps, LectureDate, LectureWritePayloadTypes, RoleEnumTypes } from '@bitgouel/types'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useContext, useEffect, useState } from 'react'
@@ -74,7 +74,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
 
   const onSuccess = () => {
     closeModal()
-    toast.success('강의를 개설했습니다')
+    toast.success(`강의를 ${lectureId ? '수정' : '개설'}했습니다`)
     push(`/main/lecture`)
     setLectureEssentialComplete(true)
     setLectureSemester('FIRST_YEAR_FALL_SEMESTER')
@@ -93,7 +93,10 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
     setShowInstructor('')
   }
 
-  const { mutate } = usePostLecture({
+  const { mutate: createLecture } = usePostLecture({
+    onSuccess,
+  })
+  const { mutate: modifyLecture } = usePatchLecture(lectureId, {
     onSuccess,
   })
 
@@ -128,7 +131,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
     const formatLectureStateDate = dayjs(lectureStartDate)
     const formatLectureEndDate = dayjs(lectureEndDate)
 
-    const payload: LectureCreatePayloadTypes = {
+    const payload: LectureWritePayloadTypes = {
       name: lectureTitle,
       content: lectureContent,
       semester: lectureSemester,
@@ -149,13 +152,23 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
       essentialComplete: lectureEssentialComplete,
     }
 
+    const condition: boolean = !!lectureId
+
+    const ModalParameter: AppropriationModalProps = {
+      isApprove: true,
+      question: condition ? '강의를 개설하시겠습니까?' : '강의를 수정하시겠습니까?',
+      title: lectureTitle || '',
+      purpose: '수정하기',
+      onAppropriation: (callbacks) => condition ? modifyLecture(payload, callbacks) : createLecture(payload, callbacks)
+    }
+
     openModal(
       <AppropriationModal
-        isApprove={true}
-        question='강의를 개설하시겠습니까?'
-        title={lectureTitle}
-        purpose='개설하기'
-        onAppropriation={(callbacks) => mutate(payload, callbacks)}
+        isApprove={ModalParameter.isApprove}
+        question={ModalParameter.question}
+        title={ModalParameter.title}
+        purpose={ModalParameter.purpose}
+        onAppropriation={ModalParameter.onAppropriation}
       />
     )
   }
@@ -199,7 +212,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
       <MainStyle.PageWrapper>
         <MainStyle.SlideBg url={Bg3}>
           <MainStyle.BgContainer>
-            <MainStyle.PageTitle>강의 개설</MainStyle.PageTitle>
+            <MainStyle.PageTitle>강의 {lectureId ? '수정' : '개설'}</MainStyle.PageTitle>
             <MainStyle.ButtonContainer>
               <MainStyle.SlideButton
                 onClick={() => openModal(<LectureSettingModal />)}
@@ -231,7 +244,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
           </MainStyle.MainContainer>
           <S.CreateButtonWrapper>
             <S.CreateButton onClick={openCreateModal} isAble={isAble()}>
-              강의 개설하기
+              강의 {lectureId ? '수정' : '개설'}하기
             </S.CreateButton>
           </S.CreateButtonWrapper>
         </MainStyle.MainWrapper>
