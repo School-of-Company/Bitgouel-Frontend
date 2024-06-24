@@ -9,6 +9,6 @@ export const usePatchLecture = (
 ) =>
   useMutation<void, AxiosError, LectureWritePayloadTypes>(
     lectureQueryKeys.patchLecture(id),
-    () => patch(lectureUrl.lecturePatch(id)),
+    (modifyValues) => patch(lectureUrl.lecturePatch(id), modifyValues),
     options
   )
