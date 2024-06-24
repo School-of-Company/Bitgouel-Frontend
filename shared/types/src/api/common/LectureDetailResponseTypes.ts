@@ -1,4 +1,4 @@
-import { LectureDate } from './LectureCreatePayloadTypes'
+import { LectureDate } from './LectureWritePayloadTypes'
 import { LectureItemType } from './LectureItemType'
 
 export interface LectureDetailResponseTypes extends LectureItemType {

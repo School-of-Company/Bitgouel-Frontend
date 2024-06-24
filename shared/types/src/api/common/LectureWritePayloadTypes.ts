@@ -36,7 +36,7 @@ export interface LectureDate {
   endTime: string // LocalTime 시간만
 }
 
-export interface LectureCreatePayloadTypes {
+export interface LectureWritePayloadTypes {
   name: string
   content: string
   semester: LectureSemesterEnum
