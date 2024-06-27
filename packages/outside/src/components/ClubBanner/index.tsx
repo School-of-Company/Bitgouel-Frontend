@@ -1,7 +1,8 @@
 'use client'
 
 import { Bg2, MainStyle, SettingOut, useModal } from '@bitgouel/common'
-import { SchoolFilterModal } from '@outside/modals'
+import { ScrollListModal } from '@outside/modals'
+import SchoolContent from '../SchoolContent'
 
 const ClubBanner = () => {
   const { openModal } = useModal()
@@ -12,7 +13,7 @@ const ClubBanner = () => {
         <MainStyle.PageTitle>취업 동아리 목록</MainStyle.PageTitle>
         <MainStyle.ButtonContainer>
           <MainStyle.SlideButton
-            onClick={() => openModal(<SchoolFilterModal />)}
+            onClick={() => openModal(<ScrollListModal title='학교 선택' children={<SchoolContent />} />)}
           >
             <SettingOut />
             <span>학교 선택</span>
