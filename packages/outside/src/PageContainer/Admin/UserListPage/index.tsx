@@ -1,23 +1,24 @@
 'use client'
 
-import { UserDisplayInfo } from '@outside/components'
 import { useGetUserList } from '@bitgouel/api'
 import {
   Bg6,
+  ListManagement,
   MainStyle,
-  Minus,
   NoneResult,
-  Plus,
   SearchComponent,
   UserItem,
   WaitingAnimation,
   useFilterSelect,
+  useModal,
 } from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
-import { useRouter } from 'next/navigation'
+import { ListManagementContent, UserDisplayInfo } from '@outside/components'
+import { ScrollListModal } from '@outside/modals'
 import { FormEvent, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
+import { usePathname } from 'next/navigation'
 
 const defaultFilterList = [
   { text: '전체', item: '전체', checked: true },
@@ -41,13 +42,13 @@ const UserListPage = () => {
     defaultFilterList,
     setFilterPayload: setAuthority,
   })
-  const { push } = useRouter()
   const [keyword, setKeyword] = useState('')
   const { data, refetch, isLoading } = useGetUserList({
     keyword,
     authority,
     approveStatus: 'APPROVED',
   })
+  const { openModal } = useModal()
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -65,13 +66,18 @@ const UserListPage = () => {
         <MainStyle.BgContainer>
           <MainStyle.PageTitle>사용자 명단</MainStyle.PageTitle>
           <MainStyle.ButtonContainer>
-            <MainStyle.SlideButton onClick={() => push('/main/admin/new')}>
-              <Plus />
-              <span>신규 가입자 명단</span>
-            </MainStyle.SlideButton>
-            <MainStyle.SlideButton onClick={() => push('/main/admin/withdraw')}>
-              <Minus />
-              <span>탈퇴 예정자 명단</span>
+            <MainStyle.SlideButton
+              onClick={() =>
+                openModal(
+                  <ScrollListModal
+                    title='다른 목록 관리'
+                    children={<ListManagementContent />}
+                  />
+                )
+              }
+            >
+              <ListManagement />
+              <span>다른 목록 관리</span>
             </MainStyle.SlideButton>
           </MainStyle.ButtonContainer>
         </MainStyle.BgContainer>
