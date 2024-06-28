@@ -1,1 +1,1 @@
-export { default as SchoolFilterModal } from './SchoolFilterModal'
+export { default as ScrollListModal } from './ScrollListModal'
