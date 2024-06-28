@@ -1,11 +1,14 @@
-const People = () => {
+import { SVGProps } from "react"
+
+const People = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       width='1.5rem'
       height='1.5rem'
       viewBox='0 0 24 24'
-      fill='none'
+      fill={props.fill || 'none'}
       xmlns='http://www.w3.org/2000/svg'
+      {...props}
     >
       <path
         fillRule='evenodd'

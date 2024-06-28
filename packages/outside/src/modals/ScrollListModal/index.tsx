@@ -8,7 +8,7 @@ import * as S from './style'
 
 interface Props {
   children: ReactNode
-  title: '학교 선택'
+  title: '학교 선택' | '다른 목록 관리'
 }
 
 const ScrollListModal = ({ title, children }: Props) => {
