@@ -8,7 +8,7 @@ import { useRef } from 'react'
 
 const Section2 = () => {
   const target = useRef(null)
-  const { isVisible } = useScroll({ target, option: { threshold: 0.1 } })
+  const { isVisible } = useScroll({ target, option: { threshold: 0.2 } })
 
   return (
     <S.IntroduceContainer

@@ -14,6 +14,7 @@ interface UseObserverParams {
 }
 const useScroll = ({ target, option }: UseObserverParams) => {
   const [isVisible, setIsVisible] = useState(false)
+  const [hasBeenVisible, setHasBeenVisible] = useState(false) //
 
   useEffect(() => {
     const currentTarget = target.current
@@ -22,7 +23,11 @@ const useScroll = ({ target, option }: UseObserverParams) => {
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        setIsVisible(entry.isIntersecting)
+        if (entry.isIntersecting && !hasBeenVisible) {
+          setIsVisible(true) // 처음 보일 때만 가시성을 설정
+          setHasBeenVisible(true) // 한 번 표시
+          observer.unobserve(currentTarget)
+        }
       })
     }, option)
 
@@ -31,7 +36,7 @@ const useScroll = ({ target, option }: UseObserverParams) => {
     return () => {
       observer.unobserve(currentTarget)
     }
-  }, [option, target])
+  }, [option, target, hasBeenVisible])
 
   return { isVisible }
 }
