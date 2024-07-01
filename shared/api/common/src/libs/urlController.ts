@@ -24,7 +24,7 @@ export const lectureUrl = {
   lectureList: (options: LectureListOptionsTypes) =>
     `/lecture?page=${options.page}&size=${options.size}&type=${options.type}`,
   lectureDetail: (id: string) => `/lecture/${id}`,
-  lectureEnrolment: (id: string) => `/lecture/${id}`,
+  lectureEnrollment: (id: string) => `/lecture/${id}`,
   lectureInstructor: (keyword: string) =>
     `/lecture/instructor?keyword=${keyword}`,
   lectureLine: (queryString: LinePayloadTypes) =>
@@ -38,6 +38,7 @@ export const lectureUrl = {
     `/lecture/${id}/${otherId}?isComplete=${isComplete}`,
   lectureExcel: () => `/lecture/excel`,
   lecturePatch: (id: string) => `/lecture/${id}`,
+  lectureDelete: (id: string) => `/lecture/${id}/soft`,
 } as const
 
 export const activityUrl = {
