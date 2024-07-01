@@ -195,8 +195,9 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
         data.lectureDates.map((date) => {
           return {
             ...date,
-            startShowTime: date.startTime + ':00',
-            endShowTime: date.endTime + ':00',
+            completeDate: dayjs(date.completeDate).format('YYYYMMDD'),
+            startShowTime: date.startTime.slice(0, 5),
+            endShowTime: date.endTime.slice(0, 5),
           }
         })
       )
