@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 export const SliderContainer = styled.div`
   width: 100vw;
   position: relative;
-  
+
   .slick-prev::before,
   .slick-next::before {
     opacity: 0;

@@ -1,11 +1,22 @@
 'use client'
 
+import { useRef } from 'react'
 import * as S from './style'
-import { SchoolIntro, HomeStyle, SchoolIntroObjects } from '@bitgouel/common'
+import {
+  SchoolIntro,
+  HomeStyle,
+  SchoolIntroObjects,
+  useScroll,
+} from '@bitgouel/common'
 
 const Section3 = () => {
+  const target = useRef(null)
+  const { isVisible } = useScroll({ target, option: { threshold: 0.1 } })
   return (
-    <S.SchoolListContainer>
+    <S.SchoolListContainer
+      ref={target}
+      className={isVisible ? 'fade-in' : 'hidden'}
+    >
       <HomeStyle.SemiTitleBox>
         <HomeStyle.SubTitleSub>
           직업계고 계열별 학교현황 및 진로

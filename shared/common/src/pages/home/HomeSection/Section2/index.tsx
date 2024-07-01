@@ -3,9 +3,18 @@
 import * as S from './style'
 import Link from 'next/link'
 
+import { useScroll } from '@bitgouel/common'
+import { useRef } from 'react'
+
 const Section2 = () => {
+  const target = useRef(null)
+  const { isVisible } = useScroll({ target, option: { threshold: 0.2 } })
+
   return (
-    <>
+    <S.IntroduceContainer
+      ref={target}
+      className={isVisible ? 'fade-in' : 'hidden'}
+    >
       <S.SubTitleContainer>
         <S.SubTitleWrapper>
           <S.SemiTitleBox>
@@ -71,7 +80,7 @@ const Section2 = () => {
           <div>지역 미래 산업을 선도할 핵심 분야 기술 인재 육성</div>
         </div>
       </S.BannerTitleWrapper>
-    </>
+    </S.IntroduceContainer>
   )
 }
 

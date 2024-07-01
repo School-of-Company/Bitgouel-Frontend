@@ -1,8 +1,16 @@
 'use client'
 
 import * as S from './style'
-import { HomeStyle, Agency1, Agency2, Agency3, Agency4 } from '@bitgouel/common'
+import {
+  HomeStyle,
+  Agency1,
+  Agency2,
+  Agency3,
+  Agency4,
+  useScroll,
+} from '@bitgouel/common'
 import Image from 'next/image'
+import { useRef } from 'react'
 
 const blueArr: ['500', '400', '300', '200', '100'] = [
   '500',
@@ -13,8 +21,13 @@ const blueArr: ['500', '400', '300', '200', '100'] = [
 ]
 
 const Section7 = () => {
+  const target = useRef(null)
+  const { isVisible } = useScroll({ target, option: { threshold: 0.1 } })
   return (
-    <S.AgencyIntroContainer>
+    <S.AgencyIntroContainer
+      ref={target}
+      className={isVisible ? 'fade-in' : 'hidden'}
+    >
       <HomeStyle.SemiTitleBox>
         <HomeStyle.SubTitleSub>혁신지구와 함께하는</HomeStyle.SubTitleSub>
         <HomeStyle.SubTitleMain>유관 기관 소개</HomeStyle.SubTitleMain>

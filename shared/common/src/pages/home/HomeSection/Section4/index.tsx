@@ -1,11 +1,17 @@
 'use client'
 
+import { useRef } from 'react'
 import * as S from './style'
-import { HomeStyle, ClubListSlider } from '@bitgouel/common'
+import { HomeStyle, ClubListSlider, useScroll } from '@bitgouel/common'
 
 const Section4 = () => {
+  const target = useRef(null)
+  const { isVisible } = useScroll({ target, option: { threshold: 0.1 } })
   return (
-    <S.ClubListContainer>
+    <S.ClubListContainer
+      ref={target}
+      className={isVisible ? 'fade-in' : 'hidden'}
+    >
       <HomeStyle.SemiTitleBox>
         <HomeStyle.SubTitleSub>
           직업계고 계열별 학교현황 및 진로
