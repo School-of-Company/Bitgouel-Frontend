@@ -3,6 +3,7 @@
 import * as S from './style'
 import Link from 'next/link'
 
+
 const Section2 = () => {
   return (
     <>

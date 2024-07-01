@@ -10,8 +10,7 @@ interface UseObserverParams {
   target: MutableRefObject<HTMLElement | null>
   option: ObserverOptions
 }
-
-export const useObserver = ({ target, option }: UseObserverParams) => {
+const useScroll = ({ target, option }: UseObserverParams) => {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
@@ -34,3 +33,5 @@ export const useObserver = ({ target, option }: UseObserverParams) => {
 
   return { isVisible }
 }
+
+export default useScroll
