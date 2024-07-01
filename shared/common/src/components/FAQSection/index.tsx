@@ -1,14 +1,20 @@
 'use client'
 
 import { useGetListQuestions } from '@bitgouel/api'
-import { FAQAnswerItem, FAQItem } from '@bitgouel/common'
+import { FAQAnswerItem, FAQItem, useScroll } from '@bitgouel/common'
 import * as S from './style'
+import { useRef } from 'react'
 
 const FAQSection = () => {
+  const target = useRef(null)
+  const { isVisible } = useScroll({ target, option: { threshold: 0.1 } })
   const { data, refetch } = useGetListQuestions()
 
   return (
-    <S.FAQSectionWrapper>
+    <S.FAQSectionWrapper
+      ref={target}
+      className={isVisible ? 'fade-in' : 'hidden'}
+    >
       <S.FAQSectionContainer>
         <S.TitleBox>
           <S.SemiTitle>FAQ</S.SemiTitle>

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { keyframes } from '@emotion/react'
+import { IntersectionObserver } from '../animations'
 
 const scrollingLeftFirst = keyframes`
   0% {left: 0%;}
@@ -25,6 +26,7 @@ const scrollingRightSecond = keyframes`
 
 export const SchoolListContainer = styled.div`
   margin-top: 7.5rem;
+  ${IntersectionObserver}
 `
 
 export const SchoolIntroWrapper = styled.div`
