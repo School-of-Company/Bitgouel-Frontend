@@ -14,7 +14,7 @@ interface UseObserverParams {
 }
 const useScroll = ({ target, option }: UseObserverParams) => {
   const [isVisible, setIsVisible] = useState(false)
-  const [hasBeenVisible, setHasBeenVisible] = useState(false) //
+  const [hasBeenVisible, setHasBeenVisible] = useState(false) // 다시 한 번 나타내는 용도
 
   useEffect(() => {
     const currentTarget = target.current
