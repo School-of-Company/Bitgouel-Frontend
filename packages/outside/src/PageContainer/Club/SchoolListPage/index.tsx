@@ -5,7 +5,6 @@ import { useGetClubList } from '@bitgouel/api'
 import {
   MainStyle,
   SchoolFilterText,
-  schoolToConstants,
 } from '@bitgouel/common'
 import { useEffect, useState } from 'react'
 import { useRecoilValue } from 'recoil'
@@ -14,7 +13,7 @@ import * as S from '../ClubPage/style'
 const SchoolListPage = () => {
   const [isClient, setIsClient] = useState<boolean>(false)
   const schoolFilterText = useRecoilValue(SchoolFilterText)
-  const { data, refetch } = useGetClubList(schoolToConstants[schoolFilterText])
+  const { data, refetch } = useGetClubList(schoolFilterText)
 
   useEffect(() => {
     refetch()
