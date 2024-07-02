@@ -3,7 +3,6 @@
 import { lectureQueryKeys, usePatchApplyComplete } from '@bitgouel/api'
 import {
   CommonCheckBox,
-  enumToSchoolName,
 } from '@bitgouel/common'
 import { LectureApplyItemProps } from '@bitgouel/types'
 import * as S from './style'
@@ -25,7 +24,7 @@ const LectureApplyItem = ({ item, lectureId }: LectureApplyItemProps) => {
           <S.NameText>{item.name}</S.NameText>
         </S.NameBox>
         <S.SchoolInfoBox>
-          <span>{enumToSchoolName[item.school]}</span>
+          <span>{item.school}</span>
           <span>
             {item.grade}학년 {item.classNumber}반 {item.number}번
           </span>
