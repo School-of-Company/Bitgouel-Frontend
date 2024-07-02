@@ -14,6 +14,7 @@ import SearchInstructor from './SearchInstructor'
 import SearchLectureType from './SearchLectureType'
 import SearchLine from './SearchLine'
 import * as S from './style'
+import LecturePlaceInput from './LecturePlaceInput'
 
 const LectureSettingModal = () => {
   const { closeModal } = useModal()
@@ -40,13 +41,13 @@ const LectureSettingModal = () => {
             <LectureSemesterSelect />
           </S.SettingContainer>
         )}
-        {lectureType === '상호학점인정교육과정' ||
-          (lectureType === '대학탐방프로그램' && (
+        {(lectureType === '상호학점인정교육과정' ||
+          lectureType === '대학탐방프로그램') && (
             <S.SettingContainer>
               <span>학점</span>
               <LectureCreditSelect />
             </S.SettingContainer>
-          ))}
+          )}
         <S.SettingContainer>
           <span>강의 구분</span>
           <SearchDivision />
@@ -66,6 +67,10 @@ const LectureSettingModal = () => {
         <S.SettingContainer>
           <span>강의 신청 기간</span>
           <LectureApplyTime />
+        </S.SettingContainer>
+        <S.SettingContainer>
+          <span>강의 장소</span>
+          <LecturePlaceInput />
         </S.SettingContainer>
         <S.SettingContainer>
           <span>강의 수강일</span>
