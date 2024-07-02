@@ -2,20 +2,12 @@
 
 import { useGetLines } from '@bitgouel/api'
 import {
-  InputCancel,
   LectureDivision,
-  LectureLine,
-  SearchIcon,
+  LectureLine
 } from '@bitgouel/common'
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import {
-  SearchInput,
-  SearchInputBox,
-  SearchItem,
-  SearchListContainer,
-  SearchWrapper,
-} from '../LectureSearchComponent/style'
+import LectureSearchComponent from '../LectureSearchComponent'
 
 const SearchLine = () => {
   const [lectureLine, setLectureLine] = useRecoilState(LectureLine)
@@ -27,60 +19,39 @@ const SearchLine = () => {
   })
 
   const onSubmit = (e?: FormEvent) => {
-    if(e) e.preventDefault()
+    if (e) e.preventDefault()
+    refetch()
+  }
+
+  const onSelectLine = (lineItem: string) => {
+    setLectureLine(lineItem)
+    setLine('')
+  }
+
+  const onDeleteLine = () => {
+    setLectureLine('')
     refetch()
   }
 
   return (
-    <SearchWrapper>
-      <SearchInputBox onSubmit={onSubmit} isSelected={!!lectureLine.length}>
-        <SearchInput
-          type='text'
-          value={lectureLine.length ? lectureLine : line}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setLine(e.target.value)
-          }
-          placeholder='계열 검색 또는 임의로 추가...'
-          disabled={!!lectureLine.length}
+    <LectureSearchComponent>
+      <LectureSearchComponent.SearchInputBox
+        inputValue={line}
+        setInputValue={setLine}
+        recoilValue={lectureLine}
+        onSubmit={onSubmit}
+        onDeleteInputValue={onDeleteLine}
+        inputPlaceholder='핵심분야'
+      />
+      {lectureLine.length <= 0 && (
+        <LectureSearchComponent.SearchItemList
+          searchList={data?.lines || []}
+          inputValue={line}
+          onSelectInputValue={onSelectLine}
+          addText='핵심분야'
         />
-        {lectureLine.length ? (
-          <InputCancel
-            onClick={() => {
-              setLectureLine('')
-              refetch()
-            }}
-          />
-        ) : (
-          <SearchIcon onClick={() => refetch()} />
-        )}
-      </SearchInputBox>
-      {data?.lines && lectureLine.length <= 0 && (
-        <SearchListContainer>
-          {data.lines.map((line) => (
-            <SearchItem
-              key={line}
-              onClick={() => {
-                setLectureLine(line)
-                setLine('')
-              }}
-            >
-              <span>{line}</span>
-            </SearchItem>
-          ))}
-          {data?.lines.length <= 0 && (
-            <SearchItem
-              onClick={() => {
-                setLectureLine(line)
-                setLine('')
-              }}
-            >
-              <span>{line}</span>
-              <span>새 계열 추가하기...</span>
-            </SearchItem>
-          )}
-        </SearchListContainer>
       )}
-    </SearchWrapper>
+    </LectureSearchComponent>
   )
 }
 
