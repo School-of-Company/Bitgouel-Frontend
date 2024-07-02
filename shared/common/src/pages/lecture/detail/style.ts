@@ -80,13 +80,18 @@ export const ApplyButtonWrapper = styled.div`
   position: fixed;
   left: 0;
   bottom: 2.5rem;
+  gap: 1.5rem;
 `
 
-export const ApplyButton = styled.div<{ isAble: boolean }>`
-  color: ${({ theme, isAble }) =>
-    isAble ? theme.color.white : theme.color.gray['400']};
-  background-color: ${({ theme, isAble }) =>
-    isAble ? theme.color.main : theme.color.gray['700']};
+export const ApplyButton = styled.div<{ isAble?: boolean; isDelete?: boolean }>`
+  color: ${({ theme, isAble, isDelete }) =>
+    isAble || isDelete ? theme.color.white : theme.color.gray['400']};
+  background-color: ${({ theme, isAble, isDelete }) =>
+    isAble
+      ? theme.color.main
+      : isDelete
+      ? theme.color.error
+      : theme.color.gray['700']};
   ${({ theme }) => theme.typo.text_lg.semibold};
   padding: 0.75rem 2.5rem;
   border-radius: 0.5rem;

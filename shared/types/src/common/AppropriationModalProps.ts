@@ -24,6 +24,7 @@ export type questionTypes =
   | '활동을 수정하시겠습니까?'
   | '로그아웃을 하시겠습니까?'
   | '회원탈퇴를 하시겠습니까?'
+  | '강의를 삭제하시겠습니까?'
 
 export type purposeTypes =
   | '신청하기'

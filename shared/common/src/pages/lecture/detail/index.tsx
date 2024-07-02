@@ -1,6 +1,10 @@
 'use client'
 
-import { useGetDetailLecture, usePostEnrollment } from '@bitgouel/api'
+import {
+  useDeleteLecture,
+  useGetDetailLecture,
+  usePostEnrollment,
+} from '@bitgouel/api'
 import {
   AppropriationModal,
   AuthorityContext,
@@ -13,6 +17,15 @@ import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import { useContext } from 'react'
 import * as S from './style'
+import { AppropriationModalProps, RoleEnumTypes } from '@bitgouel/types'
+import { toast } from 'react-toastify'
+
+const roleArray: RoleEnumTypes[] = [
+  'ROLE_ADMIN',
+  'ROLE_PROFESSOR',
+  'ROLE_COMPANY_INSTRUCTOR',
+  'ROLE_GOVERNMENT',
+]
 
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
@@ -23,19 +36,46 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
       else return false
     } else return false
   }
-  const { openModal } = useModal()
-  const { mutate } = usePostEnrollment(lectureId)
+  const { openModal, closeModal } = useModal()
   const { push } = useRouter()
 
-  const onEnrollment = () => {
-    if (!isAble) return
+  const onSuccess = (isDelete: boolean): void => {
+    const toastMessage: string = isDelete
+      ? '강의를 삭제하였습니다'
+      : '수강신청을 완료하였습니다'
+    closeModal()
+    push('/main/lecture')
+    toast.success(toastMessage)
+  }
+  const { mutate: enrollLecture } = usePostEnrollment(lectureId, {
+    onSuccess: () => onSuccess(false)
+  })
+  const { mutate: deleteLecture } = useDeleteLecture(lectureId, {
+    onSuccess: () => onSuccess(true)
+  })
+
+  const onLectureModal = (isDelete: boolean): void => {
+    if (authority === 'ROLE_STUDENT' && !isAble()) return
+    const ModalParameter: AppropriationModalProps = {
+      isApprove: isDelete ? false : true,
+      question: isDelete
+        ? '강의를 삭제하시겠습니까?'
+        : '수강 신청하시겠습니까?',
+      title: data?.name || '',
+      purpose: isDelete ? '삭제하기' : '신청하기',
+      onAppropriation: (callbacks) =>
+        isDelete
+          ? deleteLecture(undefined, callbacks)
+          : enrollLecture(undefined, callbacks),
+    }
+
     openModal(
       <AppropriationModal
-        isApprove={true}
-        question='수강 신청하시겠습니까?'
-        title={data?.name || ''}
-        purpose='신청하기'
-        onAppropriation={(callbacks) => mutate(undefined, callbacks)}
+        isApprove={ModalParameter.isApprove}
+        question={ModalParameter.question}
+        title={ModalParameter.title}
+        purpose={ModalParameter.purpose}
+        onAppropriation={ModalParameter.onAppropriation}
       />
     )
   }
@@ -102,11 +142,34 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
             <div>{data?.maxRegisteredUser}명</div>
           </S.LectureSection>
           <S.WhiteBox></S.WhiteBox>
-          <S.ApplyButtonWrapper>
-            <S.ApplyButton isAble={isAble()} onClick={onEnrollment}>
-              수강 신청하기
-            </S.ApplyButton>
-          </S.ApplyButtonWrapper>
+          {(roleArray.includes(authority as RoleEnumTypes) ||
+            authority === 'ROLE_STUDENT') && (
+            <S.ApplyButtonWrapper>
+              {authority === 'ROLE_STUDENT' && (
+                <S.ApplyButton
+                  isAble={isAble()}
+                  onClick={() => onLectureModal(false)}
+                >
+                  수강 신청하기
+                </S.ApplyButton>
+              )}
+              {roleArray.includes(authority as RoleEnumTypes) && (
+                <>
+                  <S.ApplyButton isDelete onClick={() => onLectureModal(true)}>
+                    삭제하기
+                  </S.ApplyButton>
+                  <S.ApplyButton
+                    isAble
+                    onClick={() =>
+                      push(`/main/lecture/detail/${lectureId}/modify`)
+                    }
+                  >
+                    수정하기
+                  </S.ApplyButton>
+                </>
+              )}
+            </S.ApplyButtonWrapper>
+          )}
         </MainStyle.MainContainer>
       </MainStyle.MainWrapper>
     </MainStyle.PageWrapper>
