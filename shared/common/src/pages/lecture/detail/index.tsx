@@ -9,6 +9,7 @@ import {
   AppropriationModal,
   AuthorityContext,
   Bg3,
+  KakaoMap,
   MainStyle,
   People,
   useModal,
@@ -121,6 +122,10 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
           <S.LectureSection>
             <span>수강 신청 기간</span>
             <div>{`• ${formatStartDate}    ~    ${formatEndDate}`}</div>
+          </S.LectureSection>
+          <S.LectureSection>
+            <span>강의 장소</span>
+            <KakaoMap lat={33.5563} lng={126.79581} />
           </S.LectureSection>
           <S.LectureSection>
             <span>강의 수강 날짜</span>
