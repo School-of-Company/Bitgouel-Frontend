@@ -1,7 +1,8 @@
-import { GlobalLayout, Header, CustomProvider } from '@bitgouel/common'
+import { CustomProvider, GlobalLayout, Header } from '@bitgouel/common'
 import '@bitgouel/common/src/styles/globals.css'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
+import Script from 'next/script'
 import RecoilRootProvider from './recoilRootProvider'
 
 export const metadata: Metadata = {
@@ -89,6 +90,10 @@ export default function RootLayout({
             </GlobalLayout>
           </RecoilRootProvider>
         </picture>
+        <Script
+          strategy='beforeInteractive'
+          src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_KEY}&autoload=false`}
+        />
       </body>
     </html>
   )
