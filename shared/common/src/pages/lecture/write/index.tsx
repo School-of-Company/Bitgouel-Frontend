@@ -16,6 +16,7 @@ import {
   LectureInstructor,
   LectureLine,
   LectureMaxRegistered,
+  LecturePlace,
   LectureSemester,
   LectureSettingModal,
   LectureStartDate,
@@ -68,6 +69,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
   const [lectureMaxRegisteredUser, setLectureMaxRegisteredUser] =
     useRecoilState(LectureMaxRegistered)
   const setShowInstructor = useSetRecoilState(ShowInstructor)
+  const [lecturePlace, setLecturePlace] = useRecoilState(LecturePlace)
   const { openModal, closeModal } = useModal()
   const { push } = useRouter()
   const authority = useContext(AuthorityContext)
@@ -150,6 +152,8 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
       credit: lectureCredit,
       maxRegisteredUser: +lectureMaxRegisteredUser,
       essentialComplete: lectureEssentialComplete,
+      address: lecturePlace.address,
+      locationDetails: lecturePlace.detail,
     }
 
     const condition: boolean = !!lectureId
