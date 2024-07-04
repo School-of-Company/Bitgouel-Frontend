@@ -17,7 +17,7 @@ const KakaoMap = ({ lat, lng }: Props) => {
       zoomable={false}
     >
       <ZoomControl position={'RIGHT'} />
-      <MapMarker position={{ lat: 33.55635, lng: 126.795841 }} />
+      <MapMarker position={{ lat, lng }} />
     </Map>
   )
 }
