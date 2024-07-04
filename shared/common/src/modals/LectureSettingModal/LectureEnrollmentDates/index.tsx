@@ -2,7 +2,7 @@ import { InputCancel, LectureDates } from '@bitgouel/common'
 import { ChangeEvent } from 'react'
 import { useRecoilState } from 'recoil'
 import { DateBox } from '../LectureApplyTime/style'
-import { SearchInput } from '../LectureSearchComponent/style'
+import { SearchInput } from '../SearchComponent/style'
 import * as S from './style'
 
 const MaxDateLength: number = 8 as const
@@ -103,8 +103,7 @@ const LectureEnrollmentDates = () => {
             />
           </DateBox>
 
-            {idx !== 0 && <InputCancel onClick={() => onDeleteDate(idx)} />}
-
+          {idx !== 0 && <InputCancel onClick={() => onDeleteDate(idx)} />}
         </S.EnrollmentDateContainer>
       ))}
       <S.AddDateButton onClick={onAddDates}>+ 날짜 추가하기</S.AddDateButton>
