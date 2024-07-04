@@ -158,12 +158,12 @@ export const ShowInstructor = atom<string>({
   default: '',
 })
 export const LecturePlace = atom<{
-  road: string,
-  detail: string
+  address: string,
+  detail: string,
 }>({
   key: 'LecturePlace',
   default: {
-    road: '',
+    address: '',
     detail: '',
   },
 })
