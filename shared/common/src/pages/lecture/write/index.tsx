@@ -1,6 +1,10 @@
 'use client'
 
-import { useGetDetailLecture, usePatchLecture, usePostLecture } from '@bitgouel/api'
+import {
+  useGetDetailLecture,
+  usePatchLecture,
+  usePostLecture,
+} from '@bitgouel/api'
 import {
   AppropriationModal,
   AuthorityContext,
@@ -27,7 +31,12 @@ import {
   ShowInstructor,
   useModal,
 } from '@bitgouel/common'
-import { AppropriationModalProps, LectureDate, LectureWritePayloadTypes, RoleEnumTypes } from '@bitgouel/types'
+import {
+  AppropriationModalProps,
+  LectureDate,
+  LectureWritePayloadTypes,
+  RoleEnumTypes,
+} from '@bitgouel/types'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useContext, useEffect, useState } from 'react'
@@ -42,7 +51,7 @@ const roleArray: RoleEnumTypes[] = [
   'ROLE_ADMIN',
   'ROLE_PROFESSOR',
   'ROLE_COMPANY_INSTRUCTOR',
-  'ROLE_GOVERNMENT'
+  'ROLE_GOVERNMENT',
 ]
 
 const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
@@ -88,6 +97,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
     setLectureStartTime('')
     setLectureEndDate('')
     setLectureEndTime('')
+    setLecturePlace({ address: '', detail: '' })
     setLectureDates([])
     setLectureType('')
     setLectureCredit(1)
@@ -112,6 +122,8 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
       lectureStartTime.length &&
       lectureEndDate.length &&
       lectureEndTime.length &&
+      lecturePlace.address.length &&
+      lecturePlace.detail.length &&
       lectureDates.every((date) => date.completeDate.length) &&
       lectureDates.every((date) => date.startShowTime) &&
       lectureDates.every((date) => date.endShowTime.length) &&
@@ -160,10 +172,15 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
 
     const ModalParameter: AppropriationModalProps = {
       isApprove: true,
-      question: condition ? '강의를 개설하시겠습니까?' : '강의를 수정하시겠습니까?',
+      question: condition
+        ? '강의를 개설하시겠습니까?'
+        : '강의를 수정하시겠습니까?',
       title: lectureTitle || '',
       purpose: '수정하기',
-      onAppropriation: (callbacks) => condition ? modifyLecture(payload, callbacks) : createLecture(payload, callbacks)
+      onAppropriation: (callbacks) =>
+        condition
+          ? modifyLecture(payload, callbacks)
+          : createLecture(payload, callbacks),
     }
 
     openModal(
@@ -178,7 +195,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
   }
 
   const { data } = useGetDetailLecture(lectureId || '', {
-    enabled: !!lectureId
+    enabled: !!lectureId,
   })
 
   useEffect(() => {
@@ -195,6 +212,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
       setLectureStartTime(dayjs(data.startDate).format('HH:mm'))
       setLectureEndDate(dayjs(data.endDate).format('YYYYMMDD'))
       setLectureEndTime(dayjs(data.endDate).format('HH:mm'))
+      setLecturePlace({ address: data.address, detail: data.locationDetails })
       setLectureDates(
         data.lectureDates.map((date) => {
           return {
@@ -217,7 +235,9 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
       <MainStyle.PageWrapper>
         <MainStyle.SlideBg url={Bg3}>
           <MainStyle.BgContainer>
-            <MainStyle.PageTitle>강의 {lectureId ? '수정' : '개설'}</MainStyle.PageTitle>
+            <MainStyle.PageTitle>
+              강의 {lectureId ? '수정' : '개설'}
+            </MainStyle.PageTitle>
             <MainStyle.ButtonContainer>
               <MainStyle.SlideButton
                 onClick={() => openModal(<LectureSettingModal />)}
