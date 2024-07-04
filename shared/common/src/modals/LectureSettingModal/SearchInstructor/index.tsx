@@ -16,7 +16,7 @@ import {
   SearchItem,
   SearchListContainer,
   SearchWrapper,
-} from '../LectureSearchComponent/style'
+} from '../SearchComponent/style'
 
 const SearchInstructor = () => {
   const [lectureInstructor, setLectureInstructor] =

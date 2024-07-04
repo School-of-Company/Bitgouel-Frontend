@@ -1,13 +1,10 @@
 'use client'
 
 import { useGetDivisions } from '@bitgouel/api'
-import {
-  LectureDivision,
-  LectureLine
-} from '@bitgouel/common'
+import { LectureDivision, LectureLine } from '@bitgouel/common'
 import { FormEvent, useState } from 'react'
 import { useRecoilState, useSetRecoilState } from 'recoil'
-import LectureSearchComponent from '../LectureSearchComponent'
+import LectureSearchComponent from '../SearchComponent'
 
 const SearchDivision = () => {
   const setLectureLine = useSetRecoilState(LectureLine)
@@ -43,7 +40,7 @@ const SearchDivision = () => {
       />
       {lectureDivision.length <= 0 && (
         <LectureSearchComponent.SearchItemList
-        searchList={data?.divisions || []}
+          searchList={data?.divisions || []}
           inputValue={division}
           onSelectInputValue={onSelectDivision}
           addText='핵심분야'
