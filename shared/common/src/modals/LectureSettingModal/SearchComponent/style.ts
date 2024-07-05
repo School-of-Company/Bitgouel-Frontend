@@ -42,7 +42,7 @@ export const SearchInput = styled.input<{ length?: number }>`
   }
 `
 
-export const SearchListContainer = styled.div<{ type: string }>`
+export const SearchListContainer = styled.div<{ type?: string }>`
   width: 100%;
   /* height: 15rem; */
   height: ${({ type }) => (type === '계열' ? '15rem' : '11rem')};
