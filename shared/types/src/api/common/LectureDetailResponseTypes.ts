@@ -6,4 +6,8 @@ export interface LectureDetailResponseTypes extends LectureItemType {
   credit: 1 | 2
   isRegistered: boolean
   lectureDates: LectureDate[]
+  locationX: string
+  locationY: string
+  address: string
+  locationDetails: string
 }

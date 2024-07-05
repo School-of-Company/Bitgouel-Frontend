@@ -5,7 +5,6 @@
     "**/*.tsx",
     "src",
     "src/custom.d.ts",
-    "../../packages/inside/public"
   ],
   "exclude": ["node_modules"]
 }

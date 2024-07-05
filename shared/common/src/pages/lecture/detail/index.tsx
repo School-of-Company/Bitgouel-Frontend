@@ -124,7 +124,13 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
           </S.LectureSection>
           <S.LectureSection>
             <span>강의 장소</span>
-            <KakaoMap lat={33.5563} lng={126.79581} />
+            <div>
+              • {data?.address} ({data?.locationDetails})
+            </div>
+            <KakaoMap
+              lat={Number(data?.locationY)}
+              lng={Number(data?.locationX)}
+            />
           </S.LectureSection>
           <S.LectureSection>
             <span>강의 수강 날짜</span>

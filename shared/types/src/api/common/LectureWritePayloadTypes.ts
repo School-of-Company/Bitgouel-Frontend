@@ -51,4 +51,6 @@ export interface LectureWritePayloadTypes {
   credit: number
   maxRegisteredUser: number
   essentialComplete: boolean
+  address: string
+  locationDetails: string
 }
