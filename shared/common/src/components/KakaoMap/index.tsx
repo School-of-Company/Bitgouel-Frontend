@@ -10,7 +10,7 @@ interface Props {
 const KakaoMap = ({ lat, lng }: Props) => {
   return (
     <Map
-      center={{ lat: !isNaN(lat) && lat, lng: !isNaN(lng) && lng }}
+      center={{ lat: !isNaN(lat) ? lat : 0, lng: !isNaN(lng) ? lng : 0 }}
       style={{ width: '31.25rem', height: '25rem' }}
       level={3}
       draggable={false}
@@ -18,7 +18,7 @@ const KakaoMap = ({ lat, lng }: Props) => {
     >
       <ZoomControl position={'RIGHT'} />
       <MapMarker
-        position={{ lat: !isNaN(lat) && lat, lng: !isNaN(lng) && lng }}
+        position={{ lat: !isNaN(lat) ? lat : 0, lng: !isNaN(lng) ? lng : 0 }}
       />
     </Map>
   )
