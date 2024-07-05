@@ -17,7 +17,7 @@ const CreateSchoolTypes: [
   'IV. 농업생명/보건의료계열',
 ]
 
-const SearchLectureType = () => {
+const SearchSchoolType = () => {
   const [schoolType, setSchoolType] = useRecoilState(SchoolType)
   const [type, setType] = useState<string>('')
   const [schoolTypeList, setSchoolTypeList] =
@@ -65,4 +65,4 @@ const SearchLectureType = () => {
   )
 }
 
-export default SearchLectureType
+export default SearchSchoolType
