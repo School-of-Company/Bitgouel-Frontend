@@ -1,9 +1,7 @@
 import styled from '@emotion/styled'
 
 export const CreateSchoolModalWrapper = styled.div`
-  min-height: 57.375rem;
-  max-height: 66.75rem;
-  height: auto;
+  height: 57.375rem;
   width: 47rem;
   background-color: ${({ theme }) => theme.color.white};
   overflow: auto;
@@ -11,6 +9,7 @@ export const CreateSchoolModalWrapper = styled.div`
 
 export const CreateSchoolModalContainer = styled.div`
   padding: 1.5rem;
+  /* padding-bottom: 3rem; */
   flex-direction: column;
 `
 
@@ -64,4 +63,8 @@ export const SchoolNameInput = styled.input`
   border-radius: 0.5rem;
   border: 1px solid ${({ theme }) => theme.color.gray['700']};
   outline: none;
+`
+export const ClubItemContainer = styled.div`
+  width: 100%;
+  display: flex;
 `

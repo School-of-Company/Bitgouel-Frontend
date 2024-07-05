@@ -1,8 +1,10 @@
 import { CancelIcon, Portal, useModal } from '@bitgouel/common'
-import { SchoolItem } from '@outside/components'
+import { SchoolItem, SchoolClubInput } from '@outside/components'
 
 import * as S from './style'
-import SearchLectureType from './SearchLectureType'
+
+import SearchLectureType from './SearchSchoolType'
+import CreateClubItem from './CreateClubItem'
 
 const CreateSchoolModal = () => {
   const { closeModal } = useModal()
@@ -34,6 +36,9 @@ const CreateSchoolModal = () => {
             </S.SchoolContainer>
             <S.SchoolContainer>
               <S.Content>동아리</S.Content>
+              <S.ClubItemContainer>
+                <CreateClubItem placeholder='동아리 이름 입력(ex: dev gsm)' />
+              </S.ClubItemContainer>
             </S.SchoolContainer>
           </S.SelectWrapper>
         </S.CreateSchoolModalContainer>
