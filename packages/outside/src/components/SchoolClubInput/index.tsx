@@ -1,9 +1,11 @@
 import styled from '@emotion/styled'
 
-const SchoolNameInput = styled.input`
+const ClubInput = styled.input`
+  width: 30rem;
   height: 3.375rem;
   border-radius: 0.5rem;
   text-indent: 1.25rem;
+
   border: 1px solid ${({ theme }) => theme.color.gray['700']};
   outline: none;
 
@@ -13,8 +15,8 @@ const SchoolNameInput = styled.input`
   }
 `
 
-const SchoolItem = ({ placeholder }: { placeholder: string }) => {
-  return <SchoolNameInput placeholder={placeholder} />
+const SchoolClubInput = ({ placeholder }: { placeholder: string }) => {
+  return <ClubInput placeholder={placeholder} />
 }
 
-export default SchoolItem
+export default SchoolClubInput
