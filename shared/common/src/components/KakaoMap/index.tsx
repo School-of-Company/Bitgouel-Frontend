@@ -10,14 +10,16 @@ interface Props {
 const KakaoMap = ({ lat, lng }: Props) => {
   return (
     <Map
-      center={{ lat, lng }}
+      center={{ lat: !isNaN(lat) && lat, lng: !isNaN(lng) && lng }}
       style={{ width: '31.25rem', height: '25rem' }}
       level={3}
       draggable={false}
       zoomable={false}
     >
       <ZoomControl position={'RIGHT'} />
-      <MapMarker position={{ lat, lng }} />
+      <MapMarker
+        position={{ lat: !isNaN(lat) && lat, lng: !isNaN(lng) && lng }}
+      />
     </Map>
   )
 }
