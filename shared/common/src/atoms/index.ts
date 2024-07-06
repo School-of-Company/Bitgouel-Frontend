@@ -162,6 +162,16 @@ export const ShowInstructor = atom<string>({
   key: 'ShowInstructor',
   default: '',
 })
+export const LecturePlace = atom<{
+  address: string,
+  detail: string,
+}>({
+  key: 'LecturePlace',
+  default: {
+    address: '',
+    detail: '',
+  },
+})
 export const LectureDates = atom<InputLectureDatesTypes[]>({
   key: 'LectureDates',
   default: [

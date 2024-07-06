@@ -18,7 +18,7 @@ interface SearchInputBoxProps {
   recoilValue: string
   onSubmit: (e?: FormEvent) => void
   onDeleteInputValue: () => void
-  inputPlaceholder: '유형' | '학과' | '핵심분야' | '계열 검색'
+  inputPlaceholder: '유형' | '학과' | '핵심분야' | '계열 검색' | '학과'
   isSearch?: boolean
 }
 
@@ -31,7 +31,6 @@ const SearchInputBox = ({
   inputPlaceholder,
   isSearch,
 }: SearchInputBoxProps) => {
-  console.log(recoilValue.length)
   return (
     <S.SearchInputBox onSubmit={onSubmit} isSelected={!!recoilValue.length}>
       <S.SearchInput

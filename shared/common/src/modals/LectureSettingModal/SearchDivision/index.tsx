@@ -36,14 +36,14 @@ const SearchDivision = () => {
         recoilValue={lectureDivision}
         onSubmit={onSubmit}
         onDeleteInputValue={onDeleteDivision}
-        inputPlaceholder='핵심분야'
+        inputPlaceholder='구분'
       />
       {lectureDivision.length <= 0 && (
         <LectureSearchComponent.SearchItemList
           searchList={data?.divisions || []}
           inputValue={division}
           onSelectInputValue={onSelectDivision}
-          addText='핵심분야'
+          addText='구분'
         />
       )}
     </LectureSearchComponent>

@@ -67,10 +67,8 @@ export const SearchItem = styled.div`
   transition: all 0.1s ease-in;
 
   span {
-    &:first-of-type {
-      ${({ theme }) => theme.typo.text_lg.regular};
-      color: ${({ theme }) => theme.color.black};
-    }
+    ${({ theme }) => theme.typo.text_lg.regular};
+    color: ${({ theme }) => theme.color.black};
   }
 
   small {
