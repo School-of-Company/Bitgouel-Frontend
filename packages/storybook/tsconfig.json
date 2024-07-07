@@ -1,11 +1,13 @@
 {
-  "extends": "@bitgouel/tsconfig/",
+  "extends": "@bitgouel/tsconfig/base.json",
   "compilerOptions": {
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
       "@inside/*": ["../../packages/inside/src/*"],
-      "@outside/*": ["../../packages/outside/src/*"]
+      "@outside/*": ["../../packages/outside/src/*"],
+      "@bitgouel/common": ["../../packages/common/src"],
+      "bitgouel/api": ["../../packages/api/src"],
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],

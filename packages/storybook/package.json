@@ -26,7 +26,10 @@
     "storybook": "7.5.1"
   },
   "dependencies": {
+    "@bitgouel/api": "workspace:^",
+    "@bitgouel/common": "workspace:^",
     "@bitgouel/tsconfig": "workspace:^",
+    "@bitgouel/types": "workspace:^",
     "storybook-addon-next-router": "^4.0.2"
   }
 }
