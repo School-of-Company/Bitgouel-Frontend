@@ -9,6 +9,7 @@ export type LectureSemesterEnum =
   | 'SECOND_YEAR_SPRING_SEMESTER'
   | 'SECOND_YEAR_FALL_SEMESTER'
   | 'THIRD_YEAR_SPRING_SEMESTER'
+  | 'NOT_APPLICABLE'
 
 export type LectureSemesterKor =
   | '1학년 2학기'
