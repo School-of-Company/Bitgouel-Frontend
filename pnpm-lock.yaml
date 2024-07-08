@@ -136,9 +136,18 @@ importers:
 
   packages/storybook:
     dependencies:
+      '@bitgouel/api':
+        specifier: workspace:^
+        version: link:../../shared/api
+      '@bitgouel/common':
+        specifier: workspace:^
+        version: link:../../shared/common
       '@bitgouel/tsconfig':
         specifier: workspace:^
         version: link:../../shared/tsconfig
+      '@bitgouel/types':
+        specifier: workspace:^
+        version: link:../../shared/types
       storybook-addon-next-router:
         specifier: ^4.0.2
         version: 4.0.2(@storybook/addon-actions@6.5.16)(@storybook/addons@6.5.16)(@storybook/client-api@6.5.16)(next@13.4.2)(react-dom@18.2.0)(react@18.2.0)
