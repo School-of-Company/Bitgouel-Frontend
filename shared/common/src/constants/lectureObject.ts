@@ -18,8 +18,8 @@ export const lectureTypeToEnum: Record<LectureTypeKor, LectureTypeEnum> = {
   '대학탐방프로그램': 'UNIVERSITY_EXPLORATION_PROGRAM',
 }
 
-export const LectureSemesterToKor: Record<
-  LectureSemesterEnum,
+export const lectureSemesterToKor: Record<
+  Exclude<LectureSemesterEnum, 'NOT_APPLICABLE'>,
   LectureSemesterKor
 > = {
   FIRST_YEAR_FALL_SEMESTER: '1학년 2학기',
