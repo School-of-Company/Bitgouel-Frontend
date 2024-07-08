@@ -148,7 +148,8 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
     const payload: LectureWritePayloadTypes = {
       name: lectureTitle,
       content: lectureContent,
-      semester: lectureSemester,
+      semester:
+        lectureType === '대학탐방프로그램' ? 'NOT_APPLICABLE' : lectureSemester,
       division: lectureDivision,
       department: lectureDepartment,
       line: lectureLine,
