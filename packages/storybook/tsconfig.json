@@ -6,8 +6,6 @@
     "paths": {
       "@inside/*": ["../../packages/inside/src/*"],
       "@outside/*": ["../../packages/outside/src/*"],
-      "@bitgouel/common": ["../../packages/common/src"],
-      "bitgouel/api": ["../../packages/api/src"],
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],
