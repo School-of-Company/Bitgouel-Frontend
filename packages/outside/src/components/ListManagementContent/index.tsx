@@ -8,9 +8,9 @@ import {
   People,
   Plus,
   SchoolBookIcon,
+  UniversityIcon,
   theme,
 } from '@bitgouel/common'
-import University from '@bitgouel/common/src/assets/svg/University'
 import { usePathname, useRouter } from 'next/navigation'
 import { ReactNode } from 'react'
 import * as S from './style'
@@ -65,7 +65,7 @@ const pageListData: ListType[] = [
     title: '대학교',
     list: [
       {
-        icon: <University />,
+        icon: <UniversityIcon />,
         pageName: '등록된 학과 목록',
         link: '/main/admin/company',
       },
