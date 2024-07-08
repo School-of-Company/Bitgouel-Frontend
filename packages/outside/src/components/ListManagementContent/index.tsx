@@ -4,12 +4,12 @@ import {
   AddCertificate,
   AgencyIcon,
   CompanyIcon,
-  Minus,
+  GraduateIcon,
   People,
   Plus,
   SchoolBookIcon,
   UniversityIcon,
-  theme,
+  theme
 } from '@bitgouel/common'
 import { usePathname, useRouter } from 'next/navigation'
 import { ReactNode } from 'react'
@@ -35,7 +35,7 @@ const pageListData: ListType[] = [
         link: '/main/admin/new',
       },
       {
-        icon: <Minus fill='gray' />,
+        icon: <GraduateIcon />,
         pageName: '탈퇴 예정자 명단',
         link: '/main/admin/withdraw',
       },
