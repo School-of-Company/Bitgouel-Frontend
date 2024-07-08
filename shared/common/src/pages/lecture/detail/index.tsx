@@ -9,16 +9,17 @@ import {
   AppropriationModal,
   AuthorityContext,
   Bg3,
+  KakaoMap,
   MainStyle,
   People,
   useModal,
 } from '@bitgouel/common'
+import { AppropriationModalProps, RoleEnumTypes } from '@bitgouel/types'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import { useContext } from 'react'
-import * as S from './style'
-import { AppropriationModalProps, RoleEnumTypes } from '@bitgouel/types'
 import { toast } from 'react-toastify'
+import * as S from './style'
 
 const roleArray: RoleEnumTypes[] = [
   'ROLE_ADMIN',
@@ -48,10 +49,10 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
     toast.success(toastMessage)
   }
   const { mutate: enrollLecture } = usePostEnrollment(lectureId, {
-    onSuccess: () => onSuccess(false)
+    onSuccess: () => onSuccess(false),
   })
   const { mutate: deleteLecture } = useDeleteLecture(lectureId, {
-    onSuccess: () => onSuccess(true)
+    onSuccess: () => onSuccess(true),
   })
 
   const onLectureModal = (isDelete: boolean): void => {
@@ -79,13 +80,6 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
       />
     )
   }
-
-  const formatStartDate = dayjs(data?.startDate).format(
-    'YYYY년 MM월 DD일 HH시 mm분'
-  )
-  const formatEndDate = dayjs(data?.endDate).format(
-    'YYYY년 MM월 DD일 HH시 mm분'
-  )
 
   return (
     <MainStyle.PageWrapper>
@@ -120,7 +114,23 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
           <S.MainText>{data?.content}</S.MainText>
           <S.LectureSection>
             <span>수강 신청 기간</span>
-            <div>{`• ${formatStartDate}    ~    ${formatEndDate}`}</div>
+            {data?.startDate && data?.endDate && (
+              <div>{`• ${dayjs(data.startDate).format(
+                'YYYY년 MM월 DD일 HH시 mm분'
+              )}    ~    ${dayjs(data.endDate).format(
+                'YYYY년 MM월 DD일 HH시 mm분'
+              )}`}</div>
+            )}
+          </S.LectureSection>
+          <S.LectureSection>
+            <span>강의 장소</span>
+            <div>
+              • {data?.address} ({data?.locationDetails})
+            </div>
+            <KakaoMap
+              lat={Number(data?.locationY)}
+              lng={Number(data?.locationX)}
+            />
           </S.LectureSection>
           <S.LectureSection>
             <span>강의 수강 날짜</span>

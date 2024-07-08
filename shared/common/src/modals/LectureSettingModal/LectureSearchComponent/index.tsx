@@ -1,6 +1,11 @@
-import { InputCancel, LectureType, SearchIcon } from '@bitgouel/common'
-import { ChangeEvent, Dispatch, FormEvent, ReactNode, SetStateAction } from 'react'
-import { useRecoilValue } from 'recoil'
+import { InputCancel, SearchIcon } from '@bitgouel/common'
+import {
+  ChangeEvent,
+  Dispatch,
+  FormEvent,
+  ReactNode,
+  SetStateAction,
+} from 'react'
 import * as S from './style'
 
 const LectureSearchComponent = ({ children }: { children: ReactNode }) => {
@@ -13,7 +18,7 @@ interface SearchInputBoxProps {
   recoilValue: string
   onSubmit: (e?: FormEvent) => void
   onDeleteInputValue: () => void
-  inputPlaceholder: '유형' | '학과' | '핵심분야'
+  inputPlaceholder: '유형' | '구분' | '핵심분야' | '학과'
 }
 
 const SearchInputBox = ({
@@ -24,7 +29,6 @@ const SearchInputBox = ({
   onDeleteInputValue,
   inputPlaceholder,
 }: SearchInputBoxProps) => {
-  
   return (
     <S.SearchInputBox onSubmit={onSubmit} isSelected={!!recoilValue.length}>
       <S.SearchInput

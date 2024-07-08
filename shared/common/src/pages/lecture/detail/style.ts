@@ -81,6 +81,7 @@ export const ApplyButtonWrapper = styled.div`
   left: 0;
   bottom: 2.5rem;
   gap: 1.5rem;
+  z-index: 99;
 `
 
 export const ApplyButton = styled.div<{ isAble?: boolean; isDelete?: boolean }>`

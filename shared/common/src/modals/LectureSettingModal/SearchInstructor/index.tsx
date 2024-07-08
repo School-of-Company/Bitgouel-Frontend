@@ -9,7 +9,7 @@ import {
 } from '@bitgouel/common'
 import { InstructorsItemType } from '@bitgouel/types'
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { atom, useRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import {
   SearchInput,
   SearchInputBox,

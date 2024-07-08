@@ -3,6 +3,7 @@ import '@bitgouel/common/src/styles/globals.css'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import RecoilRootProvider from './recoilRootProvider'
+import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: '빛고을직업교육혁신지구',
@@ -92,6 +93,10 @@ export default function RootLayout({
             </GlobalLayout>
           </RecoilRootProvider>
         </picture>
+        <Script
+          strategy='beforeInteractive'
+          src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_KEY}&autoload=false`}
+        />
       </body>
     </html>
   )
