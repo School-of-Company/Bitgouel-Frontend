@@ -12,21 +12,21 @@ const UploadInput = styled.input`
 
 const UploadButton = styled.label`
   display: inline-block;
-  width: 70px;
-  height: 30px;
+  width: 4.375rem;
+  height: 1.875rem;
   background-color: ${({ theme }) => theme.color.main};
   display: flex;
   align-items: center;
-  padding: 12px 48px;
+  padding: 0.75rem 3rem;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 0.5rem;
 
   color: ${({ theme }) => theme.color.white};
   ${({ theme }) => theme.typo.text_lg.semibold};
 `
 
 const FileName = styled.span`
-  margin-left: 20px;
+  margin-left: 1.25rem;
   ${({ theme }) => theme.typo.text_sm.regular};
   color: ${({ theme }) => theme.color.gray['400']};
 `
