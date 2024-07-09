@@ -2,7 +2,7 @@
 
 import {
   LectureSemester,
-  LectureSemesterToKor
+  lectureSemesterToKor
 } from '@bitgouel/common'
 import { LectureSemesterEnum } from '@bitgouel/types'
 import { useRecoilState } from 'recoil'
@@ -26,7 +26,7 @@ const LectureSemesterSelect = () => {
           selected={lectureSemester}
           onClick={() => setLectureSemester(session)}
         >
-          <span>{LectureSemesterToKor[session]}</span>
+          <span>{lectureSemesterToKor[session]}</span>
         </EnumBox>
       ))}
     </EnumSelectContainer>
