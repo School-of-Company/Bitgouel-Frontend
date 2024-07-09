@@ -37,7 +37,7 @@ export const ListMember = styled.ul`
   overflow-y: auto;
   border: 1px solid ${({ theme }) => theme.color.white};
   border-radius: 0.5rem;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.color.white};
   list-style: none;
   padding: 0;
   margin: 0;
