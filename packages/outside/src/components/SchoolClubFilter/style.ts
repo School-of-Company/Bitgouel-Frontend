@@ -32,7 +32,7 @@ export const SelectContainer = styled.button<{ baseColor: string }>`
 
 export const ListMember = styled.ul`
   position: absolute;
-  height: 122px;
+  height: 7.625rem;
   overflow-y: auto;
   border: 1px solid ${({ theme }) => theme.color.gray['700']};
   border-radius: 0.5rem;
@@ -46,17 +46,17 @@ export const ListMember = styled.ul`
   /* 스크롤바 설정 */
   ::-webkit-scrollbar {
     background-color: white;
-    border-radius: 10px;
-    width: 8px;
-    padding-right: 10px;
-    padding: 10px 0;
+    border-radius: 0.625rem;
+    width: 0.5rem;
+    padding-right: 0.625rem;
+    padding: 0.625rem 0;
   }
 
   /* 스크롤바 썸 설정 */
   ::-webkit-scrollbar-thumb {
     background-color: ${({ theme }) => theme.color.gray['900']};
-    border-radius: 15px;
-    width: 5px;
+    border-radius: 0.9375rem;
+    width: 0.3125rem;
     z-index: 1;
   }
 
@@ -68,7 +68,7 @@ export const ListMember = styled.ul`
 
 export const ListButton = styled.button`
   width: 100%;
-  height: 40px;
+  height: 2.5rem;
   border: none;
   background-color: #fff;
   text-align: left;
