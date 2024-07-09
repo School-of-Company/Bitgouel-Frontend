@@ -46,7 +46,7 @@ export const ListMember = styled.ul`
 
   /* 스크롤바 설정 */
   ::-webkit-scrollbar {
-    background-color: white;
+    background-color: ${({ theme }) => theme.color.white};
     border-radius: 0.625rem;
     width: 0.5rem;
     padding-right: 0.625rem;
