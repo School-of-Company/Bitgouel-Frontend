@@ -7,7 +7,7 @@ interface OptionProps {
   label: string
 }
 
-const FilterOptions = [
+const FilterOptions: OptionProps[] = [
   { value: '미래형 운송기기', label: '미래형 운송기기' },
   { value: '에너지산업', label: '에너지산업' },
   { value: '의료•헬스케어', label: '의료•헬스케어' },
