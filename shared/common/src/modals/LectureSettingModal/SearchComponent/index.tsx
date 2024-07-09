@@ -18,7 +18,7 @@ interface SearchInputBoxProps {
   recoilValue: string
   onSubmit: (e?: FormEvent) => void
   onDeleteInputValue: () => void
-  inputPlaceholder: '유형' | '학과' | '핵심분야' | '계열 검색' | '학과'
+  inputPlaceholder: '유형' | '학과' | '핵심분야' | '계열 검색' | '학과' | '구분'
   isSearch?: boolean
 }
 
