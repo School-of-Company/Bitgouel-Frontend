@@ -32,7 +32,9 @@ export const SearchInput = styled.input<{ length?: number }>`
   ${({ theme }) => theme.typo.text_sm.regular};
   color: ${({ theme }) => theme.color.black};
   background-color: ${({ length, theme }) =>
-    length !== undefined && length > 0 ? theme.color.gray['900'] : theme.color.white};
+    length !== undefined && length > 0
+      ? theme.color.gray['900']
+      : theme.color.white};
   border: none;
   outline: none;
   width: 100%;
@@ -44,12 +46,10 @@ export const SearchInput = styled.input<{ length?: number }>`
 
 export const SearchListContainer = styled.div<{ type?: string }>`
   width: 100%;
-  /* height: 15rem; */
   height: ${({ type }) => (type === '계열' ? '15rem' : '11rem')};
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* overflow: ${({ type }) => (type === '계열' ? 'none' : 'scroll')}; */
   overflow: scroll;
 
   &::-webkit-scrollbar {
