@@ -32,7 +32,7 @@ export const SearchInput = styled.input<{ length?: number }>`
   ${({ theme }) => theme.typo.text_sm.regular};
   color: ${({ theme }) => theme.color.black};
   background-color: ${({ length, theme }) =>
-    length === 0 ? theme.color.white : theme.color.gray['900']};
+    length > 0 ? theme.color.gray['900'] : theme.color.white};
   border: none;
   outline: none;
   width: 100%;
