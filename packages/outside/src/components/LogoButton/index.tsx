@@ -32,7 +32,7 @@ const FileName = styled.span`
 `
 
 const LogoButton = () => {
-  const [fileName, setFileName] = useState('')
+  const [fileName, setFileName] = useState<string>('')
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files[0]
