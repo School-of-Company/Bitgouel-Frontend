@@ -4,7 +4,7 @@ import { useGetDivisions } from '@bitgouel/api'
 import { LectureDivision, LectureLine } from '@bitgouel/common'
 import { FormEvent, useState } from 'react'
 import { useRecoilState, useSetRecoilState } from 'recoil'
-import LectureSearchComponent from '../SearchComponent'
+import SearchComponent from '../SearchComponent'
 
 const SearchDivision = () => {
   const setLectureLine = useSetRecoilState(LectureLine)
@@ -29,8 +29,8 @@ const SearchDivision = () => {
   }
 
   return (
-    <LectureSearchComponent>
-      <LectureSearchComponent.SearchInputBox
+    <SearchComponent>
+      <SearchComponent.SearchInputBox
         inputValue={division}
         setInputValue={setDivision}
         recoilValue={lectureDivision}
@@ -39,14 +39,14 @@ const SearchDivision = () => {
         inputPlaceholder='구분'
       />
       {lectureDivision.length <= 0 && (
-        <LectureSearchComponent.SearchItemList
+        <SearchComponent.SearchItemList
           searchList={data?.divisions || []}
           inputValue={division}
           onSelectInputValue={onSelectDivision}
           addText='구분'
         />
       )}
-    </LectureSearchComponent>
+    </SearchComponent>
   )
 }
 
