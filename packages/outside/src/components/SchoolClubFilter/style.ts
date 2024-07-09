@@ -27,7 +27,8 @@ export const SelectContainer = styled.button<{ baseColor: string }>`
   position: absolute;
   z-index: 1;
 
-  color: ${(props) => (props.baseColor === '핵심분야' ? 'gray' : 'black')};
+  color: ${({ baseColor, theme }) =>
+    baseColor === '핵심분야' ? theme.color.gray['400'] : theme.color.black};
 `
 
 export const ListMember = styled.ul`
