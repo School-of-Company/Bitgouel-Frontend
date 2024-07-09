@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 
 export const CreateSchoolModalWrapper = styled.div`
-  height: 57.375rem;
-  width: 47rem;
+  height: auto;
+  width: 50rem;
   background-color: ${({ theme }) => theme.color.white};
   overflow: auto;
 `
@@ -26,7 +26,7 @@ export const TitleWrapper = styled.div`
 export const TitleContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 32rem;
+  gap: 35rem;
   width: 100%;
   justify-content: space-between;
 `
@@ -67,4 +67,25 @@ export const SchoolNameInput = styled.input`
 export const ClubItemContainer = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`
+export const SubmitContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+`
+
+export const SubmitButton = styled.div`
+  width: 11.25rem;
+  height: 3.25rem;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${({ theme }) => theme.color.main};
+  color: ${({ theme }) => theme.color.white};
+  ${({ theme }) => theme.typo.text_md.semibold};
+  cursor: pointer;
 `
