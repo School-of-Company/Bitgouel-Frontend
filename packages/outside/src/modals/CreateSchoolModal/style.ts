@@ -9,7 +9,6 @@ export const CreateSchoolModalWrapper = styled.div`
 
 export const CreateSchoolModalContainer = styled.div`
   padding: 1.5rem;
-  /* padding-bottom: 3rem; */
   flex-direction: column;
 `
 
