@@ -43,11 +43,11 @@ const LogoButton = () => {
     <UploadContainer>
       <UploadInput
         type='file'
-        id='file-upload'
+        id='fileUpload'
         onChange={handleFileChange}
         accept='.jpg, .jpeg, .png, .heic'
       />
-      <UploadButton htmlFor='file-upload'>파일 선택</UploadButton>
+      <UploadButton htmlFor='fileUpload'>파일 선택</UploadButton>
       {fileName && <FileName>{fileName}</FileName>}
     </UploadContainer>
   )
