@@ -19,7 +19,7 @@ export const SelectContainer = styled.button<{ baseColor: string }>`
   height: 3.5775rem;
   border: 1px solid ${({ theme }) => theme.color.gray['700']};
   border-radius: 0.5rem;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.color.white};
   text-align: left;
   text-indent: 0.875rem;
   cursor: pointer;
@@ -34,7 +34,7 @@ export const ListMember = styled.ul`
   position: absolute;
   height: 7.625rem;
   overflow-y: auto;
-  border: 1px solid ${({ theme }) => theme.color.gray['700']};
+  border: 1px solid ${({ theme }) => theme.color.white};
   border-radius: 0.5rem;
   background-color: #fff;
   list-style: none;
@@ -70,7 +70,7 @@ export const ListButton = styled.button`
   width: 100%;
   height: 2.5rem;
   border: none;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.color.white};
   text-align: left;
   text-indent: 1.25rem;
   cursor: pointer;
