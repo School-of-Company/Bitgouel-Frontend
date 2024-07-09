@@ -24,10 +24,6 @@ const SchoolClubFilter = () => {
     setIsOpen(false)
   }
 
-  const DeleteOption = () => {
-    setSelectedOption('핵심분야')
-  }
-
   return (
     <S.ContSelect>
       <S.SelectContainer
@@ -48,9 +44,9 @@ const SchoolClubFilter = () => {
         </S.ListMember>
       )}
 
-      {selectedOption && selectedOption != '핵심분야' && (
+      {selectedOption && selectedOption !== '핵심분야' && (
         <S.XIconContainer>
-          <div onClick={DeleteOption}>
+          <div onClick={() => setSelectedOption('핵심분야')}>
             <InputCancel />
           </div>
         </S.XIconContainer>
