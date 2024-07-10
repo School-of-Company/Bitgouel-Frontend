@@ -1,12 +1,12 @@
 import {
-    LectureEndDate,
-    LectureEndTime,
-    LectureStartDate,
-    LectureStartTime,
+  LectureEndDate,
+  LectureEndTime,
+  LectureStartDate,
+  LectureStartTime,
 } from '@bitgouel/common'
 import { ChangeEvent } from 'react'
 import { useRecoilState } from 'recoil'
-import { SearchInput } from '../LectureSearchComponent/style'
+import { SearchInput } from '../SearchComponent/style'
 import * as S from './style'
 
 const MaxDateLength: number = 8 as const

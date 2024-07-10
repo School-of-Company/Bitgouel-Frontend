@@ -5,7 +5,7 @@ import {
   SearchInput,
   SearchInputBox,
   SearchWrapper,
-} from '../LectureSearchComponent/style'
+} from '../SearchComponent/style'
 import DaumPostcode from 'react-daum-postcode'
 
 const LecturePlaceInput = () => {

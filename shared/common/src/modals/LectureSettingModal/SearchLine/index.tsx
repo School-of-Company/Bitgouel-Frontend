@@ -1,13 +1,19 @@
 'use client'
 
 import { useGetLines } from '@bitgouel/api'
-import {
-  LectureDivision,
-  LectureLine
-} from '@bitgouel/common'
+import { LectureDivision, LectureLine } from '@bitgouel/common'
 import { FormEvent, useState } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import LectureSearchComponent from '../LectureSearchComponent'
+
+import {
+  SearchInput,
+  SearchInputBox,
+  SearchItem,
+  SearchListContainer,
+  SearchWrapper,
+} from '../SearchComponent/style'
+
+import SearchComponent from '../SearchComponent'
 
 const SearchLine = () => {
   const [lectureLine, setLectureLine] = useRecoilState(LectureLine)
@@ -34,8 +40,8 @@ const SearchLine = () => {
   }
 
   return (
-    <LectureSearchComponent>
-      <LectureSearchComponent.SearchInputBox
+    <SearchComponent>
+      <SearchComponent.SearchInputBox
         inputValue={line}
         setInputValue={setLine}
         recoilValue={lectureLine}
@@ -44,14 +50,14 @@ const SearchLine = () => {
         inputPlaceholder='핵심분야'
       />
       {lectureLine.length <= 0 && (
-        <LectureSearchComponent.SearchItemList
+        <SearchComponent.SearchItemList
           searchList={data?.lines || []}
           inputValue={line}
           onSelectInputValue={onSelectLine}
           addText='핵심분야'
         />
       )}
-    </LectureSearchComponent>
+    </SearchComponent>
   )
 }
 
