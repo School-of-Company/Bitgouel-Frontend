@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, ChangeEvent } from 'react'
 import styled from '@emotion/styled'
 
 const UploadContainer = styled.div`
@@ -34,7 +34,7 @@ const FileName = styled.span`
 const LogoButton = () => {
   const [fileName, setFileName] = useState<string>('')
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files[0]
     setFileName(file ? file.name : '')
   }
