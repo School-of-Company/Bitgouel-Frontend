@@ -17,7 +17,6 @@ import * as S from './style'
 import { CheckboxToggleUserItem } from '../AdminUserItem'
 import { UserItemListType } from '@outside/PageContainer/Admin/UserListPage'
 
-type messageType = '대학을 수정하였습니다.' | '대학을 삭제하였습니다.'
 const toggleDisplayBarList: UserItemListType[] = [
   { width: '15rem', text: '학과' },
 ]
@@ -28,14 +27,14 @@ const UniversityList = () => {
   const { data, refetch, isLoading } = useGetUniversity()
   const { openModal, closeModal } = useModal()
 
-  const onSuccess = (message: messageType) => {
+  const onSuccess = () => {
     closeModal()
     refetch()
-    toast.success(message)
+    toast.success('대학을 삭제하였습니다.')
   }
 
   const { mutate } = usePatchUserApprove(universityIds, {
-    onSuccess: () => onSuccess('대학을 삭제하였습니다.'),
+    onSuccess,
   })
 
   const onDeleteModal = () => {
