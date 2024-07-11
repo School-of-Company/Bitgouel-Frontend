@@ -3,14 +3,16 @@ import { useDeleteUserWithdraw, useGetWithDrawUserList } from '@bitgouel/api'
 import {
   AppropriationModal,
   NoneResult,
-  UserItem,
   WaitingAnimation,
   handleSelect,
+  insertHyphen,
   useFilterSelect,
   useModal,
 } from '@bitgouel/common'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { WithdrawDisplayInfo } from '../AdminDisplayInfo'
+import { CheckboxUserItem } from '../AdminUserItem'
+import { UserItemListType } from '@outside/PageContainer/Admin/UserListPage'
 
 const defaultFilterList = [
   { text: '1기', item: '1', checked: true },
@@ -79,19 +81,25 @@ const WithdrawUserContainer = () => {
         {data?.students.length <= 0 ? (
           <NoneResult title={'탈퇴 예정자 명단이'} />
         ) : (
-          data?.students.map((user) => (
-            <UserItem
-              key={user.withdrawId}
-              id={user.userId}
-              name={user.studentName}
-              authority={user.authority}
-              phoneNumber={user.phoneNumber}
-              email={user.email}
-              status='request'
-              handleSelectUsers={handleSelectUsers}
-              userIds={userIds}
-            />
-          ))
+          data?.students.map((user) => {
+            const userItemList: UserItemListType[] = [
+              { width: '8rem', text: user.authority },
+              { width: '9rem', text: insertHyphen(user.phoneNumber) },
+              { width: 'auto', text: user.email },
+            ]
+
+            return (
+              <CheckboxUserItem
+                key={user.withdrawId}
+                name={user.studentName}
+                nameWidth='6rem'
+                userItemList={userItemList}
+                id={user.userId}
+                handleSelectUsers={handleSelectUsers}
+                ids={userIds}
+              />
+            )
+          })
         )}
       </UserListContainer>
     </>

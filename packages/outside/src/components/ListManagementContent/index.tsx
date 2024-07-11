@@ -76,7 +76,7 @@ const pageListData: ListType[] = [
     list: [
       {
         icon: <AgencyIcon />,
-        pageName: '등록된 학과 목록',
+        pageName: '유관기관 목록',
         link: '/main/admin/government',
       },
     ],
