@@ -11,7 +11,7 @@ export const UserItemContainer = styled.div`
   display: flex;
   align-items: center;
   padding-left: 1rem;
-  border-top: 0.0625rem solid ${({ theme }) => theme.color.gray['900']};
+  border-top: 1px solid ${({ theme }) => theme.color.gray['900']};
   box-sizing: border-box;
   gap: 4rem;
 `
