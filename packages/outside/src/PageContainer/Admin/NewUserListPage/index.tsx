@@ -1,21 +1,15 @@
 'use client'
 
-import {
-  Bg6,
-  ListManagement,
-  MainStyle,
-  useModal
-} from '@bitgouel/common'
+import { Bg6, ListManagement, MainStyle, useModal } from '@bitgouel/common'
 import { ListManagementContent } from '@outside/components'
 import { ScrollListModal } from '@outside/modals'
 import dynamic from 'next/dynamic'
-import { usePathname } from 'next/navigation'
 
 const NewUserList = dynamic(() => import('../../../components/NewUserList'))
 
 const NewUserListPage = () => {
   const { openModal } = useModal()
-  
+
   return (
     <MainStyle.PageWrapper>
       <MainStyle.SlideBg url={Bg6}>
