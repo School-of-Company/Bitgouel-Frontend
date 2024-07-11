@@ -9,9 +9,8 @@ import {
 import { ListManagementContent } from '@outside/components'
 import { ScrollListModal } from '@outside/modals'
 import dynamic from 'next/dynamic'
-import { usePathname } from 'next/navigation'
 
-const WithdrawUserList = dynamic(() => import('../../../components/WithdrawUserContainter'))
+const WithdrawUserList = dynamic(() => import('@outside/components/WithdrawUserList'))
 
 const WithdrawUserListPage = () => {
   const { openModal } = useModal()

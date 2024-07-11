@@ -25,7 +25,7 @@ const filterTitle: string = '기수' as const
 
 type cohortTypes = '1' | '2' | '3' | '4'
 
-const WithdrawUserContainer = () => {
+const WithdrawUserList = () => {
   const [userIds, setUserIds] = useState<string[]>([])
   const [cohort, setCohort] = useState<cohortTypes>('1')
   const { data, refetch, isLoading } = useGetWithDrawUserList(cohort)
@@ -106,4 +106,4 @@ const WithdrawUserContainer = () => {
   )
 }
 
-export default WithdrawUserContainer
+export default WithdrawUserList
