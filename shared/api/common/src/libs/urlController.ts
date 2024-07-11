@@ -102,6 +102,7 @@ export const adminUrl = {
     `/admin/reject?userIds=${userIds.join(',')}`,
   withDrawUser: (userIds: string[]) => `/admin/${userIds.join(',')}`,
   excelUpload: () => `/admin/excel`,
+  universityModify: (id: string) => `/university/${id}`,
 } as const
 
 export const emailUrl = {
