@@ -14,7 +14,7 @@ const UniversityPage = () => {
     <MainStyle.PageWrapper>
       <MainStyle.SlideBg url={Bg6}>
         <MainStyle.BgContainer>
-          <MainStyle.PageTitle>신규 가입자 명단</MainStyle.PageTitle>
+          <MainStyle.PageTitle>등록된 대학</MainStyle.PageTitle>
           <MainStyle.ButtonContainer>
             <MainStyle.SlideButton
               onClick={() =>
