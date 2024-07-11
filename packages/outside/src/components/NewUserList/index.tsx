@@ -6,16 +6,18 @@ import {
 import {
   AppropriationModal,
   NoneResult,
-  UserItem,
   WaitingAnimation,
   handleSelect,
+  insertHyphen,
   useModal,
 } from '@bitgouel/common'
+import { AppropriationModalProps } from '@bitgouel/types'
+import { UserItemListType } from '@outside/PageContainer/Admin/UserListPage'
 import { ChangeEvent, useState } from 'react'
 import { toast } from 'react-toastify'
 import { NewDisplayInfo } from '../AdminDisplayInfo'
+import { CheckboxUserItem } from '../AdminUserItem'
 import * as S from './style'
-import { AppropriationModalProps } from '@bitgouel/types'
 
 type messageType = '가입을 수락하였습니다' | '가입을 거절하였습니다'
 
@@ -81,25 +83,29 @@ const NewUserList = () => {
     <>
       <NewDisplayInfo onAll={onAll} handleOpenModal={handleOpenModal} />
       <S.UserListContainer>
-        {isLoading && (
-          <WaitingAnimation title={'신규 가입자 명단을'} />
-        )}
+        {isLoading && <WaitingAnimation title={'신규 가입자 명단을'} />}
         {data?.users.length <= 0 ? (
           <NoneResult title={'신규 가입자 명단이'} />
         ) : (
-          data?.users.map((user) => (
-            <UserItem
-              key={user.id}
-              id={user.id}
-              name={user.name}
-              authority={user.authority}
-              phoneNumber={user.phoneNumber}
-              email={user.email}
-              status='request'
-              handleSelectUsers={handleSelectUsers}
-              userIds={userIds}
-            />
-          ))
+          data?.users.map((user) => {
+            const userItemList: UserItemListType[] = [
+              { width: '8rem', text: user.authority },
+              { width: '9rem', text: insertHyphen(user.phoneNumber) },
+              { width: 'auto', text: user.email },
+            ]
+
+            return (
+              <CheckboxUserItem
+                key={user.id}
+                name={user.name}
+                nameWidth='6rem'
+                userItemList={userItemList}
+                id={user.id}
+                handleSelectUsers={handleSelectUsers}
+                ids={userIds}
+              />
+            )
+          })
         )}
       </S.UserListContainer>
     </>

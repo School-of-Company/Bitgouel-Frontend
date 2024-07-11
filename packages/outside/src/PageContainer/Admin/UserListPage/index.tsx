@@ -7,8 +7,8 @@ import {
   MainStyle,
   NoneResult,
   SearchComponent,
-  UserItem,
   WaitingAnimation,
+  insertHyphen,
   useFilterSelect,
   useModal,
 } from '@bitgouel/common'
@@ -18,7 +18,12 @@ import { ScrollListModal } from '@outside/modals'
 import { FormEvent, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
-import { usePathname } from 'next/navigation'
+import { UserItem } from '@outside/components'
+
+export interface UserItemListType {
+  width: string
+  text: string
+}
 
 const defaultFilterList = [
   { text: '전체', item: '전체', checked: true },
@@ -98,17 +103,27 @@ const UserListPage = () => {
             {data?.users.length <= 0 ? (
               <NoneResult title={'사용자 목록이'} />
             ) : (
-              data?.users.map((user) => (
-                <UserItem
-                  key={user.id}
-                  id={user.id}
-                  name={user.name}
-                  authority={user.authority}
-                  phoneNumber={user.phoneNumber}
-                  email={user.email}
-                  status='current'
-                />
-              ))
+              data?.users.map((user) => {
+                const userItemList: UserItemListType[] = [
+                  { width: '8rem', text: user.authority },
+                  { width: '9rem', text: insertHyphen(user.phoneNumber) },
+                  {
+                    width: '9rem',
+                    text: user.subscriptionGrade
+                      ? `${user.subscriptionYear} (${user.subscriptionGrade})`
+                      : `${user.subscriptionYear}`,
+                  },
+                  { width: 'auto', text: user.email },
+                ]
+                return (
+                  <UserItem
+                    key={user.id}
+                    name={user.name}
+                    nameWidth='6rem'
+                    userItemList={userItemList}
+                  />
+                )
+              })
             )}
           </S.UserListContainer>
         </MainStyle.MainContainer>
