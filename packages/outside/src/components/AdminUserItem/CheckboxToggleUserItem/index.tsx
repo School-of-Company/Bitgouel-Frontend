@@ -2,28 +2,25 @@
 
 import {
   AppropriationModal,
-  CommonCheckBox,
   ToggleArrowIcon,
-  useModal,
+  useModal
 } from '@bitgouel/common'
 import { UserItemListType } from '@outside/PageContainer/Admin/UserListPage'
 import { DisplayBarSpan } from '@outside/components/AdminDisplayInfo/style'
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 import {
-  CheckItemContainer,
   CheckboxUserItemContainer,
   ModifyText,
-  Name,
   OtherItemText,
   ScrollBox,
   ToggleDisplayBar,
   ToggleListContainer,
-  ToggleSvg,
+  ToggleSvg
 } from '../style'
-import ToggleItem from './ToggleItem'
 import CheckBoxText from './CheckBoxText'
 import ModifyInput from './ModifyInput'
-import { toast } from 'react-toastify'
+import ToggleItem from './ToggleItem'
 
 interface Props {
   name: string
