@@ -66,8 +66,8 @@ const pageListData: ListType[] = [
     list: [
       {
         icon: <UniversityIcon />,
-        pageName: '등록된 학과 목록',
-        link: '/main/admin/company',
+        pageName: '등록된 대학 목록',
+        link: '/main/admin/university',
       },
     ],
   },
@@ -77,7 +77,7 @@ const pageListData: ListType[] = [
       {
         icon: <AgencyIcon />,
         pageName: '등록된 학과 목록',
-        link: '/main/admin/company',
+        link: '/main/admin/government',
       },
     ],
   },
