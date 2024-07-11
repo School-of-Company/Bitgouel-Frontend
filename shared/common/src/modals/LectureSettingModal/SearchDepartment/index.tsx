@@ -4,7 +4,7 @@ import { useGetDepartments } from '@bitgouel/api'
 import { LectureDepartment } from '@bitgouel/common'
 import { FormEvent, useState } from 'react'
 import { useRecoilState } from 'recoil'
-import LectureSearchComponent from '../LectureSearchComponent'
+import SearchComponent from '../SearchComponent'
 
 const SearchDepartment = () => {
   const [lectureDepartment, setLectureDepartment] =
@@ -13,7 +13,7 @@ const SearchDepartment = () => {
   const { data, refetch } = useGetDepartments(department)
 
   const onSubmit = (e?: FormEvent) => {
-    if(e) e.preventDefault()
+    if (e) e.preventDefault()
     refetch()
   }
 
@@ -28,8 +28,8 @@ const SearchDepartment = () => {
   }
 
   return (
-    <LectureSearchComponent>
-      <LectureSearchComponent.SearchInputBox
+    <SearchComponent>
+      <SearchComponent.SearchInputBox
         inputValue={department}
         setInputValue={setDepartment}
         recoilValue={lectureDepartment}
@@ -38,14 +38,14 @@ const SearchDepartment = () => {
         inputPlaceholder='학과'
       />
       {lectureDepartment.length <= 0 && (
-      <LectureSearchComponent.SearchItemList
-        searchList={data?.departments || []}
-        inputValue={department}
-        onSelectInputValue={onSelectDepartment}
-        addText='학과'
-      />
+        <SearchComponent.SearchItemList
+          searchList={data?.departments || []}
+          inputValue={department}
+          onSelectInputValue={onSelectDepartment}
+          addText='학과'
+        />
       )}
-    </LectureSearchComponent>
+    </SearchComponent>
   )
 }
 

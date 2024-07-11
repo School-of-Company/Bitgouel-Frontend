@@ -8,7 +8,7 @@ import {
 } from 'react'
 import * as S from './style'
 
-const LectureSearchComponent = ({ children }: { children: ReactNode }) => {
+const SearchComponent = ({ children }: { children: ReactNode }) => {
   return <S.SearchWrapper>{children}</S.SearchWrapper>
 }
 
@@ -18,7 +18,8 @@ interface SearchInputBoxProps {
   recoilValue: string
   onSubmit: (e?: FormEvent) => void
   onDeleteInputValue: () => void
-  inputPlaceholder: '유형' | '구분' | '핵심분야' | '학과'
+  inputPlaceholder: '유형' | '학과' | '핵심분야' | '계열 검색' | '학과' | '구분'
+  isSearch?: boolean
 }
 
 const SearchInputBox = ({
@@ -28,22 +29,28 @@ const SearchInputBox = ({
   onSubmit,
   onDeleteInputValue,
   inputPlaceholder,
+  isSearch,
 }: SearchInputBoxProps) => {
   return (
     <S.SearchInputBox onSubmit={onSubmit} isSelected={!!recoilValue.length}>
       <S.SearchInput
+        length={recoilValue.length}
         type='text'
         value={recoilValue.length ? recoilValue : inputValue}
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
           setInputValue(e.target.value)
         }
-        placeholder={`${inputPlaceholder} 검색 또는 임의로 추가...`}
-        disabled={!!recoilValue.length}
+        placeholder={
+          inputPlaceholder === '계열 검색'
+            ? inputPlaceholder
+            : `${inputPlaceholder} 검색 또는 임의로 추가...`
+        }
+        disabled={!!recoilValue.length || inputPlaceholder === '계열 검색'}
       />
       {recoilValue.length ? (
         <InputCancel onClick={() => onDeleteInputValue()} />
       ) : (
-        <SearchIcon onClick={onSubmit} />
+        isSearch && <SearchIcon onClick={onSubmit} />
       )}
     </S.SearchInputBox>
   )
@@ -54,6 +61,7 @@ interface SearchItemListProps {
   inputValue: string
   onSelectInputValue: (item: string) => void
   addText?: string
+  type?: '계열'
 }
 
 const SearchItemList = ({
@@ -61,9 +69,10 @@ const SearchItemList = ({
   inputValue,
   onSelectInputValue,
   addText,
+  type,
 }: SearchItemListProps) => {
   return (
-    <S.SearchListContainer>
+    <S.SearchListContainer type={type}>
       {searchList.map((searchItem) => (
         <S.SearchItem
           key={searchItem}
@@ -82,6 +91,6 @@ const SearchItemList = ({
   )
 }
 
-LectureSearchComponent.SearchInputBox = SearchInputBox
-LectureSearchComponent.SearchItemList = SearchItemList
-export default LectureSearchComponent
+SearchComponent.SearchInputBox = SearchInputBox
+SearchComponent.SearchItemList = SearchItemList
+export default SearchComponent

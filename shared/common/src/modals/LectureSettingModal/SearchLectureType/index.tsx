@@ -3,7 +3,7 @@
 import { LectureType } from '@bitgouel/common'
 import { FormEvent, useState } from 'react'
 import { useRecoilState } from 'recoil'
-import LectureSearchComponent from '../LectureSearchComponent'
+import SearchComponent from '../SearchComponent'
 
 const LectureTypes: [
   '상호학점인정교육과정',
@@ -42,8 +42,8 @@ const SearchLectureType = () => {
   }
 
   return (
-    <LectureSearchComponent>
-      <LectureSearchComponent.SearchInputBox
+    <SearchComponent>
+      <SearchComponent.SearchInputBox
         inputValue={type}
         setInputValue={setType}
         recoilValue={lectureType}
@@ -52,14 +52,14 @@ const SearchLectureType = () => {
         inputPlaceholder='유형'
       />
       {lectureType.length <= 0 && (
-        <LectureSearchComponent.SearchItemList
+        <SearchComponent.SearchItemList
           searchList={lectureTypeList || []}
           inputValue={type}
           onSelectInputValue={onSelectLectureType}
           addText='유형'
         />
       )}
-    </LectureSearchComponent>
+    </SearchComponent>
   )
 }
 

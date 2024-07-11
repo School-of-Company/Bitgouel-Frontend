@@ -113,6 +113,11 @@ export const LectureEssentialComplete = atom<boolean>({
   default: true,
 })
 
+export const SchoolType= atom<string>({
+  key: 'SchoolType',
+  default: '',
+})
+
 export const LectureType = atom<string>({
   key: 'LectureType',
   default: '',
