@@ -102,13 +102,17 @@ export const adminUrl = {
     `/admin/reject?userIds=${userIds.join(',')}`,
   withDrawUser: (userIds: string[]) => `/admin/${userIds.join(',')}`,
   excelUpload: () => `/admin/excel`,
-  universityList: () => `/university`,
 } as const
 
 export const emailUrl = {
   email: () => `/email`,
-}
+} as const
 
 export const faqUrl = {
   faq: () => `/faq`,
-}
+} as const
+
+export const universityUrl = {
+  universityModify: (id: string) => `/university/${id}`,
+  universityList: () => `/university`,
+} as const
