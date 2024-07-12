@@ -110,3 +110,7 @@ export const faqQueryKeys = {
   getQuestions: () => ['FAQ', 'create'],
   postQuestion: () => ['FAQ', 'list'],
 }
+
+export const schoolQueryKeys = {
+  postRegistrationSchool: () => ['school', 'registration'],
+}
