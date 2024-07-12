@@ -1,10 +1,6 @@
 'use client'
 
-import {
-  AppropriationModal,
-  ToggleArrowIcon,
-  useModal
-} from '@bitgouel/common'
+import { AppropriationModal, ToggleArrowIcon, useModal } from '@bitgouel/common'
 import { UserItemListType } from '@outside/PageContainer/Admin/UserListPage'
 import { DisplayBarSpan } from '@outside/components/AdminDisplayInfo/style'
 import { useState } from 'react'
@@ -16,11 +12,13 @@ import {
   ScrollBox,
   ToggleDisplayBar,
   ToggleListContainer,
-  ToggleSvg
+  ToggleSvg,
 } from '../style'
 import CheckBoxText from './CheckBoxText'
 import ModifyInput from './ModifyInput'
 import ToggleItem from './ToggleItem'
+import { universityQueryKeys, usePatchUniversity } from '@bitgouel/api'
+import { useQueryClient } from '@tanstack/react-query'
 
 interface Props {
   name: string
@@ -51,6 +49,16 @@ const CheckboxToggleUserItem = ({
   const [isModify, setIsModify] = useState<boolean>(false)
   const [modifyText, setModifyText] = useState<string>(name)
   const { openModal, closeModal } = useModal()
+  const queryClient = useQueryClient()
+
+  const { mutate } = usePatchUniversity(id, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(universityQueryKeys.getUniversity())
+      setIsModify(false)
+      closeModal()
+      toast.success('대학을 수정하였습니다.')
+    },
+  })
 
   const onModify = () => {
     if (!isModify) return setIsModify(true)
@@ -63,7 +71,9 @@ const CheckboxToggleUserItem = ({
         question='대학을 수정하시겠습니까?'
         purpose='수정하기'
         title={modifyText}
-        onAppropriation={(callbacks) => {}}
+        onAppropriation={(callbacks) =>
+          mutate({ universityName: modifyText }, callbacks)
+        }
       />
     )
   }
