@@ -99,15 +99,20 @@ export const adminQueryKeys = {
   deleteUserReject: (userIds: string[]) => ['admin', 'reject', userIds],
   deleteUserWithout: (userIds: string[]) => ['admin', 'without', userIds],
   postExcelUpload: () => ['admin', 'upload'],
-  patchUniversity: (id: string) => ['admin', 'university', id],
 } as const
+
 
 export const emailQueryKeys = {
   postEmail: () => ['email', 'send'],
   getEmail: () => ['email', 'check'],
-}
+} as const
 
 export const faqQueryKeys = {
   getQuestions: () => ['FAQ', 'create'],
   postQuestion: () => ['FAQ', 'list'],
-}
+} as const
+
+export const universityQueryKeys = {    
+  patchUniversity: (id: string) => ['university', id],
+  getUniversity: () => ['university', 'list'],
+} as const

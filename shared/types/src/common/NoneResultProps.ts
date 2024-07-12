@@ -9,6 +9,7 @@ export type NotDataTitle =
   | '게시글 목록이'
   | '학생 활동이'
   | '동아리 인원이'
+  | '대학 명단이'
 
 export interface NoneResultProps {
   title: NotDataTitle
