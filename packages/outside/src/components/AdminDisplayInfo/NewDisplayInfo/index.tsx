@@ -1,6 +1,6 @@
 import { Check, PeopleCircle } from "@bitgouel/common"
 import { ChangeEvent } from "react"
-import { RequestDisplayBar } from "../UserDisplayInfo/style"
+import { DisplayBarSpan, RequestDisplayBar } from "../style"
 import * as S from './style'
 
 interface Props {
@@ -13,12 +13,12 @@ const NewDisplayInfo = ({ onAll, handleOpenModal }: Props) => {
     <S.NewInfoContainer>
       <RequestDisplayBar>
         <div>
-          <span>선택</span>
-          <span>이름</span>
+          <DisplayBarSpan width="1.75rem">선택</DisplayBarSpan>
+          <DisplayBarSpan width="6rem">이름</DisplayBarSpan>
         </div>
-        <span>직업</span>
-        <span>전화번호</span>
-        <span>이메일</span>
+        <DisplayBarSpan width="8rem">직업</DisplayBarSpan>
+        <DisplayBarSpan width="9rem">전화번호</DisplayBarSpan>
+        <DisplayBarSpan width="auto">이메일</DisplayBarSpan>
       </RequestDisplayBar>
       <S.SelectBoxContainer>
         <S.SelectBox type='allNew' htmlFor='allNew'>

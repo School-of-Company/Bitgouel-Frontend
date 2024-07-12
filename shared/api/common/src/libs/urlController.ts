@@ -106,8 +106,13 @@ export const adminUrl = {
 
 export const emailUrl = {
   email: () => `/email`,
-}
+} as const
 
 export const faqUrl = {
   faq: () => `/faq`,
-}
+} as const
+
+export const universityUrl = {
+  universityModify: (id: string) => `/university/${id}`,
+  universityList: () => `/university`,
+} as const

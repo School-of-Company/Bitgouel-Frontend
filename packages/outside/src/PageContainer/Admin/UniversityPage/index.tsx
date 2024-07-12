@@ -5,16 +5,16 @@ import { ListManagementContent } from '@outside/components'
 import { ScrollListModal } from '@outside/modals'
 import dynamic from 'next/dynamic'
 
-const NewUserList = dynamic(() => import('@outside/components/NewUserList'))
+const UniversityList = dynamic(() => import('@outside/components/UniversityList'))
 
-const NewUserListPage = () => {
+const UniversityPage = () => {
   const { openModal } = useModal()
 
   return (
     <MainStyle.PageWrapper>
       <MainStyle.SlideBg url={Bg6}>
         <MainStyle.BgContainer>
-          <MainStyle.PageTitle>신규 가입자 명단</MainStyle.PageTitle>
+          <MainStyle.PageTitle>등록된 대학</MainStyle.PageTitle>
           <MainStyle.ButtonContainer>
             <MainStyle.SlideButton
               onClick={() =>
@@ -34,11 +34,11 @@ const NewUserListPage = () => {
       </MainStyle.SlideBg>
       <MainStyle.MainWrapper>
         <MainStyle.MainContainer>
-          <NewUserList />
+          <UniversityList />
         </MainStyle.MainContainer>
       </MainStyle.MainWrapper>
     </MainStyle.PageWrapper>
   )
 }
 
-export default NewUserListPage
+export default UniversityPage

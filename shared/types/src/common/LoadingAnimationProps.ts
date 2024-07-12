@@ -10,6 +10,7 @@ export type isLoadingTitleTypes =
   | '게시글 목록을'
   | '학생 활동을'
   | '동아리 인원을'
+  | '대학 명단을'
 
 export interface LoadingAnimationProps {
   title: isLoadingTitleTypes

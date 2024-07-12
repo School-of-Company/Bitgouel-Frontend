@@ -1,8 +1,14 @@
-import { Check, FilterModal, FilterOut, PeopleCircle, useModal } from "@bitgouel/common"
-import { FilterListTypes, onSelectedParameter } from "@bitgouel/types"
-import { ChangeEvent } from "react"
-import { RequestDisplayBar } from "../UserDisplayInfo/style"
+import {
+  Check,
+  FilterModal,
+  FilterOut,
+  PeopleCircle,
+  useModal,
+} from '@bitgouel/common'
+import { FilterListTypes, onSelectedParameter } from '@bitgouel/types'
+import { ChangeEvent } from 'react'
 import * as S from './style'
+import { DisplayBarSpan, RequestDisplayBar } from '../style'
 
 interface Props {
   filterTitle: string
@@ -20,17 +26,17 @@ const WithdrawDisplayInfo = ({
   onWithdrawModal,
 }: Props) => {
   const { openModal } = useModal()
-  
+
   return (
     <S.WithdrawInfoContainer>
       <RequestDisplayBar>
         <div>
-          <span>선택</span>
-          <span>이름</span>
+          <DisplayBarSpan width='1.75rem'>선택</DisplayBarSpan>
+          <DisplayBarSpan width='6rem'>이름</DisplayBarSpan>
         </div>
-        <span>직업</span>
-        <span>전화번호</span>
-        <span>이메일</span>
+        <DisplayBarSpan width='8rem'>직업</DisplayBarSpan>
+        <DisplayBarSpan width='9rem'>전화번호</DisplayBarSpan>
+        <DisplayBarSpan width='auto'>이메일</DisplayBarSpan>
       </RequestDisplayBar>
       <S.WithdrawButtonContainer>
         <S.FilterBox

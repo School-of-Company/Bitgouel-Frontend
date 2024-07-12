@@ -18,6 +18,8 @@ export interface UserTypes {
   approveStatus: ApproveStatusTypes
   phoneNumber: string
   email: string
+  subscriptionYear: number
+  subscriptionGrade?: number
 }
 
 export interface UserListResponseTypes {
