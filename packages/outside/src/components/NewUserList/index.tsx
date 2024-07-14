@@ -15,7 +15,7 @@ import { AppropriationModalProps } from '@bitgouel/types'
 import { ChangeEvent, useState } from 'react'
 import { toast } from 'react-toastify'
 import { NewDisplayInfo } from '../AdminDisplayInfo'
-import AdminItemComponent from '../AdminItemComponent'
+import { CompoundItemComponent } from '../AdminItemComponent'
 import * as S from './style'
 
 type messageType = '가입을 수락하였습니다' | '가입을 거절하였습니다'
@@ -94,9 +94,9 @@ const NewUserList = () => {
             ]
 
             return (
-              <AdminItemComponent key={user.id}>
-                <AdminItemComponent.AdminCheckboxItemContainer>
-                  <AdminItemComponent.AdminItemCheckboxName
+              <CompoundItemComponent key={user.id}>
+                <CompoundItemComponent.AdminCheckboxItemContainer>
+                  <CompoundItemComponent.AdminItemCheckboxName
                     checkList={userIds}
                     checkItem={user.id}
                     handleSelectCheck={handleSelectUsers}
@@ -104,14 +104,14 @@ const NewUserList = () => {
                     nameWidth='6rem'
                   />
                   {userItemList.map((item) => (
-                    <AdminItemComponent.OtherItem
+                    <CompoundItemComponent.OtherItem
                       key={item.text}
                       width={item.width}
                       text={item.text}
                     />
                   ))}
-                </AdminItemComponent.AdminCheckboxItemContainer>
-              </AdminItemComponent>
+                </CompoundItemComponent.AdminCheckboxItemContainer>
+              </CompoundItemComponent>
             )
           })
         )}

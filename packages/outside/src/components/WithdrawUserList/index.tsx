@@ -11,7 +11,7 @@ import {
 import { UserListContainer } from '@outside/PageContainer/Admin/UserListPage/style'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { WithdrawDisplayInfo } from '../AdminDisplayInfo'
-import AdminItemComponent from '../AdminItemComponent'
+import { CompoundItemComponent } from '../AdminItemComponent'
 
 const defaultFilterList = [
   { text: '1기', item: '1', checked: true },
@@ -86,9 +86,9 @@ const WithdrawUserList = () => {
             ]
 
             return (
-              <AdminItemComponent key={user.withdrawId}>
-                <AdminItemComponent.AdminCheckboxItemContainer>
-                  <AdminItemComponent.AdminItemCheckboxName
+              <CompoundItemComponent key={user.withdrawId}>
+                <CompoundItemComponent.AdminCheckboxItemContainer>
+                  <CompoundItemComponent.AdminItemCheckboxName
                     checkList={userIds}
                     checkItem={user.userId}
                     handleSelectCheck={handleSelectUsers}
@@ -96,14 +96,14 @@ const WithdrawUserList = () => {
                     nameWidth='6rem'
                   />
                   {userItemList.map((item) => (
-                    <AdminItemComponent.OtherItem
+                    <CompoundItemComponent.OtherItem
                       key={item.text}
                       width={item.width}
                       text={item.text}
                     />
                   ))}
-                </AdminItemComponent.AdminCheckboxItemContainer>
-              </AdminItemComponent>
+                </CompoundItemComponent.AdminCheckboxItemContainer>
+              </CompoundItemComponent>
             )
           })
         )}

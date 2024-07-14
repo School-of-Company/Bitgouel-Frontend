@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { DisplayBar } from '../AdminDisplayInfo/style'
+import { DisplayBar } from '../../AdminDisplayInfo/style'
 
 export const ScrollBox = styled.div`
   width: 100%;
@@ -74,4 +74,5 @@ export const ToggleListContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding-left: 1rem;
+  ${({ theme }) => theme.typo.text_md.medium};
 `
