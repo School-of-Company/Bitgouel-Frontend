@@ -13,17 +13,11 @@ import {
   useModal,
 } from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
-import { ListManagementContent, UserDisplayInfo } from '@outside/components'
+import { CompoundItemComponent, ListManagementContent, UserDisplayInfo } from '@outside/components'
 import { ScrollListModal } from '@outside/modals'
 import { FormEvent, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
-import { UserItem } from '@outside/components'
-
-export interface UserItemListType {
-  width: string
-  text: string
-}
 
 const defaultFilterList = [
   { text: '전체', item: '전체', checked: true },
@@ -104,7 +98,7 @@ const UserListPage = () => {
               <NoneResult title={'사용자 목록이'} />
             ) : (
               data?.users.map((user) => {
-                const userItemList: UserItemListType[] = [
+                const otherItemList: { width: string; text: string }[] = [
                   { width: '8rem', text: user.authority },
                   { width: '9rem', text: insertHyphen(user.phoneNumber) },
                   {
@@ -115,13 +109,23 @@ const UserListPage = () => {
                   },
                   { width: 'auto', text: user.email },
                 ]
+
                 return (
-                  <UserItem
-                    key={user.id}
-                    name={user.name}
-                    nameWidth='6rem'
-                    userItemList={userItemList}
-                  />
+                  <CompoundItemComponent key={user.id}>
+                    <CompoundItemComponent.AdminItemContainer>
+                      <CompoundItemComponent.AdminItemName
+                        name={user.name}
+                        nameWidth='6rem'
+                      />
+                      {otherItemList.map((item) => (
+                        <CompoundItemComponent.OtherItem
+                          key={item.text}
+                          width={item.width}
+                          text={item.text}
+                        />
+                      ))}
+                    </CompoundItemComponent.AdminItemContainer>
+                  </CompoundItemComponent>
                 )
               })
             )}
