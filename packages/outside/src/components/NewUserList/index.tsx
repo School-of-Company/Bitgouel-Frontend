@@ -12,11 +12,10 @@ import {
   useModal,
 } from '@bitgouel/common'
 import { AppropriationModalProps } from '@bitgouel/types'
-import { UserItemListType } from '@outside/PageContainer/Admin/UserListPage'
 import { ChangeEvent, useState } from 'react'
 import { toast } from 'react-toastify'
 import { NewDisplayInfo } from '../AdminDisplayInfo'
-import { CheckboxUserItem } from '../AdminUserItem'
+import AdminItemComponent from '../AdminItemComponent'
 import * as S from './style'
 
 type messageType = '가입을 수락하였습니다' | '가입을 거절하였습니다'
@@ -88,22 +87,31 @@ const NewUserList = () => {
           <NoneResult title={'신규 가입자 명단이'} />
         ) : (
           data?.users.map((user) => {
-            const userItemList: UserItemListType[] = [
+            const userItemList: { width: string; text: string }[] = [
               { width: '8rem', text: user.authority },
               { width: '9rem', text: insertHyphen(user.phoneNumber) },
               { width: 'auto', text: user.email },
             ]
 
             return (
-              <CheckboxUserItem
-                key={user.id}
-                name={user.name}
-                nameWidth='6rem'
-                userItemList={userItemList}
-                id={user.id}
-                handleSelectUsers={handleSelectUsers}
-                ids={userIds}
-              />
+              <AdminItemComponent key={user.id}>
+                <AdminItemComponent.AdminCheckboxItemContainer>
+                  <AdminItemComponent.AdminItemCheckboxName
+                    checkList={userIds}
+                    checkItem={user.id}
+                    handleSelectCheck={handleSelectUsers}
+                    name={user.name}
+                    nameWidth='6rem'
+                  />
+                  {userItemList.map((item) => (
+                    <AdminItemComponent.OtherItem
+                      key={item.text}
+                      width={item.width}
+                      text={item.text}
+                    />
+                  ))}
+                </AdminItemComponent.AdminCheckboxItemContainer>
+              </AdminItemComponent>
             )
           })
         )}

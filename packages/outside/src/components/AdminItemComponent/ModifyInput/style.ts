@@ -5,8 +5,8 @@ export const ModifyInputBox = styled.div`
   margin-left: 2.75rem;
 `
 
-export const ModifyInput = styled.input`
-  width: 15rem;
+export const ModifyInput = styled.input<{ width: string }>`
+  width: ${({ width }) => width};
   border: none;
   outline: none;
   border-bottom: 1px solid ${({ theme }) => theme.color.main};

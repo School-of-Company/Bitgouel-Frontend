@@ -1,6 +1,9 @@
 import {
+  universityQueryKeys,
+  useDeleteUserWithdraw,
   useGetUniversity,
   useGetUserList,
+  usePatchUniversity,
   usePatchUserApprove,
 } from '@bitgouel/api'
 import {
@@ -14,10 +17,10 @@ import { ChangeEvent, useState } from 'react'
 import { toast } from 'react-toastify'
 import { UniversityDisplayInfo } from '../AdminDisplayInfo'
 import * as S from './style'
-import { CheckboxToggleUserItem } from '../AdminUserItem'
-import { UserItemListType } from '@outside/PageContainer/Admin/UserListPage'
+import { useQueryClient } from '@tanstack/react-query'
+import AdminItemComponent from '../AdminItemComponent'
 
-const toggleDisplayBarList: UserItemListType[] = [
+const toggleDisplayBarList: { width: string; text: string }[] = [
   { width: '15rem', text: '학과' },
 ]
 
@@ -26,6 +29,7 @@ const UniversityList = () => {
   const [departmentsNames, setDepartmentsNames] = useState<string[]>([])
   const { data, refetch, isLoading } = useGetUniversity()
   const { openModal, closeModal } = useModal()
+  const [universityId, setUniversityId] = useState<string>('')
 
   const onSuccess = () => {
     closeModal()
@@ -33,7 +37,7 @@ const UniversityList = () => {
     toast.success('대학을 삭제하였습니다.')
   }
 
-  const { mutate } = usePatchUserApprove(universityIds, {
+  const { mutate: deleteUniversity } = useDeleteUserWithdraw(universityIds, {
     onSuccess,
   })
 
@@ -46,54 +50,50 @@ const UniversityList = () => {
         question='대학을 삭제하시겠습니까?'
         purpose='삭제하기'
         title=''
-        onAppropriation={(callbacks) => mutate(undefined, callbacks)}
+        onAppropriation={(callbacks) => deleteUniversity(undefined, callbacks)}
       />
     )
   }
 
-  const onAll = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked)
-      setUniversityIds(
-        data?.universities.map((university) => String(university.id))
-      )
-    else setUniversityIds([])
-  }
+  const queryClient = useQueryClient()
+  const { mutate: modifyUniversity } = usePatchUniversity(universityId, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(universityQueryKeys.getUniversity())
+      closeModal()
+      toast.success('대학을 수정하였습니다.')
+    },
+  })
 
-  const handleSelectUsers = (checked: boolean, userId: string) => {
-    if (departmentsNames.length) setDepartmentsNames([])
-    handleSelect({ checked, id: userId, setIds: setUniversityIds })
-  }
-
-  const handleSelectToggle = (checked: boolean, toggleItem: string) => {
-    if (universityIds) setUniversityIds([])
-    if (checked) setDepartmentsNames((prev) => [...prev, toggleItem])
-    else
-      setDepartmentsNames((prev) =>
-        prev.filter((toggle) => toggle !== toggleItem)
-      )
+  const onUniversityModify = (universityId: string, modifyText: string) => {
+    setUniversityId(universityId)
+    openModal(
+      <AppropriationModal
+        isApprove={true}
+        question='대학을 수정하시겠습니까?'
+        purpose='수정하기'
+        title={modifyText}
+        onAppropriation={(callbacks) =>
+          modifyUniversity({ universityName: modifyText }, callbacks)
+        }
+      />
+    )
   }
 
   return (
     <>
-      <UniversityDisplayInfo onAll={onAll} onDeleteModal={onDeleteModal} />
+      <UniversityDisplayInfo />
       <S.UserListContainer>
         {isLoading && <WaitingAnimation title={'대학 명단을'} />}
         {data?.universities.length <= 0 ? (
           <NoneResult title={'대학 명단이'} />
         ) : (
           data?.universities.map((university) => (
-            <CheckboxToggleUserItem
-              key={university.id}
-              name={university.universityName}
-              nameWidth='57.8rem'
-              toggleDisplayBarList={toggleDisplayBarList}
-              toggleList={university.departments}
-              id={String(university.id)}
-              ids={universityIds}
-              handleSelectUsers={handleSelectUsers}
-              toggleItems={departmentsNames}
-              handleSelectToggle={handleSelectToggle}
-            />
+            <AdminItemComponent>
+              <AdminItemComponent.AdminItemName
+                name={university.universityName}
+                nameWidth='53.5rem'
+              />
+            </AdminItemComponent>
           ))
         )}
       </S.UserListContainer>
