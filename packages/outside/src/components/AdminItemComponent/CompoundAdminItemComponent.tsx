@@ -3,7 +3,7 @@ import { Dispatch, ReactNode, SetStateAction } from 'react'
 import ModifyInput from './ModifyInput'
 import * as S from './style'
 
-const AdminItemComponent = ({ children }: { children: ReactNode }) => {
+const CompoundAdminItemComponent = ({ children }: { children: ReactNode }) => {
   return <S.ScrollBox>{children}</S.ScrollBox>
 }
 
@@ -13,6 +13,10 @@ const AdminItemContainer = ({ children }: { children: ReactNode }) => {
 
 const AdminCheckboxItemContainer = ({ children }: { children: ReactNode }) => {
   return <S.CheckboxAdminItemContainer>{children}</S.CheckboxAdminItemContainer>
+}
+
+const AdminToggleItemContainer = ({ children }: { children: ReactNode }) => {
+  return <S.ToggleItemContainer>{children}</S.ToggleItemContainer>
 }
 
 interface AdminItemCheckboxNameProps {
@@ -115,23 +119,26 @@ const OtherItem = ({
 }
 
 interface ControlButtonProps {
-  modifyFlag: boolean
-  setModifyFlag: Dispatch<SetStateAction<boolean>>
   isModify: boolean
   isDelete: boolean
+  modifyFlag?: boolean
   onModify?: () => void
   onDelete?: () => void
 }
 
 const ControlButton = ({
+  isModify,
+  isDelete,
   modifyFlag,
   onModify,
   onDelete,
 }: ControlButtonProps) => {
   return (
     <S.ControlButtons onClick={onModify}>
-      <S.ModifyText>{modifyFlag ? '수정완료' : '수정하기'}</S.ModifyText>
-      <S.DeleteText onClick={onDelete}>삭제하기</S.DeleteText>
+      {isModify && (
+        <S.ModifyText>{modifyFlag ? '수정완료' : '수정하기'}</S.ModifyText>
+      )}
+      {isDelete && <S.DeleteText onClick={onDelete}>삭제하기</S.DeleteText>}
     </S.ControlButtons>
   )
 }
@@ -149,12 +156,13 @@ const ToggleIcon = ({ isOpen, setIsOpen }: ToggleIconProps) => {
   )
 }
 
-AdminItemComponent.AdminItemContainer = AdminItemContainer
-AdminItemComponent.AdminCheckboxItemContainer = AdminCheckboxItemContainer
-AdminItemComponent.AdminItemCheckboxName = AdminItemCheckboxName
-AdminItemComponent.AdminItemName = AdminItemName
-AdminItemComponent.OtherItem = OtherItem
-AdminItemComponent.ControlButton = ControlButton
-AdminItemComponent.ToggleIcon = ToggleIcon
+CompoundAdminItemComponent.AdminItemContainer = AdminItemContainer
+CompoundAdminItemComponent.AdminCheckboxItemContainer = AdminCheckboxItemContainer
+CompoundAdminItemComponent.AdminToggleItemContainer = AdminToggleItemContainer
+CompoundAdminItemComponent.AdminItemCheckboxName = AdminItemCheckboxName
+CompoundAdminItemComponent.AdminItemName = AdminItemName
+CompoundAdminItemComponent.OtherItem = OtherItem
+CompoundAdminItemComponent.ControlButton = ControlButton
+CompoundAdminItemComponent.ToggleIcon = ToggleIcon
 
-export default AdminItemComponent
+export default CompoundAdminItemComponent
