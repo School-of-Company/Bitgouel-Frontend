@@ -116,3 +116,7 @@ export const universityUrl = {
   universityModify: (id: string) => `/university/${id}`,
   universityList: () => `/university`,
 } as const
+
+export const schoolUrl = {
+  school: () => `/school`,
+}
