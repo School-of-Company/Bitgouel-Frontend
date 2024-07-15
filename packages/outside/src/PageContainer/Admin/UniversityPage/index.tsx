@@ -1,6 +1,6 @@
 'use client'
 
-import { Bg6, ListManagement, MainStyle, useModal } from '@bitgouel/common'
+import { Bg6, ListManagement, MainStyle, Plus, useModal } from '@bitgouel/common'
 import { ListManagementContent } from '@outside/components'
 import { ScrollListModal } from '@outside/modals'
 import dynamic from 'next/dynamic'
@@ -16,6 +16,10 @@ const UniversityPage = () => {
         <MainStyle.BgContainer>
           <MainStyle.PageTitle>등록된 대학</MainStyle.PageTitle>
           <MainStyle.ButtonContainer>
+            <MainStyle.SlideButton>
+              <Plus />
+              <span>대학등록</span>
+            </MainStyle.SlideButton>
             <MainStyle.SlideButton
               onClick={() =>
                 openModal(
