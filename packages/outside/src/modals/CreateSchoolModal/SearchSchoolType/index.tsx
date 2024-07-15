@@ -34,14 +34,14 @@ const SearchSchoolType = () => {
   const onSelectSchoolType = (schoolTypeItem: SchoolTypeEnum) => {
     const selectedType = schoolTypeMappings[schoolTypeItem]
     if (selectedType) {
-      setSchoolType(selectedType); //영어
-      setInputValue(schoolTypeItem); //한국어
+      setSchoolType(selectedType) //영어
+      setInputValue(schoolTypeItem) //한국어
     }
 
     setType('')
   }
 
-  const onDeleteLectureType = () => {
+  const onDeleteSearchSchoolType = () => {
     setSchoolType('')
     setSchoolTypeList(CreateSchoolTypes)
   }
@@ -53,10 +53,9 @@ const SearchSchoolType = () => {
         setInputValue={setType}
         recoilValue={schoolType}
         onSubmit={onSubmit}
-        onDeleteInputValue={onDeleteLectureType}
+        onDeleteInputValue={onDeleteSearchSchoolType}
         inputPlaceholder='계열 검색'
         isSearch={false}
-       
       />
       {schoolType.length <= 0 && (
         <SearchComponent.SearchItemList
