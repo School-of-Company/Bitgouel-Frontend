@@ -25,22 +25,10 @@ const Section1 = () => {
 
   return (
     <picture>
-      <S.SlideBg url={imageArr[bgNum]}>
-        <S.BgContainer>
-          <S.HomeTitle>
-            빛고을 직업교육 혁신지구
-            <br />
-            사업 소개
-          </S.HomeTitle>
-          <Sequence />
-        </S.BgContainer>
-        <S.ViewContainer>
-          <S.View>
-            <Arrow />
-            둘러보기
-          </S.View>
-        </S.ViewContainer>
-      </S.SlideBg>
+      <S.SlideBg url={imageArr[bgNum]} />
+      <S.SlideCover>
+        
+      </S.SlideCover>
     </picture>
   )
 }
