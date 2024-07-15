@@ -116,5 +116,7 @@ export const universityUrl = {
   universityList: () => `/university`,
   universityModify: (id: string) => `/university/${id}`,
   universityDelete: (id: string) => `/university/${id}`,
-  departmentDelete: (id: string) => `/university/department/${id}`,
+  departmentCreate: (id: string) => `/university/department/${id}`,
+  departmentDelete: (id: string, queryString: { department: string }) =>
+    `/university/department/${id}?department=${queryString.department}`,
 } as const

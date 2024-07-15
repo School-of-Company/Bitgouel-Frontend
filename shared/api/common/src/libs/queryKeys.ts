@@ -115,5 +115,6 @@ export const universityQueryKeys = {
   getUniversity: () => ['university', 'list'],
   patchUniversity: (id: string) => ['university', id],
   deleteUniversity: (id: string) => ['university', 'delete', id],
+  postDepartment: (id: string) => ['department', 'create', id],
   deleteDepartment: (id: string) => ['department', 'delete', id],
 } as const
