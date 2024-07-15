@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
 export const SequenceWrapper = styled.div`
-  width: fit-content;
+  width: 8.75rem;
   div {
     &:last-child {
       div {
