@@ -1,13 +1,12 @@
-import React, { useState } from 'react'
-import { CancelIcon, Portal, useModal } from '@bitgouel/common'
-import { SchoolItem, LogoButton } from '@outside/components'
-import * as S from './style'
-import SearchSchoolType from './SearchSchoolType'
-import { useRecoilState } from 'recoil'
-import { SchoolType } from '@bitgouel/common'
 import { usePostRegistrationSchool } from '@bitgouel/api'
+import { CancelIcon, Portal, SchoolType, useModal } from '@bitgouel/common'
 import { RegistrationTypes } from '@bitgouel/types'
+import { LogoButton, SchoolItem } from '@outside/components'
+import { useState } from 'react'
 import { toast } from 'react-toastify'
+import { useRecoilState } from 'recoil'
+import SearchSchoolType from './SearchSchoolType'
+import * as S from './style'
 
 const CreateSchoolModal = () => {
   const { closeModal } = useModal()
