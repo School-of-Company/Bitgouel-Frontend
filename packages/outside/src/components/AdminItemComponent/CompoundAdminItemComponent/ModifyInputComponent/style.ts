@@ -1,8 +1,7 @@
 import styled from '@emotion/styled'
 
-export const ModifyInputBox = styled.div`
-  width: 110rem;
-  margin-left: 2.75rem;
+export const ModifyInputBox = styled.div<{ width?: string }>`
+  width: ${({ width }) => width};
 `
 
 export const ModifyInput = styled.input<{ width: string }>`
@@ -10,6 +9,6 @@ export const ModifyInput = styled.input<{ width: string }>`
   border: none;
   outline: none;
   border-bottom: 1px solid ${({ theme }) => theme.color.main};
-  color: ${({ theme }) => theme.color.black};
-  ${({ theme }) => theme.typo.text_md.medium};
+  color: ${({ theme }) => theme.color.gray['400']};
+  ${({ theme }) => theme.typo.text_lg.medium};
 `

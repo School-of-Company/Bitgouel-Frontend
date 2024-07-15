@@ -4,22 +4,28 @@ import * as S from './style'
 interface Props {
   modifyText: string
   setModifyText: Dispatch<SetStateAction<string>>
-  nameWidth: string
+  boxWidth?: string
+  inputWidth: string
 }
 
-const ModifyInput = ({ modifyText, setModifyText, nameWidth }: Props) => {
+const ModifyInputComponent = ({
+  modifyText,
+  setModifyText,
+  boxWidth,
+  inputWidth,
+}: Props) => {
   return (
-    <S.ModifyInputBox>
+    <S.ModifyInputBox width={boxWidth}>
       <S.ModifyInput
         type='text'
         value={modifyText}
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
           setModifyText(e.target.value)
         }
-        width={nameWidth}
+        width={inputWidth}
       />
     </S.ModifyInputBox>
   )
 }
 
-export default ModifyInput
+export default ModifyInputComponent
