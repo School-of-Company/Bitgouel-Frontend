@@ -113,8 +113,10 @@ export const faqUrl = {
 } as const
 
 export const universityUrl = {
-  universityModify: (id: string) => `/university/${id}`,
   universityList: () => `/university`,
+  universityModify: (id: string) => `/university/${id}`,
+  universityDelete: (id: string) => `/university/${id}`,
+  departmentDelete: (id: string) => `/university/department/${id}`,
 } as const
 
 export const schoolUrl = {
