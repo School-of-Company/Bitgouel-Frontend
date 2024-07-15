@@ -29,4 +29,5 @@ export * from './ProfessorPayloadTypes'
 export * from './SignUpCommonPayloadTypes'
 export * from './StudentPayloadTypes'
 export * from './TokensTypes'
+export * from './schoolTypeMappings'
 
