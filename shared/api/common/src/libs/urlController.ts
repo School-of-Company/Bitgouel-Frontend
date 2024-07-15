@@ -114,6 +114,7 @@ export const faqUrl = {
 
 export const universityUrl = {
   universityList: () => `/university`,
+  universityCreate: () => `/university`,
   universityModify: (id: string) => `/university/${id}`,
   universityDelete: (id: string) => `/university/${id}`,
   departmentDelete: (id: string) => `/university/department/${id}`,

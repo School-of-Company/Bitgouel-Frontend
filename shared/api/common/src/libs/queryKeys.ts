@@ -113,6 +113,7 @@ export const faqQueryKeys = {
 
 export const universityQueryKeys = {
   getUniversity: () => ['university', 'list'],
+  postUniversity: () => ['university', 'create'],
   patchUniversity: (id: string) => ['university', id],
   deleteUniversity: (id: string) => ['university', 'delete', id],
   deleteDepartment: (id: string) => ['department', 'delete', id],
