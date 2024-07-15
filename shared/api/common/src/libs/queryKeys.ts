@@ -101,7 +101,6 @@ export const adminQueryKeys = {
   postExcelUpload: () => ['admin', 'upload'],
 } as const
 
-
 export const emailQueryKeys = {
   postEmail: () => ['email', 'send'],
   getEmail: () => ['email', 'check'],
@@ -112,7 +111,9 @@ export const faqQueryKeys = {
   postQuestion: () => ['FAQ', 'list'],
 } as const
 
-export const universityQueryKeys = {    
-  patchUniversity: (id: string) => ['university', id],
+export const universityQueryKeys = {
   getUniversity: () => ['university', 'list'],
+  patchUniversity: (id: string) => ['university', id],
+  deleteUniversity: (id: string) => ['university', 'delete', id],
+  deleteDepartment: (id: string) => ['department', 'delete', id],
 } as const

@@ -1,11 +1,11 @@
 import styled from '@emotion/styled'
-import { DisplayBar } from '../AdminDisplayInfo/style'
+import { DisplayBar } from '../../AdminDisplayInfo/style'
 
 export const ScrollBox = styled.div`
   width: 100%;
 `
 
-export const UserItemContainer = styled.div`
+export const AdminItemContainer = styled.div`
   width: 100%;
   height: 3.625rem;
   display: flex;
@@ -16,11 +16,11 @@ export const UserItemContainer = styled.div`
   gap: 4rem;
 `
 
-export const CheckboxUserItemContainer = styled(UserItemContainer)`
+export const CheckboxAdminItemContainer = styled(AdminItemContainer)`
   position: relative;
 `
 
-export const ToggleItemContainer = styled(CheckboxUserItemContainer)`
+export const ToggleItemContainer = styled(CheckboxAdminItemContainer)`
   padding-left: 0;
 `
 
@@ -42,11 +42,20 @@ export const OtherItemText = styled.span<{ width: string }>`
   ${({ theme }) => theme.typo.text_lg.medium};
 `
 
+export const ControlButtons = styled.div`
+  display: flex;
+  align-items: center;
+`
+
 export const ModifyText = styled.span`
   width: 7.5rem;
   color: ${({ theme }) => theme.color.main};
   ${({ theme }) => theme.typo.text_lg.medium};
   cursor: pointer;
+`
+
+export const DeleteText = styled(ModifyText)`
+  color: ${({ theme }) => theme.color.error};
 `
 
 export const ToggleDisplayBar = styled(DisplayBar)`
@@ -65,4 +74,5 @@ export const ToggleListContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding-left: 1rem;
+  ${({ theme }) => theme.typo.text_md.medium};
 `
