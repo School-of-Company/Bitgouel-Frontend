@@ -1,9 +1,8 @@
-'use client'
-
-import { SchoolType } from '@bitgouel/common'
-import { FormEvent, useState } from 'react'
+import { useState } from 'react'
 import { useRecoilState } from 'recoil'
 import SearchComponent from '@bitgouel/common/src/modals/LectureSettingModal/SearchComponent'
+import { SchoolType } from '@bitgouel/common'
+import { SchoolTypeEnum, schoolTypeMappings } from '@bitgouel/types'
 
 const CreateSchoolTypes: [
   'I. 산업수요 맞춤형계열',
@@ -19,21 +18,26 @@ const CreateSchoolTypes: [
 
 const SearchSchoolType = () => {
   const [schoolType, setSchoolType] = useRecoilState(SchoolType)
+  const [inputValue, setInputValue] = useState<string>('')
   const [type, setType] = useState<string>('')
   const [schoolTypeList, setSchoolTypeList] =
     useState<string[]>(CreateSchoolTypes)
 
-  const onSubmit = (e?: FormEvent) => {
+  const onSubmit = (e?: React.FormEvent) => {
     if (e) e.preventDefault()
-    const searchTypes: string[] = []
-    CreateSchoolTypes.forEach((lectureTypeItem) => {
-      if (lectureTypeItem.includes(type)) searchTypes.push(lectureTypeItem)
-    })
+    const searchTypes: string[] = CreateSchoolTypes.filter((item) =>
+      item.includes(type)
+    )
     setSchoolTypeList(searchTypes)
   }
 
-  const onSelectSchoolType = (schoolTypeItem: string) => {
-    setSchoolType(schoolTypeItem)
+  const onSelectSchoolType = (schoolTypeItem: SchoolTypeEnum) => {
+    const selectedType = schoolTypeMappings[schoolTypeItem]
+    if (selectedType) {
+      setSchoolType(selectedType); //영어
+      setInputValue(schoolTypeItem); //한국어
+    }
+
     setType('')
   }
 
@@ -45,13 +49,14 @@ const SearchSchoolType = () => {
   return (
     <SearchComponent>
       <SearchComponent.SearchInputBox
-        inputValue={type}
+        inputValue={inputValue}
         setInputValue={setType}
         recoilValue={schoolType}
         onSubmit={onSubmit}
         onDeleteInputValue={onDeleteLectureType}
         inputPlaceholder='계열 검색'
         isSearch={false}
+       
       />
       {schoolType.length <= 0 && (
         <SearchComponent.SearchItemList
