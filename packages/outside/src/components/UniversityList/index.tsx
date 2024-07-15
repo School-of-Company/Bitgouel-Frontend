@@ -17,9 +17,10 @@ const UniversityList = () => {
         ) : (
           data?.universities.map((university) => (
             <UniversityItem
+              key={university.id}
               universityId={String(university.id)}
               name={university.universityName}
-              nameWidth='53.5rem'
+              nameWidth='54.5rem'
               departments={university.departments}
             />
           ))
