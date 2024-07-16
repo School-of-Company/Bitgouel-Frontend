@@ -2,6 +2,7 @@ import { useGetSchoolList } from '@bitgouel/api'
 import { NoneResult, WaitingAnimation } from '@bitgouel/common'
 import { UniversityDisplayInfo } from '../../AdminDisplayInfo'
 import { AdminItemListContainer } from '../style'
+import { SchoolItem } from '@outside/components/AdminItemComponent'
 
 const SchoolList = () => {
   const { data, isLoading } = useGetSchoolList()
@@ -16,7 +17,11 @@ const SchoolList = () => {
         ) : (
           data?.schools.map((school) => (
             <SchoolItem
-              
+              key={school.id}
+              schoolId={String(school.id)}
+              name={school.schoolName}
+              nameWidth='15rem'
+              clubs={school.clubs}
             />
           ))
         )}
