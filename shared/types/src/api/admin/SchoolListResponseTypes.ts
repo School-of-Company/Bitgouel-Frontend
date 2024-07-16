@@ -1,3 +1,5 @@
+import { DivisionsResponseTypes } from "../common"
+
 export interface ClubsType {
   id: string
   clubName: string
@@ -12,11 +14,7 @@ export interface ClubsType {
 export interface SchoolsType {
   id: number
   schoolName: string
-  line:
-    | 'INDUSTRY'
-    | 'COMMERCE'
-    | 'AGRICULTURAL_LIFE_HEALTH_CARE'
-    | 'CUSTOMIZED_INDUSTRIAL_DEMAND '
+  line: DivisionsResponseTypes
   department: { name: string }[]
   logoImageUrl: string // multipart-url
   clubs: ClubsType[]

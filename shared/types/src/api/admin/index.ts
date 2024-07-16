@@ -1,6 +1,7 @@
 export * from './FAQListQuestionsTypes'
 export * from './InquiryListQueryStringTypes'
 export * from './SchoolListResponseTypes'
+export * from './SchoolModifyBodyTypes'
 export * from './UniversityListResponseTypes'
 export * from './UserListOptionsTypes'
 export * from './UserListResponseTypes'

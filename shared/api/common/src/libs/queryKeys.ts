@@ -121,4 +121,6 @@ export const universityQueryKeys = {
 
 export const schoolQueryKeys = {
   getSchool: () => ['school', 'list'],
+  patchSchool: (id: string) => ['school', 'modify', id],
+  deleteSchool: (id: string) => ['school', 'delete', id],
 } as const
