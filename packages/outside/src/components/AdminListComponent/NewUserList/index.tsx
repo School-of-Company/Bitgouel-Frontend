@@ -14,9 +14,9 @@ import {
 import { AppropriationModalProps } from '@bitgouel/types'
 import { ChangeEvent, useState } from 'react'
 import { toast } from 'react-toastify'
-import { NewDisplayInfo } from '../AdminDisplayInfo'
-import { CompoundItemComponent } from '../AdminItemComponent'
-import * as S from './style'
+import { NewDisplayInfo } from '../../AdminDisplayInfo'
+import { CompoundItemComponent } from '../../AdminItemComponent'
+import { AdminItemListContainer } from '../style'
 
 type messageType = '가입을 수락하였습니다' | '가입을 거절하였습니다'
 
@@ -81,7 +81,7 @@ const NewUserList = () => {
   return (
     <>
       <NewDisplayInfo onAll={onAll} handleOpenModal={handleOpenModal} />
-      <S.UserListContainer>
+      <AdminItemListContainer>
         {isLoading && <WaitingAnimation title={'신규 가입자 명단을'} />}
         {data?.users.length <= 0 ? (
           <NoneResult title={'신규 가입자 명단이'} />
@@ -115,7 +115,7 @@ const NewUserList = () => {
             )
           })
         )}
-      </S.UserListContainer>
+      </AdminItemListContainer>
     </>
   )
 }

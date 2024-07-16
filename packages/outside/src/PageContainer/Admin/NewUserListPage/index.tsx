@@ -5,7 +5,7 @@ import { ListManagementContent } from '@outside/components'
 import { ScrollListModal } from '@outside/modals'
 import dynamic from 'next/dynamic'
 
-const NewUserList = dynamic(() => import('@outside/components/NewUserList'))
+const NewUserList = dynamic(() => import('@outside/components/AdminListComponent/NewUserList'))
 
 const NewUserListPage = () => {
   const { openModal } = useModal()

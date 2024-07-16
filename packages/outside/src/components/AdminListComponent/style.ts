@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-export const UserListContainer = styled.div`
+export const AdminItemListContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
