@@ -6,16 +6,17 @@ import {
 import {
   AppropriationModal,
   NoneResult,
-  UserItem,
   WaitingAnimation,
   handleSelect,
+  insertHyphen,
   useModal,
 } from '@bitgouel/common'
+import { AppropriationModalProps } from '@bitgouel/types'
 import { ChangeEvent, useState } from 'react'
 import { toast } from 'react-toastify'
 import { NewDisplayInfo } from '../AdminDisplayInfo'
+import { CompoundItemComponent } from '../AdminItemComponent'
 import * as S from './style'
-import { AppropriationModalProps } from '@bitgouel/types'
 
 type messageType = '가입을 수락하였습니다' | '가입을 거절하였습니다'
 
@@ -81,25 +82,38 @@ const NewUserList = () => {
     <>
       <NewDisplayInfo onAll={onAll} handleOpenModal={handleOpenModal} />
       <S.UserListContainer>
-        {isLoading && (
-          <WaitingAnimation title={'신규 가입자 명단을'} />
-        )}
+        {isLoading && <WaitingAnimation title={'신규 가입자 명단을'} />}
         {data?.users.length <= 0 ? (
           <NoneResult title={'신규 가입자 명단이'} />
         ) : (
-          data?.users.map((user) => (
-            <UserItem
-              key={user.id}
-              id={user.id}
-              name={user.name}
-              authority={user.authority}
-              phoneNumber={user.phoneNumber}
-              email={user.email}
-              status='request'
-              handleSelectUsers={handleSelectUsers}
-              userIds={userIds}
-            />
-          ))
+          data?.users.map((user) => {
+            const userItemList: { width: string; text: string }[] = [
+              { width: '8rem', text: user.authority },
+              { width: '9rem', text: insertHyphen(user.phoneNumber) },
+              { width: 'auto', text: user.email },
+            ]
+
+            return (
+              <CompoundItemComponent key={user.id}>
+                <CompoundItemComponent.AdminCheckboxItemContainer>
+                  <CompoundItemComponent.AdminItemCheckboxName
+                    checkList={userIds}
+                    checkItem={user.id}
+                    handleSelectCheck={handleSelectUsers}
+                    name={user.name}
+                    nameWidth='6rem'
+                  />
+                  {userItemList.map((item) => (
+                    <CompoundItemComponent.OtherItem
+                      key={item.text}
+                      width={item.width}
+                      text={item.text}
+                    />
+                  ))}
+                </CompoundItemComponent.AdminCheckboxItemContainer>
+              </CompoundItemComponent>
+            )
+          })
         )}
       </S.UserListContainer>
     </>

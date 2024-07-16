@@ -13,7 +13,6 @@ import {
   SignUpPage2Obj,
   SignUpPage3Obj,
   SignUpPageNumber,
-  schoolToConstants,
 } from '@bitgouel/common'
 import { SignUpCommonPayloadTypes } from '@bitgouel/types'
 import { toast } from 'react-toastify'
@@ -54,7 +53,7 @@ const useSignUp = ({ isNext }: { isNext: boolean }) => {
     name: signUpPage2Obj[2].value,
     phoneNumber: signUpPage3Obj[0].value,
     password: signUpPage3Obj[2].value,
-    highSchool: schoolToConstants[signUpPage2Obj[0].value],
+    highSchool: signUpPage2Obj[0].value,
     clubName: signUpPage2Obj[1].value,
   }
 
@@ -74,7 +73,7 @@ const useSignUp = ({ isNext }: { isNext: boolean }) => {
             },
             {
               value: '',
-              placeholder: '학번 입력 (ex:1101)',
+              placeholder: '학번 입력 (ex:30415)',
               type: 'number',
               maxLength: 5,
             },

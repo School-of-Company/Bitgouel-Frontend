@@ -1,22 +1,22 @@
 'use client'
 
 import { useGetInstructors } from '@bitgouel/api'
-import { InputCancel, LectureInstructor, SearchIcon } from '@bitgouel/common'
+import {
+  InputCancel,
+  LectureInstructor,
+  SearchIcon,
+  ShowInstructor,
+} from '@bitgouel/common'
 import { InstructorsItemType } from '@bitgouel/types'
-import { ChangeEvent, FormEvent, useState, useEffect } from 'react'
-import { useRecoilState, atom } from 'recoil'
+import { ChangeEvent, FormEvent, useState } from 'react'
+import { useRecoilState } from 'recoil'
 import {
   SearchInput,
   SearchInputBox,
   SearchItem,
   SearchListContainer,
   SearchWrapper,
-} from '../style'
-
-const ShowInstructor = atom<string>({
-  key: 'ShowInstructor',
-  default: '',
-})
+} from '../SearchComponent/style'
 
 const SearchInstructor = () => {
   const [lectureInstructor, setLectureInstructor] =
@@ -24,8 +24,8 @@ const SearchInstructor = () => {
   const [instructor, setInstructor] = useState<string>('')
   const [showInstructor, setShowInstructor] = useRecoilState(ShowInstructor)
   const { data, refetch } = useGetInstructors(instructor)
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault()
+  const onSubmit = (e?: FormEvent) => {
+    if (e) e.preventDefault()
     refetch()
   }
 
@@ -63,17 +63,21 @@ const SearchInstructor = () => {
           <SearchIcon onClick={() => refetch()} />
         )}
       </SearchInputBox>
-      {data?.instructors && lectureInstructor.length <= 0 && (
+      {lectureInstructor.length <= 0 && (
         <SearchListContainer>
-          {data.instructors.map((instructorItem) => (
-            <SearchItem
-              key={instructorItem.id}
-              onClick={() => onSelectInstructor(instructorItem)}
-            >
-              <span>{instructorItem.name}</span>
-              <small>{instructorItem.organization}</small>
-            </SearchItem>
-          ))}
+          {data?.instructors && data.instructors.length <= 0 ? (
+            <div>일치하는 교육자가 없습니다.</div>
+          ) : (
+            data?.instructors.map((instructorItem) => (
+              <SearchItem
+                key={instructorItem.id}
+                onClick={() => onSelectInstructor(instructorItem)}
+              >
+                <span>{instructorItem.name}</span>
+                <small>{instructorItem.organization}</small>
+              </SearchItem>
+            ))
+          )}
         </SearchListContainer>
       )}
     </SearchWrapper>

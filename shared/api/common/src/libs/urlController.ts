@@ -24,7 +24,7 @@ export const lectureUrl = {
   lectureList: (options: LectureListOptionsTypes) =>
     `/lecture?page=${options.page}&size=${options.size}&type=${options.type}`,
   lectureDetail: (id: string) => `/lecture/${id}`,
-  lectureEnrolment: (id: string) => `/lecture/${id}`,
+  lectureEnrollment: (id: string) => `/lecture/${id}`,
   lectureInstructor: (keyword: string) =>
     `/lecture/instructor?keyword=${keyword}`,
   lectureLine: (queryString: LinePayloadTypes) =>
@@ -37,6 +37,8 @@ export const lectureUrl = {
   lectureModifyComplete: (id: string, otherId: string, isComplete: boolean) =>
     `/lecture/${id}/${otherId}?isComplete=${isComplete}`,
   lectureExcel: () => `/lecture/excel`,
+  lecturePatch: (id: string) => `/lecture/${id}`,
+  lectureDelete: (id: string) => `/lecture/${id}/soft`,
 } as const
 
 export const activityUrl = {
@@ -96,15 +98,25 @@ export const adminUrl = {
     `/admin?keyword=${queryString.keyword}&authority=${queryString.authority}&approveStatus=${queryString.approveStatus}`,
   withDrawUserList: (cohort: string) => `/withdraw?cohort=${cohort}`,
   approveUser: (userIds: string[]) => `/admin?userIds=${userIds.join(',')}`,
-  rejectUser: (userIds: string[]) => `/admin/reject?userIds=${userIds.join(',')}`,
+  rejectUser: (userIds: string[]) =>
+    `/admin/reject?userIds=${userIds.join(',')}`,
   withDrawUser: (userIds: string[]) => `/admin/${userIds.join(',')}`,
   excelUpload: () => `/admin/excel`,
 } as const
 
 export const emailUrl = {
   email: () => `/email`,
-}
+} as const
 
 export const faqUrl = {
   faq: () => `/faq`,
-}
+} as const
+
+export const universityUrl = {
+  universityList: () => `/university`,
+  universityModify: (id: string) => `/university/${id}`,
+  universityDelete: (id: string) => `/university/${id}`,
+  departmentCreate: (id: string) => `/university/department/${id}`,
+  departmentDelete: (id: string, queryString: { department: string }) =>
+    `/university/department/${id}?department=${queryString.department}`,
+} as const

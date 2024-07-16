@@ -113,6 +113,11 @@ export const LectureEssentialComplete = atom<boolean>({
   default: true,
 })
 
+export const SchoolType= atom<string>({
+  key: 'SchoolType',
+  default: '',
+})
+
 export const LectureType = atom<string>({
   key: 'LectureType',
   default: '',
@@ -152,6 +157,20 @@ export const LectureEndDate = atom<string>({
 export const LectureEndTime = atom<string>({
   key: 'LectureEndTime',
   default: '',
+})
+export const ShowInstructor = atom<string>({
+  key: 'ShowInstructor',
+  default: '',
+})
+export const LecturePlace = atom<{
+  address: string,
+  detail: string,
+}>({
+  key: 'LecturePlace',
+  default: {
+    address: '',
+    detail: '',
+  },
 })
 export const LectureDates = atom<InputLectureDatesTypes[]>({
   key: 'LectureDates',

@@ -15,7 +15,7 @@ import {
   PrivateRouter,
   WaitingAnimation,
 } from '@bitgouel/common'
-import { StudentIdProps } from '@bitgouel/types'
+import { RoleEnumTypes, StudentIdProps } from '@bitgouel/types'
 import { useRouter } from 'next/navigation'
 import { useContext } from 'react'
 import * as S from './style'
@@ -23,6 +23,12 @@ import * as S from './style'
 interface Props {
   studentIdProps: StudentIdProps
 }
+
+const roleArray: RoleEnumTypes[] = [
+  'ROLE_ADMIN',
+  'ROLE_TEACHER',
+  'ROLE_STUDENT'
+]
 
 const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
   const { studentId, clubId } = studentIdProps || {}
@@ -38,7 +44,7 @@ const ActivityListPage: React.FC<Props> = ({ studentIdProps }) => {
       : useGetActivityList(studentId, { page: 0, size: 10 })
 
   return (
-    <PrivateRouter>
+    <PrivateRouter isRedirect={!roleArray.includes(authority as RoleEnumTypes)}>
       <MainStyle.PageWrapper>
         <MainStyle.SlideBg url={Bg2}>
           <MainStyle.BgContainer>

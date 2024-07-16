@@ -1,10 +1,13 @@
 import styled from '@emotion/styled'
+import { IntersectionObserver } from '../animations'
 
 export const ClubListContainer = styled.div`
-  margin-top: 10rem;
+  margin-top: 7.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  ${IntersectionObserver}
 `
 
 export const ClubIntroList = styled.div`

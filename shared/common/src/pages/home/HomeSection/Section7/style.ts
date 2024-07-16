@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { IntersectionObserver } from '../animations'
 
 export const AgencyIntroContainer = styled.div`
   margin: 10rem 0;
@@ -6,6 +7,7 @@ export const AgencyIntroContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  ${IntersectionObserver}
 `
 
 export const AgencyIntroList = styled.div`

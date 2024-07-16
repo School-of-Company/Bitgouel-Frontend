@@ -1,10 +1,13 @@
 import styled from '@emotion/styled'
+import { IntersectionObserver } from '../animations'
 
 export const UnionUniversityContainer = styled.div`
   margin-top: 10rem;
   display: flex;
   align-items: center;
   flex-direction: column;
+
+  ${IntersectionObserver}
 `
 
 export const UnionUniversityList = styled.div`

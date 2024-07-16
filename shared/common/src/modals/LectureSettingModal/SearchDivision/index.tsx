@@ -1,21 +1,10 @@
 'use client'
 
 import { useGetDivisions } from '@bitgouel/api'
-import {
-  InputCancel,
-  LectureDivision,
-  LectureLine,
-  SearchIcon,
-} from '@bitgouel/common'
-import { ChangeEvent, FormEvent, useState, useEffect } from 'react'
+import { LectureDivision, LectureLine } from '@bitgouel/common'
+import { FormEvent, useState } from 'react'
 import { useRecoilState, useSetRecoilState } from 'recoil'
-import {
-  SearchInput,
-  SearchInputBox,
-  SearchItem,
-  SearchListContainer,
-  SearchWrapper,
-} from '../style'
+import SearchComponent from '../SearchComponent'
 
 const SearchDivision = () => {
   const setLectureLine = useSetRecoilState(LectureLine)
@@ -23,8 +12,8 @@ const SearchDivision = () => {
   const [division, setDivision] = useState<string>('')
   const { data, refetch } = useGetDivisions(division)
 
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault()
+  const onSubmit = (e?: FormEvent) => {
+    if (e) e.preventDefault()
     refetch()
   }
 
@@ -40,42 +29,24 @@ const SearchDivision = () => {
   }
 
   return (
-    <SearchWrapper>
-      <SearchInputBox onSubmit={onSubmit} isSelected={!!lectureDivision.length}>
-        <SearchInput
-          type='text'
-          value={lectureDivision.length ? lectureDivision : division}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setDivision(e.target.value)
-          }
-          placeholder='구분 검색 또는 임의로 추가...'
-          disabled={!!lectureDivision.length}
+    <SearchComponent>
+      <SearchComponent.SearchInputBox
+        inputValue={division}
+        setInputValue={setDivision}
+        recoilValue={lectureDivision}
+        onSubmit={onSubmit}
+        onDeleteInputValue={onDeleteDivision}
+        inputPlaceholder='구분'
+      />
+      {lectureDivision.length <= 0 && (
+        <SearchComponent.SearchItemList
+          searchList={data?.divisions || []}
+          inputValue={division}
+          onSelectInputValue={onSelectDivision}
+          addText='구분'
         />
-        {lectureDivision.length ? (
-          <InputCancel onClick={onDeleteDivision} />
-        ) : (
-          <SearchIcon onClick={() => refetch()} />
-        )}
-      </SearchInputBox>
-      {data?.divisions && lectureDivision.length <= 0 && (
-        <SearchListContainer>
-          {data.divisions.map((divisionItem) => (
-            <SearchItem
-              key={divisionItem}
-              onClick={() => onSelectDivision(divisionItem)}
-            >
-              <span>{divisionItem}</span>
-            </SearchItem>
-          ))}
-          {data.divisions.length <= 0 && (
-            <SearchItem onClick={() => onSelectDivision(division)}>
-              <span>{division}</span>
-              <small>새 구분 추가하기...</small>
-            </SearchItem>
-          )}
-        </SearchListContainer>
       )}
-    </SearchWrapper>
+    </SearchComponent>
   )
 }
 

@@ -1,18 +1,21 @@
 'use client'
 
 import {
+  AuthorityContext,
   Bg3,
   MainStyle,
   PrivateRouter
 } from '@bitgouel/common'
 import dynamic from 'next/dynamic'
+import { useContext } from 'react'
 import * as S from './style'
 
 const LectureApplyList = dynamic(() => import('../../../components/ListComponents/LectureApplyList'))
 
 const LectureApplyListPage = ({ lectureId }: { lectureId: string }) => {
+  const authority = useContext(AuthorityContext)
   return (
-    <PrivateRouter>
+    <PrivateRouter isRedirect={authority === 'ROLE_STUDENT'}>
       <MainStyle.PageWrapper>
         <MainStyle.SlideBg url={Bg3}>
           <MainStyle.BgContainer>

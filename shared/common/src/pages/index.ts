@@ -8,7 +8,7 @@ export { default as NotFoundPage } from './404'
 export { InquiryDetailPage, InquiryPage } from './inquiry'
 export {
   LectureApplyListPage,
-  LectureCreatePage,
+  LectureWritePage,
   LectureDetailPage,
   LecturePage,
 } from './lecture'

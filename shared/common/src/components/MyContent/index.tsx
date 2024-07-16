@@ -54,7 +54,7 @@ const MyContent = () => {
       <S.MyIdentifyWrapper>
         <div>
           <S.Name>{data?.name}</S.Name>
-          <S.Role>{roleToKor[data?.authority || 'ROLE_ADMIN']}</S.Role>
+          <S.Role>{roleToKor[data?.authority || '']}</S.Role>
         </div>
         <div>
           <S.OrganizationName>

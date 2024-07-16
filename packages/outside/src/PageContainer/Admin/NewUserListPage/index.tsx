@@ -1,18 +1,14 @@
 'use client'
 
-import {
-  Bg6,
-  MainStyle,
-  Minus,
-  PeopleCircle
-} from '@bitgouel/common'
+import { Bg6, ListManagement, MainStyle, useModal } from '@bitgouel/common'
+import { ListManagementContent } from '@outside/components'
+import { ScrollListModal } from '@outside/modals'
 import dynamic from 'next/dynamic'
-import { useRouter } from 'next/navigation'
 
-const NewUserList = dynamic(() => import('../../../components/NewUserList'))
+const NewUserList = dynamic(() => import('@outside/components/NewUserList'))
 
 const NewUserListPage = () => {
-  const { push } = useRouter()
+  const { openModal } = useModal()
 
   return (
     <MainStyle.PageWrapper>
@@ -20,13 +16,18 @@ const NewUserListPage = () => {
         <MainStyle.BgContainer>
           <MainStyle.PageTitle>신규 가입자 명단</MainStyle.PageTitle>
           <MainStyle.ButtonContainer>
-            <MainStyle.SlideButton onClick={() => push('/main/admin')}>
-              <PeopleCircle />
-              <span>사용자 명단</span>
-            </MainStyle.SlideButton>
-            <MainStyle.SlideButton onClick={() => push('/main/admin/withdraw')}>
-              <Minus />
-              <span>탈퇴 예정자 명단</span>
+            <MainStyle.SlideButton
+              onClick={() =>
+                openModal(
+                  <ScrollListModal
+                    title='다른 목록 관리'
+                    children={<ListManagementContent />}
+                  />
+                )
+              }
+            >
+              <ListManagement />
+              <span>다른 목록 관리</span>
             </MainStyle.SlideButton>
           </MainStyle.ButtonContainer>
         </MainStyle.BgContainer>

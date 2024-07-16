@@ -1,12 +1,12 @@
 import {
-    LectureEndDate,
-    LectureEndTime,
-    LectureStartDate,
-    LectureStartTime,
+  LectureEndDate,
+  LectureEndTime,
+  LectureStartDate,
+  LectureStartTime,
 } from '@bitgouel/common'
 import { ChangeEvent } from 'react'
 import { useRecoilState } from 'recoil'
-import { SearchInput } from '../style'
+import { SearchInput } from '../SearchComponent/style'
 import * as S from './style'
 
 const MaxDateLength: number = 8 as const
@@ -19,6 +19,7 @@ const LectureApplyTime = () => {
     useRecoilState(LectureStartTime)
   const [lectureEndDate, setLectureEndDate] = useRecoilState(LectureEndDate)
   const [lectureEndTime, setLectureEndTime] = useRecoilState(LectureEndTime)
+  
   return (
     <S.LectureApplyTimeWrapper>
       <S.TimeContainer>
@@ -49,7 +50,7 @@ const LectureApplyTime = () => {
         <S.DateBox>
           <SearchInput
             value={lectureEndDate}
-            placeholder='신청 시작일 입력 (ex: 20240615)'
+            placeholder='신청 마감일 입력 (ex: 20240615)'
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setLectureEndDate(e.target.value)
             }

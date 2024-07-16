@@ -1,9 +1,12 @@
 import styled from '@emotion/styled'
+import { IntersectionObserver } from '../../pages/home/HomeSection/animations'
 
 export const FAQSectionWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+
+  ${IntersectionObserver}
 `
 
 export const FAQSectionContainer = styled.div`

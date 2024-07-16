@@ -1,11 +1,17 @@
 'use client'
 
+import { useRef } from 'react'
 import * as S from './style'
-import { HomeStyle } from '@bitgouel/common'
+import { HomeStyle, useScroll } from '@bitgouel/common'
 
 const Section5 = () => {
+  const target = useRef(null)
+  const { isVisible } = useScroll({ target, option: { threshold: 0.2 } })
   return (
-    <S.UnionUniversityContainer>
+    <S.UnionUniversityContainer
+      ref={target}
+      className={isVisible ? 'fade-in' : 'hidden'}
+    >
       <HomeStyle.SemiTitleBox>
         <HomeStyle.SubTitleSub>
           직업계고 계열별 학교현황 및 진로

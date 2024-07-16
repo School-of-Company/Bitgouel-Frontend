@@ -6,7 +6,6 @@ import {
   club,
   insideJob,
   outsideJob,
-  schools
 } from '@bitgouel/common'
 import * as S from './style'
 
@@ -39,14 +38,8 @@ const SignUpScrollContainer = ({
     <S.SignUpScrollContainer
       idx={idx}
       placeholder={placeholder}
-      style={{
-        display:
-          (placeholder === '동아리 이름 선택' &&
-            obj[0].value === '서진여자고') ||
-          obj[0].value === '전남여자상업고'
-            ? 'none'
-            : 'flex',
-      }}
+      isNone={placeholder === '동아리 이름 선택' && (obj[0].value === '서진여자고' ||
+          obj[0].value === '전남여자상업고')}
     >
       {placeholder === '소속' &&
         belongs.map((item, idx) => (
@@ -66,13 +59,6 @@ const SignUpScrollContainer = ({
       {placeholder === '직업' &&
         obj[0].value === '외부' &&
         outsideJob.map((item, idx) => (
-          <S.ScrollItem key={idx} onClick={() => onChange(item)}>
-            {item}
-          </S.ScrollItem>
-        ))}
-
-      {placeholder === '학교 이름 선택' &&
-        schools.map((item, idx) => (
           <S.ScrollItem key={idx} onClick={() => onChange(item)}>
             {item}
           </S.ScrollItem>

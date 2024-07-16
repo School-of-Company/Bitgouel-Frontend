@@ -1,6 +1,6 @@
 'use client'
 
-import { LectureSemesterToKor } from '@bitgouel/common'
+import { lectureSemesterToKor } from '@bitgouel/common'
 import { LectureItemProps } from '@bitgouel/types'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
@@ -24,7 +24,7 @@ const LectureItem = ({ item }: LectureItemProps) => {
       </S.MainText>
       <S.MenuWrapper>
         <div>
-          <S.TypeText>{LectureSemesterToKor[item.semester]}</S.TypeText>
+          <S.TypeText>{lectureSemesterToKor[item.semester]}</S.TypeText>
           <S.TypeText>
             {item.division}
             {' | '}

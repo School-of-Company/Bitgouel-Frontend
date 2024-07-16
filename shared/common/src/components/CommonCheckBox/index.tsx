@@ -3,13 +3,13 @@
 import { CheckBoxIcon } from '@bitgouel/common'
 import * as S from './style'
 
-export const CommonCheckBox = ({
-  checked,
-  onChange,
-}: {
+interface Props {
   checked: boolean
   onChange: (checked: boolean) => void
-}) => {
+  disabled?: boolean
+}
+
+export const CommonCheckBox = ({ checked, onChange, disabled }: Props) => {
   return (
     <S.CommonCheckBoxContainer>
       <S.CommonCheckBoxStyle

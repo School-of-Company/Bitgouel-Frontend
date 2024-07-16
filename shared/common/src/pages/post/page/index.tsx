@@ -42,7 +42,7 @@ const PostPage = () => {
               <Question />
               <span>문의사항</span>
             </MainStyle.SlideButton>
-            {roleArray.includes(authority) && (
+            {roleArray.includes(authority as RoleEnumTypes) && (
               <MainStyle.SlideButton onClick={() => push('/main/post/create')}>
                 <Plus />
                 <span>게시글 추가</span>

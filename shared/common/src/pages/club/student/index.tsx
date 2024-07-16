@@ -102,7 +102,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
       <MainStyle.SlideBg url={Bg2}>
         <MainStyle.BgContainer>
           <MainStyle.PageTitle>학생 정보</MainStyle.PageTitle>
-          {roleArray.includes(authority) && (
+          {roleArray.includes(authority as RoleEnumTypes) && (
             <MainStyle.ButtonContainer>
               <MainStyle.SlideButton
                 onClick={() =>
@@ -199,7 +199,7 @@ const StudentPage: React.FC<{ studentIdProps: StudentIdProps }> = ({
               ))}
             </S.CertificateListBox>
           </S.CertificateBox>
-          {roleArray.includes(authority) && (
+          {roleArray.includes(authority as RoleEnumTypes) && (
             <S.LectureListBox>
               <b>신청한 강의 목록</b>
               <S.LectureList>

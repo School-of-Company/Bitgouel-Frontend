@@ -1,4 +1,14 @@
+import { keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
+import { IntersectionObserver } from '../animations'
+
+export const IntroduceContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  ${IntersectionObserver}
+`
 
 export const SubTitleContainer = styled.div`
   width: 100%;
@@ -24,6 +34,9 @@ export const SemiTitleBox = styled.div`
 export const SubTitleSub = styled.span`
   color: ${({ theme }) => theme.color.gray[400]};
   ${({ theme }) => theme.typo.text_lg.medium};
+
+  animation: none important;
+  opacity: 1 important;
 `
 
 export const SubTitleMain = styled.span`

@@ -1,18 +1,32 @@
 'use client'
 
-import { useGetDetailLecture, usePostEnrollment } from '@bitgouel/api'
+import {
+  useDeleteLecture,
+  useGetDetailLecture,
+  usePostEnrollment,
+} from '@bitgouel/api'
 import {
   AppropriationModal,
   AuthorityContext,
   Bg3,
+  KakaoMap,
   MainStyle,
   People,
   useModal,
 } from '@bitgouel/common'
+import { AppropriationModalProps, RoleEnumTypes } from '@bitgouel/types'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import { useContext } from 'react'
+import { toast } from 'react-toastify'
 import * as S from './style'
+
+const roleArray: RoleEnumTypes[] = [
+  'ROLE_ADMIN',
+  'ROLE_PROFESSOR',
+  'ROLE_COMPANY_INSTRUCTOR',
+  'ROLE_GOVERNMENT',
+]
 
 const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const { data } = useGetDetailLecture(lectureId)
@@ -23,19 +37,46 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
       else return false
     } else return false
   }
-  const { openModal } = useModal()
-  const { mutate } = usePostEnrollment(lectureId)
+  const { openModal, closeModal } = useModal()
   const { push } = useRouter()
 
-  const onEnrollment = () => {
-    if (!isAble) return
+  const onSuccess = (isDelete: boolean): void => {
+    const toastMessage: string = isDelete
+      ? '강의를 삭제하였습니다'
+      : '수강신청을 완료하였습니다'
+    closeModal()
+    push('/main/lecture')
+    toast.success(toastMessage)
+  }
+  const { mutate: enrollLecture } = usePostEnrollment(lectureId, {
+    onSuccess: () => onSuccess(false),
+  })
+  const { mutate: deleteLecture } = useDeleteLecture(lectureId, {
+    onSuccess: () => onSuccess(true),
+  })
+
+  const onLectureModal = (isDelete: boolean): void => {
+    if (authority === 'ROLE_STUDENT' && !isAble()) return
+    const ModalParameter: AppropriationModalProps = {
+      isApprove: isDelete ? false : true,
+      question: isDelete
+        ? '강의를 삭제하시겠습니까?'
+        : '수강 신청하시겠습니까?',
+      title: data?.name || '',
+      purpose: isDelete ? '삭제하기' : '신청하기',
+      onAppropriation: (callbacks) =>
+        isDelete
+          ? deleteLecture(undefined, callbacks)
+          : enrollLecture(undefined, callbacks),
+    }
+
     openModal(
       <AppropriationModal
-        isApprove={true}
-        question='수강 신청하시겠습니까?'
-        title={data?.name || ''}
-        purpose='신청하기'
-        onAppropriation={(callbacks) => mutate(undefined, callbacks)}
+        isApprove={ModalParameter.isApprove}
+        question={ModalParameter.question}
+        title={ModalParameter.title}
+        purpose={ModalParameter.purpose}
+        onAppropriation={ModalParameter.onAppropriation}
       />
     )
   }
@@ -73,21 +114,26 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
           <S.MainText>{data?.content}</S.MainText>
           <S.LectureSection>
             <span>수강 신청 기간</span>
-            {data?.lectureDates.map((date, idx) => (
-              <div key={idx}>
-                • {dayjs(date.completeDate).format('YYYY년 MM월 DD일')}{' '}
-                {dayjs(`${date.completeDate}T${date.startTime}`).format(
-                  'HH시 mm분'
-                )}
-                &nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp;
-                {dayjs(`${date.completeDate}T${date.endTime}`).format(
-                  'HH시 mm분'
-                )}
-              </div>
-            ))}
+            {data?.startDate && data?.endDate && (
+              <div>{`• ${dayjs(data.startDate).format(
+                'YYYY년 MM월 DD일 HH시 mm분'
+              )}    ~    ${dayjs(data.endDate).format(
+                'YYYY년 MM월 DD일 HH시 mm분'
+              )}`}</div>
+            )}
           </S.LectureSection>
           <S.LectureSection>
-            <span>수강 수강 날짜</span>
+            <span>강의 장소</span>
+            <div>
+              • {data?.address} ({data?.locationDetails})
+            </div>
+            <KakaoMap
+              lat={Number(data?.locationY)}
+              lng={Number(data?.locationX)}
+            />
+          </S.LectureSection>
+          <S.LectureSection>
+            <span>강의 수강 날짜</span>
             {data?.lectureDates.map((date, idx) => (
               <div key={idx}>
                 • {dayjs(date.completeDate).format('YYYY년 MM월 DD일')}{' '}
@@ -106,11 +152,34 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
             <div>{data?.maxRegisteredUser}명</div>
           </S.LectureSection>
           <S.WhiteBox></S.WhiteBox>
-          <S.ApplyButtonWrapper>
-            <S.ApplyButton isAble={isAble()} onClick={onEnrollment}>
-              수강 신청하기
-            </S.ApplyButton>
-          </S.ApplyButtonWrapper>
+          {(roleArray.includes(authority as RoleEnumTypes) ||
+            authority === 'ROLE_STUDENT') && (
+            <S.ApplyButtonWrapper>
+              {authority === 'ROLE_STUDENT' && (
+                <S.ApplyButton
+                  isAble={isAble()}
+                  onClick={() => onLectureModal(false)}
+                >
+                  수강 신청하기
+                </S.ApplyButton>
+              )}
+              {roleArray.includes(authority as RoleEnumTypes) && (
+                <>
+                  <S.ApplyButton isDelete onClick={() => onLectureModal(true)}>
+                    삭제하기
+                  </S.ApplyButton>
+                  <S.ApplyButton
+                    isAble
+                    onClick={() =>
+                      push(`/main/lecture/detail/${lectureId}/modify`)
+                    }
+                  >
+                    수정하기
+                  </S.ApplyButton>
+                </>
+              )}
+            </S.ApplyButtonWrapper>
+          )}
         </MainStyle.MainContainer>
       </MainStyle.MainWrapper>
     </MainStyle.PageWrapper>

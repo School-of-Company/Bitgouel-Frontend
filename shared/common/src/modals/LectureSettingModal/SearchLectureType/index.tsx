@@ -1,19 +1,9 @@
 'use client'
 
-import {
-  InputCancel,
-  LectureType,
-  SearchIcon
-} from '@bitgouel/common'
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { LectureType } from '@bitgouel/common'
+import { FormEvent, useState } from 'react'
 import { useRecoilState } from 'recoil'
-import {
-  SearchInput,
-  SearchInputBox,
-  SearchItem,
-  SearchListContainer,
-  SearchWrapper,
-} from '../style'
+import SearchComponent from '../SearchComponent'
 
 const LectureTypes: [
   '상호학점인정교육과정',
@@ -32,8 +22,8 @@ const SearchLectureType = () => {
   const [type, setType] = useState<string>('')
   const [lectureTypeList, setLectureTypeList] = useState<string[]>(LectureTypes)
 
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault()
+  const onSubmit = (e?: FormEvent) => {
+    if (e) e.preventDefault()
     const searchTypes: string[] = []
     LectureTypes.forEach((lectureTypeItem) => {
       if (lectureTypeItem.includes(type)) searchTypes.push(lectureTypeItem)
@@ -52,42 +42,24 @@ const SearchLectureType = () => {
   }
 
   return (
-    <SearchWrapper>
-      <SearchInputBox onSubmit={onSubmit} isSelected={!!lectureType.length}>
-        <SearchInput
-          type='text'
-          value={lectureType.length ? lectureType : type}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setType(e.target.value)
-          }
-          placeholder='유형 검색 또는 임의로 추가...'
-          disabled={!!lectureType.length}
+    <SearchComponent>
+      <SearchComponent.SearchInputBox
+        inputValue={type}
+        setInputValue={setType}
+        recoilValue={lectureType}
+        onSubmit={onSubmit}
+        onDeleteInputValue={onDeleteLectureType}
+        inputPlaceholder='유형'
+      />
+      {lectureType.length <= 0 && (
+        <SearchComponent.SearchItemList
+          searchList={lectureTypeList || []}
+          inputValue={type}
+          onSelectInputValue={onSelectLectureType}
+          addText='유형'
         />
-        {lectureType.length ? (
-          <InputCancel onClick={onDeleteLectureType} />
-        ) : (
-          <SearchIcon onClick={onSubmit} />
-        )}
-      </SearchInputBox>
-      {lectureTypeList && lectureType.length <= 0 && (
-        <SearchListContainer>
-          {lectureTypeList.map((lectureTypeItem) => (
-            <SearchItem
-              key={lectureTypeItem}
-              onClick={() => onSelectLectureType(lectureTypeItem)}
-            >
-              <span>{lectureTypeItem}</span>
-            </SearchItem>
-          ))}
-          {lectureTypeList.length <= 0 && (
-            <SearchItem onClick={() => onSelectLectureType(type)}>
-              <span>{type}</span>
-              <small>새 유형 추가하기...</small>
-            </SearchItem>
-          )}
-        </SearchListContainer>
       )}
-    </SearchWrapper>
+    </SearchComponent>
   )
 }
 

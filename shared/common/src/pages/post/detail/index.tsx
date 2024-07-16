@@ -88,7 +88,7 @@ const PostDetailPage = ({ postId }: { postId: string }) => {
           )}
           <S.ButtonWrapper>
             <S.ButtonContainer>
-              {roleArray.includes(authority) && (
+              {roleArray.includes(authority as RoleEnumTypes) && (
                 <>
                   <S.DeletePostButton onClick={onDelete}>
                     삭제하기
