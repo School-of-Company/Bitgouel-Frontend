@@ -13,18 +13,19 @@ export const SequenceWrapper = styled.div`
 
 export const TextContainer = styled.div`
   margin-bottom: 2.75rem;
-  ${({ theme }) => theme.typo.text_sm.regular};
   display: flex;
   flex-direction: row-reverse;
-  color: ${({ theme }) => theme.color.white};
   opacity: 0.7;
   cursor: pointer;
+
   &:hover {
     opacity: 1;
   }
+
   svg {
-    margin-left: 1rem;
+    margin-top: 0.125rem;
   }
+
   div {
     position: absolute;
     margin-right: 0.4375rem;
@@ -33,5 +34,12 @@ export const TextContainer = styled.div`
     height: 3rem;
     background-color: ${({ theme }) => theme.color.white};
     opacity: 0.7;
+  }
+
+  span {
+    ${({ theme }) => theme.typo.text_sm.regular};
+    color: ${({ theme }) => theme.color.white};
+    position: absolute;
+    margin-right: 1.5rem;
   }
 `

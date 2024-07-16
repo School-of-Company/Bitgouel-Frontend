@@ -28,7 +28,7 @@ const Sequence = () => {
           key={idx}
         >
           <Circle />
-          {sequence.name}
+          <span>{sequence.name}</span>
           <div />
         </S.TextContainer>
       ))}
