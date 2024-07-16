@@ -120,3 +120,7 @@ export const universityUrl = {
   departmentDelete: (id: string, queryString: { department: string }) =>
     `/university/department/${id}?department=${queryString.department}`,
 } as const
+
+export const schoolUrl = {
+  schoolList: () => `/school`,
+} as const
