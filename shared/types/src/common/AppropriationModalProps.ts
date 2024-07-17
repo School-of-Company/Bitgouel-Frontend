@@ -30,7 +30,7 @@ export type questionTypes =
   | '학과를 삭제하시겠습니까?'
   | '학과를 추가하시겠습니까?'
   | '학교를 삭제하시겠습니까?'
-  | '수강신청을 거부하시겠습니까?'
+  | '수강 신청을 취소하시겠습니까?'
 
 export type purposeTypes =
   | '신청하기'
@@ -45,6 +45,7 @@ export type purposeTypes =
   | '답변하기'
   | '로그아웃'
   | '탈퇴하기'
+  | '취소하기'
 
 export interface CallbacksType {
   onSuccess: (data?: any) => any
