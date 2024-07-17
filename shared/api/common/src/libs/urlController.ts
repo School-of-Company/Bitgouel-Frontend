@@ -28,7 +28,7 @@ export const lectureUrl = {
   lectureInstructor: (keyword: string) =>
     `/lecture/instructor?keyword=${keyword}`,
   lectureLine: (queryString: LinePayloadTypes) =>
-    `/lecture/line?keywrod=${queryString.keyword}&division=${queryString.division}`,
+    `/lecture/line?keyword=${queryString.keyword}&division=${queryString.division}`,
   lectureDepartment: (keyword: string) =>
     `/lecture/department?keyword=${keyword}`,
   lectureDivision: (keyword: string) => `/lecture/division?keyword=${keyword}`,
@@ -39,6 +39,7 @@ export const lectureUrl = {
   lectureExcel: () => `/lecture/excel`,
   lecturePatch: (id: string) => `/lecture/${id}`,
   lectureDelete: (id: string) => `/lecture/${id}/soft`,
+  lectureEnrollmentDelete: (id: string) => `/lecture/${id}`,
 } as const
 
 export const activityUrl = {
