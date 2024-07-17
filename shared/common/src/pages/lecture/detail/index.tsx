@@ -47,7 +47,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const authority = useContext(AuthorityContext)
   const isAble = () => {
     if (authority === 'ROLE_STUDENT') {
-      if (data?.lectureStatus === 'OPEN') return true
+      if (data?.lectureStatus === 'OPENED') return true
       else return false
     } else return false
   }
