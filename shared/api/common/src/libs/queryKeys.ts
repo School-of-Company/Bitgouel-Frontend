@@ -80,6 +80,8 @@ export const clubQueryKeys = {
     id,
     studentId,
   ],
+  patchClub: (id: string) => ['club', 'modify', id],
+  deleteClub: (id: string) => ['club', 'delete', id],
 } as const
 
 export const inquiryQueryKeys = {

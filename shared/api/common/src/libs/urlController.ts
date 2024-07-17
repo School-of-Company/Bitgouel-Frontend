@@ -80,6 +80,8 @@ export const clubUrl = {
   clubDetail: (id: string) => `/club/${id}`,
   myClub: () => `/club/my`,
   studentDetail: (id: string, studentId: string) => `/club/${id}/${studentId}`,
+  clubModify: (id: string) => `/club/${id}`,
+  clubDelete: (id: string) => `/club/${id}`,
 } as const
 
 export const inquiryUrl = {
