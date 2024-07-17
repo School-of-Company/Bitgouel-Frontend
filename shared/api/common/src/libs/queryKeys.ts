@@ -33,6 +33,7 @@ export const lectureQueryKeys = {
   ],
   patchLecture: (id: string) => ['lecture', 'modify', id],
   deleteLecture: (id: string) => ['lecture', 'delete', id],
+  deleteEnrollment: (id: string) => ['lecture', 'enrollment', id],
 } as const
 
 export const activityQueryKeys = {

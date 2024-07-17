@@ -1,6 +1,7 @@
 'use client'
 
 import {
+  useDeleteEnrollment,
   useDeleteLecture,
   useGetDetailLecture,
   usePostEnrollment,
@@ -14,12 +15,25 @@ import {
   People,
   useModal,
 } from '@bitgouel/common'
-import { AppropriationModalProps, RoleEnumTypes } from '@bitgouel/types'
+import {
+  AppropriationModalProps,
+  purposeTypes,
+  questionTypes,
+  RoleEnumTypes,
+} from '@bitgouel/types'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import { useContext } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
+import { match } from 'ts-pattern'
+
+type ArgType = 'lectureDelete' | 'lectureEnrollment' | 'lectureEnrollmentDelete'
+
+type ToastMessageType =
+  | '강의를 삭제하였습니다.'
+  | '수강 신청을 완료하였습니다.'
+  | '수강 신청을 취소하였습니다.'
 
 const roleArray: RoleEnumTypes[] = [
   'ROLE_ADMIN',
@@ -33,41 +47,52 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const authority = useContext(AuthorityContext)
   const isAble = () => {
     if (authority === 'ROLE_STUDENT') {
-      if (!data?.isRegistered || data?.lectureStatus === 'OPENED') return true
+      if (data?.lectureStatus === 'OPENED') return true
       else return false
     } else return false
   }
   const { openModal, closeModal } = useModal()
   const { push } = useRouter()
 
-  const onSuccess = (isDelete: boolean): void => {
-    const toastMessage: string = isDelete
-      ? '강의를 삭제하였습니다'
-      : '수강신청을 완료하였습니다'
+  const onSuccess = (type: ArgType): void => {
+    const toastMessage: ToastMessageType = match<ArgType, ToastMessageType>(
+      type
+    )
+      .with('lectureDelete', () => '강의를 삭제하였습니다.')
+      .with('lectureEnrollment', () => '수강 신청을 완료하였습니다.')
+      .otherwise(() => '수강 신청을 취소하였습니다.')
     closeModal()
     push('/main/lecture')
     toast.success(toastMessage)
   }
-  const { mutate: enrollLecture } = usePostEnrollment(lectureId, {
-    onSuccess: () => onSuccess(false),
-  })
   const { mutate: deleteLecture } = useDeleteLecture(lectureId, {
-    onSuccess: () => onSuccess(true),
+    onSuccess: () => onSuccess('lectureDelete'),
+  })
+  const { mutate: enrollLecture } = usePostEnrollment(lectureId, {
+    onSuccess: () => onSuccess('lectureEnrollment'),
+  })
+  const { mutate: deleteEnrollment } = useDeleteEnrollment(lectureId, {
+    onSuccess: () => onSuccess('lectureEnrollmentDelete'),
   })
 
-  const onLectureModal = (isDelete: boolean): void => {
+  const onLectureModal = (type: ArgType): void => {
     if (authority === 'ROLE_STUDENT' && !isAble()) return
     const ModalParameter: AppropriationModalProps = {
-      isApprove: isDelete ? false : true,
-      question: isDelete
-        ? '강의를 삭제하시겠습니까?'
-        : '수강 신청하시겠습니까?',
+      isApprove: type === 'lectureEnrollment' ? true : false,
+      question: match<ArgType, questionTypes>(type)
+        .with('lectureDelete', () => '강의를 삭제하시겠습니까?')
+        .with('lectureEnrollment', () => '수강 신청하시겠습니까?')
+        .otherwise(() => '수강 신청을 취소하시겠습니까?'),
       title: data?.name || '',
-      purpose: isDelete ? '삭제하기' : '신청하기',
+      purpose: match<ArgType, purposeTypes>(type)
+        .with('lectureDelete', () => '삭제하기')
+        .with('lectureEnrollment', () => '신청하기')
+        .otherwise(() => '취소하기'),
       onAppropriation: (callbacks) =>
-        isDelete
-          ? deleteLecture(undefined, callbacks)
-          : enrollLecture(undefined, callbacks),
+        match<ArgType, void>(type)
+          .with('lectureDelete', () => deleteLecture(undefined, callbacks))
+          .with('lectureEnrollment', () => enrollLecture(undefined, callbacks))
+          .otherwise(() => deleteEnrollment(undefined, callbacks)),
     }
 
     openModal(
@@ -155,15 +180,25 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
           <S.ApplyButtonWrapper>
             {authority === 'ROLE_STUDENT' && (
               <S.ApplyButton
+                isDelete={data?.isRegistered}
                 isAble={isAble()}
-                onClick={() => onLectureModal(false)}
+                onClick={() =>
+                  onLectureModal(
+                    data?.isRegistered
+                      ? 'lectureEnrollmentDelete'
+                      : 'lectureEnrollment'
+                  )
+                }
               >
-                수강 신청하기
+                수강 {data?.isRegistered ? '취소' : '신청'}하기
               </S.ApplyButton>
             )}
             {roleArray.includes(authority as RoleEnumTypes) && (
               <>
-                <S.ApplyButton isDelete onClick={() => onLectureModal(true)}>
+                <S.ApplyButton
+                  isDelete
+                  onClick={() => onLectureModal('lectureDelete')}
+                >
                   삭제하기
                 </S.ApplyButton>
                 <S.ApplyButton
