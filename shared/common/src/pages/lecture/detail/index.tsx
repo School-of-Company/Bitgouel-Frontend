@@ -33,7 +33,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
   const authority = useContext(AuthorityContext)
   const isAble = () => {
     if (authority === 'ROLE_STUDENT') {
-      if (!data?.isRegistered || data?.lectureStatus === 'OPEN') return true
+      if (!data?.isRegistered || data?.lectureStatus === 'OPENED') return true
       else return false
     } else return false
   }
@@ -152,34 +152,31 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
             <div>{data?.maxRegisteredUser}명</div>
           </S.LectureSection>
           <S.WhiteBox></S.WhiteBox>
-          {(roleArray.includes(authority as RoleEnumTypes) ||
-            authority === 'ROLE_STUDENT') && (
-            <S.ApplyButtonWrapper>
-              {authority === 'ROLE_STUDENT' && (
-                <S.ApplyButton
-                  isAble={isAble()}
-                  onClick={() => onLectureModal(false)}
-                >
-                  수강 신청하기
+          <S.ApplyButtonWrapper>
+            {authority === 'ROLE_STUDENT' && (
+              <S.ApplyButton
+                isAble={isAble()}
+                onClick={() => onLectureModal(false)}
+              >
+                수강 신청하기
+              </S.ApplyButton>
+            )}
+            {roleArray.includes(authority as RoleEnumTypes) && (
+              <>
+                <S.ApplyButton isDelete onClick={() => onLectureModal(true)}>
+                  삭제하기
                 </S.ApplyButton>
-              )}
-              {roleArray.includes(authority as RoleEnumTypes) && (
-                <>
-                  <S.ApplyButton isDelete onClick={() => onLectureModal(true)}>
-                    삭제하기
-                  </S.ApplyButton>
-                  <S.ApplyButton
-                    isAble
-                    onClick={() =>
-                      push(`/main/lecture/detail/${lectureId}/modify`)
-                    }
-                  >
-                    수정하기
-                  </S.ApplyButton>
-                </>
-              )}
-            </S.ApplyButtonWrapper>
-          )}
+                <S.ApplyButton
+                  isAble
+                  onClick={() =>
+                    push(`/main/lecture/detail/${lectureId}/modify`)
+                  }
+                >
+                  수정하기
+                </S.ApplyButton>
+              </>
+            )}
+          </S.ApplyButtonWrapper>
         </MainStyle.MainContainer>
       </MainStyle.MainWrapper>
     </MainStyle.PageWrapper>
