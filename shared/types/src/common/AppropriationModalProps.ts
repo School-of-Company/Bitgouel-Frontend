@@ -29,6 +29,8 @@ export type questionTypes =
   | '대학을 삭제하시겠습니까?'
   | '학과를 삭제하시겠습니까?'
   | '학과를 추가하시겠습니까?'
+  | '학교를 삭제하시겠습니까?'
+  | '수강신청을 거부하시겠습니까?'
 
 export type purposeTypes =
   | '신청하기'
