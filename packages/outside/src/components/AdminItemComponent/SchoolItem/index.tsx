@@ -1,29 +1,27 @@
 import {
+  CreateClubValues,
   schoolQueryKeys,
-  universityQueryKeys,
-  useDeleteDepartment,
   useDeleteSchool,
-  useDeleteUniversity,
-  usePatchSchool,
-  usePatchUniversity,
-  usePostDepartment,
 } from '@bitgouel/api'
-import { AppropriationModal, useModal } from '@bitgouel/common'
+import { AppropriationModal, FieldToEnum, useModal } from '@bitgouel/common'
+import { ClubsType, FieldEnum } from '@bitgouel/types'
+import { DisplayBarSpan } from '@outside/components/AdminDisplayInfo/style'
 import { useQueryClient } from '@tanstack/react-query'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { toast } from 'react-toastify'
-import { DisplayBarSpan } from '../../AdminDisplayInfo/style'
 import CompoundAdminItemComponent from '../CompoundAdminItemComponent'
 import {
   ToggleDisplayBar,
   ToggleListContainer,
 } from '../CompoundAdminItemComponent/style'
-import { ClubsType } from '@bitgouel/types'
+import ClubItem from './ClubItem'
+import { usePostClub } from '@bitgouel/api'
 
 interface Props {
   schoolId: string
   name: string
   nameWidth: string
+  otherItemList: { width: string; text: string }[]
   clubs: ClubsType[]
 }
 
@@ -32,33 +30,76 @@ const ToggleDisplayBarList = [
   { width: 'auto', text: '분야' },
 ]
 
-const UniversityItem = ({ schoolId, name, nameWidth, clubs }: Props) => {
-  const [modifyFlag, setModifyFlag] = useState(false)
+const SchoolItem = ({
+  schoolId,
+  name,
+  nameWidth,
+  otherItemList,
+  clubs,
+}: Props) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const { openModal, closeModal } = useModal()
   const queryClient = useQueryClient()
   const onSuccess = (message: string) => {
-    setModifyFlag(false)
     closeModal()
     queryClient.invalidateQueries(schoolQueryKeys.getSchool())
     toast.success(message)
   }
 
+  const { mutate: createClub } = usePostClub(schoolId, {
+    onSuccess: () => onSuccess('동아리를 생성했습니다.'),
+  })
+
   const { mutate: deleteSchool } = useDeleteSchool(schoolId, {
     onSuccess: () => onSuccess('학교를 삭제하였습니다.'),
   })
 
-  const onDeleteSchool = () =>
+  const [addToggleList, setAddToggleList] = useState<
+    { width: string; text: string }[][]
+  >([])
+
+  const onAdd = () => {
+    setAddToggleList((prevState) => [
+      ...prevState,
+      [
+        { width: '15rem', text: '' },
+        { width: '10.5rem', text: '' },
+      ],
+    ])
+  }
+
+  const onCancel = (index: number) => {
+    const newAddInputList = [...addToggleList]
+    newAddInputList.splice(index, 1)
+    setAddToggleList(newAddInputList)
+  }
+
+  const handleChange = (listIndex, inputIndex, text) => {
+    const newToggls = [...addToggleList]
+    newToggls[listIndex][inputIndex].text = text
+    setAddToggleList(newToggls)
+  }
+
+  const onComplete = (index: number) => {
+    const addName: string = addToggleList[index][0].text
+    if (!addName.length) return toast.info('학과 이름을 작성해주세요.')
+
+    const createClubBody: CreateClubValues = {
+      name: addToggleList[index][0].text,
+      field: FieldToEnum[addToggleList[index][1].text],
+    }
+
     openModal(
       <AppropriationModal
-        isApprove={false}
-        question='학교를 삭제하시겠습니까?'
-        purpose='삭제하기'
-        title={name}
-        onAppropriation={(callbacks) => deleteSchool(undefined, callbacks)}
+        isApprove={true}
+        question='학과를 추가하시겠습니까?'
+        purpose='추가하기'
+        title={addName}
+        onAppropriation={(callbacks) => createClub(createClubBody, callbacks)}
       />
     )
+  }
 
   return (
     <CompoundAdminItemComponent>
@@ -67,12 +108,17 @@ const UniversityItem = ({ schoolId, name, nameWidth, clubs }: Props) => {
           name={name}
           nameWidth={nameWidth}
         />
-
+        {otherItemList.map((item, idx) => (
+          <CompoundAdminItemComponent.OtherItem
+            key={idx}
+            width={item.width}
+            text={item.text}
+          />
+        ))}
         <CompoundAdminItemComponent.ControlButton
-          modifyFlag={modifyFlag}
           isModify={true}
-          isDelete={true}
-          onDelete={onDeleteSchool}
+          isDelete={false}
+          // onDelete={onDeleteSchool}
         />
         <CompoundAdminItemComponent.ToggleIcon
           isOpen={isOpen}
@@ -91,10 +137,30 @@ const UniversityItem = ({ schoolId, name, nameWidth, clubs }: Props) => {
               </DisplayBarSpan>
             ))}
           </ToggleDisplayBar>
+          {clubs.map((club) => (
+            <ClubItem
+              key={club.id}
+              schoolId={schoolId}
+              club={club}
+            />
+          ))}
+          {addToggleList.map((addInputList, listIndex) => (
+            <CompoundAdminItemComponent.AddToggle
+              key={listIndex}
+              index={listIndex}
+              addInputList={addInputList}
+              setAddText={(text, inputIndex) =>
+                handleChange(listIndex, inputIndex, text)
+              }
+              onCancel={onCancel}
+              onComplete={(index: number) => onComplete(index)}
+            />
+          ))}
+          <CompoundAdminItemComponent.AddText text='동아리' onAdd={onAdd} />
         </ToggleListContainer>
       )}
     </CompoundAdminItemComponent>
   )
 }
 
-export default UniversityItem
+export default SchoolItem
