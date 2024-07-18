@@ -5,7 +5,7 @@ export const ScrollBox = styled.div`
   width: 100%;
 `
 
-export const AdminItemContainer = styled.div`
+export const AdminItemContainer = styled.div<{ gap?: string }>`
   width: 100%;
   height: 3.625rem;
   display: flex;
@@ -13,7 +13,7 @@ export const AdminItemContainer = styled.div`
   padding-left: 1rem;
   border-top: 1px solid ${({ theme }) => theme.color.gray['900']};
   box-sizing: border-box;
-  gap: 4rem;
+  gap: ${({ gap }) => gap || '4rem'};
 `
 
 export const CheckboxAdminItemContainer = styled(AdminItemContainer)`
@@ -21,7 +21,10 @@ export const CheckboxAdminItemContainer = styled(AdminItemContainer)`
 `
 
 export const ToggleItemContainer = styled(CheckboxAdminItemContainer)`
-  padding-left: 0;
+  border-top: none;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  justify-content: space-between;
 `
 
 export const CheckItemContainer = styled.div`
@@ -62,6 +65,7 @@ export const ToggleDisplayBar = styled(DisplayBar)`
   ${({ theme }) => theme.typo.text_sm.medium};
   color: ${({ theme }) => theme.color.gray['400']};
   padding-left: 2.75rem;
+  padding-bottom: 0;
   margin: 0;
 `
 
@@ -75,4 +79,42 @@ export const ToggleListContainer = styled.div`
   flex-direction: column;
   padding-left: 1rem;
   ${({ theme }) => theme.typo.text_md.medium};
+`
+
+export const AddToggleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 3rem;
+  margin: 0.5rem 0;
+`
+
+export const AddToggleBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+
+  svg {
+    cursor: pointer;
+  }
+`
+
+export const AddInputContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+`
+
+export const AddText = styled.span`
+  ${({ theme }) => theme.typo.text_lg.regular};
+  color: ${({ theme }) => theme.color.gray['700']};
+  margin: 0.5rem 0 1rem 0;
+  cursor: pointer;
+`
+
+export const CompleteText = styled.span`
+  width: 7.5rem;
+  ${({ theme }) => theme.typo.text_md.semibold};
+  color: ${({ theme }) => theme.color.main};
+  cursor: pointer;
 `

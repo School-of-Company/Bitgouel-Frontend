@@ -33,6 +33,7 @@ export const lectureQueryKeys = {
   ],
   patchLecture: (id: string) => ['lecture', 'modify', id],
   deleteLecture: (id: string) => ['lecture', 'delete', id],
+  deleteEnrollment: (id: string) => ['lecture', 'enrollment', id],
 } as const
 
 export const activityQueryKeys = {
@@ -119,5 +120,6 @@ export const universityQueryKeys = {
   getUniversity: () => ['university', 'list'],
   patchUniversity: (id: string) => ['university', id],
   deleteUniversity: (id: string) => ['university', 'delete', id],
+  postDepartment: (id: string) => ['department', 'create', id],
   deleteDepartment: (id: string) => ['department', 'delete', id],
 } as const
