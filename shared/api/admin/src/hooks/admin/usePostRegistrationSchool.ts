@@ -6,8 +6,8 @@ export const usePostRegistrationSchool = (
 ) =>
   useMutation<void, Error, FormData>(
     schoolQueryKeys.postRegistrationSchool(),
-    (value) =>
-      post(schoolUrl.school(), value, {
+    (createValues) =>
+      post(schoolUrl.school(), createValues, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
