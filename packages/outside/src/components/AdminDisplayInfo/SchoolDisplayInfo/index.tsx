@@ -3,7 +3,7 @@ import { DisplayBar, DisplayBarSpan } from '../style'
 
 const SchoolDisplayInfo = () => {
   return (
-    <DisplayBar>
+    <DisplayBar gap={'4.75rem'}>
       <DisplayBarSpan width='15rem'>이름</DisplayBarSpan>
       <DisplayBarSpan width='10.5rem'>계열</DisplayBarSpan>
       <DisplayBarSpan width='10.5rem'>학과</DisplayBarSpan>
