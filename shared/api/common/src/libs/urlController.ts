@@ -124,4 +124,4 @@ export const universityUrl = {
 
 export const schoolUrl = {
   school: () => `/school`,
-}
+} as const 
