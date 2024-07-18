@@ -80,6 +80,7 @@ export const clubQueryKeys = {
     id,
     studentId,
   ],
+  postClub: (schoolId: string) => ['club', 'create', schoolId],
   patchClub: (id: string) => ['club', 'modify', id],
   deleteClub: (id: string) => ['club', 'delete', id],
 } as const
