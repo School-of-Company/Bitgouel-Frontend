@@ -21,7 +21,7 @@ const CreateSchoolModal = () => {
       closeModal()
     },
     onError: () => {
-      alert('학교 등록에 실패하였습니다.')
+      toast.error('학교 등록에 실패하였습니다.')
     },
   })
 
