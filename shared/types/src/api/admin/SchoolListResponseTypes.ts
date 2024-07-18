@@ -1,21 +1,27 @@
-import { DivisionsResponseTypes } from "../common"
+export type LineEnum =
+  | 'INDUSTRY'
+  | 'COMMERCE'
+  | 'AGRICULTURAL_LIFE_HEALTH_CARE'
+  | 'CUSTOMIZED_INDUSTRIAL_DEMAND'
+
+export type FieldEnum =
+  | 'FUTURISTIC_TRANSPORTATION_EQUIPMENT'
+  | 'ENERGY'
+  | 'MEDICAL_HEALTHCARE'
+  | 'AI_CONVERGENCE'
+  | 'CULTURE'
 
 export interface ClubsType {
   id: string
-  clubName: string
-  field:
-    | 'FUTURISTIC_TRANSPORTATION_EQUIPMENT'
-    | 'ENERGY'
-    | 'MEDICAL_HEALTHCARE'
-    | 'AI_CONVERGENCE'
-    | 'CULTURE'
+  name: string
+  field: FieldEnum
 }
 
 export interface SchoolsType {
   id: number
   schoolName: string
-  line: DivisionsResponseTypes
-  department: { name: string }[]
+  line: LineEnum
+  departments: { name: string }[]
   logoImageUrl: string // multipart-url
   clubs: ClubsType[]
 }
