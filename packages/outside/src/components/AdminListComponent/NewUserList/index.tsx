@@ -87,7 +87,7 @@ const NewUserList = () => {
           <NoneResult title={'신규 가입자 명단이'} />
         ) : (
           data?.users.map((user) => {
-            const userItemList: { width: string; text: string }[] = [
+            const otherItemList: { width: string; text: string }[] = [
               { width: '8rem', text: user.authority },
               { width: '9rem', text: insertHyphen(user.phoneNumber) },
               { width: 'auto', text: user.email },
@@ -103,7 +103,7 @@ const NewUserList = () => {
                     name={user.name}
                     nameWidth='6rem'
                   />
-                  {userItemList.map((item) => (
+                  {otherItemList.map((item) => (
                     <CompoundItemComponent.OtherItem
                       key={item.text}
                       width={item.width}
