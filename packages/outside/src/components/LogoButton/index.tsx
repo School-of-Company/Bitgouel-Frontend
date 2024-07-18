@@ -34,7 +34,7 @@ interface LogoButtonProps {
   onFileChange: (file: File) => void
 }
 
-const LogoButton: React.FC<LogoButtonProps> = ({ onFileChange }) => {
+const LogoButton = ({ onFileChange }: LogoButtonProps) => {
   const [fileName, setFileName] = useState<string>('')
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
