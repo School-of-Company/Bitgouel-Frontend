@@ -3,6 +3,7 @@
 import {
   LectureDate,
   LectureSemesterEnum,
+  SchoolTypeEnum,
   SignUpObjTypes,
 } from '@bitgouel/types'
 import { ReactNode } from 'react'
@@ -113,7 +114,7 @@ export const LectureEssentialComplete = atom<boolean>({
   default: true,
 })
 
-export const SchoolType= atom<string>({
+export const SchoolType = atom<SchoolTypeEnum | ''>({
   key: 'SchoolType',
   default: '',
 })
@@ -163,8 +164,8 @@ export const ShowInstructor = atom<string>({
   default: '',
 })
 export const LecturePlace = atom<{
-  address: string,
-  detail: string,
+  address: string
+  detail: string
 }>({
   key: 'LecturePlace',
   default: {
