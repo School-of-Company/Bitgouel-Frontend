@@ -1,13 +1,64 @@
-import { CancelIcon, Portal, useModal } from '@bitgouel/common'
-import { SchoolItem, SchoolClubInput, LogoButton } from '@outside/components'
-
+import { usePostRegistrationSchool } from '@bitgouel/api'
+import { CancelIcon, Portal, SchoolType, useModal } from '@bitgouel/common'
+import { RegistrationTypes } from '@bitgouel/types'
+import { LogoButton, SchoolItem } from '@outside/components'
+import { useState } from 'react'
+import { toast } from 'react-toastify'
+import { useRecoilState } from 'recoil'
+import SearchSchoolType from './SearchSchoolType'
 import * as S from './style'
-
-import SearchLectureType from './SearchSchoolType'
-import CreateClubItem from './CreateClubItem'
 
 const CreateSchoolModal = () => {
   const { closeModal } = useModal()
+  const [departments, setDepartments] = useState<string[]>([''])
+  const [schoolName, setSchoolName] = useState<string>('')
+  const [schoolType, setSchoolType] = useRecoilState(SchoolType)
+  const [logoFile, setLogoFile] = useState<File | null>(null)
+
+  const { mutate } = usePostRegistrationSchool({
+    onSuccess: () => {
+      toast.success('학교가 등록되었습니다.')
+      closeModal()
+    },
+    onError: () => {
+      toast.error('학교 등록에 실패하였습니다.')
+    },
+  })
+
+  const handleAddDepartment = () => setDepartments([...departments, ''])
+
+  const handleDelete = (index: number) =>
+    setDepartments((prev) => prev.filter((_, i) => i !== index))
+
+  const handleDepartmentChange = (index: number, value: string) => {
+    setDepartments((prev) =>
+      prev.map((department, i) => (i === index ? value : department))
+    )
+  }
+
+  const handleRegistration = () => {
+    if (!(schoolName && schoolType && logoFile && departments)) {
+      toast.error('새부사항을 다시 확인해주세요.')
+      return
+    }
+
+    const formData = new FormData()
+
+    const registrationData: RegistrationTypes['webRequest'] = {
+      schoolName: schoolName,
+      line: schoolType,
+      departments: departments,
+    }
+
+    formData.append(
+      'webRequest',
+      new Blob([JSON.stringify(registrationData)], { type: 'application/json' })
+    )
+
+    formData.append('logoImage', logoFile)
+
+    mutate(formData)
+  }
 
   return (
     <Portal onClose={closeModal}>
@@ -15,7 +66,7 @@ const CreateSchoolModal = () => {
         <S.TitleWrapper>
           <S.TitleContainer>
             <S.Title>새로운 학교 등록</S.Title>
-            <S.CancelIcon>
+            <S.CancelIcon onClick={closeModal}>
               <CancelIcon />
             </S.CancelIcon>
           </S.TitleContainer>
@@ -24,22 +75,41 @@ const CreateSchoolModal = () => {
           <S.SelectWrapper>
             <S.SchoolContainer>
               <S.Content>학교 이름</S.Content>
-              <SchoolItem placeholder='학교 이름 입력 (ex: 숭의과학기술고등학교)' />
+              <SchoolItem
+                placeholder='학교 이름 입력 (ex: 숭의과학기술고등학교)'
+                type='학교 이름'
+                onChange={(value) => setSchoolName(value)}
+              />
             </S.SchoolContainer>
             <S.SchoolContainer>
               <S.Content>학교 로고</S.Content>
-              <LogoButton />
+              <LogoButton onFileChange={(file) => setLogoFile(file)} />
             </S.SchoolContainer>
             <S.SchoolContainer>
               <S.Content>학교 계열</S.Content>
-              <SearchLectureType />
+              <SearchSchoolType />
             </S.SchoolContainer>
             <S.SchoolContainer>
               <S.Content>학교 학과</S.Content>
-              <SchoolItem placeholder='쉼표로 구분해 학과 작성 (ex: 스마트 IOT과, 소프트웨어 개발과)' />
+              {departments.map((department, index) => (
+                <SchoolItem
+                  key={`department-${index}`}
+                  index={index}
+                  placeholder={'학교 학과 입력(ex: 스마트 IOT과)'}
+                  type='학과 이름'
+                  value={department}
+                  onChange={(value) => handleDepartmentChange(index, value)}
+                  handleDelete={() => handleDelete(index)}
+                />
+              ))}
+              <S.CreateDepartmentContainer onClick={handleAddDepartment}>
+                <span>+ 학과 추가하기</span>
+              </S.CreateDepartmentContainer>
             </S.SchoolContainer>
             <S.SubmitContainer>
-              <S.SubmitButton>학교 등록</S.SubmitButton>
+              <S.SubmitButton onClick={handleRegistration}>
+                학교 등록
+              </S.SubmitButton>
             </S.SubmitContainer>
           </S.SelectWrapper>
         </S.CreateSchoolModalContainer>

@@ -88,3 +88,17 @@ export const SubmitButton = styled.div`
   ${({ theme }) => theme.typo.text_md.semibold};
   cursor: pointer;
 `
+
+export const CreateDepartmentContainer = styled.div`
+  width: 100%;
+  height: 3.625rem;
+  display: flex;
+  align-items: center;
+  text-indent: 1rem;
+  cursor: pointer;
+
+  span {
+    color: ${({ theme }) => theme.color.gray['700']};
+    ${({ theme }) => theme.typo.text_lg.regular};
+  }
+`

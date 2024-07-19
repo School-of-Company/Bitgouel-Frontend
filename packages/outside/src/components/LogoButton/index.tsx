@@ -20,7 +20,6 @@ const UploadButton = styled.label`
   padding: 0.75rem 3rem;
   cursor: pointer;
   border-radius: 0.5rem;
-
   color: ${({ theme }) => theme.color.white};
   ${({ theme }) => theme.typo.text_lg.semibold};
 `
@@ -31,12 +30,19 @@ const FileName = styled.span`
   color: ${({ theme }) => theme.color.gray['400']};
 `
 
-const LogoButton = () => {
+interface LogoButtonProps {
+  onFileChange: (file: File) => void
+}
+
+const LogoButton = ({ onFileChange }: LogoButtonProps) => {
   const [fileName, setFileName] = useState<string>('')
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files[0]
-    setFileName(file ? file.name : '')
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0]
+      setFileName(file.name)
+      onFileChange(file)
+    }
   }
 
   return (
