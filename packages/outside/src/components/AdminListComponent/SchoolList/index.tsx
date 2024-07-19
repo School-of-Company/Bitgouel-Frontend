@@ -17,10 +17,9 @@ const SchoolList = () => {
         ) : (
           data?.schools.map((school) => {
             const otherItemList: { width: string; text: string }[] = [
-              { width: '10.5rem', text: LineEnumToKor[school.line] },
-              { width: '10.5rem', text: `${school.departments.length}개 학과` },
-              { width: 'auto', text: `${school.clubs.length}개 동아리` },
+              { width: '30.5rem', text: LineEnumToKor[school.line] },
             ]
+
             return (
               <SchoolItem
                 key={school.id}
