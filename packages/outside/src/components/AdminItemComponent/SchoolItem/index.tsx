@@ -38,7 +38,6 @@ const SchoolItem = ({
   clubs,
 }: Props) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
-
   const { openModal, closeModal } = useModal()
   const queryClient = useQueryClient()
   const onSuccess = (message: string) => {
@@ -54,6 +53,17 @@ const SchoolItem = ({
   const { mutate: deleteSchool } = useDeleteSchool(schoolId, {
     onSuccess: () => onSuccess('학교를 삭제하였습니다.'),
   })
+
+  const onDeleteSchool = () =>
+    openModal(
+      <AppropriationModal
+        isApprove={false}
+        question='학교를 삭제하시겠습니까?'
+        purpose='삭제하기'
+        title={name}
+        onAppropriation={(callbacks) => deleteSchool(undefined, callbacks)}
+      />
+    )
 
   const [addToggleList, setAddToggleList] = useState<
     { width: string; text: string }[][]
@@ -117,8 +127,9 @@ const SchoolItem = ({
         ))}
         <CompoundAdminItemComponent.ControlButton
           isModify={true}
-          isDelete={false}
-          // onDelete={onDeleteSchool}
+          isDelete={true}
+          onModify={() => {}}
+          onDelete={onDeleteSchool}
         />
         <CompoundAdminItemComponent.ToggleIcon
           isOpen={isOpen}
@@ -138,11 +149,7 @@ const SchoolItem = ({
             ))}
           </ToggleDisplayBar>
           {clubs.map((club) => (
-            <ClubItem
-              key={club.id}
-              schoolId={schoolId}
-              club={club}
-            />
+            <ClubItem key={club.id} schoolId={schoolId} club={club} />
           ))}
           {addToggleList.map((addInputList, listIndex) => (
             <CompoundAdminItemComponent.AddToggle
