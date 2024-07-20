@@ -115,10 +115,6 @@ export const faqQueryKeys = {
   postQuestion: () => ['FAQ', 'list'],
 } as const
 
-export const schoolQueryKeys = {
-  postRegistrationSchool: () => ['school', 'registration'],
-} as const
-
 export const universityQueryKeys = {
   getUniversity: () => ['university', 'list'],
   patchUniversity: (id: string) => ['university', id],
@@ -129,6 +125,7 @@ export const universityQueryKeys = {
 
 export const schoolQueryKeys = {
   getSchool: () => ['school', 'list'],
+  postRegistrationSchool: () => ['school', 'registration'],
   patchSchool: (id: string) => ['school', 'modify', id],
   deleteSchool: (id: string) => ['school', 'delete', id],
 } as const
