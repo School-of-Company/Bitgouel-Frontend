@@ -2,11 +2,14 @@ import { SchoolFilterText, useModal } from '@bitgouel/common'
 import { useRouter } from 'next/navigation'
 import { useSetRecoilState } from 'recoil'
 import * as S from './style'
+import { useGetSchoolNameList } from '@bitgouel/api'
 
 const SchoolContent = () => {
+  const { data } = useGetSchoolNameList()
   const { closeModal } = useModal()
   const { push } = useRouter()
   const setSchoolFilterText = useSetRecoilState(SchoolFilterText)
+
   return (
     <>
       <S.SchoolItemBox
@@ -17,18 +20,17 @@ const SchoolContent = () => {
       >
         모든 학교
       </S.SchoolItemBox>
-      {[] // 백엔드에서 오는 학교 데이터를 추가할 예정입니다. 회원가입의 스크롤도 마찬가지입니다.
-        .map((school) => school + '등학교')
+      {data?.schools
         .map((school, idx) => (
           <S.SchoolItemBox
             key={idx}
             onClick={() => {
-              setSchoolFilterText(school.slice(0, -3))
+              setSchoolFilterText(school.name.slice(0, -3))
               closeModal()
               push(`/main/club/school`)
             }}
           >
-            {school}
+            {school.name}
           </S.SchoolItemBox>
         ))}
     </>

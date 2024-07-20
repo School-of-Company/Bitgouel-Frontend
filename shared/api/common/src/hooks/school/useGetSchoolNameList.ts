@@ -7,9 +7,9 @@ interface SchoolListResponseType {
 }
 
 export const useGetSchoolNameList = (
-  options?: UseQueryOptions<SchoolListResponseType[], AxiosError>
+  options?: UseQueryOptions<SchoolListResponseType, AxiosError>
 ) =>
-  useQuery<SchoolListResponseType[], AxiosError>(
+  useQuery<SchoolListResponseType, AxiosError>(
     schoolQueryKeys.getSchoolNameList(),
     () => get(schoolUrl.schoolNameList()),
     options
