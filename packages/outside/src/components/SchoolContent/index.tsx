@@ -25,7 +25,7 @@ const SchoolContent = () => {
           <S.SchoolItemBox
             key={idx}
             onClick={() => {
-              setSchoolFilterText(school.name.slice(0, -3))
+              setSchoolFilterText(school.name)
               closeModal()
               push(`/main/club/school`)
             }}
