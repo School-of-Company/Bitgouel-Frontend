@@ -123,3 +123,7 @@ export const universityQueryKeys = {
   postDepartment: (id: string) => ['department', 'create', id],
   deleteDepartment: (id: string) => ['department', 'delete', id],
 } as const
+
+export const governmentQueryKeys = {
+  getGovernment: () => ['government', 'list'],
+} as const

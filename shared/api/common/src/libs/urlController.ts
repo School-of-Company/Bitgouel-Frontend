@@ -125,3 +125,7 @@ export const universityUrl = {
 export const schoolUrl = {
   school: () => `/school`,
 } as const 
+
+export const governmentUrl = {
+  government: () => `/government`,
+} as const
