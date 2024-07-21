@@ -1,6 +1,6 @@
 import { useGetCompany } from '@bitgouel/api'
 import { NoneResult, WaitingAnimation } from '@bitgouel/common'
-import { UniversityDisplayInfo } from '../AdminDisplayInfo'
+import { CompanyDisplayInfo } from '../AdminDisplayInfo'
 import { CompanyItem } from '../AdminItemComponent'
 import { UserListContainer } from '../NewUserList/style'
 
@@ -9,7 +9,7 @@ const CompanyList = () => {
 
   return (
     <>
-      <UniversityDisplayInfo />
+      <CompanyDisplayInfo />
       <UserListContainer>
         {isLoading && <WaitingAnimation title={'기업 명단을'} />}
         {data?.companies.length <= 0 ? (
