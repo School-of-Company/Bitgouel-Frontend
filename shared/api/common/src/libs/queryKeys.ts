@@ -127,4 +127,5 @@ export const universityQueryKeys = {
 export const governmentQueryKeys = {
   getGovernment: () => ['government', 'list'],
   postGovernment: () => [`government`, 'create'],
+  deleteGovernment: (id: string) => ['government', 'delete', id],
 } as const
