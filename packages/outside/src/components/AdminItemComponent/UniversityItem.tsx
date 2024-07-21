@@ -34,11 +34,15 @@ const UniversityItem = ({
   const [modifyFlag, setModifyFlag] = useState(false)
   const [modifyText, setModifyText] = useState(name)
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [addToggleList, setAddToggleList] = useState<
+    { width: string; text: string }[][]
+  >([])
 
   const { openModal, closeModal } = useModal()
   const queryClient = useQueryClient()
-  const onSuccess = (message: string) => {
-    setModifyFlag(false)
+  const onSuccess = (message: string, toggleIndex?: number) => {
+    if (typeof toggleIndex !== undefined) onCancel(toggleIndex)
+    else setModifyFlag(false)
     closeModal()
     queryClient.invalidateQueries(universityQueryKeys.getUniversity())
     toast.success(message)
@@ -102,10 +106,6 @@ const UniversityItem = ({
     )
   }
 
-  const [addToggleList, setAddToggleList] = useState<
-    { width: string; text: string }[][]
-  >([])
-
   const onAdd = () => {
     setAddToggleList((prevState) => [
       ...prevState,
@@ -125,13 +125,12 @@ const UniversityItem = ({
     setAddToggleList(newToggls)
   }
 
-  const { mutate: createDepartment } = usePostDepartment(universityId, {
-    onSuccess: () => onSuccess('학과를 추가했습니다.'),
-  })
+  const { mutate: createDepartment } = usePostDepartment(universityId)
 
   const onComplete = (index: number) => {
     const addName: string = addToggleList[index][0].text
     if (!addName.length) return toast.info('학과 이름을 작성해주세요.')
+    
     openModal(
       <AppropriationModal
         isApprove={true}
@@ -139,7 +138,9 @@ const UniversityItem = ({
         purpose='추가하기'
         title={addName}
         onAppropriation={(callbacks) =>
-          createDepartment({ department: addName }, callbacks)
+          createDepartment({ department: addName }, {
+            onSuccess: () => onSuccess('학과를 추가했습니다.', index),
+          })
         }
       />
     )
