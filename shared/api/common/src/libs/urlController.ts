@@ -127,5 +127,6 @@ export const schoolUrl = {
 } as const 
 
 export const governmentUrl = {
-  government: () => `/government`,
+  governmentList: () => `/government`,
+  governmentCreate: () => `/government`,
 } as const
