@@ -128,4 +128,5 @@ export const schoolUrl = {
 
 export const companyUrl = {
   company: () => `/company`,
+  companyCreate: () => `/company`,
 } as const

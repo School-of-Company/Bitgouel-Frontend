@@ -126,4 +126,5 @@ export const universityQueryKeys = {
 
 export const companyQueryKeys = {
   getCompany: () => [`company`, `list`],
+  postCompany: () => [`company`, 'create'],
 } as const
