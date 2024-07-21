@@ -1,6 +1,6 @@
 import { useGetGovernment } from '@bitgouel/api'
 import { NoneResult, WaitingAnimation } from '@bitgouel/common'
-import { UniversityDisplayInfo } from '../AdminDisplayInfo'
+import { GovernmentDisplayInfo } from '../AdminDisplayInfo'
 import { GovernmentItem } from '../AdminItemComponent'
 import { UserListContainer } from '../NewUserList/style'
 
@@ -9,7 +9,7 @@ const GovernmentList = () => {
 
   return (
     <>
-      <UniversityDisplayInfo />
+      <GovernmentDisplayInfo />
       <UserListContainer>
         {isLoading && <WaitingAnimation title={'대학 명단을'} />}
         {data?.governments.length <= 0 ? (
