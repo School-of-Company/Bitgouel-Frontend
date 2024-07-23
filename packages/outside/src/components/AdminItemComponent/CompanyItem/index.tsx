@@ -2,15 +2,24 @@ import { companyQueryKeys, useDeleteUniversity } from '@bitgouel/api'
 import { AppropriationModal, useModal } from '@bitgouel/common'
 import { useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
+import { CompoundItemComponent } from '..'
 import CompoundAdminItemComponent from '../CompoundAdminItemComponent'
 
 interface Props {
   companyId: string
   name: string
   nameWidth: string
+  otherName: string
+  otherNameWidth: string
 }
 
-const CompanyItem = ({ companyId, name, nameWidth }: Props) => {
+const CompanyItem = ({
+  companyId,
+  name,
+  nameWidth,
+  otherName,
+  otherNameWidth,
+}: Props) => {
   const { openModal, closeModal } = useModal()
   const queryClient = useQueryClient()
 
@@ -41,6 +50,10 @@ const CompanyItem = ({ companyId, name, nameWidth }: Props) => {
         <CompoundAdminItemComponent.AdminItemName
           name={name}
           nameWidth={nameWidth}
+        />
+        <CompoundItemComponent.OtherItem
+          text={otherName}
+          width={otherNameWidth}
         />
         <CompoundAdminItemComponent.ControlButton
           isModify={false}
