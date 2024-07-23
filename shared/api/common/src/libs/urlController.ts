@@ -129,4 +129,17 @@ export const schoolUrl = {
   school: () => `/school`,
   schoolDelete: (id: string) => `/school/${id}`,
   schoolModify: (id: string) => `/school/${id},`,
+  schoolNameList: () => `/school/name`,
+} as const 
+
+export const governmentUrl = {
+  governmentList: () => `/government`,
+  governmentCreate: () => `/government`,
+  governmentDelete: (id: string) => `/government/${id}`,
+} as const
+
+export const companyUrl = {
+  company: () => `/company`,
+  companyCreate: () => `/company`,
+  companyDelete: (id: string) => `/company/${id}`,
 } as const

@@ -129,3 +129,15 @@ export const schoolQueryKeys = {
   patchSchool: (id: string) => ['school', 'modify', id],
   deleteSchool: (id: string) => ['school', 'delete', id],
 } as const
+
+export const governmentQueryKeys = {
+  getGovernment: () => ['government', 'list'],
+  postGovernment: () => [`government`, 'create'],
+  deleteGovernment: (id: string) => ['government', 'delete', id],
+} as const
+
+export const companyQueryKeys = {
+  getCompany: () => [`company`, `list`],
+  postCompany: () => [`company`, 'create'],
+  deleteCompany: (id: string) => [`company`, 'delete', id],
+} as const
