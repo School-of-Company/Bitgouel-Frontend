@@ -113,6 +113,7 @@ export const faqQueryKeys = {
 } as const
 
 export const schoolQueryKeys = {
+  getSchoolNameList: () => ['school', 'schoolNameList'],
   postRegistrationSchool: () => ['school', 'registration'],
 } as const
 

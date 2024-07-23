@@ -124,6 +124,7 @@ export const universityUrl = {
 
 export const schoolUrl = {
   school: () => `/school`,
+  schoolNameList: () => `/school/name`,
 } as const 
 
 export const governmentUrl = {
