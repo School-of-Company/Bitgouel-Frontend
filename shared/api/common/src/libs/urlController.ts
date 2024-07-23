@@ -124,4 +124,11 @@ export const universityUrl = {
 
 export const schoolUrl = {
   school: () => `/school`,
-} as const 
+  schoolNameList: () => `/school/name`,
+} as const
+
+export const companyUrl = {
+  company: () => `/company`,
+  companyCreate: () => `/company`,
+  companyDelete: (id: string) => `/company/${id}`,
+} as const
