@@ -130,3 +130,9 @@ export const governmentQueryKeys = {
   postGovernment: () => [`government`, 'create'],
   deleteGovernment: (id: string) => ['government', 'delete', id],
 } as const
+
+export const companyQueryKeys = {
+  getCompany: () => [`company`, `list`],
+  postCompany: () => [`company`, 'create'],
+  deleteCompany: (id: string) => [`company`, 'delete', id],
+} as const

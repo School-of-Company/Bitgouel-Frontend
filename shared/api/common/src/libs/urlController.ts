@@ -132,3 +132,9 @@ export const governmentUrl = {
   governmentCreate: () => `/government`,
   governmentDelete: (id: string) => `/government/${id}`,
 } as const
+
+export const companyUrl = {
+  company: () => `/company`,
+  companyCreate: () => `/company`,
+  companyDelete: (id: string) => `/company/${id}`,
+} as const
