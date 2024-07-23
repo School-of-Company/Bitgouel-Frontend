@@ -125,6 +125,12 @@ export const universityUrl = {
 export const schoolUrl = {
   school: () => `/school`,
   schoolNameList: () => `/school/name`,
+} as const 
+
+export const governmentUrl = {
+  governmentList: () => `/government`,
+  governmentCreate: () => `/government`,
+  governmentDelete: (id: string) => `/government/${id}`,
 } as const
 
 export const companyUrl = {

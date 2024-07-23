@@ -125,6 +125,12 @@ export const universityQueryKeys = {
   deleteDepartment: (id: string) => ['department', 'delete', id],
 } as const
 
+export const governmentQueryKeys = {
+  getGovernment: () => ['government', 'list'],
+  postGovernment: () => [`government`, 'create'],
+  deleteGovernment: (id: string) => ['government', 'delete', id],
+} as const
+
 export const companyQueryKeys = {
   getCompany: () => [`company`, `list`],
   postCompany: () => [`company`, 'create'],
