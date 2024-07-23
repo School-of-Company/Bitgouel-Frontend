@@ -125,4 +125,10 @@ export const universityUrl = {
 export const schoolUrl = {
   school: () => `/school`,
   schoolNameList: () => `/school/name`,
-} as const 
+} as const
+
+export const companyUrl = {
+  company: () => `/company`,
+  companyCreate: () => `/company`,
+  companyDelete: (id: string) => `/company/${id}`,
+} as const
