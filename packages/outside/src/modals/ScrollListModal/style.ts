@@ -32,6 +32,7 @@ export const ScrollTitleBox = styled.div`
 `
 
 export const ScrollListContainer = styled.div`
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;

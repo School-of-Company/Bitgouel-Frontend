@@ -113,6 +113,7 @@ export const faqQueryKeys = {
 } as const
 
 export const schoolQueryKeys = {
+  getSchoolNameList: () => ['school', 'schoolNameList'],
   postRegistrationSchool: () => ['school', 'registration'],
 } as const
 
@@ -122,4 +123,16 @@ export const universityQueryKeys = {
   deleteUniversity: (id: string) => ['university', 'delete', id],
   postDepartment: (id: string) => ['department', 'create', id],
   deleteDepartment: (id: string) => ['department', 'delete', id],
+} as const
+
+export const governmentQueryKeys = {
+  getGovernment: () => ['government', 'list'],
+  postGovernment: () => [`government`, 'create'],
+  deleteGovernment: (id: string) => ['government', 'delete', id],
+} as const
+
+export const companyQueryKeys = {
+  getCompany: () => [`company`, `list`],
+  postCompany: () => [`company`, 'create'],
+  deleteCompany: (id: string) => [`company`, 'delete', id],
 } as const
