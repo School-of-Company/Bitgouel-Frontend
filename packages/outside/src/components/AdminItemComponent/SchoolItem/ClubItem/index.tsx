@@ -1,4 +1,4 @@
-import { ModifyClubValues, useDeleteClub, usePatchClub } from '@bitgouel/api'
+import { ModifyClubValues, schoolQueryKeys, useDeleteClub, usePatchClub } from '@bitgouel/api'
 import {
   AppropriationModal,
   FieldEnumToKor,
@@ -9,20 +9,28 @@ import { ClubsType } from '@bitgouel/types'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import CompoundAdminItemComponent from '../../CompoundAdminItemComponent'
+import { useQueryClient } from '@tanstack/react-query'
 
 interface Props {
   schoolId: string
   club: ClubsType
-  onSuccess: (message: string) => void
 }
 
-const ClubItem = ({ schoolId, club, onSuccess }: Props) => {
+const ClubItem = ({ schoolId, club }: Props) => {
   const { openModal, closeModal } = useModal()
   const [modifyFlag, setModifyFlag] = useState<boolean>()
   const [nameModifyText, setNameModifyText] = useState<string>(club.name)
   const [fieldModifyText, setFieldModifyText] = useState<string>(
-    FieldEnumToKor[club.field]
+    club.field
   )
+  const queryClient = useQueryClient()
+
+  const onSuccess = (message: string) => {
+    setModifyFlag(false)
+    closeModal()
+    queryClient.invalidateQueries(schoolQueryKeys.getSchool())
+    toast.success(message)
+  }   
 
   const { mutate: modifyClub } = usePatchClub(club.id, {
     onSuccess: () => onSuccess('동아리 정보를 수정하였습니다.'),
@@ -44,7 +52,7 @@ const ClubItem = ({ schoolId, club, onSuccess }: Props) => {
 
     const modifyClubBody: ModifyClubValues = {
       name: nameModifyText,
-      field: FieldToEnum[fieldModifyText],
+      field: FieldEnumToKor[fieldModifyText],
       schoolId,
     }
 
@@ -88,12 +96,13 @@ const ClubItem = ({ schoolId, club, onSuccess }: Props) => {
             modifyText={nameModifyText}
             setModifyText={setNameModifyText}
           />
-          <CompoundAdminItemComponent.OtherItem
-            text={FieldEnumToKor[club.field]}
-            width='10.5rem'
+          <CompoundAdminItemComponent.AdminFieldScrollName
+            name={FieldEnumToKor[club.field]}
+            nameWidth='10.5rem'
             modifyFlag={modifyFlag}
             modifyText={fieldModifyText}
             setModifyText={setFieldModifyText}
+            modifyWidth='10.5rem'
           />
         </div>
         <CompoundAdminItemComponent.ControlButton

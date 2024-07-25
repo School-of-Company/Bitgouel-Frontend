@@ -6,12 +6,19 @@ import {
 import { Dispatch, ReactNode, SetStateAction } from 'react'
 import ModifyInputComponent from './ModifyInputComponent'
 import * as S from './style'
+import ModifyFieldScroll from './ModifyFieldScroll'
 
 const CompoundAdminItemComponent = ({ children }: { children: ReactNode }) => {
   return <S.ScrollBox>{children}</S.ScrollBox>
 }
 
-const AdminItemContainer = ({ children, gap }: { children: ReactNode, gap?: string }) => {
+const AdminItemContainer = ({
+  children,
+  gap,
+}: {
+  children: ReactNode
+  gap?: string
+}) => {
   return <S.AdminItemContainer gap={gap}>{children}</S.AdminItemContainer>
 }
 
@@ -131,6 +138,30 @@ const OtherItem = ({
   )
 }
 
+const AdminFieldScrollName = ({
+  name,
+  nameWidth,
+  modifyFlag,
+  modifyText,
+  setModifyText,
+  modifyWidth,
+}: AdminItemNameProps) => {
+  console.log(modifyText)
+  return (
+    <>
+      {!modifyFlag && <S.Name width={nameWidth}>{name}</S.Name>}
+      {modifyFlag && (
+        <ModifyFieldScroll
+          modifyField={modifyText}
+          setModifyField={setModifyText}
+          boxWidth={nameWidth}
+          underBarWidth={modifyWidth}
+        />
+      )}
+    </>
+  )
+}
+
 interface ControlButtonProps {
   isModify: boolean
   isDelete: boolean
@@ -149,7 +180,9 @@ const ControlButton = ({
   return (
     <S.ControlButtons>
       {isModify && (
-        <S.ModifyText onClick={onModify}>{modifyFlag ? '수정완료' : '수정하기'}</S.ModifyText>
+        <S.ModifyText onClick={onModify}>
+          {modifyFlag ? '수정완료' : '수정하기'}
+        </S.ModifyText>
       )}
       {isDelete && <S.DeleteText onClick={onDelete}>삭제하기</S.DeleteText>}
     </S.ControlButtons>
@@ -222,6 +255,7 @@ CompoundAdminItemComponent.AdminToggleItemContainer = AdminToggleItemContainer
 CompoundAdminItemComponent.AdminItemCheckboxName = AdminItemCheckboxName
 CompoundAdminItemComponent.AdminItemName = AdminItemName
 CompoundAdminItemComponent.OtherItem = OtherItem
+CompoundAdminItemComponent.AdminFieldScrollName = AdminFieldScrollName
 CompoundAdminItemComponent.ControlButton = ControlButton
 CompoundAdminItemComponent.ToggleIcon = ToggleIcon
 CompoundAdminItemComponent.AddText = AddText
