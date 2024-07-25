@@ -1,15 +1,15 @@
-import { ModifyClubValues, schoolQueryKeys, useDeleteClub, usePatchClub } from '@bitgouel/api'
 import {
-  AppropriationModal,
-  FieldEnumToKor,
-  FieldToEnum,
-  useModal,
-} from '@bitgouel/common'
-import { ClubsType } from '@bitgouel/types'
+  ModifyClubValues,
+  schoolQueryKeys,
+  useDeleteClub,
+  usePatchClub,
+} from '@bitgouel/api'
+import { AppropriationModal, FieldEnumToKor, useModal } from '@bitgouel/common'
+import { ClubsType, FieldEnum } from '@bitgouel/types'
+import { useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import CompoundAdminItemComponent from '../../CompoundAdminItemComponent'
-import { useQueryClient } from '@tanstack/react-query'
 
 interface Props {
   schoolId: string
@@ -20,9 +20,7 @@ const ClubItem = ({ schoolId, club }: Props) => {
   const { openModal, closeModal } = useModal()
   const [modifyFlag, setModifyFlag] = useState<boolean>()
   const [nameModifyText, setNameModifyText] = useState<string>(club.name)
-  const [fieldModifyText, setFieldModifyText] = useState<string>(
-    club.field
-  )
+  const [fieldModifyText, setFieldModifyText] = useState<FieldEnum>(club.field)
   const queryClient = useQueryClient()
 
   const onSuccess = (message: string) => {
@@ -30,7 +28,7 @@ const ClubItem = ({ schoolId, club }: Props) => {
     closeModal()
     queryClient.invalidateQueries(schoolQueryKeys.getSchool())
     toast.success(message)
-  }   
+  }
 
   const { mutate: modifyClub } = usePatchClub(club.id, {
     onSuccess: () => onSuccess('동아리 정보를 수정하였습니다.'),
@@ -44,7 +42,7 @@ const ClubItem = ({ schoolId, club }: Props) => {
     if (!modifyFlag) return setModifyFlag(true)
     if (
       nameModifyText === club.name &&
-      fieldModifyText === FieldEnumToKor[club.field]
+      fieldModifyText === club.field
     )
       return setModifyFlag(false)
     if (!nameModifyText.length || !fieldModifyText.length)
@@ -52,7 +50,7 @@ const ClubItem = ({ schoolId, club }: Props) => {
 
     const modifyClubBody: ModifyClubValues = {
       name: nameModifyText,
-      field: FieldEnumToKor[fieldModifyText],
+      field: fieldModifyText,
       schoolId,
     }
 
@@ -63,7 +61,7 @@ const ClubItem = ({ schoolId, club }: Props) => {
         purpose='수정하기'
         title={`${club.name} -> ${nameModifyText}, ${
           FieldEnumToKor[club.field]
-        } -> ${fieldModifyText}`}
+        } -> ${FieldEnumToKor[fieldModifyText]}`}
         onAppropriation={(callbacks) => modifyClub(modifyClubBody, callbacks)}
       />
     )
