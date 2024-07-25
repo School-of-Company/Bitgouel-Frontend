@@ -27,9 +27,10 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
 
   useEffect(() => {
     if (myClub && myData) {
-      const foundStudent = myClub.students.find(
-        (student) => student.userId === myData.id
+      const studentMap = new Map(
+        myClub.students.map((student) => [student.userId, student])
       )
+      const foundStudent = studentMap.get(myData.id)
       if (foundStudent) {
         setUserId(foundStudent.id)
       }
