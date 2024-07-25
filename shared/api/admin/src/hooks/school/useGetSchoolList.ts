@@ -8,6 +8,6 @@ export const useGetSchoolList = (
 ) =>
   useQuery<SchoolListResponseTypes, AxiosError>(
     schoolQueryKeys.getSchool(),
-    () => get(schoolUrl.schoolList()),
+    () => get(schoolUrl.school()),
     options
   )
