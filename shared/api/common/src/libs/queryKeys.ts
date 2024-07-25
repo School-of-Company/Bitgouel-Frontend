@@ -33,6 +33,7 @@ export const lectureQueryKeys = {
   ],
   patchLecture: (id: string) => ['lecture', 'modify', id],
   deleteLecture: (id: string) => ['lecture', 'delete', id],
+  deleteEnrollment: (id: string) => ['lecture', 'enrollment', id],
 } as const
 
 export const activityQueryKeys = {
@@ -79,6 +80,9 @@ export const clubQueryKeys = {
     id,
     studentId,
   ],
+  postClub: (schoolId: string) => ['club', 'create', schoolId],
+  patchClub: (id: string) => ['club', 'modify', id],
+  deleteClub: (id: string) => ['club', 'delete', id],
 } as const
 
 export const inquiryQueryKeys = {
@@ -116,5 +120,26 @@ export const universityQueryKeys = {
   postUniversity: () => ['university', 'create'],
   patchUniversity: (id: string) => ['university', id],
   deleteUniversity: (id: string) => ['university', 'delete', id],
+  postDepartment: (id: string) => ['department', 'create', id],
   deleteDepartment: (id: string) => ['department', 'delete', id],
+} as const
+
+export const schoolQueryKeys = {
+  getSchoolNameList: () => ['school', 'name', 'list'],
+  getSchool: () => ['school', 'list'],
+  postRegistrationSchool: () => ['school', 'registration'],
+  patchSchool: (id: string) => ['school', 'modify', id],
+  deleteSchool: (id: string) => ['school', 'delete', id],
+} as const
+
+export const governmentQueryKeys = {
+  getGovernment: () => ['government', 'list'],
+  postGovernment: () => [`government`, 'create'],
+  deleteGovernment: (id: string) => ['government', 'delete', id],
+} as const
+
+export const companyQueryKeys = {
+  getCompany: () => [`company`, `list`],
+  postCompany: () => [`company`, 'create'],
+  deleteCompany: (id: string) => [`company`, 'delete', id],
 } as const

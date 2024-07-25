@@ -4,15 +4,6 @@ import { useGetLines } from '@bitgouel/api'
 import { LectureDivision, LectureLine } from '@bitgouel/common'
 import { FormEvent, useState } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
-
-import {
-  SearchInput,
-  SearchInputBox,
-  SearchItem,
-  SearchListContainer,
-  SearchWrapper,
-} from '../SearchComponent/style'
-
 import SearchComponent from '../SearchComponent'
 
 const SearchLine = () => {

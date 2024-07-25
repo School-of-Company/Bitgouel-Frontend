@@ -8,10 +8,10 @@ import {
   useFilterSelect,
   useModal,
 } from '@bitgouel/common'
-import { UserListContainer } from '@outside/PageContainer/Admin/UserListPage/style'
 import { ChangeEvent, useEffect, useState } from 'react'
-import { WithdrawDisplayInfo } from '../AdminDisplayInfo'
-import { CompoundItemComponent } from '../AdminItemComponent'
+import { WithdrawDisplayInfo } from '../../AdminDisplayInfo'
+import { CompoundItemComponent } from '../../AdminItemComponent'
+import { AdminItemListContainer } from '../style'
 
 const defaultFilterList = [
   { text: '1기', item: '1', checked: true },
@@ -73,7 +73,7 @@ const WithdrawUserList = () => {
         onAll={onAll}
         onWithdrawModal={onWithdrawModal}
       />
-      <UserListContainer>
+      <AdminItemListContainer>
         {isLoading && <WaitingAnimation title={'탈퇴 예정자 명단을'} />}
         {data?.students.length <= 0 ? (
           <NoneResult title={'탈퇴 예정자 명단이'} />
@@ -107,7 +107,7 @@ const WithdrawUserList = () => {
             )
           })
         )}
-      </UserListContainer>
+      </AdminItemListContainer>
     </>
   )
 }

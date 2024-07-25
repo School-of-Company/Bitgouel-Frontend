@@ -28,7 +28,7 @@ export const lectureUrl = {
   lectureInstructor: (keyword: string) =>
     `/lecture/instructor?keyword=${keyword}`,
   lectureLine: (queryString: LinePayloadTypes) =>
-    `/lecture/line?keywrod=${queryString.keyword}&division=${queryString.division}`,
+    `/lecture/line?keyword=${queryString.keyword}&division=${queryString.division}`,
   lectureDepartment: (keyword: string) =>
     `/lecture/department?keyword=${keyword}`,
   lectureDivision: (keyword: string) => `/lecture/division?keyword=${keyword}`,
@@ -39,6 +39,7 @@ export const lectureUrl = {
   lectureExcel: () => `/lecture/excel`,
   lecturePatch: (id: string) => `/lecture/${id}`,
   lectureDelete: (id: string) => `/lecture/${id}/soft`,
+  lectureEnrollmentDelete: (id: string) => `/lecture/${id}`,
 } as const
 
 export const activityUrl = {
@@ -79,6 +80,9 @@ export const clubUrl = {
   clubDetail: (id: string) => `/club/${id}`,
   myClub: () => `/club/my`,
   studentDetail: (id: string, studentId: string) => `/club/${id}/${studentId}`,
+  clubCreate: (schoolId: string) => `/club/${schoolId}`,
+  clubModify: (id: string) => `/club/${id}`,
+  clubDelete: (id: string) => `/club/${id}`,
 } as const
 
 export const inquiryUrl = {
@@ -117,5 +121,26 @@ export const universityUrl = {
   universityCreate: () => `/university`,
   universityModify: (id: string) => `/university/${id}`,
   universityDelete: (id: string) => `/university/${id}`,
-  departmentDelete: (id: string) => `/university/department/${id}`,
+  departmentCreate: (id: string) => `/university/department/${id}`,
+  departmentDelete: (id: string, queryString: { department: string }) =>
+    `/university/department/${id}?department=${queryString.department}`,
+} as const
+
+export const schoolUrl = {
+  school: () => `/school`,
+  schoolDelete: (id: string) => `/school/${id}`,
+  schoolModify: (id: string) => `/school/${id},`,
+  schoolNameList: () => `/school/name`,
+} as const 
+
+export const governmentUrl = {
+  governmentList: () => `/government`,
+  governmentCreate: () => `/government`,
+  governmentDelete: (id: string) => `/government/${id}`,
+} as const
+
+export const companyUrl = {
+  company: () => `/company`,
+  companyCreate: () => `/company`,
+  companyDelete: (id: string) => `/company/${id}`,
 } as const

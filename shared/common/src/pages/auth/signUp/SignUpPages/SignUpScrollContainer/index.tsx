@@ -8,6 +8,7 @@ import {
   outsideJob,
 } from '@bitgouel/common'
 import * as S from './style'
+import { useGetSchoolNameList } from '@bitgouel/api'
 
 const SignUpScrollContainer = ({
   idx,
@@ -34,17 +35,30 @@ const SignUpScrollContainer = ({
     setIsScrollContainer(false)
   }
 
+  const { data } = useGetSchoolNameList({
+    enabled: placeholder === '학교 이름 선택',
+  })
+
   return (
     <S.SignUpScrollContainer
       idx={idx}
       placeholder={placeholder}
-      isNone={placeholder === '동아리 이름 선택' && (obj[0].value === '서진여자고' ||
-          obj[0].value === '전남여자상업고')}
+      isNone={
+        placeholder === '동아리 이름 선택' &&
+        (obj[0].value === '서진여자고' || obj[0].value === '전남여자상업고')
+      }
     >
       {placeholder === '소속' &&
         belongs.map((item, idx) => (
           <S.ScrollItem key={idx} onClick={() => onChange(item)}>
             {item}
+          </S.ScrollItem>
+        ))}
+
+      {placeholder === '학교 이름 선택' &&
+        data?.schools.map((school, idx) => (
+          <S.ScrollItem key={idx} onClick={() => onChange(school.name)}>
+            {school.name}
           </S.ScrollItem>
         ))}
 
@@ -70,13 +84,12 @@ const SignUpScrollContainer = ({
             {item}
           </S.ScrollItem>
         ))}
-      {placeholder === '입학년도 선택' && 
+      {placeholder === '입학년도 선택' &&
         admissionYear.map((item, idx) => (
           <S.ScrollItem key={idx} onClick={() => onChange(item)}>
             {item}
           </S.ScrollItem>
-        ))
-      }
+        ))}
     </S.SignUpScrollContainer>
   )
 }
