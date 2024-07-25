@@ -66,15 +66,15 @@ const SchoolItem = ({
     )
 
   const [addToggleList, setAddToggleList] = useState<
-    { width: string; text: string }[][]
+    { width: string; text: string | FieldEnum; isField: boolean }[][]
   >([])
 
   const onAdd = () => {
     setAddToggleList((prevState) => [
       ...prevState,
       [
-        { width: '15rem', text: '' },
-        { width: '10.5rem', text: '' },
+        { width: '15rem', text: '', isField: false },
+        { width: '10.5rem', text: '', isField: true },
       ],
     ])
   }
@@ -93,11 +93,11 @@ const SchoolItem = ({
 
   const onComplete = (index: number) => {
     const addName: string = addToggleList[index][0].text
-    if (!addName.length) return toast.info('학과 이름을 작성해주세요.')
+    if (!addName.length) return toast.info('동아리 정보를 작성해주세요.')
 
     const createClubBody: CreateClubValues = {
       name: addToggleList[index][0].text,
-      field: FieldToEnum[addToggleList[index][1].text],
+      field: addToggleList[index][1].text as FieldEnum,
     }
 
     openModal(

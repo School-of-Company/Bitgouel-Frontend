@@ -7,6 +7,7 @@ import { Dispatch, ReactNode, SetStateAction } from 'react'
 import ModifyInputComponent from './ModifyInputComponent'
 import * as S from './style'
 import ModifyFieldScroll from './ModifyFieldScroll'
+import { FieldEnum } from '@bitgouel/types'
 
 const CompoundAdminItemComponent = ({ children }: { children: ReactNode }) => {
   return <S.ScrollBox>{children}</S.ScrollBox>
@@ -213,7 +214,7 @@ const AddText = ({ text, onAdd }: AddTextProps) => {
 
 interface AddToggleProps {
   index: number
-  addInputList: { width: string; text: string }[]
+  addInputList: { width: string; text: string | FieldEnum; isField: boolean }[]
   setAddText: (text: string, inputIndex: number) => void
   onCancel: (index: number) => void
   onComplete: (index: number) => void
@@ -231,14 +232,27 @@ const AddToggle = ({
       <S.AddToggleBox>
         <AddToggleCancelIcon onClick={() => onCancel(index)} />
         <S.AddInputContainer>
-          {addInputList.map((addInput, inputIndex) => (
-            <ModifyInputComponent
-              key={inputIndex}
-              modifyText={addInput.text}
-              setModifyText={(text: string) => setAddText(text, inputIndex)}
-              inputWidth={addInput.width}
-            />
-          ))}
+          {addInputList.map((addInput, inputIndex) => {
+            if (addInput.isField)
+              return (
+                <ModifyFieldScroll
+                  modifyField={addInput.text}
+                  setModifyField={(text: FieldEnum) =>
+                    setAddText(text, inputIndex)
+                  }
+                  boxWidth={addInput.width}
+                  underBarWidth={addInput.width}
+                />
+              )
+            return (
+              <ModifyInputComponent
+                key={inputIndex}
+                modifyText={addInput.text}
+                setModifyText={(text: string) => setAddText(text, inputIndex)}
+                inputWidth={addInput.width}
+              />
+            )
+          })}
         </S.AddInputContainer>
       </S.AddToggleBox>
       <S.CompleteText onClick={() => onComplete(index)}>
