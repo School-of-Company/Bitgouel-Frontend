@@ -124,6 +124,7 @@ export const universityQueryKeys = {
 } as const
 
 export const schoolQueryKeys = {
+  getSchoolNameList: () => ['school', 'name', 'list'],
   getSchool: () => ['school', 'list'],
   postRegistrationSchool: () => ['school', 'registration'],
   patchSchool: (id: string) => ['school', 'modify', id],
