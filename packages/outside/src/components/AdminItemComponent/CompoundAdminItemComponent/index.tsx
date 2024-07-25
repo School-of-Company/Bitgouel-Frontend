@@ -214,7 +214,9 @@ const AddText = ({ text, onAdd }: AddTextProps) => {
 
 interface AddToggleProps {
   index: number
-  addInputList: { width: string; text: string | FieldEnum; isField: boolean }[]
+  addInputList:
+    | { width: string; text: string | FieldEnum; isField: boolean }[]
+    | { width: string; text: string }[]
   setAddText: (text: string, inputIndex: number) => void
   onCancel: (index: number) => void
   onComplete: (index: number) => void

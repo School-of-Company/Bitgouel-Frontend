@@ -3,9 +3,7 @@ import { useMutation, UseMutationOptions } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 import { CreateClubValues } from './usePostClub'
 
-export interface ModifyClubValues extends CreateClubValues {
-  schoolId: string
-}
+export interface ModifyClubValues extends CreateClubValues {}
 
 export const usePatchClub = (
   id: string,

@@ -51,7 +51,6 @@ const ClubItem = ({ schoolId, club }: Props) => {
     const modifyClubBody: ModifyClubValues = {
       name: nameModifyText,
       field: fieldModifyText,
-      schoolId,
     }
 
     openModal(
