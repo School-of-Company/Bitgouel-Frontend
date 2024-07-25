@@ -1,17 +1,18 @@
-import styled from "@emotion/styled"
+import styled from '@emotion/styled'
 
-export const ListMember = styled.ul`
+export const ListMember = styled.div`
   position: absolute;
-  height: 7.625rem;
+  width: 10.9375rem;
+  height: 7.3125rem;
   overflow-y: auto;
-  border: 1px solid ${({ theme }) => theme.color.white};
+  border: 1px solid ${({ theme }) => theme.color.gray['700']};
   border-radius: 0.5rem;
   background-color: ${({ theme }) => theme.color.white};
   list-style: none;
-  padding: 0;
+  padding: 0.5rem 0 0 1.25rem;
   margin: 0;
-  width: 14rem;
   z-index: 2;
+  top: 2rem;
 
   /* 스크롤바 설정 */
   ::-webkit-scrollbar {
@@ -37,7 +38,7 @@ export const ListMember = styled.ul`
 `
 
 export const ListButton = styled.button`
-  width: 100%;
+  width: 8.75rem;
   height: 2.5rem;
   border: none;
   background-color: ${({ theme }) => theme.color.white};
@@ -45,6 +46,9 @@ export const ListButton = styled.button`
   text-indent: 1.25rem;
   cursor: pointer;
   outline: none;
+  ${({ theme }) => theme.typo.caption.regular};
+  border-bottom: 1px solid ${({ theme }) => theme.color.gray['900']};
+  padding: 0.5rem 0;
 
   &:hover {
     background-color: ${({ theme }) => theme.color.gray['900']};

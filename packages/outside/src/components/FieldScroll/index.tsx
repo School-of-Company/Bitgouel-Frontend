@@ -29,11 +29,13 @@ const FieldScroll = ({ setSelectedField, setIsScrollOpen }: Props) => {
   return (
     <S.ListMember>
       {FilterOptions.map((option) => (
-        <li key={option.value}>
-          <S.ListButton type='button' onClick={() => handleSelect(option)}>
-            {option.label}
-          </S.ListButton>
-        </li>
+        <S.ListButton
+          key={option.value}
+          type='button'
+          onClick={() => handleSelect(option)}
+        >
+          {option.label}
+        </S.ListButton>
       ))}
     </S.ListMember>
   )
