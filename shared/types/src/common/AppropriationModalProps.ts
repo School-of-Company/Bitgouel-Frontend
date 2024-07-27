@@ -34,6 +34,7 @@ export type questionTypes =
   | '동아리를 삭제하시겠습니까?'
   | '동아리 정보를 수정하시겠습니까?'
   | '유관기관을 삭제하시겠습니까?'
+  | '기업을 삭제하시겠습니까?'
 
 export type purposeTypes =
   | '신청하기'

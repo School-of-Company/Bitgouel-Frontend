@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { UserSearchFilter, UserSearchFilterBox } from '../UserListPage/style'
+import { UserSearchFilterBox } from '../UserListPage/style'
 
 export const RemarkBox = styled.div`
   display: flex;

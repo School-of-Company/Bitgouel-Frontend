@@ -1,3 +1,4 @@
+export { default as CompanyDisplayInfo } from './CompanyDisplayInfo'
 export { default as GovernmentDisplayInfo } from './GovernmentDisplayInfo'
 export { default as NewDisplayInfo } from './NewDisplayInfo'
 export { default as SchoolDisplayInfo } from './SchoolDisplayInfo'

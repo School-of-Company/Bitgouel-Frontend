@@ -1,34 +1,24 @@
 'use client'
 
-import {
-  Bg6,
-  ListManagement,
-  MainStyle,
-  Plus,
-  useModal,
-} from '@bitgouel/common'
+import { Bg6, ListManagement, MainStyle, Plus, useModal } from '@bitgouel/common'
 import { ListManagementContent } from '@outside/components'
-import { CreateUniversityModal, ScrollListModal } from '@outside/modals'
+import { ScrollListModal } from '@outside/modals'
 import dynamic from 'next/dynamic'
 
-const UniversityList = dynamic(
-  () => import('@outside/components/AdminListComponent/UniversityList')
-)
+const CompanyList = dynamic(() => import('@outside/components/CompanyList'))
 
-const UniversityPage = () => {
+const CompanyPage = () => {
   const { openModal } = useModal()
 
   return (
     <MainStyle.PageWrapper>
       <MainStyle.SlideBg url={Bg6}>
         <MainStyle.BgContainer>
-          <MainStyle.PageTitle>등록된 대학</MainStyle.PageTitle>
+          <MainStyle.PageTitle>등록된 기업</MainStyle.PageTitle>
           <MainStyle.ButtonContainer>
-            <MainStyle.SlideButton
-              onClick={() => openModal(<CreateUniversityModal />)}
-            >
-              <Plus />
-              <span>대학등록</span>
+            <MainStyle.SlideButton>
+                <Plus />
+                <span>기업 등록</span>
             </MainStyle.SlideButton>
             <MainStyle.SlideButton
               onClick={() =>
@@ -48,11 +38,11 @@ const UniversityPage = () => {
       </MainStyle.SlideBg>
       <MainStyle.MainWrapper>
         <MainStyle.MainContainer>
-          <UniversityList />
+          <CompanyList />
         </MainStyle.MainContainer>
       </MainStyle.MainWrapper>
     </MainStyle.PageWrapper>
   )
 }
 
-export default UniversityPage
+export default CompanyPage

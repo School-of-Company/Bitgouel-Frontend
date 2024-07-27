@@ -1,5 +1,6 @@
 export * from './admin'
 export * from './club'
+export * from './company'
 export * from './faq'
 export * from './inquiry'
 export * from './lecture'
