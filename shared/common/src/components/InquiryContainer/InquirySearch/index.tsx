@@ -1,11 +1,7 @@
-import {
-  SearchComponent,
-  useFilterSelect
-} from '@bitgouel/common'
+import { FilterSearchComponent, useFilterSelect } from '@bitgouel/common'
 import { AnswerStatus } from '@bitgouel/types'
 import { QueryObserverResult } from '@tanstack/react-query'
 import { Dispatch, FormEvent, SetStateAction } from 'react'
-import { toast } from 'react-toastify'
 
 interface Props {
   refetch: () => Promise<QueryObserverResult>
@@ -40,7 +36,7 @@ const InquirySearch = ({
   }
 
   return (
-    <SearchComponent
+    <FilterSearchComponent
       keywordPlaceholder='키워드'
       onSubmit={onSubmit}
       keyword={keyword}
