@@ -4,7 +4,7 @@ import {
   useDeleteSchool,
 } from '@bitgouel/api'
 import { AppropriationModal, FieldToEnum, useModal } from '@bitgouel/common'
-import { ClubsType, FieldEnum } from '@bitgouel/types'
+import { ClubsType, FieldEnumType } from '@bitgouel/types'
 import { DisplayBarSpan } from '@outside/components/AdminDisplayInfo/style'
 import { useQueryClient } from '@tanstack/react-query'
 import { Dispatch, SetStateAction, useState } from 'react'
@@ -66,7 +66,7 @@ const SchoolItem = ({
     )
 
   const [addToggleList, setAddToggleList] = useState<
-    { width: string; text: string | FieldEnum; isField: boolean }[][]
+    { width: string; text: string | FieldEnumType; isField: boolean }[][]
   >([])
 
   const onAdd = () => {
@@ -97,7 +97,7 @@ const SchoolItem = ({
 
     const createClubBody: CreateClubValues = {
       name: addToggleList[index][0].text,
-      field: addToggleList[index][1].text as FieldEnum,
+      field: addToggleList[index][1].text as FieldEnumType,
     }
 
     openModal(
@@ -149,7 +149,7 @@ const SchoolItem = ({
             ))}
           </ToggleDisplayBar>
           {clubs.map((club) => (
-            <ClubItem key={club.id} schoolId={schoolId} club={club} />
+            <ClubItem key={club.id} club={club} />
           ))}
           {addToggleList.map((addInputList, listIndex) => (
             <CompoundAdminItemComponent.AddToggle

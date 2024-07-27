@@ -1,9 +1,9 @@
-import { FieldEnum } from '@bitgouel/types'
+import { FieldEnumType } from '@bitgouel/types'
 import { Dispatch, SetStateAction } from 'react'
 import * as S from './style'
 
 export interface OptionProps {
-  value: FieldEnum
+  value: FieldEnumType
   label: string
 }
 

@@ -1,11 +1,19 @@
 'use client'
 
-import { Bg6, ListManagement, MainStyle, useModal } from '@bitgouel/common'
+import {
+  Bg6,
+  ListManagement,
+  MainStyle,
+  Plus,
+  useModal,
+} from '@bitgouel/common'
 import { ListManagementContent } from '@outside/components'
-import { ScrollListModal } from '@outside/modals'
+import { CreateSchoolModal, ScrollListModal } from '@outside/modals'
 import dynamic from 'next/dynamic'
 
-const SchoolList = dynamic(() => import('@outside/components/AdminListComponent/SchoolList'))
+const SchoolList = dynamic(
+  () => import('@outside/components/AdminListComponent/SchoolList')
+)
 
 const SchoolPage = () => {
   const { openModal } = useModal()
@@ -16,6 +24,12 @@ const SchoolPage = () => {
         <MainStyle.BgContainer>
           <MainStyle.PageTitle>등록된 학교</MainStyle.PageTitle>
           <MainStyle.ButtonContainer>
+            <MainStyle.SlideButton
+              onClick={() => openModal(<CreateSchoolModal />)}
+            >
+              <Plus />
+              <span>학교등록</span>
+            </MainStyle.SlideButton>
             <MainStyle.SlideButton
               onClick={() =>
                 openModal(

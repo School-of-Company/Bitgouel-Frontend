@@ -24,7 +24,7 @@ const SchoolList = () => {
               <SchoolItem
                 key={school.id}
                 schoolId={String(school.id)}
-                name={school.schoolName}
+                name={school.name}
                 nameWidth='15rem'
                 otherItemList={otherItemList}
                 clubs={school.clubs}

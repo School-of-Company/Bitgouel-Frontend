@@ -4,7 +4,7 @@ export type LineEnum =
   | 'AGRICULTURAL_LIFE_HEALTH_CARE'
   | 'CUSTOMIZED_INDUSTRIAL_DEMAND'
 
-export type FieldEnum =
+export type FieldEnumType =
   | 'FUTURISTIC_TRANSPORTATION_EQUIPMENT'
   | 'ENERGY'
   | 'MEDICAL_HEALTHCARE'
@@ -14,12 +14,12 @@ export type FieldEnum =
 export interface ClubsType {
   id: string
   name: string
-  field: FieldEnum
+  field: FieldEnumType
 }
 
 export interface SchoolsType {
   id: number
-  schoolName: string
+  name: string
   line: LineEnum
   departments: { name: string }[]
   logoImageUrl: string // multipart-url

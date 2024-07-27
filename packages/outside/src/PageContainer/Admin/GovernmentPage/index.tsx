@@ -8,7 +8,7 @@ import {
   useModal,
 } from '@bitgouel/common'
 import { ListManagementContent } from '@outside/components'
-import { ScrollListModal } from '@outside/modals'
+import { CreateGovernmentModal, ScrollListModal } from '@outside/modals'
 import dynamic from 'next/dynamic'
 
 const GovernmentList = dynamic(
@@ -24,7 +24,9 @@ const GovernmentPage = () => {
         <MainStyle.BgContainer>
           <MainStyle.PageTitle>등록된 유관기관</MainStyle.PageTitle>
           <MainStyle.ButtonContainer>
-            <MainStyle.SlideButton>
+            <MainStyle.SlideButton
+              onClick={() => openModal(<CreateGovernmentModal />)}
+            >
               <Plus />
               <span>유관기관 등록</span>
             </MainStyle.SlideButton>

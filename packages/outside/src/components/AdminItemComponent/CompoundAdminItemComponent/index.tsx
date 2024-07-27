@@ -7,7 +7,7 @@ import { Dispatch, ReactNode, SetStateAction } from 'react'
 import ModifyInputComponent from './ModifyInputComponent'
 import * as S from './style'
 import ModifyFieldScroll from './ModifyFieldScroll'
-import { FieldEnum } from '@bitgouel/types'
+import { FieldEnumType } from '@bitgouel/types'
 
 const CompoundAdminItemComponent = ({ children }: { children: ReactNode }) => {
   return <S.ScrollBox>{children}</S.ScrollBox>
@@ -223,7 +223,7 @@ const AddText = ({ text, onAdd }: AddTextProps) => {
 interface AddToggleProps {
   index: number
   addInputList:
-    | { width: string; text: string | FieldEnum; isField: boolean }[]
+    | { width: string; text: string | FieldEnumType; isField: boolean }[]
     | { width: string; text: string }[]
   setAddText: (text: string, inputIndex: number) => void
   onCancel: (index: number) => void
@@ -247,7 +247,7 @@ const AddToggle = ({
               return (
                 <ModifyFieldScroll
                   modifyField={addInput.text}
-                  setModifyField={(text: FieldEnum) =>
+                  setModifyField={(text: FieldEnumType) =>
                     setAddText(text, inputIndex)
                   }
                   boxWidth={addInput.width}

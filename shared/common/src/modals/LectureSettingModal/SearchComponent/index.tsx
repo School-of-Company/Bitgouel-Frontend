@@ -1,3 +1,5 @@
+'use client'
+
 import { InputCancel, SearchIcon } from '@bitgouel/common'
 import {
   ChangeEvent,
@@ -18,8 +20,16 @@ interface SearchInputBoxProps {
   recoilValue: string
   onSubmit: (e?: FormEvent) => void
   onDeleteInputValue: () => void
-  inputPlaceholder: '유형' | '학과' | '핵심분야' | '계열 검색' | '학과' | '구분'
+  inputPlaceholder:
+    | '유형'
+    | '학과'
+    | '핵심분야'
+    | '계열 검색'
+    | '학과'
+    | '구분'
+    | '분야 검색'
   isSearch?: boolean
+  isAdd?: boolean
 }
 
 const SearchInputBox = ({
@@ -30,6 +40,7 @@ const SearchInputBox = ({
   onDeleteInputValue,
   inputPlaceholder,
   isSearch,
+  isAdd = true,
 }: SearchInputBoxProps) => {
   return (
     <S.SearchInputBox onSubmit={onSubmit} isSelected={!!recoilValue.length}>
@@ -43,7 +54,7 @@ const SearchInputBox = ({
         placeholder={
           inputPlaceholder === '계열 검색'
             ? inputPlaceholder
-            : `${inputPlaceholder} 검색 또는 임의로 추가...`
+            : `${inputPlaceholder} 검색${isAdd && ` 또는 임의로 추가...`}`
         }
         disabled={!!recoilValue.length || inputPlaceholder === '계열 검색'}
       />
@@ -58,9 +69,9 @@ const SearchInputBox = ({
 
 interface SearchItemListProps {
   searchList: string[]
-  inputValue: string
   onSelectInputValue: (item: string) => void
   addText?: string
+  inputValue?: string
   type?: '계열'
 }
 
@@ -82,7 +93,7 @@ const SearchItemList = ({
         </S.SearchItem>
       ))}
       {addText && (
-        <S.SearchItem onClick={() => onSelectInputValue(inputValue)}>
+        <S.SearchItem onClick={() => onSelectInputValue(inputValue as string)}>
           <span>{inputValue}</span>
           <small>새 {addText} 추가하기...</small>
         </S.SearchItem>

@@ -5,22 +5,19 @@ import {
   usePatchClub,
 } from '@bitgouel/api'
 import { AppropriationModal, FieldEnumToKor, useModal } from '@bitgouel/common'
-import { ClubsType, FieldEnum } from '@bitgouel/types'
+import { ClubsType, FieldEnumType } from '@bitgouel/types'
 import { useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import CompoundAdminItemComponent from '../../CompoundAdminItemComponent'
 
-interface Props {
-  schoolId: string
-  club: ClubsType
-}
-
-const ClubItem = ({ schoolId, club }: Props) => {
+const ClubItem = ({ club }: { club: ClubsType }) => {
   const { openModal, closeModal } = useModal()
   const [modifyFlag, setModifyFlag] = useState<boolean>()
   const [nameModifyText, setNameModifyText] = useState<string>(club.name)
-  const [fieldModifyText, setFieldModifyText] = useState<FieldEnum>(club.field)
+  const [fieldModifyText, setFieldModifyText] = useState<FieldEnumType>(
+    club.field
+  )
   const queryClient = useQueryClient()
 
   const onSuccess = (message: string) => {
@@ -40,10 +37,7 @@ const ClubItem = ({ schoolId, club }: Props) => {
 
   const onModifyClub = () => {
     if (!modifyFlag) return setModifyFlag(true)
-    if (
-      nameModifyText === club.name &&
-      fieldModifyText === club.field
-    )
+    if (nameModifyText === club.name && fieldModifyText === club.field)
       return setModifyFlag(false)
     if (!nameModifyText.length || !fieldModifyText.length)
       return toast.info('수정할 이름을 작성해주세요.')

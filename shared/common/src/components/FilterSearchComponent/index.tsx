@@ -15,7 +15,7 @@ interface Props {
   filterProps: FilterModalProps
 }
 
-const SearchComponent = ({
+const FilterSearchComponent = ({
   keywordPlaceholder,
   onSubmit,
   keyword,
@@ -55,4 +55,4 @@ const SearchComponent = ({
   )
 }
 
-export default SearchComponent
+export default FilterSearchComponent

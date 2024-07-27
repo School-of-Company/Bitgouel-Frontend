@@ -1,4 +1,4 @@
-import { GovernmentPage } from '@outside/PageContainer'
+import { GovernmentPage } from '@outside/PageContainer';
 
 const Government = () => {
   return <GovernmentPage />

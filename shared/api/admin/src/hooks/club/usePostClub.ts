@@ -1,11 +1,11 @@
-import { clubQueryKeys, clubUrl, patch, post } from '@bitgouel/api'
-import { FieldEnum } from '@bitgouel/types'
+import { clubQueryKeys, clubUrl, post } from '@bitgouel/api'
+import { FieldEnumType } from '@bitgouel/types'
 import { useMutation, UseMutationOptions } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 
 export interface CreateClubValues {
   name: string
-  field: FieldEnum
+  field: FieldEnumType
 }
 
 export const usePostClub = (

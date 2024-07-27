@@ -1,10 +1,12 @@
+'use client'
+
 import { usePostRegistrationSchool } from '@bitgouel/api'
 import { CancelIcon, Portal, SchoolType, useModal } from '@bitgouel/common'
 import { RegistrationTypes } from '@bitgouel/types'
 import { LogoButton, SchoolInputItem } from '@outside/components'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-import { useRecoilState } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import {
   CancelIconBox,
   Content,
@@ -15,7 +17,6 @@ import {
   SubmitButton,
   SubmitContainer,
   Title,
-  TitleContainer,
   TitleWrapper,
 } from '../style'
 import SearchSchoolType from './SearchSchoolType'
@@ -25,8 +26,9 @@ const CreateSchoolModal = () => {
   const { closeModal } = useModal()
   const [departments, setDepartments] = useState<string[]>([''])
   const [schoolName, setSchoolName] = useState<string>('')
-  const [schoolType, setSchoolType] = useRecoilState(SchoolType)
+  const schoolType = useRecoilValue(SchoolType)
   const [logoFile, setLogoFile] = useState<File | null>(null)
+  const [isDisabled, setIsDisabled] = useState<boolean>(false)
 
   const { mutate } = usePostRegistrationSchool({
     onSuccess: () => {
@@ -49,7 +51,7 @@ const CreateSchoolModal = () => {
     )
   }
 
-  const handleRegistration = () => {
+  const handleRegistration = async () => {
     if (!(schoolName && schoolType && logoFile && departments)) {
       toast.error('새부사항을 다시 확인해주세요.')
       return
@@ -70,19 +72,29 @@ const CreateSchoolModal = () => {
 
     formData.append('logoImage', logoFile)
 
-    mutate(formData)
+    setIsDisabled(false)
+    try {
+      await new Promise((resolve, reject) =>
+        setTimeout(() => {
+          mutate(formData, {
+            onSuccess: resolve,
+            onError: reject,
+          })
+        }, 2000)
+      )
+    } finally {
+      setIsDisabled(false)
+    }
   }
 
   return (
     <Portal onClose={closeModal}>
       <CreateModalWrapper>
         <TitleWrapper>
-          <TitleContainer>
-            <Title>새로운 학교 등록</Title>
-            <CancelIconBox onClick={closeModal}>
-              <CancelIcon />
-            </CancelIconBox>
-          </TitleContainer>
+          <Title>새로운 학교 등록</Title>
+          <CancelIconBox onClick={closeModal}>
+            <CancelIcon />
+          </CancelIconBox>
         </TitleWrapper>
         <CreateModalContainer>
           <SelectWrapper>
@@ -120,7 +132,7 @@ const CreateSchoolModal = () => {
               </S.CreateDepartmentContainer>
             </SelectContainer>
             <SubmitContainer>
-              <SubmitButton onClick={handleRegistration}>
+              <SubmitButton disabled={isDisabled} onClick={handleRegistration}>
                 학교 등록
               </SubmitButton>
             </SubmitContainer>
