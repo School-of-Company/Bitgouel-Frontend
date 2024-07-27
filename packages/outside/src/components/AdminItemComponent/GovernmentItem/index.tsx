@@ -1,4 +1,8 @@
-import { governmentQueryKeys, useDeleteGovernment, useDeleteUniversity } from '@bitgouel/api'
+import {
+  governmentQueryKeys,
+  useDeleteGovernment,
+  useDeleteUniversity,
+} from '@bitgouel/api'
 import { AppropriationModal, useModal } from '@bitgouel/common'
 import { useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
@@ -29,6 +33,11 @@ const GovernmentItem = ({
 
   const { mutate: deleteGovernment } = useDeleteGovernment(governmentId, {
     onSuccess: () => onSuccess('유관기관을 삭제하였습니다.'),
+    onError(error) {
+      if (error.response?.status === 400)
+        toast.error('아직 유관기관 강사가 존재합니다.')
+      else toast.error('유관기관 삭제에 오류가 발생했습니다.')
+    },
   })
 
   const onDeleteUniversity = () =>
@@ -54,7 +63,7 @@ const GovernmentItem = ({
           width={otherNameWidth}
         />
         <CompoundAdminItemComponent.ControlButton
-          isModify={true}
+          isModify={false}
           isDelete={true}
           onDelete={onDeleteUniversity}
           deleteTextWidth='4rem'
