@@ -12,6 +12,6 @@ export const usePostGovernment = (
 ) =>
   useMutation<void, AxiosError, GovernmentPayloadType>(
     governmentQueryKeys.postGovernment(),
-    (createValues) => post(governmentUrl.governmentCreate(createValues)),
+    (createValues) => post(governmentUrl.governmentCreate(), createValues),
     options
   )
