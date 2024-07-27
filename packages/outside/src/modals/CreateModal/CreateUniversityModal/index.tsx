@@ -13,7 +13,6 @@ import {
   SubmitButton,
   SubmitContainer,
   Title,
-  TitleContainer,
   TitleWrapper,
 } from '../style'
 
@@ -38,10 +37,16 @@ const CreateUniversityModal = () => {
     try {
       await new Promise((resolve, reject) =>
         setTimeout(() => {
-          mutate({ universityName })
+          mutate(
+            { universityName },
+            {
+              onSuccess: resolve,
+              onError: reject,
+            }
+          )
         }, 2000)
       )
-    } catch {
+    } finally {
       setIsDisabled(false)
     }
   }
@@ -50,15 +55,13 @@ const CreateUniversityModal = () => {
     <Portal onClose={closeModal}>
       <CreateModalWrapper>
         <TitleWrapper>
-          <TitleContainer>
-            <Title>새로운 대학 등록</Title>
-            <CancelIconBox onClick={closeModal}>
-              <CancelIcon />
-            </CancelIconBox>
-          </TitleContainer>
+          <Title>새로운 대학 등록</Title>
+          <CancelIconBox onClick={closeModal}>
+            <CancelIcon />
+          </CancelIconBox>
         </TitleWrapper>
         <CreateModalContainer>
-          <SelectWrapper gap='37rem'>
+          <SelectWrapper>
             <SelectContainer>
               <Content>대학 이름</Content>
               <SchoolInputItem
