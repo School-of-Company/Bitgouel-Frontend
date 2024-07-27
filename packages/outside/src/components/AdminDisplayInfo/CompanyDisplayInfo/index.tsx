@@ -3,9 +3,10 @@ import { DisplayBar, DisplayBarSpan } from '../style';
 
 const CompanyDisplayInfo = () => {
     return (
-        <DisplayBar>
-          <DisplayBarSpan width='32.5rem'>이름</DisplayBarSpan>
-          <DisplayBarSpan width='auto'>분야</DisplayBarSpan>
+        <DisplayBar gap='1.5rem'>
+          <DisplayBarSpan width='35rem'>이름</DisplayBarSpan>
+          <DisplayBarSpan width='31rem'>분야</DisplayBarSpan>
+          <DisplayBarSpan width='4rem'>관리</DisplayBarSpan>
         </DisplayBar>
     );
 };
