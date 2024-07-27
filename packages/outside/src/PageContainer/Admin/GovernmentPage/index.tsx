@@ -12,7 +12,7 @@ import { ScrollListModal } from '@outside/modals'
 import dynamic from 'next/dynamic'
 
 const GovernmentList = dynamic(
-  () => import('@outside/components/GovernmentList')
+  () => import('@outside/components/AdminListComponent/GovernmentList')
 )
 
 const GovernmentPage = () => {
