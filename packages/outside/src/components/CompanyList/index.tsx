@@ -2,7 +2,7 @@ import { useGetCompany } from '@bitgouel/api'
 import { NoneResult, WaitingAnimation } from '@bitgouel/common'
 import { CompanyDisplayInfo } from '../AdminDisplayInfo'
 import { CompanyItem } from '../AdminItemComponent'
-import { UserListContainer } from '../NewUserList/style'
+import { AdminItemListContainer } from '../AdminListComponent/style'
 
 const CompanyList = () => {
   const { data, isLoading } = useGetCompany()
@@ -10,7 +10,7 @@ const CompanyList = () => {
   return (
     <>
       <CompanyDisplayInfo />
-      <UserListContainer>
+      <AdminItemListContainer>
         {isLoading && <WaitingAnimation title={'기업 명단을'} />}
         {data?.companies.length <= 0 ? (
           <NoneResult title={'기업 명단이'} />
@@ -19,12 +19,14 @@ const CompanyList = () => {
             <CompanyItem
               key={company.id}
               companyId={String(company.id)}
-              name={company.name}
-              nameWidth='32.5rem'
+              name={company.companyName}
+              nameWidth='35rem'
+              otherName={company.field}
+              otherNameWidth='31rem'
             />
           ))
         )}
-      </UserListContainer>
+      </AdminItemListContainer>
     </>
   )
 }

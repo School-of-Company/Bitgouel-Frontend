@@ -13,11 +13,15 @@ import {
   useModal,
 } from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
-import { CompoundItemComponent, ListManagementContent, UserDisplayInfo } from '@outside/components'
+import {
+  CompoundItemComponent,
+  ListManagementContent,
+  UserDisplayInfo,
+} from '@outside/components'
+import { AdminItemListContainer } from '@outside/components/AdminListComponent/style'
 import { ScrollListModal } from '@outside/modals'
 import { FormEvent, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
-import * as S from './style'
 
 const defaultFilterList = [
   { text: '전체', item: '전체', checked: true },
@@ -92,7 +96,7 @@ const UserListPage = () => {
             filterProps={{ title: '권한', filterList, onSelected }}
           />
           <UserDisplayInfo />
-          <S.UserListContainer>
+          <AdminItemListContainer>
             {isLoading && <WaitingAnimation title={'사용자 목록을'} />}
             {data?.users.length <= 0 ? (
               <NoneResult title={'사용자 목록이'} />
@@ -129,7 +133,7 @@ const UserListPage = () => {
                 )
               })
             )}
-          </S.UserListContainer>
+          </AdminItemListContainer>
         </MainStyle.MainContainer>
       </MainStyle.MainWrapper>
     </MainStyle.PageWrapper>
