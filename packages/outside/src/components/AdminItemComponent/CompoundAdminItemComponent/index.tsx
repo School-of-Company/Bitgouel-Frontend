@@ -169,6 +169,8 @@ interface ControlButtonProps {
   modifyFlag?: boolean
   onModify?: () => void
   onDelete?: () => void
+  modifyTextWidth?: string
+  deleteTextWidth?: string
 }
 
 const ControlButton = ({
@@ -177,6 +179,8 @@ const ControlButton = ({
   modifyFlag,
   onModify,
   onDelete,
+  modifyTextWidth,
+  deleteTextWidth,
 }: ControlButtonProps) => {
   return (
     <S.ControlButtons>
@@ -185,7 +189,11 @@ const ControlButton = ({
           {modifyFlag ? '수정완료' : '수정하기'}
         </S.ModifyText>
       )}
-      {isDelete && <S.DeleteText onClick={onDelete}>삭제하기</S.DeleteText>}
+      {isDelete && (
+        <S.DeleteText width={deleteTextWidth} onClick={onDelete}>
+          삭제하기
+        </S.DeleteText>
+      )}
     </S.ControlButtons>
   )
 }

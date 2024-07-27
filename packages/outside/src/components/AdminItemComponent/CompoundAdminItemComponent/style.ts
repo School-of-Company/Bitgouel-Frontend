@@ -55,7 +55,7 @@ export const ModifyText = styled.span`
   cursor: pointer;
 `
 
-export const DeleteText = styled(ModifyText)`
+export const DeleteText = styled(ModifyText)<{ width?: string }>`
   color: ${({ theme }) => theme.color.error};
 `
 

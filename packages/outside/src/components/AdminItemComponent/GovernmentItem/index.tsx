@@ -1,7 +1,4 @@
-import {
-    governmentQueryKeys,
-    useDeleteUniversity
-} from '@bitgouel/api'
+import { governmentQueryKeys, useDeleteGovernment, useDeleteUniversity } from '@bitgouel/api'
 import { AppropriationModal, useModal } from '@bitgouel/common'
 import { useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
@@ -11,9 +8,17 @@ interface Props {
   governmentId: string
   name: string
   nameWidth: string
+  otherName: string
+  otherNameWidth: string
 }
 
-const GovernmentItem = ({ governmentId, name, nameWidth }: Props) => {
+const GovernmentItem = ({
+  governmentId,
+  name,
+  nameWidth,
+  otherName,
+  otherNameWidth,
+}: Props) => {
   const { openModal, closeModal } = useModal()
   const queryClient = useQueryClient()
   const onSuccess = (message: string) => {
@@ -22,7 +27,7 @@ const GovernmentItem = ({ governmentId, name, nameWidth }: Props) => {
     toast.success(message)
   }
 
-  const { mutate: deleteGovernment } = useDeleteUniversity(governmentId, {
+  const { mutate: deleteGovernment } = useDeleteGovernment(governmentId, {
     onSuccess: () => onSuccess('유관기관을 삭제하였습니다.'),
   })
 
@@ -30,7 +35,7 @@ const GovernmentItem = ({ governmentId, name, nameWidth }: Props) => {
     openModal(
       <AppropriationModal
         isApprove={false}
-        question='대학을 삭제하시겠습니까?'
+        question='유관기관을 삭제하시겠습니까?'
         purpose='삭제하기'
         title={name}
         onAppropriation={(callbacks) => deleteGovernment(undefined, callbacks)}
@@ -44,10 +49,15 @@ const GovernmentItem = ({ governmentId, name, nameWidth }: Props) => {
           name={name}
           nameWidth={nameWidth}
         />
+        <CompoundAdminItemComponent.OtherItem
+          text={otherName}
+          width={otherNameWidth}
+        />
         <CompoundAdminItemComponent.ControlButton
           isModify={true}
           isDelete={true}
           onDelete={onDeleteUniversity}
+          deleteTextWidth='4rem'
         />
       </CompoundAdminItemComponent.AdminItemContainer>
     </CompoundAdminItemComponent>
