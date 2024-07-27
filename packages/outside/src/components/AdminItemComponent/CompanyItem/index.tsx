@@ -62,6 +62,7 @@ const CompanyItem = ({
           isModify={false}
           isDelete={true}
           onDelete={onDeleteCompany}
+          deleteTextWidth='4rem'
         />
       </CompoundAdminItemComponent.AdminItemContainer>
     </CompoundAdminItemComponent>
