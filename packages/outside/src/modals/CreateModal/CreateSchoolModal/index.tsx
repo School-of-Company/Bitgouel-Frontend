@@ -28,6 +28,7 @@ const CreateSchoolModal = () => {
   const [schoolName, setSchoolName] = useState<string>('')
   const schoolType = useRecoilValue(SchoolType)
   const [logoFile, setLogoFile] = useState<File | null>(null)
+  const [isDisabled, setIsDisabled] = useState<boolean>(false)
 
   const { mutate } = usePostRegistrationSchool({
     onSuccess: () => {
@@ -50,7 +51,7 @@ const CreateSchoolModal = () => {
     )
   }
 
-  const handleRegistration = () => {
+  const handleRegistration = async () => {
     if (!(schoolName && schoolType && logoFile && departments)) {
       toast.error('새부사항을 다시 확인해주세요.')
       return
@@ -71,7 +72,22 @@ const CreateSchoolModal = () => {
 
     formData.append('logoImage', logoFile)
 
-    mutate(formData)
+    setIsDisabled(false)
+    try {
+      await new Promise((resolve, reject) =>
+        setTimeout(() => {
+          mutate(
+            formData,
+            {
+              onSuccess: resolve,
+              onError: reject,
+            }
+          )
+        }, 2000)
+      )
+    } finally {
+      setIsDisabled(false)
+    }
   }
 
   return (
