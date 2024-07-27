@@ -3,14 +3,14 @@
 import { useGetUserList } from '@bitgouel/api'
 import {
   Bg6,
+  FilterSearchComponent,
   ListManagement,
   MainStyle,
   NoneResult,
-  SearchComponent,
   WaitingAnimation,
   insertHyphen,
   useFilterSelect,
-  useModal,
+  useModal
 } from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
 import {
@@ -87,7 +87,7 @@ const UserListPage = () => {
       </MainStyle.SlideBg>
       <MainStyle.MainWrapper>
         <MainStyle.MainContainer>
-          <SearchComponent
+          <FilterSearchComponent
             keywordPlaceholder='이름'
             onSubmit={onSubmit}
             keyword={keyword}
