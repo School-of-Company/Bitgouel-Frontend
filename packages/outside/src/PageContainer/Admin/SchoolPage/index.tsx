@@ -1,25 +1,20 @@
 'use client'
 
-import {
-  Bg6,
-  ListManagement,
-  MainStyle,
-  useModal
-} from '@bitgouel/common'
+import { Bg6, ListManagement, MainStyle, useModal } from '@bitgouel/common'
 import { ListManagementContent } from '@outside/components'
 import { ScrollListModal } from '@outside/modals'
 import dynamic from 'next/dynamic'
 
-const WithdrawUserList = dynamic(() => import('@outside/components/AdminListComponent/WithdrawUserList'))
+const SchoolList = dynamic(() => import('@outside/components/AdminListComponent/SchoolList'))
 
-const WithdrawUserListPage = () => {
+const SchoolPage = () => {
   const { openModal } = useModal()
 
   return (
     <MainStyle.PageWrapper>
       <MainStyle.SlideBg url={Bg6}>
         <MainStyle.BgContainer>
-          <MainStyle.PageTitle>탈퇴 예정자 명단</MainStyle.PageTitle>
+          <MainStyle.PageTitle>등록된 학교</MainStyle.PageTitle>
           <MainStyle.ButtonContainer>
             <MainStyle.SlideButton
               onClick={() =>
@@ -39,11 +34,11 @@ const WithdrawUserListPage = () => {
       </MainStyle.SlideBg>
       <MainStyle.MainWrapper>
         <MainStyle.MainContainer>
-          <WithdrawUserList />
+          <SchoolList />
         </MainStyle.MainContainer>
       </MainStyle.MainWrapper>
     </MainStyle.PageWrapper>
   )
 }
 
-export default WithdrawUserListPage
+export default SchoolPage

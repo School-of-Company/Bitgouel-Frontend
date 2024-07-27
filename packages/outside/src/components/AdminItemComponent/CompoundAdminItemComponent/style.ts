@@ -39,10 +39,8 @@ export const Name = styled.span<{ width: string }>`
   ${({ theme }) => theme.typo.text_lg.medium};
 `
 
-export const OtherItemText = styled.span<{ width: string }>`
-  width: ${({ width }) => width};
+export const OtherItemText = styled(Name)`
   color: ${({ theme }) => theme.color.gray['400']};
-  ${({ theme }) => theme.typo.text_lg.medium};
 `
 
 export const ControlButtons = styled.div`
