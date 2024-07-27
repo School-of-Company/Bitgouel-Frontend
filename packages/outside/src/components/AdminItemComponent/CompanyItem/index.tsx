@@ -1,5 +1,8 @@
-import { companyQueryKeys, useDeleteUniversity } from '@bitgouel/api'
-import { AppropriationModal, useModal } from '@bitgouel/common'
+import {
+  companyQueryKeys,
+  useDeleteCompany
+} from '@bitgouel/api'
+import { AppropriationModal, FieldEnumToKor, useModal } from '@bitgouel/common'
 import { useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
 import { CompoundItemComponent } from '..'
@@ -29,7 +32,7 @@ const CompanyItem = ({
     toast.success(message)
   }
 
-  const { mutate: deleteUniversity } = useDeleteUniversity(companyId, {
+  const { mutate: deleteUniversity } = useDeleteCompany(companyId, {
     onSuccess: () => onSuccess('기업을 삭제하였습니다.'),
   })
 
@@ -37,7 +40,7 @@ const CompanyItem = ({
     openModal(
       <AppropriationModal
         isApprove={false}
-        question='대학을 삭제하시겠습니까?'
+        question='기업을 삭제하시겠습니까?'
         purpose='삭제하기'
         title={name}
         onAppropriation={(callbacks) => deleteUniversity(undefined, callbacks)}
@@ -52,7 +55,7 @@ const CompanyItem = ({
           nameWidth={nameWidth}
         />
         <CompoundItemComponent.OtherItem
-          text={otherName}
+          text={FieldEnumToKor[otherName]}
           width={otherNameWidth}
         />
         <CompoundAdminItemComponent.ControlButton
