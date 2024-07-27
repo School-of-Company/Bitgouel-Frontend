@@ -52,6 +52,7 @@ const SearchFieldEnum = () => {
         onDeleteInputValue={onDeleteSearchSchoolType}
         inputPlaceholder='분야 검색'
         isSearch={false}
+        isAdd={false}
       />
       {fieldEnum.length <= 0 && (
         <SearchComponent.SearchItemList

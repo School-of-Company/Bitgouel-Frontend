@@ -1,4 +1,4 @@
-import { FieldEnum, LineEnum } from '@bitgouel/types'
+import { FieldEnumType, LineEnum } from '@bitgouel/types'
 
 export const LineEnumToKor: Record<LineEnum, string> = {
   INDUSTRY: '공업계열',
@@ -8,13 +8,13 @@ export const LineEnumToKor: Record<LineEnum, string> = {
 } as const
 
 export const LineToEnum: Record<string, LineEnum> = {
-  '공업계열': 'INDUSTRY',
-  '상업계열': 'COMMERCE',
+  공업계열: 'INDUSTRY',
+  상업계열: 'COMMERCE',
   '농업생명/보건의료계열': 'AGRICULTURAL_LIFE_HEALTH_CARE',
   '산업수요 맞춤형계열': 'CUSTOMIZED_INDUSTRIAL_DEMAND',
 } as const
 
-export const FieldEnumToKor: Record<FieldEnum, string> = {
+export const FieldEnumToKor: Record<FieldEnumType, string> = {
   FUTURISTIC_TRANSPORTATION_EQUIPMENT: '미래형 운송기기',
   ENERGY: '에너지 산업',
   MEDICAL_HEALTHCARE: '의료 헬스케어',
@@ -22,7 +22,7 @@ export const FieldEnumToKor: Record<FieldEnum, string> = {
   CULTURE: '문화산업',
 } as const
 
-export const FieldToEnum: Record<string, FieldEnum> = {
+export const FieldToEnum: Record<string, FieldEnumType> = {
   '미래형 운송기기': 'FUTURISTIC_TRANSPORTATION_EQUIPMENT',
   '에너지 산업': 'ENERGY',
   '의료 헬스케어': 'MEDICAL_HEALTHCARE',

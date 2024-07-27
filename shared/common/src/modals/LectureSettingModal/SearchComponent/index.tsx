@@ -29,6 +29,7 @@ interface SearchInputBoxProps {
     | '구분'
     | '분야 검색'
   isSearch?: boolean
+  isAdd?: boolean
 }
 
 const SearchInputBox = ({
@@ -39,6 +40,7 @@ const SearchInputBox = ({
   onDeleteInputValue,
   inputPlaceholder,
   isSearch,
+  isAdd = true,
 }: SearchInputBoxProps) => {
   return (
     <S.SearchInputBox onSubmit={onSubmit} isSelected={!!recoilValue.length}>
@@ -52,7 +54,7 @@ const SearchInputBox = ({
         placeholder={
           inputPlaceholder === '계열 검색'
             ? inputPlaceholder
-            : `${inputPlaceholder} 검색 또는 임의로 추가...`
+            : `${inputPlaceholder} 검색${isAdd && ` 또는 임의로 추가...`}`
         }
         disabled={!!recoilValue.length || inputPlaceholder === '계열 검색'}
       />
