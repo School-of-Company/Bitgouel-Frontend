@@ -76,13 +76,10 @@ const CreateSchoolModal = () => {
     try {
       await new Promise((resolve, reject) =>
         setTimeout(() => {
-          mutate(
-            formData,
-            {
-              onSuccess: resolve,
-              onError: reject,
-            }
-          )
+          mutate(formData, {
+            onSuccess: resolve,
+            onError: reject,
+          })
         }, 2000)
       )
     } finally {
@@ -135,7 +132,7 @@ const CreateSchoolModal = () => {
               </S.CreateDepartmentContainer>
             </SelectContainer>
             <SubmitContainer>
-              <SubmitButton onClick={handleRegistration}>
+              <SubmitButton disabled={isDisabled} onClick={handleRegistration}>
                 학교 등록
               </SubmitButton>
             </SubmitContainer>
