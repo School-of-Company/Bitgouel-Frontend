@@ -1,8 +1,14 @@
 'use client'
 
-import { Bg6, ListManagement, MainStyle, Plus, useModal } from '@bitgouel/common'
+import {
+  Bg6,
+  ListManagement,
+  MainStyle,
+  Plus,
+  useModal,
+} from '@bitgouel/common'
 import { ListManagementContent } from '@outside/components'
-import { ScrollListModal } from '@outside/modals'
+import { CreateCompanyModal, ScrollListModal } from '@outside/modals'
 import dynamic from 'next/dynamic'
 
 const CompanyList = dynamic(() => import('@outside/components/CompanyList'))
@@ -16,9 +22,11 @@ const CompanyPage = () => {
         <MainStyle.BgContainer>
           <MainStyle.PageTitle>등록된 기업</MainStyle.PageTitle>
           <MainStyle.ButtonContainer>
-            <MainStyle.SlideButton>
-                <Plus />
-                <span>기업 등록</span>
+            <MainStyle.SlideButton
+              onClick={() => openModal(<CreateCompanyModal />)}
+            >
+              <Plus />
+              <span>기업 등록</span>
             </MainStyle.SlideButton>
             <MainStyle.SlideButton
               onClick={() =>
