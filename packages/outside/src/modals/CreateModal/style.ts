@@ -5,24 +5,17 @@ export const CreateModalWrapper = styled.div`
   width: 50rem;
   background-color: ${({ theme }) => theme.color.white};
   overflow: auto;
+  padding: 1.5rem;
+  position: relative;
 `
 
 export const TitleWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 1.5625rem;
-  height: 1.875rem;
-  align-items: center;
-  position: fixed;
-  background-color: ${({ theme }) => theme.color.white};
-`
-
-export const TitleContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 35rem;
   width: 100%;
+  display: flex;
   justify-content: space-between;
+  align-items: center;
+  background-color: ${({ theme }) => theme.color.white};
+  margin: 1.5rem 0;
 `
 
 export const CancelIconBox = styled.div`
@@ -35,15 +28,15 @@ export const Title = styled.span`
 `
 
 export const CreateModalContainer = styled.div`
-  padding: 1.5rem;
+  margin: 1rem 0;
   flex-direction: column;
 `
 
-export const SelectWrapper = styled.div<{ gap?: string }>`
+export const SelectWrapper = styled.div`
   margin-top: 4.375rem;
   display: flex;
   flex-direction: column;
-  gap: ${({ gap }) => gap || '2rem'};
+  gap: 2rem;
 `
 
 export const SelectContainer = styled.div`
@@ -60,6 +53,8 @@ export const SubmitContainer = styled.div`
 `
 
 export const SubmitButton = styled.button`
+  position: absolute;
+  bottom: 6rem;
   width: 11.25rem;
   height: 3.25rem;
   border-radius: 0.5rem;

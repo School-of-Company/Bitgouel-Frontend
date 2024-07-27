@@ -1,10 +1,12 @@
+'use client'
+
 import { usePostRegistrationSchool } from '@bitgouel/api'
 import { CancelIcon, Portal, SchoolType, useModal } from '@bitgouel/common'
 import { RegistrationTypes } from '@bitgouel/types'
 import { LogoButton, SchoolInputItem } from '@outside/components'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-import { useRecoilState } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import {
   CancelIconBox,
   Content,
@@ -15,7 +17,6 @@ import {
   SubmitButton,
   SubmitContainer,
   Title,
-  TitleContainer,
   TitleWrapper,
 } from '../style'
 import SearchSchoolType from './SearchSchoolType'
@@ -25,7 +26,7 @@ const CreateSchoolModal = () => {
   const { closeModal } = useModal()
   const [departments, setDepartments] = useState<string[]>([''])
   const [schoolName, setSchoolName] = useState<string>('')
-  const [schoolType, setSchoolType] = useRecoilState(SchoolType)
+  const schoolType = useRecoilValue(SchoolType)
   const [logoFile, setLogoFile] = useState<File | null>(null)
 
   const { mutate } = usePostRegistrationSchool({
@@ -77,12 +78,10 @@ const CreateSchoolModal = () => {
     <Portal onClose={closeModal}>
       <CreateModalWrapper>
         <TitleWrapper>
-          <TitleContainer>
-            <Title>새로운 학교 등록</Title>
-            <CancelIconBox onClick={closeModal}>
-              <CancelIcon />
-            </CancelIconBox>
-          </TitleContainer>
+          <Title>새로운 학교 등록</Title>
+          <CancelIconBox onClick={closeModal}>
+            <CancelIcon />
+          </CancelIconBox>
         </TitleWrapper>
         <CreateModalContainer>
           <SelectWrapper>
