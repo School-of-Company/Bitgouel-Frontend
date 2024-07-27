@@ -70,7 +70,7 @@ const CreateGovernmentModal = () => {
             <SelectContainer>
               <Content>유관기관 이름</Content>
               <SchoolInputItem
-                placeholder='유관기관 이름 입력 (ex: 숭의과학기술고등학교)'
+                placeholder='유관기관 이름 입력 (ex: 광주광역시 교육청)'
                 type='유관기관 이름'
                 onChange={(value) => setGovernmentName(value)}
               />
