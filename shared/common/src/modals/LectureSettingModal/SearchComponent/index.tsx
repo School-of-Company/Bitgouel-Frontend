@@ -1,3 +1,5 @@
+'use client'
+
 import { InputCancel, SearchIcon } from '@bitgouel/common'
 import {
   ChangeEvent,
@@ -18,7 +20,14 @@ interface SearchInputBoxProps {
   recoilValue: string
   onSubmit: (e?: FormEvent) => void
   onDeleteInputValue: () => void
-  inputPlaceholder: '유형' | '학과' | '핵심분야' | '계열 검색' | '학과' | '구분'
+  inputPlaceholder:
+    | '유형'
+    | '학과'
+    | '핵심분야'
+    | '계열 검색'
+    | '학과'
+    | '구분'
+    | '분야 검색'
   isSearch?: boolean
 }
 
@@ -58,9 +67,9 @@ const SearchInputBox = ({
 
 interface SearchItemListProps {
   searchList: string[]
-  inputValue: string
   onSelectInputValue: (item: string) => void
   addText?: string
+  inputValue?: string
   type?: '계열'
 }
 
