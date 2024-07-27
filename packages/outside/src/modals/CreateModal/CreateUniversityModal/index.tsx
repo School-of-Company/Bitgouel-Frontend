@@ -1,4 +1,4 @@
-import { usePostUniversity } from '@bitgouel/api'
+import { universityQueryKeys, usePostUniversity } from '@bitgouel/api'
 import { CancelIcon, Portal, useModal } from '@bitgouel/common'
 import { SchoolInputItem } from '@outside/components'
 import { useState } from 'react'
@@ -15,6 +15,7 @@ import {
   Title,
   TitleWrapper,
 } from '../style'
+import { useQueryClient } from '@tanstack/react-query'
 
 const CreateUniversityModal = () => {
   const [universityName, setUniversityName] = useState<string>('')
@@ -22,10 +23,12 @@ const CreateUniversityModal = () => {
 
   const { closeModal } = useModal()
 
+  const queryClient = useQueryClient()
   const { mutate } = usePostUniversity({
     onSuccess: () => {
       toast.success('대학이 등록되었습니다.')
       closeModal()
+      queryClient.invalidateQueries(universityQueryKeys.getUniversity())
     },
     onError: () => {
       toast.error('대학 등록에 실패하였습니다.')

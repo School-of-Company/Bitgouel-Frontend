@@ -1,8 +1,9 @@
 'use client'
 
-import { usePostGovernment } from '@bitgouel/api'
+import { governmentQueryKeys, usePostGovernment } from '@bitgouel/api'
 import { CancelIcon, FieldEnum, Portal, useModal } from '@bitgouel/common'
 import { SchoolInputItem } from '@outside/components'
+import { useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { useRecoilValue } from 'recoil'
@@ -27,10 +28,12 @@ const CreateGovernmentModal = () => {
 
   const { closeModal } = useModal()
 
+  const queryClient = useQueryClient()
   const { mutate } = usePostGovernment({
     onSuccess: () => {
       toast.success('유관기관이 등록되었습니다.')
       closeModal()
+      queryClient.invalidateQueries(governmentQueryKeys.getGovernment())
     },
     onError: () => {
       toast.error('유관기관 등록에 실패하였습니다.')
