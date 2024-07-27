@@ -93,7 +93,7 @@ const SearchItemList = ({
         </S.SearchItem>
       ))}
       {addText && (
-        <S.SearchItem onClick={() => onSelectInputValue(inputValue)}>
+        <S.SearchItem onClick={() => onSelectInputValue(inputValue as string)}>
           <span>{inputValue}</span>
           <small>새 {addText} 추가하기...</small>
         </S.SearchItem>
