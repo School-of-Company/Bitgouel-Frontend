@@ -6,12 +6,20 @@ import {
 import { Dispatch, ReactNode, SetStateAction } from 'react'
 import ModifyInputComponent from './ModifyInputComponent'
 import * as S from './style'
+import ModifyFieldScroll from './ModifyFieldScroll'
+import { FieldEnum } from '@bitgouel/types'
 
 const CompoundAdminItemComponent = ({ children }: { children: ReactNode }) => {
   return <S.ScrollBox>{children}</S.ScrollBox>
 }
 
-const AdminItemContainer = ({ children, gap }: { children: ReactNode, gap?: string }) => {
+const AdminItemContainer = ({
+  children,
+  gap,
+}: {
+  children: ReactNode
+  gap?: string
+}) => {
   return <S.AdminItemContainer gap={gap}>{children}</S.AdminItemContainer>
 }
 
@@ -131,6 +139,30 @@ const OtherItem = ({
   )
 }
 
+const AdminFieldScrollName = ({
+  name,
+  nameWidth,
+  modifyFlag,
+  modifyText,
+  setModifyText,
+  modifyWidth,
+}: AdminItemNameProps) => {
+  console.log(modifyText)
+  return (
+    <>
+      {!modifyFlag && <S.Name width={nameWidth}>{name}</S.Name>}
+      {modifyFlag && (
+        <ModifyFieldScroll
+          modifyField={modifyText}
+          setModifyField={setModifyText}
+          boxWidth={nameWidth}
+          underBarWidth={modifyWidth}
+        />
+      )}
+    </>
+  )
+}
+
 interface ControlButtonProps {
   isModify: boolean
   isDelete: boolean
@@ -149,7 +181,9 @@ const ControlButton = ({
   return (
     <S.ControlButtons>
       {isModify && (
-        <S.ModifyText onClick={onModify}>{modifyFlag ? '수정완료' : '수정하기'}</S.ModifyText>
+        <S.ModifyText onClick={onModify}>
+          {modifyFlag ? '수정완료' : '수정하기'}
+        </S.ModifyText>
       )}
       {isDelete && <S.DeleteText onClick={onDelete}>삭제하기</S.DeleteText>}
     </S.ControlButtons>
@@ -180,7 +214,9 @@ const AddText = ({ text, onAdd }: AddTextProps) => {
 
 interface AddToggleProps {
   index: number
-  addInputList: { width: string; text: string }[]
+  addInputList:
+    | { width: string; text: string | FieldEnum; isField: boolean }[]
+    | { width: string; text: string }[]
   setAddText: (text: string, inputIndex: number) => void
   onCancel: (index: number) => void
   onComplete: (index: number) => void
@@ -198,14 +234,27 @@ const AddToggle = ({
       <S.AddToggleBox>
         <AddToggleCancelIcon onClick={() => onCancel(index)} />
         <S.AddInputContainer>
-          {addInputList.map((addInput, inputIndex) => (
-            <ModifyInputComponent
-              key={inputIndex}
-              modifyText={addInput.text}
-              setModifyText={(text: string) => setAddText(text, inputIndex)}
-              inputWidth={addInput.width}
-            />
-          ))}
+          {addInputList.map((addInput, inputIndex) => {
+            if (addInput.isField)
+              return (
+                <ModifyFieldScroll
+                  modifyField={addInput.text}
+                  setModifyField={(text: FieldEnum) =>
+                    setAddText(text, inputIndex)
+                  }
+                  boxWidth={addInput.width}
+                  underBarWidth={addInput.width}
+                />
+              )
+            return (
+              <ModifyInputComponent
+                key={inputIndex}
+                modifyText={addInput.text}
+                setModifyText={(text: string) => setAddText(text, inputIndex)}
+                inputWidth={addInput.width}
+              />
+            )
+          })}
         </S.AddInputContainer>
       </S.AddToggleBox>
       <S.CompleteText onClick={() => onComplete(index)}>
@@ -222,6 +271,7 @@ CompoundAdminItemComponent.AdminToggleItemContainer = AdminToggleItemContainer
 CompoundAdminItemComponent.AdminItemCheckboxName = AdminItemCheckboxName
 CompoundAdminItemComponent.AdminItemName = AdminItemName
 CompoundAdminItemComponent.OtherItem = OtherItem
+CompoundAdminItemComponent.AdminFieldScrollName = AdminFieldScrollName
 CompoundAdminItemComponent.ControlButton = ControlButton
 CompoundAdminItemComponent.ToggleIcon = ToggleIcon
 CompoundAdminItemComponent.AddText = AddText

@@ -6,15 +6,15 @@ import {
   usePostDepartment,
 } from '@bitgouel/api'
 import { AppropriationModal, useModal } from '@bitgouel/common'
+import { DisplayBarSpan } from '@outside/components/AdminDisplayInfo/style'
 import { useQueryClient } from '@tanstack/react-query'
-import { use, useState } from 'react'
+import { useState } from 'react'
 import { toast } from 'react-toastify'
-import { DisplayBarSpan } from '../AdminDisplayInfo/style'
-import CompoundAdminItemComponent from './CompoundAdminItemComponent'
+import CompoundAdminItemComponent from '../CompoundAdminItemComponent'
 import {
   ToggleDisplayBar,
   ToggleListContainer,
-} from './CompoundAdminItemComponent/style'
+} from '../CompoundAdminItemComponent/style'
 
 interface Props {
   universityId: string

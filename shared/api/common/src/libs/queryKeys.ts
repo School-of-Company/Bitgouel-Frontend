@@ -80,6 +80,9 @@ export const clubQueryKeys = {
     id,
     studentId,
   ],
+  postClub: (schoolId: string) => ['club', 'create', schoolId],
+  patchClub: (id: string) => ['club', 'modify', id],
+  deleteClub: (id: string) => ['club', 'delete', id],
 } as const
 
 export const inquiryQueryKeys = {
@@ -112,17 +115,20 @@ export const faqQueryKeys = {
   postQuestion: () => ['FAQ', 'list'],
 } as const
 
-export const schoolQueryKeys = {
-  getSchoolNameList: () => ['school', 'schoolNameList'],
-  postRegistrationSchool: () => ['school', 'registration'],
-} as const
-
 export const universityQueryKeys = {
   getUniversity: () => ['university', 'list'],
   patchUniversity: (id: string) => ['university', id],
   deleteUniversity: (id: string) => ['university', 'delete', id],
   postDepartment: (id: string) => ['department', 'create', id],
   deleteDepartment: (id: string) => ['department', 'delete', id],
+} as const
+
+export const schoolQueryKeys = {
+  getSchoolNameList: () => ['school', 'name', 'list'],
+  getSchool: () => ['school', 'list'],
+  postRegistrationSchool: () => ['school', 'registration'],
+  patchSchool: (id: string) => ['school', 'modify', id],
+  deleteSchool: (id: string) => ['school', 'delete', id],
 } as const
 
 export const governmentQueryKeys = {

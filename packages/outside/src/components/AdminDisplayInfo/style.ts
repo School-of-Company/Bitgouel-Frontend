@@ -1,11 +1,11 @@
 import styled from '@emotion/styled'
 
-export const DisplayBar = styled.div`
+export const DisplayBar = styled.div<{ gap?: string}>`
   width: 100%;
   display: flex;
   align-items: center;
   height: 1.25rem;
-  gap: 4rem;
+  gap: ${({ gap }) => gap || '4rem'};
   padding: 0 0 1rem 1rem;
   margin-top: 3.75rem;
 `

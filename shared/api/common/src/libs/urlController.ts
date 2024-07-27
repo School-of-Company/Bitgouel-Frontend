@@ -80,6 +80,9 @@ export const clubUrl = {
   clubDetail: (id: string) => `/club/${id}`,
   myClub: () => `/club/my`,
   studentDetail: (id: string, studentId: string) => `/club/${id}/${studentId}`,
+  clubCreate: (schoolId: string) => `/club/${schoolId}`,
+  clubModify: (id: string) => `/club/${id}`,
+  clubDelete: (id: string) => `/club/${id}`,
 } as const
 
 export const inquiryUrl = {
@@ -124,6 +127,8 @@ export const universityUrl = {
 
 export const schoolUrl = {
   school: () => `/school`,
+  schoolDelete: (id: string) => `/school/${id}`,
+  schoolModify: (id: string) => `/school/${id},`,
   schoolNameList: () => `/school/name`,
 } as const 
 
