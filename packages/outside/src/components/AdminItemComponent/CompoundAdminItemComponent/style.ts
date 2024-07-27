@@ -55,8 +55,9 @@ export const ModifyText = styled.span`
   cursor: pointer;
 `
 
-export const DeleteText = styled(ModifyText)`
+export const DeleteText = styled(ModifyText)<{ width?: string }>`
   color: ${({ theme }) => theme.color.error};
+  width: ${({ width }) => width || '7.5rem'};
 `
 
 export const ToggleDisplayBar = styled(DisplayBar)`
