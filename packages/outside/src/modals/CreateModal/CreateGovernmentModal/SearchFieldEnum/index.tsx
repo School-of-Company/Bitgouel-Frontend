@@ -7,11 +7,11 @@ import { useRecoilState } from 'recoil'
 
 const CreateField: [
   '미래형 운송기기',
-  '에너지산업',
+  '에너지 산업',
   '의료 헬스케어',
   'AI 융복합',
   '문화산업'
-] = ['미래형 운송기기', '에너지산업', '의료 헬스케어', 'AI 융복합', '문화산업']
+] = ['미래형 운송기기', '에너지 산업', '의료 헬스케어', 'AI 융복합', '문화산업']
 
 const SearchFieldEnum = () => {
   const [fieldEnum, setFieldEnum] = useRecoilState(FieldEnum)
