@@ -4,7 +4,7 @@ import { AxiosError } from 'axios'
 
 export interface CompanyItemType {
   id: number
-  name: string
+  companyName: string
   field: string // 학교 목록 완성 후 타입 적용
 }
 
