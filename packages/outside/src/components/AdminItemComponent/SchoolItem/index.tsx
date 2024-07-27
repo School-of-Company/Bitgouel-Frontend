@@ -149,7 +149,7 @@ const SchoolItem = ({
             ))}
           </ToggleDisplayBar>
           {clubs.map((club) => (
-            <ClubItem key={club.id} schoolId={schoolId} club={club} />
+            <ClubItem key={club.id} club={club} />
           ))}
           {addToggleList.map((addInputList, listIndex) => (
             <CompoundAdminItemComponent.AddToggle
