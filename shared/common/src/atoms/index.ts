@@ -1,6 +1,7 @@
 'use client'
 
 import {
+  FieldEnumType,
   LectureDate,
   LectureSemesterEnum,
   SchoolTypeEnum,
@@ -116,6 +117,11 @@ export const LectureEssentialComplete = atom<boolean>({
 
 export const SchoolType = atom<SchoolTypeEnum | ''>({
   key: 'SchoolType',
+  default: '',
+})
+
+export const FieldEnum = atom<FieldEnumType | ''>({
+  key: 'FieldEnum',
   default: '',
 })
 
