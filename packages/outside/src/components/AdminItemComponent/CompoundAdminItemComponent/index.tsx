@@ -179,8 +179,8 @@ const ControlButton = ({
   modifyFlag,
   onModify,
   onDelete,
-  deleteTextWidth,
   modifyTextWidth,
+  deleteTextWidth,
 }: ControlButtonProps) => {
   return (
     <S.ControlButtons>
