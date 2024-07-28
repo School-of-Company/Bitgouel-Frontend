@@ -47,7 +47,7 @@ const SearchInputBox = ({
       <S.SearchInput
         length={recoilValue.length}
         type='text'
-        value={recoilValue.length ? inputValue : ''}
+        value={recoilValue.length ? recoilValue : inputValue}
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
           setInputValue(e.target.value)
         }

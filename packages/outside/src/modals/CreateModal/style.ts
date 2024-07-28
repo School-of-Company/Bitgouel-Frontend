@@ -53,7 +53,7 @@ export const SubmitContainer = styled.div`
 `
 
 export const SubmitButton = styled.button`
-  position: absolute;
+  position: fixed;
   bottom: 6rem;
   width: 11.25rem;
   height: 3.25rem;
