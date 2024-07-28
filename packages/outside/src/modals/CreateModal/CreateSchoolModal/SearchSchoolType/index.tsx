@@ -54,7 +54,7 @@ const SearchSchoolType = () => {
         recoilValue={schoolType}
         onSubmit={onSubmit}
         onDeleteInputValue={onDeleteSearchSchoolType}
-        inputPlaceholder='계열 검색'
+        inputPlaceholder='계열'
         isSearch={false}
       />
       {schoolType.length <= 0 && (

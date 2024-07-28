@@ -24,10 +24,10 @@ interface SearchInputBoxProps {
     | '유형'
     | '학과'
     | '핵심분야'
-    | '계열 검색'
+    | '계열'
     | '학과'
     | '구분'
-    | '분야 검색'
+    | '분야'
   isSearch?: boolean
   isAdd?: boolean
 }
@@ -52,11 +52,11 @@ const SearchInputBox = ({
           setInputValue(e.target.value)
         }
         placeholder={
-          inputPlaceholder === '계열 검색'
+          inputPlaceholder === '계열'
             ? inputPlaceholder
-            : `${inputPlaceholder} 검색${isAdd && ` 또는 임의로 추가...`}`
+            : `${inputPlaceholder} 검색${isAdd ? ` 또는 임의로 추가...` : ''}`
         }
-        disabled={!!recoilValue.length || inputPlaceholder === '계열 검색'}
+        disabled={!!recoilValue.length || inputPlaceholder === '계열'}
       />
       {recoilValue.length ? (
         <InputCancel onClick={() => onDeleteInputValue()} />

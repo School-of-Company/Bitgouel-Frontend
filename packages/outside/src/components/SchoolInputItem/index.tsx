@@ -5,7 +5,7 @@ import * as S from './style'
 
 interface SchoolInputItemProps {
   placeholder: string
-  type: '학교 이름' | '학과 이름' | '유관기관 이름'
+  type: '학교 이름' | '학과 이름' | '유관기관 이름' | '기업 이름'
   index?: number
   value?: string
   onChange?: (value: string) => void

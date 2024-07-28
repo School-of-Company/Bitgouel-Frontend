@@ -50,7 +50,7 @@ const SearchFieldEnum = () => {
         recoilValue={fieldEnum}
         onSubmit={onSubmit}
         onDeleteInputValue={onDeleteSearchSchoolType}
-        inputPlaceholder='분야 검색'
+        inputPlaceholder='분야'
         isSearch={false}
         isAdd={false}
       />

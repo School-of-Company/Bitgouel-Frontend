@@ -1,8 +1,13 @@
-import { universityQueryKeys, usePostUniversity } from '@bitgouel/api'
-import { CancelIcon, Portal, useModal } from '@bitgouel/common'
+'use client'
+
+import { companyQueryKeys, usePostCompany } from '@bitgouel/api'
+import { CancelIcon, FieldEnum, Portal, useModal } from '@bitgouel/common'
 import { SchoolInputItem } from '@outside/components'
+import { useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
+import { useRecoilValue } from 'recoil'
+import SearchFieldEnum from '../CreateGovernmentModal/SearchFieldEnum'
 import {
   CancelIconBox,
   Content,
@@ -15,23 +20,23 @@ import {
   Title,
   TitleWrapper,
 } from '../style'
-import { useQueryClient } from '@tanstack/react-query'
 
-const CreateUniversityModal = () => {
-  const [universityName, setUniversityName] = useState<string>('')
+const CreateCompanyModal = () => {
+  const [companyName, setCompanyName] = useState<string>('')
+  const fieldEnum = useRecoilValue(FieldEnum)
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
 
   const { closeModal } = useModal()
 
   const queryClient = useQueryClient()
-  const { mutate } = usePostUniversity({
+  const { mutate } = usePostCompany({
     onSuccess: () => {
-      toast.success('대학이 등록되었습니다.')
+      toast.success('기업이 등록되었습니다.')
       closeModal()
-      queryClient.invalidateQueries(universityQueryKeys.getUniversity())
+      queryClient.invalidateQueries(companyQueryKeys.getCompany())
     },
     onError: () => {
-      toast.error('대학 등록에 실패하였습니다.')
+      toast.error('기업 등록에 실패하였습니다.')
     },
   })
 
@@ -41,7 +46,7 @@ const CreateUniversityModal = () => {
       await new Promise((resolve, reject) =>
         setTimeout(() => {
           mutate(
-            { universityName },
+            { companyName, field: fieldEnum },
             {
               onSuccess: resolve,
               onError: reject,
@@ -58,7 +63,7 @@ const CreateUniversityModal = () => {
     <Portal onClose={closeModal}>
       <CreateModalWrapper>
         <TitleWrapper>
-          <Title>새로운 대학 등록</Title>
+          <Title>새로운 기업 등록</Title>
           <CancelIconBox onClick={closeModal}>
             <CancelIcon />
           </CancelIconBox>
@@ -66,16 +71,20 @@ const CreateUniversityModal = () => {
         <CreateModalContainer>
           <SelectWrapper>
             <SelectContainer>
-              <Content>대학 이름</Content>
+              <Content>기업 이름</Content>
               <SchoolInputItem
-                placeholder='대학 이름 입력 (ex: 숭의과학기술고등학교)'
-                type='학교 이름'
-                onChange={(value) => setUniversityName(value)}
+                placeholder='기업 이름 입력'
+                type='기업 이름'
+                onChange={(value) => setCompanyName(value)}
               />
+            </SelectContainer>
+            <SelectContainer>
+              <Content>기업 분야</Content>
+              <SearchFieldEnum />
             </SelectContainer>
             <SubmitContainer>
               <SubmitButton disabled={isDisabled} onClick={onCreate}>
-                대학 등록
+                기업 등록
               </SubmitButton>
             </SubmitContainer>
           </SelectWrapper>
@@ -85,4 +94,4 @@ const CreateUniversityModal = () => {
   )
 }
 
-export default CreateUniversityModal
+export default CreateCompanyModal
