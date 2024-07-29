@@ -112,27 +112,6 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
     onSuccess,
   })
 
-  const isAble = (): boolean => {
-    if (
-      lectureTitle.length &&
-      lectureContent.length &&
-      lectureLine.length &&
-      lectureInstructor.length &&
-      lectureStartDate.length &&
-      lectureStartTime.length &&
-      lectureEndDate.length &&
-      lectureEndTime.length &&
-      lecturePlace.address.length &&
-      lecturePlace.detail.length &&
-      lectureDates.every((date) => date.completeDate.length) &&
-      lectureDates.every((date) => date.startShowTime) &&
-      lectureDates.every((date) => date.endShowTime.length) &&
-      lectureMaxRegisteredUser.length
-    )
-      return true
-    return false
-  }
-
   const openCreateModal = () => {
     if (!isAble()) return toast.error('입력 요소들을 다시 확인해주세요')
     const filteredDates: LectureDate[] = lectureDates.map(
@@ -200,7 +179,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
   })
 
   useEffect(() => {
-    if (lectureId && data) {
+    if (data) {
       setLectureTitle(data.name)
       setLectureContent(data.content)
       setLectureEssentialComplete(data.essentialComplete)
@@ -230,6 +209,53 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
       setShowInstructor(data.lecturer)
     }
   }, [data])
+
+  const isAble = (): boolean => {
+    if (data) {
+      const filteredDates: LectureDate[] = lectureDates.map(
+        ({ startShowTime, endShowTime, ...filtered }) => ({
+          ...filtered,
+          completeDate: dayjs(filtered.completeDate).format('YYYY-MM-DD'),
+        })
+      )
+
+      const modifyCondition: boolean =
+        lectureTitle !== data.name ||
+        lectureContent !== data.content ||
+        lectureLine !== data.line ||
+        lectureInstructor !== data.userId ||
+        lectureStartDate !== dayjs(data.startDate).format('YYYYMMDD') ||
+        lectureStartTime !== dayjs(data.startDate).format('HH:mm') ||
+        lectureEndDate !== dayjs(data.endDate).format('YYYYMMDD') ||
+        lectureEndTime !== dayjs(data.endDate).format('HH:mm') ||
+        lecturePlace.address !== data.address ||
+        lecturePlace.detail !== data.locationDetails ||
+        JSON.stringify(filteredDates) !== JSON.stringify(data.lectureDates) ||
+        +lectureMaxRegisteredUser !== data.maxRegisteredUser
+
+      if (modifyCondition) return true
+    } else {
+      const createCondition: boolean =
+        !!lectureTitle.length &&
+        !!lectureContent.length &&
+        !!lectureLine.length &&
+        !!lectureInstructor.length &&
+        !!lectureStartDate.length &&
+        !!lectureStartTime.length &&
+        !!lectureEndDate.length &&
+        !!lectureEndTime.length &&
+        !!lecturePlace.address.length &&
+        !!lecturePlace.detail.length &&
+        lectureDates.every((date) => date.completeDate.length) &&
+        lectureDates.every((date) => date.startShowTime.length) &&
+        lectureDates.every((date) => date.endShowTime.length) &&
+        !!lectureMaxRegisteredUser.length
+
+      if (createCondition) return true
+    }
+
+    return false
+  }
 
   return (
     <PrivateRouter isRedirect={!roleArray.includes(authority as RoleEnumTypes)}>
