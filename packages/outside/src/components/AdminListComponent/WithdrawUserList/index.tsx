@@ -1,6 +1,7 @@
 import { useDeleteUserWithdraw, useGetWithDrawUserList } from '@bitgouel/api'
 import {
   AppropriationModal,
+  CompoundListItemComponent,
   NoneResult,
   WaitingAnimation,
   handleSelect,
@@ -10,7 +11,6 @@ import {
 } from '@bitgouel/common'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { WithdrawDisplayInfo } from '../../AdminDisplayInfo'
-import { CompoundItemComponent } from '../../AdminItemComponent'
 import { AdminItemListContainer } from '../style'
 
 const defaultFilterList = [
@@ -86,9 +86,9 @@ const WithdrawUserList = () => {
             ]
 
             return (
-              <CompoundItemComponent key={user.withdrawId}>
-                <CompoundItemComponent.AdminCheckboxItemContainer>
-                  <CompoundItemComponent.AdminItemCheckboxName
+              <CompoundListItemComponent key={user.withdrawId}>
+                <CompoundListItemComponent.AdminCheckboxItemContainer>
+                  <CompoundListItemComponent.AdminItemCheckboxName
                     checkList={userIds}
                     checkItem={user.userId}
                     handleSelectCheck={handleSelectUsers}
@@ -96,14 +96,14 @@ const WithdrawUserList = () => {
                     nameWidth='6rem'
                   />
                   {userItemList.map((item) => (
-                    <CompoundItemComponent.OtherItem
+                    <CompoundListItemComponent.OtherItem
                       key={item.text}
                       width={item.width}
                       text={item.text}
                     />
                   ))}
-                </CompoundItemComponent.AdminCheckboxItemContainer>
-              </CompoundItemComponent>
+                </CompoundListItemComponent.AdminCheckboxItemContainer>
+              </CompoundListItemComponent>
             )
           })
         )}

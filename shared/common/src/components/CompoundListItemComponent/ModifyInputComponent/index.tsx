@@ -1,3 +1,5 @@
+'use client'
+
 import { ChangeEvent, Dispatch, SetStateAction } from 'react'
 import * as S from './style'
 

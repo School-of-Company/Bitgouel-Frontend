@@ -1,3 +1,5 @@
+'use client'
+
 import {
   AddToggleCancelIcon,
   CommonCheckBox,
@@ -9,7 +11,7 @@ import * as S from './style'
 import ModifyFieldScroll from './ModifyFieldScroll'
 import { FieldEnumType } from '@bitgouel/types'
 
-const CompoundAdminItemComponent = ({ children }: { children: ReactNode }) => {
+const CompoundListItemComponent = ({ children }: { children: ReactNode }) => {
   return <S.ScrollBox>{children}</S.ScrollBox>
 }
 
@@ -272,17 +274,17 @@ const AddToggle = ({
   )
 }
 
-CompoundAdminItemComponent.AdminItemContainer = AdminItemContainer
-CompoundAdminItemComponent.AdminCheckboxItemContainer =
+CompoundListItemComponent.AdminItemContainer = AdminItemContainer
+CompoundListItemComponent.AdminCheckboxItemContainer =
   AdminCheckboxItemContainer
-CompoundAdminItemComponent.AdminToggleItemContainer = AdminToggleItemContainer
-CompoundAdminItemComponent.AdminItemCheckboxName = AdminItemCheckboxName
-CompoundAdminItemComponent.AdminItemName = AdminItemName
-CompoundAdminItemComponent.OtherItem = OtherItem
-CompoundAdminItemComponent.AdminFieldScrollName = AdminFieldScrollName
-CompoundAdminItemComponent.ControlButton = ControlButton
-CompoundAdminItemComponent.ToggleIcon = ToggleIcon
-CompoundAdminItemComponent.AddText = AddText
-CompoundAdminItemComponent.AddToggle = AddToggle
+  CompoundListItemComponent.AdminToggleItemContainer = AdminToggleItemContainer
+  CompoundListItemComponent.AdminItemCheckboxName = AdminItemCheckboxName
+CompoundListItemComponent.AdminItemName = AdminItemName
+CompoundListItemComponent.OtherItem = OtherItem
+CompoundListItemComponent.AdminFieldScrollName = AdminFieldScrollName
+CompoundListItemComponent.ControlButton = ControlButton
+CompoundListItemComponent.ToggleIcon = ToggleIcon
+CompoundListItemComponent.AddText = AddText
+CompoundListItemComponent.AddToggle = AddToggle
 
-export default CompoundAdminItemComponent
+export default CompoundListItemComponent

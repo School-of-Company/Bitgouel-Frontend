@@ -2,20 +2,17 @@ import {
   CreateClubValues,
   schoolQueryKeys,
   useDeleteSchool,
+  usePostClub,
 } from '@bitgouel/api'
-import { AppropriationModal, FieldToEnum, useModal } from '@bitgouel/common'
+import { AppropriationModal, CompoundListItemComponent, useModal } from '@bitgouel/common'
 import { ClubsType, FieldEnumType } from '@bitgouel/types'
 import { DisplayBarSpan } from '@outside/components/AdminDisplayInfo/style'
 import { useQueryClient } from '@tanstack/react-query'
-import { Dispatch, SetStateAction, useState } from 'react'
-import { toast } from 'react-toastify'
-import CompoundAdminItemComponent from '../CompoundAdminItemComponent'
-import {
-  ToggleDisplayBar,
-  ToggleListContainer,
-} from '../CompoundAdminItemComponent/style'
+import { useState } from 'react'
 import ClubItem from './ClubItem'
-import { usePostClub } from '@bitgouel/api'
+import { toast } from 'react-toastify'
+import { ToggleDisplayBar, ToggleListContainer } from '@bitgouel/common/src/components/CompoundListItemComponent/style'
+
 
 interface Props {
   schoolId: string
@@ -112,30 +109,30 @@ const SchoolItem = ({
   }
 
   return (
-    <CompoundAdminItemComponent>
-      <CompoundAdminItemComponent.AdminItemContainer gap='4.75rem'>
-        <CompoundAdminItemComponent.AdminItemName
+    <CompoundListItemComponent>
+      <CompoundListItemComponent.AdminItemContainer gap='4.75rem'>
+        <CompoundListItemComponent.AdminItemName
           name={name}
           nameWidth={nameWidth}
         />
         {otherItemList.map((item, idx) => (
-          <CompoundAdminItemComponent.OtherItem
+          <CompoundListItemComponent.OtherItem
             key={idx}
             width={item.width}
             text={item.text}
           />
         ))}
-        <CompoundAdminItemComponent.ControlButton
+        <CompoundListItemComponent.ControlButton
           isModify={true}
           isDelete={true}
           onModify={() => {}}
           onDelete={onDeleteSchool}
         />
-        <CompoundAdminItemComponent.ToggleIcon
+        <CompoundListItemComponent.ToggleIcon
           isOpen={isOpen}
           setIsOpen={setIsOpen}
         />
-      </CompoundAdminItemComponent.AdminItemContainer>
+      </CompoundListItemComponent.AdminItemContainer>
       {isOpen && (
         <ToggleListContainer>
           <ToggleDisplayBar>
@@ -152,7 +149,7 @@ const SchoolItem = ({
             <ClubItem key={club.id} club={club} />
           ))}
           {addToggleList.map((addInputList, listIndex) => (
-            <CompoundAdminItemComponent.AddToggle
+            <CompoundListItemComponent.AddToggle
               key={listIndex}
               index={listIndex}
               addInputList={addInputList}
@@ -163,10 +160,10 @@ const SchoolItem = ({
               onComplete={(index: number) => onComplete(index)}
             />
           ))}
-          <CompoundAdminItemComponent.AddText text='동아리' onAdd={onAdd} />
+          <CompoundListItemComponent.AddText text='동아리' onAdd={onAdd} />
         </ToggleListContainer>
       )}
-    </CompoundAdminItemComponent>
+    </CompoundListItemComponent>
   )
 }
 
