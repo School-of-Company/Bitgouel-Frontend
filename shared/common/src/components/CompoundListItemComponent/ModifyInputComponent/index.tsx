@@ -7,7 +7,7 @@ interface Props {
   modifyText: string
   setModifyText: Dispatch<SetStateAction<string>>
   boxWidth?: string
-  inputWidth: string
+  inputWidth?: string
 }
 
 const ModifyInputComponent = ({

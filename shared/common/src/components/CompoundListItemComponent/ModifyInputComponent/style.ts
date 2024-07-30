@@ -4,7 +4,7 @@ export const ModifyInputBox = styled.div<{ width?: string }>`
   width: ${({ width }) => width};
 `
 
-export const ModifyInput = styled.input<{ width: string }>`
+export const ModifyInput = styled.input<{ width?: string }>`
   width: ${({ width }) => width};
   border: none;
   outline: none;
