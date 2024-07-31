@@ -1,3 +1,5 @@
+'use client'
+
 import { FieldEnumType } from '@bitgouel/types'
 import { Dispatch, SetStateAction } from 'react'
 import * as S from './style'

@@ -1,3 +1,5 @@
+'use client'
+
 import {
   AddToggleCancelIcon,
   CommonCheckBox,
@@ -9,7 +11,7 @@ import * as S from './style'
 import ModifyFieldScroll from './ModifyFieldScroll'
 import { FieldEnumType } from '@bitgouel/types'
 
-const CompoundAdminItemComponent = ({ children }: { children: ReactNode }) => {
+const CompoundListItemComponent = ({ children }: { children: ReactNode }) => {
   return <S.ScrollBox>{children}</S.ScrollBox>
 }
 
@@ -65,8 +67,8 @@ const AdminItemCheckboxName = ({
       {!modifyFlag && <S.Name width={nameWidth}>{name}</S.Name>}
       {modifyFlag && (
         <ModifyInputComponent
-          modifyText={modifyText}
-          setModifyText={setModifyText}
+          modifyText={modifyText as string}
+          setModifyText={setModifyText as Dispatch<SetStateAction<string>>}
           boxWidth={nameWidth}
           inputWidth={modifyWidth}
         />
@@ -97,8 +99,8 @@ const AdminItemName = ({
       {!modifyFlag && <S.Name width={nameWidth}>{name}</S.Name>}
       {modifyFlag && (
         <ModifyInputComponent
-          modifyText={modifyText}
-          setModifyText={setModifyText}
+          modifyText={modifyText as string}
+          setModifyText={setModifyText as Dispatch<SetStateAction<string>>}
           boxWidth={nameWidth}
           inputWidth={modifyWidth}
         />
@@ -129,8 +131,8 @@ const OtherItem = ({
       {!modifyFlag && <S.OtherItemText width={width}>{text}</S.OtherItemText>}
       {modifyFlag && (
         <ModifyInputComponent
-          modifyText={modifyText}
-          setModifyText={setModifyText}
+          modifyText={modifyText as string}
+          setModifyText={setModifyText as Dispatch<SetStateAction<string>>}
           boxWidth={width}
           inputWidth={modifyWidth}
         />
@@ -153,10 +155,10 @@ const AdminFieldScrollName = ({
       {!modifyFlag && <S.Name width={nameWidth}>{name}</S.Name>}
       {modifyFlag && (
         <ModifyFieldScroll
-          modifyField={modifyText}
-          setModifyField={setModifyText}
+          modifyField={modifyText as string}
+          setModifyField={setModifyText as Dispatch<SetStateAction<string>>}
           boxWidth={nameWidth}
-          underBarWidth={modifyWidth}
+          underBarWidth={modifyWidth as string}
         />
       )}
     </>
@@ -272,17 +274,17 @@ const AddToggle = ({
   )
 }
 
-CompoundAdminItemComponent.AdminItemContainer = AdminItemContainer
-CompoundAdminItemComponent.AdminCheckboxItemContainer =
+CompoundListItemComponent.AdminItemContainer = AdminItemContainer
+CompoundListItemComponent.AdminCheckboxItemContainer =
   AdminCheckboxItemContainer
-CompoundAdminItemComponent.AdminToggleItemContainer = AdminToggleItemContainer
-CompoundAdminItemComponent.AdminItemCheckboxName = AdminItemCheckboxName
-CompoundAdminItemComponent.AdminItemName = AdminItemName
-CompoundAdminItemComponent.OtherItem = OtherItem
-CompoundAdminItemComponent.AdminFieldScrollName = AdminFieldScrollName
-CompoundAdminItemComponent.ControlButton = ControlButton
-CompoundAdminItemComponent.ToggleIcon = ToggleIcon
-CompoundAdminItemComponent.AddText = AddText
-CompoundAdminItemComponent.AddToggle = AddToggle
+CompoundListItemComponent.AdminToggleItemContainer = AdminToggleItemContainer
+CompoundListItemComponent.AdminItemCheckboxName = AdminItemCheckboxName
+CompoundListItemComponent.AdminItemName = AdminItemName
+CompoundListItemComponent.OtherItem = OtherItem
+CompoundListItemComponent.AdminFieldScrollName = AdminFieldScrollName
+CompoundListItemComponent.ControlButton = ControlButton
+CompoundListItemComponent.ToggleIcon = ToggleIcon
+CompoundListItemComponent.AddText = AddText
+CompoundListItemComponent.AddToggle = AddToggle
 
-export default CompoundAdminItemComponent
+export default CompoundListItemComponent

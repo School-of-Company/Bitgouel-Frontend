@@ -1,12 +1,10 @@
 import {
   governmentQueryKeys,
-  useDeleteGovernment,
-  useDeleteUniversity,
+  useDeleteGovernment
 } from '@bitgouel/api'
-import { AppropriationModal, useModal } from '@bitgouel/common'
+import { AppropriationModal, CompoundListItemComponent, useModal } from '@bitgouel/common'
 import { useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
-import CompoundAdminItemComponent from '../CompoundAdminItemComponent'
 
 interface Props {
   governmentId: string
@@ -52,24 +50,24 @@ const GovernmentItem = ({
     )
 
   return (
-    <CompoundAdminItemComponent>
-      <CompoundAdminItemComponent.AdminItemContainer gap='1.5rem'>
-        <CompoundAdminItemComponent.AdminItemName
+    <CompoundListItemComponent>
+      <CompoundListItemComponent.AdminItemContainer gap='1.5rem'>
+        <CompoundListItemComponent.AdminItemName
           name={name}
           nameWidth={nameWidth}
         />
-        <CompoundAdminItemComponent.OtherItem
+        <CompoundListItemComponent.OtherItem
           text={otherName}
           width={otherNameWidth}
         />
-        <CompoundAdminItemComponent.ControlButton
+        <CompoundListItemComponent.ControlButton
           isModify={false}
           isDelete={true}
           onDelete={onDeleteUniversity}
           deleteTextWidth='4rem'
         />
-      </CompoundAdminItemComponent.AdminItemContainer>
-    </CompoundAdminItemComponent>
+      </CompoundListItemComponent.AdminItemContainer>
+    </CompoundListItemComponent>
   )
 }
 

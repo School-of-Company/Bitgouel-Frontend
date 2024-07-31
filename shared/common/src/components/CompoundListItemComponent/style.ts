@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import { DisplayBar } from '../../AdminDisplayInfo/style'
 
 export const ScrollBox = styled.div`
   width: 100%;
@@ -60,11 +59,15 @@ export const DeleteText = styled(ModifyText)<{ width?: string }>`
   width: ${({ width }) => width || '7.5rem'};
 `
 
-export const ToggleDisplayBar = styled(DisplayBar)`
+export const ToggleDisplayBar = styled.div<{ gap?: string }>`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 1.25rem;
+  gap: ${({ gap }) => gap || '4rem'};
   ${({ theme }) => theme.typo.text_sm.medium};
   color: ${({ theme }) => theme.color.gray['400']};
   padding-left: 2.75rem;
-  padding-bottom: 0;
   margin: 0;
 `
 
