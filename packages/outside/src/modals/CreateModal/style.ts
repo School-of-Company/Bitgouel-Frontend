@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 
 export const CreateModalWrapper = styled.div`
   height: 100vh;
-  width: 50rem;
+  width: 47rem;
   background-color: ${({ theme }) => theme.color.white};
   overflow: auto;
   padding: 1.5rem;
