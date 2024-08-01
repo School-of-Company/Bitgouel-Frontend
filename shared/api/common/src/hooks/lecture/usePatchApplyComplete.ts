@@ -4,12 +4,11 @@ import { AxiosError } from 'axios'
 
 export const usePatchApplyComplete = (
   id: string,
-  studentId: string,
-  isComplete: boolean,
+  studentIds: string[],
   options?: UseMutationOptions
 ) =>
   useMutation<void, AxiosError>(
-    lectureQueryKeys.patchLectureApplyComplete(id, studentId),
-    () => patch(lectureUrl.lectureModifyComplete(id, studentId, isComplete)),
+    lectureQueryKeys.patchApplyComplete(id, studentIds),
+    () => patch(lectureUrl.lectureApplyComplete(id, studentIds)),
     options
   )
