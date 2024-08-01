@@ -34,12 +34,12 @@ export const lectureUrl = {
   lectureDivision: (keyword: string) => `/lecture/division?keyword=${keyword}`,
   lectureCompleteList: (id: string) => `/lecture/${id}/signup`, // studentId
   lectureApplyList: (id: string) => `/lecture/student/${id}`,
-  lectureModifyComplete: (id: string, otherId: string, isComplete: boolean) =>
-    `/lecture/${id}/${otherId}?isComplete=${isComplete}`,
   lectureExcel: () => `/lecture/excel`,
   lecturePatch: (id: string) => `/lecture/${id}`,
   lectureDelete: (id: string) => `/lecture/${id}/soft`,
   lectureEnrollmentDelete: (id: string) => `/lecture/${id}`,
+  lectureApplyComplete: (id: string, studentIds: string[]) =>
+    `/lecture/${id}/complete?studentIds=${studentIds.join(',')}`,
 } as const
 
 export const activityUrl = {
