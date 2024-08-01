@@ -5,19 +5,20 @@ import {
   useGetLectureApplyList,
   usePatchApplyComplete,
 } from '@bitgouel/api'
-import LectureApplyItem from '../../LectureApplyItem'
-import * as S from './style'
 import {
   AppropriationModal,
+  CompleteIcon,
+  CompoundListItemComponent,
   handleSelect,
   NoneResult,
   useModal,
   WaitingAnimation,
 } from '@bitgouel/common'
-import ApplyDisplayInfo from './ApplyDisplayInfo'
+import { useQueryClient } from '@tanstack/react-query'
 import { ChangeEvent, useState } from 'react'
 import { toast } from 'react-toastify'
-import { useQueryClient } from '@tanstack/react-query'
+import ApplyDisplayInfo from './ApplyDisplayInfo'
+import * as S from './style'
 
 const LectureApplyList = ({ lectureId }: { lectureId: string }) => {
   const { data, isLoading } = useGetLectureApplyList(lectureId)
@@ -50,9 +51,12 @@ const LectureApplyList = ({ lectureId }: { lectureId: string }) => {
   }
 
   const onAll = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked)
-      setStudentIdss(data?.students.map((student) => student.id))
-    else setStudentIdss([])
+    if (e.target.checked) {
+      const notCompleteStudents = data?.students.filter(
+        (student) => !student.isComplete
+      )
+      setStudentIdss(notCompleteStudents?.map((student) => student.id))
+    } else setStudentIdss([])
   }
 
   const handleSelectStudents = (checked: boolean, userId: string) =>
@@ -66,13 +70,45 @@ const LectureApplyList = ({ lectureId }: { lectureId: string }) => {
         {!isLoading && data?.students && data.students.length <= 0 && (
           <NoneResult title={'강의 신청자가'} />
         )}
-        {data?.students.map((student) => (
-          <LectureApplyItem
-            key={student.id}
-            item={student}
-            lectureId={lectureId}
-          />
-        ))}
+        {data?.students.map((student) => {
+          const otherItemList: { width: string; text: string }[] = [
+            { width: '15rem', text: student.school },
+            {
+              width: '5rem',
+              text: `${student.grade}반 ${student.classNumber}반`,
+            },
+            { width: 'auto', text: student.clubName },
+          ]
+
+          return (
+            <CompoundListItemComponent>
+              <CompoundListItemComponent.AdminCheckboxItemContainer>
+                {!student.isComplete && (
+                  <CompoundListItemComponent.AdminItemCheckboxName
+                    checkList={studentIds}
+                    checkItem={student.id}
+                    handleSelectCheck={handleSelectStudents}
+                    name={student.name}
+                    nameWidth='6rem'
+                  />
+                )}
+                {student.isComplete && (
+                  <S.CompleteName>
+                    <CompleteIcon />
+                    <S.Name>{student.name}</S.Name>
+                  </S.CompleteName>
+                )}
+                {otherItemList.map((item) => (
+                  <CompoundListItemComponent.OtherItem
+                    key={item.text}
+                    width={item.width}
+                    text={item.text}
+                  />
+                ))}
+              </CompoundListItemComponent.AdminCheckboxItemContainer>
+            </CompoundListItemComponent>
+          )
+        })}
       </S.ApplyListContainer>
     </>
   )

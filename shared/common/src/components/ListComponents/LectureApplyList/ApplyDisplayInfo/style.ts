@@ -16,7 +16,7 @@ export const DisplayBar = styled.div`
   display: flex;
   align-items: center;
   height: 1.25rem;
-  gap: '4rem';
+  gap: 4rem;
   margin-top: 3.75rem;
 
   div {
