@@ -25,7 +25,10 @@ const useSignUp = ({ isNext }: { isNext: boolean }) => {
   const [signUpPageNumber, setSignUpPageNumber] =
     useRecoilState(SignUpPageNumber)
 
-  const onSuccess = () => setSignUpPageNumber(4)
+  const onSuccess = () => {
+    toast.success('회원가입이 완료되었습니다.')
+    setSignUpPageNumber(4)
+  }
   const onError = (error) =>
     toast.error(error?.response.data.message.split('.')[0])
 
