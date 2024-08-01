@@ -29,5 +29,5 @@ export const NextButton = styled.button<{ isNext: boolean }>`
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
-  ${({ theme }) => theme.typo.text_lg.semibold}
+  ${({ theme }) => theme.typo.text_lg.semibold};
 `

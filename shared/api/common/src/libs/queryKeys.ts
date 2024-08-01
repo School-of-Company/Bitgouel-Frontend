@@ -78,6 +78,7 @@ export const clubQueryKeys = {
   postClub: (schoolId: string) => ['club', 'create', schoolId],
   patchClub: (id: string) => ['club', 'modify', id],
   deleteClub: (id: string) => ['club', 'delete', id],
+  getClubNameList: (schoolName: string) => ['club', 'name', 'list', schoolName]
 } as const
 
 export const inquiryQueryKeys = {
