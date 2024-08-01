@@ -55,7 +55,7 @@ const LectureApplyList = ({ lectureId }: { lectureId: string }) => {
       const notCompleteStudents = data?.students.filter(
         (student) => !student.isComplete
       )
-      setStudentIdss(notCompleteStudents?.map((student) => student.id))
+      setStudentIdss(notCompleteStudents?.map((student) => student.id) || [])
     } else setStudentIdss([])
   }
 
