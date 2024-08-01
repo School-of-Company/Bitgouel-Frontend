@@ -83,6 +83,7 @@ export const clubUrl = {
   clubCreate: (schoolId: string) => `/club/${schoolId}`,
   clubModify: (id: string) => `/club/${id}`,
   clubDelete: (id: string) => `/club/${id}`,
+  clubNameList: (schoolName: string) => `/club/name?schoolName=${schoolName}`,
 } as const
 
 export const inquiryUrl = {
@@ -131,7 +132,7 @@ export const schoolUrl = {
   schoolDelete: (id: string) => `/school/${id}`,
   schoolModify: (id: string) => `/school/${id},`,
   schoolNameList: () => `/school/name`,
-} as const 
+} as const
 
 export const governmentUrl = {
   governmentList: () => `/government`,
