@@ -4,12 +4,11 @@ import {
   useDeleteClub,
   usePatchClub,
 } from '@bitgouel/api'
-import { AppropriationModal, FieldEnumToKor, useModal } from '@bitgouel/common'
+import { AppropriationModal, CompoundListItemComponent, FieldEnumToKor, useModal } from '@bitgouel/common'
 import { ClubsType, FieldEnumType } from '@bitgouel/types'
 import { useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-import CompoundAdminItemComponent from '../../CompoundAdminItemComponent'
 
 const ClubItem = ({ club }: { club: ClubsType }) => {
   const { openModal, closeModal } = useModal()
@@ -72,22 +71,22 @@ const ClubItem = ({ club }: { club: ClubsType }) => {
     )
 
   return (
-    <CompoundAdminItemComponent>
-      <CompoundAdminItemComponent.AdminToggleItemContainer>
+    <CompoundListItemComponent>
+      <CompoundListItemComponent.AdminToggleItemContainer>
         <div
           style={{
             display: 'flex',
             gap: '4rem',
           }}
         >
-          <CompoundAdminItemComponent.OtherItem
+          <CompoundListItemComponent.OtherItem
             text={club.name}
             width='15rem'
             modifyFlag={modifyFlag}
             modifyText={nameModifyText}
             setModifyText={setNameModifyText}
           />
-          <CompoundAdminItemComponent.AdminFieldScrollName
+          <CompoundListItemComponent.AdminFieldScrollName
             name={FieldEnumToKor[club.field]}
             nameWidth='10.5rem'
             modifyFlag={modifyFlag}
@@ -96,15 +95,15 @@ const ClubItem = ({ club }: { club: ClubsType }) => {
             modifyWidth='10.5rem'
           />
         </div>
-        <CompoundAdminItemComponent.ControlButton
+        <CompoundListItemComponent.ControlButton
           modifyFlag={modifyFlag}
           isModify={true}
           isDelete={true}
           onModify={onModifyClub}
           onDelete={onDeleteClub}
         />
-      </CompoundAdminItemComponent.AdminToggleItemContainer>
-    </CompoundAdminItemComponent>
+      </CompoundListItemComponent.AdminToggleItemContainer>
+    </CompoundListItemComponent>
   )
 }
 

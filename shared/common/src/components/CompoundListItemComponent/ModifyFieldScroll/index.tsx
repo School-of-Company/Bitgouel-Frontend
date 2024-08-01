@@ -1,7 +1,8 @@
-import { FieldScroll } from '@outside/components'
+'use client'
+
+import { FieldEnumToKor, FieldScroll } from '@bitgouel/common'
 import { Dispatch, SetStateAction, useState } from 'react'
 import * as S from './style'
-import { FieldEnumToKor } from '@bitgouel/common'
 
 interface Props {
   modifyField: string

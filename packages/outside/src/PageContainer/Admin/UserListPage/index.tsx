@@ -12,9 +12,9 @@ import {
   useFilterSelect,
   useModal
 } from '@bitgouel/common'
+import {CompoundListItemComponent} from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
 import {
-  CompoundItemComponent,
   ListManagementContent,
   UserDisplayInfo,
 } from '@outside/components'
@@ -115,21 +115,21 @@ const UserListPage = () => {
                 ]
 
                 return (
-                  <CompoundItemComponent key={user.id}>
-                    <CompoundItemComponent.AdminItemContainer>
-                      <CompoundItemComponent.AdminItemName
+                  <CompoundListItemComponent key={user.id}>
+                    <CompoundListItemComponent.AdminItemContainer>
+                      <CompoundListItemComponent.AdminItemName
                         name={user.name}
                         nameWidth='6rem'
                       />
                       {otherItemList.map((item) => (
-                        <CompoundItemComponent.OtherItem
+                        <CompoundListItemComponent.OtherItem
                           key={item.text}
                           width={item.width}
                           text={item.text}
                         />
                       ))}
-                    </CompoundItemComponent.AdminItemContainer>
-                  </CompoundItemComponent>
+                    </CompoundListItemComponent.AdminItemContainer>
+                  </CompoundListItemComponent>
                 )
               })
             )}

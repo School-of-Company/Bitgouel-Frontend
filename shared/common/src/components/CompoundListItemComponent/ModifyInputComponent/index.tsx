@@ -1,3 +1,5 @@
+'use client'
+
 import { ChangeEvent, Dispatch, SetStateAction } from 'react'
 import * as S from './style'
 
@@ -5,7 +7,7 @@ interface Props {
   modifyText: string
   setModifyText: Dispatch<SetStateAction<string>>
   boxWidth?: string
-  inputWidth: string
+  inputWidth?: string
 }
 
 const ModifyInputComponent = ({

@@ -25,15 +25,10 @@ export const lectureQueryKeys = {
   getCompleteLecture: (id: string) => ['lecture', 'completeList', id], // studentId
   getExcel: () => ['lecture', 'excel'],
   getLectureApplyList: (id: string) => ['lecture', 'applyList', id],
-  patchLectureApplyComplete: (id: string, studentId: string) => [
-    'lecture',
-    'modifyComplete',
-    id,
-    studentId, // studentId
-  ],
   patchLecture: (id: string) => ['lecture', 'modify', id],
   deleteLecture: (id: string) => ['lecture', 'delete', id],
   deleteEnrollment: (id: string) => ['lecture', 'enrollment', id],
+  patchApplyComplete: (id: string, studentIds: string[]) => ['lecture', 'applyComplete', id, studentIds],
 } as const
 
 export const activityQueryKeys = {
@@ -83,6 +78,7 @@ export const clubQueryKeys = {
   postClub: (schoolId: string) => ['club', 'create', schoolId],
   patchClub: (id: string) => ['club', 'modify', id],
   deleteClub: (id: string) => ['club', 'delete', id],
+  getClubNameList: (schoolName: string) => ['club', 'name', 'list', schoolName]
 } as const
 
 export const inquiryQueryKeys = {

@@ -5,16 +5,12 @@ import {
   usePatchUniversity,
   usePostDepartment,
 } from '@bitgouel/api'
-import { AppropriationModal, useModal } from '@bitgouel/common'
+import { AppropriationModal, CompoundListItemComponent, useModal } from '@bitgouel/common'
+import { ToggleDisplayBar, ToggleListContainer } from '@bitgouel/common/src/components/CompoundListItemComponent/style'
 import { DisplayBarSpan } from '@outside/components/AdminDisplayInfo/style'
 import { useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-import CompoundAdminItemComponent from '../CompoundAdminItemComponent'
-import {
-  ToggleDisplayBar,
-  ToggleListContainer,
-} from '../CompoundAdminItemComponent/style'
 
 interface Props {
   universityId: string
@@ -147,9 +143,9 @@ const UniversityItem = ({
   }
 
   return (
-    <CompoundAdminItemComponent>
-      <CompoundAdminItemComponent.AdminItemContainer gap='1.5rem'>
-        <CompoundAdminItemComponent.AdminItemName
+    <CompoundListItemComponent>
+      <CompoundListItemComponent.AdminItemContainer gap='1.5rem'>
+        <CompoundListItemComponent.AdminItemName
           name={name}
           nameWidth={nameWidth}
           modifyFlag={modifyFlag}
@@ -157,18 +153,18 @@ const UniversityItem = ({
           setModifyText={setModifyText}
           modifyWidth='15rem'
         />
-        <CompoundAdminItemComponent.ControlButton
+        <CompoundListItemComponent.ControlButton
           modifyFlag={modifyFlag}
           isModify={true}
           isDelete={true}
           onModify={onModifyUniversity}
           onDelete={onDeleteUniversity}
         />
-        <CompoundAdminItemComponent.ToggleIcon
+        <CompoundListItemComponent.ToggleIcon
           isOpen={isOpen}
           setIsOpen={setIsOpen}
         />
-      </CompoundAdminItemComponent.AdminItemContainer>
+      </CompoundListItemComponent.AdminItemContainer>
       {isOpen && (
         <ToggleListContainer>
           <ToggleDisplayBar>
@@ -182,23 +178,23 @@ const UniversityItem = ({
             ))}
           </ToggleDisplayBar>
           {departments.map((department) => (
-            <CompoundAdminItemComponent key={department}>
-              <CompoundAdminItemComponent.AdminToggleItemContainer>
-                <CompoundAdminItemComponent.OtherItem
+            <CompoundListItemComponent key={department}>
+              <CompoundListItemComponent.AdminToggleItemContainer>
+                <CompoundListItemComponent.OtherItem
                   text={department}
                   width='15rem'
                   modifyFlag={false}
                 />
-                <CompoundAdminItemComponent.ControlButton
+                <CompoundListItemComponent.ControlButton
                   isModify={false}
                   isDelete={true}
                   onDelete={() => onDeleteDepartment(department)}
                 />
-              </CompoundAdminItemComponent.AdminToggleItemContainer>
-            </CompoundAdminItemComponent>
+              </CompoundListItemComponent.AdminToggleItemContainer>
+            </CompoundListItemComponent>
           ))}
           {addToggleList.map((addInputList, listIndex) => (
-            <CompoundAdminItemComponent.AddToggle
+            <CompoundListItemComponent.AddToggle
               key={listIndex}
               index={listIndex}
               addInputList={addInputList}
@@ -209,10 +205,10 @@ const UniversityItem = ({
               onComplete={(index: number) => onComplete(index)}
             />
           ))}
-          <CompoundAdminItemComponent.AddText text='학과' onAdd={onAdd} />
+          <CompoundListItemComponent.AddText text='학과' onAdd={onAdd} />
         </ToggleListContainer>
       )}
-    </CompoundAdminItemComponent>
+    </CompoundListItemComponent>
   )
 }
 

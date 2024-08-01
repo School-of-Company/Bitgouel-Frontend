@@ -2,11 +2,9 @@ import {
   companyQueryKeys,
   useDeleteCompany
 } from '@bitgouel/api'
-import { AppropriationModal, FieldEnumToKor, useModal } from '@bitgouel/common'
+import { AppropriationModal, CompoundListItemComponent, FieldEnumToKor, useModal } from '@bitgouel/common'
 import { useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
-import { CompoundItemComponent } from '..'
-import CompoundAdminItemComponent from '../CompoundAdminItemComponent'
 
 interface Props {
   companyId: string
@@ -48,24 +46,24 @@ const CompanyItem = ({
     )
 
   return (
-    <CompoundAdminItemComponent>
-      <CompoundAdminItemComponent.AdminItemContainer gap='1.5rem'>
-        <CompoundAdminItemComponent.AdminItemName
+    <CompoundListItemComponent>
+      <CompoundListItemComponent.AdminItemContainer gap='1.5rem'>
+        <CompoundListItemComponent.AdminItemName
           name={name}
           nameWidth={nameWidth}
         />
-        <CompoundItemComponent.OtherItem
+        <CompoundListItemComponent.OtherItem
           text={FieldEnumToKor[otherName]}
           width={otherNameWidth}
         />
-        <CompoundAdminItemComponent.ControlButton
+        <CompoundListItemComponent.ControlButton
           isModify={false}
           isDelete={true}
           onDelete={onDeleteCompany}
           deleteTextWidth='4rem'
         />
-      </CompoundAdminItemComponent.AdminItemContainer>
-    </CompoundAdminItemComponent>
+      </CompoundListItemComponent.AdminItemContainer>
+    </CompoundListItemComponent>
   )
 }
 
