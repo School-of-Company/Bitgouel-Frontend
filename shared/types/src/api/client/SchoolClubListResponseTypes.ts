@@ -3,9 +3,7 @@ export interface ClubType {
   name: string
 }
 
-interface SchoolClubListType {
-  id: string
-  schoolName: string
+interface SchoolClubListType extends ClubType{
   clubs: ClubType[]
 }
 

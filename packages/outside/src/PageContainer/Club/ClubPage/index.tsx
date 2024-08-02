@@ -23,7 +23,7 @@ const ClubPage = () => {
           {isLoading && <WaitingAnimation title={'취업 동아리 목록을'} />}
           {data?.schools.map((school) => (
             <MainStyle.MainContainer key={school.id}>
-              <S.ClubSchoolTitle>{school.schoolName}</S.ClubSchoolTitle>
+              <S.ClubSchoolTitle>{school.name}</S.ClubSchoolTitle>
               <S.ClubListWrapper>
                 {school?.clubs && school.clubs.length <= 0 ? (
                   <S.NoneClubMessage>
