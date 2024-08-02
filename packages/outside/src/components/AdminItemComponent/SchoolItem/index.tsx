@@ -4,22 +4,33 @@ import {
   useDeleteSchool,
   usePostClub,
 } from '@bitgouel/api'
-import { AppropriationModal, CompoundListItemComponent, useModal } from '@bitgouel/common'
-import { ClubsType, FieldEnumType } from '@bitgouel/types'
+
+import {
+  AppropriationModal,
+  CompoundListItemComponent,
+  useModal,
+} from '@bitgouel/common'
+
+import { FieldEnumType, SchoolsType } from '@bitgouel/types'
+
 import { DisplayBarSpan } from '@outside/components/AdminDisplayInfo/style'
+import { CreateSchoolModal } from '@outside/modals'
 import { useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
-import ClubItem from './ClubItem'
-import { toast } from 'react-toastify'
-import { ToggleDisplayBar, ToggleListContainer } from '@bitgouel/common/src/components/CompoundListItemComponent/style'
 
+import {
+  ToggleDisplayBar,
+  ToggleListContainer,
+} from '@bitgouel/common/src/components/CompoundListItemComponent/style'
+import { toast } from 'react-toastify'
+import ClubItem from './ClubItem'
 
 interface Props {
   schoolId: string
   name: string
   nameWidth: string
   otherItemList: { width: string; text: string }[]
-  clubs: ClubsType[]
+  schools: SchoolsType
 }
 
 const ToggleDisplayBarList = [
@@ -32,7 +43,7 @@ const SchoolItem = ({
   name,
   nameWidth,
   otherItemList,
-  clubs,
+  schools,
 }: Props) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const { openModal, closeModal } = useModal()
@@ -125,7 +136,11 @@ const SchoolItem = ({
         <CompoundListItemComponent.ControlButton
           isModify={true}
           isDelete={true}
-          onModify={() => {}}
+          onModify={() => {
+            openModal(
+              <CreateSchoolModal type='학교 정보 수정' schoolItems={schools} />
+            )
+          }}
           onDelete={onDeleteSchool}
         />
         <CompoundListItemComponent.ToggleIcon
@@ -145,7 +160,7 @@ const SchoolItem = ({
               </DisplayBarSpan>
             ))}
           </ToggleDisplayBar>
-          {clubs.map((club) => (
+          {schools.clubs.map((club) => (
             <ClubItem key={club.id} club={club} />
           ))}
           {addToggleList.map((addInputList, listIndex) => (
