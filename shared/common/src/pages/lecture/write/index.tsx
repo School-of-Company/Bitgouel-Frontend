@@ -223,6 +223,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
         lectureTitle !== data.name ||
         lectureContent !== data.content ||
         lectureLine !== data.line ||
+        lectureCredit !== data.credit ||
         lectureInstructor !== data.userId ||
         lectureStartDate !== dayjs(data.startDate).format('YYYYMMDD') ||
         lectureStartTime !== dayjs(data.startDate).format('HH:mm') ||
