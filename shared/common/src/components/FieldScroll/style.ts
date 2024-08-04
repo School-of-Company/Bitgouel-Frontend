@@ -15,10 +15,8 @@ export const ListMember = styled.div`
   /* 스크롤바 설정 */
   ::-webkit-scrollbar {
     background-color: ${({ theme }) => theme.color.white};
-    padding: 0.25rem;
-    border-radius: 0.5rem;
+    border-radius: 0 0.5rem 0.5rem 0;
     width: 1rem;
-    border: 4px solid ${({ theme }) => theme.color.white};
   }
 
   /* 스크롤바 썸 설정 */
@@ -29,13 +27,19 @@ export const ListMember = styled.div`
   }
 `
 
+export const ListButtonContainer = styled.div`
+  border-right: 1px solid ${({ theme }) => theme.color.gray['900']};
+  width: 7.25rem;
+  box-sizing: content-box;
+  padding: 0 1.25rem;
+`
+
 export const ListButton = styled.button`
-  width: 8.75rem;
+  width: 100%;
   height: 2.5rem;
   border: none;
   background-color: ${({ theme }) => theme.color.white};
   text-align: left;
-  text-indent: 1.25rem;
   cursor: pointer;
   outline: none;
   ${({ theme }) => theme.typo.caption.regular};
