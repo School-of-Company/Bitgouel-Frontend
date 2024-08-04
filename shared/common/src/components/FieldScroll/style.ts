@@ -2,39 +2,31 @@ import styled from '@emotion/styled'
 
 export const ListMember = styled.div`
   position: absolute;
-  width: 10.9375rem;
-  height: 7.3125rem;
+  width: 10.875rem;
+  height: 7.25rem;
   overflow-y: auto;
   border: 1px solid ${({ theme }) => theme.color.gray['700']};
   border-radius: 0.5rem;
   background-color: ${({ theme }) => theme.color.white};
   list-style: none;
-  padding: 0.5rem 0 0 1.25rem;
-  margin: 0;
   z-index: 2;
   top: 2rem;
 
   /* 스크롤바 설정 */
   ::-webkit-scrollbar {
     background-color: ${({ theme }) => theme.color.white};
-    border-radius: 0.625rem;
-    width: 0.5rem;
-    padding-right: 0.625rem;
-    padding: 0.625rem 0;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+    width: 1rem;
+    border: 4px solid ${({ theme }) => theme.color.white};
   }
 
   /* 스크롤바 썸 설정 */
   ::-webkit-scrollbar-thumb {
-    background-color: ${({ theme }) => theme.color.gray['900']};
+    background-color: ${({ theme }) => theme.color.gray['700']};
     border-radius: 0.9375rem;
-    width: 0.3125rem;
-    z-index: 1;
+    border: 4px solid ${({ theme }) => theme.color.white};
   }
-
-  /* 스크롤바 트랙 설정 */
-  /* ::-webkit-scrollbar-track {
-    padding: 10px 0;
-  } */
 `
 
 export const ListButton = styled.button`
@@ -48,7 +40,6 @@ export const ListButton = styled.button`
   outline: none;
   ${({ theme }) => theme.typo.caption.regular};
   border-bottom: 1px solid ${({ theme }) => theme.color.gray['900']};
-  padding: 0.5rem 0;
 
   &:hover {
     background-color: ${({ theme }) => theme.color.gray['900']};
