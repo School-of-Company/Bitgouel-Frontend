@@ -16,7 +16,7 @@ const NewDisplayInfo = ({ onAll, handleOpenModal }: Props) => {
           <DisplayBarSpan width="1.75rem">선택</DisplayBarSpan>
           <DisplayBarSpan width="6rem">이름</DisplayBarSpan>
         </div>
-        <DisplayBarSpan width="8rem">직업</DisplayBarSpan>
+        <DisplayBarSpan width="8.25rem">직업</DisplayBarSpan>
         <DisplayBarSpan width="9rem">전화번호</DisplayBarSpan>
         <DisplayBarSpan width="auto">이메일</DisplayBarSpan>
       </RequestDisplayBar>
