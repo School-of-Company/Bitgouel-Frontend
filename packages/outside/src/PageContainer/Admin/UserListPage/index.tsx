@@ -101,7 +101,7 @@ const UserListPage = () => {
             ) : (
               data?.users.map((user) => {
                 const otherItemList: { width: string; text: string }[] = [
-                  { width: '8rem', text: roleToKor[user.authority] },
+                  { width: '8.25rem', text: roleToKor[user.authority] },
                   { width: '9rem', text: insertHyphen(user.phoneNumber) },
                   {
                     width: '9rem',
