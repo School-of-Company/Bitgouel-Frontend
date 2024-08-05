@@ -28,7 +28,9 @@ const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
       toast.success('계정을 탈퇴하셨습니다')
     },
   })
-  const { mutate: upload } = usePostExcelUpload()
+  const { mutate: upload } = usePostExcelUpload({
+    onError: ({ message }) => toast.error(message.split('.')[0])
+  })
 
   const onFileUpload = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const excelFile: File | null = e.currentTarget.files
