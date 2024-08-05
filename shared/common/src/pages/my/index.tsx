@@ -31,13 +31,16 @@ const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const { mutate: upload } = usePostExcelUpload()
 
   const onFileUpload = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const excelFile: File | string = e.currentTarget.files
+    const excelFile: File | null = e.currentTarget.files
       ? e.currentTarget.files[0]
-      : ''
+      : null
+
     const formData = new FormData()
     formData.append('file', excelFile)
     upload(formData)
-  }, [])
+    
+    e.currentTarget.value = ''
+  }, [upload])
 
   const onWithdraw = () =>
     openModal(
