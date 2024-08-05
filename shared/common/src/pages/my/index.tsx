@@ -38,7 +38,7 @@ const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
       : null
 
     const formData = new FormData()
-    formData.append('file', excelFile)
+    formData.append('file', excelFile ?? '')
     upload(formData)
     
     e.currentTarget.value = ''
