@@ -6,6 +6,7 @@ import {
   WaitingAnimation,
   handleSelect,
   insertHyphen,
+  roleToKor,
   useFilterSelect,
   useModal,
 } from '@bitgouel/common'
@@ -80,7 +81,7 @@ const WithdrawUserList = () => {
         ) : (
           data?.students.map((user) => {
             const userItemList: { width: string; text: string }[] = [
-              { width: '8rem', text: user.authority },
+              { width: '8.25rem', text: roleToKor[user.authority] },
               { width: '9rem', text: insertHyphen(user.phoneNumber) },
               { width: 'auto', text: user.email },
             ]

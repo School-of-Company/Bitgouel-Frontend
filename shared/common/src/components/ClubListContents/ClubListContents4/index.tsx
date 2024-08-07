@@ -4,19 +4,17 @@ import * as S from '../style'
 import { Banner4 } from '@bitgouel/common'
 
 const schoolList: string[] = [
-  '광주공업고등학교',
-  '광주소프트웨어마이스터고등학교',
-  '금파공업고등학교',
   '숭의과학기술고등학교',
+  '광주공업고등학교',
   '전남공업고등학교',
+  '광주소프트웨어마이스터고등학교',
 ]
 
 const clubList: string[][] = [
+  ['캐치 어 드론'],
   ['Civil 마스터'],
-  ['dev_GSM'],
-  ['다이나믹(Dynamic)'],
-  ['비상', '캐치어드론'],
-  ['스카이드론'],
+  ['스카이 드론'],
+  ['dev_GSM', 'SMART_IoT', '더모먼트'],
 ]
 
 const ClubListContents4 = () => {

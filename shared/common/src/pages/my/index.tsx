@@ -28,16 +28,21 @@ const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
       toast.success('계정을 탈퇴하셨습니다')
     },
   })
-  const { mutate: upload } = usePostExcelUpload()
+  const { mutate: upload } = usePostExcelUpload({
+    onError: ({ message }) => toast.error(message.split('.')[0])
+  })
 
   const onFileUpload = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const excelFile: File | string = e.currentTarget.files
+    const excelFile: File | null = e.currentTarget.files
       ? e.currentTarget.files[0]
-      : ''
+      : null
+
     const formData = new FormData()
-    formData.append('file', excelFile)
+    formData.append('file', excelFile ?? '')
     upload(formData)
-  }, [])
+    
+    e.currentTarget.value = ''
+  }, [upload])
 
   const onWithdraw = () =>
     openModal(

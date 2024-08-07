@@ -30,15 +30,17 @@ const FieldScroll = ({ setSelectedField, setIsScrollOpen }: Props) => {
 
   return (
     <S.ListMember>
-      {FilterOptions.map((option) => (
-        <S.ListButton
-          key={option.value}
-          type='button'
-          onClick={() => handleSelect(option)}
-        >
-          {option.label}
-        </S.ListButton>
-      ))}
+      <S.ListButtonContainer>
+        {FilterOptions.map((option) => (
+          <S.ListButton
+            key={option.value}
+            type='button'
+            onClick={() => handleSelect(option)}
+          >
+            {option.label}
+          </S.ListButton>
+        ))}
+      </S.ListButtonContainer>
     </S.ListMember>
   )
 }

@@ -9,15 +9,13 @@ import {
   NoneResult,
   WaitingAnimation,
   insertHyphen,
+  roleToKor,
   useFilterSelect,
-  useModal
+  useModal,
 } from '@bitgouel/common'
-import {CompoundListItemComponent} from '@bitgouel/common'
+import { CompoundListItemComponent } from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
-import {
-  ListManagementContent,
-  UserDisplayInfo,
-} from '@outside/components'
+import { ListManagementContent, UserDisplayInfo } from '@outside/components'
 import { AdminItemListContainer } from '@outside/components/AdminListComponent/style'
 import { ScrollListModal } from '@outside/modals'
 import { FormEvent, useEffect, useState } from 'react'
@@ -95,7 +93,7 @@ const UserListPage = () => {
             refetch={refetch}
             filterProps={{ title: '권한', filterList, onSelected }}
           />
-          <UserDisplayInfo />
+          {data?.users.length > 0 && <UserDisplayInfo />}
           <AdminItemListContainer>
             {isLoading && <WaitingAnimation title={'사용자 목록을'} />}
             {data?.users.length <= 0 ? (
@@ -103,7 +101,7 @@ const UserListPage = () => {
             ) : (
               data?.users.map((user) => {
                 const otherItemList: { width: string; text: string }[] = [
-                  { width: '8rem', text: user.authority },
+                  { width: '8.25rem', text: roleToKor[user.authority] },
                   { width: '9rem', text: insertHyphen(user.phoneNumber) },
                   {
                     width: '9rem',
