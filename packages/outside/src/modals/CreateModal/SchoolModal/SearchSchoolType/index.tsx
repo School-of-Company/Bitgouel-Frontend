@@ -43,7 +43,6 @@ const SearchSchoolType = ({ schoolLine }: { schoolLine?: SchoolTypeEnum }) => {
 
   const onSelectSchoolType = (schoolTypeItem: SchoolTypeEnum) => {
     const selectedType = schoolTypeMappings[schoolTypeItem]
-    console.log(selectedType)
     if (selectedType) {
       setSchoolType(selectedType) //영어
       setInputValue(schoolTypeItem) //한국어
