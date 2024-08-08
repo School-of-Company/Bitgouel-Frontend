@@ -14,7 +14,6 @@ import {
 import { FieldEnumType, SchoolsType } from '@bitgouel/types'
 
 import { DisplayBarSpan } from '@outside/components/AdminDisplayInfo/style'
-import { CreateSchoolModal } from '@outside/modals'
 import { useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 
@@ -22,6 +21,7 @@ import {
   ToggleDisplayBar,
   ToggleListContainer,
 } from '@bitgouel/common/src/components/CompoundListItemComponent/style'
+import { SchoolModal } from '@outside/modals'
 import { toast } from 'react-toastify'
 import ClubItem from './ClubItem'
 
@@ -138,7 +138,7 @@ const SchoolItem = ({
           isDelete={true}
           onModify={() => {
             openModal(
-              <CreateSchoolModal type='학교 정보 수정' schoolItems={schools} />
+              <SchoolModal type='학교 정보 수정' schoolItems={schools} />
             )
           }}
           onDelete={onDeleteSchool}
