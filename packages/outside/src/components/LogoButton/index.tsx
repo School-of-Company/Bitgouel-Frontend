@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent } from 'react'
 import styled from '@emotion/styled'
+import { LogoImagePlusIcon } from '@bitgouel/common'
 
 const UploadContainer = styled.div`
   display: flex;
@@ -11,36 +12,43 @@ const UploadInput = styled.input`
 `
 
 const UploadButton = styled.label`
-  display: inline-block;
-  width: 4.375rem;
-  height: 1.875rem;
-  background-color: ${({ theme }) => theme.color.main};
   display: flex;
+  width: 5rem;
+  height: 5rem;
+  background-color: ${({ theme }) => theme.color.gray['900']};
+  border-radius: 8px;
+  justify-content: center;
   align-items: center;
-  padding: 0.75rem 3rem;
   cursor: pointer;
-  border-radius: 0.5rem;
-  color: ${({ theme }) => theme.color.white};
-  ${({ theme }) => theme.typo.text_lg.semibold};
+  flex-direction: column;
+  gap: 0.25rem;
+  ${({ theme }) => theme.typo.text_sm.semibold};
+  color: ${({ theme }) => theme.color.gray['700']};
 `
 
-const FileName = styled.span`
-  margin-left: 1.25rem;
-  ${({ theme }) => theme.typo.text_sm.regular};
-  color: ${({ theme }) => theme.color.gray['400']};
+const ImageLabel = styled.label`
+  cursor: pointer;
+`
+
+const ImagePreview = styled.img`
+  width: 5rem;
+  height: 5rem;
+  border-radius: 8px;
+  object-fit: cover;
 `
 
 interface LogoButtonProps {
   onFileChange: (file: File) => void
+  logoUrl: string | null
 }
 
-const LogoButton = ({ onFileChange }: LogoButtonProps) => {
-  const [fileName, setFileName] = useState<string>('')
+const LogoButton = ({ onFileChange, logoUrl }: LogoButtonProps) => {
+  const [imageUrl, setImageUrl] = useState<string | null>(logoUrl)
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0]
-      setFileName(file.name)
+      setImageUrl(URL.createObjectURL(file))
       onFileChange(file)
     }
   }
@@ -53,8 +61,16 @@ const LogoButton = ({ onFileChange }: LogoButtonProps) => {
         onChange={handleFileChange}
         accept='.jpg, .jpeg, .png, .heic'
       />
-      <UploadButton htmlFor='fileUpload'>파일 선택</UploadButton>
-      {fileName && <FileName>{fileName}</FileName>}
+      {!imageUrl ? (
+        <UploadButton htmlFor='fileUpload'>
+          <LogoImagePlusIcon />
+          <span>학교 로고</span>
+        </UploadButton>
+      ) : (
+        <ImageLabel htmlFor='fileUpload'>
+          <ImagePreview src={imageUrl} alt='이미지 미리보기' />
+        </ImageLabel>
+      )}
     </UploadContainer>
   )
 }
