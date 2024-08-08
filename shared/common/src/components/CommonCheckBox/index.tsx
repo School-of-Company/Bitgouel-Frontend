@@ -16,6 +16,7 @@ export const CommonCheckBox = ({ checked, onChange, disabled }: Props) => {
         type='checkbox'
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
+        onClick={(e) => e.stopPropagation()}
       />
       {checked && <CheckBoxIcon />}
     </S.CommonCheckBoxContainer>

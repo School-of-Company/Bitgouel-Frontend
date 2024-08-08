@@ -6,6 +6,7 @@ import {
   usePatchApplyComplete,
 } from '@bitgouel/api'
 import {
+  ApplyDetailModal,
   AppropriationModal,
   CompleteIcon,
   CompoundListItemComponent,
@@ -62,6 +63,10 @@ const LectureApplyList = ({ lectureId }: { lectureId: string }) => {
   const handleSelectStudents = (checked: boolean, userId: string) =>
     handleSelect({ checked, id: userId, setIds: setStudentIdss })
 
+  const onDetailModal = (studentId: string) => {
+    openModal(<ApplyDetailModal lectureId={lectureId} studentId={studentId} />)
+  }
+
   return (
     <>
       <ApplyDisplayInfo onAll={onAll} handleOpenModal={handleOpenModal} />
@@ -81,32 +86,32 @@ const LectureApplyList = ({ lectureId }: { lectureId: string }) => {
           ]
 
           return (
-            <CompoundListItemComponent>
-              <CompoundListItemComponent.AdminCheckboxItemContainer>
-                {!student.isComplete && (
-                  <CompoundListItemComponent.AdminItemCheckboxName
-                    checkList={studentIds}
-                    checkItem={student.id}
-                    handleSelectCheck={handleSelectStudents}
-                    name={student.name}
-                    nameWidth='6rem'
-                  />
-                )}
-                {student.isComplete && (
-                  <S.CompleteName>
-                    <CompleteIcon />
-                    <S.Name>{student.name}</S.Name>
-                  </S.CompleteName>
-                )}
-                {otherItemList.map((item) => (
-                  <CompoundListItemComponent.OtherItem
-                    key={item.text}
-                    width={item.width}
-                    text={item.text}
-                  />
-                ))}
-              </CompoundListItemComponent.AdminCheckboxItemContainer>
-            </CompoundListItemComponent>
+              <CompoundListItemComponent>
+                <CompoundListItemComponent.AdminCheckboxItemContainer onClick={() => onDetailModal(student.id)}>
+                  {!student.isComplete && (
+                    <CompoundListItemComponent.AdminItemCheckboxName
+                      checkList={studentIds}
+                      checkItem={student.id}
+                      handleSelectCheck={handleSelectStudents}
+                      name={student.name}
+                      nameWidth='6rem'
+                    />
+                  )}
+                  {student.isComplete && (
+                    <S.CompleteName>
+                      <CompleteIcon />
+                      <S.Name>{student.name}</S.Name>
+                    </S.CompleteName>
+                  )}
+                  {otherItemList.map((item) => (
+                    <CompoundListItemComponent.OtherItem
+                      key={item.text}
+                      width={item.width}
+                      text={item.text}
+                    />
+                  ))}
+                </CompoundListItemComponent.AdminCheckboxItemContainer>
+              </CompoundListItemComponent>
           )
         })}
       </S.ApplyListContainer>
