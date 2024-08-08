@@ -4,7 +4,6 @@ export const SearchContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
-  flex-wrap: wrap;
   margin-bottom: 0.5rem;
 
   svg {
