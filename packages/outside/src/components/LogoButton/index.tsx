@@ -16,7 +16,7 @@ const UploadButton = styled.label`
   width: 5rem;
   height: 5rem;
   background-color: ${({ theme }) => theme.color.gray['900']};
-  border-radius: 8px;
+  border-radius: 0.5rem;
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -33,7 +33,7 @@ const ImageLabel = styled.label`
 const ImagePreview = styled.img`
   width: 5rem;
   height: 5rem;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   object-fit: cover;
 `
 
