@@ -149,7 +149,6 @@ const AdminFieldScrollName = ({
   setModifyText,
   modifyWidth,
 }: AdminItemNameProps) => {
-  console.log(modifyText)
   return (
     <>
       {!modifyFlag && <S.Name width={nameWidth}>{name}</S.Name>}
