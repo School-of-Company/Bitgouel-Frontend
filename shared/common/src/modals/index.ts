@@ -1,3 +1,4 @@
+export { default as ApplyDetailModal } from './ApplyDetailModal'
 export { default as AppropriationModal } from './AppropriationModal'
 export { default as ChangePwModal } from './ChangePwModal'
 export { default as FilterModal } from './FilterModal'
