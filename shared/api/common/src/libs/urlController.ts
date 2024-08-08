@@ -130,7 +130,7 @@ export const universityUrl = {
 export const schoolUrl = {
   school: () => `/school`,
   schoolDelete: (id: string) => `/school/${id}`,
-  schoolModify: (id: string) => `/school/${id},`,
+  schoolModify: (id: number) => `/school/${id}`,
   schoolNameList: () => `/school/name`,
 } as const
 
