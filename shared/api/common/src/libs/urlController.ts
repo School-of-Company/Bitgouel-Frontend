@@ -41,7 +41,7 @@ export const lectureUrl = {
   lectureApplyComplete: (id: string, studentIds: string[]) =>
     `/lecture/${id}/complete?studentIds=${studentIds.join(',')}`,
   lectureApplyDetail: (lectureId: string, studentId: string) =>
-    `/lecture/${lectureId}/${studentId}`,
+    `/lecture/student/${lectureId}/${studentId}`,
 } as const
 
 export const activityUrl = {
