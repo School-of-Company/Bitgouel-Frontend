@@ -40,6 +40,8 @@ export const lectureUrl = {
   lectureEnrollmentDelete: (id: string) => `/lecture/${id}`,
   lectureApplyComplete: (id: string, studentIds: string[]) =>
     `/lecture/${id}/complete?studentIds=${studentIds.join(',')}`,
+  lectureApplyDetail: (lectureId: string, studentId: string) =>
+    `/lecture/student/${lectureId}/${studentId}`,
 } as const
 
 export const activityUrl = {

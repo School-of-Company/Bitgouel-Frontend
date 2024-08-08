@@ -15,8 +15,16 @@ export const AdminItemContainer = styled.div<{ gap?: string }>`
   gap: ${({ gap }) => gap || '4rem'};
 `
 
-export const CheckboxAdminItemContainer = styled(AdminItemContainer)`
+export const CheckboxAdminItemContainer = styled(AdminItemContainer)<{
+  isHover?: boolean
+}>`
   position: relative;
+  cursor: ${({ isHover }) => (isHover ? 'pointer' : 'default')};
+
+  &:hover {
+    background-color: ${({ isHover, theme }) =>
+      isHover ? theme.color.gray['900'] : theme.color.white};
+  }
 `
 
 export const ToggleItemContainer = styled(CheckboxAdminItemContainer)`

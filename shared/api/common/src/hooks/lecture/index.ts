@@ -1,4 +1,5 @@
 export * from './useDeleteLecture'
+export * from './useGetLectureApplyDetail'
 export * from './useGetCompleteLecture'
 export * from './useGetDepartments'
 export * from './useGetDetailLecture'

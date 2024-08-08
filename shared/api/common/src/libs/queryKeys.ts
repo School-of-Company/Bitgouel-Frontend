@@ -34,6 +34,12 @@ export const lectureQueryKeys = {
     id,
     studentIds,
   ],
+  getApplyDetail: (lectureId: string, studentId: string) => [
+    'lecture',
+    'applyDetail',
+    lectureId,
+    studentId,
+  ],
 } as const
 
 export const activityQueryKeys = {

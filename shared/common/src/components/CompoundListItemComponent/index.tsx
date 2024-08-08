@@ -25,8 +25,8 @@ const AdminItemContainer = ({
   return <S.AdminItemContainer gap={gap}>{children}</S.AdminItemContainer>
 }
 
-const AdminCheckboxItemContainer = ({ children }: { children: ReactNode }) => {
-  return <S.CheckboxAdminItemContainer>{children}</S.CheckboxAdminItemContainer>
+const AdminCheckboxItemContainer = ({ children, onClick }: { children: ReactNode, onClick?: () => void }) => {
+  return <S.CheckboxAdminItemContainer onClick={onClick} isHover={!!onClick}>{children}</S.CheckboxAdminItemContainer>
 }
 
 const AdminToggleItemContainer = ({ children }: { children: ReactNode }) => {
