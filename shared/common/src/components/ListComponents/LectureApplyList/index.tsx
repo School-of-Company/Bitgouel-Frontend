@@ -80,7 +80,7 @@ const LectureApplyList = ({ lectureId }: { lectureId: string }) => {
             { width: '15rem', text: student.school },
             {
               width: '5rem',
-              text: `${student.grade}반 ${student.classNumber}반`,
+              text: `${student.grade}학년 ${student.classNumber}반`,
             },
             { width: 'auto', text: student.clubName },
           ]
