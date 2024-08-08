@@ -16,7 +16,7 @@ const ApplyDisplayInfo = ({ onAll, handleOpenModal }: Props) => {
           <S.DisplayBarSpan width="6rem">이름</S.DisplayBarSpan>
         </div>
         <S.DisplayBarSpan width="15rem">학교</S.DisplayBarSpan>
-        <S.DisplayBarSpan width="5rem">반</S.DisplayBarSpan>
+        <S.DisplayBarSpan width="5rem">학년/반</S.DisplayBarSpan>
         <S.DisplayBarSpan width="auto">동아리</S.DisplayBarSpan>
       </S.DisplayBar>
       <S.SelectBoxContainer>
