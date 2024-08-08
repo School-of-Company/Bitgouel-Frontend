@@ -33,7 +33,7 @@ export const CreateModalContainer = styled.div`
 `
 
 export const SelectWrapper = styled.div`
-  margin-top: 4.375rem;
+  
   display: flex;
   flex-direction: column;
   gap: 2rem;
