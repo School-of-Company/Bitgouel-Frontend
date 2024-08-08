@@ -5,10 +5,11 @@ export const SchoolItemInputContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1.125rem;
 `
 
 export const SchoolItemInput = styled.input<{ type: string }>`
-  width: ${({ type }) => (type === '학과 이름' ? '44.5rem' : '100%')};
+  width: ${({ type }) => (type === '학과 이름' ? '43.375rem' : '100%')};
   height: 3.375rem;
   border-radius: 0.5rem;
   text-indent: 1.25rem;

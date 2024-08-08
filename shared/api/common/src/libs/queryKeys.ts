@@ -135,7 +135,7 @@ export const schoolQueryKeys = {
   getSchoolNameList: () => ['school', 'name', 'list'],
   getSchool: () => ['school', 'list'],
   postRegistrationSchool: () => ['school', 'registration'],
-  patchSchool: (id: string) => ['school', 'modify', id],
+  patchSchool: (id: number) => ['school', 'modify', id],
   deleteSchool: (id: string) => ['school', 'delete', id],
 } as const
 

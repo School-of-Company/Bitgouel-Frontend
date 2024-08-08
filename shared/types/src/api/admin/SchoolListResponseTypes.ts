@@ -21,8 +21,8 @@ export interface SchoolsType {
   id: number
   name: string
   line: LineEnum
-  departments: { name: string }[]
-  logoImageUrl: string // multipart-url
+  departments: string[]
+  logoImageUrl: string
   clubs: ClubsType[]
 }
 

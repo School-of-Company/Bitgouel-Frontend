@@ -8,7 +8,7 @@ import {
   useModal,
 } from '@bitgouel/common'
 import { ListManagementContent } from '@outside/components'
-import { CreateSchoolModal, ScrollListModal } from '@outside/modals'
+import { SchoolModal, ScrollListModal } from '@outside/modals'
 import dynamic from 'next/dynamic'
 
 const SchoolList = dynamic(
@@ -25,7 +25,7 @@ const SchoolPage = () => {
           <MainStyle.PageTitle>등록된 학교</MainStyle.PageTitle>
           <MainStyle.ButtonContainer>
             <MainStyle.SlideButton
-              onClick={() => openModal(<CreateSchoolModal />)}
+              onClick={() => openModal(<SchoolModal type='새로운 학교 생성'/>)}
             >
               <Plus />
               <span>학교등록</span>

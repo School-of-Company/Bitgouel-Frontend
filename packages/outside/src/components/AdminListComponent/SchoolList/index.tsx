@@ -27,7 +27,7 @@ const SchoolList = () => {
                 name={school.name}
                 nameWidth='15rem'
                 otherItemList={otherItemList}
-                clubs={school.clubs}
+                schools={school}
               />
             )
           })
