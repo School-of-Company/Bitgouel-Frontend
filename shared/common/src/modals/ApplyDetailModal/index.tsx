@@ -28,7 +28,7 @@ const ApplyDetailModal = ({ lectureId, studentId }: Props) => {
             </S.ContentInfoBox>
             <S.ContentInfoBox>
               <S.ContentCaption>전화번호</S.ContentCaption>
-              <S.ContentName>{insertHyphen(data?.phoneNumber)}</S.ContentName>
+              <S.ContentName>{insertHyphen(data?.phoneNumber as string)}</S.ContentName>
             </S.ContentInfoBox>
             <S.ContentInfoBox>
               <S.ContentCaption>이메일</S.ContentCaption>
