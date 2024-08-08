@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import SearchComponent from '@bitgouel/common/src/modals/LectureSettingModal/SearchComponent'
 import { SchoolType } from '@bitgouel/common'
@@ -16,12 +16,22 @@ const CreateSchoolTypes: [
   'IV. 농업생명/보건의료계열',
 ]
 
-const SearchSchoolType = () => {
+const SearchSchoolType = ({ schoolLine }: { schoolLine?: SchoolTypeEnum }) => {
   const [schoolType, setSchoolType] = useRecoilState(SchoolType)
   const [inputValue, setInputValue] = useState<string>('')
   const [type, setType] = useState<string>('')
   const [schoolTypeList, setSchoolTypeList] =
     useState<string[]>(CreateSchoolTypes)
+
+  useEffect(() => {
+    if (schoolLine) {
+      const modifyLine = Object.keys(schoolTypeMappings).find(
+        (key) => schoolTypeMappings[key] === schoolLine
+      )
+
+      setInputValue(modifyLine)
+    }
+  }, [schoolLine])
 
   const onSubmit = (e?: React.FormEvent) => {
     if (e) e.preventDefault()
@@ -33,6 +43,7 @@ const SearchSchoolType = () => {
 
   const onSelectSchoolType = (schoolTypeItem: SchoolTypeEnum) => {
     const selectedType = schoolTypeMappings[schoolTypeItem]
+    console.log(selectedType)
     if (selectedType) {
       setSchoolType(selectedType) //영어
       setInputValue(schoolTypeItem) //한국어
@@ -43,6 +54,7 @@ const SearchSchoolType = () => {
 
   const onDeleteSearchSchoolType = () => {
     setSchoolType('')
+    setInputValue('')
     setSchoolTypeList(CreateSchoolTypes)
   }
 
@@ -51,7 +63,7 @@ const SearchSchoolType = () => {
       <SearchComponent.SearchInputBox
         inputValue={inputValue}
         setInputValue={setType}
-        recoilValue={schoolType}
+        recoilValue={inputValue}
         onSubmit={onSubmit}
         onDeleteInputValue={onDeleteSearchSchoolType}
         inputPlaceholder='계열'
