@@ -49,7 +49,9 @@ const defaultFilterList = [
 
 const filterTitle: string = '강의 유형'
 
-const LectureList = dynamic(() => import('../../../components/ListComponents/LectureList'))
+const LectureList = dynamic(
+  () => import('../../../components/ListComponents/LectureList')
+)
 
 const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
   const [lectureTypeFilter, setLectureTypeFilter] = useState<string>('')
@@ -62,21 +64,23 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
     defaultFilterList,
     setFilterPayload: setLectureTypeFilter,
   })
-  const authority = useContext(AuthorityContext)
 
-  const { data: applyExcel, isError } = useGetLectureExcel({
-    enabled: authority === 'ROLE_ADMIN' && isClick,
+  const {
+    data: applyExcel,
+    refetch,
+    isError,
+  } = useGetLectureExcel({
+    enabled: false,
   })
 
   const onDownload = () => {
-    setIsClick(true)
+    refetch()
     if (isError) return toast.error('취업 동아리 선생님이 배정되지 않았습니다')
     excelDownload({
       data: applyExcel,
       fileName: '강의 신청 명단',
       fileExtension: 'xlsx',
     })
-    setIsClick(false)
   }
 
   return (
