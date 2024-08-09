@@ -1,4 +1,5 @@
 import { saveAs } from 'file-saver'
+import { toast } from 'react-toastify'
 
 interface Parameter {
   data: any
@@ -11,7 +12,9 @@ const fileTypes = {
 }
 
 const excelDownload = ({ data, fileName, fileExtension }: Parameter) => {
-  const fileBlob: Blob = new Blob([data || ''], {
+  if (!data) return toast.error('다운로드 버튼을 다시 눌러주세요.')
+    
+  const fileBlob: Blob = new Blob([data], {
     type: fileTypes[fileExtension],
   })
   saveAs(fileBlob, `${fileName}.${fileExtension}`)
