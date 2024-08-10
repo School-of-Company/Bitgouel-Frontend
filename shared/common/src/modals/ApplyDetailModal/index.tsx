@@ -56,7 +56,7 @@ const ApplyDetailModal = ({ lectureId, studentId }: Props) => {
                   <S.CompleteText isComplete={true}>완료</S.CompleteText>
                   <S.CompleteDateText>
                     {dayjs(data?.currentCompletedDate).format('YYYY.MM.DD')} (
-                    {CompleteStatusToGrade[data?.completeStatus]}학년)
+                    {CompleteStatusToGrade[data?.completeStatus || '']}학년)
                   </S.CompleteDateText>
                 </S.CompleteTextBox>
               )}
