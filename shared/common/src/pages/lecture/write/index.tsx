@@ -1,9 +1,10 @@
 'use client'
 
 import {
+  lectureQueryKeys,
   useGetDetailLecture,
   usePatchLecture,
-  usePostLecture
+  usePostLecture,
 } from '@bitgouel/api'
 import {
   AppropriationModal,
@@ -37,13 +38,13 @@ import {
   LectureWritePayloadTypes,
   RoleEnumTypes,
 } from '@bitgouel/types'
-import { useQueryClient } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import * as S from './style'
+import { useQueryClient } from '@tanstack/react-query'
 
 const TITLE_MAX_LENGTH: number = 1000 as const
 const MAIN_MAX_LENGTH: number = 1000 as const
@@ -89,6 +90,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
     closeModal()
     toast.success(`강의를 ${lectureId ? '수정' : '개설'}했습니다`)
     push(`/main/lecture`)
+    queryClient.invalidateQueries(lectureQueryKeys.getLectureDetail(lectureId))
     setLectureEssentialComplete(true)
     setLectureSemester('FIRST_YEAR_FALL_SEMESTER')
     setLectureDivision('')
