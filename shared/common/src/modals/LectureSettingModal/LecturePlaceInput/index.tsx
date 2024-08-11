@@ -34,6 +34,7 @@ const LecturePlaceInput = () => {
         <SearchInput
           type='text'
           value={lecturePlace.address}
+          length={lecturePlace.address.length}
           onChange={() => {}}
           onClick={() => setIsAddressSearch(true)}
           placeholder='강의 장소 주소(지번, 도로명) 검색'
