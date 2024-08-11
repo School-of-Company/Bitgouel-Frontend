@@ -53,7 +53,7 @@ const SchoolModal = ({ type, schoolItems }: SchoolModalProps) => {
     }
   }, [schoolItems])
 
-  const mutation = schoolItems
+  const { mutate } = schoolItems
     ? usePatchSchool(schoolItems.id, {
         onSuccess: () => {
           toast.success('학교 정보가 수정되었습니다.')
@@ -129,12 +129,12 @@ const SchoolModal = ({ type, schoolItems }: SchoolModalProps) => {
       await new Promise((resolve, reject) =>
         setTimeout(() => {
           if (schoolItems) {
-            mutation.mutate(formData, {
+            mutate(formData, {
               onSuccess: resolve,
               onError: reject,
             })
           } else {
-            mutation.mutate(formData, {
+            mutate(formData, {
               onSuccess: resolve,
               onError: reject,
             })
