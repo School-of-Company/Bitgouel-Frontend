@@ -5,6 +5,9 @@ import { AxiosError } from 'axios'
 export const useGetLectureExcel = (options?: UseQueryOptions<ArrayBuffer>) =>
   useQuery<ArrayBuffer, AxiosError>(
     lectureQueryKeys.getExcel(),
-    () => get(lectureUrl.lectureExcel()),
+    () =>
+      get(lectureUrl.lectureExcel(), {
+        responseType: 'blob',
+      }),
     options
   )
