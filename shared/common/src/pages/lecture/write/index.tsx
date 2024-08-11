@@ -90,7 +90,6 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
     closeModal()
     toast.success(`강의를 ${lectureId ? '수정' : '개설'}했습니다`)
     push(`/main/lecture`)
-    queryClient.invalidateQueries(lectureQueryKeys.getLectureList())
     queryClient.invalidateQueries(lectureQueryKeys.getLectureDetail(lectureId))
     setLectureEssentialComplete(true)
     setLectureSemester('FIRST_YEAR_FALL_SEMESTER')
