@@ -124,7 +124,7 @@ const SchoolModal = ({ type, schoolItems }: SchoolModalProps) => {
       )
     }
 
-    setIsDisabled(false)
+    setIsDisabled(true)
     try {
       await new Promise((resolve, reject) =>
         setTimeout(() => {
