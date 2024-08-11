@@ -56,6 +56,7 @@ const SearchInstructor = () => {
           }
           placeholder='이름 또는 기관명으로 검색...'
           disabled={!!lectureInstructor.length}
+          length={showInstructor.length}
         />
         {lectureInstructor.length ? (
           <InputCancel onClick={onDeleteInstructor} />

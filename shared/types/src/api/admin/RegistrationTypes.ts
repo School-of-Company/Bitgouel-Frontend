@@ -12,13 +12,12 @@ export const schoolTypeMappings: Record<string, SchoolTypeEnum> = {
 }
 
 interface RegistrationProps {
-  schoolName: string
+  name: string
   line: SchoolTypeEnum | ''
   departments: string[]
 }
 
 export interface RegistrationTypes {
   webRequest: RegistrationProps
-  logoImage: FormData
+  logoImage: FormData | null
 }
-
