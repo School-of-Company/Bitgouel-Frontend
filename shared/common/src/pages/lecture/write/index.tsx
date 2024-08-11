@@ -1,6 +1,7 @@
 'use client'
 
 import {
+  lectureQueryKeys,
   useGetDetailLecture,
   usePatchLecture,
   usePostLecture,
@@ -43,6 +44,7 @@ import { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import * as S from './style'
+import { useQueryClient } from '@tanstack/react-query'
 
 const TITLE_MAX_LENGTH: number = 1000 as const
 const MAIN_MAX_LENGTH: number = 1000 as const
@@ -82,11 +84,13 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
   const { openModal, closeModal } = useModal()
   const { push } = useRouter()
   const authority = useContext(AuthorityContext)
+  const queryClient = useQueryClient()
 
   const onSuccess = () => {
     closeModal()
     toast.success(`강의를 ${lectureId ? '수정' : '개설'}했습니다`)
     push(`/main/lecture`)
+    queryClient.invalidateQueries(lectureQueryKeys.getLectureDetail(lectureId || ''))
     setLectureEssentialComplete(true)
     setLectureSemester('FIRST_YEAR_FALL_SEMESTER')
     setLectureDivision('')
@@ -105,11 +109,19 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
     setShowInstructor('')
   }
 
+  const onError = (status: number) => {
+    if (status >= 500)
+      return toast.error('서버 오류입니다. 관리자에게 문의해주세요')
+    toast.error('입력 요소를 다시 확인해주세요.')
+  }
+
   const { mutate: createLecture } = usePostLecture({
     onSuccess,
+    onError: ({ status }) => onError(status as number),
   })
   const { mutate: modifyLecture } = usePatchLecture(lectureId || '', {
     onSuccess,
+    onError: ({ status }) => onError(status as number),
   })
 
   const openCreateModal = () => {
@@ -153,8 +165,8 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
     const ModalParameter: AppropriationModalProps = {
       isApprove: true,
       question: condition
-        ? '강의를 개설하시겠습니까?'
-        : '강의를 수정하시겠습니까?',
+        ? '강의를 수정하시겠습니까?'
+        : '강의를 개설하시겠습니까?',
       title: lectureTitle || '',
       purpose: '수정하기',
       onAppropriation: (callbacks) =>
@@ -220,6 +232,8 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
       )
 
       const modifyCondition: boolean =
+        lectureSemester !== data.semester ||
+        lectureEssentialComplete !== data.essentialComplete ||
         lectureTitle !== data.name ||
         lectureContent !== data.content ||
         lectureLine !== data.line ||
