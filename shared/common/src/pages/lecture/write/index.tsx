@@ -37,6 +37,7 @@ import {
   LectureWritePayloadTypes,
   RoleEnumTypes,
 } from '@bitgouel/types'
+import { useQueryClient } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useContext, useEffect, useState } from 'react'
@@ -82,6 +83,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
   const { openModal, closeModal } = useModal()
   const { push } = useRouter()
   const authority = useContext(AuthorityContext)
+  const queryClient = useQueryClient()
 
   const onSuccess = () => {
     closeModal()
@@ -104,12 +106,20 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
     setLectureMaxRegisteredUser('')
     setShowInstructor('')
   }
-  
+
+  const onError = (status: number) => {
+    if (status >= 500)
+      return toast.error('서버 오류입니다. 관리자에게 문의해주세요')
+    toast.error('입력 요소를 다시 확인해주세요.')
+  }
+
   const { mutate: createLecture } = usePostLecture({
     onSuccess,
+    onError: ({ status }) => onError(status),
   })
   const { mutate: modifyLecture } = usePatchLecture(lectureId || '', {
     onSuccess,
+    onError: ({ status }) => onError(status),
   })
 
   const openCreateModal = () => {
