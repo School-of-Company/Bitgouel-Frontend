@@ -61,3 +61,19 @@ export const ContentCaption = styled.span`
 export const ContentName = styled.span`
   ${({ theme }) => theme.typo.text_md.semibold};
 `
+
+export const CompleteTextBox = styled.div`
+  display: flex;
+  align-items: flex-end;
+`
+
+export const CompleteText = styled.span<{ isComplete: boolean }>`
+  ${({ theme }) => theme.typo.text_md.semibold};
+  color: ${({ theme, isComplete }) =>
+    isComplete ? theme.color.main : theme.color.gray['700']};
+`
+
+export const CompleteDateText = styled.span`
+  ${({ theme }) => theme.typo.caption.medium};
+  margin-left: 0.5rem;
+`
