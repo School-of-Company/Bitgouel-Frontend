@@ -90,7 +90,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
     closeModal()
     toast.success(`강의를 ${lectureId ? '수정' : '개설'}했습니다`)
     push(`/main/lecture`)
-    queryClient.invalidateQueries(lectureQueryKeys.getLectureDetail(lectureId))
+    queryClient.invalidateQueries(lectureQueryKeys.getLectureDetail(lectureId || ''))
     setLectureEssentialComplete(true)
     setLectureSemester('FIRST_YEAR_FALL_SEMESTER')
     setLectureDivision('')
@@ -117,11 +117,11 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
 
   const { mutate: createLecture } = usePostLecture({
     onSuccess,
-    onError: ({ status }) => onError(status),
+    onError: ({ status }) => onError(status as number),
   })
   const { mutate: modifyLecture } = usePatchLecture(lectureId || '', {
     onSuccess,
-    onError: ({ status }) => onError(status),
+    onError: ({ status }) => onError(status as number),
   })
 
   const openCreateModal = () => {
