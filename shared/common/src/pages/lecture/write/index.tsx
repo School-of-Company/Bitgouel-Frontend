@@ -3,7 +3,7 @@
 import {
   useGetDetailLecture,
   usePatchLecture,
-  usePostLecture,
+  usePostLecture
 } from '@bitgouel/api'
 import {
   AppropriationModal,
@@ -104,7 +104,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
     setLectureMaxRegisteredUser('')
     setShowInstructor('')
   }
-
+  
   const { mutate: createLecture } = usePostLecture({
     onSuccess,
   })
@@ -153,8 +153,8 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
     const ModalParameter: AppropriationModalProps = {
       isApprove: true,
       question: condition
-        ? '강의를 개설하시겠습니까?'
-        : '강의를 수정하시겠습니까?',
+        ? '강의를 수정하시겠습니까?'
+        : '강의를 개설하시겠습니까?',
       title: lectureTitle || '',
       purpose: '수정하기',
       onAppropriation: (callbacks) =>
@@ -220,6 +220,8 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
       )
 
       const modifyCondition: boolean =
+        lectureSemester !== data.semester ||
+        lectureEssentialComplete !== data.essentialComplete ||
         lectureTitle !== data.name ||
         lectureContent !== data.content ||
         lectureLine !== data.line ||
