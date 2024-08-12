@@ -223,6 +223,23 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
   }, [data])
 
   const isAble = (): boolean => {
+    const createCondition: boolean =
+      !!lectureType.length &&
+      !!lectureTitle.length &&
+      !!lectureContent.length &&
+      !!lectureLine.length &&
+      !!lectureInstructor.length &&
+      !!lectureStartDate.length &&
+      !!lectureStartTime.length &&
+      !!lectureEndDate.length &&
+      !!lectureEndTime.length &&
+      !!lecturePlace.address.length &&
+      !!lecturePlace.detail.length &&
+      lectureDates.every((date) => date.completeDate.length) &&
+      lectureDates.every((date) => date.startShowTime.length) &&
+      lectureDates.every((date) => date.endShowTime.length) &&
+      !!lectureMaxRegisteredUser.length
+
     if (data) {
       const filteredDates: LectureDate[] = lectureDates.map(
         ({ startShowTime, endShowTime, ...filtered }) => ({
@@ -234,6 +251,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
       const modifyCondition: boolean =
         lectureSemester !== data.semester ||
         lectureEssentialComplete !== data.essentialComplete ||
+        lectureType !== data.lectureType ||
         lectureTitle !== data.name ||
         lectureContent !== data.content ||
         lectureLine !== data.line ||
@@ -248,24 +266,8 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
         JSON.stringify(filteredDates) !== JSON.stringify(data.lectureDates) ||
         +lectureMaxRegisteredUser !== data.maxRegisteredUser
 
-      if (modifyCondition) return true
+      if (createCondition && modifyCondition) return true
     } else {
-      const createCondition: boolean =
-        !!lectureTitle.length &&
-        !!lectureContent.length &&
-        !!lectureLine.length &&
-        !!lectureInstructor.length &&
-        !!lectureStartDate.length &&
-        !!lectureStartTime.length &&
-        !!lectureEndDate.length &&
-        !!lectureEndTime.length &&
-        !!lecturePlace.address.length &&
-        !!lecturePlace.detail.length &&
-        lectureDates.every((date) => date.completeDate.length) &&
-        lectureDates.every((date) => date.startShowTime.length) &&
-        lectureDates.every((date) => date.endShowTime.length) &&
-        !!lectureMaxRegisteredUser.length
-
       if (createCondition) return true
     }
 
