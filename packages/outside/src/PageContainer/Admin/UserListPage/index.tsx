@@ -3,21 +3,23 @@
 import { useGetUserList } from '@bitgouel/api'
 import {
   Bg6,
+  FilterSearchComponent,
   ListManagement,
   MainStyle,
   NoneResult,
-  SearchComponent,
   WaitingAnimation,
   insertHyphen,
+  roleToKor,
   useFilterSelect,
   useModal,
 } from '@bitgouel/common'
+import { CompoundListItemComponent } from '@bitgouel/common'
 import { RoleEnumTypes } from '@bitgouel/types'
-import { CompoundItemComponent, ListManagementContent, UserDisplayInfo } from '@outside/components'
+import { ListManagementContent, UserDisplayInfo } from '@outside/components'
+import { AdminItemListContainer } from '@outside/components/AdminListComponent/style'
 import { ScrollListModal } from '@outside/modals'
 import { FormEvent, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
-import * as S from './style'
 
 const defaultFilterList = [
   { text: '전체', item: '전체', checked: true },
@@ -83,7 +85,7 @@ const UserListPage = () => {
       </MainStyle.SlideBg>
       <MainStyle.MainWrapper>
         <MainStyle.MainContainer>
-          <SearchComponent
+          <FilterSearchComponent
             keywordPlaceholder='이름'
             onSubmit={onSubmit}
             keyword={keyword}
@@ -91,15 +93,15 @@ const UserListPage = () => {
             refetch={refetch}
             filterProps={{ title: '권한', filterList, onSelected }}
           />
-          <UserDisplayInfo />
-          <S.UserListContainer>
+          {data?.users.length > 0 && <UserDisplayInfo />}
+          <AdminItemListContainer>
             {isLoading && <WaitingAnimation title={'사용자 목록을'} />}
             {data?.users.length <= 0 ? (
               <NoneResult title={'사용자 목록이'} />
             ) : (
               data?.users.map((user) => {
                 const otherItemList: { width: string; text: string }[] = [
-                  { width: '8rem', text: user.authority },
+                  { width: '8.25rem', text: roleToKor[user.authority] },
                   { width: '9rem', text: insertHyphen(user.phoneNumber) },
                   {
                     width: '9rem',
@@ -111,25 +113,25 @@ const UserListPage = () => {
                 ]
 
                 return (
-                  <CompoundItemComponent key={user.id}>
-                    <CompoundItemComponent.AdminItemContainer>
-                      <CompoundItemComponent.AdminItemName
+                  <CompoundListItemComponent key={user.id}>
+                    <CompoundListItemComponent.AdminItemContainer>
+                      <CompoundListItemComponent.AdminItemName
                         name={user.name}
                         nameWidth='6rem'
                       />
                       {otherItemList.map((item) => (
-                        <CompoundItemComponent.OtherItem
+                        <CompoundListItemComponent.OtherItem
                           key={item.text}
                           width={item.width}
                           text={item.text}
                         />
                       ))}
-                    </CompoundItemComponent.AdminItemContainer>
-                  </CompoundItemComponent>
+                    </CompoundListItemComponent.AdminItemContainer>
+                  </CompoundListItemComponent>
                 )
               })
             )}
-          </S.UserListContainer>
+          </AdminItemListContainer>
         </MainStyle.MainContainer>
       </MainStyle.MainWrapper>
     </MainStyle.PageWrapper>

@@ -29,6 +29,13 @@ export type questionTypes =
   | '대학을 삭제하시겠습니까?'
   | '학과를 삭제하시겠습니까?'
   | '학과를 추가하시겠습니까?'
+  | '학교를 삭제하시겠습니까?'
+  | '수강 신청을 취소하시겠습니까?'
+  | '동아리를 삭제하시겠습니까?'
+  | '동아리 정보를 수정하시겠습니까?'
+  | '유관기관을 삭제하시겠습니까?'
+  | '기업을 삭제하시겠습니까?'
+  | '이수를 확정시키겠습니까?'
 
 export type purposeTypes =
   | '신청하기'
@@ -43,6 +50,8 @@ export type purposeTypes =
   | '답변하기'
   | '로그아웃'
   | '탈퇴하기'
+  | '취소하기'
+  | '확정하기'
 
 export interface CallbacksType {
   onSuccess: (data?: any) => any

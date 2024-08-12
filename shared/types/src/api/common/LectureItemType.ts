@@ -1,6 +1,6 @@
 import { LectureSemesterEnum, LectureTypeEnum } from '../common'
 
-export type LectureStatusEnum = 'OPEN' | 'CLOSED'
+export type LectureStatusEnum = 'OPENED' | 'CLOSED'
 
 export interface LectureItemType {
   id: string

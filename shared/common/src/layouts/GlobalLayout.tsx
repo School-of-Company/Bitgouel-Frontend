@@ -1,14 +1,14 @@
 'use client'
 
-import React from 'react'
 import { ThemeProvider } from '@emotion/react'
-import { theme } from '../styles/theme'
-import { RecoilRoot, useRecoilValue } from 'recoil'
-import { IsModal } from '../atoms'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import React from 'react'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useRecoilValue } from 'recoil'
+import { IsModal } from '../atoms'
+import { theme } from '../styles/theme'
 
 const GlobalLayout = ({ children }: { children: React.ReactNode }) => {
   const isModal = useRecoilValue(IsModal)
@@ -18,6 +18,9 @@ const GlobalLayout = ({ children }: { children: React.ReactNode }) => {
         defaultOptions: {
           queries: {
             retry: false,
+            staleTime: 1000 * 60 * 5,
+            cacheTime: 1000 * 60 * 30,
+            refetchOnWindowFocus: false,
           },
         },
       })

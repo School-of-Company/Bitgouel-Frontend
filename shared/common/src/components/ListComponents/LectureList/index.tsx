@@ -28,27 +28,22 @@ const LectureList = ({ lectureTypeFilter }: { lectureTypeFilter: string }) => {
 
   return (
     <>
-      {data?.lectures && (
-        <>
-          <MainStyle.MainContainer>
-            {data?.lectures.content.length <= 0 ? (
-              <NoneResult title={'강의 목록이'} />
-            ) : data.lectures.content.length ? (
-              data.lectures.content.map((item) => (
-                <LectureItem key={item.id} item={item} />
-              ))
-            ) : (
-              isLoading && <WaitingAnimation title={'강의 목록을'} />
-            )}
-          </MainStyle.MainContainer>
-          {data?.lectures && data.lectures.content.length > 0 && !isLoading && (
-            <PaginationPages
-              pages={pages}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-            />
-          )}
-        </>
+      <MainStyle.MainContainer>
+        {isLoading && <WaitingAnimation title='강의 목록을' />}
+        {data?.lectures.content.length === 0 ? (
+          <NoneResult title='강의 목록이' />
+        ) : (
+          data?.lectures.content.map((lecture) => (
+            <LectureItem key={lecture.id} item={lecture} />
+          ))
+        )}
+      </MainStyle.MainContainer>
+      {data && data.lectures.content.length > 0 && (
+        <PaginationPages
+          pages={pages}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       )}
     </>
   )

@@ -8,6 +8,7 @@ import {
   outsideJob,
 } from '@bitgouel/common'
 import * as S from './style'
+import { useGetClubNameList, useGetSchoolList, useGetSchoolNameList } from '@bitgouel/api'
 
 const SignUpScrollContainer = ({
   idx,
@@ -22,6 +23,7 @@ const SignUpScrollContainer = ({
   placeholder: string
   setIsScrollContainer: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
+  
   const onChange = (item: string) => {
     const updatedObj = [...obj]
     if (idx === 0) {
@@ -34,17 +36,35 @@ const SignUpScrollContainer = ({
     setIsScrollContainer(false)
   }
 
+  const { data: schoolNames } = useGetSchoolNameList({
+    enabled: placeholder === '학교 이름 선택',
+  })
+
+  
+  const { data: clubNames } = useGetClubNameList(obj[0].value, {
+    enabled: placeholder === '동아리 이름 선택',
+  })
+
   return (
     <S.SignUpScrollContainer
       idx={idx}
       placeholder={placeholder}
-      isNone={placeholder === '동아리 이름 선택' && (obj[0].value === '서진여자고' ||
-          obj[0].value === '전남여자상업고')}
+      isNone={
+        placeholder === '동아리 이름 선택' &&
+        (obj[0].value === '서진여자고' || obj[0].value === '전남여자상업고')
+      }
     >
       {placeholder === '소속' &&
         belongs.map((item, idx) => (
           <S.ScrollItem key={idx} onClick={() => onChange(item)}>
             {item}
+          </S.ScrollItem>
+        ))}
+
+      {placeholder === '학교 이름 선택' &&
+        schoolNames?.schools.map((school, idx) => (
+          <S.ScrollItem key={idx} onClick={() => onChange(school.name)}>
+            {school.name}
           </S.ScrollItem>
         ))}
 
@@ -65,18 +85,17 @@ const SignUpScrollContainer = ({
         ))}
 
       {placeholder === '동아리 이름 선택' &&
-        club[obj[0].value].map((item, idx) => (
-          <S.ScrollItem key={idx} onClick={() => onChange(item)}>
-            {item}
+        clubNames?.clubs.map((item, idx) => (
+          <S.ScrollItem key={idx} onClick={() => onChange(item.name)}>
+            {item.name}
           </S.ScrollItem>
         ))}
-      {placeholder === '입학년도 선택' && 
+      {placeholder === '입학년도 선택' &&
         admissionYear.map((item, idx) => (
           <S.ScrollItem key={idx} onClick={() => onChange(item)}>
             {item}
           </S.ScrollItem>
-        ))
-      }
+        ))}
     </S.SignUpScrollContainer>
   )
 }

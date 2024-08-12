@@ -53,17 +53,3 @@ export const UserSearchFilter = styled.div`
     fill: ${({ theme }) => theme.color.main};
   }
 `
-
-export const UserListContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 32.625rem;
-  overflow-y: auto;
-  overflow-x: hidden;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`

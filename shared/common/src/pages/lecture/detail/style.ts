@@ -88,10 +88,10 @@ export const ApplyButton = styled.div<{ isAble?: boolean; isDelete?: boolean }>`
   color: ${({ theme, isAble, isDelete }) =>
     isAble || isDelete ? theme.color.white : theme.color.gray['400']};
   background-color: ${({ theme, isAble, isDelete }) =>
-    isAble
-      ? theme.color.main
-      : isDelete
+    isDelete
       ? theme.color.error
+      : isAble
+      ? theme.color.main
       : theme.color.gray['700']};
   ${({ theme }) => theme.typo.text_lg.semibold};
   padding: 0.75rem 2.5rem;

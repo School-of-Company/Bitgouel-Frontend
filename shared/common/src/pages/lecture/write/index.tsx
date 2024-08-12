@@ -1,6 +1,7 @@
 'use client'
 
 import {
+  lectureQueryKeys,
   useGetDetailLecture,
   usePatchLecture,
   usePostLecture,
@@ -43,6 +44,7 @@ import { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import * as S from './style'
+import { useQueryClient } from '@tanstack/react-query'
 
 const TITLE_MAX_LENGTH: number = 1000 as const
 const MAIN_MAX_LENGTH: number = 1000 as const
@@ -82,11 +84,13 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
   const { openModal, closeModal } = useModal()
   const { push } = useRouter()
   const authority = useContext(AuthorityContext)
+  const queryClient = useQueryClient()
 
   const onSuccess = () => {
     closeModal()
     toast.success(`강의를 ${lectureId ? '수정' : '개설'}했습니다`)
     push(`/main/lecture`)
+    queryClient.invalidateQueries(lectureQueryKeys.getLectureDetail(lectureId || ''))
     setLectureEssentialComplete(true)
     setLectureSemester('FIRST_YEAR_FALL_SEMESTER')
     setLectureDivision('')
@@ -105,33 +109,20 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
     setShowInstructor('')
   }
 
+  const onError = (status: number) => {
+    if (status >= 500)
+      return toast.error('서버 오류입니다. 관리자에게 문의해주세요')
+    toast.error('입력 요소를 다시 확인해주세요.')
+  }
+
   const { mutate: createLecture } = usePostLecture({
     onSuccess,
+    onError: ({ status }) => onError(status as number),
   })
   const { mutate: modifyLecture } = usePatchLecture(lectureId || '', {
     onSuccess,
+    onError: ({ status }) => onError(status as number),
   })
-
-  const isAble = (): boolean => {
-    if (
-      lectureTitle.length &&
-      lectureContent.length &&
-      lectureLine.length &&
-      lectureInstructor.length &&
-      lectureStartDate.length &&
-      lectureStartTime.length &&
-      lectureEndDate.length &&
-      lectureEndTime.length &&
-      lecturePlace.address.length &&
-      lecturePlace.detail.length &&
-      lectureDates.every((date) => date.completeDate.length) &&
-      lectureDates.every((date) => date.startShowTime) &&
-      lectureDates.every((date) => date.endShowTime.length) &&
-      lectureMaxRegisteredUser.length
-    )
-      return true
-    return false
-  }
 
   const openCreateModal = () => {
     if (!isAble()) return toast.error('입력 요소들을 다시 확인해주세요')
@@ -174,8 +165,8 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
     const ModalParameter: AppropriationModalProps = {
       isApprove: true,
       question: condition
-        ? '강의를 개설하시겠습니까?'
-        : '강의를 수정하시겠습니까?',
+        ? '강의를 수정하시겠습니까?'
+        : '강의를 개설하시겠습니까?',
       title: lectureTitle || '',
       purpose: '수정하기',
       onAppropriation: (callbacks) =>
@@ -200,7 +191,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
   })
 
   useEffect(() => {
-    if (lectureId && data) {
+    if (data) {
       setLectureTitle(data.name)
       setLectureContent(data.content)
       setLectureEssentialComplete(data.essentialComplete)
@@ -230,6 +221,58 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
       setShowInstructor(data.lecturer)
     }
   }, [data])
+
+  const isAble = (): boolean => {
+    const createCondition: boolean =
+      !!lectureType.length &&
+      !!lectureTitle.length &&
+      !!lectureContent.length &&
+      !!lectureLine.length &&
+      !!lectureInstructor.length &&
+      !!lectureStartDate.length &&
+      !!lectureStartTime.length &&
+      !!lectureEndDate.length &&
+      !!lectureEndTime.length &&
+      !!lecturePlace.address.length &&
+      !!lecturePlace.detail.length &&
+      lectureDates.every((date) => date.completeDate.length) &&
+      lectureDates.every((date) => date.startShowTime.length) &&
+      lectureDates.every((date) => date.endShowTime.length) &&
+      !!lectureMaxRegisteredUser.length
+
+    if (data) {
+      const filteredDates: LectureDate[] = lectureDates.map(
+        ({ startShowTime, endShowTime, ...filtered }) => ({
+          ...filtered,
+          completeDate: dayjs(filtered.completeDate).format('YYYY-MM-DD'),
+        })
+      )
+
+      const modifyCondition: boolean =
+        lectureSemester !== data.semester ||
+        lectureEssentialComplete !== data.essentialComplete ||
+        lectureType !== data.lectureType ||
+        lectureTitle !== data.name ||
+        lectureContent !== data.content ||
+        lectureLine !== data.line ||
+        lectureCredit !== data.credit ||
+        lectureInstructor !== data.userId ||
+        lectureStartDate !== dayjs(data.startDate).format('YYYYMMDD') ||
+        lectureStartTime !== dayjs(data.startDate).format('HH:mm') ||
+        lectureEndDate !== dayjs(data.endDate).format('YYYYMMDD') ||
+        lectureEndTime !== dayjs(data.endDate).format('HH:mm') ||
+        lecturePlace.address !== data.address ||
+        lecturePlace.detail !== data.locationDetails ||
+        JSON.stringify(filteredDates) !== JSON.stringify(data.lectureDates) ||
+        +lectureMaxRegisteredUser !== data.maxRegisteredUser
+
+      if (createCondition && modifyCondition) return true
+    } else {
+      if (createCondition) return true
+    }
+
+    return false
+  }
 
   return (
     <PrivateRouter isRedirect={!roleArray.includes(authority as RoleEnumTypes)}>

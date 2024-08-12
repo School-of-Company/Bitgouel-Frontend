@@ -25,14 +25,21 @@ export const lectureQueryKeys = {
   getCompleteLecture: (id: string) => ['lecture', 'completeList', id], // studentId
   getExcel: () => ['lecture', 'excel'],
   getLectureApplyList: (id: string) => ['lecture', 'applyList', id],
-  patchLectureApplyComplete: (id: string, studentId: string) => [
-    'lecture',
-    'modifyComplete',
-    id,
-    studentId, // studentId
-  ],
   patchLecture: (id: string) => ['lecture', 'modify', id],
   deleteLecture: (id: string) => ['lecture', 'delete', id],
+  deleteEnrollment: (id: string) => ['lecture', 'enrollment', id],
+  patchApplyComplete: (id: string, studentIds: string[]) => [
+    'lecture',
+    'applyComplete',
+    id,
+    studentIds,
+  ],
+  getApplyDetail: (lectureId: string, studentId: string) => [
+    'lecture',
+    'applyDetail',
+    lectureId,
+    studentId,
+  ],
 } as const
 
 export const activityQueryKeys = {
@@ -79,6 +86,10 @@ export const clubQueryKeys = {
     id,
     studentId,
   ],
+  postClub: (schoolId: string) => ['club', 'create', schoolId],
+  patchClub: (id: string) => ['club', 'modify', id],
+  deleteClub: (id: string) => ['club', 'delete', id],
+  getClubNameList: (schoolName: string) => ['club', 'name', 'list', schoolName],
 } as const
 
 export const inquiryQueryKeys = {
@@ -113,8 +124,29 @@ export const faqQueryKeys = {
 
 export const universityQueryKeys = {
   getUniversity: () => ['university', 'list'],
+  postUniversity: () => ['university', 'create'],
   patchUniversity: (id: string) => ['university', id],
   deleteUniversity: (id: string) => ['university', 'delete', id],
   postDepartment: (id: string) => ['department', 'create', id],
   deleteDepartment: (id: string) => ['department', 'delete', id],
+} as const
+
+export const schoolQueryKeys = {
+  getSchoolNameList: () => ['school', 'name', 'list'],
+  getSchool: () => ['school', 'list'],
+  postRegistrationSchool: () => ['school', 'registration'],
+  patchSchool: (id: number) => ['school', 'modify', id],
+  deleteSchool: (id: string) => ['school', 'delete', id],
+} as const
+
+export const governmentQueryKeys = {
+  getGovernment: () => ['government', 'list'],
+  postGovernment: () => [`government`, 'create'],
+  deleteGovernment: (id: string) => ['government', 'delete', id],
+} as const
+
+export const companyQueryKeys = {
+  getCompany: () => [`company`, `list`],
+  postCompany: () => [`company`, 'create'],
+  deleteCompany: (id: string) => [`company`, 'delete', id],
 } as const
