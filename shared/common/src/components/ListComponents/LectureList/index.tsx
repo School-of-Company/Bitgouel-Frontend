@@ -38,7 +38,7 @@ const LectureList = ({ lectureTypeFilter }: { lectureTypeFilter: string }) => {
           ))
         )}
       </MainStyle.MainContainer>
-      {data?.lectures.content.length > 0 && (
+      {data && data.lectures.content.length > 0 && (
         <PaginationPages
           pages={pages}
           currentPage={currentPage}
