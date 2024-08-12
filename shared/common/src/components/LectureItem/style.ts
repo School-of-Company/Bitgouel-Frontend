@@ -4,6 +4,7 @@ export const LectureItemWrapper = styled.div`
   padding: 0.5rem 0;
   border-bottom: 0.0625rem solid ${({ theme }) => theme.color.gray['900']};
   cursor: pointer;
+  width: 100%;
 `
 
 export const TitleBox = styled.div`
