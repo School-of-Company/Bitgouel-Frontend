@@ -26,8 +26,6 @@ const LectureList = ({ lectureTypeFilter }: { lectureTypeFilter: string }) => {
     refetch()
   }, [lectureTypeFilter, currentPage])
 
-  console.log(data?.lectures.content.length)
-
   return (
     <>
       <MainStyle.MainContainer>
