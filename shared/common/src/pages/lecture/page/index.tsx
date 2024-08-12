@@ -55,8 +55,6 @@ const LectureList = dynamic(
 
 const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
   const [lectureTypeFilter, setLectureTypeFilter] = useState<string>('')
-  const [isClick, setIsClick] = useState<boolean>(false)
-  const tokenManager = new TokenManager()
   const { push } = useRouter()
   const { openModal } = useModal()
   const { filterList, onSelected } = useFilterSelect({
