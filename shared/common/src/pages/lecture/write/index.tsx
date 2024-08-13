@@ -168,7 +168,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
         ? '강의를 수정하시겠습니까?'
         : '강의를 개설하시겠습니까?',
       title: lectureTitle || '',
-      purpose: '수정하기',
+      purpose: condition ? '수정하기' : '개설하기',
       onAppropriation: (callbacks) =>
         condition
           ? modifyLecture(payload, callbacks)
