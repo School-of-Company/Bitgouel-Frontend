@@ -29,16 +29,14 @@ export const Professor = styled.span`
   margin-left: 0.5rem;
 `
 
-export const TypeText = styled.div`
+export const TypeText = styled.div<{ isLeftEmpty?: boolean }>`
   padding: 0.25rem 0.5rem;
   border-radius: 1.125rem;
   background-color: ${({ theme }) => theme.color.gray['900']};
   gap: 0.5rem;
   color: ${({ theme }) => theme.color.gray['400']};
   ${({ theme }) => theme.typo.caption.regular};
-  &:last-child {
-    margin-left: 0.5rem;
-  }
+  margin-left: ${({isLeftEmpty}) => isLeftEmpty ? '0.5rem' : '0'};
 `
 
 export const MainText = styled.div`
