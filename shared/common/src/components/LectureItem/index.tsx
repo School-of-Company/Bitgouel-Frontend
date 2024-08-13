@@ -24,8 +24,8 @@ const LectureItem = ({ item }: LectureItemProps) => {
       </S.MainText>
       <S.MenuWrapper>
         <div>
-          <S.TypeText>{lectureSemesterToKor[item.semester]}</S.TypeText>
-          <S.TypeText>
+          {item.semester !== 'NOT_APPLICABLE' && <S.TypeText>{lectureSemesterToKor[item.semester]}</S.TypeText>}
+          <S.TypeText isLeftEmpty={item.semester !== 'NOT_APPLICABLE'}>
             {item.division}
             {' | '}
             {item.line}
