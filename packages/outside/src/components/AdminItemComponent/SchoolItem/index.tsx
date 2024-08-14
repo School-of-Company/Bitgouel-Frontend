@@ -111,7 +111,7 @@ const SchoolItem = ({
     openModal(
       <AppropriationModal
         isApprove={true}
-        question='학과를 추가하시겠습니까?'
+        question='동아리를 추가하시겠습니까?'
         purpose='추가하기'
         title={addName}
         onAppropriation={(callbacks) => createClub(createClubBody, callbacks)}
