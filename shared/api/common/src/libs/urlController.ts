@@ -33,7 +33,7 @@ export const lectureUrl = {
     `/lecture/department?keyword=${keyword}`,
   lectureDivision: (keyword: string) => `/lecture/division?keyword=${keyword}`,
   lectureCompleteList: (id: string) => `/lecture/${id}/signup`, // studentId
-  lectureApplyList: (id: string) => `/lecture/student/${id}`,
+  lectureApplyList: (id: string, is_complete: boolean) => `/lecture/student/${id}?is_complete=${is_complete}`,
   lectureExcel: () => `/lecture/excel`,
   lecturePatch: (id: string) => `/lecture/${id}`,
   lectureDelete: (id: string) => `/lecture/${id}/soft`,
