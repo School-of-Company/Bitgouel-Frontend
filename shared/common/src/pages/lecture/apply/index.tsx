@@ -4,15 +4,21 @@ import {
   AuthorityContext,
   Bg3,
   MainStyle,
-  PrivateRouter
+  PrivateRouter,
 } from '@bitgouel/common'
 import dynamic from 'next/dynamic'
 import { useContext } from 'react'
 
-const LectureApplyList = dynamic(() => import('../../../components/ListComponents/LectureApplyList'))
+const LectureApplyList = dynamic(
+  () =>
+    import(
+      '@bitgouel/common/src/components/ListComponents/LectureApply/LectureApplyList'
+    )
+)
 
 const LectureApplyListPage = ({ lectureId }: { lectureId: string }) => {
   const authority = useContext(AuthorityContext)
+
   return (
     <PrivateRouter isRedirect={authority === 'ROLE_STUDENT'}>
       <MainStyle.PageWrapper>
