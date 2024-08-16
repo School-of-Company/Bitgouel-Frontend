@@ -13,6 +13,8 @@ export type isLoadingTitleTypes =
   | '대학 명단을'
   | '기업 명단을'
   | '학교 명단을'
+  | '강의 신청 명단을'
+  | '강의 이수 명단을'
 
 export interface LoadingAnimationProps {
   title: isLoadingTitleTypes
