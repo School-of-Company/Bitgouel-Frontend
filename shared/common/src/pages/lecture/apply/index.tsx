@@ -3,10 +3,13 @@
 import {
   AuthorityContext,
   Bg3,
+  ListDocumentIcon,
   MainStyle,
-  PrivateRouter,
+  PeopleCircle,
+  PrivateRouter
 } from '@bitgouel/common'
 import dynamic from 'next/dynamic'
+import { useRouter } from 'next/navigation'
 import { useContext } from 'react'
 
 const LectureApplyList = dynamic(
@@ -18,6 +21,7 @@ const LectureApplyList = dynamic(
 
 const LectureApplyListPage = ({ lectureId }: { lectureId: string }) => {
   const authority = useContext(AuthorityContext)
+  const { push } = useRouter()
 
   return (
     <PrivateRouter isRedirect={authority === 'ROLE_STUDENT'}>
@@ -25,6 +29,20 @@ const LectureApplyListPage = ({ lectureId }: { lectureId: string }) => {
         <MainStyle.SlideBg url={Bg3}>
           <MainStyle.BgContainer>
             <MainStyle.PageTitle>강의 신청 명단</MainStyle.PageTitle>
+            <MainStyle.ButtonContainer>
+              <MainStyle.SlideButton
+                onClick={() =>
+                  push(`/main/lecture/detail/${lectureId}/complete`)
+                }
+              >
+                <PeopleCircle />
+                <span>이수 명단 조회</span>
+              </MainStyle.SlideButton>
+              <MainStyle.SlideButton onClick={() => push(`/main/lecture`)}>
+                <ListDocumentIcon />
+                <span>강의 목록</span>
+              </MainStyle.SlideButton>
+            </MainStyle.ButtonContainer>
           </MainStyle.BgContainer>
         </MainStyle.SlideBg>
         <MainStyle.MainWrapper>

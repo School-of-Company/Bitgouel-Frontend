@@ -24,11 +24,11 @@ export const lectureQueryKeys = {
   getDepartments: () => ['lecture', 'departments'],
   getCompleteLecture: (id: string) => ['lecture', 'completeList', id], // studentId
   getExcel: () => ['lecture', 'excel'],
-  getLectureApplyList: (id: string, is_complete: boolean) => [
+  getLectureApplyList: (id: string, isComplete: boolean) => [
     'lecture',
     'applyList',
     id,
-    is_complete,
+    isComplete,
   ],
   patchLecture: (id: string) => ['lecture', 'modify', id],
   deleteLecture: (id: string) => ['lecture', 'delete', id],

@@ -1,9 +1,6 @@
 'use client'
 
-import {
-  useDeleteApplyCancel,
-  useGetLectureApplyList
-} from '@bitgouel/api'
+import { useDeleteApplyCancel, useGetLectureApplyList } from '@bitgouel/api'
 import {
   ApplyDetailModal,
   AppropriationModal,
@@ -82,21 +79,13 @@ const LectureCompleteList = ({ lectureId }: { lectureId: string }) => {
               <CompoundListItemComponent.AdminCheckboxItemContainer
                 onClick={() => onDetailModal(student.id)}
               >
-                {!student.isComplete && (
-                  <CompoundListItemComponent.AdminItemCheckboxName
-                    checkList={studentIds}
-                    checkItem={student.id}
-                    handleSelectCheck={handleSelectStudents}
-                    name={student.name}
-                    nameWidth='6rem'
-                  />
-                )}
-                {student.isComplete && (
-                  <S.CompleteName>
-                    <CompleteIcon />
-                    <S.Name>{student.name}</S.Name>
-                  </S.CompleteName>
-                )}
+                <CompoundListItemComponent.AdminItemCheckboxName
+                  checkList={studentIds}
+                  checkItem={student.id}
+                  handleSelectCheck={handleSelectStudents}
+                  name={student.name}
+                  nameWidth='6rem'
+                />
                 {otherItemList.map((item) => (
                   <CompoundListItemComponent.OtherItem
                     key={item.text}
