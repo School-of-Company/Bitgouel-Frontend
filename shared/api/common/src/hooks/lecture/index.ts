@@ -1,4 +1,4 @@
-export * from './useDeleteApplyCancel'
+export * from './usePatchApplyCancel'
 export * from './useDeleteLecture'
 export * from './useGetCompleteLecture'
 export * from './useGetDepartments'

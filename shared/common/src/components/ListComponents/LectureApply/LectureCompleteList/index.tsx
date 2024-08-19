@@ -1,10 +1,9 @@
 'use client'
 
-import { useDeleteApplyCancel, useGetLectureApplyList } from '@bitgouel/api'
+import { useGetLectureApplyList, usePatchApplyCancel } from '@bitgouel/api'
 import {
   ApplyDetailModal,
   AppropriationModal,
-  CompleteIcon,
   CompoundListItemComponent,
   handleSelect,
   NoneResult,
@@ -21,7 +20,7 @@ const LectureCompleteList = ({ lectureId }: { lectureId: string }) => {
   const [studentIds, setStudentIds] = useState<string[]>([])
   const { openModal, closeModal } = useModal()
 
-  const { mutate } = useDeleteApplyCancel(lectureId, studentIds, {
+  const { mutate } = usePatchApplyCancel(lectureId, studentIds, {
     onSuccess: () => {
       refetch()
       closeModal()
@@ -34,7 +33,7 @@ const LectureCompleteList = ({ lectureId }: { lectureId: string }) => {
 
     openModal(
       <AppropriationModal
-        isApprove={true}
+        isApprove={false}
         question='이수를 취소하시겠습니까?'
         title=''
         purpose='취소하기'
