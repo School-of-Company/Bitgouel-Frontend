@@ -38,7 +38,7 @@ const LectureApplyList = ({ lectureId }: { lectureId: string }) => {
     openModal(
       <AppropriationModal
         isApprove={true}
-        question='이수를 완료하시겠습니까?'
+        question='이수 완료하시겠습니까?'
         title=''
         purpose='완료하기'
         onAppropriation={(callbacks) => mutate(undefined, callbacks)}
