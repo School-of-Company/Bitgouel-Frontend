@@ -48,7 +48,7 @@ export const AllSelectBox = styled.label`
   cursor: pointer;
   background: none;
   ${({ theme }) => theme.typo.text_md.medium};
-  border: 0.0625rem solid ${({ theme }) => theme.color.gray['400']};
+  border: 1px solid ${({ theme }) => theme.color.gray['400']};
   color: ${({ theme }) => theme.color.gray['400']};
 
   svg {
