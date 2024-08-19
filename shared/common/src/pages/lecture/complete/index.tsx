@@ -5,6 +5,7 @@ import {
   Bg3,
   ListDocumentIcon,
   MainStyle,
+  PeopleCircle,
   PrivateRouter,
 } from '@bitgouel/common'
 import dynamic from 'next/dynamic'
@@ -32,6 +33,7 @@ const LectureCompleteListPage = ({ lectureId }: { lectureId: string }) => {
               onClick={() => push(`/main/lecture/detail/${lectureId}/apply`)}
             >
               <MainStyle.SlideButton>
+                <PeopleCircle />
                 <span>신청 명단 조회</span>
               </MainStyle.SlideButton>
               <MainStyle.SlideButton onClick={() => push(`/main/lecture`)}>
