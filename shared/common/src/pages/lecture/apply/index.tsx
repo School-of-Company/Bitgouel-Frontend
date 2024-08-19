@@ -39,7 +39,7 @@ const LectureApplyListPage = ({ lectureId }: { lectureId: string }) => {
                 <span>이수 명단 조회</span>
               </MainStyle.SlideButton>
               <MainStyle.SlideButton
-                onClick={() => push(`/main/lecture/${lectureId}`)}
+                onClick={() => push(`/main/lecture/detail/${lectureId}`)}
               >
                 <ReadingGlassesIcon />
                 <span>강의 상세 보기</span>
