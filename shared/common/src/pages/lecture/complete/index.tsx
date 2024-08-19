@@ -6,20 +6,20 @@ import {
   ListDocumentIcon,
   MainStyle,
   PeopleCircle,
-  PrivateRouter
+  PrivateRouter,
 } from '@bitgouel/common'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
 import { useContext } from 'react'
 
-const LectureApplyList = dynamic(
+const LectureCompleteList = dynamic(
   () =>
     import(
-      '@bitgouel/common/src/components/ListComponents/LectureApply/LectureApplyList'
+      '@bitgouel/common/src/components/ListComponents/LectureApply/LectureCompleteList'
     )
 )
 
-const LectureApplyListPage = ({ lectureId }: { lectureId: string }) => {
+const LectureCompleteListPage = ({ lectureId }: { lectureId: string }) => {
   const authority = useContext(AuthorityContext)
   const { push } = useRouter()
 
@@ -28,15 +28,13 @@ const LectureApplyListPage = ({ lectureId }: { lectureId: string }) => {
       <MainStyle.PageWrapper>
         <MainStyle.SlideBg url={Bg3}>
           <MainStyle.BgContainer>
-            <MainStyle.PageTitle>강의 신청 명단</MainStyle.PageTitle>
-            <MainStyle.ButtonContainer>
-              <MainStyle.SlideButton
-                onClick={() =>
-                  push(`/main/lecture/detail/${lectureId}/complete`)
-                }
-              >
+            <MainStyle.PageTitle>강의 이수 명단</MainStyle.PageTitle>
+            <MainStyle.ButtonContainer
+              onClick={() => push(`/main/lecture/detail/${lectureId}/apply`)}
+            >
+              <MainStyle.SlideButton>
                 <PeopleCircle />
-                <span>이수 명단 조회</span>
+                <span>신청 명단 조회</span>
               </MainStyle.SlideButton>
               <MainStyle.SlideButton onClick={() => push(`/main/lecture`)}>
                 <ListDocumentIcon />
@@ -47,7 +45,7 @@ const LectureApplyListPage = ({ lectureId }: { lectureId: string }) => {
         </MainStyle.SlideBg>
         <MainStyle.MainWrapper>
           <MainStyle.MainContainer>
-            <LectureApplyList lectureId={lectureId} />
+            <LectureCompleteList lectureId={lectureId} />
           </MainStyle.MainContainer>
         </MainStyle.MainWrapper>
       </MainStyle.PageWrapper>
@@ -55,4 +53,4 @@ const LectureApplyListPage = ({ lectureId }: { lectureId: string }) => {
   )
 }
 
-export default LectureApplyListPage
+export default LectureCompleteListPage

@@ -1,9 +1,8 @@
 'use client'
 
 import {
-  lectureQueryKeys,
   useGetLectureApplyList,
-  usePatchApplyComplete,
+  usePatchApplyComplete
 } from '@bitgouel/api'
 import {
   ApplyDetailModal,
@@ -15,25 +14,21 @@ import {
   useModal,
   WaitingAnimation,
 } from '@bitgouel/common'
-import { useQueryClient } from '@tanstack/react-query'
 import { ChangeEvent, useState } from 'react'
 import { toast } from 'react-toastify'
+import * as S from '../style'
 import ApplyDisplayInfo from './ApplyDisplayInfo'
-import * as S from './style'
 
 const LectureApplyList = ({ lectureId }: { lectureId: string }) => {
-  const { data, isLoading } = useGetLectureApplyList(lectureId)
-  const [studentIds, setStudentIdss] = useState<string[]>([])
+  const { data, refetch, isLoading } = useGetLectureApplyList(lectureId, false)
+  const [studentIds, setStudentIds] = useState<string[]>([])
   const { openModal, closeModal } = useModal()
-  const queryClient = useQueryClient()
 
   const { mutate } = usePatchApplyComplete(lectureId, studentIds, {
     onSuccess: () => {
-      queryClient.invalidateQueries(
-        lectureQueryKeys.getLectureApplyList(lectureId)
-      )
+      refetch()
       closeModal()
-      toast.success('이수를 확정하였습니다.')
+      toast.success('이수 완료했습니다.')
     },
   })
 
@@ -43,25 +38,22 @@ const LectureApplyList = ({ lectureId }: { lectureId: string }) => {
     openModal(
       <AppropriationModal
         isApprove={true}
-        question='이수를 확정시키겠습니까?'
+        question='이수 완료하시겠습니까?'
         title=''
-        purpose='확정하기'
+        purpose='완료하기'
         onAppropriation={(callbacks) => mutate(undefined, callbacks)}
       />
     )
   }
 
   const onAll = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked) {
-      const notCompleteStudents = data?.students.filter(
-        (student) => !student.isComplete
-      )
-      setStudentIdss(notCompleteStudents?.map((student) => student.id) || [])
-    } else setStudentIdss([])
+    if (e.target.checked)
+      setStudentIds(data?.students.map((student) => student.id) || [])
+    else setStudentIds([])
   }
 
   const handleSelectStudents = (checked: boolean, userId: string) =>
-    handleSelect({ checked, id: userId, setIds: setStudentIdss })
+    handleSelect({ checked, id: userId, setIds: setStudentIds })
 
   const onDetailModal = (studentId: string) => {
     openModal(<ApplyDetailModal lectureId={lectureId} studentId={studentId} />)
@@ -71,9 +63,9 @@ const LectureApplyList = ({ lectureId }: { lectureId: string }) => {
     <>
       <ApplyDisplayInfo onAll={onAll} handleOpenModal={handleOpenModal} />
       <S.ApplyListContainer>
-        {isLoading && <WaitingAnimation title={'강의 신청자를'} />}
+        {isLoading && <WaitingAnimation title={'강의 신청 명단을'} />}
         {!isLoading && data?.students && data.students.length <= 0 && (
-          <NoneResult title={'강의 신청자가'} />
+          <NoneResult title={'강의 신청 명단이'} />
         )}
         {data?.students.map((student) => {
           const otherItemList: { width: string; text: string }[] = [

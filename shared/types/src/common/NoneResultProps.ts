@@ -12,6 +12,8 @@ export type NotDataTitle =
   | '대학 명단이'
   | '기업 명단이'
   | '학교 명단이'
+  | '강의 신청 명단이'
+  | '강의 이수 명단이'
 
 export interface NoneResultProps {
   title: NotDataTitle

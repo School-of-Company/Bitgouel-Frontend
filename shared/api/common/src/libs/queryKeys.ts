@@ -24,7 +24,12 @@ export const lectureQueryKeys = {
   getDepartments: () => ['lecture', 'departments'],
   getCompleteLecture: (id: string) => ['lecture', 'completeList', id], // studentId
   getExcel: () => ['lecture', 'excel'],
-  getLectureApplyList: (id: string) => ['lecture', 'applyList', id],
+  getLectureApplyList: (id: string, isComplete: boolean) => [
+    'lecture',
+    'applyList',
+    id,
+    isComplete,
+  ],
   patchLecture: (id: string) => ['lecture', 'modify', id],
   deleteLecture: (id: string) => ['lecture', 'delete', id],
   deleteEnrollment: (id: string) => ['lecture', 'enrollment', id],
@@ -39,6 +44,12 @@ export const lectureQueryKeys = {
     'applyDetail',
     lectureId,
     studentId,
+  ],
+  deleteApplyCancel: (id: string, studentIds: string[]) => [
+    'lecture',
+    'applyCancel',
+    id,
+    studentIds,
   ],
 } as const
 

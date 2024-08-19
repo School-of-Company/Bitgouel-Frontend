@@ -5,10 +5,11 @@ import { AxiosError } from 'axios'
 
 export const useGetLectureApplyList = (
   id: string,
+  isComplete: boolean,
   options?: UseQueryOptions<ApplyListResponseTypes>
 ) =>
   useQuery<ApplyListResponseTypes, AxiosError>(
-    lectureQueryKeys.getLectureApplyList(id),
-    () => get(lectureUrl.lectureApplyList(id)),
+    lectureQueryKeys.getLectureApplyList(id, isComplete),
+    () => get(lectureUrl.lectureApplyList(id, isComplete)),
     options
   )
