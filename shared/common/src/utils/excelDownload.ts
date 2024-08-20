@@ -12,8 +12,6 @@ const fileTypes = {
 }
 
 const excelDownload = ({ data, fileName, fileExtension }: Parameter) => {
-  if (!data) return toast.error('다운로드 버튼을 다시 눌러주세요.')
-
   if (data instanceof Blob) {
     const fileBlob: Blob = new Blob([data], {
       type: fileTypes[fileExtension],
