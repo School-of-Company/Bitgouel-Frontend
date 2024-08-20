@@ -5,15 +5,11 @@ import {
   LoadingStateContext,
   PasswordValue
 } from '@bitgouel/common'
-import { FormEvent, useContext } from 'react'
+import { useContext } from 'react'
 import { useRecoilValue } from 'recoil'
 import * as S from './style'
 
-interface Props {
-  onLogin: (e?: FormEvent) => void
-}
-
-const LoginButton = ({ onLogin }: Props) => {
+const LoginButton = () => {
   const isLoading = useContext(LoadingStateContext)
   const emailValue = useRecoilValue(EmailValue)
   const passwordValue = useRecoilValue(PasswordValue)
@@ -26,7 +22,7 @@ const LoginButton = ({ onLogin }: Props) => {
       <S.LoginButton
         disabled={!isAble()}
         isAble={isAble()}
-        onClick={onLogin}
+        type='submit'
       >
         로그인
       </S.LoginButton>
