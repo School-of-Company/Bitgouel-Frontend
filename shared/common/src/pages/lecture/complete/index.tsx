@@ -3,10 +3,10 @@
 import {
   AuthorityContext,
   Bg3,
-  ListDocumentIcon,
   MainStyle,
   PeopleCircle,
   PrivateRouter,
+  ReadingGlassesIcon,
 } from '@bitgouel/common'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
@@ -36,9 +36,11 @@ const LectureCompleteListPage = ({ lectureId }: { lectureId: string }) => {
                 <PeopleCircle />
                 <span>신청 명단 조회</span>
               </MainStyle.SlideButton>
-              <MainStyle.SlideButton onClick={() => push(`/main/lecture`)}>
-                <ListDocumentIcon />
-                <span>강의 목록</span>
+              <MainStyle.SlideButton
+                onClick={() => push(`/main/lecture/detail/${lectureId}`)}
+              >
+                <ReadingGlassesIcon />
+                <span>강의 상세 보기</span>
               </MainStyle.SlideButton>
             </MainStyle.ButtonContainer>
           </MainStyle.BgContainer>
