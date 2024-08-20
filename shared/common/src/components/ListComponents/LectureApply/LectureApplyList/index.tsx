@@ -1,6 +1,7 @@
 'use client'
 
 import {
+  lectureQueryKeys,
   useGetLectureApplyList,
   usePatchApplyComplete
 } from '@bitgouel/api'
@@ -14,6 +15,7 @@ import {
   useModal,
   WaitingAnimation,
 } from '@bitgouel/common'
+import { useQueryClient } from '@tanstack/react-query'
 import { ChangeEvent, useState } from 'react'
 import { toast } from 'react-toastify'
 import * as S from '../style'
@@ -23,10 +25,12 @@ const LectureApplyList = ({ lectureId }: { lectureId: string }) => {
   const { data, refetch, isLoading } = useGetLectureApplyList(lectureId, false)
   const [studentIds, setStudentIds] = useState<string[]>([])
   const { openModal, closeModal } = useModal()
+  const queryClient = useQueryClient()
 
   const { mutate } = usePatchApplyComplete(lectureId, studentIds, {
     onSuccess: () => {
       refetch()
+      queryClient.invalidateQueries(lectureQueryKeys.getLectureApplyList(lectureId, true))
       closeModal()
       toast.success('이수 완료했습니다.')
     },
