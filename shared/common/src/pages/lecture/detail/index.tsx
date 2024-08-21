@@ -25,8 +25,8 @@ import dayjs from 'dayjs'
 import { useRouter } from 'next/navigation'
 import { useContext } from 'react'
 import { toast } from 'react-toastify'
-import * as S from './style'
 import { match } from 'ts-pattern'
+import * as S from './style'
 
 type ArgType = 'lectureDelete' | 'lectureEnrollment' | 'lectureEnrollmentDelete'
 
@@ -117,7 +117,7 @@ const LectureDetailPage = ({ lectureId }: { lectureId: string }) => {
                 onClick={() => push(`/main/lecture/detail/${lectureId}/apply`)}
               >
                 <People />
-                <span>신청자 명단 조회</span>
+                <span>신청 명단 조회</span>
               </MainStyle.SlideButton>
             </MainStyle.ButtonContainer>
           )}

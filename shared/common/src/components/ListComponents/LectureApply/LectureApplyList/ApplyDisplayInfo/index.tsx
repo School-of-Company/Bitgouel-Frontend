@@ -20,14 +20,14 @@ const ApplyDisplayInfo = ({ onAll, handleOpenModal }: Props) => {
         <S.DisplayBarSpan width="auto">동아리</S.DisplayBarSpan>
       </S.DisplayBar>
       <S.SelectBoxContainer>
-        <S.AllSelectBox htmlFor='allNew'>
-          <input type='checkbox' id='allNew' onChange={onAll} />
+        <S.AllSelectBox htmlFor='allApply'>
+          <input type='checkbox' id='allApply' onChange={onAll} />
           <PeopleCircle />
           전체 선택
         </S.AllSelectBox>
-        <S.ApplyButton onClick={() => handleOpenModal()}>
+        <S.ApplyButton onClick={handleOpenModal}>
           <Check />
-          강의 이수 확정
+          선택한 학생 이수
         </S.ApplyButton>
       </S.SelectBoxContainer>
     </S.ApplyDisplayContainer>

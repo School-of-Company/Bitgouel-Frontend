@@ -28,8 +28,22 @@ const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
       toast.success('계정을 탈퇴하셨습니다')
     },
   })
+
+  const handleErrorStatus = (status: number) => {
+    const statusMap = {
+      400: () => toast.error('전화번호 셀 서식을 텍스트로 바꿔주세요.'),
+      409: () => toast.error('이미 가입된 학생과 일치하는 정보가 있습니다.'),
+    }
+
+    if (status >= 500) return toast.error('서버 오류가 발생했습니다')
+
+    const inputStatus = statusMap[status]
+    if (inputStatus) inputStatus()
+  }
+
   const { mutate: upload } = usePostExcelUpload({
-    onError: ({ message }) => toast.error(message.split('.')[0])
+    onSuccess: () => toast.success('엑셀이 업로드 되었습니다'),
+    onError: ({ status }) => handleErrorStatus(status as number)
   })
 
   const onFileUpload = useCallback((e: ChangeEvent<HTMLInputElement>) => {

@@ -33,7 +33,8 @@ export const lectureUrl = {
     `/lecture/department?keyword=${keyword}`,
   lectureDivision: (keyword: string) => `/lecture/division?keyword=${keyword}`,
   lectureCompleteList: (id: string) => `/lecture/${id}/signup`, // studentId
-  lectureApplyList: (id: string) => `/lecture/student/${id}`,
+  lectureApplyList: (id: string, isComplete: boolean) =>
+    `/lecture/student/${id}?isComplete=${isComplete}`,
   lectureExcel: () => `/lecture/excel`,
   lecturePatch: (id: string) => `/lecture/${id}`,
   lectureDelete: (id: string) => `/lecture/${id}/soft`,
@@ -42,6 +43,8 @@ export const lectureUrl = {
     `/lecture/${id}/complete?studentIds=${studentIds.join(',')}`,
   lectureApplyDetail: (lectureId: string, studentId: string) =>
     `/lecture/student/${lectureId}/${studentId}`,
+  lectureApplyCancel: (id: string, studentIds: string[]) =>
+    `/lecture/${id}/cancel?studentIds=${studentIds.join(',')}`,
 } as const
 
 export const activityUrl = {
