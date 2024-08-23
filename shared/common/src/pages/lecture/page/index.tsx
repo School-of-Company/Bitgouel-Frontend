@@ -1,8 +1,7 @@
 'use client'
 
-import { TokenManager, useGetLectureExcel } from '@bitgouel/api'
+import { useGetLectureExcel } from '@bitgouel/api'
 import {
-  AuthorityContext,
   Bg3,
   Filter,
   FilterModal,
@@ -11,11 +10,11 @@ import {
   PrintIcon,
   excelDownload,
   useFilterSelect,
-  useModal,
+  useModal
 } from '@bitgouel/common'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { toast } from 'react-toastify'
 
 const defaultFilterList = [
@@ -64,9 +63,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
   })
 
   const {
-    data: applyExcel,
     refetch,
-    error,
   } = useGetLectureExcel({
     enabled: false,
   })
