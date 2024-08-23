@@ -50,11 +50,25 @@ const createFileBlob = (
   fileExtension: keyof typeof FILE_TYPES
 ): Blob => new Blob([data], { type: FILE_TYPES[fileExtension] })
 
+const getFullFileName = (fileName: string, fileExtension: string): string =>
+  `${fileName}.${fileExtension}`
+
+const isShowSaveFilePickerSupported = (
+  win: Window & typeof globalThis
+): win is Window &
+  typeof globalThis & {
+    showSaveFilePicker: NonNullable<Window['showSaveFilePicker']>
+  } => typeof win.showSaveFilePicker === 'function'
+
 const saveWithFileSystemAPI = async (
   fileBlob: Blob,
   fullFileName: string,
   fileExtension: string
 ): Promise<void> => {
+  if (!isShowSaveFilePickerSupported(window)) {
+    throw new Error('showSaveFilePicker is not supported')
+  }
+
   const handle = await window.showSaveFilePicker({
     suggestedName: fullFileName,
     types: [
@@ -87,10 +101,10 @@ const excelDownload = async ({
   }
 
   const fileBlob = createFileBlob(data, fileExtension)
-  const fullFileName = `${fileName}.${fileExtension}`
+  const fullFileName = getFullFileName(fileName, fileExtension)
 
   try {
-    if (window.showSaveFilePicker) {
+    if (isShowSaveFilePickerSupported(window)) {
       await saveWithFileSystemAPI(fileBlob, fullFileName, fileExtension)
     } else {
       saveAs(fileBlob, fullFileName)
