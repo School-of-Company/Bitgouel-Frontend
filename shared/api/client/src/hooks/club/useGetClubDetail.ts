@@ -4,11 +4,13 @@ import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 import { AxiosError, AxiosResponse } from 'axios'
 
 export const useGetClubDetail = (
-  club_id: string,
+  clubId: string,
   options?: UseQueryOptions<ClubDetailResponseTypes>
-) =>
-  useQuery<ClubDetailResponseTypes, AxiosError>(
-    clubQueryKeys.getClubDetail(),
-    () => get(clubUrl.clubDetail(club_id)),
+) => {
+  console.log(clubId)
+  return useQuery<ClubDetailResponseTypes, AxiosError>(
+    clubQueryKeys.getClubDetail(clubId),
+    () => get(clubUrl.clubDetail(clubId)),
     options
   )
+}
