@@ -16,11 +16,12 @@ import * as S from './style'
 const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
   const { push } = useRouter()
   const authority = useContext(AuthorityContext)
+  console.log(authority)
 
   const { data: clubDetail, isLoading } = useGetClubDetail(clubId || '', {
-    enabled: authority === 'ROLE_ADMIN',
-  })
-  const { data: myClub } = useGetMyClub({ enabled: authority !== 'ROLE_ADMIN' })
+    enabled: !!clubId,
+  }) //관지자
+  const { data: myClub } = useGetMyClub({ enabled: !clubId }) //학생
   const { data: myData } = useGetMy()
 
   const [userId, setUserId] = useState<string>('')
@@ -69,7 +70,7 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
             <S.ClubInfoBox>
               <div>소속 학교</div>
               <span>
-                {clubId ? clubDetail?.highSchoolName : myClub?.highSchoolName}
+                {clubId ? clubDetail?.schoolName : myClub?.schoolName}
               </span>
             </S.ClubInfoBox>
             <S.ClubInfoBox>
