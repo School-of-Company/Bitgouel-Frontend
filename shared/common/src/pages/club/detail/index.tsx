@@ -20,7 +20,7 @@ const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
 
   const { data: clubDetail, isLoading } = useGetClubDetail(clubId || '', {
     enabled: !!clubId,
-  }) //관지자
+  }) //관리자
   const { data: myClub } = useGetMyClub({ enabled: !clubId }) //학생
   const { data: myData } = useGetMy()
 
