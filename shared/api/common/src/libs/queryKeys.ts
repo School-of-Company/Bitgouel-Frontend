@@ -89,7 +89,7 @@ export const certificateQueryKeys = {
 export const clubQueryKeys = {
   getSchoolClub: () => ['club', 'schoolClub'],
   getClub: () => ['club', 'clubList'],
-  getClubDetail: () => ['club', 'detail'],
+  getClubDetail: (id: string) => ['club', 'detail', id],
   getMyClub: () => ['club', 'myClub'],
   getStudentDetail: (id: string, studentId: string) => [
     'club',
