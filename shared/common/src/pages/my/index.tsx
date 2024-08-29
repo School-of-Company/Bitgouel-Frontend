@@ -43,20 +43,23 @@ const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
 
   const { mutate: upload } = usePostExcelUpload({
     onSuccess: () => toast.success('엑셀이 업로드 되었습니다'),
-    onError: ({ status }) => handleErrorStatus(status as number)
+    onError: ({ response }) => response && handleErrorStatus(response.status),
   })
 
-  const onFileUpload = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const excelFile: File | null = e.currentTarget.files
-      ? e.currentTarget.files[0]
-      : null
+  const onFileUpload = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const excelFile: File | null = e.currentTarget.files
+        ? e.currentTarget.files[0]
+        : null
 
-    const formData = new FormData()
-    formData.append('file', excelFile ?? '')
-    upload(formData)
-    
-    e.currentTarget.value = ''
-  }, [upload])
+      const formData = new FormData()
+      formData.append('file', excelFile ?? '')
+      upload(formData)
+
+      e.currentTarget.value = ''
+    },
+    [upload]
+  )
 
   const onWithdraw = () =>
     openModal(
