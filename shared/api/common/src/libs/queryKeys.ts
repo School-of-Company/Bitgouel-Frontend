@@ -121,6 +121,7 @@ export const adminQueryKeys = {
   deleteUserReject: (userIds: string[]) => ['admin', 'reject', userIds],
   deleteUserWithout: (userIds: string[]) => ['admin', 'without', userIds],
   postExcelUpload: () => ['admin', 'upload'],
+  getClubExcelDownload: () => ['admin', 'club', 'excel'],
 } as const
 
 export const emailQueryKeys = {

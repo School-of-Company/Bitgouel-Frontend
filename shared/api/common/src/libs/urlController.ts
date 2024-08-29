@@ -112,6 +112,7 @@ export const adminUrl = {
     `/admin/reject?userIds=${userIds.join(',')}`,
   withDrawUser: (userIds: string[]) => `/admin/${userIds.join(',')}`,
   excelUpload: () => `/admin/excel`,
+  clubExcelDownload: () => `/admin/club/excel`,
 } as const
 
 export const emailUrl = {
