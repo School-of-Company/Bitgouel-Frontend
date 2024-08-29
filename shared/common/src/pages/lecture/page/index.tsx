@@ -1,8 +1,7 @@
 'use client'
 
-import { TokenManager, useGetLectureExcel } from '@bitgouel/api'
+import { useGetLectureExcel } from '@bitgouel/api'
 import {
-  AuthorityContext,
   Bg3,
   Filter,
   FilterModal,
@@ -11,11 +10,11 @@ import {
   PrintIcon,
   excelDownload,
   useFilterSelect,
-  useModal,
+  useModal
 } from '@bitgouel/common'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { toast } from 'react-toastify'
 
 const defaultFilterList = [
@@ -64,21 +63,25 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
   })
 
   const {
-    data: applyExcel,
     refetch,
-    isError,
   } = useGetLectureExcel({
     enabled: false,
   })
 
-  const onDownload = () => {
-    refetch()
-    if (isError) return toast.error('취업 동아리 선생님이 배정되지 않았습니다')
-    excelDownload({
-      data: applyExcel,
-      fileName: '강의 신청 명단',
-      fileExtension: 'xlsx',
-    })
+  const onDownload = async () => {
+    try {
+      const response = await refetch()
+      if (response.error) throw response.error
+
+      excelDownload({
+        data: response.data,
+        fileName: '강의 신청 명단',
+        fileExtension: 'xlsx',
+      })
+    } catch (e) {
+      if (e.response.status === 404)
+        toast.error('취업 동아리 선생님이 배정되지 않았습니다')
+    }
   }
 
   return (

@@ -70,7 +70,7 @@ const LoginForm = ({ isAdmin }: { isAdmin: boolean }) => {
     <LoadingStateContext.Provider value={isLoading}>
       <form onSubmit={onLogin}>
         <LoginInput />
-        <LoginButton onLogin={onLogin} />
+        <LoginButton />
       </form>
     </LoadingStateContext.Provider>
   )
