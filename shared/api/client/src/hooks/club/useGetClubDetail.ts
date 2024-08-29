@@ -7,7 +7,6 @@ export const useGetClubDetail = (
   clubId: string,
   options?: UseQueryOptions<ClubDetailResponseTypes>
 ) => {
-  console.log(clubId)
   return useQuery<ClubDetailResponseTypes, AxiosError>(
     clubQueryKeys.getClubDetail(clubId),
     () => get(clubUrl.clubDetail(clubId)),

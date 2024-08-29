@@ -16,7 +16,6 @@ import * as S from './style'
 const ClubDetailPage = ({ clubId }: { clubId?: string }) => {
   const { push } = useRouter()
   const authority = useContext(AuthorityContext)
-  console.log(authority)
 
   const { data: clubDetail, isLoading } = useGetClubDetail(clubId || '', {
     enabled: !!clubId,
