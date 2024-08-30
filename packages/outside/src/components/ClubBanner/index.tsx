@@ -40,7 +40,7 @@ const ClubBanner = () => {
       <MainStyle.BgContainer>
         <MainStyle.PageTitle>취업 동아리 목록</MainStyle.PageTitle>
         <MainStyle.ButtonContainer>
-          <MainStyle.SlideButton onClick={}>
+          <MainStyle.SlideButton onClick={onDownload}>
             <PrintIcon />
             <span>동아리 현황 출력</span>
           </MainStyle.SlideButton>
