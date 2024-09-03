@@ -1,5 +1,6 @@
 export * from './useDeleteUserReject'
 export * from './useDeleteUserWithdraw'
+export * from './useGetClubExcel'
 export * from './useGetUserList'
 export * from './useGetWithDrawUserList'
 export * from './usePatchUserApprove'

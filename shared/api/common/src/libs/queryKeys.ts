@@ -120,6 +120,7 @@ export const adminQueryKeys = {
   patchUserApprove: (userIds: string[]) => ['admin', 'approve', userIds],
   deleteUserReject: (userIds: string[]) => ['admin', 'reject', userIds],
   deleteUserWithout: (userIds: string[]) => ['admin', 'without', userIds],
+  getClubExcelDownload: () => ['admin', 'club', 'excel'],
   postStudentExcelUpload: () => ['admin', 'student', 'upload'],
   postClubExcelUpload: () => ['admin', 'club', 'upload'],
 } as const
