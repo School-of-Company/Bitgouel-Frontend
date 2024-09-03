@@ -111,6 +111,7 @@ export const adminUrl = {
   rejectUser: (userIds: string[]) =>
     `/admin/reject?userIds=${userIds.join(',')}`,
   withDrawUser: (userIds: string[]) => `/admin/${userIds.join(',')}`,
+  clubExcelDownload: () => `/admin/club/excel`,
   studentExcelUpload: () => `/admin/student/excel`,
   clubExcelUpload: () => `/admin/club/excel`,
   lectureExcelDownload: () => `/admin/lecture/excel`,

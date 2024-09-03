@@ -1,10 +1,12 @@
 'use client'
 
-import { usePostClubExcelUpload } from '@bitgouel/api'
+import { useGetClubExcel, usePostClubExcelUpload } from '@bitgouel/api'
 import {
   Bg2,
+  excelDownload,
   ListDocumentIcon,
   MainStyle,
+  PrintIcon,
   SettingOut,
   useFileUpload,
   useModal,
@@ -15,6 +17,25 @@ import SchoolContent from '../SchoolContent'
 
 const ClubBanner = () => {
   const { openModal } = useModal()
+  const { refetch } = useGetClubExcel({
+    enabled: false,
+  })
+
+  const onDownload = async () => {
+    try {
+      const response = await refetch()
+      if (response.error) throw response.error
+
+      excelDownload({
+        data: response.data,
+        fileName: '동아리 현황',
+        fileExtension: 'xlsx',
+      })
+    } catch (e) {
+      if (e.response.status === 404)
+        toast.error('취업 동아리 선생님이 배정되지 않았습니다')
+    }
+  }
 
   const handleErrorStatus = (status: number) => {
     const statusMap = {
@@ -41,6 +62,10 @@ const ClubBanner = () => {
       <MainStyle.BgContainer>
         <MainStyle.PageTitle>취업 동아리 목록</MainStyle.PageTitle>
         <MainStyle.ButtonContainer>
+          <MainStyle.SlideButton onClick={onDownload}>
+            <PrintIcon />
+            <span>동아리 현황 출력</span>
+          </MainStyle.SlideButton>
           <MainStyle.FileUploadLabel htmlFor='clubUpload'>
             <input
               id='clubUpload'
