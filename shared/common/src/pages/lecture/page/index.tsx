@@ -1,6 +1,6 @@
 'use client'
 
-import { useGetLectureExcel } from '@bitgouel/api'
+import { useGetLectureExcel, usePostLectureExcelUpload } from '@bitgouel/api'
 import {
   Bg3,
   Filter,
@@ -9,8 +9,9 @@ import {
   Plus,
   PrintIcon,
   excelDownload,
+  useFileUpload,
   useFilterSelect,
-  useModal
+  useModal,
 } from '@bitgouel/common'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
@@ -62,9 +63,7 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
     setFilterPayload: setLectureTypeFilter,
   })
 
-  const {
-    refetch,
-  } = useGetLectureExcel({
+  const { refetch } = useGetLectureExcel({
     enabled: false,
   })
 
@@ -84,6 +83,26 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
     }
   }
 
+  const handleErrorStatus = (status: number) => {
+    const statusMap = {
+      400: () => toast.error('셀 서식을 텍스트로 변경해주세요.'),
+      404: () => toast.error('셀에 존재하지 않는 강사가 기재되어 있습니다.'),
+      409: () => toast.error('이미 등록된 동아리가 셀에 기재되어 있습니다.')
+    }
+
+    if (status >= 500) return toast.error('서버 오류가 발생했습니다')
+
+    const inputStatus = statusMap[status]
+    if (inputStatus) inputStatus()
+  }
+
+  const { mutate: upload } = usePostLectureExcelUpload({
+    onSuccess: () => toast.success('강의 일괄 삽입을 성공했습니다.'),
+    onError: ({ response }) => response && handleErrorStatus(response.status),
+  })
+
+  const { onFileUpload } = useFileUpload(upload)
+
   return (
     <MainStyle.PageWrapper>
       <MainStyle.SlideBg url={Bg3}>
@@ -96,6 +115,15 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
                   <PrintIcon />
                   <span>신청 명단 출력</span>
                 </MainStyle.SlideButton>
+                <MainStyle.FileUploadLabel htmlFor='lectureUpload'>
+                  <input
+                    id='lectureUpload'
+                    type='file'
+                    accept='.xlsx, .xls, csv'
+                    onChange={onFileUpload}
+                  />
+                  강의 일괄 삽입
+                </MainStyle.FileUploadLabel>
                 <MainStyle.SlideButton
                   onClick={() => push(`/main/lecture/create`)}
                 >
