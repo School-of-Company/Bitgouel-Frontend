@@ -64,7 +64,6 @@ const PostWritePage = ({ postId }: { postId?: string }) => {
   ])
   const { data, isSuccess } = useGetPostDetail(postId || '', {
     enabled: !!postId,
-    refetchOnWindowFocus: false,
   })
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target
