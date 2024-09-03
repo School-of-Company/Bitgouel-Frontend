@@ -1,22 +1,14 @@
 'use client'
 
-<<<<<<< HEAD
-import { useGetClubExcel } from '@bitgouel/api'
+import { useGetClubExcel, usePostClubExcelUpload } from '@bitgouel/api'
 import {
   Bg2,
   excelDownload,
+  ListDocumentIcon,
   MainStyle,
   PrintIcon,
   SettingOut,
-=======
-import { usePostClubExcelUpload } from '@bitgouel/api'
-import {
-  Bg2,
-  ListDocumentIcon,
-  MainStyle,
-  SettingOut,
   useFileUpload,
->>>>>>> b8dd4468348f3b4b5a2013609ea417ffe439077e
   useModal,
 } from '@bitgouel/common'
 import { ScrollListModal } from '@outside/modals'
@@ -25,7 +17,6 @@ import SchoolContent from '../SchoolContent'
 
 const ClubBanner = () => {
   const { openModal } = useModal()
-<<<<<<< HEAD
   const { refetch } = useGetClubExcel({
     enabled: false,
   })
@@ -45,8 +36,6 @@ const ClubBanner = () => {
         toast.error('취업 동아리 선생님이 배정되지 않았습니다')
     }
   }
-
-=======
 
   const handleErrorStatus = (status: number) => {
     const statusMap = {
@@ -68,18 +57,15 @@ const ClubBanner = () => {
 
   const { onFileUpload } = useFileUpload(upload)
 
->>>>>>> b8dd4468348f3b4b5a2013609ea417ffe439077e
   return (
     <MainStyle.SlideBg url={Bg2}>
       <MainStyle.BgContainer>
         <MainStyle.PageTitle>취업 동아리 목록</MainStyle.PageTitle>
         <MainStyle.ButtonContainer>
-<<<<<<< HEAD
           <MainStyle.SlideButton onClick={onDownload}>
             <PrintIcon />
             <span>동아리 현황 출력</span>
           </MainStyle.SlideButton>
-=======
           <MainStyle.FileUploadLabel htmlFor='clubUpload'>
             <input
               id='clubUpload'
@@ -91,7 +77,6 @@ const ClubBanner = () => {
             <ListDocumentIcon />
             <span>동아리 정보 일괄 삽입</span>
           </MainStyle.FileUploadLabel>
->>>>>>> b8dd4468348f3b4b5a2013609ea417ffe439077e
           <MainStyle.SlideButton
             onClick={() =>
               openModal(

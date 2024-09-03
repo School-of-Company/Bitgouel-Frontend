@@ -1,4 +1,4 @@
-import { adminQueryKeys, adminUrl, get, lectureQueryKeys, lectureUrl } from '@bitgouel/api'
+import { adminQueryKeys, adminUrl, get } from '@bitgouel/api'
 import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 
