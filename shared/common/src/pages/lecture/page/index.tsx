@@ -88,7 +88,6 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
     const statusMap = {
       400: () => toast.error('셀 서식을 텍스트로 변경해주세요.'),
       404: () => toast.error('셀에 존재하지 않는 강사가 기재되어 있습니다.'),
-      409: () => toast.error('이미 등록된 동아리가 셀에 기재되어 있습니다.'),
     }
 
     if (status >= 500) return toast.error('서버 오류가 발생했습니다')
