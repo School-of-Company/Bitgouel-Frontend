@@ -123,6 +123,7 @@ export const adminQueryKeys = {
   getClubExcelDownload: () => ['admin', 'club', 'excel'],
   postStudentExcelUpload: () => ['admin', 'student', 'upload'],
   postClubExcelUpload: () => ['admin', 'club', 'upload'],
+  postLectureExcelUpload: () => ['admin', 'lecture', 'upload'],
 } as const
 
 export const emailQueryKeys = {

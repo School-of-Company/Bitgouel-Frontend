@@ -1,4 +1,3 @@
-import { club } from '@bitgouel/common'
 import {
   ActivityOptionsTypes,
   InquiryListQueryStringTypes,
@@ -115,6 +114,7 @@ export const adminUrl = {
   clubExcelDownload: () => `/admin/club/excel`,
   studentExcelUpload: () => `/admin/student/excel`,
   clubExcelUpload: () => `/admin/club/excel`,
+  lectureExcelDownload: () => `/admin/lecture/excel`,
 } as const
 
 export const emailUrl = {
