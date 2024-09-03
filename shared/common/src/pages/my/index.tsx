@@ -4,16 +4,16 @@ import {
   TokenManager,
   useDeleteWithDraw,
   useGetMy,
-  usePostExcelUpload,
+  usePostStudentExcelUpload,
 } from '@bitgouel/api'
 import {
   AppropriationModal,
   Bg4,
   ChangePwModal,
   roleToKor,
+  useFileUpload,
   useModal,
 } from '@bitgouel/common'
-import { ChangeEvent, useCallback } from 'react'
 import { toast } from 'react-toastify'
 import * as S from './style'
 
@@ -41,25 +41,12 @@ const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
     if (inputStatus) inputStatus()
   }
 
-  const { mutate: upload } = usePostExcelUpload({
+  const { mutate: upload } = usePostStudentExcelUpload({
     onSuccess: () => toast.success('엑셀이 업로드 되었습니다'),
     onError: ({ response }) => response && handleErrorStatus(response.status),
   })
 
-  const onFileUpload = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      const excelFile: File | null = e.currentTarget.files
-        ? e.currentTarget.files[0]
-        : null
-
-      const formData = new FormData()
-      formData.append('file', excelFile ?? '')
-      upload(formData)
-
-      e.currentTarget.value = ''
-    },
-    [upload]
-  )
+  const { onFileUpload } = useFileUpload(upload)
 
   const onWithdraw = () =>
     openModal(

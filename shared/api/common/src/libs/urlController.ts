@@ -1,3 +1,4 @@
+import { club } from '@bitgouel/common'
 import {
   ActivityOptionsTypes,
   InquiryListQueryStringTypes,
@@ -111,7 +112,8 @@ export const adminUrl = {
   rejectUser: (userIds: string[]) =>
     `/admin/reject?userIds=${userIds.join(',')}`,
   withDrawUser: (userIds: string[]) => `/admin/${userIds.join(',')}`,
-  excelUpload: () => `/admin/excel`,
+  studentExcelUpload: () => `/admin/student/excel`,
+  clubExcelUpload: () => `/admin/club/excel`,
 } as const
 
 export const emailUrl = {

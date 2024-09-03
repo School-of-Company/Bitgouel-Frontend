@@ -8,7 +8,6 @@ const CustomProvider = ({ children }: { children: React.ReactNode }) => {
   const { data } = useGetMy({
     staleTime: Infinity,
     cacheTime: Infinity,
-    refetchOnWindowFocus: false,
     enabled: !!tokenManager.accessToken
   })
 
