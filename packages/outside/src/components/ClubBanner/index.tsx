@@ -47,7 +47,6 @@ const ClubBanner = () => {
               type='file'
               accept='.xlsx, .xls, csv'
               onChange={onFileUpload}
-              style={{ display: 'none' }}
             />
             <ListDocumentIcon />
             <span>동아리 정보 일괄 삽입</span>

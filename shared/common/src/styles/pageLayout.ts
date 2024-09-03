@@ -73,6 +73,10 @@ export const FileUploadLabel = styled.label`
   border-radius: 0.5rem;
   backdrop-filter: blur(0.25rem);
 
+  input {
+    display: none;
+  }
+
   svg {
     fill: ${({ theme }) => theme.color.white};
   }
