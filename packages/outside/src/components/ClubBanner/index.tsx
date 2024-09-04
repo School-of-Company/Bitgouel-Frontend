@@ -4,6 +4,7 @@ import { useGetClubExcel, usePostClubExcelUpload } from '@bitgouel/api'
 import {
   Bg2,
   excelDownload,
+  handleErrorStatus,
   ListDocumentIcon,
   MainStyle,
   PrintIcon,
@@ -14,6 +15,12 @@ import {
 import { ScrollListModal } from '@outside/modals'
 import { toast } from 'react-toastify'
 import SchoolContent from '../SchoolContent'
+
+const errorStatusMap: { [key: number]: () => void } = {
+  400: () => toast.error('유효하지 않은 동아리 분야입니다.'),
+  404: () => toast.error('셀에 존재하지 않는 학교가 기재되어 있습니다.'),
+  409: () => toast.error('이미 등록된 동아리가 셀에 기재되어 있습니다.'),
+}
 
 const ClubBanner = () => {
   const { openModal } = useModal()
@@ -37,22 +44,10 @@ const ClubBanner = () => {
     }
   }
 
-  const handleErrorStatus = (status: number) => {
-    const statusMap = {
-      400: () => toast.error('유효하지 않은 동아리 분야입니다.'),
-      404: () => toast.error('셀에 존재하지 않는 학교가 기재되어 있습니다.'),
-      409: () => toast.error('이미 등록된 동아리가 셀에 기재되어 있습니다.'),
-    }
-
-    if (status >= 500) return toast.error('서버 오류가 발생했습니다')
-
-    const inputStatus = statusMap[status]
-    if (inputStatus) inputStatus()
-  }
-
   const { mutate: upload } = usePostClubExcelUpload({
     onSuccess: () => toast.success('동아리 정보 일괄 삽입을 성공했습니다.'),
-    onError: ({ response }) => response && handleErrorStatus(response.status),
+    onError: ({ response }) =>
+      response && handleErrorStatus(response.status, errorStatusMap),
   })
 
   const { onFileUpload } = useFileUpload(upload)
