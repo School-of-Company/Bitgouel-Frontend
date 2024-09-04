@@ -10,6 +10,7 @@ import {
   Plus,
   PrintIcon,
   excelDownload,
+  handleErrorStatus,
   useFileUpload,
   useFilterSelect,
   useModal,
@@ -48,6 +49,11 @@ const defaultFilterList = [
   },
 ]
 
+const errorStatusMap: { [key: number]: () => void } = {
+  400: () => toast.error('셀 서식을 텍스트로 변경해주세요.'),
+  404: () => toast.error('셀에 존재하지 않는 강사가 기재되어 있습니다.'),
+}
+
 const filterTitle: string = '강의 유형'
 
 const LectureList = dynamic(
@@ -84,21 +90,10 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
     }
   }
 
-  const handleErrorStatus = (status: number) => {
-    const statusMap = {
-      400: () => toast.error('셀 서식을 텍스트로 변경해주세요.'),
-      404: () => toast.error('셀에 존재하지 않는 강사가 기재되어 있습니다.'),
-    }
-
-    if (status >= 500) return toast.error('서버 오류가 발생했습니다')
-
-    const inputStatus = statusMap[status]
-    if (inputStatus) inputStatus()
-  }
-
   const { mutate: upload } = usePostLectureExcelUpload({
     onSuccess: () => toast.success('강의 일괄 삽입을 성공했습니다.'),
-    onError: ({ response }) => response && handleErrorStatus(response.status),
+    onError: ({ response }) =>
+      response && handleErrorStatus(response.status, errorStatusMap),
   })
 
   const { onFileUpload } = useFileUpload(upload)
