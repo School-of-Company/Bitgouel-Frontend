@@ -85,8 +85,10 @@ const LecturePage = ({ isAdmin }: { isAdmin: boolean }) => {
         fileExtension: 'xlsx',
       })
     } catch (e) {
-      if (e.response.status === 404)
-        toast.error('취업 동아리 선생님이 배정되지 않았습니다')
+      e &&
+        handleErrorStatus(e.response.status, {
+          404: () => toast.error('취업 동아리 선생님이 배정되지 않았습니다.'),
+        })
     }
   }
 
