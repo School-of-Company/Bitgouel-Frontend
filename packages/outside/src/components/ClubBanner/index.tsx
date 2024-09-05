@@ -41,7 +41,7 @@ const ClubBanner = () => {
     } catch (e) {
       e &&
         handleErrorStatus(e.response.status, {
-          404: () => toast.error('취업 동아리 선생님이 배정되지 않았습니다.'),
+          400: () => toast.error('유효하지 않은 동아리 분야입니다.'),
         })
     }
   }
