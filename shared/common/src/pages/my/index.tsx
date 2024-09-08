@@ -10,12 +10,18 @@ import {
   AppropriationModal,
   Bg4,
   ChangePwModal,
+  handleErrorStatus,
   roleToKor,
   useFileUpload,
   useModal,
 } from '@bitgouel/common'
 import { toast } from 'react-toastify'
 import * as S from './style'
+
+const errorStatusMap: { [key: number]: () => void } = {
+  400: () => toast.error('전화번호 셀 서식을 텍스트로 바꿔주세요.'),
+  409: () => toast.error('이미 가입된 학생과 일치하는 정보가 있습니다.'),
+}
 
 const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
   const { openModal } = useModal()
@@ -29,21 +35,10 @@ const MyPage = ({ isAdmin }: { isAdmin: boolean }) => {
     },
   })
 
-  const handleErrorStatus = (status: number) => {
-    const statusMap = {
-      400: () => toast.error('전화번호 셀 서식을 텍스트로 바꿔주세요.'),
-      409: () => toast.error('이미 가입된 학생과 일치하는 정보가 있습니다.'),
-    }
-
-    if (status >= 500) return toast.error('서버 오류가 발생했습니다')
-
-    const inputStatus = statusMap[status]
-    if (inputStatus) inputStatus()
-  }
-
   const { mutate: upload } = usePostStudentExcelUpload({
     onSuccess: () => toast.success('엑셀이 업로드 되었습니다'),
-    onError: ({ response }) => response && handleErrorStatus(response.status),
+    onError: ({ response }) =>
+      response && handleErrorStatus(response.status, errorStatusMap),
   })
 
   const { onFileUpload } = useFileUpload(upload)
