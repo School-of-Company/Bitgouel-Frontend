@@ -13,6 +13,7 @@ import {
   SignUpPage2Obj,
   SignUpPage3Obj,
   SignUpPageNumber,
+  useDebounce,
 } from '@bitgouel/common'
 import { SignUpCommonPayloadTypes } from '@bitgouel/types'
 import { toast } from 'react-toastify'
@@ -141,7 +142,10 @@ const useSignUp = ({ isNext }: { isNext: boolean }) => {
     }
   }
 
-  return [onNext]
+  return [useDebounce(onNext, 500)]
 }
 
 export default useSignUp
+
+
+
