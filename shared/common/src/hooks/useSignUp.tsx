@@ -146,6 +146,3 @@ const useSignUp = ({ isNext }: { isNext: boolean }) => {
 }
 
 export default useSignUp
-
-
-
