@@ -20,6 +20,7 @@
     "@storybook/react": "7.5.1",
     "@tanstack/react-query": "^4.29.7",
     "@tanstack/react-query-devtools": "^4.29.7",
+    "@types/lodash": "^4.17.7",
     "@types/react": "^18",
     "dayjs": "^1.11.10",
     "next": "13.4.2",
