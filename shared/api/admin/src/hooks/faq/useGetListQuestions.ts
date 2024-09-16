@@ -4,7 +4,7 @@ import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 
 export const useGetListQuestions = (
-  options?: UseQueryOptions<FAQListQuestionsTypes>
+  options?: UseQueryOptions<FAQListQuestionsTypes, AxiosError>
 ) =>
   useQuery<FAQListQuestionsTypes, AxiosError>(
     faqQueryKeys.getQuestions(),
