@@ -30,6 +30,7 @@ import {
   MainStyle,
   PrivateRouter,
   ShowInstructor,
+  useDeleteLectureForm,
   useModal,
 } from '@bitgouel/common'
 import {
@@ -81,6 +82,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
     useRecoilState(LectureMaxRegistered)
   const setShowInstructor = useSetRecoilState(ShowInstructor)
   const [lecturePlace, setLecturePlace] = useRecoilState(LecturePlace)
+  const { resetAllLectureForm } = useDeleteLectureForm()
   const { openModal, closeModal } = useModal()
   const { push } = useRouter()
   const authority = useContext(AuthorityContext)
@@ -90,7 +92,9 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
     closeModal()
     toast.success(`강의를 ${lectureId ? '수정' : '개설'}했습니다`)
     push(`/main/lecture`)
-    queryClient.invalidateQueries(lectureQueryKeys.getLectureDetail(lectureId || ''))
+    queryClient.invalidateQueries(
+      lectureQueryKeys.getLectureDetail(lectureId || '')
+    )
     setLectureEssentialComplete(true)
     setLectureSemester('FIRST_YEAR_FALL_SEMESTER')
     setLectureDivision('')
@@ -219,7 +223,7 @@ const LectureWritePage = ({ lectureId }: { lectureId?: string }) => {
       setLectureCredit(data.credit as 1 | 2)
       setLectureMaxRegisteredUser(data.maxRegisteredUser.toString())
       setShowInstructor(data.lecturer)
-    }
+    } else resetAllLectureForm()
   }, [data])
 
   const isAble = (): boolean => {
