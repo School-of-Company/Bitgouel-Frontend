@@ -11,8 +11,13 @@ import {
   Section7,
   Section8,
 } from './HomeSection'
+import { FAQListQuestionsTypes } from '@bitgouel/types'
 
-const HomePage = () => {
+const HomePage = ({
+  faqInitialData,
+}: {
+  faqInitialData: FAQListQuestionsTypes
+}) => {
   return (
     <div style={{ backgroundColor: '#f6f6f6' }}>
       <Section1 />
@@ -22,7 +27,7 @@ const HomePage = () => {
       <Section5 />
       <Section6 />
       <Section7 />
-      <FAQSection />
+      <FAQSection faqInitialData={faqInitialData} />
       <Section8 />
     </div>
   )

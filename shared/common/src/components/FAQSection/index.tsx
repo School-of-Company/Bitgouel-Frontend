@@ -4,11 +4,18 @@ import { useGetListQuestions } from '@bitgouel/api'
 import { FAQAnswerItem, FAQItem, useScroll } from '@bitgouel/common'
 import * as S from './style'
 import { useRef } from 'react'
+import { FAQListQuestionsTypes } from '@bitgouel/types'
 
-const FAQSection = () => {
+const FAQSection = ({
+  faqInitialData,
+}: {
+  faqInitialData: FAQListQuestionsTypes
+}) => {
   const target = useRef(null)
   const { isVisible } = useScroll({ target, option: { threshold: 0.1 } })
-  const { data, refetch } = useGetListQuestions()
+  const { data, refetch } = useGetListQuestions({
+    initialData: faqInitialData,
+  })
 
   return (
     <S.FAQSectionWrapper
